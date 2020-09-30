@@ -4,7 +4,8 @@
       <div v-if="post.content">
         <StreamPost
           :author="post.author"
-          :content="post.content" />
+          :content="post.content"
+          :postid="post.postid" />
       </div>
     </div>
   </div>
@@ -20,6 +21,7 @@ export interface Post {
   author: string;
   content: string;
   created: number;
+  postid: string;
 }
 
 export default defineComponent({
@@ -40,7 +42,8 @@ export default defineComponent({
           arrr.push({
             author: change.doc.data()?.author as string,
             content: change.doc.data()?.content as string,
-            created: change.doc.data().created.seconds as number
+            created: change.doc.data().created.seconds as number,
+            postid: change.doc.id
           })
         })
         latestPosts.value = arrr
