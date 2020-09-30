@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/villetakanen/pelilauta/compare/v1.5.0...v1.6.0) (2020-09-30)
+
+
+### Features
+
+* card author ([8c4c725](https://github.com/villetakanen/pelilauta/commit/8c4c725f8d04e135e92635bad6853a6b9b37279e))
+
 ## [1.5.0](https://github.com/villetakanen/pelilauta/compare/v1.4.0...v1.5.0) (2020-09-30)
 
 
