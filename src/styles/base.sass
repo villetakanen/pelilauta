@@ -3,3 +3,23 @@
 #app
   max-width: 840px
   margin: 0 auto
+
+#AppBar
+  position: fixed
+  margin: 0
+  padding: 0px
+  top: 0
+  left: 0
+  width: 100%
+  @include ElementColorPrimary()
+  #AppBarToolbar
+    padding: 8px
+    padding-left: 16px
+  h1
+    @include TypeButton()
+    line-height: 32px
+
+div.toolbar
+  display: flex
+  div.spacer
+    flex-grow: 1

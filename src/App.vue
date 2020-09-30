@@ -1,10 +1,18 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <AppBar/>
   <router-view/>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import AppBar from './components/AppBar.vue'
+
+export default defineComponent({
+  components: {
+    AppBar
+  }
+})
+</script>
 
 <style lang="sass">
 @import styles/base.sass
