@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/villetakanen/pelilauta/compare/v1.4.0...v1.5.0) (2020-09-30)
+
+
+### Features
+
+* demo styling ([04dbcd9](https://github.com/villetakanen/pelilauta/commit/04dbcd982921a8412a7160de65b8d9515b0f0d30))
+
 ## [1.4.0](https://github.com/villetakanen/pelilauta/compare/v1.3.0...v1.4.0) (2020-09-30)
 
 
