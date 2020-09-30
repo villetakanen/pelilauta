@@ -1,11 +1,14 @@
-@mixin ElementColorNone()
+@mixin TypeColorDark()
   color: rgb(23,23,37)
+  
+@mixin ElementColorNone()
+  @include TypeColorDark()
   background: none
 
 @mixin ElementColorPrimary()
-  color: rgb(23,23,37)
+  @include TypeColorDark()
   background-color: #1de9b6
 
 @mixin ElementColorPrimaryLight()
-  color: rgb(23,23,37)
+  @include TypeColorDark()
   background-color: #6effe8

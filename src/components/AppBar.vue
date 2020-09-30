@@ -9,6 +9,8 @@
       <h1 class="font-button">
         Pelilauta
       </h1>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
       <div class="spacer" />
       <ProfileAction />
     </div>
