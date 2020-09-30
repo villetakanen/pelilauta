@@ -18,9 +18,11 @@ export default defineComponent({
       const streamRef = db.collection('stream')
       unsubscribe = streamRef.orderBy('created', 'desc').limit(11).onSnapshot((snapshot) => {
         latestPosts.value = ''
+        const arrr: string[] = []
         snapshot.docChanges().forEach((change) => {
-          latestPosts.value += JSON.stringify(change.doc.data())
+          arrr.push(JSON.stringify(change.doc.data()))
         })
+        latestPosts.value = arrr.join('--------')
       })
     })
     onUnmounted(() => { unsubscribe() })

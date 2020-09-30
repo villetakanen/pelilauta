@@ -1,14 +1,18 @@
 <template>
   <MaterialCard>
     <p v-if="!isAuthz">Please <a href="/login">login</a> to post</p>
-    <textarea v-model="newPostContent"></textarea>
-    {{newPostContent}}
-    <MaterialButton :disabled="isAuthz">Post!</MaterialButton>
+    <div :style="isAuthz ? '' : 'height: 0; overflow: hidden'">
+      <div id="editorjs" />
+      <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
+    </div>
   </MaterialCard>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
+import EditorJS from '@editorjs/editorjs'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthz } from '@/lib/authz'
@@ -20,18 +24,36 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
-    const { isAuthz } = useAuthz()
-    const newPostContent = ref('')
-    return { isAuthz, newPostContent }
+    const { isAuthz, uid } = useAuthz()
+
+    const editor = new EditorJS({
+      holder: 'editorjs',
+      minHeight: 24
+    })
+    editor.isReady.then(() => {})
+
+    function post (): void {
+      console.log('post!', uid)
+      const db = firebase.firestore()
+      const streamRef = db.collection('stream')
+      editor.save().then((editorData) => {
+        streamRef.add(
+          {
+            author: uid.value,
+            blockContent: editorData,
+            created: firebase.firestore.FieldValue.serverTimestamp()
+          }).then(() => {
+          editor.blocks.clear()
+        })
+      })
+    }
+
+    return { isAuthz, post }
   }
 })
 </script>
 
 <style lang="sass" scoped>
-textarea
- display: block
- width: 100%
- height: 5em
- border: none
- resize: none
+#editorjs
+  background-color: white
 </style>
