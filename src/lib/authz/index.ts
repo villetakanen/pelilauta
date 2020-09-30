@@ -5,7 +5,8 @@ import 'firebase/firestore'
 const state = ref({
   isAuthz: false,
   profile: {
-    nick: ''
+    nick: '',
+    photoURL: ''
   }
 })
 const isAuthz = computed(() => (state.value.isAuthz))
@@ -23,6 +24,7 @@ function onAuthStateChanged (user: firebase.User|null): void {
   const profileRef = db.collection('profiles').doc(user.uid)
   unsubscribe = profileRef.onSnapshot((doc) => {
     state.value.profile.nick = doc.data()?.nick
+    state.value.profile.photoURL = doc.data()?.photoURL
   })
 }
 

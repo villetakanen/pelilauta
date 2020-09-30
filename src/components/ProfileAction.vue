@@ -27,7 +27,7 @@ export default defineComponent({
 
     const reroute = () => {
       if (!isAuthz.value) router.push('/login')
-      router.push('/about')
+      else router.push('/profile')
     }
     return { reroute, profile, isAuthz }
   }
