@@ -3,16 +3,18 @@
     :action="reroute"
     icon
   >
-    <img
+    <img v-if="!isAuthz || !profile.nick"
       src="../assets/avatar.svg"
-      alt="M"
-    >
+      :alt="isAuthz"
+    />
+    <span v-if="isAuthz && profile.nick">{{profile.nick.substring(0,1)}}</span>
   </MaterialButton>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthz } from '../lib/authz'
 import MaterialButton from './material/MaterialButton.vue'
 
 export default defineComponent({
@@ -21,11 +23,13 @@ export default defineComponent({
   },
   setup () {
     const router = useRouter()
+    const { isAuthz, profile } = useAuthz()
 
     const reroute = () => {
+      if (!isAuthz.value) router.push('/login')
       router.push('/about')
     }
-    return { reroute }
+    return { reroute, profile, isAuthz }
   }
 })
 </script>
