@@ -1,16 +1,17 @@
 <template>
-  <MaterialCard>
+  <MaterialCard @click="click">
     <p v-if="!isAuthz">Please <a href="/login">login</a> to post</p>
-    <div :style="isAuthz ? '' : 'height: 0; overflow: hidden'">
-      <div id="editorjs" />
+    <div>
+      <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
+      <!--div id="editorjs" :class="{minimized: true, openOnClick: cardClicked}"/-->
+      {{ linkify(content) }}
       <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
     </div>
   </MaterialCard>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import EditorJS from '@editorjs/editorjs'
+import { defineComponent, ref } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import MaterialButton from '@/components/material/MaterialButton.vue'
@@ -24,31 +25,56 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
+    const cardClicked = ref(false)
+    const content = ref('')
     const { isAuthz, uid } = useAuthz()
 
-    const editor = new EditorJS({
-      holder: 'editorjs',
-      minHeight: 24
-    })
-    editor.isReady.then(() => {})
+    function onInput (event: Event) {
+      const target = event.target as HTMLElement
+      content.value = target.innerHTML
+    }
+
+    function linkify (inputText: string): string {
+      // URLs starting with http://, https://, or ftp://
+      const replacePattern1 = '/(\b(https?|ftp):\\/\\/[-A-Z0-9+&@#\\/%?=~_|!:,.;]*[-A-Z0-9+&@#\\/%=~_|])/gim'
+      const replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>')
+
+      return replacedText
+    }
 
     function post (): void {
       console.log('post!', uid)
+      console.log()
       const db = firebase.firestore()
       const streamRef = db.collection('stream')
-      editor.save().then((editorData) => {
-        streamRef.add(
-          {
-            author: uid.value,
-            blockContent: editorData,
-            created: firebase.firestore.FieldValue.serverTimestamp()
-          }).then(() => {
-          editor.blocks.clear()
-        })
+      streamRef.add(
+        {
+          author: uid.value,
+          content: linkify(content.value),
+          created: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
       })
     }
 
-    return { isAuthz, post }
+    function click () {
+      console.log('clicked!')
+      if (isAuthz.value) cardClicked.value = true
+    }
+
+    function paste (event: ClipboardEvent) {
+      event.preventDefault()
+      event.stopPropagation()
+      const pasted = event.clipboardData?.getData('text/plain')
+      const selection = window.getSelection()
+      if (selection && pasted) {
+        selection.getRangeAt(0).insertNode(document.createTextNode(pasted))
+        selection.collapseToEnd()
+      }
+      const target = event.target as HTMLElement
+      content.value = target.innerHTML
+    }
+
+    return { isAuthz, post, cardClicked, click, paste, onInput, content, linkify }
   }
 })
 </script>
@@ -56,4 +82,15 @@ export default defineComponent({
 <style lang="sass" scoped>
 #editorjs
   background-color: white
+.minimized
+  height: 0px
+  overflow: hidden
+  transition: height 3.0s
+.minimized.openOnClick
+  height: 300px
+  transition: height 3.0s
+.tester
+  background-color: white
+  height: 100px
+  width: 100%
 </style>
