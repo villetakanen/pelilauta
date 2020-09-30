@@ -6,6 +6,7 @@
   <div class="two-columns">
     <MaterialCard>
       <h3>Stream</h3>
+      <Stream />
     </MaterialCard>
     <MaterialCard>
       <h3>Topics</h3>
@@ -17,12 +18,14 @@
 import { defineComponent } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import Stream from '@/components/stream/Stream.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     MaterialButton,
-    MaterialCard
+    MaterialCard,
+    Stream
   }
 })
 </script>
