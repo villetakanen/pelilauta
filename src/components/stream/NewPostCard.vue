@@ -4,7 +4,6 @@
     <div>
       <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
       <!--div id="editorjs" :class="{minimized: true, openOnClick: cardClicked}"/-->
-      {{ linkify(content) }}
       <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
     </div>
   </MaterialCard>

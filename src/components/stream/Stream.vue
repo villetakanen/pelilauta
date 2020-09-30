@@ -1,8 +1,9 @@
 <template>
   <div class="stream">
     <div v-for="(post, index) in latestPosts" v-bind:key="index">
+      <div v-if="post.content" style="background-color:rgba(255,255,255,0.4); padding: 4px;margin-top:4px">
       <div :innerHTML="post.content"></div>
-      <hr/>
+      </div>
     </div>
   </div>
 </template>
