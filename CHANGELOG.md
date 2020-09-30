@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/villetakanen/pelilauta/compare/v1.3.0...v1.4.0) (2020-09-30)
+
+
+### Features
+
+* add new post as innerhtml ([c413141](https://github.com/villetakanen/pelilauta/commit/c4131416767819dc7d8828b0586d0f155d5872ff))
+
 ## [1.3.0](https://github.com/villetakanen/pelilauta/compare/v1.2.0...v1.3.0) (2020-09-30)
 
 
