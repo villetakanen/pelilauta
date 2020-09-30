@@ -1,11 +1,14 @@
 <template>
-  <MaterialCard @click="click">
-    <p v-if="!isAuthz">Please <a href="/login">login</a> to post</p>
-    <div>
-      <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
-      <!--div id="editorjs" :class="{minimized: true, openOnClick: cardClicked}"/-->
-      <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
-    </div>
+  <MaterialCard>
+    <transition name="fade">
+      <p v-if="!isAuthz">Please <a href="/login">login</a> to post</p>
+    </transition>
+    <transition name="fade">
+      <div v-if="isAuthz">
+        <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
+        <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
+      </div>
+    </transition>
   </MaterialCard>
 </template>
 
@@ -24,7 +27,6 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
-    const cardClicked = ref(false)
     const content = ref('')
     const { isAuthz, uid } = useAuthz()
 
@@ -55,11 +57,6 @@ export default defineComponent({
       })
     }
 
-    function click () {
-      console.log('clicked!')
-      if (isAuthz.value) cardClicked.value = true
-    }
-
     function paste (event: ClipboardEvent) {
       event.preventDefault()
       event.stopPropagation()
@@ -73,7 +70,7 @@ export default defineComponent({
       content.value = target.innerHTML
     }
 
-    return { isAuthz, post, cardClicked, click, paste, onInput, content, linkify }
+    return { isAuthz, post, paste, onInput, content, linkify }
   }
 })
 </script>

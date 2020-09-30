@@ -4,11 +4,7 @@
     <div style="text-align:center;margin-top:8px"><a href="https://mekanismi.sange.fi">Mekanismi</a> / Pelilauta</div>
   </MaterialCard>
   <NewPostCard />
-  <!--div class="two-columns"-->
-    <MaterialCard>
-      <h3>Stream</h3>
-      <Stream />
-    </MaterialCard>
+  <Stream />
     <!--MaterialCard>
       <h3>Topics</h3>
     </MaterialCard>
@@ -35,10 +31,5 @@ export default defineComponent({
 .fox-logo
   margin: 0 auto
   display: block
-  max-width: 220px
-.two-columns
-  display: flex
-  flex-direction: row
-  .material-card
-    width: 374px
+  max-width: 96px
 </style>

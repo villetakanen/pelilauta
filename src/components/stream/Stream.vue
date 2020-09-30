@@ -1,8 +1,10 @@
 <template>
   <div class="stream">
     <div v-for="(post, index) in latestPosts" v-bind:key="index">
-      <div v-if="post.content" style="background-color:rgba(255,255,255,0.4); padding: 4px;margin-top:4px">
-      <div :innerHTML="post.content"></div>
+      <div v-if="post.content">
+        <StreamPost
+          :author="post.author"
+          :content="post.content" />
       </div>
     </div>
   </div>
@@ -12,14 +14,18 @@
 import { defineComponent, onMounted, ref, onUnmounted } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
+import StreamPost from './StreamPost.vue'
 
-interface Post {
+export interface Post {
   author: string;
   content: string;
   created: number;
 }
 
 export default defineComponent({
+  components: {
+    StreamPost
+  },
   setup () {
     const postStruct: Post[] = []
     const latestPosts = ref(postStruct)
