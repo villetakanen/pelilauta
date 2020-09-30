@@ -1,6 +1,10 @@
 <template>
   <AppBar/>
-  <router-view/>
+  <div id="mainContentWrapper">
+    <main>
+      <router-view/>
+    </main>
+  </div>
 </template>
 
 <script lang="ts">

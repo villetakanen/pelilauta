@@ -10,18 +10,18 @@
         Pelilauta
       </h1>
       <div class="spacer" />
-      <ProfileIcon />
+      <ProfileAction />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ProfileIcon from './material/MaterialButton.vue'
+import ProfileAction from './ProfileAction.vue'
 
 export default defineComponent({
   components: {
-    ProfileIcon
+    ProfileAction
   }
 })
 </script>

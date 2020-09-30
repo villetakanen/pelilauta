@@ -1,8 +1,24 @@
 @import material-button.sass
+@import material-typography.sass
+
+*:focus
+  outline: none
+
+body
+  margin: 0
+  padding: 0
+  @include TypeBody1()
 
 #app
-  max-width: 840px
-  margin: 0 auto
+  #mainContentWrapper
+    padding: 0
+    margin: 0
+    main
+      margin: 0 auto
+      margin-top:72px
+      padding: 16px
+      max-width: 840px
+      background-color: #ddd
 
 #AppBar
   position: fixed
@@ -11,13 +27,15 @@
   top: 0
   left: 0
   width: 100%
+  height: 56px
+  z-index: 100
   @include ElementColorPrimary()
   #AppBarToolbar
-    padding: 8px
-    padding-left: 16px
+    padding: 0px 16px
   h1
     @include TypeButton()
-    line-height: 32px
+    line-height: 22px
+    margin-top: 16px
 
 div.toolbar
   display: flex

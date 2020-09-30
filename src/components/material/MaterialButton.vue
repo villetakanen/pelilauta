@@ -15,7 +15,7 @@ export default defineComponent({
       default: undefined
     },
     icon: {
-      type: String,
+      type: [String, Boolean],
       required: false,
       default: undefined
     },
