@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/villetakanen/pelilauta/compare/v1.2.0...v1.3.0) (2020-09-30)
+
+
+### Features
+
+* new post component ([3e70c8e](https://github.com/villetakanen/pelilauta/commit/3e70c8e3a8a356313948fd35be7d437649ee2c81))
+* posting works! ([427f329](https://github.com/villetakanen/pelilauta/commit/427f3296b95073a1f56a35960fae23d4fbfb8ad1))
+* stream component ([307dda1](https://github.com/villetakanen/pelilauta/commit/307dda1912eedbf852a669f08e1cd6d5a929e881))
+
 ## [1.2.0](https://github.com/villetakanen/pelilauta/compare/v1.1.0...v1.2.0) (2020-09-30)
 
 
