@@ -9,8 +9,8 @@
       <h1 class="font-button">
         Pelilauta
       </h1>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
       <div class="spacer" />
       <ProfileAction />
     </div>
