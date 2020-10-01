@@ -7,14 +7,19 @@
     </transition>
     <div :innerHTML="content"></div>
     <p class="caption">{{nick}}</p>
-    <transition name="fade">
-      <MaterialButton v-if="!replyBoxVisible" :action="showReply">Reply?</MaterialButton>
-    </transition>
+    <div v-for="(post, index) in replies" v-bind:key="index" class="reply">
+      <div v-if="post.content">
+        <p class="author">{{post.nick}}</p><div :innerHTML="post.content"></div>
+      </div>
+    </div>
     <transition name="fade">
       <div v-if="replyBoxVisible">
         <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
         <MaterialButton :action="post">Post!</MaterialButton>
       </div>
+    </transition>
+     <transition name="fade">
+      <MaterialButton v-if="!replyBoxVisible" :action="showReply">Reply?</MaterialButton>
     </transition>
   </MaterialCard>
 </template>
@@ -24,6 +29,12 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
+
+interface Reply {
+  content: string;
+  replyid: string;
+  nick?: string;
+}
 
 export default defineComponent({
   components: {
@@ -49,6 +60,8 @@ export default defineComponent({
     const photoURL = ref('')
     const replyBoxVisible = ref(false)
     const content = ref('')
+    const repliesTyped: Reply[] = []
+    const replies = ref(repliesTyped)
     onMounted(() => {
       const db = firebase.firestore()
       const authorRef = db.collection('profiles').doc(props.author)
@@ -57,6 +70,16 @@ export default defineComponent({
           nick.value = doc.data()?.nick
           photoURL.value = doc.data()?.photoURL
         }
+      })
+      const repliesRef = db.collection('stream').doc(props.postid).collection('comments')
+      repliesRef.onSnapshot((changes) => {
+        changes.docChanges().forEach((change) => {
+          let rfound = false
+          replies.value.forEach((reply) => {
+            if (reply.replyid === change.doc.id) rfound = true
+          })
+          if (!rfound) replies.value.push({ replyid: change.doc.id, content: change.doc.data()?.content, nick: change.doc.data()?.nick })
+        })
       })
     })
     function showReply () {
@@ -91,24 +114,44 @@ export default defineComponent({
       console.log('post!', props.author)
       console.log()
       const db = firebase.firestore()
-      const streamRef = db.collection('stream').doc(props.postid).collection('replies')
+      const streamRef = db.collection('stream').doc(props.postid).collection('comments')
       streamRef.add(
         {
           author: props.author,
+          nick: nick.value,
           content: linkify(content.value),
           created: firebase.firestore.FieldValue.serverTimestamp()
         }).then(() => {
       })
     }
 
-    return { nick, photoURL, showReply, replyBoxVisible, paste, onInput, linkify, post }
+    return { nick, photoURL, showReply, replyBoxVisible, paste, onInput, linkify, post, replies }
   }
 })
 </script>
 
 <style lang="sass" scoped>
-.tester
-  background-color: white
-  height: 100px
-  width: 100%
+@import ../../styles/material-typography.sass
+
+#app #mainContentWrapper main
+  .tester
+    background-color: white
+    height: 100px
+    width: 100%
+  p.caption
+    padding-bottom: 4px
+  .reply
+    border-top: solid 1px rgba(0,0,0,0.1)
+    margin-top: 4px
+    padding-top: 3px
+    @include TypeBody2()
+    p.author
+      float: left
+      font-weight: 500
+      margin:0
+      margin-right: 8px
+      padding:0
+      line-height: 24px
+      color: #666
+
 </style>
