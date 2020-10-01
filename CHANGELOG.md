@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.3](https://github.com/villetakanen/pelilauta/compare/v1.11.2...v1.11.3) (2020-10-01)
+
+
+### Bug Fixes
+
+* **banner:** styling ([b2736e2](https://github.com/villetakanen/pelilauta/commit/b2736e2afc3d51448a6aa20dcc047d9b5730ec51))
+* **workbox:** update banner button styles ([3ab14ec](https://github.com/villetakanen/pelilauta/commit/3ab14ece565429bf4e89b94496d40714b0d03a04))
+
 ### [1.11.2](https://github.com/villetakanen/pelilauta/compare/v1.11.1...v1.11.2) (2020-10-01)
 
 ### [1.11.1](https://github.com/villetakanen/pelilauta/compare/v1.11.0...v1.11.1) (2020-10-01)
