@@ -1,11 +1,12 @@
 <template>
   <transition>
-    <div v-if="true || updatesAvailable" :class="`material-banner ${updatesAvailable ? 'show' : ''}`">
+    <div v-if="updatesAvailable" :class="`material-banner ${updatesAvailable ? 'show' : ''}`">
       <div class="banner-container">
-      <p v-if="updatesAvailable">Update available!</p>
+      <p>Update available!</p>
         <div class="actions">
-          <button class="action action-text" @click="updatesAvailable=false">Cancel</button>
-          <button class="action action-text" @click="acceptUpdate">Update</button>
+          <div class="spacer"/>
+          <MaterialButton :action="deferUpdate" text>Delay for 30 minutes</MaterialButton>
+          <MaterialButton :action="acceptUpdate">Update the App</MaterialButton>
         </div>
       </div>
     </div>
@@ -18,8 +19,12 @@
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue'
 import { register } from 'register-service-worker'
+import MaterialButton from '@/components/material/MaterialButton.vue'
 
 export default defineComponent({
+  components: {
+    MaterialButton
+  },
   setup () {
     const updatesAvailable: Ref = ref(false)
     let swr: ServiceWorkerRegistration|undefined
@@ -72,9 +77,14 @@ export default defineComponent({
       swr.waiting.postMessage('skipWaiting')
     }
 
+    function deferUpdate () {
+      updatesAvailable.value = false
+      setTimeout(() => { updatesAvailable.value = true }, 30 * 60000) // 30 minutes
+    }
+
     // *** end SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE *******************
 
-    return { updatesAvailable, acceptUpdate }
+    return { updatesAvailable, acceptUpdate, deferUpdate }
   }
 })
 </script>
