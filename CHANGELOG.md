@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/villetakanen/pelilauta/compare/v1.8.0...v1.8.1) (2020-10-01)
+
+
+### Bug Fixes
+
+* **stream:** comment reply author saved correctly ([3110a27](https://github.com/villetakanen/pelilauta/commit/3110a27235b9de24871e793fc06f626ca5bce6ed))
+
 ## [1.8.0](https://github.com/villetakanen/pelilauta/compare/v1.7.0...v1.8.0) (2020-10-01)
 
 
