@@ -1,8 +1,8 @@
 <template>
   <transition>
-    <div v-if="updatesAvailable" :class="`material-banner ${updatesAvailable ? 'show' : ''}`">
+    <div v-if="true || updatesAvailable" :class="`material-banner ${updatesAvailable ? 'show' : ''}`">
       <div class="banner-container">
-      <p>Update available!</p>
+      <p v-if="updatesAvailable">Update available!</p>
         <div class="actions">
           <button class="action action-text" @click="updatesAvailable=false">Cancel</button>
           <button class="action action-text" @click="acceptUpdate">Update</button>

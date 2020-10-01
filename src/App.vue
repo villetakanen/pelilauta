@@ -1,8 +1,8 @@
 <template>
   <AppBar/>
-  <MaterialBanner />
   <div id="mainContentWrapper">
     <main>
+        <MaterialBanner />
       <router-view/>
     </main>
   </div>
