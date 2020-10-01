@@ -7,11 +7,15 @@
     </transition>
     <div :innerHTML="content"></div>
     <p class="caption">{{nick}}</p>
+
     <div v-for="(post, index) in replies" v-bind:key="index" class="reply">
-      <div v-if="post.content">
-        <p class="author">{{post.nick}}</p><div :innerHTML="post.content"></div>
-      </div>
+      <transition name="fade">
+        <div v-if="post.content">
+          <StreamReply :author="post.author" :content="post.content" :postid="post.replyid" :nick="post.nick"/>
+        </div>
+      </transition>
     </div>
+
     <transition name="fade">
       <div v-if="replyBoxVisible">
         <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
@@ -19,7 +23,7 @@
       </div>
     </transition>
      <transition name="fade">
-      <MaterialButton v-if="!replyBoxVisible" :action="showReply">Reply?</MaterialButton>
+      <MaterialButton v-if="!replyBoxVisible && isAuthz" :action="showReply">Reply?</MaterialButton>
     </transition>
   </MaterialCard>
 </template>
@@ -27,19 +31,23 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import StreamReply from './StreamReply.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
+import { useAuthz } from '@/lib/authz'
 
 interface Reply {
   content: string;
   replyid: string;
-  nick?: string;
+  nick: string;
+  author: string;
 }
 
 export default defineComponent({
   components: {
     MaterialCard,
-    MaterialButton
+    MaterialButton,
+    StreamReply
   },
   props: {
     content: {
@@ -62,6 +70,8 @@ export default defineComponent({
     const content = ref('')
     const repliesTyped: Reply[] = []
     const replies = ref(repliesTyped)
+    const { uid, profile, isAuthz } = useAuthz()
+
     onMounted(() => {
       const db = firebase.firestore()
       const authorRef = db.collection('profiles').doc(props.author)
@@ -78,7 +88,14 @@ export default defineComponent({
           replies.value.forEach((reply) => {
             if (reply.replyid === change.doc.id) rfound = true
           })
-          if (!rfound) replies.value.push({ replyid: change.doc.id, content: change.doc.data()?.content, nick: change.doc.data()?.nick })
+          if (!rfound) {
+            replies.value.push({
+              replyid: change.doc.id,
+              content: change.doc.data()?.content,
+              author: change.doc.data()?.author,
+              nick: change.doc.data()?.nick
+            })
+          }
         })
       })
     })
@@ -115,17 +132,18 @@ export default defineComponent({
       console.log()
       const db = firebase.firestore()
       const streamRef = db.collection('stream').doc(props.postid).collection('comments')
+      console.log(uid.value, profile.value.nick)
       streamRef.add(
         {
-          author: props.author,
-          nick: nick.value,
+          author: uid.value,
+          nick: profile.value.nick,
           content: linkify(content.value),
           created: firebase.firestore.FieldValue.serverTimestamp()
         }).then(() => {
       })
     }
 
-    return { nick, photoURL, showReply, replyBoxVisible, paste, onInput, linkify, post, replies }
+    return { nick, photoURL, showReply, replyBoxVisible, paste, onInput, linkify, post, replies, isAuthz }
   }
 })
 </script>
