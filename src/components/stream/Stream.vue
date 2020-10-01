@@ -1,11 +1,14 @@
 <template>
   <div class="stream">
-    <div v-for="(post, index) in latestPosts" v-bind:key="index">
-      <div v-if="post.content">
-        <StreamPost
-          :author="post.author"
-          :content="post.content"
-          :postid="post.postid" />
+    <div v-if="latestPosts.length > 0">
+      <div v-for="(post, index) in latestPosts" v-bind:key="index">
+        <div v-if="post.content">
+          <StreamPost
+            :topic="post.topic"
+            :author="post.author"
+            :content="post.content"
+            :postid="post.postid" />
+        </div>
       </div>
     </div>
   </div>
@@ -22,6 +25,7 @@ export interface Post {
   content: string;
   created: number;
   postid: string;
+  topic?: string;
 }
 
 export default defineComponent({
@@ -36,17 +40,24 @@ export default defineComponent({
       const db = firebase.firestore()
       const streamRef = db.collection('stream')
       unsubscribe = streamRef.orderBy('created', 'desc').limit(11).onSnapshot((snapshot) => {
-        latestPosts.value = []
-        const arrr: Post[] = []
         snapshot.docChanges().forEach((change) => {
-          arrr.push({
-            author: change.doc.data()?.author as string,
-            content: change.doc.data()?.content as string,
-            created: change.doc.data().created.seconds as number,
-            postid: change.doc.id
+          let hasPost = false
+          latestPosts.value.forEach((post) => {
+            if (post.postid === change.doc.id) {
+              hasPost = true
+              post.content = change.doc.data()?.content
+            }
           })
+          if (!hasPost) {
+            latestPosts.value.push({
+              author: change.doc.data()?.author as string,
+              content: change.doc.data()?.content as string,
+              created: change.doc.data().created.seconds as number,
+              postid: change.doc.id,
+              topic: change.doc.data().topic
+            })
+          }
         })
-        latestPosts.value = arrr
       })
     })
     onUnmounted(() => { unsubscribe() })

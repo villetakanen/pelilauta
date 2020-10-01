@@ -5,6 +5,11 @@
     </transition>
     <transition name="fade">
       <div v-if="isAuthz">
+        <select name="topic" v-model="topic">
+          <option value="Roolipelit">Roolipelit</option>
+          <option value="Pelisuunnittelu">Pelisuunnittelu</option>
+          <option value="Yleinen">Yleinen</option>
+        </select>
         <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
         <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
       </div>
@@ -28,6 +33,7 @@ export default defineComponent({
   },
   setup () {
     const content = ref('')
+    const topic = ref('Roolipelit')
     const { isAuthz, uid } = useAuthz()
 
     function onInput (event: Event) {
@@ -52,7 +58,8 @@ export default defineComponent({
         {
           author: uid.value,
           content: linkify(content.value),
-          created: firebase.firestore.FieldValue.serverTimestamp()
+          created: firebase.firestore.FieldValue.serverTimestamp(),
+          topic: topic.value
         }).then(() => {
       })
     }
@@ -70,7 +77,7 @@ export default defineComponent({
       content.value = target.innerHTML
     }
 
-    return { isAuthz, post, paste, onInput, content, linkify }
+    return { isAuthz, post, paste, onInput, content, linkify, topic }
   }
 })
 </script>

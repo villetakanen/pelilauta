@@ -6,7 +6,7 @@
       </div>
     </transition>
     <div :innerHTML="content"></div>
-    <p class="caption">{{nick}}</p>
+    <p class="caption">{{nick}} <span v-if="topic">in <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link></span></p>
 
     <div v-for="(post, index) in replies" v-bind:key="index" class="reply">
       <transition name="fade">
@@ -28,7 +28,7 @@
   </MaterialCard>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import StreamReply from './StreamReply.vue'
@@ -41,6 +41,7 @@ interface Reply {
   replyid: string;
   nick: string;
   author: string;
+  createdSeconds?: number;
 }
 
 export default defineComponent({
@@ -61,6 +62,10 @@ export default defineComponent({
     postid: {
       type: String,
       required: true
+    },
+    topic: {
+      type: String,
+      required: false
     }
   },
   setup (props) {
@@ -72,7 +77,7 @@ export default defineComponent({
     const replies = ref(repliesTyped)
     const { uid, profile, isAuthz } = useAuthz()
 
-    onMounted(() => {
+    function loadData (): void {
       const db = firebase.firestore()
       const authorRef = db.collection('profiles').doc(props.author)
       authorRef.get().then((doc) => {
@@ -93,15 +98,23 @@ export default defineComponent({
               replyid: change.doc.id,
               content: change.doc.data()?.content,
               author: change.doc.data()?.author,
-              nick: change.doc.data()?.nick
+              nick: change.doc.data()?.nick,
+              createdSeconds: change.doc.data()?.created?.seconds
             })
           }
         })
       })
+    }
+
+    onMounted(() => {
+      loadData()
     })
+    watch(props, loadData)
+
     function showReply () {
       replyBoxVisible.value = true
     }
+
     function paste (event: ClipboardEvent) {
       event.preventDefault()
       event.stopPropagation()
