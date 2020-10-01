@@ -1,5 +1,5 @@
-import { useAuthz } from '@/lib/authz'
-import { watch } from 'vue'
+// import { useAuthz } from '@/lib/authz'
+// import { watch } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 
@@ -48,13 +48,13 @@ const router = createRouter({
   routes
 })
 
-const { missingProfile } = useAuthz()
+/* const { missingProfile } = useAuthz()
 
 router.beforeEach((to, from, next) => {
   if (missingProfile.value && to.name !== 'Register') next({ name: 'Register' })
   else next()
 })
 
-watch(missingProfile, (missing) => { if (missing) router.push('/register') })
+watch(missingProfile, (missing) => { if (missing) router.push('/register') }) */
 
 export default router

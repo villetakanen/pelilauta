@@ -12,6 +12,9 @@ button.material-button
     width: 24px
     margin: -4px -2px
     margin-right: 4px
+  &.material-button-text
+    background: none
+    @include TypeColorPrimaryDark()
   &.material-button-icon
     @include ElementColorPrimaryLight()
     height: 44px
@@ -28,4 +31,6 @@ button.material-button
       position: absolute
       top: 0px
       left: 2px
-  
+
+button.material-button + button.material-button
+  margin-left: 8px

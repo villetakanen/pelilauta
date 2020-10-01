@@ -1,4 +1,5 @@
 @import material-button.sass
+@import material-dialog.sass
 @import material-typography.sass
 @import material-colors.sass
 @import material-card.sass
@@ -11,6 +12,18 @@ body
   padding: 0
   @include TypeBody1()
 
+h1
+  @include TypeHeadline3()
+h3
+  @include TypeHeadline5()
+textarea
+  @include TypeBody2()
+a
+  color: black
+  text-decoration: none
+  background-color: rgba(0,30,50,0.2)
+  padding: 0 2px
+
 #app
   #mainContentWrapper
     padding: 0
@@ -19,17 +32,6 @@ body
       margin: 0 auto
       margin-top:72px
       max-width: 872px
-      h1
-        @include TypeHeadline3()
-      h3
-        @include TypeHeadline5()
-      textarea
-        @include TypeBody2()
-      a
-        color: black
-        text-decoration: none
-        background-color: rgba(0,30,50,0.2)
-        padding: 0 2px
       p.caption
         @include TypeCaption()
         
@@ -57,6 +59,7 @@ body
     text-decoration: none
     @include TypeColorDark()
     padding-left: 8px
+    background: none
 
 div.toolbar
   display: flex

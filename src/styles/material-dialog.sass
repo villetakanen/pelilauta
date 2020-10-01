@@ -1,0 +1,36 @@
+@import material-colors.sass
+
+#material-dialog-container
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  z-index: -90000
+  background-color: rgba(0,30,50,0.6)
+  vertical-align: ce
+  #material-dialog
+    background-color: white
+    max-width: 840px
+    margin: auto
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    padding: 16px
+    @include BoxShadow24()
+    .infoBox
+      padding: 8px
+      @include ElementColorPrimaryLight()
+      p
+        line-height: 24px
+        margin:0
+        padding: 0
+      .avatar
+        height: 48px
+        width: 48px
+        border-radius: 50%
+        float: left
+        margin-right: 16px
+    .actionBar
+      text-align: right

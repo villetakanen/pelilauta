@@ -20,7 +20,7 @@ export default defineComponent({
       default: undefined
     },
     text: {
-      type: String,
+      type: [String, Boolean],
       required: false,
       default: undefined
     },
