@@ -22,8 +22,11 @@
         <MaterialButton :action="post">Post!</MaterialButton>
       </div>
     </transition>
-     <transition name="fade">
-      <MaterialButton v-if="!replyBoxVisible && isAuthz" :action="showReply">Reply?</MaterialButton>
+    <transition name="fade">
+      <div class="toolbar" v-if="!replyBoxVisible && isAuthz">
+        <div class="spacer"/>
+        <MaterialButton text :action="showReply">Reply</MaterialButton>
+      </div>
     </transition>
   </MaterialCard>
 </template>

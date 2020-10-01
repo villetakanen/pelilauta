@@ -11,7 +11,10 @@
           <option value="Yleinen">Yleinen</option>
         </select>
         <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
-        <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
+        <div class="toolbar">
+          <div class="spacer" />
+          <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
+        </div>
       </div>
     </transition>
   </MaterialCard>
