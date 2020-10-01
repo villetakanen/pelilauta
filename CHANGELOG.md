@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](https://github.com/villetakanen/pelilauta/compare/v1.8.1...v1.8.2) (2020-10-01)
+
+
+### Bug Fixes
+
+* **profile:** missing profile guard added ([6f2269f](https://github.com/villetakanen/pelilauta/commit/6f2269ffb2f40ad58493d4c09f942ce3b9b70042))
+
 ### [1.8.1](https://github.com/villetakanen/pelilauta/compare/v1.8.0...v1.8.1) (2020-10-01)
 
 
