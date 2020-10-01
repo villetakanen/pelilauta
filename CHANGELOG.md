@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/villetakanen/pelilauta/compare/v1.8.3...v1.9.0) (2020-10-01)
+
+
+### Features
+
+* registration ([cf5c808](https://github.com/villetakanen/pelilauta/commit/cf5c80849bca68081c0079c83408020fb30b4165))
+
 ### [1.8.3](https://github.com/villetakanen/pelilauta/compare/v1.8.2...v1.8.3) (2020-10-01)
 
 ### [1.8.2](https://github.com/villetakanen/pelilauta/compare/v1.8.1...v1.8.2) (2020-10-01)
