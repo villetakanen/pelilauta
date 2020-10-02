@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/villetakanen/pelilauta/compare/v1.15.1...v1.16.0) (2020-10-02)
+
+
+### Features
+
+* **ux:** added v-ripple directive ([04758cf](https://github.com/villetakanen/pelilauta/commit/04758cf93c4c97c802e77870bdf635409c7c8960))
+
+
+### Bug Fixes
+
+* **quality:** small code quality updates ([82294e0](https://github.com/villetakanen/pelilauta/commit/82294e0b4bb1f41181c9bec43d7a9fa97deade72))
+
 ### [1.15.1](https://github.com/villetakanen/pelilauta/compare/v1.15.0...v1.15.1) (2020-10-02)
 
 
