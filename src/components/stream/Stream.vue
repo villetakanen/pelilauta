@@ -1,21 +1,20 @@
 <template>
   <div class="stream">
-    <div v-if="latestPosts.length > 0">
-      <div v-for="(post, index) in latestPosts" v-bind:key="index">
+      <div v-for="(post) in posts" v-bind:key="post.postid">
         <div v-if="post.content">
           <StreamPost
+            :created ="post.created"
             :topic="post.topic"
             :author="post.author"
             :content="post.content"
             :postid="post.postid" />
         </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, onUnmounted } from 'vue'
+import { defineComponent, onMounted, ref, onUnmounted, computed } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import StreamPost from './StreamPost.vue'
@@ -26,6 +25,12 @@ export interface Post {
   created: number;
   postid: string;
   topic?: string;
+}
+
+interface PostData {
+  created: {
+    seconds: number;
+  };
 }
 
 export default defineComponent({
@@ -52,7 +57,18 @@ export default defineComponent({
     function addPostToStream (postid: string, data: object) {
       const post: Post = data as Post
       post.postid = postid
+      const { created } = (data as PostData)
+      post.created = created?.seconds
       latestPosts.value.push(post)
+      latestPosts.value = latestPosts.value.sort((a, b) => (typeof a.created === 'undefined' ? -1 : b.created - a.created))
+    }
+
+    /**
+     * patches a post to the Stream
+     */
+    function removePostFromStream (postid: string) {
+      const arr = latestPosts.value.filter((post) => (post.postid !== postid))
+      latestPosts.value = [...arr]
     }
 
     const capitalize = (s: string) => {
@@ -74,6 +90,7 @@ export default defineComponent({
         unsubscribe = streamRef.orderBy('created', 'desc').limit(11).onSnapshot((snapshot) => {
           snapshot.docChanges().forEach((change) => {
             if (change.type === 'added') addPostToStream(change.doc.id, change.doc.data())
+            if (change.type === 'removed') removePostFromStream(change.doc.id)
           })
         })
       } else {
@@ -83,6 +100,7 @@ export default defineComponent({
           snapshot.docChanges().forEach((change) => {
             console.log('and this is ', change.doc.id)
             if (change.type === 'added') addPostToStream(change.doc.id, change.doc.data())
+            if (change.type === 'removed') removePostFromStream(change.doc.id)
           })
         })
       }
@@ -114,7 +132,9 @@ export default defineComponent({
       }) */
     })
     onUnmounted(() => { unsubscribe() })
-    return { latestPosts }
+
+    const posts = computed(() => (latestPosts.value))
+    return { posts }
   }
 })
 </script>

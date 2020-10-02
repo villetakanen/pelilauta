@@ -6,7 +6,7 @@
       </div>
     </transition>
     <div :innerHTML="content"></div>
-    <p class="caption">{{nick}}
+    <p class="caption">{{nick}} {{ created }}
       <span v-if="topic">in
         <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link>
       </span>
@@ -29,6 +29,7 @@
 
     <transition name="fade">
       <div class="toolbar" v-if="!replyBoxVisible && isAuthz">
+        <MaterialButton v-if="isAuthor" text :action="deletePost">Delete</MaterialButton>
         <div class="spacer"/>
         <MaterialButton text :action="showReply">Reply</MaterialButton>
       </div>
@@ -37,7 +38,7 @@
   </MaterialCard>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch, computed } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import StreamReply from './StreamReply.vue'
@@ -74,6 +75,10 @@ export default defineComponent({
     },
     topic: {
       type: String,
+      required: false
+    },
+    created: {
+      type: Number,
       required: false
     }
   },
@@ -167,7 +172,18 @@ export default defineComponent({
       })
     }
 
-    return { nick, photoURL, showReply, replyBoxVisible, paste, onInput, linkify, post, replies, isAuthz }
+    const isAuthor = computed((): boolean => (uid.value === props.author))
+
+    function deletePost (): void {
+      console.log('deletePost', uid.value, props.author)
+      const db = firebase.firestore()
+      const postRef = db.collection('stream').doc(props.postid)
+      postRef.delete().then(() => {
+        loadData()
+      })
+    }
+
+    return { nick, photoURL, showReply, replyBoxVisible, paste, onInput, linkify, post, replies, isAuthz, isAuthor, deletePost }
   }
 })
 </script>
