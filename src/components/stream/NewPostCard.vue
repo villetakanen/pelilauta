@@ -5,11 +5,12 @@
     </transition>
     <transition name="fade">
       <div v-if="isAuthz">
-        <select name="topic" v-model="topic">
-          <option value="Roolipelit">Roolipelit</option>
-          <option value="Pelisuunnittelu">Pelisuunnittelu</option>
-          <option value="Yleinen">Yleinen</option>
-        </select>
+        <div class="toolbar">
+          <div class="spacer" />
+          <select name="topic" v-model="topic">
+            <option v-for="(t) in topics" v-bind:key="t.slug" :value="t.slug">{{ t.title }}</option>
+          </select>
+        </div>
         <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
         <div class="toolbar">
           <div class="spacer" />
@@ -27,6 +28,7 @@ import 'firebase/firestore'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthz } from '@/lib/authz'
+import { useTopics } from '@/lib/topics'
 
 export default defineComponent({
   name: 'Home',
@@ -38,6 +40,7 @@ export default defineComponent({
     const content = ref('')
     const topic = ref('Roolipelit')
     const { isAuthz, uid } = useAuthz()
+    const { topics } = useTopics()
 
     function onInput (event: Event) {
       const target = event.target as HTMLElement
@@ -80,7 +83,7 @@ export default defineComponent({
       content.value = target.innerHTML
     }
 
-    return { isAuthz, post, paste, onInput, content, linkify, topic }
+    return { isAuthz, post, paste, onInput, content, linkify, topic, topics }
   }
 })
 </script>
