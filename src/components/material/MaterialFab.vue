@@ -1,6 +1,9 @@
 <template>
   <div class="material-fab-container">
-    <div class="material-fab" @click="clicked">
+    <div
+      class="material-fab"
+      v-ripple
+      @click="clicked">
       <slot></slot>
     </div>
   </div>
@@ -57,6 +60,8 @@ export default defineComponent({
     margin: 0
     border-radius: 50%
     text-align: center
+    z-index: 1
+    overflow: hidden
     img
       height: 44px
       width: 44px
