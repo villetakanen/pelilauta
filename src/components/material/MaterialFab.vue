@@ -43,9 +43,9 @@ export default defineComponent({
 .material-fab
   @include ElementColorSecondary()
   @include BoxShadow12()
-  position: absolute
+  position: fixed
   bottom: 16px
-  left: 16px
+  right: 16px
   height: 56px
   width: 56px
   margin: 0
