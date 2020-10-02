@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.1](https://github.com/villetakanen/pelilauta/compare/v1.16.0...v1.16.1) (2020-10-02)
+
+
+### Bug Fixes
+
+* **ux:** ripple position works with scrolling ([bd74823](https://github.com/villetakanen/pelilauta/commit/bd74823904490de1ad413d2fc48cd562ede350e3))
+
 ## [1.16.0](https://github.com/villetakanen/pelilauta/compare/v1.15.1...v1.16.0) (2020-10-02)
 
 
