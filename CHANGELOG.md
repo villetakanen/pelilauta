@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.2](https://github.com/villetakanen/pelilauta/compare/v1.16.1...v1.16.2) (2020-10-02)
+
+
+### Bug Fixes
+
+* **appbar:** action ripple added ([f5e1a24](https://github.com/villetakanen/pelilauta/commit/f5e1a2420c4d5b589c973d4d31685bd5c615b608))
+
 ### [1.16.1](https://github.com/villetakanen/pelilauta/compare/v1.16.0...v1.16.1) (2020-10-02)
 
 
