@@ -20,6 +20,10 @@ export default defineComponent({
     action: {
       type: Function,
       required: false
+    },
+    text: {
+      type: String,
+      required: false
     }
   },
   setup (props) {
@@ -49,14 +53,18 @@ export default defineComponent({
   height: 56px
   width: 56px
   margin: 0
-  border-radius: 50%
+  border-radius: 28px
   text-align: center
   z-index: 1
   overflow: hidden
   img
+    position: relative
+    display: inline-block
     height: 44px
     width: 44px
     margin: 6px
+  .material-fab-text
+    display: none
 
 @include media('>1024px')
   .material-fab

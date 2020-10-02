@@ -1,5 +1,5 @@
 <template>
-  <div :class="'material-action ' + (text ? 'material-action-text' : '') " @click="clicked">
+  <div v-ripple :class="'material-action ' + (text ? 'material-action-text' : '') " @click="clicked">
     <img v-if="icon === 'topic'" class="material-action-icon" src="@/assets/topic.svg">
     <img v-if="icon === 'about'" class="material-action-icon" src="@/assets/about.svg">
     <img v-if="!icon" class="material-action-icon" src="@/assets/fox.svg">
@@ -52,6 +52,8 @@ export default defineComponent({
   margin: 6px
   text-align: center
   border-radius: 22px
+  position: relative
+  overflow: hidden
   .material-action-icon
     vertical-align: middle
     height: 36px

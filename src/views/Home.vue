@@ -1,5 +1,6 @@
 <template>
-  <MaterialFab>
+  <MaterialFab
+    text="New post">
     <img src="@/assets/add.svg" alt="new comment" />
   </MaterialFab>
   <NewPostCard />
