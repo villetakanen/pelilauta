@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/villetakanen/pelilauta/compare/v1.11.7...v1.12.0) (2020-10-02)
+
+
+### Features
+
+* topic pages ([5d021a7](https://github.com/villetakanen/pelilauta/commit/5d021a791fb3fdfdffe53abf8b32b446fb10ab22))
+
+
+### Bug Fixes
+
+* **ux:** button colors fix ([030cffb](https://github.com/villetakanen/pelilauta/commit/030cffbefb6bfc5a5dc71e4b2213945d3f9cc4eb))
+* **ux:** links to topics ([f4d3047](https://github.com/villetakanen/pelilauta/commit/f4d30472d9fadb24e1e1132d335995ee8d765071))
+
 ### [1.11.7](https://github.com/villetakanen/pelilauta/compare/v1.11.6...v1.11.7) (2020-10-02)
 
 
