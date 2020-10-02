@@ -1,6 +1,9 @@
 @mixin TypeColorDark()
   color: rgb(0,23,37)
 
+@mixin TypeColorLight()
+  color: rgb(218,230,240)
+
 @mixin TypeColorPrimary()
   color: rgba(96,122,144,1)
 
@@ -12,23 +15,24 @@
   background: none
 
 @mixin ElementColorPrimary()
-  @include TypeColorDark()
-  background-color: #1de9b6
-  background: linear-gradient(40deg, rgba(150,160,170,1) 0%, rgba(96,122,144,1) 100%)
+  @include TypeColorLight()
+  background-color: #007769
+  a
+    color: #BDC
+  a:hover
+    color: #DFE
 
 @mixin ElementColorSecondary()
   @include TypeColorDark()
-  background-color: #1b252e
+  background-color: #fbc02d
 
 @mixin ElementColorPrimaryLight()
   @include TypeColorDark()
   background: none
-  background-color: #6effe8
-  background: linear-gradient(45deg, rgba(160,175,190,1) 0%, rgba(106,132,154,1) 100%)
+  background-color: #48a697
 
 @mixin BaseColorDark()
   background: rgba(0,23,37,0.1)
-  background: linear-gradient(130deg, rgba(230,235,245,1) 0%, rgba(215,225,230,1) 100%)
 
 @mixin BoxShadow24()
   box-shadow: 0 24px 38px 3px rgba(0, 23, 37, .14), 0 9px 46px 8px rgba(0, 23, 37, .12), 0 11px 15px -7px rgba(0, 23, 37, .20)
