@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonClasses" @click="clicked">
+  <button v-ripple :class="buttonClasses" @click="clicked">
     <slot />
   </button>
 </template>

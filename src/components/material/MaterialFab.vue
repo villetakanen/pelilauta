@@ -1,12 +1,10 @@
 <template>
-  <div class="material-fab-container">
     <div
       class="material-fab"
       v-ripple
       @click="clicked">
       <slot></slot>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -42,33 +40,26 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-.material-fab-container
-  z-index: 50000
-  position: fixed
+.material-fab
+  @include ElementColorSecondary()
+  @include BoxShadow12()
+  position: absolute
   bottom: 16px
-  right: 16px
+  left: 16px
   height: 56px
   width: 56px
   margin: 0
-  padding: 0
-  .material-fab
-    @include ElementColorSecondary()
-    @include BoxShadow12()
-    position: relative
-    height: 56px
-    width: 56px
-    margin: 0
-    border-radius: 50%
-    text-align: center
-    z-index: 1
-    overflow: hidden
-    img
-      height: 44px
-      width: 44px
-      margin: 6px
+  border-radius: 50%
+  text-align: center
+  z-index: 1
+  overflow: hidden
+  img
+    height: 44px
+    width: 44px
+    margin: 6px
 
 @include media('>1024px')
-  .material-fab-container
+  .material-fab
     left:50%
     transform: translate(354px, 0)
 

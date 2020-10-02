@@ -2,7 +2,7 @@
   <AppBar/>
   <div id="mainContentWrapper">
     <main>
-        <MaterialBanner />
+        <MaterialBanner/>
       <router-view/>
     </main>
   </div>

@@ -56,6 +56,7 @@ export default defineComponent({
     }
 
     function post (): void {
+      if (content.value.length < 1) return
       console.log('post!', uid)
       console.log()
       const db = firebase.firestore()

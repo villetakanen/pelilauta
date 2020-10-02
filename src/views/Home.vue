@@ -1,9 +1,9 @@
 <template>
-  <NewPostCard />
-  <Stream />
   <MaterialFab>
     <img src="@/assets/add.svg" alt="new comment" />
   </MaterialFab>
+  <NewPostCard />
+  <Stream />
 </template>
 
 <script lang="ts">
