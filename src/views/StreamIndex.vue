@@ -9,8 +9,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import { useTopics } from '@/lib/topics'
 
 export default defineComponent({
   name: 'Home',
@@ -18,7 +19,7 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
-    const topics = ref([
+    const { topics } = useTopics() /* ref([
       {
         slug: 'roolipelit',
         title: 'Roolipelit'
@@ -31,7 +32,7 @@ export default defineComponent({
         slug: 'yleinen',
         title: 'Yleinen'
       }
-    ])
+    ])<<<< */
     return { topics }
   }
 })
