@@ -6,13 +6,14 @@
 
 @mixin TypeColorPrimary()
   color: #007769
-
-@mixin TypeColorPrimaryDark()
-  color:rgba(96,122,144,1)
   
 @mixin ElementColorNone()
   @include TypeColorDark()
   background: none
+
+@mixin ElementColorSecondary()
+  @include TypeColorDark()
+  background-color: #fbc02d
 
 @mixin ElementColorPrimary()
   @include TypeColorLight()
@@ -22,16 +23,15 @@
   a:hover
     color: #DFE
 
-@mixin ElementColorSecondary()
-  @include TypeColorDark()
-  background-color: #fbc02d
-
 @mixin ElementColorPrimaryLight()
   @include TypeColorDark()
   background-color: #48a697
 
 @mixin BaseColorDark()
   background: rgba(0,23,37,0.1)
+
+@mixin BoxShadow12()
+  box-shadow: 0 12px 17px 2px rgba(0, 0, 0, .14), 0 5px 22px 4px rgba(0, 0, 0, .12), 0 7px 8px -4px rgba(0, 0, 0, .20)
 
 @mixin BoxShadow24()
   box-shadow: 0 24px 38px 3px rgba(0, 23, 37, .14), 0 9px 46px 8px rgba(0, 23, 37, .12), 0 11px 15px -7px rgba(0, 23, 37, .20)
