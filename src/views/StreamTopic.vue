@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import Stream from '@/components/stream/Stream.vue'
 import NewPostCard from '@/components/stream/NewPostCard.vue'
 

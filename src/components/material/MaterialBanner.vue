@@ -74,6 +74,7 @@ export default defineComponent({
 
     function acceptUpdate () {
       if (!swr || !swr.waiting) { return }
+      updatesAvailable.value = false
       swr.waiting.postMessage('skipWaiting')
     }
 
