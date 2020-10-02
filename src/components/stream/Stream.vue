@@ -32,12 +32,65 @@ export default defineComponent({
   components: {
     StreamPost
   },
-  setup () {
-    const postStruct: Post[] = []
-    const latestPosts = ref(postStruct)
+  props: {
+    topic: {
+      type: String,
+      required: false
+    }
+  },
+  setup (props) {
+    // The array that holds current contents of the list
+    const latestPostsTypes: Post[] = []
+    const latestPosts = ref(latestPostsTypes)
+
+    // unsubscribe to the Firebase onSnapshot listener
     let unsubscribe = () => {}
-    onMounted(() => {
+
+    /**
+     * patches a post to the Stream
+     */
+    function addPostToStream (postid: string, data: object) {
+      const post: Post = data as Post
+      post.postid = postid
+      latestPosts.value.push(post)
+    }
+
+    const capitalize = (s: string) => {
+      return s.charAt(0).toUpperCase() + s.slice(1)
+    }
+
+    /**
+     * subscribe to a topic from firebase
+     */
+    function subscribe (topic?: string) {
+      // Just in case this gets called while listening to another stream
+      unsubscribe()
+
+      // Firebase references
       const db = firebase.firestore()
+      const streamRef = db.collection('stream')
+
+      if (!topic) {
+        unsubscribe = streamRef.orderBy('created', 'desc').limit(11).onSnapshot((snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === 'added') addPostToStream(change.doc.id, change.doc.data())
+          })
+        })
+      } else {
+        console.log('topic ==', capitalize(topic))
+        unsubscribe = streamRef.where('topic', '==', capitalize(topic)).orderBy('created', 'desc').onSnapshot((snapshot) => {
+          console.log('we got some?', snapshot.size)
+          snapshot.docChanges().forEach((change) => {
+            console.log('and this is ', change.doc.id)
+            if (change.type === 'added') addPostToStream(change.doc.id, change.doc.data())
+          })
+        })
+      }
+    }
+
+    onMounted(() => {
+      subscribe(props.topic)
+      /* const db = firebase.firestore()
       const streamRef = db.collection('stream')
       unsubscribe = streamRef.orderBy('created', 'desc').limit(11).onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
@@ -58,7 +111,7 @@ export default defineComponent({
             })
           }
         })
-      })
+      }) */
     })
     onUnmounted(() => { unsubscribe() })
     return { latestPosts }

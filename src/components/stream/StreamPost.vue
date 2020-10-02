@@ -6,7 +6,11 @@
       </div>
     </transition>
     <div :innerHTML="content"></div>
-    <p class="caption">{{nick}} <span v-if="topic">in <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link></span></p>
+    <p class="caption">{{nick}}
+      <span v-if="topic">in
+        <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link>
+      </span>
+    </p>
 
     <div v-for="(post, index) in replies" v-bind:key="index" class="reply">
       <transition name="fade">
