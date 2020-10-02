@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.3](https://github.com/villetakanen/pelilauta/compare/v1.16.2...v1.16.3) (2020-10-02)
+
+
+### Bug Fixes
+
+* **ux:** banner full-width as in specs, bar sticky ([2a78ef9](https://github.com/villetakanen/pelilauta/commit/2a78ef9fabf71edce347ffb90ca670dfa3fad268))
+* **ux:** ripple positioning for flexbox children ([ee92fd7](https://github.com/villetakanen/pelilauta/commit/ee92fd74997498419d45cbdf33ff53094eb4b1ff))
+
 ### [1.16.2](https://github.com/villetakanen/pelilauta/compare/v1.16.1...v1.16.2) (2020-10-02)
 
 
