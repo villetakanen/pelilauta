@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/villetakanen/pelilauta/compare/v1.12.1...v1.13.0) (2020-10-02)
+
+
+### Features
+
+* **ux:** material-action component and index page ([366f438](https://github.com/villetakanen/pelilauta/commit/366f4381f2b1060cd384261efee33709b346688e))
+
 ### [1.12.1](https://github.com/villetakanen/pelilauta/compare/v1.12.0...v1.12.1) (2020-10-02)
 
 
