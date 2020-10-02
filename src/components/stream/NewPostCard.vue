@@ -29,6 +29,7 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthz } from '@/lib/authz'
 import { useTopics } from '@/lib/topics'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Home',
@@ -55,6 +56,8 @@ export default defineComponent({
       return replacedText
     }
 
+    const router = useRouter()
+
     function post (): void {
       if (content.value.length < 1) return
       console.log('post!', uid)
@@ -68,6 +71,7 @@ export default defineComponent({
           created: firebase.firestore.FieldValue.serverTimestamp(),
           topic: topic.value
         }).then(() => {
+        router.push('/stream/topic/' + topic.value.toLowerCase())
       })
     }
 
