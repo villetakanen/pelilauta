@@ -95,7 +95,7 @@ export default defineComponent({
           photoURL.value = doc.data()?.photoURL
         }
       })
-      const repliesRef = db.collection('stream').doc(props.postid).collection('comments')
+      const repliesRef = db.collection('stream').doc(props.postid).collection('comments').orderBy('created', 'asc')
       repliesRef.onSnapshot((changes) => {
         changes.docChanges().forEach((change) => {
           let rfound = false
@@ -162,6 +162,8 @@ export default defineComponent({
           content: linkify(content.value),
           created: firebase.firestore.FieldValue.serverTimestamp()
         }).then(() => {
+        content.value = ''
+        replyBoxVisible.value = false
       })
     }
 
