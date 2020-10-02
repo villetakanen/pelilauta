@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.2](https://github.com/villetakanen/pelilauta/compare/v1.13.1...v1.13.2) (2020-10-02)
+
+
+### Bug Fixes
+
+* **stream:** comment order and comment box flush ([4989fd1](https://github.com/villetakanen/pelilauta/commit/4989fd1124be6a85dbcc7961d604a429ca6ca61a))
+* **ux:** fab responsive position ([cec9d65](https://github.com/villetakanen/pelilauta/commit/cec9d65e3851d303574f2b81fd3c79be640bd4ae))
+* **workbox:** hide banner when able! ([bb0e1ed](https://github.com/villetakanen/pelilauta/commit/bb0e1edd674344723dcc806708672ae267a626d7))
+
 ### [1.13.1](https://github.com/villetakanen/pelilauta/compare/v1.13.0...v1.13.1) (2020-10-02)
 
 
