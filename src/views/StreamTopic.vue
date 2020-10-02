@@ -1,12 +1,5 @@
 <template>
-  <MaterialCard>
-    <h1>{{ pageTitle }}</h1>
-    <div class="toolbar">
-      <router-link to="/stream/topic/roolipelit">Roolipelit</router-link>
-      <router-link to="/stream/topic/pelisuunnittelu">Pelisuunnittelu</router-link>
-      <router-link to="/stream/topic/yleinen">Yleinen</router-link>
-    </div>
-  </MaterialCard>
+  <h1>{{ pageTitle }}</h1>
   <NewPostCard />
   <Stream :topic="topic"/>
 </template>
@@ -26,7 +19,6 @@ export default defineComponent({
     }
   },
   components: {
-    MaterialCard,
     Stream,
     NewPostCard
   },
