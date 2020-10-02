@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/villetakanen/pelilauta/compare/v1.16.3...v1.17.0) (2020-10-02)
+
+
+### Features
+
+* **post to stream:** moved component to a view ([b775243](https://github.com/villetakanen/pelilauta/commit/b77524326e7757a1cc2479aa0d44cc3242768feb))
+
 ### [1.16.3](https://github.com/villetakanen/pelilauta/compare/v1.16.2...v1.16.3) (2020-10-02)
 
 
