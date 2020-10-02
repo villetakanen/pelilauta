@@ -1,7 +1,12 @@
 <template>
   <MaterialCard>
-    <img class="fox-logo" alt="Pelilauta" src="../assets/fox.svg">
     <div style="text-align:center;margin-top:8px"><a href="https://mekanismi.sange.fi">Mekanismi</a> / Pelilauta</div>
+    <img class="fox-logo" alt="Pelilauta" src="../assets/fox.svg">
+    <div class="toolbar">
+      <router-link to="/stream/topic/roolipelit">Roolipelit</router-link>
+      <router-link to="/stream/topic/pelisuunnittelu">Pelisuunnittelu</router-link>
+      <router-link to="/stream/topic/yleinen">Yleinen</router-link>
+    </div>
   </MaterialCard>
   <NewPostCard />
   <Stream />
@@ -29,7 +34,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .fox-logo
-  margin: 0 auto
+  margin: 8px auto
   display: block
   max-width: 96px
 </style>
