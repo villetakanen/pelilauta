@@ -1,7 +1,7 @@
 <template>
     <div
       class="material-fab"
-      v-ripple
+      v-ripple="'fixed'"
       @click="clicked">
       <slot></slot>
     </div>
