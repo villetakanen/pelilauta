@@ -6,15 +6,22 @@
       id="AppBarToolbar"
       class="toolbar"
     >
+      <MaterialAction
+        to="/"
+        />
       <h1 class="font-button">
         Pelilauta 2
       </h1>
-      <div style="vertical-align:top; height 30px">
-        <p  style="line-height: 14px; font-size: 14px; color: #adc">α</p>
-      </div>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+      <MaterialAction
+        to="/about"
+        icon="about"
+        />
       <div class="spacer" />
+      <MaterialAction
+        text="Topics"
+        icon="topic"
+        to="/stream/index"
+        />
       <ProfileAction />
     </div>
   </div>
@@ -23,10 +30,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ProfileAction from './ProfileAction.vue'
-
+import MaterialAction from '@/components/material/MaterialAction.vue'
 export default defineComponent({
   components: {
-    ProfileAction
+    ProfileAction,
+    MaterialAction
   }
 })
 </script>
