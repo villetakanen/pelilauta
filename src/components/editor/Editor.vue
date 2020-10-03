@@ -16,7 +16,7 @@ export default defineComponent({
         content.value = value
          context.emit('update:modelValue', value)
       }
-    }) * /
+    }) */
 
     // node_walk: walk the element tree, stop when func(node) returns false
     function nodeWalk (node: Element, func: Function) {
@@ -25,7 +25,7 @@ export default defineComponent({
       return result
     };
 
-    /* / getCaretPosition: return [start, end] as offsets to elem.textContent that
+    // getCaretPosition: return [start, end] as offsets to elem.textContent that
     //   correspond to the selected portion of text
     //   (if start == end, caret is at given position and no text is selected)
     function getCaretPosition (elem: Element): number[] {
@@ -66,14 +66,14 @@ export default defineComponent({
     }
 
     function findCursorPosition (current: Node, offset: number, parent?: Node): Cursor {
-      console.log('findCursorPosition', current, offset)
       if (!parent) parent = current
       if (offset === 0) return { node: current, offset }
       // We are in text
       if (current.nodeType === Node.TEXT_NODE) {
-        if (current.textContent && current.textContent.length < offset) {
+        if (current.textContent && current.textContent.length < offset - 1) {
           // its not this, lets deduct length of this from searched, and return null
           offset -= current.textContent.length
+          console.log('text', current, offset)
           return { node: null, offset }
         } else {
           // It's this, lets return us and offset
@@ -84,15 +84,15 @@ export default defineComponent({
       // We are not in text
       for (let lp = 0; lp < current.childNodes.length; lp++) {
         const { node: n, offset: o } = findCursorPosition(current.childNodes[lp], offset, parent)
-        console.log((current as Element).tagName)
+        offset = o
         if (n) {
           node = n
           break
         }
-        offset = o
-        if ((current as Element).tagName === 'DIV') offset++
       }
-      console.log('return', offset)
+      console.log((current as Element).tagName)
+      // if ((current as Element).tagName === 'DIV') offset--
+      console.log('return', offset, node)
       return { node, offset }
     }
 
@@ -112,8 +112,8 @@ export default defineComponent({
             selection.addRange(range)
           }
         }
-      }, 0)
-    } */
+      }, 100)
+    }
 
     function onPaste (event: ClipboardEvent) {
       event.preventDefault()
@@ -133,9 +133,18 @@ export default defineComponent({
 
     function onInput (event: Event) {
       const target = event.target as HTMLElement
-      // cursor = getCaretPosition(target)
+      const cursor = getCaretPosition(target)
+      let html = target.innerHTML
+      const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
+      html = html.replace(r, (match, p1) => {
+        console.log(match)
+        return '<a href="' + p1 + '">' + p1 + '</a>'
+      })
+      target.innerHTML = html
       content.value = target.innerHTML
       // editorElement = event.target as HTMLElement
+      console.log('...', cursor)
+      setCursorPosition(event.target as HTMLElement, cursor)
     }
 
     watch(content, (value) => {

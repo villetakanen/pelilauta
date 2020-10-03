@@ -7,6 +7,8 @@
       </div>
       <div class="test-box">
         <div id="result" v-bind:innerHTML="content" />
+        <hr/>
+        {{content}}
       </div>
     </div>
   </div>
@@ -22,7 +24,7 @@ export default defineComponent({
     Editor
   },
   setup () {
-    const content = ref('123<a href="aa">a</a>')
+    const content = ref('123<a href="aa">456</a>78')
     return { content }
   }
 })
