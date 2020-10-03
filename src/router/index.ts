@@ -68,6 +68,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/StreamPost.vue'),
     children: [{ path: ':topic', component: () => import(/* webpackChunkName: "about" */ '../views/StreamPost.vue') }],
     props: true
+  },
+  {
+    path: '/editortest',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
   }
 ]
 
