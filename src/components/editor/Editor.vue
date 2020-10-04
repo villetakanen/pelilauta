@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
+import { setCaret } from './caret'
 
 export default defineComponent({
   props: ['modelValue'],
@@ -60,61 +61,6 @@ export default defineComponent({
       return [cumLength[1], cumLength[0]]
     }
 
-    interface Cursor {
-      node: Node|null;
-      offset: number;
-    }
-
-    function findCursorPosition (current: Node, offset: number, parent?: Node): Cursor {
-      if (!parent) parent = current
-      if (offset === 0) return { node: current, offset }
-      // We are in text
-      if (current.nodeType === Node.TEXT_NODE) {
-        if (current.textContent && current.textContent.length < offset - 1) {
-          // its not this, lets deduct length of this from searched, and return null
-          offset -= current.textContent.length
-          console.log('text', current, offset)
-          return { node: null, offset }
-        } else {
-          // It's this, lets return us and offset
-          return { node: current, offset }
-        }
-      }
-      let node: Node|null = null
-      // We are not in text
-      for (let lp = 0; lp < current.childNodes.length; lp++) {
-        const { node: n, offset: o } = findCursorPosition(current.childNodes[lp], offset, parent)
-        offset = o
-        if (n) {
-          node = n
-          break
-        }
-      }
-      console.log((current as Element).tagName)
-      // if ((current as Element).tagName === 'DIV') offset--
-      console.log('return', offset, node)
-      return { node, offset }
-    }
-
-    function setCursorPosition (element: HTMLElement|null, charSelection: number[]) {
-      window.setTimeout(() => {
-        if (!element || charSelection.length !== 2) return
-        if (charSelection[0] >= 0) {
-          const selection = document.getSelection()
-          const range = new Range()
-          const { node, offset } = findCursorPosition(element, charSelection[0])
-          if (selection && node) {
-          // selection.extend(node, offset)
-          // selection.collapse(node, offset)
-            range.setStart(node, offset)
-            range.setEnd(node, offset)
-            selection.removeAllRanges()
-            selection.addRange(range)
-          }
-        }
-      }, 100)
-    }
-
     function onPaste (event: ClipboardEvent) {
       event.preventDefault()
       event.stopPropagation()
@@ -133,7 +79,10 @@ export default defineComponent({
 
     function onInput (event: Event) {
       const target = event.target as HTMLElement
-      const cursor = getCaretPosition(target)
+
+      // this is current caret offset from the start of the element
+      // at the time of @event
+      const offset = getCaretPosition(target)[0]
       let html = target.innerHTML
       const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
       html = html.replace(r, (match, p1) => {
@@ -142,9 +91,10 @@ export default defineComponent({
       })
       target.innerHTML = html
       content.value = target.innerHTML
-      // editorElement = event.target as HTMLElement
-      console.log('...', cursor)
-      setCursorPosition(event.target as HTMLElement, cursor)
+
+      // we need to return caret to the offset after setting
+      // innerHTML
+      setCaret(event.target as HTMLElement, offset)
     }
 
     watch(content, (value) => {
