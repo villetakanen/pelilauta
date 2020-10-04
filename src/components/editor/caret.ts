@@ -112,14 +112,37 @@ export function findCaret (current: Node, offset: number, parent?: Node): RangeP
  * @param element the parent element, where the text content is
  * @param offset the amount of letters to offset from the start of this element
  */
-export function setCaret (element: HTMLElement, offset: number) {
+export function setCaret (element: Element, offset: number) {
   const selection = document.getSelection()
   if (!selection || offset < 0) return
 
   const range = new Range()
 
-  const { node: focusNode, offset: focusNodeOffset } = findCaret(element, offset)
-  if (!focusNode) return
+  // const { node: focusNode, offset: focusNodeOffset } = findCaret(element, offset)
+
+  let focusNode = element
+  let focusNodeOffset = offset
+  let found = false
+  nodeWalk(element, (node: Element) => {
+    if (found) return
+    console.log('traversing', node, focusNodeOffset, node.nodeType === Node.TEXT_NODE, node.textContent)
+    if (!node.isSameNode(element) && node.tagName === 'DIV') focusNodeOffset--
+    // Caret needs to go to the beginning of this node
+    if ((focusNodeOffset) < 1) {
+      focusNode = node
+      found = true
+      return
+    }
+    if (node.nodeType === Node.TEXT_NODE && node.textContent) {
+      if (node.textContent.length > focusNodeOffset - 1) {
+        console.log('found!')
+        focusNode = node
+        found = true
+      } else {
+        focusNodeOffset -= node.textContent.length
+      }
+    }
+  })
 
   range.setStart(focusNode, focusNodeOffset)
   range.setEnd(focusNode, focusNodeOffset)
