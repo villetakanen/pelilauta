@@ -105,9 +105,9 @@ export function findCaret (current: Node, offset: number, parent?: Node): RangeP
  * by walking through the dom node contents of the element
  *
  * Usage:
- * const { node, offset } = getCaret(el)
+ * const { offset } = getCaret(el)
  * el.innerHTML = (el.innerHTML as string).toLowerCase()
- * setCaret(node, offset)
+ * setCaret(el, offset)
  *
  * @param element the parent element, where the text content is
  * @param offset the amount of letters to offset from the start of this element
