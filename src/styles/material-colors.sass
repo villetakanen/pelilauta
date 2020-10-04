@@ -1,15 +1,29 @@
+$color-front: rgb(0,23,37)
+$color-base: #ffffff
+$color-primary: #0271ba
+$color-primary-light: #579fed
+$color-primary-dark: #004689
+$color-secondary: #eeff41
+$color-secondary-light: #ffff78
+$color-secondary-dark: #b8cc00
+  
 @mixin TypeColorDark()
-  color: rgb(0,23,37)
+  color: $color-front
+  h1, h2, h3, h4
+    color: $color-primary-dark
 
 @mixin TypeColorLight()
   color: rgb(218,230,240)
 
 @mixin TypeColorPrimary()
-  color: #007769
+  color: $color-primary
   
 @mixin ElementColorNone()
   @include TypeColorDark()
   background: none
+
+@mixin ElementColorBase()
+  @include TypeColorDark()
 
 @mixin ElementColorSecondary()
   @include TypeColorDark()
@@ -17,7 +31,7 @@
 
 @mixin ElementColorPrimary()
   @include TypeColorLight()
-  background-color: #007769
+  background-color: $color-primary
   a
     color: #BDC
   a:hover
@@ -29,7 +43,7 @@
 
 @mixin ElementColorPrimaryLight()
   @include TypeColorDark()
-  background-color: #48a697
+  background-color: #579fed
 
 @mixin BaseColorDark()
   background: rgba(0,23,37,0.1)
