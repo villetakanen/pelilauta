@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/villetakanen/pelilauta/compare/v1.17.0...v1.18.0) (2020-10-04)
+
+
+### Features
+
+* **editor:** added editor test page ([9faa636](https://github.com/villetakanen/pelilauta/commit/9faa6369e0ad94500c5b176f1fbaec4b056155c4))
+
+
+### Bug Fixes
+
+* **editor:** caret position ([94a12ff](https://github.com/villetakanen/pelilauta/commit/94a12ff033b6c30fb806b87aff9e229843da947e))
+* **editor:** caret position read ok, write buggy ([29cc4bb](https://github.com/villetakanen/pelilauta/commit/29cc4bbb932eff00b396fc0ed135d7a967f43bcb))
+* **editor:** caret positions read-write ([61652f3](https://github.com/villetakanen/pelilauta/commit/61652f3f70b2439cdcb98c16b3d84f434fc944fb))
+* **editor:** caret setting ok, caret lookup not ([6fd8607](https://github.com/villetakanen/pelilauta/commit/6fd86072f5a6437e66f6028638ae75a4a03138bf))
+* **editor:** comments ([e47a50e](https://github.com/villetakanen/pelilauta/commit/e47a50ea80e7b4700d39ac0f9d456c2a53c6fecf))
+
 ## [1.17.0](https://github.com/villetakanen/pelilauta/compare/v1.16.3...v1.17.0) (2020-10-02)
 
 
