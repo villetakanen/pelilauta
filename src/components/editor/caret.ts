@@ -10,6 +10,45 @@ interface RangePosition {
   offset: number;
 }
 
+function nodeWalk (node: Node, func: Function) {
+  let result = func(node)
+  for (node = node.firstChild as Element; result !== false && node; node = node.nextSibling as Element) {
+    result = nodeWalk(node, func)
+  }
+  return result
+}
+
+export function getCaretOffset (current: HTMLElement): number {
+  const selection = window.getSelection()
+  let offset = 0
+
+  if (selection === null) return 0
+
+  if (selection.anchorNode === current) return selection.anchorOffset
+
+  const nodeToFind = selection.anchorNode
+
+  if (!current.contains(nodeToFind)) return 0
+
+  let found = false
+  nodeWalk(current, (node: Node) => {
+    if (found) return
+    // DIV, add offset++ for /n
+    if (!node.isSameNode(current) && (node as Element).tagName === 'DIV') offset++
+    if (node.isSameNode(nodeToFind)) {
+      found = true
+      return
+    }
+    if (node.textContent && !node.firstChild) {
+      offset += node.textContent.length
+    }
+  })
+  offset += selection.anchorOffset
+  // if ((nodeToFind as Element).tagName === 'DIV') offset--
+  console.info('###', offset, '###')
+  return offset
+}
+
 /**
  * Walks through the $current element and it's childNodes to find params for
  * 'range.setEnd(node, offset)
@@ -18,11 +57,13 @@ interface RangePosition {
  * @param parent
  */
 export function findCaret (current: Node, offset: number, parent?: Node): RangePosition {
-  console.log('findFocus for', offset, current, parent)
+  console.log('findFocus for', offset, current)
   // this is the parent
   if (!parent) parent = current
   // this is not parent, so if this is a DIV, we need to walk one step forwards for /n
-  else if ((current as Element).tagName === 'DIV') offset--
+  else if ((current as Element).tagName === 'DIV') {
+    if (!current.textContent || current.textContent) { offset-- }
+  }
 
   // if we hve no offset left, the cursor is att the beginning of this element
   if (offset < 1) return { node: current, offset: 0 }
@@ -45,6 +86,7 @@ export function findCaret (current: Node, offset: number, parent?: Node): RangeP
   let node: Node|null = null
   // We are not in text
   for (let lp = 0; lp < current.childNodes.length; lp++) {
+    console.log('looping', current.childNodes[lp])
     const { node: n, offset: o } = findCaret(current.childNodes[lp], offset, parent)
     offset = o
     if (n) {
@@ -61,6 +103,11 @@ export function findCaret (current: Node, offset: number, parent?: Node): RangeP
 /**
  * Sets selection start and end to given text-position of the element,
  * by walking through the dom node contents of the element
+ *
+ * Usage:
+ * const { node, offset } = getCaret(el)
+ * el.innerHTML = (el.innerHTML as string).toLowerCase()
+ * setCaret(node, offset)
  *
  * @param element the parent element, where the text content is
  * @param offset the amount of letters to offset from the start of this element

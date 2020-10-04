@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-import { setCaret } from './caret'
+import { setCaret, getCaretOffset } from './caret'
 
 export default defineComponent({
   props: ['modelValue'],
@@ -19,14 +19,14 @@ export default defineComponent({
       }
     }) */
 
-    // node_walk: walk the element tree, stop when func(node) returns false
+    /* / node_walk: walk the element tree, stop when func(node) returns false
     function nodeWalk (node: Element, func: Function) {
       let result = func(node)
       for (node = node.firstChild as Element; result !== false && node; node = node.nextSibling as Element) { result = nodeWalk(node, func) }
       return result
     };
 
-    // getCaretPosition: return [start, end] as offsets to elem.textContent that
+    /* / getCaretPosition: return [start, end] as offsets to elem.textContent that
     //   correspond to the selected portion of text
     //   (if start == end, caret is at given position and no text is selected)
     function getCaretPosition (elem: Element): number[] {
@@ -59,7 +59,7 @@ export default defineComponent({
       }
       if (cumLength[0] <= cumLength[1]) { return cumLength }
       return [cumLength[1], cumLength[0]]
-    }
+    } */
 
     function onPaste (event: ClipboardEvent) {
       event.preventDefault()
@@ -82,7 +82,8 @@ export default defineComponent({
 
       // this is current caret offset from the start of the element
       // at the time of @event
-      const offset = getCaretPosition(target)[0]
+      const offset = getCaretOffset(target)
+
       let html = target.innerHTML
       const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
       html = html.replace(r, (match, p1) => {
