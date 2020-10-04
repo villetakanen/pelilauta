@@ -85,10 +85,11 @@ export default defineComponent({
       const offset = getCaretOffset(target)
 
       let html = target.innerHTML
-      const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
-      html = html.replace(r, (match, p1) => {
-        console.log(match)
-        return '<a href="' + p1 + '">' + p1 + '</a>'
+      // const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
+      const r = new RegExp('( |&nbsp;)(https?fic:\\/\\/[a-zA-Z_.-]*)( |&nbsp;)', 'gmu')
+      html = html.replace(r, (match, p1, p2, p3) => {
+        console.log('match!', match, p1)
+        return `${p1}<a href="${p2}">${p2}</a>${p3}`
       })
       target.innerHTML = html
       content.value = target.innerHTML
