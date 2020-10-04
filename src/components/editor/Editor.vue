@@ -11,56 +11,6 @@ export default defineComponent({
   setup (props, context) {
     const content = ref(props.modelValue)
 
-    /* const value = computed({
-      get: () => { return content.value },
-      set: (value: string) => {
-        content.value = value
-         context.emit('update:modelValue', value)
-      }
-    }) */
-
-    /* / node_walk: walk the element tree, stop when func(node) returns false
-    function nodeWalk (node: Element, func: Function) {
-      let result = func(node)
-      for (node = node.firstChild as Element; result !== false && node; node = node.nextSibling as Element) { result = nodeWalk(node, func) }
-      return result
-    };
-
-    /* / getCaretPosition: return [start, end] as offsets to elem.textContent that
-    //   correspond to the selected portion of text
-    //   (if start == end, caret is at given position and no text is selected)
-    function getCaretPosition (elem: Element): number[] {
-      const sel = window.getSelection()
-      let cumLength = [0, 0]
-      if (sel === null) return cumLength
-
-      if (sel.anchorNode === elem) { cumLength = [sel.anchorOffset, sel.focusOffset] } else {
-        const nodesToFind = [sel.anchorNode, sel.focusNode]
-        if (!elem.contains(sel.anchorNode) || !elem.contains(sel.focusNode)) { return [0, 0] } else {
-          const found = [false, false]
-          let i
-          nodeWalk(elem, function (node: Element) {
-            for (i = 0; i < 2; i++) {
-              if (node === nodesToFind[i] as Element) {
-                found[i] = true
-                if (found[i === 0 ? 1 : 0]) { return false } // all done
-              }
-            }
-
-            if (node.textContent && !node.firstChild) {
-              for (i = 0; i < 2; i++) {
-                if (!found[i]) { cumLength[i] += node.textContent.length }
-              }
-            }
-          })
-          cumLength[0] += sel.anchorOffset
-          cumLength[1] += sel.focusOffset
-        }
-      }
-      if (cumLength[0] <= cumLength[1]) { return cumLength }
-      return [cumLength[1], cumLength[0]]
-    } */
-
     function onPaste (event: ClipboardEvent) {
       event.preventDefault()
       event.stopPropagation()
@@ -86,7 +36,7 @@ export default defineComponent({
 
       let html = target.innerHTML
       // const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
-      const r = new RegExp('( |&nbsp;)(https?fic:\\/\\/[a-zA-Z_.-]*)( |&nbsp;)', 'gmu')
+      const r = new RegExp('( |&nbsp;)(https?:\\/\\/[a-zA-Z\\/_.-]*)( |&nbsp;)', 'gmu')
       html = html.replace(r, (match, p1, p2, p3) => {
         console.log('match!', match, p1)
         return `${p1}<a href="${p2}">${p2}</a>${p3}`
@@ -116,7 +66,11 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .editor
-  @include BoxShadow3()
-  min-height: 1em
+  //@include BoxShadow3()
+  min-height: 72px
+  max-height: 11em
+  overflow: scroll
+  background-color: white
+  border-bottom: solid 1px rgba(0,23,37, 0.4)
 
 </style>

@@ -6,12 +6,15 @@
     <transition name="fade">
       <div v-if="isAuthz">
         <div class="toolbar">
-          <div class="spacer" />
+          <div class="grow">
+            <input class="material-textfield" v-model="title" type="text" :placeholder="titlePlaceHolder"/>
+          </div>
           <select name="topic" v-model="topic">
             <option v-for="(t) in topics" v-bind:key="t.slug" :value="t.slug">{{ t.title }}</option>
           </select>
         </div>
-        <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
+        <!--div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput" </div-->
+        <Editor v-model="content" />
         <div class="toolbar">
           <div class="spacer" />
           <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
@@ -22,11 +25,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import Editor from '@/components/editor/Editor.vue'
 import { useAuthz } from '@/lib/authz'
 import { useTopics } from '@/lib/topics'
 import { useRouter } from 'vue-router'
@@ -35,10 +39,12 @@ export default defineComponent({
   name: 'Home',
   components: {
     MaterialButton,
-    MaterialCard
+    MaterialCard,
+    Editor
   },
   setup () {
     const content = ref('')
+    const title = ref('')
     const topic = ref('Roolipelit')
     const { isAuthz, uid } = useAuthz()
     const { topics } = useTopics()
@@ -58,14 +64,29 @@ export default defineComponent({
 
     const router = useRouter()
 
+    const titlePlaceHolder = computed(() => {
+      if (!title.value) {
+        const elem = document.createElement('div')
+        elem.innerHTML = content.value
+        const textContent = elem.textContent
+        if (!content.value || textContent === null) return 'Title'
+        const end = textContent.length < 20 ? textContent.length : 20
+        return textContent.substring(0, end) + '...'
+      }
+      return title.value
+    })
+
     function post (): void {
       if (content.value.length < 1) return
       console.log('post!', uid)
       console.log()
       const db = firebase.firestore()
       const streamRef = db.collection('stream')
+      let t: string = title.value
+      if (!t) t = titlePlaceHolder.value
       streamRef.add(
         {
+          title: t,
           author: uid.value,
           content: linkify(content.value),
           created: firebase.firestore.FieldValue.serverTimestamp(),
@@ -75,20 +96,7 @@ export default defineComponent({
       })
     }
 
-    function paste (event: ClipboardEvent) {
-      event.preventDefault()
-      event.stopPropagation()
-      const pasted = event.clipboardData?.getData('text/plain')
-      const selection = window.getSelection()
-      if (selection && pasted) {
-        selection.getRangeAt(0).insertNode(document.createTextNode(pasted))
-        selection.collapseToEnd()
-      }
-      const target = event.target as HTMLElement
-      content.value = target.innerHTML
-    }
-
-    return { isAuthz, post, paste, onInput, content, linkify, topic, topics }
+    return { isAuthz, post, onInput, content, linkify, topic, topics, title, titlePlaceHolder }
   }
 })
 </script>

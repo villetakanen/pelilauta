@@ -7,7 +7,8 @@
             :topic="post.topic"
             :author="post.author"
             :content="post.content"
-            :postid="post.postid" />
+            :postid="post.postid"
+            :title="post.title"/>
         </div>
     </div>
   </div>
@@ -25,6 +26,7 @@ export interface Post {
   created: number;
   postid: string;
   topic?: string;
+  title?: string;
 }
 
 interface PostData {

@@ -1,5 +1,6 @@
 <template>
   <MaterialCard class="stream-post">
+    <h3 v-if="title">{{ title }}</h3>
     <transition name="fade">
       <div v-if="photoURL" class="avatar">
         <img :src="photoURL" :alt="nick"/>
@@ -79,6 +80,10 @@ export default defineComponent({
     },
     created: {
       type: Number,
+      required: false
+    },
+    title: {
+      type: String,
       required: false
     }
   },

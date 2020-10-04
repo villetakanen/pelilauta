@@ -24,7 +24,7 @@ export default defineComponent({
     Editor
   },
   setup () {
-    const content = ref('123<a href="aa">456</a>78')
+    const content = ref('')
     return { content }
   }
 })
