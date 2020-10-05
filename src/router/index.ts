@@ -70,6 +70,15 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
+    path: '/stream/view/:postid',
+    name: 'StreamView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ViewPost.vue'),
+    props: true
+  },
+  {
     path: '/editortest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
   }
