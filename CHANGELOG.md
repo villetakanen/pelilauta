@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.4](https://github.com/villetakanen/pelilauta/compare/v1.19.3...v1.19.4) (2020-10-05)
+
+
+### Bug Fixes
+
+* **quality:** lint warnigs ([69b8b1b](https://github.com/villetakanen/pelilauta/commit/69b8b1b1d0f32c2da74e00cc8430e8549d31922d))
+* **ux:** front page ([bd2a370](https://github.com/villetakanen/pelilauta/commit/bd2a370ade6332f0a904a760ef9d14f754551661))
+* **ux:** hide desktop actions on mobile ([bb6afb0](https://github.com/villetakanen/pelilauta/commit/bb6afb0bd033f4d5ed56d6d7f5305ac27f09829d))
+
 ### [1.19.3](https://github.com/villetakanen/pelilauta/compare/v1.19.2...v1.19.3) (2020-10-05)
 
 
