@@ -1,5 +1,7 @@
 $color-front: rgb(0,23,37)
 $color-base: #ffffff
+$color-base-dark: rgb(243,244,245)
+$color-base-darker: rgb(223,225,227)
 $color-primary: #0271ba
 $color-primary-light: #579fed
 $color-primary-dark: #004689
@@ -27,7 +29,7 @@ $color-secondary-dark: #b8cc00
 
 @mixin ElementColorSecondary()
   @include TypeColorDark()
-  background-color: #fbc02d
+  background-color: $color-secondary
 
 @mixin ElementColorPrimary()
   @include TypeColorLight()
@@ -47,6 +49,9 @@ $color-secondary-dark: #b8cc00
 
 @mixin BaseColorDark()
   background: rgba(0,23,37,0.1)
+
+@mixin BoxShadow1()
+   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12), 0 1px 3px 0 rgba(0, 0, 0, .20)
 
 @mixin BoxShadow3()
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12), 0 1px 8px 0 rgba(0, 0, 0, .20)

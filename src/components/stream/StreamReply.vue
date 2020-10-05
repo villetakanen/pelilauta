@@ -37,6 +37,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import ../../styles/material-typography.sass
+@import @/styles/material-colors.sass
 
 #app #mainContentWrapper main
   .tester
@@ -45,11 +46,9 @@ export default defineComponent({
     width: 100%
   p.caption
     padding-bottom: 4px
-  .reply
-    border-top: solid 1px rgba(0,0,0,0.1)
-    margin-top: 4px
-    padding-top: 3px
+  div.stream-reply
     @include TypeBody2()
+    padding-top: 8px
     div.author
       float: left
       font-weight: 500
@@ -57,8 +56,8 @@ export default defineComponent({
       margin-right: 8px
       padding:4px 8px
       line-height: 16px
-      color: #666
+      color: $color-primary-light
       border-radius: 12px
-      background-color: white
+      background-color: $color-base-dark
 
 </style>

@@ -6,12 +6,14 @@
 
 <style lang="sass">
 @import @/styles/material-colors.sass
+@import @/styles/layout.sass
 
 #app
   div.material-card
     @include TypeColorDark()
+    @include SpacingContainer()
     background-color: white
-    @include BoxShadow3()
+    @include BoxShadow1()
     .title
       margin-bottom: 8px
 </style>

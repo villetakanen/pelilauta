@@ -27,30 +27,30 @@
     </p>
 
     <div
-      v-for="(post, index) in replies"
-      :key="index"
-      class="reply"
+      v-if="replies"
+      class="replies"
     >
-      <transition name="fade">
-        <div v-if="post.content">
-          <StreamReply
-            :author="post.author"
-            :content="post.content"
-            :postid="post.replyid"
-            :nick="post.nick"
-          />
-        </div>
-      </transition>
+      <div
+        v-for="(post, index) in replies"
+        :key="index"
+        class="reply"
+      >
+        <transition name="fade">
+          <div v-if="post.content">
+            <StreamReply
+              :author="post.author"
+              :content="post.content"
+              :postid="post.replyid"
+              :nick="post.nick"
+            />
+          </div>
+        </transition>
+      </div>
     </div>
 
     <transition name="fade">
       <div v-if="replyBoxVisible">
-        <div
-          class="tester"
-          contenteditable="true"
-          @paste="paste"
-          @input="onInput"
-        />
+        <Editor v-model="replyContent" />
         <MaterialButton :action="post">
           Post!
         </MaterialButton>
@@ -88,6 +88,7 @@ import StreamReply from './StreamReply.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import { useAuthz } from '@/lib/authz'
+import Editor from '@/components/editor/Editor.vue'
 
 interface Reply {
   content: string;
@@ -101,7 +102,8 @@ export default defineComponent({
   components: {
     MaterialCard,
     MaterialButton,
-    StreamReply
+    StreamReply,
+    Editor
   },
   props: {
     content: {
@@ -136,7 +138,7 @@ export default defineComponent({
     const nick = ref('')
     const photoURL = ref('')
     const replyBoxVisible = ref(false)
-    const content = ref('')
+    const replyContent = ref('')
     const repliesTyped: Reply[] = []
     const replies = ref(repliesTyped)
     const { uid, profile, isAuthz } = useAuthz()
@@ -179,31 +181,6 @@ export default defineComponent({
       replyBoxVisible.value = true
     }
 
-    function paste (event: ClipboardEvent) {
-      event.preventDefault()
-      event.stopPropagation()
-      const pasted = event.clipboardData?.getData('text/plain')
-      const selection = window.getSelection()
-      if (selection && pasted) {
-        selection.getRangeAt(0).insertNode(document.createTextNode(pasted))
-        selection.collapseToEnd()
-      }
-      const target = event.target as HTMLElement
-      content.value = target.innerHTML
-    }
-    function onInput (event: Event) {
-      const target = event.target as HTMLElement
-      content.value = target.innerHTML
-    }
-
-    function linkify (inputText: string): string {
-      // URLs starting with http://, https://, or ftp://
-      const replacePattern1 = '/(\b(https?|ftp):\\/\\/[-A-Z0-9+&@#\\/%?=~_|!:,.;]*[-A-Z0-9+&@#\\/%=~_|])/gim'
-      const replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>')
-
-      return replacedText
-    }
-
     function post (): void {
       console.log('post!', props.author)
       console.log()
@@ -214,10 +191,10 @@ export default defineComponent({
         {
           author: uid.value,
           nick: profile.value.nick,
-          content: linkify(content.value),
+          content: replyContent.value,
           created: firebase.firestore.FieldValue.serverTimestamp()
         }).then(() => {
-        content.value = ''
+        replyContent.value = ''
         replyBoxVisible.value = false
       })
     }
@@ -233,13 +210,14 @@ export default defineComponent({
       })
     }
 
-    return { nick, photoURL, showReply, replyBoxVisible, paste, onInput, linkify, post, replies, isAuthz, isAuthor, deletePost }
+    return { nick, photoURL, showReply, replyBoxVisible, post, replies, isAuthz, isAuthor, deletePost, replyContent }
   }
 })
 </script>
 
 <style lang="sass" scoped>
 @import ../../styles/material-typography.sass
+@import @/styles/material-colors.sass
 
 #app #mainContentWrapper main
   .tester
@@ -248,18 +226,7 @@ export default defineComponent({
     width: 100%
   p.caption
     padding-bottom: 4px
-  .reply
-    border-top: solid 1px rgba(0,0,0,0.1)
-    margin-top: 4px
-    padding-top: 3px
-    @include TypeBody2()
-    p.author
-      float: left
-      font-weight: 500
-      margin:0
-      margin-right: 8px
-      padding:0
-      line-height: 24px
-      color: #666
+  div.replies
+    border-top: solid 1px $color-base-darker
 
 </style>

@@ -62,6 +62,10 @@ export default defineComponent({
       // setCursorPosition(editorElement, cursor)
     })
 
+    watch(props.modelValue, (value) => {
+      if (!value) content.value = ''
+    })
+
     return { content, onInput, onPaste }
   }
 })
@@ -76,8 +80,13 @@ export default defineComponent({
   //@include BoxShadow3()
   min-height: 72px
   max-height: 11em
-  overflow: scroll
-  background-color: white
-  border-bottom: solid 1px rgba(0,23,37, 0.4)
+  overflow-x
+    y: scroll
+  background-color: $color-base-dark
+  border-bottom: solid 1px $color-primary-dark
+  &:hover
+    background-color: $color-base-darker
+  &:focus
+    background-color: $color-base-darker
 
 </style>

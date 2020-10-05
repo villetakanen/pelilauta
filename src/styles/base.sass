@@ -2,7 +2,6 @@
 @import material-dialog.sass
 @import material-typography.sass
 @import material-colors.sass
-@import material-card.sass
 @import include-media.scss
 
 *:focus
@@ -12,7 +11,7 @@ body
   margin: 0
   padding: 0
   @include TypeBody1()
-  @include BaseColorDark()
+  background: $color-base-dark
 
 h1
   @include TypeHeadline3()
@@ -21,18 +20,23 @@ h3
 textarea
   @include TypeBody2()
 a
-  text-decoration: none
-  background-color: rgba(0,30,50,0.2)
+  text-decoration: underline
+  background-color: $color-base-dark
   padding: 0 2px
-  @include TypeColorDark()
+  color: $color-primary-dark
 
 select
   @include TypeBody2()
   margin: 4px 0
-  background-color: white
   border: none
-  border-bottom: solid 1px rgba(0,23,37,0.7)
   height: 30px 
+
+  background-color: $color-base-dark
+  border-bottom: solid 1px $color-primary-dark
+  &:hover
+    background-color: $color-base-darker
+  &:focus
+    background-color: $color-base-darker
 
 #app
   #mainContentWrapper
@@ -108,7 +112,12 @@ div.toolbar
   border: 0
   height: 28px
   margin-top: 2px
-  border-bottom: solid 1px rgba(0,23,37, 0.4)
+  background-color: $color-base-dark
+  border-bottom: solid 1px $color-primary-dark
+  &:hover
+    background-color: $color-base-darker
+  &:focus
+    background-color: $color-base-darker
 
 .material-banner
   margin: 0
