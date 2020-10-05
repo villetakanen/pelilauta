@@ -1,19 +1,27 @@
 <template>
   <h1>{{ pageTitle }}</h1>
-  <NewPostCard />
+  <MaterialFab
+    text="New post"
+    to="/stream/post"
+  >
+    <img
+      src="@/assets/add.svg"
+      alt="new comment"
+    >
+  </MaterialFab>
   <Stream :topic="topic" />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
-import NewPostCard from '@/components/stream/NewPostCard.vue'
+import MaterialFab from '@/components/material/MaterialFab.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     Stream,
-    NewPostCard
+    MaterialFab
   },
   props: {
     topic: {

@@ -1,4 +1,9 @@
 <template>
+  <div class="toolbar">
+    <div class="toolbar-action">
+      <img src="@/assets/add-photo-action.svg">
+    </div>
+  </div>
   <div
     v-once
     class="editor"
@@ -85,8 +90,8 @@ export default defineComponent({
 
 .editor
   //@include BoxShadow3()
-  min-height: 72px
-  max-height: 11em
+  min-height: 264px
+  max-height: 528px
   overflow-x
     y: scroll
   background-color: $color-base-dark
@@ -95,5 +100,23 @@ export default defineComponent({
     background-color: $color-base-darker
   &:focus
     background-color: $color-base-darker
+
+.toolbar-action
+  height: 46px
+  width: 46px
+  position: relative
+  &:hover
+    background-color: $color-base-dark
+  img
+    height: 42px
+    width: 42px
+    padding: 2px
+    opacity: 50%
+    &.small
+      height: 18px
+      width: 18px
+      padding: 16px
+    &:hover
+     opacity: 77%
 
 </style>

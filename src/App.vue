@@ -6,7 +6,7 @@
       <router-view />
     </main>
   </div>
-  <div style="position:fixed; bottom: 16px; right: 16px">
+  <div style="position:fixed; bottom: 16px; left: 16px">
     {{ version }}
   </div>
   <MaterialDialog :visible="missingProfile" />
