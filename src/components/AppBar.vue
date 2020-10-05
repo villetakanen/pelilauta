@@ -13,15 +13,16 @@
       <h1 class="font-button">
         Pelilauta 2
       </h1>
-      <MaterialAction
-        to="/about"
-        icon="about"
-      />
       <div class="spacer" />
       <MaterialAction
         text="Topics"
         icon="topic"
         to="/stream/index"
+      />
+      <MaterialAction
+        desktop
+        to="/about"
+        icon="about"
       />
       <ProfileAction />
     </div>

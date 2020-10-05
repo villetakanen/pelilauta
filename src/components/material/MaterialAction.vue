@@ -1,7 +1,8 @@
 <template>
   <div
     v-ripple="'fixed-y'"
-    :class="'material-action ' + (text ? 'material-action-text' : '') "
+    class="material-action"
+    :class="classes"
     @click="clicked"
   >
     <img
@@ -26,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'MaterialAction',
@@ -50,16 +51,28 @@ export default defineComponent({
       type: Function,
       required: false,
       default: undefined
+    },
+    desktop: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
     const router = useRouter()
+    const classes = computed(() => {
+      const arrr: string[] = []
+      if (props.text) arrr.push('material-action-text')
+      console.log(props.desktop)
+      if (props.desktop) arrr.push('desktop-only')
+      return arrr
+    })
 
     function clicked () {
       if (props.to) router.push(props.to)
     }
 
-    return { clicked }
+    return { clicked, classes }
   }
 })
 </script>
@@ -100,12 +113,14 @@ export default defineComponent({
     margin-left: 8px
 
 @include media('<desktop')
+  .desktop-only
+    display: none
   .material-action-text
     width: 44px
     .material-action-title
       display: none
     .material-action-icon
-      height: 36px
-      widht: 36px
-      margin: 3px
+      height: 32px
+      widht: 32px
+      margin: 6px
 </style>
