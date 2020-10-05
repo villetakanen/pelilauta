@@ -21,6 +21,7 @@ function _init () {
     const { onAuthStateChanged } = useAuthz()
     onAuthStateChanged(user)
   })
+  firebase.firestore().enablePersistence()
 }
 
 export function useFirebase () {
