@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.2](https://github.com/villetakanen/pelilauta/compare/v1.19.1...v1.19.2) (2020-10-05)
+
+
+### Bug Fixes
+
+* **newpost:** catches urls at the beginning or end ([cecdc40](https://github.com/villetakanen/pelilauta/commit/cecdc40901022692cec5401c0849c0a333c75be4))
+
 ### [1.19.1](https://github.com/villetakanen/pelilauta/compare/v1.19.0...v1.19.1) (2020-10-04)
 
 
