@@ -34,67 +34,19 @@
       <div :innerHTML="content" />
     </div>
 
-    <div
-      v-if="replies"
-      class="replies"
-    >
-      <div
-        v-for="(post, index) in top3Replies"
-        :key="index"
-        class="reply"
-      >
-        <transition name="fade">
-          <div v-if="post.content">
-            <StreamReply
-              :author="post.author"
-              :content="post.content"
-              :postid="post.replyid"
-              :nick="post.nick"
-            />
-          </div>
-        </transition>
-      </div>
-      <div class="replycount">
-        <router-link :to="`/stream/view/${postid}`">
-          {{ replies.length }} replies
-        </router-link>
-      </div>
+    <div class="replycount">
+      <router-link :to="`/stream/view/${postid}`">
+        {{ replies.length }} replies
+      </router-link>
     </div>
-
-    <transition name="fade">
-      <div v-if="replyBoxVisible">
-        <Editor v-model="replyContent" />
-        <MaterialButton :action="post">
-          Post!
-        </MaterialButton>
-      </div>
-    </transition>
-
-    <transition name="fade">
-      <div
-        v-if="!replyBoxVisible && isAuthz"
-        class="toolbar"
-      >
-        <MaterialButton
-          v-if="isAuthor"
-          text
-          :action="deletePost"
-        >
-          Delete
-        </MaterialButton>
-      </div>
-    </transition>
   </MaterialCard>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch, computed } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
-import StreamReply from './StreamReply.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import { useAuthz } from '@/lib/authz'
-import Editor from '@/components/editor/Editor.vue'
 
 interface Reply {
   content: string;
@@ -106,10 +58,7 @@ interface Reply {
 
 export default defineComponent({
   components: {
-    MaterialCard,
-    MaterialButton,
-    StreamReply,
-    Editor
+    MaterialCard
   },
   props: {
     content: {
@@ -143,11 +92,9 @@ export default defineComponent({
   setup (props) {
     const nick = ref('')
     const photoURL = ref('')
-    const replyBoxVisible = ref(false)
-    const replyContent = ref('')
     const repliesTyped: Reply[] = []
     const replies = ref(repliesTyped)
-    const { uid, profile, isAuthz } = useAuthz()
+    const { isAuthz } = useAuthz()
 
     function loadData (): void {
       const db = firebase.firestore()
@@ -183,47 +130,7 @@ export default defineComponent({
     })
     watch(props, loadData)
 
-    function showReply () {
-      replyBoxVisible.value = true
-    }
-
-    function post (): void {
-      console.log('post!', props.author)
-      console.log()
-      const db = firebase.firestore()
-      const streamRef = db.collection('stream').doc(props.postid).collection('comments')
-      console.log(uid.value, profile.value.nick)
-      streamRef.add(
-        {
-          author: uid.value,
-          nick: profile.value.nick,
-          content: replyContent.value,
-          created: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
-        replyContent.value = ''
-        replyBoxVisible.value = false
-      })
-    }
-
-    const isAuthor = computed((): boolean => (uid.value === props.author))
-
-    function deletePost (): void {
-      console.log('deletePost', uid.value, props.author)
-      const db = firebase.firestore()
-      const postRef = db.collection('stream').doc(props.postid)
-      postRef.delete().then(() => {
-        loadData()
-      })
-    }
-
-    const top3Replies = computed(() => {
-      const arr = replies.value
-      arr.reverse()
-      if (arr.length > 2) return [arr[0], arr[1], arr[2]]
-      return arr
-    })
-
-    return { nick, photoURL, showReply, replyBoxVisible, post, replies, isAuthz, isAuthor, deletePost, replyContent, top3Replies }
+    return { nick, photoURL, isAuthz, replies }
   }
 })
 </script>

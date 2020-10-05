@@ -130,7 +130,7 @@ export default defineComponent({
     const replyBoxVisible = ref(false)
     const replyContent = ref('')
 
-    const { uid, profile, isAuthz } = useAuthz()
+    const { uid, profile } = useAuthz()
 
     const getPostData = () => {
       const db = firebase.firestore()
