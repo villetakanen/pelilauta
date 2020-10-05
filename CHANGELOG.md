@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.8](https://github.com/villetakanen/pelilauta/compare/v1.19.7...v1.19.8) (2020-10-05)
+
+
+### Bug Fixes
+
+* **ux:** imported icons for app ([81ce783](https://github.com/villetakanen/pelilauta/commit/81ce783ec7f2168f26b6b86c8e0e950ec50101e8))
+
 ### [1.19.7](https://github.com/villetakanen/pelilauta/compare/v1.19.6...v1.19.7) (2020-10-05)
 
 
