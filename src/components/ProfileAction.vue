@@ -2,13 +2,20 @@
   <MaterialButton
     :action="reroute"
     icon
+    class="profileButton"
   >
     <img
       v-if="!isAuthz || !profile.nick"
       src="../assets/avatar.svg"
       :alt="isAuthz"
     >
-    <span v-if="isAuthz && profile.nick">{{ profile.nick.substring(0,1) }}</span>
+    <span v-if="isAuthz && !profile.photoURL">{{ profile.nick.substring(0,1) }}</span>
+    <img
+      v-if="isAuthz && profile.photoURL"
+      :src="profile.photoURL"
+      :alt="profile.nick"
+      class="avatar-image"
+    >
   </MaterialButton>
 </template>
 
@@ -34,3 +41,11 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.avatar-image
+  width: 42px
+  height: 42px
+  border-radius: 20px
+  margin-top:2px
+</style>

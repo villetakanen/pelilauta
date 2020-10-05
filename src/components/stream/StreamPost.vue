@@ -23,7 +23,7 @@
         {{ title }}
       </h3>
       <div class="caption">
-        {{ nick }} {{ created }}
+        {{ nick }} {{ createdTime }}
         <span v-if="topic">in
           <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link>
         </span>
@@ -42,7 +42,7 @@
   </MaterialCard>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch, computed } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
@@ -130,7 +130,12 @@ export default defineComponent({
     })
     watch(props, loadData)
 
-    return { nick, photoURL, isAuthz, replies }
+    const createdTime = computed(() => {
+      const dateString = new Date((props.created + 10800) * 1000 + new Date().getTimezoneOffset()).toISOString()
+      return dateString.substring(11, 19) + ' - ' + dateString.substring(0, 10)
+    })
+
+    return { nick, photoURL, isAuthz, replies, createdTime }
   }
 })
 </script>
