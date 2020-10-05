@@ -54,10 +54,8 @@ export default defineComponent({
       font-weight: 500
       margin:0
       margin-right: 8px
-      padding:4px 8px
+      padding:4px 0
       line-height: 16px
       color: $color-primary-light
-      border-radius: 12px
-      background-color: $color-base-dark
 
 </style>

@@ -1,37 +1,45 @@
 <template>
   <MaterialCard class="stream-post">
-    <h3
-      v-if="title"
-      class="title"
-    >
-      {{ title }}
-    </h3>
-
-    <transition name="fade">
+    <!-- The top bar -->
+    <div class="stream-post-top-bar">
       <div
-        v-if="photoURL"
         class="avatar"
       >
-        <img
-          :src="photoURL"
-          :alt="nick"
+        <transition
+          v-if="photoURL"
+          name="fade"
         >
+          <img
+            :src="photoURL"
+            :alt="nick"
+          >
+        </transition>
       </div>
-    </transition>
-    <div :innerHTML="content" />
-    <p class="caption">
-      {{ nick }} {{ created }}
-      <span v-if="topic">in
-        <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link>
-      </span>
-    </p>
+
+      <h3
+        v-if="title"
+        class="title"
+      >
+        {{ title }}
+      </h3>
+      <div class="caption">
+        {{ nick }} {{ created }}
+        <span v-if="topic">in
+          <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link>
+        </span>
+      </div>
+    </div>
+
+    <div class="stream-post-content">
+      <div :innerHTML="content" />
+    </div>
 
     <div
       v-if="replies"
       class="replies"
     >
       <div
-        v-for="(post, index) in replies"
+        v-for="(post, index) in top3Replies"
         :key="index"
         class="reply"
       >
@@ -45,6 +53,11 @@
             />
           </div>
         </transition>
+      </div>
+      <div class="replycount">
+        <router-link :to="`/stream/view/${postid}`">
+          {{ replies.length }} replies
+        </router-link>
       </div>
     </div>
 
@@ -68,13 +81,6 @@
           :action="deletePost"
         >
           Delete
-        </MaterialButton>
-        <div class="spacer" />
-        <MaterialButton
-          text
-          :action="showReply"
-        >
-          Reply
         </MaterialButton>
       </div>
     </transition>
@@ -210,7 +216,14 @@ export default defineComponent({
       })
     }
 
-    return { nick, photoURL, showReply, replyBoxVisible, post, replies, isAuthz, isAuthor, deletePost, replyContent }
+    const top3Replies = computed(() => {
+      const arr = replies.value
+      arr.reverse()
+      if (arr.length > 2) return [arr[0], arr[1], arr[2]]
+      return arr
+    })
+
+    return { nick, photoURL, showReply, replyBoxVisible, post, replies, isAuthz, isAuthor, deletePost, replyContent, top3Replies }
   }
 })
 </script>
@@ -228,5 +241,25 @@ export default defineComponent({
     padding-bottom: 4px
   div.replies
     border-top: solid 1px $color-base-darker
+  .stream-post
+    position: relative
+    .stream-post-top-bar
+      position: relative
+      padding-left: 52px
+      padding-bottom: 8px
+      div.caption
+        @include TypeCaption()
+      div.avatar
+        position: absolute
+        left: 0
+        top: 0
+        border-radius: 50%
+    .stream-post-content
+      background-color: $color-base-dark
+      padding: 4px
+    .replycount
+      @include TypeBody1()
+      text-align: right
+      padding-top: 4px
 
 </style>
