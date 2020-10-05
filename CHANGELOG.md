@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.3](https://github.com/villetakanen/pelilauta/compare/v1.19.2...v1.19.3) (2020-10-05)
+
+
+### Bug Fixes
+
+* **quality:** default initializers added ([5bf66ee](https://github.com/villetakanen/pelilauta/commit/5bf66ee99a3d017c5861e0b85a32dc45a594d632))
+* **quality:** moved to vue3-recommended lint ([16fb9d2](https://github.com/villetakanen/pelilauta/commit/16fb9d28cc63ed225763f5114bcead2c7eddbfc8))
+* **theme:** material theme updates ([e488bf4](https://github.com/villetakanen/pelilauta/commit/e488bf44e5a05fd20989170fa7b13c73b7c50420))
+
 ### [1.19.2](https://github.com/villetakanen/pelilauta/compare/v1.19.1...v1.19.2) (2020-10-05)
 
 
