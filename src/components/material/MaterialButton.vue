@@ -30,7 +30,8 @@ export default defineComponent({
     },
     action: {
       type: Function,
-      required: false
+      required: false,
+      default: undefined
     }
   },
   setup (props) {

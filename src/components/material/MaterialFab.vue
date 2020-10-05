@@ -16,15 +16,18 @@ export default defineComponent({
   props: {
     to: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     action: {
       type: Function,
-      required: false
+      required: false,
+      default: undefined
     },
     text: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     }
   },
   setup (props) {

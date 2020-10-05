@@ -46,7 +46,8 @@ export default defineComponent({
   props: {
     topic: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     }
   },
   setup (props) {

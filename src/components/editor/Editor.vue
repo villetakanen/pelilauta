@@ -14,7 +14,14 @@ import { defineComponent, ref, watch } from 'vue'
 import { setCaret, getCaretOffset } from './caret'
 
 export default defineComponent({
-  props: ['modelValue'],
+  props: {
+    modelValue: {
+      type: ref,
+      required: false,
+      default: ''
+    }
+  },
+  emits: ['update:modelValue'],
   setup (props, context) {
     const content = ref(props.modelValue)
 

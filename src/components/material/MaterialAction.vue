@@ -33,19 +33,23 @@ export default defineComponent({
   props: {
     icon: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     text: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     to: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     action: {
       type: Function,
-      required: false
+      required: false,
+      default: undefined
     }
   },
   setup (props) {
