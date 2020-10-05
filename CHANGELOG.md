@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.10](https://github.com/villetakanen/pelilauta/compare/v1.19.9...v1.19.10) (2020-10-05)
+
+
+### Bug Fixes
+
+* **ux:** app theme colors ([8385009](https://github.com/villetakanen/pelilauta/commit/83850094f147ffc6ac70b88c611f44ce82fd7eae))
+* **ux:** small ui improvements ([202f2b1](https://github.com/villetakanen/pelilauta/commit/202f2b1f88942924ab808fe0179572648c9a77fc))
+* **ux:** topic page layout ([608aead](https://github.com/villetakanen/pelilauta/commit/608aead69bcc02032558556448bcdfe4f6ba8ae7))
+
 ### [1.19.9](https://github.com/villetakanen/pelilauta/compare/v1.19.8...v1.19.9) (2020-10-05)
 
 ### [1.19.8](https://github.com/villetakanen/pelilauta/compare/v1.19.7...v1.19.8) (2020-10-05)
