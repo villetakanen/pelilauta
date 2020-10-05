@@ -1,6 +1,6 @@
 <template>
   <div class="material-card">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

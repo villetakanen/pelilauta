@@ -1,8 +1,15 @@
 <template>
   <MaterialCard>
-    <img class="avatar" v-if="profile.photoURL" :src="profile.photoURL" :alt="profile.nick"/>
-    <h1>{{profile.nick}}</h1>
-    <MaterialButton :action="logout">Logout</MaterialButton>
+    <img
+      v-if="profile.photoURL"
+      class="avatar"
+      :src="profile.photoURL"
+      :alt="profile.nick"
+    >
+    <h1>{{ profile.nick }}</h1>
+    <MaterialButton :action="logout">
+      Logout
+    </MaterialButton>
     <div style="clear:both" />
   </MaterialCard>
 </template>

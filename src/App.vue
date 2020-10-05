@@ -1,13 +1,15 @@
 <template>
-  <AppBar/>
+  <AppBar />
   <div id="mainContentWrapper">
-    <MaterialBanner/>
+    <MaterialBanner />
     <main>
-      <router-view/>
+      <router-view />
     </main>
   </div>
-  <div style="position:fixed; bottom: 16px; right: 16px">{{ version }}</div>
-  <MaterialDialog :visible="missingProfile"/>
+  <div style="position:fixed; bottom: 16px; right: 16px">
+    {{ version }}
+  </div>
+  <MaterialDialog :visible="missingProfile" />
 </template>
 
 <script lang="ts">

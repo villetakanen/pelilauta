@@ -1,9 +1,27 @@
 <template>
-  <div v-ripple="'fixed-y'" :class="'material-action ' + (text ? 'material-action-text' : '') " @click="clicked">
-    <img v-if="icon === 'topic'" class="material-action-icon" src="@/assets/topic.svg">
-    <img v-if="icon === 'about'" class="material-action-icon" src="@/assets/about.svg">
-    <img v-if="!icon" class="material-action-icon" src="@/assets/fox.svg">
-    <div class="material-action-title">{{text}}</div>
+  <div
+    v-ripple="'fixed-y'"
+    :class="'material-action ' + (text ? 'material-action-text' : '') "
+    @click="clicked"
+  >
+    <img
+      v-if="icon === 'topic'"
+      class="material-action-icon"
+      src="@/assets/topic.svg"
+    >
+    <img
+      v-if="icon === 'about'"
+      class="material-action-icon"
+      src="@/assets/about.svg"
+    >
+    <img
+      v-if="!icon"
+      class="material-action-icon"
+      src="@/assets/fox.svg"
+    >
+    <div class="material-action-title">
+      {{ text }}
+    </div>
   </div>
 </template>
 

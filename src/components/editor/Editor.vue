@@ -1,5 +1,12 @@
 <template>
-  <div class="editor" contenteditable="true" v-on:paste="onPaste" @input="onInput" v-once :innerHTML="content"></div>
+  <div
+    v-once
+    class="editor"
+    contenteditable="true"
+    :innerHTML="content"
+    @paste="onPaste"
+    @input="onInput"
+  />
 </template>
 
 <script lang="ts">

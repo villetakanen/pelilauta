@@ -1,10 +1,11 @@
 <template>
-    <div
-      class="material-fab"
-      v-ripple="'fixed'"
-      @click="clicked">
-      <slot></slot>
-    </div>
+  <div
+    v-ripple="'fixed'"
+    class="material-fab"
+    @click="clicked"
+  >
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">

@@ -1,10 +1,15 @@
 <template>
   <div>
-  <MaterialCard v-for="(topic, index) in topics" v-bind:key="index">
-    <h1>
-      <router-link :to="`/stream/topic/${topic.slug}`">{{ topic.title }}</router-link>
-    </h1>
-  </MaterialCard>
+    <MaterialCard
+      v-for="(topic, index) in topics"
+      :key="index"
+    >
+      <h1>
+        <router-link :to="`/stream/topic/${topic.slug}`">
+          {{ topic.title }}
+        </router-link>
+      </h1>
+    </MaterialCard>
   </div>
 </template>
 

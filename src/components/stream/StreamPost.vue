@@ -1,43 +1,83 @@
 <template>
   <MaterialCard class="stream-post">
-
-    <h3 v-if="title" class="title">{{ title }}</h3>
+    <h3
+      v-if="title"
+      class="title"
+    >
+      {{ title }}
+    </h3>
 
     <transition name="fade">
-      <div v-if="photoURL" class="avatar">
-        <img :src="photoURL" :alt="nick"/>
+      <div
+        v-if="photoURL"
+        class="avatar"
+      >
+        <img
+          :src="photoURL"
+          :alt="nick"
+        >
       </div>
     </transition>
-    <div :innerHTML="content"></div>
-    <p class="caption">{{nick}} {{ created }}
+    <div :innerHTML="content" />
+    <p class="caption">
+      {{ nick }} {{ created }}
       <span v-if="topic">in
         <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link>
       </span>
     </p>
 
-    <div v-for="(post, index) in replies" v-bind:key="index" class="reply">
+    <div
+      v-for="(post, index) in replies"
+      :key="index"
+      class="reply"
+    >
       <transition name="fade">
         <div v-if="post.content">
-          <StreamReply :author="post.author" :content="post.content" :postid="post.replyid" :nick="post.nick"/>
+          <StreamReply
+            :author="post.author"
+            :content="post.content"
+            :postid="post.replyid"
+            :nick="post.nick"
+          />
         </div>
       </transition>
     </div>
 
     <transition name="fade">
       <div v-if="replyBoxVisible">
-        <div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput"></div>
-        <MaterialButton :action="post">Post!</MaterialButton>
+        <div
+          class="tester"
+          contenteditable="true"
+          @paste="paste"
+          @input="onInput"
+        />
+        <MaterialButton :action="post">
+          Post!
+        </MaterialButton>
       </div>
     </transition>
 
     <transition name="fade">
-      <div class="toolbar" v-if="!replyBoxVisible && isAuthz">
-        <MaterialButton v-if="isAuthor" text :action="deletePost">Delete</MaterialButton>
-        <div class="spacer"/>
-        <MaterialButton text :action="showReply">Reply</MaterialButton>
+      <div
+        v-if="!replyBoxVisible && isAuthz"
+        class="toolbar"
+      >
+        <MaterialButton
+          v-if="isAuthor"
+          text
+          :action="deletePost"
+        >
+          Delete
+        </MaterialButton>
+        <div class="spacer" />
+        <MaterialButton
+          text
+          :action="showReply"
+        >
+          Reply
+        </MaterialButton>
       </div>
     </transition>
-
   </MaterialCard>
 </template>
 <script lang="ts">

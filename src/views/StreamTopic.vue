@@ -1,7 +1,7 @@
 <template>
   <h1>{{ pageTitle }}</h1>
   <NewPostCard />
-  <Stream :topic="topic"/>
+  <Stream :topic="topic" />
 </template>
 
 <script lang="ts">
@@ -11,15 +11,15 @@ import NewPostCard from '@/components/stream/NewPostCard.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
+  components: {
+    Stream,
+    NewPostCard
+  },
   props: {
     topic: {
       type: String,
       required: true
     }
-  },
-  components: {
-    Stream,
-    NewPostCard
   },
   setup (props) {
     const pageTitle = ref(props.topic.substring(0, 1).toUpperCase() + props.topic.substring(1))

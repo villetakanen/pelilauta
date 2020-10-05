@@ -1,15 +1,19 @@
 <template>
   <div class="stream">
-      <div v-for="(post) in posts" v-bind:key="post.postid">
-        <div v-if="post.content">
-          <StreamPost
-            :created ="post.created"
-            :topic="post.topic"
-            :author="post.author"
-            :content="post.content"
-            :postid="post.postid"
-            :title="post.title"/>
-        </div>
+    <div
+      v-for="(post) in posts"
+      :key="post.postid"
+    >
+      <div v-if="post.content">
+        <StreamPost
+          :created="post.created"
+          :topic="post.topic"
+          :author="post.author"
+          :content="post.content"
+          :postid="post.postid"
+          :title="post.title"
+        />
+      </div>
     </div>
   </div>
 </template>

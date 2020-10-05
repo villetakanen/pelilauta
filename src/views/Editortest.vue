@@ -3,12 +3,15 @@
     <h1>Editortest.vue</h1>
     <div class="test-container">
       <div class="test-box">
-        <Editor v-model="content"/>
+        <Editor v-model="content" />
       </div>
       <div class="test-box">
-        <div id="result" v-bind:innerHTML="content" />
-        <hr/>
-        {{content}}
+        <div
+          id="result"
+          :innerHTML="content"
+        />
+        <hr>
+        {{ content }}
       </div>
     </div>
   </div>

@@ -1,8 +1,12 @@
 <template>
   <MaterialFab
     text="New post"
-    to="/stream/post">
-    <img src="@/assets/add.svg" alt="new comment" />
+    to="/stream/post"
+  >
+    <img
+      src="@/assets/add.svg"
+      alt="new comment"
+    >
   </MaterialFab>
   <Stream />
 </template>

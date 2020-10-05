@@ -1,9 +1,13 @@
 <template>
   <MaterialCard>
-    <p>New user registration not active yet. Please use <a href="http://mekanismi.web.app">mekanismi.web.app</a>
-      to register before using the site.</p>
-    <MaterialButton :action="logout">Logout</MaterialButton>
-    </MaterialCard>
+    <p>
+      New user registration not active yet. Please use <a href="http://mekanismi.web.app">mekanismi.web.app</a>
+      to register before using the site.
+    </p>
+    <MaterialButton :action="logout">
+      Logout
+    </MaterialButton>
+  </MaterialCard>
 </template>
 
 <script lang="ts">

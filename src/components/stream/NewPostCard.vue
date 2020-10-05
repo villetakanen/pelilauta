@@ -1,23 +1,44 @@
 <template>
   <MaterialCard>
     <transition name="fade">
-      <p v-if="!isAuthz">Please <a href="/login">login</a> to post</p>
+      <p v-if="!isAuthz">
+        Please <a href="/login">login</a> to post
+      </p>
     </transition>
     <transition name="fade">
       <div v-if="isAuthz">
         <div class="toolbar">
           <div class="grow">
-            <input class="material-textfield" v-model="title" type="text" :placeholder="titlePlaceHolder"/>
+            <input
+              v-model="title"
+              class="material-textfield"
+              type="text"
+              :placeholder="titlePlaceHolder"
+            >
           </div>
-          <select name="topic" v-model="topic">
-            <option v-for="(t) in topics" v-bind:key="t.slug" :value="t.slug">{{ t.title }}</option>
+          <select
+            v-model="topic"
+            name="topic"
+          >
+            <option
+              v-for="(t) in topics"
+              :key="t.slug"
+              :value="t.slug"
+            >
+              {{ t.title }}
+            </option>
           </select>
         </div>
         <!--div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput" </div-->
         <Editor v-model="content" />
         <div class="toolbar">
           <div class="spacer" />
-          <MaterialButton :disabled="!isAuthz" :action="post">Post!</MaterialButton>
+          <MaterialButton
+            :disabled="!isAuthz"
+            :action="post"
+          >
+            Post!
+          </MaterialButton>
         </div>
       </div>
     </transition>

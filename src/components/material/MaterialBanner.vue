@@ -1,12 +1,22 @@
 <template>
   <transition>
-    <div v-if="updatesAvailable" :class="`material-banner ${updatesAvailable ? 'show' : ''}`">
+    <div
+      v-if="updatesAvailable"
+      :class="`material-banner ${updatesAvailable ? 'show' : ''}`"
+    >
       <div class="banner-container">
-      <p>Update available!</p>
+        <p>Update available!</p>
         <div class="actionBar">
-          <div class="spacer"/>
-          <MaterialButton :action="deferUpdate" text>Delay for 30 minutes</MaterialButton>
-          <MaterialButton :action="acceptUpdate">Update the App</MaterialButton>
+          <div class="spacer" />
+          <MaterialButton
+            :action="deferUpdate"
+            text
+          >
+            Delay for 30 minutes
+          </MaterialButton>
+          <MaterialButton :action="acceptUpdate">
+            Update the App
+          </MaterialButton>
         </div>
       </div>
     </div>

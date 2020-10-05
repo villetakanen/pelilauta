@@ -3,11 +3,12 @@
     :action="reroute"
     icon
   >
-    <img v-if="!isAuthz || !profile.nick"
+    <img
+      v-if="!isAuthz || !profile.nick"
       src="../assets/avatar.svg"
       :alt="isAuthz"
-    />
-    <span v-if="isAuthz && profile.nick">{{profile.nick.substring(0,1)}}</span>
+    >
+    <span v-if="isAuthz && profile.nick">{{ profile.nick.substring(0,1) }}</span>
   </MaterialButton>
 </template>
 

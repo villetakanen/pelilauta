@@ -1,7 +1,12 @@
 <template>
   <div class="stream-reply">
-    <div class="author">{{ nick }}</div>
-    <div class="message" :innerHTML="content" />
+    <div class="author">
+      {{ nick }}
+    </div>
+    <div
+      class="message"
+      :innerHTML="content"
+    />
   </div>
 </template>
 
