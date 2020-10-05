@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.6](https://github.com/villetakanen/pelilauta/compare/v1.19.5...v1.19.6) (2020-10-05)
+
+
+### Bug Fixes
+
+* **ux:** removed latest replies ([d777704](https://github.com/villetakanen/pelilauta/commit/d7777048b8b1528d1c9b0167818cb37b1f5470f0))
+* **workbox:** enablepersistence ([0de131d](https://github.com/villetakanen/pelilauta/commit/0de131de6eb17e74fefc555a9ec8adb2c69ed8f6))
+
 ### [1.19.5](https://github.com/villetakanen/pelilauta/compare/v1.19.4...v1.19.5) (2020-10-05)
 
 
