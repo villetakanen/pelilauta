@@ -43,8 +43,9 @@
           <StreamReply
             :author="post.author"
             :content="post.content"
-            :postid="post.replyid"
+            :commentid="post.replyid"
             :nick="post.nick"
+            :postid="postData.postid"
           />
         </div>
       </transition>
