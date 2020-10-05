@@ -118,15 +118,18 @@ export default defineComponent({
     },
     topic: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     created: {
       type: Number,
-      required: false
+      required: false,
+      default: -1
     },
     title: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     }
   },
   setup (props) {
