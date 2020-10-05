@@ -50,7 +50,7 @@ export default defineComponent({
     }
 
     watch(content, (value) => {
-      console.log('changed')
+      // console.log('changed')
       context.emit('update:modelValue', value)
       // setCursorPosition(editorElement, cursor)
     })

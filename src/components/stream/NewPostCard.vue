@@ -54,14 +54,6 @@ export default defineComponent({
       content.value = target.innerHTML
     }
 
-    function linkify (inputText: string): string {
-      // URLs starting with http://, https://, or ftp://
-      const replacePattern1 = '/(\b(https?|ftp):\\/\\/[-A-Z0-9+&@#\\/%?=~_|!:,.;]*[-A-Z0-9+&@#\\/%=~_|])/gim'
-      const replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>')
-
-      return replacedText
-    }
-
     const router = useRouter()
 
     const titlePlaceHolder = computed(() => {
@@ -76,10 +68,28 @@ export default defineComponent({
       return title.value
     })
 
+    /**
+     * Some of the message processing is tedious, or migth be impossible to implement to
+     * editor directly --> do it here instead.
+     */
+    function postProcessContent (content: string): string {
+      // Add links not found by editor (at the end of a line, at the beginning of a line)
+      // @TODO: some of these might be findable by editor, like 'http://a\/n' f.ex.
+      // const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
+      console.log(content)
+      const r = new RegExp('(<div>|<br>| |^)(https?:\\/\\/[a-zA-Z\\/_.-]*)( |<div>|</div>|<br>|$)', 'gmu')
+      content = content.replace(r, (match, p1, p2, p3) => {
+        console.log('match!', match, p1)
+        return `${p1}<a href="${p2.trim()}">${p2.trim()}</a>${p3}`
+      })
+      console.log(content)
+      return content
+    }
+
     function post (): void {
       if (content.value.length < 1) return
-      console.log('post!', uid)
-      console.log()
+      console.log('post!', uid.value)
+      const c = postProcessContent(content.value)
       const db = firebase.firestore()
       const streamRef = db.collection('stream')
       let t: string = title.value
@@ -88,7 +98,7 @@ export default defineComponent({
         {
           title: t,
           author: uid.value,
-          content: linkify(content.value),
+          content: c,
           created: firebase.firestore.FieldValue.serverTimestamp(),
           topic: topic.value
         }).then(() => {
@@ -96,7 +106,7 @@ export default defineComponent({
       })
     }
 
-    return { isAuthz, post, onInput, content, linkify, topic, topics, title, titlePlaceHolder }
+    return { isAuthz, post, onInput, content, topic, topics, title, titlePlaceHolder }
   }
 })
 </script>
