@@ -3,7 +3,10 @@
     <h1>Editortest.vue</h1>
     <div class="test-container">
       <div class="test-box">
-        <Editor v-model="content" />
+        <Editor
+          v-model="content"
+          v-model:images="images"
+        />
       </div>
       <div class="test-box">
         <div
@@ -12,6 +15,8 @@
         />
         <hr>
         {{ content }}
+        <hr>
+        <img v-for="url in images.split(';')" v-bind:key="url" :src="url" />
       </div>
     </div>
   </div>
@@ -28,7 +33,12 @@ export default defineComponent({
   },
   setup () {
     const content = ref('')
-    return { content }
+    // watch(content, (val) => { console.log(val) })
+
+    const images = ref('')
+    // watch(images, (val) => { console.log('images!', val) })
+
+    return { content, images }
   }
 })
 </script>
