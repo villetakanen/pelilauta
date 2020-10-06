@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.12](https://github.com/villetakanen/pelilauta/compare/v1.19.11...v1.19.12) (2020-10-06)
+
+
+### Bug Fixes
+
+* **quality:** moved material button styles to sfc ([b82841e](https://github.com/villetakanen/pelilauta/commit/b82841e28e467ef0ec9c0cafe2fd71aaa40c0cf0))
+* **quality:** removed extra console statements ([2d9abb8](https://github.com/villetakanen/pelilauta/commit/2d9abb8cbf99aad712d8118dd764e6d140d7518f))
+
 ### [1.19.11](https://github.com/villetakanen/pelilauta/compare/v1.19.10...v1.19.11) (2020-10-05)
 
 
