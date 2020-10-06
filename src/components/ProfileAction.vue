@@ -1,13 +1,14 @@
 <template>
-  <MaterialButton
+  <MaterialAction
     :action="reroute"
-    icon
+    image
     class="profileButton"
   >
     <img
       v-if="!isAuthz || !profile.nick"
       src="../assets/avatar.svg"
       :alt="isAuthz"
+      class="avatar-image"
     >
     <span v-if="isAuthz && !profile.photoURL">{{ profile.nick.substring(0,1) }}</span>
     <img
@@ -16,18 +17,18 @@
       :alt="profile.nick"
       class="avatar-image"
     >
-  </MaterialButton>
+  </MaterialAction>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthz } from '../lib/authz'
-import MaterialButton from './material/MaterialButton.vue'
+import MaterialAction from './material/MaterialAction.vue'
 
 export default defineComponent({
   components: {
-    MaterialButton
+    MaterialAction
   },
   setup () {
     const router = useRouter()
@@ -44,8 +45,8 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .avatar-image
-  width: 42px
-  height: 42px
-  border-radius: 20px
-  margin-top:2px
+  height: 40px
+  widht: 40px
+  margin: 2px
+  border-radius: 50%
 </style>

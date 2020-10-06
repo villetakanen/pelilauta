@@ -1,8 +1,8 @@
-@import material-button.sass
 @import material-dialog.sass
 @import material-typography.sass
 @import material-colors.sass
 @import include-media.scss
+@import layout.sass
 
 *:focus
   outline: none
@@ -144,15 +144,6 @@ div.toolbar
   border-radius: 50%
   background-color: #fce8b1
   animation: rippleEffect 0.8s ease-in-out
-
-.material-button
-  transition-property: box-shadow background
-  transition-duration: 0.8s
-  .materialRippleEffect
-    background-color: #86e6d1
-  &:hover
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12), 0 1px 8px 0 rgba(0, 0, 0, .20)
-    background-color: darken(#007769, 2%)
 
 @keyframes rippleEffect 
   0% 

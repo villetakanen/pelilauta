@@ -6,23 +6,24 @@
     @click="clicked"
   >
     <img
-      v-if="icon === 'topic'"
+      v-if="icon === 'topic' && !image"
       class="material-action-icon"
       src="@/assets/topic.svg"
     >
     <img
-      v-if="icon === 'about'"
+      v-if="icon === 'about' && !image"
       class="material-action-icon"
       src="@/assets/about.svg"
     >
     <img
-      v-if="!icon"
+      v-if="!icon && !image"
       class="material-action-icon"
       src="@/assets/fox.svg"
     >
     <div class="material-action-title">
       {{ text }}
     </div>
+    <slot />
   </div>
 </template>
 
@@ -56,6 +57,11 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    image: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -63,13 +69,14 @@ export default defineComponent({
     const classes = computed(() => {
       const arrr: string[] = []
       if (props.text) arrr.push('material-action-text')
-      console.log(props.desktop)
+      if (props.image) arrr.push('material-action-image')
       if (props.desktop) arrr.push('desktop-only')
       return arrr
     })
 
     function clicked () {
       if (props.to) router.push(props.to)
+      else if (props.action) props.action()
     }
 
     return { clicked, classes }
@@ -84,6 +91,7 @@ export default defineComponent({
 
 .material-action
   height: 44px
+  width: 44px
   margin: 6px
   text-align: center
   border-radius: 22px
@@ -97,8 +105,11 @@ export default defineComponent({
     opacity: 0.8
   &:first-of-type
     margin-left: 0
+  &.material-action-image
+    background-color: $color-primary-light
 
 .material-action-text
+  width: auto
   .material-action-title
     @include TypeButton()
     display: inline-block
