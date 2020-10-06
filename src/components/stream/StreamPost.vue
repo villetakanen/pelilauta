@@ -15,13 +15,14 @@
           >
         </transition>
       </div>
-
-      <h3
-        v-if="title"
-        class="title"
-      >
-        {{ title }}
-      </h3>
+      <router-link :to="`/stream/view/${postid}`">
+        <h3
+          v-if="title"
+          class="title"
+        >
+          {{ title }}
+        </h3>
+      </router-link>
       <div class="caption">
         {{ nick }} {{ createdTime }}
         <span v-if="topic">in
@@ -155,7 +156,10 @@ export default defineComponent({
     border-top: solid 1px $color-base-darker
   .stream-post
     position: relative
+    box-shadow: none
     .stream-post-top-bar
+      a
+        text-decoration: none
       position: relative
       padding-left: 52px
       padding-bottom: 8px
@@ -167,8 +171,9 @@ export default defineComponent({
         top: 0
         border-radius: 50%
     .stream-post-content
-      background-color: $color-base-dark
-      padding: 4px
+      //background-color: $color-base-dark
+      @include TypeBody2()
+      padding: 8px
     .replycount
       @include TypeBody1()
       text-align: right

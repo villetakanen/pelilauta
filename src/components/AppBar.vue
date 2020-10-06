@@ -61,8 +61,9 @@ export default defineComponent({
   position: sticky
   transition: box-shadow 0.8s
   box-shadow: none
+  @include BoxShadow3()
   #AppBarToolbar
   &.elevated
-    @include BoxShadow3()
+    @include BoxShadow8()
 
 </style>
