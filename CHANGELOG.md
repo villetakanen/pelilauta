@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/villetakanen/pelilauta/compare/v1.19.13...v1.20.0) (2020-10-06)
+
+
+### Features
+
+* editor reads images ([1f1eafe](https://github.com/villetakanen/pelilauta/commit/1f1eafecb3fbd05e929867aa33c9e6fcab601b69))
+
 ### [1.19.13](https://github.com/villetakanen/pelilauta/compare/v1.19.12...v1.19.13) (2020-10-06)
 
 
