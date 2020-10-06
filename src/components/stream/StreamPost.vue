@@ -35,6 +35,17 @@
       <div :innerHTML="content" />
     </div>
 
+    <div
+      v-if="images"
+      class="images"
+    >
+      <img
+        v-for="url in images.split(';')"
+        :key="url"
+        :src="url"
+      >
+    </div>
+
     <div class="replycount">
       <router-link :to="`/stream/view/${postid}`">
         {{ replies.length }} replies
@@ -85,6 +96,11 @@ export default defineComponent({
       default: -1
     },
     title: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    images: {
       type: String,
       required: false,
       default: ''
@@ -157,6 +173,16 @@ export default defineComponent({
   .stream-post
     position: relative
     box-shadow: none
+    .images
+      height: 48px
+      width: 100%
+      display: flex
+      img
+        max-height: 44px
+        max-width: 44px
+        padding: 2px
+        background-color: $color-secondary-light
+        margin-right: 4px
     .stream-post-top-bar
       a
         text-decoration: none

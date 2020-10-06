@@ -71,6 +71,7 @@ export default defineComponent({
         result = linksMatch.next()
       }
       // minedImages.value = im
+      if (minedImages.value.endsWith(';')) minedImages.value = minedImages.value.substring(0, minedImages.value.length - 1)
     }
 
     /**

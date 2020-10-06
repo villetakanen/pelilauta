@@ -12,6 +12,7 @@
           :content="post.content"
           :postid="post.postid"
           :title="post.title"
+          :images="post.images"
         />
       </div>
     </div>
@@ -34,6 +35,7 @@ export interface Post {
   postid: string;
   topic?: string;
   title?: string;
+  images?: string;
 }
 
 interface PostData {

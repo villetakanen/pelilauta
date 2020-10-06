@@ -30,7 +30,10 @@
           </select>
         </div>
         <!--div class="tester" contenteditable="true" v-on:paste="paste" @input="onInput" </div-->
-        <Editor v-model="content" />
+        <Editor
+          v-model="content"
+          v-model:images="images"
+        />
         <div class="toolbar">
           <div class="spacer" />
           <MaterialButton
@@ -67,6 +70,7 @@ export default defineComponent({
     const content = ref('')
     const title = ref('')
     const topic = ref('Roolipelit')
+    const images = ref('')
     const { isAuthz, uid } = useAuthz()
     const { topics } = useTopics()
 
@@ -117,13 +121,14 @@ export default defineComponent({
           author: uid.value,
           content: c,
           created: firebase.firestore.FieldValue.serverTimestamp(),
-          topic: topic.value
+          topic: topic.value,
+          images: images.value
         }).then(() => {
         router.push('/stream/topic/' + topic.value.toLowerCase())
       })
     }
 
-    return { isAuthz, post, onInput, content, topic, topics, title, titlePlaceHolder }
+    return { isAuthz, post, onInput, content, topic, topics, title, titlePlaceHolder, images }
   }
 })
 </script>
