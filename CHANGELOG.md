@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.13](https://github.com/villetakanen/pelilauta/compare/v1.19.12...v1.19.13) (2020-10-06)
+
+
+### Bug Fixes
+
+* **ux:** theme updates ([a61c52b](https://github.com/villetakanen/pelilauta/commit/a61c52b2d370e06885dd19a3cf75d547e734247c))
+
 ### [1.19.12](https://github.com/villetakanen/pelilauta/compare/v1.19.11...v1.19.12) (2020-10-06)
 
 
