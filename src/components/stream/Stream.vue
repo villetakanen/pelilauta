@@ -104,11 +104,8 @@ export default defineComponent({
           })
         })
       } else {
-        console.log('topic ==', capitalize(topic))
         unsubscribe = streamRef.where('topic', '==', capitalize(topic)).orderBy('created', 'desc').onSnapshot((snapshot) => {
-          console.log('we got some?', snapshot.size)
           snapshot.docChanges().forEach((change) => {
-            console.log('and this is ', change.doc.id)
             if (change.type === 'added') addPostToStream(change.doc.id, change.doc.data())
             if (change.type === 'removed') removePostFromStream(change.doc.id)
           })

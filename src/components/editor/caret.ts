@@ -44,8 +44,6 @@ export function getCaretOffset (current: HTMLElement): number {
     }
   })
   offset += selection.anchorOffset
-  // if ((nodeToFind as Element).tagName === 'DIV') offset--
-  // console.info('###', offset, '###')
   return offset
 }
 
@@ -57,7 +55,6 @@ export function getCaretOffset (current: HTMLElement): number {
  * @param parent
  */
 export function findCaret (current: Node, offset: number, parent?: Node): RangePosition {
-  // console.log('findFocus for', offset, current)
   // this is the parent
   if (!parent) parent = current
   // this is not parent, so if this is a DIV, we need to walk one step forwards for /n
@@ -73,7 +70,6 @@ export function findCaret (current: Node, offset: number, parent?: Node): RangeP
     if (current.textContent && current.textContent.length < offset - 1) {
       // its not this, lets deduct length of this from searched, and pass
       offset -= current.textContent.length
-      // console.log('text', current, offset)
       return { node: null, offset }
     } else {
       // It's this, lets return this and offset from the start of this text node
@@ -86,7 +82,6 @@ export function findCaret (current: Node, offset: number, parent?: Node): RangeP
   let node: Node|null = null
   // We are not in text
   for (let lp = 0; lp < current.childNodes.length; lp++) {
-    // console.log('looping', current.childNodes[lp])
     const { node: n, offset: o } = findCaret(current.childNodes[lp], offset, parent)
     offset = o
     if (n) {
@@ -96,7 +91,6 @@ export function findCaret (current: Node, offset: number, parent?: Node): RangeP
       break
     }
   }
-  // console.log('findFocus is returning', offset, node)
   return { node, offset }
 }
 
@@ -125,7 +119,6 @@ export function setCaret (element: Element, offset: number) {
   let found = false
   nodeWalk(element, (node: Element) => {
     if (found) return
-    // console.log('traversing', node, focusNodeOffset, node.nodeType === Node.TEXT_NODE, node.textContent)
     if (!node.isSameNode(element) && node.tagName === 'DIV') focusNodeOffset--
     // Caret needs to go to the beginning of this node
     if ((focusNodeOffset) < 1) {
@@ -135,7 +128,6 @@ export function setCaret (element: Element, offset: number) {
     }
     if (node.nodeType === Node.TEXT_NODE && node.textContent) {
       if (node.textContent.length > focusNodeOffset - 1) {
-        // console.log('found!')
         focusNode = node
         found = true
       } else {

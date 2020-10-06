@@ -40,7 +40,6 @@ function subToProfile (uid: string): void {
 }
 
 function onAuthStateChanged (user: firebase.User|null): void {
-  console.log('onAuthStateChanged', user?.displayName)
   if (user && user.uid === state.value.uid) return
   unsubscribe()
   if (typeof user === 'undefined' || user === null) {
@@ -54,8 +53,6 @@ function onAuthStateChanged (user: firebase.User|null): void {
   state.value.ssoInfo.photoUrl = user.photoURL as string
   state.value.ssoInfo.email = user.email as string
   state.value.ssoInfo.provider = user.providerData[0]?.providerId as string
-
-  // console.log(user)
 
   state.value.isAuthz = true
   state.value.uid = user.uid

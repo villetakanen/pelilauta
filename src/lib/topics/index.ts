@@ -19,7 +19,6 @@ const topics = computed((): Topic[] => (topicsRef.value))
 function updateTopicsFromFirebase (newTopicList: Topic[]) {
   topicsRef.value = newTopicList
   storage.setItem('pelilauta.meta.stream.topics', JSON.stringify(newTopicList))
-  console.log('from firebase', topicsRef.value)
 }
 
 // Init!
@@ -32,7 +31,6 @@ function _init () {
   // get topics from offline store
   const stored = storage.getItem('pelilauta.meta.stream.topics')
   if (stored) topicsRef.value = JSON.parse(stored) as Topic[]
-  console.log('from localstore', topicsRef.value)
 
   // fetch online versions
   const db = firebase.firestore()

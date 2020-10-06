@@ -179,11 +179,8 @@ export default defineComponent({
     }
 
     function post (): void {
-      console.log('post!', uid.value, postData.value.author)
-      console.log()
       const db = firebase.firestore()
       const streamRef = db.collection('stream').doc(props.postid).collection('comments')
-      console.log(uid.value, profile.value.nick)
       streamRef.add(
         {
           author: uid.value,
@@ -199,7 +196,6 @@ export default defineComponent({
     const isAuthor = computed((): boolean => (uid.value === postData.value.author))
 
     function deletePost (): void {
-      console.log('deletePost', uid.value, postData.value.author)
       const db = firebase.firestore()
       const postRef = db.collection('stream').doc(props.postid)
       postRef.delete().then(() => {

@@ -76,7 +76,6 @@ export default defineComponent({
     const isAuthor = computed(() => (props.author === uid.value))
     const showMenu = ref(false)
     const deleteComment = () => {
-      console.log('deleting comment', props.postid, props.commentid)
       const db = firebase.firestore()
       const commentRef = db.collection('stream').doc(props.postid).collection('comments').doc(props.commentid)
       commentRef.delete()

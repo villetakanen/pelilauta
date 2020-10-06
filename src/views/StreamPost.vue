@@ -12,7 +12,6 @@ export default defineComponent({
     NewPostCard
   },
   setup () {
-    console.log('111')
   }
 })
 </script>

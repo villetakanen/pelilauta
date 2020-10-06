@@ -57,7 +57,6 @@ export default defineComponent({
       // const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
       const r = new RegExp('( |&nbsp;)(https?:\\/\\/[a-zA-Z\\/_.-]*)( |&nbsp;)', 'gmu')
       html = html.replace(r, (match, p1, p2, p3) => {
-        console.log('match!', match, p1)
         return `${p1}<a href="${p2}">${p2}</a>${p3}`
       })
       target.innerHTML = html
@@ -69,9 +68,7 @@ export default defineComponent({
     }
 
     watch(content, (value) => {
-      // console.log('changed')
       context.emit('update:modelValue', value)
-      // setCursorPosition(editorElement, cursor)
     })
 
     watch(props.modelValue, (value) => {

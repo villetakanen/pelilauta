@@ -43,7 +43,6 @@ export default defineComponent({
       elevated: false
     })
     const handleScroll = () => {
-      // console.log(window.scrollY)
       if (window.scrollY > 0) appBarClasses.value.elevated = true
       else appBarClasses.value.elevated = false
     }

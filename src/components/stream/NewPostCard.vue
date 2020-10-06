@@ -97,19 +97,15 @@ export default defineComponent({
       // Add links not found by editor (at the end of a line, at the beginning of a line)
       // @TODO: some of these might be findable by editor, like 'http://a\/n' f.ex.
       // const r = new RegExp('/(?<!("|>))https?:\\/\\/[a-zA-Z.]*/', 'gmu')
-      console.log(content)
       const r = new RegExp('(<div>|<br>| |^)(https?:\\/\\/[a-zA-Z\\/_.-]*)( |<div>|</div>|<br>|$)', 'gmu')
       content = content.replace(r, (match, p1, p2, p3) => {
-        console.log('match!', match, p1)
         return `${p1}<a href="${p2.trim()}">${p2.trim()}</a>${p3}`
       })
-      console.log(content)
       return content
     }
 
     function post (): void {
       if (content.value.length < 1) return
-      console.log('post!', uid.value)
       const c = postProcessContent(content.value)
       const db = firebase.firestore()
       const streamRef = db.collection('stream')
