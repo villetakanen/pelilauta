@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.1](https://github.com/villetakanen/pelilauta/compare/v1.21.0...v1.21.1) (2020-10-07)
+
+
+### Bug Fixes
+
+* **ui:** postheader moved to a sfc ([a4bb600](https://github.com/villetakanen/pelilauta/commit/a4bb6003b58b034841231918f395090a08646b97))
+* **ux:** added transition to admin tools ([e4a006f](https://github.com/villetakanen/pelilauta/commit/e4a006fc507c7cb2ef4831faaeee98e80cadfe90))
+
 ## [1.21.0](https://github.com/villetakanen/pelilauta/compare/v1.20.2...v1.21.0) (2020-10-07)
 
 
