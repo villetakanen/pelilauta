@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.2](https://github.com/villetakanen/pelilauta/compare/v1.20.1...v1.20.2) (2020-10-07)
+
+
+### Bug Fixes
+
+* **ux:** safari iOS click bug workaround ([293286f](https://github.com/villetakanen/pelilauta/commit/293286f6178aabfb86684364dcfcfd015b9f04a1))
+
 ### [1.20.1](https://github.com/villetakanen/pelilauta/compare/v1.20.0...v1.20.1) (2020-10-06)
 
 
