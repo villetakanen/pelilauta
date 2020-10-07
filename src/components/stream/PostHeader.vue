@@ -27,12 +27,14 @@
       </div>
     </div>
     <div class="spacer" />
-    <div v-if="showAdminTools">
-      <MaterialAction
-        icon="admin-secondary"
-        class="admin-action"
-      />
-    </div>
+    <transition name="fade">
+      <div v-if="showAdminTools">
+        <MaterialAction
+          icon="admin-secondary"
+          class="admin-action"
+        />
+      </div>
+    </transition>
     <div>
       <MaterialAction icon="more" />
     </div>
