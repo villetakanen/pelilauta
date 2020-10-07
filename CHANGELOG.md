@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/villetakanen/pelilauta/compare/v1.20.2...v1.21.0) (2020-10-07)
+
+
+### Features
+
+* **admin:** added admin view ([c2763ea](https://github.com/villetakanen/pelilauta/commit/c2763ea8ca10603ff88c4a3d06d36d75893318a8))
+
+
+### Bug Fixes
+
+* **ux:** editor padding ([e2ff7cd](https://github.com/villetakanen/pelilauta/commit/e2ff7cdb9453deee5e92f44d85f3f670065b4378))
+
 ### [1.20.2](https://github.com/villetakanen/pelilauta/compare/v1.20.1...v1.20.2) (2020-10-07)
 
 
