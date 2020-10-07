@@ -81,6 +81,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/editortest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
+  },
+  {
+    path: '/admin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Administration.vue')
   }
 ]
 

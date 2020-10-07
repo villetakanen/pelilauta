@@ -18,7 +18,13 @@
         text="Topics"
         icon="topic"
         to="/stream/index"
+      /><MaterialAction
+        v-if="showAdminTools"
+        text="Admin"
+        icon="admin"
+        to="/admin"
       />
+
       <MaterialAction
         desktop
         to="/about"
@@ -30,7 +36,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, computed } from 'vue'
+import { useAuthz } from '@/lib/authz'
+import { useMeta } from '@/lib/meta'
 import ProfileAction from './ProfileAction.vue'
 import MaterialAction from '@/components/material/MaterialAction.vue'
 export default defineComponent({
@@ -42,12 +50,17 @@ export default defineComponent({
     const appBarClasses = ref({
       elevated: false
     })
+    const { uid } = useAuthz()
+    const { isAdmin } = useMeta()
+    const showAdminTools = computed(() => {
+      return isAdmin(uid.value)
+    })
     const handleScroll = () => {
       if (window.scrollY > 0) appBarClasses.value.elevated = true
       else appBarClasses.value.elevated = false
     }
     onMounted(() => { window.addEventListener('scroll', handleScroll) })
-    return { appBarClasses }
+    return { appBarClasses, showAdminTools }
   }
 })
 </script>

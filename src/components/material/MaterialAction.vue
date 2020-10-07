@@ -15,6 +15,11 @@
       src="@/assets/about.svg"
     >
     <img
+      v-if="icon === 'admin' && !image"
+      class="material-action-icon"
+      src="@/assets/admin.svg"
+    >
+    <img
       v-if="!icon && !image"
       class="material-action-icon"
       src="@/assets/fox.svg"

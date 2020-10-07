@@ -18,7 +18,9 @@ const state = ref({
     photoURL: ''
   }
 })
+
 const isAuthz = computed(() => (state.value.isAuthz))
+
 const profile = computed(() => (state.value.profile))
 const uid = computed(() => (state.value.uid))
 const missingProfile = computed(() => (state.value.missingProfile))
