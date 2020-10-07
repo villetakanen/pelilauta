@@ -1,35 +1,15 @@
 <template>
   <MaterialCard class="stream-post">
     <!-- The top bar -->
-    <div class="stream-post-top-bar">
-      <div
-        class="avatar"
-      >
-        <transition
-          v-if="photoURL"
-          name="fade"
-        >
-          <img
-            :src="photoURL"
-            :alt="nick"
-          >
-        </transition>
-      </div>
-      <router-link :to="`/stream/view/${postid}`">
-        <h3
-          v-if="title"
-          class="title"
-        >
-          {{ title }}
-        </h3>
-      </router-link>
-      <div class="caption">
-        {{ nick }} {{ createdTime }}
-        <span v-if="topic">in
-          <router-link :to="`/stream/topic/${topic.toLowerCase()}`">{{ topic }}</router-link>
-        </span>
-      </div>
-    </div>
+    <PostHeader
+      :nick="nick"
+      :photo="photoURL"
+      :title="title"
+      :postid="postid"
+      :created="createdTime"
+      :topic="topic"
+      :tslug="topic.toLowerCase()"
+    />
 
     <div class="stream-post-content">
       <div :innerHTML="content" />
@@ -56,6 +36,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch, computed } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import PostHeader from './PostHeader.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import { useAuthz } from '@/lib/authz'
@@ -70,7 +51,8 @@ interface Reply {
 
 export default defineComponent({
   components: {
-    MaterialCard
+    MaterialCard,
+    PostHeader
   },
   props: {
     content: {

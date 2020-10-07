@@ -20,6 +20,16 @@
       src="@/assets/admin.svg"
     >
     <img
+      v-if="icon === 'more' && !image"
+      class="material-action-icon"
+      src="@/assets/menu-ellipsis.svg"
+    >
+    <img
+      v-if="icon === 'admin-secondary' && !image"
+      class="material-action-icon"
+      src="@/assets/admin-secondary.svg"
+    >
+    <img
       v-if="!icon && !image"
       class="material-action-icon"
       src="@/assets/fox.svg"

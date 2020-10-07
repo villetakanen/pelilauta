@@ -12,7 +12,7 @@ const state = ref({
 } as MetaState)
 
 const isAdmin = (uid: string) => {
-  console.log(state.value.admins, state.value.admins.includes(uid), uid)
+  // console.log(state.value.admins, state.value.admins.includes(uid), uid)
   return state.value.admins.includes(uid)
 }
 
