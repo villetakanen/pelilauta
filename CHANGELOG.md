@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.2](https://github.com/villetakanen/pelilauta/compare/v1.21.1...v1.21.2) (2020-10-07)
+
+
+### Bug Fixes
+
+* **ux:** menu display and reply deletion ([b1a25f5](https://github.com/villetakanen/pelilauta/commit/b1a25f5b3b190c4d4ec6cdc48c42748b6c012e24))
+
 ### [1.21.1](https://github.com/villetakanen/pelilauta/compare/v1.21.0...v1.21.1) (2020-10-07)
 
 
