@@ -27,6 +27,7 @@ export interface MenuItem {
   text: string;
   to?: string;
   action?: Function;
+  icon?: string;
 }
 
 function dropPost (actor: string, postid: string) {
