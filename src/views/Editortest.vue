@@ -16,7 +16,11 @@
         <hr>
         {{ content }}
         <hr>
-        <img v-for="url in images.split(';')" v-bind:key="url" :src="url" />
+        <img
+          v-for="url in images.split(';')"
+          :key="url"
+          :src="url"
+        >
       </div>
     </div>
   </div>

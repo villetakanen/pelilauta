@@ -1,5 +1,6 @@
 <template>
   <MaterialFab
+    v-if="isAuthz"
     text="New post"
     to="/stream/post"
   >
@@ -13,6 +14,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useAuthz } from '@/lib/authz'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
 
@@ -21,6 +23,10 @@ export default defineComponent({
   components: {
     Stream,
     MaterialFab
+  },
+  setup () {
+    const { isAuthz } = useAuthz()
+    return { isAuthz }
   }
 })
 </script>

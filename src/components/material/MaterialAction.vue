@@ -1,6 +1,5 @@
 <template>
-  <div
-    v-ripple="'fixed-y'"
+  <button
     class="material-action"
     :class="classes"
     @click="clicked"
@@ -24,7 +23,7 @@
       {{ text }}
     </div>
     <slot />
-  </div>
+  </button>
 </template>
 
 <script lang="ts">
@@ -74,7 +73,13 @@ export default defineComponent({
       return arrr
     })
 
-    function clicked () {
+    function clicked (event: Event) {
+      let target = event.target as HTMLElement
+      while (target.tagName !== 'BUTTON') {
+        target = target.parentElement as HTMLElement
+      }
+      target.classList.add('material-action-clicked')
+      setTimeout(() => { target.classList.remove('material-action-clicked') }, 160)
       if (props.to) router.push(props.to)
       else if (props.action) props.action()
     }
@@ -90,6 +95,10 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .material-action
+  background-color: rgba(255, 255, 255, 0)
+  border: none
+  color: white
+  padding: 0
   height: 44px
   width: 44px
   margin: 6px
@@ -97,6 +106,10 @@ export default defineComponent({
   border-radius: 22px
   position: relative
   overflow: hidden
+  transition-property: background
+  transition-duration: 0.3s
+  &.material-action-clicked
+    background-color: rgba(200, 230, 255, 0.3)
   .material-action-icon
     vertical-align: middle
     height: 36px
