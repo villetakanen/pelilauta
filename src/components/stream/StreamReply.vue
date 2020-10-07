@@ -5,31 +5,7 @@
         {{ nick }}
       </div>
       <div class="spacer" />
-      <div
-        v-if="isAuthor"
-        class="mini-action"
-        @click="showMenu=true"
-      >
-        <img
-
-          src="@/assets/menu-ellipsis.svg"
-        >
-        <transition name="fade">
-          <div
-            v-if="showMenu"
-            class="action-menu"
-            @mouseleave="showMenu=false"
-          >
-            <p>Actions:</p>
-            <MaterialButton
-              text
-              :action="deleteComment"
-            >
-              Delete
-            </MaterialButton>
-          </div>
-        </transition>
-      </div>
+      <MaterialMenu small v-model="menu" />
     </div>
     <div
       class="message"
@@ -41,13 +17,15 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { useAuthz } from '@/lib/authz'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import { useMeta } from '@/lib/meta'
+import { MenuItem } from '@/lib/stream'
 
 export default defineComponent({
   components: {
-    MaterialButton
+    MaterialMenu
   },
   props: {
     content: {
@@ -73,14 +51,20 @@ export default defineComponent({
   },
   setup (props) {
     const { uid } = useAuthz()
-    const isAuthor = computed(() => (props.author === uid.value))
-    const showMenu = ref(false)
+    const { isAdmin } = useMeta()
     const deleteComment = () => {
       const db = firebase.firestore()
       const commentRef = db.collection('stream').doc(props.postid).collection('comments').doc(props.commentid)
       commentRef.delete()
     }
-    return { isAuthor, showMenu, deleteComment }
+    const menu = computed(() => {
+      const arr = new Array<MenuItem>()
+      if (isAdmin(uid.value) || uid.value === props.author) {
+        arr.push({ action: deleteComment, text: 'Delete!' })
+      }
+      return arr
+    })
+    return { menu }
   }
 })
 </script>

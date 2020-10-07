@@ -1,41 +1,24 @@
 <template>
   <MaterialCard class="stream-post">
     <!-- The top bar -->
-    <div class="stream-post-top-bar">
-      <div
-        class="avatar"
-      >
-        <transition
-          name="fade"
-        >
-          <img
-            v-if="authorData.photoURL"
-            :src="authorData.photoURL"
-            :alt="authorData.nick"
-          >
-        </transition>
-      </div>
+    <PostHeader
+      :nick="authorData.nick"
+      :photo="authorData.photoURL"
+      :title="postData.title"
+      :postid="postData.postid"
+      :created="postData.created + ''"
+      :topic="postData.topic"
+      :tslug="postData.topic.toLowerCase()"
+      :author="postData.author"
+    />
 
-      <h3
-        v-if="postData.title"
-        class="title"
-      >
-        {{ postData.title }}
-      </h3>
-      <div class="caption">
-        {{ authorData.nick }} {{ postData.created }}
-        <span v-if="postData.topic">in
-          <router-link :to="`/stream/topic/${postData.topic.toLowerCase()}`">{{ postData.topic }}</router-link>
-        </span>
-      </div>
-    </div>
     <div
       class="stream-post-content"
       :innerHTML="postData.content"
     />
     <div
-      v-for="(post, index) in replies"
-      :key="index"
+      v-for="(post) in replies"
+      :key="post.replyid"
       class="reply"
     >
       <transition name="fade">
@@ -67,13 +50,6 @@
       >
         <div class="spacer" />
         <MaterialButton
-          v-if="isAuthor"
-          text
-          :action="deletePost"
-        >
-          Delete
-        </MaterialButton>
-        <MaterialButton
           :action="showReply"
         >
           Reply
@@ -93,6 +69,7 @@ import 'firebase/firestore'
 import { Post, Profile, Reply } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
 import StreamReply from '@/components/stream/StreamReply.vue'
+import PostHeader from '@/components/stream/PostHeader.vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -100,7 +77,8 @@ export default defineComponent({
     MaterialCard,
     StreamReply,
     MaterialButton,
-    Editor
+    Editor,
+    PostHeader
   },
   props: {
     postid: {
@@ -154,18 +132,22 @@ export default defineComponent({
           const repliesRef = db.collection('stream').doc(props.postid).collection('comments').orderBy('created', 'asc')
           repliesRef.onSnapshot((changes) => {
             changes.docChanges().forEach((change) => {
-              let rfound = false
-              replies.value.forEach((reply) => {
-                if (reply.replyid === change.doc.id) rfound = true
-              })
-              if (!rfound) {
-                replies.value.push({
-                  replyid: change.doc.id,
-                  content: change.doc.data()?.content,
-                  author: change.doc.data()?.author,
-                  nick: change.doc.data()?.nick,
-                  createdSeconds: change.doc.data()?.created?.seconds
+              if (change.type === 'added') {
+                let rfound = false
+                replies.value.forEach((reply) => {
+                  if (reply.replyid === change.doc.id) rfound = true
                 })
+                if (!rfound) {
+                  replies.value.push({
+                    replyid: change.doc.id,
+                    content: change.doc.data()?.content,
+                    author: change.doc.data()?.author,
+                    nick: change.doc.data()?.nick,
+                    createdSeconds: change.doc.data()?.created?.seconds
+                  })
+                }
+              } else if (change.type === 'removed') {
+                replies.value = replies.value.filter((reply) => (reply.replyid !== change.doc.id))
               }
             })
           })

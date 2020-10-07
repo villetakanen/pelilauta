@@ -1,10 +1,13 @@
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+
 export interface Post {
     author: string;
     content: string;
     created: number;
     postid: string;
-    topic?: string;
-    title?: string;
+    topic: string;
+    title: string;
 }
 
 export interface Profile {
@@ -18,4 +21,20 @@ export interface Reply {
   nick: string;
   author: string;
   createdSeconds?: number;
+}
+
+export interface MenuItem {
+  text: string;
+  to?: string;
+  action?: Function;
+}
+
+function dropPost (actor: string, postid: string) {
+  const db = firebase.firestore()
+  const postRef = db.collection('stream').doc(postid)
+  postRef.delete()
+}
+
+export function useStream () {
+  return { dropPost }
 }

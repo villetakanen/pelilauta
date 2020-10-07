@@ -9,6 +9,7 @@
       :created="createdTime"
       :topic="topic"
       :tslug="topic.toLowerCase()"
+      :author="author"
     />
 
     <div class="stream-post-content">

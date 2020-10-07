@@ -36,7 +36,7 @@
       </div>
     </transition>
     <div>
-      <MaterialAction icon="more" />
+      <MaterialMenu v-model="menu" />
     </div>
   </div>
 </template>
@@ -44,13 +44,16 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import MaterialAction from '@/components/material/MaterialAction.vue'
+import MaterialMenu from '@/components/material/MaterialMenu.vue'
+import { MenuItem, useStream } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
 import { useMeta } from '@/lib/meta'
 
 export default defineComponent({
   name: 'PostHeader',
   components: {
-    MaterialAction
+    MaterialAction,
+    MaterialMenu
   },
   props: {
     nick: {
@@ -85,13 +88,33 @@ export default defineComponent({
       type: String,
       required: false,
       default: 'yleinen'
+    },
+    author: {
+      type: String,
+      required: false,
+      default: '-'
     }
   },
-  setup () {
+  setup (props) {
     const { uid } = useAuthz()
     const { isAdmin } = useMeta()
     const showAdminTools = computed(() => (isAdmin(uid.value)))
-    return { showAdminTools }
+    function drop () {
+      console.log('Delete!', props.postid)
+      const { dropPost } = useStream()
+      dropPost(uid.value, props.postid)
+    }
+
+    const menu = computed(() => {
+      const arr = new Array<MenuItem>()
+      arr.push({ to: '/stream/view/' + props.postid, text: 'Open' })
+      if (isAdmin(uid.value) || uid.value === props.author) {
+        arr.push({ action: drop, text: 'Delete!' })
+      }
+      return arr
+    })
+
+    return { showAdminTools, menu }
   }
 })
 </script>
