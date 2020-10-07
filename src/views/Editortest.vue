@@ -3,24 +3,31 @@
     <h1>Editortest.vue</h1>
     <div class="test-container">
       <div class="test-box">
-        <Editor
-          v-model="content"
-          v-model:images="images"
-        />
+        <MaterialCard>
+          <Editor
+            v-model="content"
+            v-model:images="images"
+          />
+        </MaterialCard>
       </div>
       <div class="test-box">
-        <div
-          id="result"
-          :innerHTML="content"
-        />
+        <h3>This is what the end result looks like</h3>
+        <MaterialCard class="rended-result">
+          <div
+            id="result"
+            :innerHTML="content"
+          />
+          <div class="carousel">
+            <img
+              v-for="url in images.split(';')"
+              :key="url"
+              :src="url"
+            >
+          </div>
+        </MaterialCard>
         <hr>
         {{ content }}
         <hr>
-        <img
-          v-for="url in images.split(';')"
-          :key="url"
-          :src="url"
-        >
       </div>
     </div>
   </div>
@@ -29,11 +36,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import Editor from '@/components/editor/Editor.vue'
+import MaterialCard from '@/components/material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'EditorTest',
   components: {
-    Editor
+    Editor,
+    MaterialCard
   },
   setup () {
     const content = ref('')
@@ -56,4 +65,11 @@ export default defineComponent({
     flex-flow: 0
     flex-flex-shrink: 0
 
+.carousel
+  display: flex
+  img
+    max-width: 40px
+    max-height: 40px
+    padding: 1px
+    margin-right: 1px
 </style>

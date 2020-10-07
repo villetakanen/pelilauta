@@ -137,8 +137,8 @@ export default defineComponent({
   //@include BoxShadow3()
   min-height: 264px
   max-height: 528px
-  overflow-x
-    y: scroll
+  padding: 8px
+  overflow-x: scroll
   background-color: $color-base-dark
   border-bottom: solid 1px $color-primary-dark
   &:hover
