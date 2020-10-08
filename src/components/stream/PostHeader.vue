@@ -90,7 +90,6 @@ export default defineComponent({
     const { isAdmin } = useMeta()
     const showAdminTools = computed(() => (isAdmin(uid.value)))
     function drop () {
-      console.log('Delete!', props.postid)
       const { dropPost } = useStream()
       dropPost(uid.value, props.postid)
     }

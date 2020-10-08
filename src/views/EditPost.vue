@@ -86,7 +86,6 @@ export default defineComponent({
         title.value = post.title
         canEdit.value = isAdmin(uid.value) || uid.value === post.author
         topic.value = post.topic
-        console.log(topic.value)
       }
     })
     const router = useRouter()

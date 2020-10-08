@@ -54,7 +54,6 @@ function _init () {
   const metaRef = db.collection('meta').doc('pelilauta')
   metaRef.onSnapshot((doc) => {
     if (doc.exists) {
-      console.log(doc.data()?.admins)
       state.value.admins = doc.data()?.admins
       state.value.topics = doc.data()?.topics
     }

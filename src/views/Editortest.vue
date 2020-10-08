@@ -46,10 +46,8 @@ export default defineComponent({
   },
   setup () {
     const content = ref('')
-    // watch(content, (val) => { console.log(val) })
 
     const images = ref('')
-    // watch(images, (val) => { console.log('images!', val) })
 
     return { content, images }
   }

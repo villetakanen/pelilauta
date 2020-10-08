@@ -5,39 +5,11 @@
         v-for="user in users"
         :key="user.uid"
       >
-        <td>
-          <img
-            v-if="user.photoURL"
-            :src="user.photoURL"
-            class="avatar"
-          >
-        </td>
-        <td style="padding: 0 8px" :class="isAdmin(user.uid) ? 'admin ' : ' '">
-          {{ user.nick }}
-        </td>
-        <td>
-          <MaterialButton
-            v-if="!user.isMe && !isAdmin(user.uid)"
-            text
-          >
-            Make admin
-          </MaterialButton>
-          <MaterialButton
-            v-if="!user.isMe && isAdmin(user.uid)"
-            text
-            style="color: red"
-          >
-            Revoke
-          </MaterialButton>
-        </td>
-        <td>
-          <MaterialButton
-            v-if="!user.isMe && !isAdmin(user.uid)"
-            text
-          >
-            Freeze
-          </MaterialButton>
-        </td>
+        <UserListRow
+          :nick="user.nick"
+          :uid="user.uid"
+          :photo="user.photoURL"
+        />
       </tr>
     </table>
   </div>
@@ -45,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import UserListRow from '@/components/UserListRow.vue'
 import { useMeta } from '@/lib/meta'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -61,7 +33,7 @@ interface UserListEntity {
 export default defineComponent({
   name: 'EditPost',
   components: {
-    MaterialButton
+    UserListRow
   },
   setup () {
     const users = ref(new Array<UserListEntity>())
