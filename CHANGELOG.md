@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.3](https://github.com/villetakanen/pelilauta/compare/v1.21.2...v1.21.3) (2020-10-08)
+
+
+### Bug Fixes
+
+* **icons:** notopic size ([c97e6c4](https://github.com/villetakanen/pelilauta/commit/c97e6c4c9c30e9b65e8a0c7e9b253c9e520daf3e))
+* **navigation:** added links ([cf57b6f](https://github.com/villetakanen/pelilauta/commit/cf57b6f109fb5f94067082572127a7a6c9d5d2e6))
+* **workbox:** iphone localstorage removed ([c9791ef](https://github.com/villetakanen/pelilauta/commit/c9791ef818c78a851cde02135c3b07e1b5267f4d))
+
 ### [1.21.2](https://github.com/villetakanen/pelilauta/compare/v1.21.1...v1.21.2) (2020-10-07)
 
 
