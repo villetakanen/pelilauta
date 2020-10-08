@@ -5,7 +5,10 @@
         {{ nick }}
       </div>
       <div class="spacer" />
-      <MaterialMenu small v-model="menu" />
+      <MaterialMenu
+        v-model="menu"
+        small
+      />
     </div>
     <div
       class="message"
@@ -15,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import * as firebase from 'firebase/app'

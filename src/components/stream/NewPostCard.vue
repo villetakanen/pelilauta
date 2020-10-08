@@ -56,7 +56,7 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import Editor from '@/components/editor/Editor.vue'
 import { useAuthz } from '@/lib/authz'
-import { useTopics } from '@/lib/topics'
+import { useMeta } from '@/lib/meta'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -72,7 +72,7 @@ export default defineComponent({
     const topic = ref('Roolipelit')
     const images = ref('')
     const { isAuthz, uid } = useAuthz()
-    const { topics } = useTopics()
+    const { topics } = useMeta()
 
     function onInput (event: Event) {
       const target = event.target as HTMLElement

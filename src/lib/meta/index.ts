@@ -1,21 +1,29 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
+export interface Topic {
+  slug: string;
+  title: string;
+  description?: string;
+  icon?: string;
+}
+
 interface MetaState {
   admins: string[];
+  topics: Topic[];
 }
 
 const state = ref({
   admins: [],
-  mods: []
+  topics: []
 } as MetaState)
 
 const isAdmin = (uid: string) => {
   // console.log(state.value.admins, state.value.admins.includes(uid), uid)
   return state.value.admins.includes(uid)
 }
-
+const topics = computed((): Topic[] => (state.value.topics))
 /* const isMod = (uid: string, topic: string) => {
   for (const modArray in state.value.mods) {
     for (const mods in ((modArray as unknown) as Mod[])) {
@@ -48,12 +56,12 @@ function _init () {
     if (doc.exists) {
       console.log(doc.data()?.admins)
       state.value.admins = doc.data()?.admins
-      // state.value.mods = doc.data()?.mods
+      state.value.topics = doc.data()?.topics
     }
   })
 }
 
 export function useMeta () {
   _init()
-  return { isAdmin }
+  return { isAdmin, topics }
 }

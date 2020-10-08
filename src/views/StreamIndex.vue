@@ -35,7 +35,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import { useTopics } from '@/lib/topics'
+import { useMeta } from '@/lib/meta'
 
 export default defineComponent({
   name: 'Home',
@@ -43,7 +43,7 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
-    const { topics } = useTopics()
+    const { topics } = useMeta()
     return { topics }
   }
 })

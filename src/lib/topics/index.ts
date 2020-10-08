@@ -40,7 +40,7 @@ function _init () {
   })
 }
 
-export function useTopics () {
+/* export function useTopics () {
   _init()
   return { topics }
-}
+} */

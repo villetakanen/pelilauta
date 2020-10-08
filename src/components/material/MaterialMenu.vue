@@ -1,5 +1,8 @@
 <template>
-  <div class="material-menu" :class="styleClasses">
+  <div
+    class="material-menu"
+    :class="styleClasses"
+  >
     <img
       class="menu-button"
       src="@/assets/menu-default.svg"
@@ -17,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUpdated, computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { MenuItem } from '@/lib/stream'
 
