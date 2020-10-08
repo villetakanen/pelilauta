@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.5](https://github.com/villetakanen/pelilauta/compare/v1.21.4...v1.21.5) (2020-10-08)
+
+
+### Bug Fixes
+
+* **ux:** fab position and box coners on mobile ([8bf4fa2](https://github.com/villetakanen/pelilauta/commit/8bf4fa22be3fdbf094d1e8dce8b0948e17875f71))
+
 ### [1.21.4](https://github.com/villetakanen/pelilauta/compare/v1.21.3...v1.21.4) (2020-10-08)
 
 
