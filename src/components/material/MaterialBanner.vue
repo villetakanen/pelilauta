@@ -99,3 +99,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+#app .material-banner
+  padding-top: 72px
+  margin-bottom: -60px
+</style>
