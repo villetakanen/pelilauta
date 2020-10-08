@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.6](https://github.com/villetakanen/pelilauta/compare/v1.21.5...v1.21.6) (2020-10-08)
+
+
+### Bug Fixes
+
+* **ux:** update notification css ([b4f6df3](https://github.com/villetakanen/pelilauta/commit/b4f6df3f289d2088eb425120dcc731642953f1fa))
+
 ### [1.21.5](https://github.com/villetakanen/pelilauta/compare/v1.21.4...v1.21.5) (2020-10-08)
 
 
