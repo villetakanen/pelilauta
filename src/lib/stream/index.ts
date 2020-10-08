@@ -60,6 +60,18 @@ async function getPost (postid: string): Promise<Post|null> {
   })
 }
 
+function updatePost (postid: string, title: string, content: string, topic: string): void {
+  const db = firebase.firestore()
+  const postRef = db.collection('stream').doc(postid)
+
+  postRef.update({
+    title: title,
+    content: content,
+    topic: topic,
+    updated: firebase.firestore.FieldValue.serverTimestamp()
+  })
+}
+
 export function useStream () {
-  return { dropPost, getPost }
+  return { dropPost, getPost, updatePost }
 }

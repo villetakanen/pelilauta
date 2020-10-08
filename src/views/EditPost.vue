@@ -1,14 +1,34 @@
 <template>
-  <h3>Editor...</h3>
-  <p>This page does not work properly yet!</p>
-  <p>It's intentional!</p>
   <MaterialCard>
     <h3>{{ title }}</h3>
     <transition name="fade">
-      <Editor
-        v-if="content"
-        v-model="content"
-      />
+      <div v-if="canEdit">
+        <div class="toolbar">
+          <div class="grow">
+            <input
+              v-model="title"
+              class="material-textfield"
+              type="text"
+            >
+          </div>
+          <select
+            v-model="topic"
+            name="topic"
+          >
+            <option
+              v-for="(t) in topics"
+              :key="t.slug"
+              :value="t.slug"
+            >
+              {{ t.title }}
+            </option>
+          </select>
+        </div>
+        <Editor
+          v-if="content"
+          v-model="content"
+        />
+      </div>
     </transition>
     <div
       v-if="content"
@@ -18,7 +38,9 @@
       <MaterialButton text>
         Cancel
       </MaterialButton>
-      <MaterialButton>Save</MaterialButton>
+      <MaterialButton :action="update">
+        Save
+      </MaterialButton>
     </div>
   </MaterialCard>
 </template>
@@ -29,6 +51,9 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import Editor from '@/components/editor/Editor.vue'
 import { useStream } from '@/lib/stream'
+import { useAuthz } from '@/lib/authz'
+import { useMeta } from '@/lib/meta'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'EditPost',
@@ -45,16 +70,28 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { getPost } = useStream()
+    const { getPost, updatePost } = useStream()
+    const { uid } = useAuthz()
+    const { isAdmin, topics } = useMeta()
     const content = ref('')
     const title = ref('')
+    const topic = ref('')
+    const canEdit = ref(false)
     getPost(props.postid).then((post) => {
       if (post) {
         content.value = post.content
         title.value = post.title
+        canEdit.value = isAdmin(uid.value) || uid.value === post.author
+        topic.value = post.topic
+        console.log(topic.value)
       }
     })
-    return { content, title }
+    const router = useRouter()
+    const update = () => {
+      updatePost(props.postid, title.value, content.value, topic.value)
+      router.push('/')
+    }
+    return { content, title, canEdit, topics, topic, update }
   }
 })
 </script>
