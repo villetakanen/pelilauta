@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.4](https://github.com/villetakanen/pelilauta/compare/v1.21.3...v1.21.4) (2020-10-08)
+
+
+### Bug Fixes
+
+* **ux:** editor route added ([2307845](https://github.com/villetakanen/pelilauta/commit/23078458244db54f8f4b6bc855775f7f214bf661))
+* **ux:** top bar links and removed extra space ([5d80047](https://github.com/villetakanen/pelilauta/commit/5d80047ff442aa74618f115d52f81d477b92afbf))
+
 ### [1.21.3](https://github.com/villetakanen/pelilauta/compare/v1.21.2...v1.21.3) (2020-10-08)
 
 
