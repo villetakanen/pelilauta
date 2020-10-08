@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.22.0](https://github.com/villetakanen/pelilauta/compare/v1.21.6...v1.22.0) (2020-10-08)
+
+
+### Features
+
+* **editor:** edit posts ([a5a7a8c](https://github.com/villetakanen/pelilauta/commit/a5a7a8c49bfbade1664d81929772ab591a0acead))
+
 ### [1.21.6](https://github.com/villetakanen/pelilauta/compare/v1.21.5...v1.21.6) (2020-10-08)
 
 
