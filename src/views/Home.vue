@@ -1,14 +1,16 @@
 <template>
-  <MaterialFab
-    v-if="isAuthz"
-    text="New post"
-    to="/stream/post"
-  >
-    <img
-      src="@/assets/add.svg"
-      alt="new comment"
+  <teleport to="body">
+    <MaterialFab
+      v-if="isAuthz"
+      text="New post"
+      to="/stream/post"
     >
-  </MaterialFab>
+      <img
+        src="@/assets/add.svg"
+        alt="new comment"
+      >
+    </MaterialFab>
+  </teleport>
   <Stream />
 </template>
 

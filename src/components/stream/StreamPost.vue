@@ -183,6 +183,8 @@ export default defineComponent({
       //background-color: $color-base-dark
       @include TypeBody2()
       padding: 8px
+      word-break: break-word
+      overflow-x: hidden
     .replycount
       @include TypeBody1()
       text-align: right

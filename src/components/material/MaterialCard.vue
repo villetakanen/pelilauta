@@ -8,6 +8,7 @@
 @import @/styles/material-colors.sass
 @import @/styles/layout.sass
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 
 #app
   div.material-card
@@ -20,4 +21,11 @@
       margin-bottom: 8px
     h1
       @include TypeHeadline5()
+
+@include media('<desktop')
+#app
+  div.material-card
+    border-radius: 0px
+    @include BoxShadow3()
+
 </style>

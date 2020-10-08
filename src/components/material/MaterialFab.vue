@@ -67,8 +67,6 @@ export default defineComponent({
     height: 44px
     width: 44px
     margin: 6px
-  .material-fab-text
-    display: none
 
 @include media('>1024px')
   .material-fab

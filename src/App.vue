@@ -35,4 +35,7 @@ export default defineComponent({
 
 <style lang="sass">
 @import styles/base.sass
+
+main
+  padding-top: 62px
 </style>

@@ -1,14 +1,18 @@
 <template>
-  <h1>{{ pageTitle }}</h1>
-  <MaterialFab
-    text="New post"
-    to="/stream/post"
-  >
-    <img
-      src="@/assets/add.svg"
-      alt="new comment"
+  <MaterialCard>
+    <h1>{{ pageTitle }}</h1>
+  </MaterialCard>
+  <teleport to="body">
+    <MaterialFab
+      text="New post"
+      to="/stream/post"
     >
-  </MaterialFab>
+      <img
+        src="@/assets/add.svg"
+        alt="new comment"
+      >
+    </MaterialFab>
+  </teleport>
   <Stream :topic="topic" />
 </template>
 
@@ -16,12 +20,14 @@
 import { defineComponent, ref } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
+import MaterialCard from '@/components/material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     Stream,
-    MaterialFab
+    MaterialFab,
+    MaterialCard
   },
   props: {
     topic: {

@@ -9,6 +9,13 @@ export interface Post {
     topic: string;
     title: string;
 }
+export interface PostData {
+  author: string;
+  content: string;
+  created: number;
+  topic: string;
+  title: string;
+}
 
 export interface Profile {
   nick: string;
@@ -36,6 +43,23 @@ function dropPost (actor: string, postid: string) {
   postRef.delete()
 }
 
+async function getPost (postid: string): Promise<Post|null> {
+  const db = firebase.firestore()
+  const postRef = db.collection('stream').doc(postid)
+
+  return new Promise<Post|null>((resolve) => {
+    postRef.get().then((postDoc) => {
+      if (postDoc.exists) {
+        const post = postDoc.data() as Post
+        post.postid = postDoc.id
+        resolve(post)
+      } else {
+        return null
+      }
+    })
+  })
+}
+
 export function useStream () {
-  return { dropPost }
+  return { dropPost, getPost }
 }

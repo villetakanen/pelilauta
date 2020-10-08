@@ -73,7 +73,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #AppBar
-  position: sticky
+  position: fixed
   transition: box-shadow 0.8s
   box-shadow: none
   @include BoxShadow3()
