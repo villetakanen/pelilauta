@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.23.0](https://github.com/villetakanen/pelilauta/compare/v1.22.1...v1.23.0) (2020-10-08)
+
+
+### Features
+
+* **admin:** user listing ([66c1e1f](https://github.com/villetakanen/pelilauta/commit/66c1e1ff557cb740ebe863cb6ab9f2feaf6d4538))
+
+
+### Bug Fixes
+
+* **admin:** revoke and elevate fixed ([416e0f6](https://github.com/villetakanen/pelilauta/commit/416e0f6637607c6f27e0f550d13e7c7cbff10e73))
+
 ### [1.22.1](https://github.com/villetakanen/pelilauta/compare/v1.22.0...v1.22.1) (2020-10-08)
 
 
