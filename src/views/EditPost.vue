@@ -35,7 +35,10 @@
       class="toolbar"
     >
       <div class="spacer" />
-      <MaterialButton text>
+      <MaterialButton
+        text
+        :action="cancel"
+      >
         Cancel
       </MaterialButton>
       <MaterialButton :action="update">
@@ -89,9 +92,12 @@ export default defineComponent({
     const router = useRouter()
     const update = () => {
       updatePost(props.postid, title.value, content.value, topic.value)
-      router.push('/')
+      router.push('/stream/view/' + props.postid)
     }
-    return { content, title, canEdit, topics, topic, update }
+    const cancel = () => {
+      router.push('/stream/view/' + props.postid)
+    }
+    return { content, title, canEdit, topics, topic, update, cancel }
   }
 })
 </script>
