@@ -11,7 +11,9 @@
         to="/"
       />
       <h1 class="font-button">
-        Pelilauta 2
+        <router-link to="/">
+          Pelilauta 2
+        </router-link>
       </h1>
       <div class="spacer" />
       <MaterialAction
@@ -78,5 +80,10 @@ export default defineComponent({
   #AppBarToolbar
   &.elevated
     @include BoxShadow8()
+  .font-button
+    @include  TypeButton()
+    line-height: 56px
+    a
+      color: white
 
 </style>

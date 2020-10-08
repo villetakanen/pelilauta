@@ -27,14 +27,6 @@
       </div>
     </div>
     <div class="spacer" />
-    <transition name="fade">
-      <div v-if="showAdminTools">
-        <MaterialAction
-          icon="admin-secondary"
-          class="admin-action"
-        />
-      </div>
-    </transition>
     <div>
       <MaterialMenu v-model="menu" />
     </div>
@@ -43,7 +35,6 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import MaterialAction from '@/components/material/MaterialAction.vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { MenuItem, useStream } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
@@ -52,7 +43,6 @@ import { useMeta } from '@/lib/meta'
 export default defineComponent({
   name: 'PostHeader',
   components: {
-    MaterialAction,
     MaterialMenu
   },
   props: {

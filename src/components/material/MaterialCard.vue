@@ -7,6 +7,7 @@
 <style lang="sass">
 @import @/styles/material-colors.sass
 @import @/styles/layout.sass
+@import @/styles/material-typography.sass
 
 #app
   div.material-card
@@ -17,4 +18,6 @@
     border-radius: 4px
     .title
       margin-bottom: 8px
+    h1
+      @include TypeHeadline5()
 </style>
