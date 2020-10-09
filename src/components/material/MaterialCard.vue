@@ -10,20 +10,18 @@
 @import @/styles/material-typography.sass
 @import @/styles/include-media.scss
 
-#app
-  div.material-card
-    @include TypeColorDark()
-    @include SpacingContainer()
-    background-color: white
-    @include BoxShadow1()
-    border-radius: 4px
-    .title
-      margin-bottom: 8px
-    h1
-      @include TypeHeadline5()
+div.material-card
+  @include TypeColorDark()
+  @include SpacingContainer()
+  background-color: white
+  @include BoxShadow1()
+  border-radius: 4px
+  .title
+    margin-bottom: 8px
+  h1
+    @include TypeHeadline5()
 
 @include media('<desktop')
-#app
   div.material-card
     border-radius: 0px
     @include BoxShadow3()

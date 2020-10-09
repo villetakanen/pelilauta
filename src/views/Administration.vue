@@ -8,19 +8,34 @@
         Editor testing page.
       </router-link>
     </p>
+    <p>
+      <a @click="dialog=!dialog">Show Dialog</a>
+    </p>
   </MaterialCard>
+  <Dialog v-model="dialog">
+    <MaterialCard>
+      <h1>Dialog!</h1>
+      <p>Hmm, it seems your account is frozen? Maybe you should contact the admins for more info.</p>
+    </MaterialCard>
+  </Dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import Dialog from '@/components/material/Dialog.vue'
 import UserList from '@/components/UserList.vue'
 
 export default defineComponent({
   name: 'Admin',
   components: {
     MaterialCard,
-    UserList
+    UserList,
+    Dialog
+  },
+  setup () {
+    const dialog = ref(false)
+    return { dialog }
   }
 })
 </script>

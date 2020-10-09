@@ -140,3 +140,17 @@ div.toolbar
   100%
     opacity: 0
     transform: scale(var(--scale))
+
+.bounce-enter-active 
+  animation: bounce-in 0.8s
+  transform-origin: top left
+
+.bounce-leave-active 
+  animation: bounce-in 0.8s reverse
+  transform-origin: top left
+
+@keyframes bounce-in
+  0% 
+    transform: scale(0) translate(-50%, -50%)
+  100%
+    transform: scale(1) translate(-50%, -50%)
