@@ -4,6 +4,7 @@
   </MaterialCard>
   <teleport to="body">
     <MaterialFab
+      v-if="showStreamActions"
       text="New post"
       :to="`/stream/post/${topic}`"
     >
@@ -21,6 +22,7 @@ import { defineComponent, ref } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import { useMeta } from '@/lib/meta'
 
 export default defineComponent({
   name: 'StreamTopic',
@@ -37,7 +39,8 @@ export default defineComponent({
   },
   setup (props) {
     const pageTitle = ref(props.topic.substring(0, 1).toUpperCase() + props.topic.substring(1))
-    return { pageTitle }
+    const { showStreamActions } = useMeta()
+    return { pageTitle, showStreamActions }
   }
 })
 </script>

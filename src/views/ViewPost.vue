@@ -37,15 +37,18 @@
     <transition name="fade">
       <div v-if="replyBoxVisible">
         <Editor v-model="replyContent" />
-        <MaterialButton :action="post">
-          Post!
-        </MaterialButton>
+        <div class="toolbar">
+          <div class="spacer" />
+          <MaterialButton :action="post">
+            Post!
+          </MaterialButton>
+        </div>
       </div>
     </transition>
 
     <transition name="fade">
       <div
-        v-if="!replyBoxVisible"
+        v-if="!replyBoxVisible && showStreamActions"
         class="toolbar"
       >
         <div class="spacer" />
@@ -71,6 +74,7 @@ import { useAuthz } from '@/lib/authz'
 import StreamReply from '@/components/stream/StreamReply.vue'
 import PostHeader from '@/components/stream/PostHeader.vue'
 import { useRouter } from 'vue-router'
+import { useMeta } from '@/lib/meta'
 
 export default defineComponent({
   components: {
@@ -186,7 +190,9 @@ export default defineComponent({
       })
     }
 
-    return { authorData, postData, replies, replyBoxVisible, replyContent, showReply, isAuthor, deletePost, post }
+    const { showStreamActions } = useMeta()
+
+    return { authorData, postData, replies, replyBoxVisible, replyContent, showReply, isAuthor, deletePost, post, showStreamActions }
   }
 })
 </script>
