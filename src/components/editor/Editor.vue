@@ -1,9 +1,4 @@
 <template>
-  <div class="toolbar">
-    <div class="toolbar-action">
-      <img src="@/assets/add-photo-action.svg">
-    </div>
-  </div>
   <div
     v-once
     class="editor"
@@ -18,11 +13,22 @@
       :key="url"
       :src="url"
     >
+    <input
+      id="file"
+      class="toolbar-action"
+      type="file"
+      @change="uploadImage"
+    >
+    <label for="file">
+      <img src="@/assets/add-photo-action.svg">
+    </label>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
+import * as firebase from 'firebase/app'
+import 'firebase/storage'
 // import { setCaret, getCaretOffset } from './caret'
 
 export default defineComponent({
@@ -115,6 +121,20 @@ export default defineComponent({
       // setCaret(event.target as HTMLElement, offset)
     }
 
+    function uploadImage (e: Event) {
+      if (!e.target) return
+      const element = e.target as HTMLInputElement
+      if (element.files && element.files[0]) {
+        const file = element.files[0]
+        console.log('uploadImage', file)
+        const storageRef = firebase.storage().ref()
+        const fileRef = storageRef.child('/stream/uploads/' + file.name)
+        fileRef.put(file).then((snapshot) => {
+          console.log('uploaded!', snapshot)
+        })
+      }
+    }
+
     watch(content, (value) => {
       context.emit('update:modelValue', value)
     })
@@ -123,7 +143,7 @@ export default defineComponent({
       context.emit('update:images', value)
     })
 
-    return { content, onInput, onPaste }
+    return { content, onInput, onPaste, uploadImage }
   }
 })
 </script>
@@ -170,5 +190,28 @@ export default defineComponent({
   img
     max-width: 44px
     max-height: 44px
+
+[type="file"]
+  border: 0
+  clip: rect(0, 0, 0, 0)
+  height: 1px
+  overflow: hidden
+  padding: 0
+  position: absolute !important
+  white-space: nowrap
+  width: 1px
+
+  + label
+    // File upload button styles
+    opacity: 0.5
+
+  &:focus + label,
+  + label:hover
+    // File upload hover state button styles
+    opacity: 0.8
+
+  &:focus + label
+    // File upload focus state button styles
+    opacity: 1
 
 </style>
