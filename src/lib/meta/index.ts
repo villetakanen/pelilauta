@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import { useAuthz } from '../authz'
 
 export interface Topic {
   slug: string;
@@ -24,12 +25,19 @@ const state = ref({
 const isAdmin = (uid: string) => {
   return state.value.admins.includes(uid)
 }
-const isFrozen = (uid: string) => {
+
+const isFrozen = (uid: string): boolean => {
   // Admins can not be frozen: this is just for sanity
   if (isAdmin(uid)) return false
   if (!state.value.frozen) return false
   return state.value.frozen.includes(uid)
 }
+
+const showStreamActions = computed((): boolean => {
+  const { uid } = useAuthz()
+  return !isFrozen(uid.value)
+})
+
 const topics = computed((): Topic[] => (state.value.topics))
 
 let init = false
@@ -51,5 +59,5 @@ function _init () {
 
 export function useMeta () {
   _init()
-  return { isAdmin, isFrozen, topics }
+  return { isAdmin, isFrozen, topics, showStreamActions }
 }
