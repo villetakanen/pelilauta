@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.25.0](https://github.com/villetakanen/pelilauta/compare/v1.24.1...v1.25.0) (2020-10-09)
+
+
+### Features
+
+* **editor:** file uploads ([a3d0759](https://github.com/villetakanen/pelilauta/commit/a3d07593b25279132aeac21e5974bf0aebe72bd3))
+
+
+### Bug Fixes
+
+* **editor:** uploaded image is shown ([9562895](https://github.com/villetakanen/pelilauta/commit/956289528639c1edaf3e5575ec72cbc197ef0f2b))
+* **material:** dialog component added ([f7812c0](https://github.com/villetakanen/pelilauta/commit/f7812c06272c5834853073f905b14e672acf1a8c))
+
 ### [1.24.1](https://github.com/villetakanen/pelilauta/compare/v1.24.0...v1.24.1) (2020-10-09)
 
 
