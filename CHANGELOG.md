@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.24.0](https://github.com/villetakanen/pelilauta/compare/v1.23.2...v1.24.0) (2020-10-09)
+
+
+### Features
+
+* **admin:** freeze user testing ([6b2c70b](https://github.com/villetakanen/pelilauta/commit/6b2c70bb959f0df9bc5b6da1b2ed85e8d0d99519))
+
 ### [1.23.2](https://github.com/villetakanen/pelilauta/compare/v1.23.1...v1.23.2) (2020-10-09)
 
 
