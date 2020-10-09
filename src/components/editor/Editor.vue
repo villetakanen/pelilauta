@@ -72,7 +72,7 @@ export default defineComponent({
       let result = linksMatch.next()
       while (!result.done) {
         if (result.value && !minedImages.value.includes(result.value[2])) {
-          minedImages.value += result.value[2] + ';'
+          minedImages.value = result.value[2] + ';' + minedImages.value
         }
         result = linksMatch.next()
       }
@@ -128,9 +128,13 @@ export default defineComponent({
         const file = element.files[0]
         console.log('uploadImage', file)
         const storageRef = firebase.storage().ref()
-        const fileRef = storageRef.child('/stream/uploads/' + file.name)
+        const fileRef = storageRef.child('/stream/uploads/' + new Date().getTime() + file.name)
         fileRef.put(file).then((snapshot) => {
-          console.log('uploaded!', snapshot)
+          snapshot.ref.getDownloadURL().then((url) => {
+            console.log('uploaded!', url)
+            minedImages.value += url + ';' + minedImages.value
+            if (minedImages.value.endsWith(';')) minedImages.value = minedImages.value.substring(0, minedImages.value.length - 1)
+          })
         })
       }
     }
@@ -177,6 +181,7 @@ export default defineComponent({
     width: 42px
     padding: 2px
     opacity: 50%
+    margin-right: 8px
     &.small
       height: 18px
       width: 18px
