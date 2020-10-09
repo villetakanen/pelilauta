@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
     <MaterialFab
-      v-if="isAuthz"
+      v-if="canPost"
       text="New post"
       to="/stream/post"
     >
@@ -15,10 +15,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
+import { useMeta } from '@/lib/meta'
 
 export default defineComponent({
   name: 'Home',
@@ -27,8 +28,14 @@ export default defineComponent({
     MaterialFab
   },
   setup () {
-    const { isAuthz } = useAuthz()
-    return { isAuthz }
+    const { isAuthz, uid } = useAuthz()
+    const { isFrozen } = useMeta()
+
+    const canPost = computed(() => {
+      return isAuthz && !isFrozen(uid.value)
+    })
+
+    return { canPost }
   }
 })
 </script>

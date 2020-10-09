@@ -12,37 +12,25 @@ export interface Topic {
 interface MetaState {
   admins: string[];
   topics: Topic[];
+  frozen: string[];
 }
 
 const state = ref({
   admins: [],
-  topics: []
+  topics: [],
+  frozen: []
 } as MetaState)
 
 const isAdmin = (uid: string) => {
-  // console.log(state.value.admins, state.value.admins.includes(uid), uid)
   return state.value.admins.includes(uid)
 }
-const topics = computed((): Topic[] => (state.value.topics))
-/* const isMod = (uid: string, topic: string) => {
-  for (const modArray in state.value.mods) {
-    for (const mods in ((modArray as unknown) as Mod[])) {
-      if (((mods as unknown) as Mod).topic === topic && ((mods as unknown) as Mod).mods.includes(uid)) return true
-    }
-  }
-  return false
+const isFrozen = (uid: string) => {
+  // Admins can not be frozen: this is just for sanity
+  if (isAdmin(uid)) return false
+  if (!state.value.frozen) return false
+  return state.value.frozen.includes(uid)
 }
-const getUserMods = (uid: string): string[] => {
-  const userMods: string[] = []
-
-  state.value.mods.forEach((modArray) => {
-    modArray.mods.forEach((topic) => {
-      if (((topic as unknown) as Mod).mods.includes(uid)) userMods.push(((topic as unknown) as Mod).topic)
-    })
-  })
-
-  return userMods
-} */
+const topics = computed((): Topic[] => (state.value.topics))
 
 let init = false
 function _init () {
@@ -56,11 +44,12 @@ function _init () {
     if (doc.exists) {
       state.value.admins = doc.data()?.admins
       state.value.topics = doc.data()?.topics
+      state.value.frozen = doc.data()?.frozen
     }
   })
 }
 
 export function useMeta () {
   _init()
-  return { isAdmin, topics }
+  return { isAdmin, isFrozen, topics }
 }

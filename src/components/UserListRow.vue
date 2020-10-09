@@ -1,5 +1,5 @@
 <template>
-  <td>
+  <td :class="rowClasses">
     <img
       v-if="photo"
       :src="photo"
@@ -8,13 +8,13 @@
   </td>
   <td
     style="padding: 0 8px"
-    :class="isAdmin(uid) ? 'admin ' : ' '"
+    :class="rowClasses"
   >
     {{ nick }}
   </td>
-  <td>
+  <td :class="rowClasses">
     <MaterialButton
-      v-if="!isMe && !isAdmin(uid)"
+      v-if="!isMe && !isAdmin(uid) && !isFrozen(uid)"
       text
       :action="elevate"
     >
@@ -23,18 +23,25 @@
     <MaterialButton
       v-if="!isMe && isAdmin(uid)"
       text
-      style="color: red"
+      class="alert"
       :action="revoke"
     >
-      Revoke
+      Revoke Admin
     </MaterialButton>
-  </td>
-  <td>
     <MaterialButton
-      v-if="!isMe && !isAdmin(uid)"
+      v-if="!isMe && !isAdmin(uid) && !isFrozen(uid)"
       text
+      :action="freeze"
     >
       Freeze
+    </MaterialButton>
+    <MaterialButton
+      v-if="!isMe && !isAdmin(uid) && isFrozen(uid)"
+      text
+      :action="defrost"
+      class="warn"
+    >
+      Defrost
     </MaterialButton>
   </td>
 </template>
@@ -75,7 +82,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAdmin } = useMeta()
+    const { isAdmin, isFrozen } = useMeta()
     const { uid: activeUid } = useAuthz()
     const isMe = computed(() => (props.uid === activeUid.value))
 
@@ -106,12 +113,51 @@ export default defineComponent({
       })
     }
 
-    return { isMe, isAdmin, revoke, elevate }
+    const defrost = () => {
+      const db = firebase.firestore()
+      const metaRef = db.collection('meta').doc('pelilauta')
+      metaRef.get().then((meta) => {
+        if (meta.exists) {
+          let frozen: string[] = meta.data()?.frozen
+          if (frozen) {
+            frozen = frozen.filter((frozen) => (frozen !== props.uid))
+          }
+          metaRef.update({ frozen: frozen })
+        }
+      })
+    }
+
+    const freeze = () => {
+      if (isAdmin(props.uid)) throw new Error('can not freeze an admin')
+      const db = firebase.firestore()
+      const metaRef = db.collection('meta').doc('pelilauta')
+      metaRef.get().then((meta) => {
+        if (meta.exists) {
+          let frozen: string[] = meta.data()?.frozen
+          if (!frozen) frozen = new Array<string>()
+          if (frozen) {
+            frozen.push(props.uid)
+          }
+          metaRef.update({ frozen: frozen })
+        }
+      })
+    }
+
+    const rowClasses = computed(() => {
+      const classes = new Array<string>()
+      if (isAdmin(props.uid)) classes.push('admin')
+      else if (isFrozen(props.uid)) classes.push('frozen')
+      return classes
+    })
+
+    return { isMe, isAdmin, revoke, elevate, freeze, defrost, isFrozen, rowClasses }
   }
 })
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/material-colors.sass
+
 .userlist
   table
     width: 100%
@@ -123,8 +169,18 @@ export default defineComponent({
   height: 22px
   width: 22px
   border-radius: 11px
+  margin: 0px 8px
+  margin-top: 4px
 .admin
-  color: red
-.myself
+  background-color: $color-secondary-light
+  color: $color-primary-dark
+.frozen
+  background-color: lighten($color-primary-light, 32%)
   color: #666
+.myself
+  color: $color-primary
+.material-button.alert
+  color: rgb(255, 110, 69)
+.material-button.warn
+  color: rgb(240, 170, 23)
 </style>

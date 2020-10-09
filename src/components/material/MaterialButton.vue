@@ -64,11 +64,11 @@ export default defineComponent({
     background-color: lighten($color-primary, 5%)
   &.material-button-text
     @include TypeColorPrimary()
-    background-color: $color-base
+    background-color: rgba(0,23,37,0)
     box-shadow: none
     &:hover
       @include  BoxShadow1()
-      background-color: darken($color-base, 10%)
+      background-color: rgba(0,23,37,0.1)
 
 .material-button + .material-button
   margin-left: 8px
