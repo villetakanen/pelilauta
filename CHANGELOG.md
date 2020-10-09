@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.24.1](https://github.com/villetakanen/pelilauta/compare/v1.24.0...v1.24.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* **editor:** frozen people can no longer post ([b79700c](https://github.com/villetakanen/pelilauta/commit/b79700ce694f325e6f59abc3c98bb47d1bca31f6))
+* **quality:** moved freeze actions to a component ([fc4f93d](https://github.com/villetakanen/pelilauta/commit/fc4f93d6bf752251ce329170181c249d0ed01b26))
+
 ## [1.24.0](https://github.com/villetakanen/pelilauta/compare/v1.23.2...v1.24.0) (2020-10-09)
 
 
