@@ -5,7 +5,7 @@
   <teleport to="body">
     <MaterialFab
       text="New post"
-      to="/stream/post"
+      :to="`/stream/post/${topic}`"
     >
       <img
         src="@/assets/add.svg"

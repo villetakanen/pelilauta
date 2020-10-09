@@ -17,7 +17,7 @@
             >
           </div>
           <select
-            v-model="topic"
+            v-model="chosenTopic"
             name="topic"
           >
             <option
@@ -66,10 +66,17 @@ export default defineComponent({
     MaterialCard,
     Editor
   },
-  setup () {
+  props: {
+    topic: {
+      type: String,
+      required: false,
+      default: 'Yleinen'
+    }
+  },
+  setup (props) {
     const content = ref('')
     const title = ref('')
-    const topic = ref('Roolipelit')
+    const chosenTopic = ref(props.topic)
     const images = ref('')
     const { isAuthz, uid } = useAuthz()
     const { topics } = useMeta()
@@ -121,14 +128,14 @@ export default defineComponent({
           author: uid.value,
           content: c,
           created: firebase.firestore.FieldValue.serverTimestamp(),
-          topic: topic.value,
+          topic: chosenTopic.value,
           images: images.value
         }).then(() => {
-        router.push('/stream/topic/' + topic.value.toLowerCase())
+        router.push('/stream/topic/' + chosenTopic.value.toLowerCase())
       })
     }
 
-    return { isAuthz, post, onInput, content, topic, topics, title, titlePlaceHolder, images }
+    return { isAuthz, post, onInput, content, chosenTopic, topics, title, titlePlaceHolder, images }
   }
 })
 </script>

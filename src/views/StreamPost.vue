@@ -1,5 +1,5 @@
 <template>
-  <NewPostCard />
+  <NewPostCard :topic="topic" />
 </template>
 
 <script lang="ts">
@@ -11,7 +11,12 @@ export default defineComponent({
   components: {
     NewPostCard
   },
-  setup () {
+  props: {
+    topic: {
+      type: String,
+      required: false,
+      default: ''
+    }
   }
 })
 </script>
