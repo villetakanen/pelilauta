@@ -5,15 +5,19 @@
         {{ nick }}
       </div>
       <div class="spacer" />
-      <MaterialMenu
-        v-model="menu"
-        small
-      />
     </div>
     <div
       class="message"
-      :innerHTML="content"
-    />
+    >
+      <MaterialMenu
+        v-model="menu"
+        small
+        style="float: right"
+      />
+      <div
+        :innerHTML="content"
+      />
+    </div>
   </div>
 </template>
 
@@ -76,6 +80,16 @@ export default defineComponent({
 @import ../../styles/material-typography.sass
 @import @/styles/material-colors.sass
 
+.message
+  @include BoxShadow3()
+  padding: 8px
+  border-radius: 0px 6px 6px 6px
+  background-color: white
+
+.stream-reply
+  @include TypeBody2()
+  margin: 8px
+
 #app #mainContentWrapper main
   .tester
     background-color: white
@@ -84,7 +98,6 @@ export default defineComponent({
   p.caption
     padding-bottom: 4px
   div.stream-reply
-    @include TypeBody2()
     padding-top: 8px
     div.author
       font-weight: 500

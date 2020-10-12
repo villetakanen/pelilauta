@@ -8,6 +8,7 @@ export interface Post {
     postid: string;
     topic: string;
     title: string;
+    images?: string;
 }
 export interface PostData {
   author: string;

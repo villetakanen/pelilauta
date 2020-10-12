@@ -16,6 +16,19 @@
       class="stream-post-content"
       :innerHTML="postData.content"
     />
+
+    <div
+      v-if="postData.images"
+      class="images"
+    >
+      <img
+        v-for="url in postData.images.split(';')"
+        :key="url"
+        :src="url"
+      >
+    </div>
+  </MaterialCard>
+  <div class="replybox">
     <div
       v-for="(post) in replies"
       :key="post.replyid"
@@ -35,7 +48,7 @@
     </div>
 
     <transition name="fade">
-      <div v-if="replyBoxVisible">
+      <MaterialCard v-if="replyBoxVisible">
         <Editor v-model="replyContent" />
         <div class="toolbar">
           <div class="spacer" />
@@ -43,11 +56,11 @@
             Post!
           </MaterialButton>
         </div>
-      </div>
+      </MaterialCard>
     </transition>
 
     <transition name="fade">
-      <div
+      <MaterialCard
         v-if="!replyBoxVisible && showStreamActions"
         class="toolbar"
       >
@@ -57,9 +70,9 @@
         >
           Reply
         </MaterialButton>
-      </div>
+      </MaterialCard>
     </transition>
-  </MaterialCard>
+  </div>
 </template>
 
 <script lang="ts">
@@ -97,7 +110,8 @@ export default defineComponent({
       content: '',
       created: -1,
       topic: '',
-      title: ''
+      title: '',
+      images: ''
     }
     const postData = ref(postDataTyped)
 
@@ -126,6 +140,7 @@ export default defineComponent({
           postData.value.topic = doc.data()?.topic
           postData.value.created = doc.data()?.created.seconds
           postData.value.author = doc.data()?.author
+          postData.value.images = doc.data()?.images
 
           const authorRef = db.collection('profiles').doc(postData.value.author)
           authorRef.get().then((authorDoc) => {
@@ -200,6 +215,11 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
 @import @/styles/material-colors.sass
+
+.replybox
+  background-color: $color-base-darker
+  margin-top: 8px
+  padding-bottom: 8px
 
 #app #mainContentWrapper main
   .stream-post
