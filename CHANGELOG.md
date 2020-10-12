@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.25.1](https://github.com/villetakanen/pelilauta/compare/v1.25.0...v1.25.1) (2020-10-12)
+
+
+### Bug Fixes
+
+* **ux:** avatar never shrinks ([841f8a3](https://github.com/villetakanen/pelilauta/commit/841f8a361daf5f24fb61e7ff64e94632d68a1c30))
+* **ux:** viewpost layout ([0f706ca](https://github.com/villetakanen/pelilauta/commit/0f706ca828302dc7d0f31b16c0e583f898eb83f0))
+
 ## [1.25.0](https://github.com/villetakanen/pelilauta/compare/v1.24.1...v1.25.0) (2020-10-09)
 
 
