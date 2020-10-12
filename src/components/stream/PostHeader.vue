@@ -1,18 +1,10 @@
 <template>
   <div class="PostHeader toolbar">
-    <div class="avatar">
-      <transition name="fade">
-        <img
-          v-if="photo"
-          :src="photo"
-          :alt="nick"
-        >
-        <img
-          v-else
-          src="@/assets/discuss.svg"
-        >
-      </transition>
-    </div>
+    <Avatar
+      :nick="nick"
+      :photo="photo"
+      :uid="author"
+    />
     <div class="InfoBar">
       <h3 class="title">
         <router-link :to="`/stream/view/${postid}`">
@@ -36,6 +28,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
+import Avatar from '@/components/app/Avatar.vue'
 import { MenuItem, useStream } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
 import { useMeta } from '@/lib/meta'
@@ -43,7 +36,8 @@ import { useMeta } from '@/lib/meta'
 export default defineComponent({
   name: 'PostHeader',
   components: {
-    MaterialMenu
+    MaterialMenu,
+    Avatar
   },
   props: {
     nick: {
@@ -116,13 +110,6 @@ export default defineComponent({
 
 .PostHeader
   .avatar
-    @include ElementColorPrimaryLight()
-    width: 40px
-    height: 40px
-    border-radius: 50%
-    overflow: hidden
-    margin: 0
-    padding: 2px
     img
       height: 40px
       width: 40px
