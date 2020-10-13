@@ -14,9 +14,9 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   props: {
     text: {
-      type: [String, Boolean],
+      type: Boolean,
       required: false,
-      default: undefined
+      default: false
     },
     action: {
       type: Function,
@@ -38,12 +38,12 @@ export default defineComponent({
     const buttonClasses = ref(
       {
         'material-button': true,
-        'material-button-text': false,
+        'material-button-text': props.text,
         'colortheme-secondary': false,
         'material-button-icon': props.icon
       }
     )
-    if (typeof props.text !== 'undefined') buttonClasses.value['material-button-text'] = true
+    // if (typeof props.text !== 'undefined') buttonClasses.value['material-button-text'] = true
     if (props.color === 'secondary') buttonClasses.value['colortheme-secondary'] = true
 
     const clicked = () => {

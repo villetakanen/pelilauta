@@ -13,25 +13,28 @@
     </p>
   </MaterialCard>
   <Dialog v-model="dialog">
-    <MaterialCard>
+    <!-- MaterialCard>
       <h1>Dialog!</h1>
       <p>Hmm, it seems your account is frozen? Maybe you should contact the admins for more info.</p>
-    </MaterialCard>
+    </MaterialCard -->
+    <EditorCard />
   </Dialog>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
+import EditorCard from '@/components/editor/EditorCard.vue'
 import Dialog from '@/components/material/Dialog.vue'
+import MaterialCard from '@/components/material/MaterialCard.vue'
 import UserList from '@/components/UserList.vue'
 
 export default defineComponent({
   name: 'Admin',
   components: {
-    MaterialCard,
+    EditorCard,
     UserList,
-    Dialog
+    Dialog,
+    MaterialCard
   },
   setup () {
     const dialog = ref(false)

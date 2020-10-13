@@ -3,7 +3,7 @@
     <div
       v-show="modelValue"
       class="material-dialog-container"
-      @click="close"
+      @click.self="close"
     >
       <transition name="bounce">
         <div
