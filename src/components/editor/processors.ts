@@ -1,3 +1,5 @@
+import { PostImage } from '@/lib/stream'
+
 const patternStart = '(<div>|<br>| |^|&nbsp;)'
 const patternEnd = '(&nbsp;| |<div>|</div>|<br>|$)'
 
@@ -9,7 +11,7 @@ function processLinks (content: string): string {
   return content
 }
 
-export function processContent (content: string): string {
+export function processContent (content: string) {
   content = processLinks(content)
-  return content
+  return { update: content, newImages: new Array<PostImage>() }
 }

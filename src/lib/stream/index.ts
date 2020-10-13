@@ -10,12 +10,17 @@ export interface Post {
     title: string;
     images?: string;
 }
+
+export interface PostImage {
+  url: string;
+}
+
 export interface PostData {
   author: string;
   content: string;
-  created: number;
   topic: string;
   title: string;
+  images?: PostImage[];
 }
 
 export interface Profile {
@@ -62,6 +67,16 @@ async function getPost (postid: string): Promise<Post|null> {
   })
 }
 
+async function addPost (postData: PostData) {
+  const db = firebase.firestore()
+  const streamRef = db.collection('stream')
+  return streamRef.add({
+    ...postData,
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+    flowTime: firebase.firestore.FieldValue.serverTimestamp()
+  })
+}
+
 function updatePost (postid: string, title: string, content: string, topic: string): void {
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(postid)
@@ -75,5 +90,5 @@ function updatePost (postid: string, title: string, content: string, topic: stri
 }
 
 export function useStream () {
-  return { dropPost, getPost, updatePost }
+  return { dropPost, getPost, updatePost, addPost }
 }

@@ -33,14 +33,18 @@
     />
     <ImageUploadBar
       v-model="images"
-      v-model:selected="selectedImageIndex"
     />
     <div class="toolbar">
       <div class="spacer" />
-      <MaterialButton text>
+      <MaterialButton
+        text
+        :action="cancel"
+      >
         Cancel
       </MaterialButton>
-      <MaterialButton>Send</MaterialButton>
+      <MaterialButton :action="send">
+        Send
+      </MaterialButton>
     </div>
   </MaterialCard>
 </template>
@@ -52,6 +56,9 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 import ImageUploadBar from './ImageUploadBar.vue'
 import { useMeta } from '@/lib/meta'
 import { processContent } from './processors'
+import { useStream, PostData, PostImage } from '@/lib/stream'
+import { useAuthz } from '@/lib/authz'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   components: {
@@ -62,18 +69,22 @@ export default defineComponent({
   props: {
     postid: { type: String, required: false, default: '' }
   },
-  setup () {
+  emits: ['close-dialog'],
+  setup (props, context) {
+    const router = useRouter()
+    const { uid } = useAuthz()
+    const { addPost } = useStream()
+
     const title = ref('')
     const chosenTopic = ref('Yleinen')
     const content = ref('')
-    const images = ref(new Array<string>())
-    images.value.push('https://artprojectsforkids.org/wp-content/uploads/2019/05/dragon-9.jpg')
-    images.value.push('https://d279m997dpfwgl.cloudfront.net/wp/2018/05/dragon-1-1000x500.png')
+    const images = ref(new Array<PostImage>())
     const { topics } = useMeta()
-    const selectedImageIndex = ref(1)
 
     function setEditorContent (el: HTMLElement) {
-      content.value = processContent(el.innerHTML)
+      const { update, newImages } = processContent(el.innerHTML)
+      content.value = update
+      if (newImages) newImages.forEach((image) => { images.value.push(image) })
     }
 
     function onPaste (event: ClipboardEvent) {
@@ -92,12 +103,29 @@ export default defineComponent({
       setEditorContent(event.target as HTMLElement)
     }
 
-    return { title, chosenTopic, topics, content, onPaste, onInput, images, selectedImageIndex }
+    function cancel () {
+      context.emit('close-dialog')
+    }
+
+    function send () {
+      const postData: PostData = {
+        author: uid.value,
+        content: content.value,
+        title: title.value,
+        topic: chosenTopic.value
+      }
+      addPost(postData).then((doc) => {
+        router.push(`/stream/view/${doc.id}`)
+        context.emit('close-dialog')
+      })
+    }
+
+    return { title, chosenTopic, topics, content, onPaste, onInput, images, cancel, send }
   }
 })
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 @import @/styles/layout.sass

@@ -1,24 +1,31 @@
 <template>
   <div class="image-upload-toolbar">
     <div
-      v-for="(image, index) in images"
+      v-for="(image) in images"
       :key="image.url"
       class="image-preview"
-      :class="{ selected: index === focus}"
-      @click="focus=index"
     >
       <img :src="image.url">
     </div>
     <div class="image-add">
-      ...
+      <input
+        id="file"
+        class="toolbar-action"
+        type="file"
+        @change="uploadImage"
+      >
+      <label for="file">
+        <img src="@/assets/add-photo-action.svg">
+      </label>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-// import * as firebase from 'firebase/app'
-// import 'firebase/storage'
+import { PostImage } from '@/lib/stream'
+import * as firebase from 'firebase/app'
+import 'firebase/storage'
 // import { setCaret, getCaretOffset } from './caret'
 
 export default defineComponent({
@@ -26,23 +33,33 @@ export default defineComponent({
     modelValue: {
       type: Array,
       required: false,
-      default: new Array<string>()
-    },
-    selected: {
-      type: Number,
-      required: false,
-      default: -1
+      default: new Array<PostImage>()
     }
   },
   emits: ['update:modelValue', 'update:selected'],
   setup (props, context) {
-    const images = ref(props.modelValue.map((val) => { return { url: val, uploading: false } }))
-    const focus = ref(props.selected)
+    const images = ref(props.modelValue as Array<PostImage>)
 
     watch(images, (value) => context.emit('update:modelValue', value))
-    watch(focus, (value) => context.emit('update:selected', value))
 
-    return { images, focus }
+    function uploadImage (e: Event) {
+      if (!e.target) return
+      const element = e.target as HTMLInputElement
+      if (element.files && element.files[0]) {
+        const file = element.files[0]
+        console.log('uploadImage', file)
+        const storageRef = firebase.storage().ref()
+        const fileRef = storageRef.child('/stream/uploads/' + new Date().getTime() + file.name)
+        fileRef.put(file).then((snapshot) => {
+          snapshot.ref.getDownloadURL().then((url) => {
+            console.log('uploaded!', url)
+            images.value.push({ url: url })
+          })
+        })
+      }
+    }
+
+    return { images, focus, uploadImage }
   }
 })
 </script>
@@ -66,4 +83,38 @@ export default defineComponent({
     margin: 2px
     vertical-align: middle
     display: inline-block
+.image-add
+  height: 48px
+  width: 48px
+  vertical-align: middle
+  display: inline-block
+
+[type="file"]
+  border: 0
+  clip: rect(0, 0, 0, 0)
+  height: 1px
+  overflow: hidden
+  padding: 0
+  position: absolute !important
+  white-space: nowrap
+  width: 1px
+
+  + label
+    // File upload button styles
+    opacity: 0.5
+    img
+      height: 44px
+      width: 44px
+      margin: 2px
+      vertical-align: middle
+      display: inline-block
+
+  &:focus + label,
+  + label:hover
+    // File upload hover state button styles
+    opacity: 0.8
+
+  &:focus + label
+    // File upload focus state button styles
+    opacity: 1
 </style>

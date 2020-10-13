@@ -12,12 +12,14 @@
       <a @click="dialog=!dialog">Show Dialog</a>
     </p>
   </MaterialCard>
-  <Dialog v-model="dialog">
+  <Dialog
+    v-model="dialog"
+  >
     <!-- MaterialCard>
       <h1>Dialog!</h1>
       <p>Hmm, it seems your account is frozen? Maybe you should contact the admins for more info.</p>
     </MaterialCard -->
-    <EditorCard />
+    <EditorCard @close-dialog="dialog=false" />
   </Dialog>
 </template>
 
