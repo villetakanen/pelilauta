@@ -33,6 +33,7 @@ export interface Post {
   topic?: string;
   title?: string;
   images?: string;
+  flowTime: firebase.firestore.Timestamp;
 }
 
 interface PostData {
@@ -69,7 +70,7 @@ export default defineComponent({
       const { created } = (data as PostData)
       post.created = created?.seconds
       latestPosts.value.push(post)
-      latestPosts.value = latestPosts.value.sort((a, b) => (typeof a.created === 'undefined' ? -1 : b.created - a.created))
+      latestPosts.value = latestPosts.value.sort((a, b) => (typeof a.flowTime === 'undefined' ? -1 : b.flowTime.seconds - a.flowTime.seconds))
     }
 
     /**
@@ -96,7 +97,7 @@ export default defineComponent({
       const streamRef = db.collection('stream')
 
       if (!topic) {
-        unsubscribe = streamRef.orderBy('created', 'desc').limit(11).onSnapshot((snapshot) => {
+        unsubscribe = streamRef.orderBy('flowTime', 'desc').limit(11).onSnapshot((snapshot) => {
           snapshot.docChanges().forEach((change) => {
             if (change.type === 'added') addPostToStream(change.doc.id, change.doc.data())
             if (change.type === 'removed') removePostFromStream(change.doc.id)
