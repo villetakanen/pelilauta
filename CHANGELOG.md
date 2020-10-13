@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/villetakanen/pelilauta/compare/v1.25.2...v2.0.0) (2020-10-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **stream:** The stream now uses flowtime, which breaks all posts and
+comments before 2.0.0
+
+### Features
+
+* **stream:** flowtime added ([8fc52d3](https://github.com/villetakanen/pelilauta/commit/8fc52d3417beb50487e82537be3b5a7da8beff1a))
+
+
+### Bug Fixes
+
+* **code:** refactoring editor to dialog ([1b35866](https://github.com/villetakanen/pelilauta/commit/1b35866ab1fb112baef1459b2df96a55f7ead1aa))
+* **editor:** splitting code to pop-up editor ([56b6be0](https://github.com/villetakanen/pelilauta/commit/56b6be04115a92af9581c2790aa5224fa5fb7d6e))
+
 ### [1.25.2](https://github.com/villetakanen/pelilauta/compare/v1.25.1...v1.25.2) (2020-10-13)
 
 
