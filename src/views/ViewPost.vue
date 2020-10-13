@@ -38,7 +38,7 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import Discussion from '@/components/stream/Discussion.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
-import { Post, Profile, Reply } from '@/lib/stream'
+import { Post, Profile } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
 import PostHeader from '@/components/stream/PostHeader.vue'
 import { useRouter } from 'vue-router'
@@ -74,13 +74,13 @@ export default defineComponent({
     }
     const authorData = ref(authorDataTyped)
 
-    const repliesTyped: Reply[] = []
-    const replies = ref(repliesTyped)
+    // const repliesTyped: Reply[] = []
+    // const replies = ref(repliesTyped)
 
-    const replyBoxVisible = ref(false)
-    const replyContent = ref('')
+    // const replyBoxVisible = ref(false)
+    // const replyContent = ref('')
 
-    const { uid, profile } = useAuthz()
+    const { uid } = useAuthz()
 
     const getPostData = () => {
       const db = firebase.firestore()
@@ -101,8 +101,8 @@ export default defineComponent({
             authorData.value.photoURL = authorDoc.data()?.photoURL
           })
 
-          const repliesRef = db.collection('stream').doc(props.postid).collection('comments').orderBy('created', 'asc')
-          repliesRef.onSnapshot((changes) => {
+          /* const repliesRef = db.collection('stream').doc(props.postid).collection('comments').orderBy('created', 'asc')
+          /* repliesRef.onSnapshot((changes) => {
             changes.docChanges().forEach((change) => {
               if (change.type === 'added') {
                 let rfound = false
@@ -122,17 +122,17 @@ export default defineComponent({
                 replies.value = replies.value.filter((reply) => (reply.replyid !== change.doc.id))
               }
             })
-          })
+          }) */
         }
       })
     }
     onMounted(() => getPostData())
 
-    function showReply () {
+    /* function showReply () {
       replyBoxVisible.value = true
-    }
+    } */
 
-    function post (): void {
+    /* function post (): void {
       const db = firebase.firestore()
       const streamRef = db.collection('stream').doc(props.postid).collection('comments')
       streamRef.add(
@@ -145,7 +145,7 @@ export default defineComponent({
         replyContent.value = ''
         replyBoxVisible.value = false
       })
-    }
+    } */
 
     const isAuthor = computed((): boolean => (uid.value === postData.value.author))
 
@@ -160,7 +160,7 @@ export default defineComponent({
 
     const { showStreamActions } = useMeta()
 
-    return { authorData, postData, replies, replyBoxVisible, replyContent, showReply, isAuthor, deletePost, post, showStreamActions }
+    return { authorData, postData, isAuthor, deletePost, showStreamActions }
   }
 })
 </script>
