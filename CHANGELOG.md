@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.25.2](https://github.com/villetakanen/pelilauta/compare/v1.25.1...v1.25.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* **comments:** moved reply box to a component ([4fdb559](https://github.com/villetakanen/pelilauta/commit/4fdb5591f6d56a27276368aed1c3240a37d1f9f4))
+* **qa:** commented out dead code ([527fca1](https://github.com/villetakanen/pelilauta/commit/527fca15e4a8a144e4db9b089e07840836e77455))
+* **quality:** code splitting ([cd47946](https://github.com/villetakanen/pelilauta/commit/cd47946f90fff7f252abc080983614e93c3e4f06))
+
 ### [1.25.1](https://github.com/villetakanen/pelilauta/compare/v1.25.0...v1.25.1) (2020-10-12)
 
 
