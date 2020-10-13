@@ -29,6 +29,7 @@ export interface Reply {
   nick: string;
   author: string;
   createdSeconds?: number;
+  created?: firebase.firestore.Timestamp;
 }
 
 export interface MenuItem {

@@ -27,64 +27,19 @@
         :src="url"
       >
     </div>
+
+    <Discussion :postid="postid" />
   </MaterialCard>
-  <div class="replybox">
-    <div
-      v-for="(post) in replies"
-      :key="post.replyid"
-      class="reply"
-    >
-      <transition name="fade">
-        <div v-if="post.content">
-          <StreamReply
-            :author="post.author"
-            :content="post.content"
-            :commentid="post.replyid"
-            :nick="post.nick"
-            :postid="postData.postid"
-          />
-        </div>
-      </transition>
-    </div>
-
-    <transition name="fade">
-      <MaterialCard v-if="replyBoxVisible">
-        <Editor v-model="replyContent" />
-        <div class="toolbar">
-          <div class="spacer" />
-          <MaterialButton :action="post">
-            Post!
-          </MaterialButton>
-        </div>
-      </MaterialCard>
-    </transition>
-
-    <transition name="fade">
-      <MaterialCard
-        v-if="!replyBoxVisible && showStreamActions"
-        class="toolbar"
-      >
-        <div class="spacer" />
-        <MaterialButton
-          :action="showReply"
-        >
-          Reply
-        </MaterialButton>
-      </MaterialCard>
-    </transition>
-  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
-import Editor from '@/components/editor/Editor.vue'
+import Discussion from '@/components/stream/Discussion.vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Post, Profile, Reply } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
-import StreamReply from '@/components/stream/StreamReply.vue'
 import PostHeader from '@/components/stream/PostHeader.vue'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/lib/meta'
@@ -92,10 +47,8 @@ import { useMeta } from '@/lib/meta'
 export default defineComponent({
   components: {
     MaterialCard,
-    StreamReply,
-    MaterialButton,
-    Editor,
-    PostHeader
+    PostHeader,
+    Discussion
   },
   props: {
     postid: {
