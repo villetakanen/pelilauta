@@ -7,12 +7,12 @@
       <div v-if="post.content">
         <StreamPost
           :created="post.created"
-          :topic="post.topic"
+          :topic="post.data.topic"
           :author="post.author"
-          :content="post.content"
+          :content="post.data.content"
           :postid="post.postid"
-          :title="post.title"
-          :images="post.images"
+          :title="post.data.title"
+          :images="post.data.images"
         />
       </div>
     </div>
@@ -68,7 +68,7 @@ export default defineComponent({
       if (props.topic) {
         return stream.value.filter((post) => (post.data.topic === props.topic))
       }
-      return stream
+      return stream.value
     })
     return { posts }
   }

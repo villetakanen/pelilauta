@@ -81,6 +81,7 @@ function subscribe () {
   const streamRef = db.collection('stream')
   streamRef.orderBy('flowTime', 'desc').limit(11).onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
+      console.log('pushing', toPost(change.doc.id, change.doc.data()))
       if (change.type === 'added') patchPostToState(toPost(change.doc.id, change.doc.data()))
       if (change.type === 'removed') streamState.value = streamState.value.filter((post) => (post.postid !== change.doc.id))
     })
