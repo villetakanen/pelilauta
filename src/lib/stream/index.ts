@@ -70,6 +70,7 @@ function toPost (postid: string, data:firebase.firestore.DocumentData|undefined)
  */
 function patchPostToState (post: Post|undefined) {
   if (post) {
+    streamState.value = streamState.value.filter((p) => (post.postid !== p.postid))
     streamState.value.push(post)
     streamState.value = streamState.value.sort((a, b) => (typeof a.flowTime === 'undefined' ? -1 : b.flowTime.seconds - a.flowTime.seconds))
   }
@@ -89,8 +90,7 @@ function subscribe () {
   const streamRef = db.collection('stream')
   streamRef.orderBy('flowTime', 'desc').limit(11).onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
-      // console.log('pushing', toPost(change.doc.id, change.doc.data()))
-      if (change.type === 'added') patchPostToState(toPost(change.doc.id, change.doc.data()))
+      if (change.type !== 'removed') patchPostToState(toPost(change.doc.id, change.doc.data()))
       if (change.type === 'removed') streamState.value = streamState.value.filter((post) => (post.postid !== change.doc.id))
     })
   })
