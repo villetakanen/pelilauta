@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, ComputedRef } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import { useAuthz } from '../authz'
@@ -57,7 +57,12 @@ function _init () {
   })
 }
 
-export function useMeta () {
+export function useMeta (): {
+  isAdmin: (uid: string) => boolean;
+  isFrozen: (uid: string) => boolean;
+  topics: ComputedRef<Topic[]>;
+  showStreamActions: ComputedRef<boolean>;
+  } {
   _init()
   return { isAdmin, isFrozen, topics, showStreamActions }
 }

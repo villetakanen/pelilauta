@@ -1,51 +1,50 @@
 <template>
-  <MaterialCard class="stream-post">
-    <!-- The top bar -->
-    <PostHeader
-      :nick="authorData.nick"
-      :photo="authorData.photoURL"
-      :title="post.data.title"
-      :postid="post.postid"
-      :created="post.created + ''"
-      :topic="post.data.topic"
-      :author="postData.author"
-    />
+  <div class="viewer">
+    <div class="post-header">
+      <!-- The top bar -->
+      <PostHeader
+        :nick="author.nick"
+        :photo="author.photoURL"
+        :title="post.data.title"
+        :postid="post.postid"
+        :created="post.created + ''"
+        :topic="post.data.topic"
+        :author="post.author"
+      />
+    </div>
 
     <div
       class="stream-post-content"
-      :innerHTML="postData.content"
+      :innerHTML="post.data.content"
     />
 
     <div
-      v-if="postData.images"
+      v-if="post.data.images"
       class="images"
     >
       <img
-        v-for="url in postData.images.split(';')"
+        v-for="url in post.data.images"
         :key="url"
         :src="url"
       >
     </div>
 
     <Discussion :postid="postid" />
-  </MaterialCard>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
+import { defineComponent, computed } from 'vue'
 import Discussion from '@/components/stream/Discussion.vue'
-import * as firebase from 'firebase/app'
-import 'firebase/firestore'
 import { useStream } from '@/lib/stream'
-import { useAuthz } from '@/lib/authz'
+import { useAuthors } from '@/lib/authors'
 import PostHeader from '@/components/stream/PostHeader.vue'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/lib/meta'
+import { useAuthz } from '@/lib/authz'
 
 export default defineComponent({
   components: {
-    MaterialCard,
     PostHeader,
     Discussion
   },
@@ -56,21 +55,17 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const router = useRouter()
     const { uid } = useAuthz()
-
-    const { stream } = useStream()
+    const { stream, dropPost } = useStream()
     const post = computed(() => {
-      return stream.value.filter((post) => (post.postid = props.postid))[0]
+      return stream.value.filter((post) => (post.postid === props.postid))[0]
     })
-    const { getProfile } = useProfiles()
-    const author = computed(() => (getProfile(post.value?.author)))
-
+    const { getAuthor } = useAuthors()
+    const author = computed(() => (getAuthor(post.value?.author)))
 
     function deletePost (): void {
-      const db = firebase.firestore()
-      const postRef = db.collection('stream').doc(props.postid)
-      postRef.delete().then(() => {
-        const router = useRouter()
+      dropPost(uid.value, props.postid).then(() => {
         router.push('/')
       })
     }

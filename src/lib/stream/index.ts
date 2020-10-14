@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, ComputedRef } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
@@ -26,6 +26,7 @@ export interface Post {
 }
 
 export interface Profile {
+  uid?: string;
   nick: string;
   photoURL: string;
 }
@@ -48,6 +49,11 @@ export interface MenuItem {
 
 const streamState = ref(new Array<Post>())
 const stream = computed(() => (streamState.value))
+
+function toDisplayString (timestamp:firebase.firestore.Timestamp): string {
+  const dateString = new Date((timestamp.seconds + 10800) * 1000 + new Date().getTimezoneOffset()).toISOString()
+  return dateString.substring(11, 19) + ' - ' + dateString.substring(0, 10)
+}
 
 function toPost (postid: string, data:firebase.firestore.DocumentData|undefined): Post|undefined {
   if (!data) return undefined
@@ -88,13 +94,13 @@ function subscribe () {
   })
 }
 
-function dropPost (actor: string, postid: string) {
+async function dropPost (actor: string, postid: string) {
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(postid)
-  postRef.delete()
+  return postRef.delete()
 }
 
-async function getPost (postid: string): Promise<Post|null> {
+/* async function getPost (postid: string): Promise<Post|null> {
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(postid)
 
@@ -108,7 +114,7 @@ async function getPost (postid: string): Promise<Post|null> {
       }
     })
   })
-}
+} */
 
 async function addPost (postData: PostData, author: string) {
   const db = firebase.firestore()
@@ -121,7 +127,7 @@ async function addPost (postData: PostData, author: string) {
   })
 }
 
-function updatePost (postid: string, title: string, content: string, topic: string): void {
+async function updatePost (postid: string, title: string, content: string, topic: string) {
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(postid)
 
@@ -133,7 +139,13 @@ function updatePost (postid: string, title: string, content: string, topic: stri
   })
 }
 
-export function useStream () {
+export function useStream (): {
+  stream: ComputedRef<Post[]>;
+  dropPost: (actor: string, postid: string) => Promise<void>;
+  updatePost: (postid: string, title: string, content: string, topic: string) => Promise<void>;
+  addPost: (postData: PostData, author: string) => Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>;
+  toDisplayString: (timestamp:firebase.firestore.Timestamp) => string;
+  } {
   subscribe()
-  return { stream, dropPost, getPost, updatePost, addPost }
+  return { stream, dropPost, updatePost, addPost, toDisplayString }
 }

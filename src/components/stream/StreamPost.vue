@@ -6,7 +6,7 @@
       :photo="photoURL"
       :title="title"
       :postid="postid"
-      :created="createdTime"
+      :created="created"
       :topic="topic"
       :tslug="topic.toLowerCase()"
       :author="author"
@@ -21,7 +21,7 @@
       class="images"
     >
       <img
-        v-for="url in images.split(';')"
+        v-for="url in images"
         :key="url"
         :src="url"
       >
@@ -35,7 +35,7 @@
   </MaterialCard>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch, computed } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PostHeader from './PostHeader.vue'
 import * as firebase from 'firebase/app'
@@ -74,7 +74,7 @@ export default defineComponent({
       default: ''
     },
     created: {
-      type: Number,
+      type: String,
       required: false,
       default: -1
     },
@@ -84,9 +84,9 @@ export default defineComponent({
       default: ''
     },
     images: {
-      type: String,
+      type: Array,
       required: false,
-      default: ''
+      default: new Array<ImageData>()
     }
   },
   setup (props) {
@@ -130,12 +130,7 @@ export default defineComponent({
     })
     watch(props, loadData)
 
-    const createdTime = computed(() => {
-      const dateString = new Date((props.created + 10800) * 1000 + new Date().getTimezoneOffset()).toISOString()
-      return dateString.substring(11, 19) + ' - ' + dateString.substring(0, 10)
-    })
-
-    return { nick, photoURL, isAuthz, replies, createdTime }
+    return { nick, photoURL, isAuthz, replies }
   }
 })
 </script>

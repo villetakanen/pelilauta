@@ -4,9 +4,9 @@
       v-for="(post) in posts"
       :key="post.postid"
     >
-      <div v-if="post.content">
+      <div v-if="post.data.content">
         <StreamPost
-          :created="post.created"
+          :created="toDisplayString(post.created)"
           :topic="post.data.topic"
           :author="post.author"
           :content="post.data.content"
@@ -20,28 +20,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, onUnmounted, computed } from 'vue'
-import * as firebase from 'firebase/app'
-import 'firebase/auth'
+import { defineComponent, computed } from 'vue'
 import StreamPost from './StreamPost.vue'
 import { useStream } from '@/lib/stream'
-
-export interface Post {
-  author: string;
-  content: string;
-  created: number;
-  postid: string;
-  topic?: string;
-  title?: string;
-  images?: string;
-  flowTime: firebase.firestore.Timestamp;
-}
-
-interface PostData {
-  created: {
-    seconds: number;
-  };
-}
 
 export default defineComponent({
   components: {
@@ -55,14 +36,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { stream } = useStream()
-
-    // unsubscribe to the Firebase onSnapshot listener
-    const unsubscribe = () => {}
-
-    const capitalize = (s: string) => {
-      return s.charAt(0).toUpperCase() + s.slice(1)
-    }
+    const { stream, toDisplayString } = useStream()
 
     const posts = computed(() => {
       if (props.topic) {
@@ -70,7 +44,8 @@ export default defineComponent({
       }
       return stream.value
     })
-    return { posts }
+
+    return { posts, toDisplayString }
   }
 })
 </script>
