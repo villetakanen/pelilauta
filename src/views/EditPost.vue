@@ -82,10 +82,10 @@ export default defineComponent({
     const canEdit = ref(false)
     getPost(props.postid).then((post) => {
       if (post) {
-        content.value = post.content
-        title.value = post.title
+        content.value = post.data.content
+        title.value = post.data.title
         canEdit.value = isAdmin(uid.value) || uid.value === post.author
-        topic.value = post.topic
+        topic.value = post.data.topic
       }
     })
     const router = useRouter()

@@ -11,9 +11,9 @@ let parentPostid = ''
 
 let unsubscribe = () => {}
 
-function upsertComment (commentid: string, data: object) {
+function upsertComment (commentid: string, data: Reply) {
   console.log('upsertComment', commentid, data)
-  const comment = data as Reply
+  const comment = { ...data }
   comment.replyid = commentid
   discussionState.value.push(comment)
 }
@@ -43,7 +43,7 @@ function init (postid: string) {
     unsubscribe = discussionRef.onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === 'added') {
-          upsertComment(change.doc.id, change.doc.data())
+          upsertComment(change.doc.id, change.doc.data() as Reply)
         } else if (change.type === 'removed') {
           discussionState.value = discussionState.value.filter((reply) => (reply.replyid !== change.doc.id))
         }

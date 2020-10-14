@@ -109,12 +109,11 @@ export default defineComponent({
 
     function send () {
       const postData: PostData = {
-        author: uid.value,
         content: content.value,
         title: title.value,
         topic: chosenTopic.value
       }
-      addPost(postData).then((doc) => {
+      addPost(postData, uid.value).then((doc) => {
         router.push(`/stream/view/${doc.id}`)
         context.emit('close-dialog')
       })
