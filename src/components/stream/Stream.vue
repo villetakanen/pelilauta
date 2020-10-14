@@ -13,6 +13,7 @@
           :postid="post.postid"
           :title="post.data.title"
           :images="post.data.images"
+          :replycount="post.replyCount"
         />
       </div>
     </div>

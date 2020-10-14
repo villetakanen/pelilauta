@@ -21,6 +21,8 @@ export interface Post {
     created: firebase.firestore.Timestamp;
     flowTime: firebase.firestore.Timestamp;
     updated?: firebase.firestore.Timestamp;
+    // Meta
+    replyCount?: number;
     // Payload
     data: PostData
 }
@@ -87,7 +89,7 @@ function subscribe () {
   const streamRef = db.collection('stream')
   streamRef.orderBy('flowTime', 'desc').limit(11).onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
-      console.log('pushing', toPost(change.doc.id, change.doc.data()))
+      // console.log('pushing', toPost(change.doc.id, change.doc.data()))
       if (change.type === 'added') patchPostToState(toPost(change.doc.id, change.doc.data()))
       if (change.type === 'removed') streamState.value = streamState.value.filter((post) => (post.postid !== change.doc.id))
     })
@@ -99,22 +101,6 @@ async function dropPost (actor: string, postid: string) {
   const postRef = db.collection('stream').doc(postid)
   return postRef.delete()
 }
-
-/* async function getPost (postid: string): Promise<Post|null> {
-  const db = firebase.firestore()
-  const postRef = db.collection('stream').doc(postid)
-
-  return new Promise<Post|null>((resolve) => {
-    postRef.get().then((postDoc) => {
-      if (postDoc.exists) {
-        const post = toPost(postDoc.id, postDoc.data())
-        resolve(post)
-      } else {
-        return null
-      }
-    })
-  })
-} */
 
 async function addPost (postData: PostData, author: string) {
   const db = firebase.firestore()

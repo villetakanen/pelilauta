@@ -27,28 +27,22 @@
       >
     </div>
 
-    <div class="replycount">
+    <div
+      v-if="replycount > 0"
+      class="replycount"
+    >
       <router-link :to="`/stream/view/${postid}`">
-        {{ replies.length }} replies
+        {{ replycount }} replies
       </router-link>
     </div>
   </MaterialCard>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { computed, defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PostHeader from './PostHeader.vue'
-import * as firebase from 'firebase/app'
-import 'firebase/auth'
 import { useAuthz } from '@/lib/authz'
-
-interface Reply {
-  content: string;
-  replyid: string;
-  nick: string;
-  author: string;
-  createdSeconds?: number;
-}
+import { useAuthors } from '@/lib/authors'
 
 export default defineComponent({
   components: {
@@ -87,50 +81,22 @@ export default defineComponent({
       type: Array,
       required: false,
       default: new Array<ImageData>()
+    },
+    replycount: {
+      type: Number,
+      required: false,
+      default: -1
     }
   },
   setup (props) {
-    const nick = ref('')
-    const photoURL = ref('')
-    const repliesTyped: Reply[] = []
-    const replies = ref(repliesTyped)
     const { isAuthz } = useAuthz()
 
-    function loadData (): void {
-      const db = firebase.firestore()
-      const authorRef = db.collection('profiles').doc(props.author)
-      authorRef.get().then((doc) => {
-        if (doc.exists) {
-          nick.value = doc.data()?.nick
-          photoURL.value = doc.data()?.photoURL
-        }
-      })
-      const repliesRef = db.collection('stream').doc(props.postid).collection('comments').orderBy('created', 'asc')
-      repliesRef.onSnapshot((changes) => {
-        changes.docChanges().forEach((change) => {
-          let rfound = false
-          replies.value.forEach((reply) => {
-            if (reply.replyid === change.doc.id) rfound = true
-          })
-          if (!rfound) {
-            replies.value.push({
-              replyid: change.doc.id,
-              content: change.doc.data()?.content,
-              author: change.doc.data()?.author,
-              nick: change.doc.data()?.nick,
-              createdSeconds: change.doc.data()?.created?.seconds
-            })
-          }
-        })
-      })
-    }
+    const { getAuthor } = useAuthors()
 
-    onMounted(() => {
-      loadData()
-    })
-    watch(props, loadData)
+    const nick = computed(() => (getAuthor(props.author).nick))
+    const photoURL = computed(() => (getAuthor(props.author).photoURL))
 
-    return { nick, photoURL, isAuthz, replies }
+    return { nick, photoURL, isAuthz }
   }
 })
 </script>

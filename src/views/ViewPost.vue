@@ -1,6 +1,9 @@
 <template>
   <div class="viewer">
-    <div class="post-header">
+    <div
+      v-if="post"
+      class="post-header"
+    >
       <!-- The top bar -->
       <PostHeader
         :nick="author.nick"
@@ -14,12 +17,13 @@
     </div>
 
     <div
+      v-if="post"
       class="stream-post-content"
       :innerHTML="post.data.content"
     />
 
     <div
-      v-if="post.data.images"
+      v-if="post && post.data.images"
       class="images"
     >
       <img
@@ -57,10 +61,12 @@ export default defineComponent({
   setup (props) {
     const router = useRouter()
     const { uid } = useAuthz()
+
     const { stream, dropPost } = useStream()
     const post = computed(() => {
       return stream.value.filter((post) => (post.postid === props.postid))[0]
     })
+
     const { getAuthor } = useAuthors()
     const author = computed(() => (getAuthor(post.value?.author)))
 

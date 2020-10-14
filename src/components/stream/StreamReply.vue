@@ -25,10 +25,9 @@
 import { defineComponent, computed } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
-import * as firebase from 'firebase/app'
-import 'firebase/firestore'
 import { useMeta } from '@/lib/meta'
 import { MenuItem } from '@/lib/stream'
+import { useDiscussion } from '@/lib/discussion'
 
 export default defineComponent({
   components: {
@@ -59,15 +58,14 @@ export default defineComponent({
   setup (props) {
     const { uid } = useAuthz()
     const { isAdmin } = useMeta()
-    const deleteComment = () => {
-      const db = firebase.firestore()
-      const commentRef = db.collection('stream').doc(props.postid).collection('comments').doc(props.commentid)
-      commentRef.delete()
+    const { deleteComment } = useDiscussion(props.postid)
+    const dropComment = () => {
+      deleteComment(props.commentid)
     }
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       if (isAdmin(uid.value) || uid.value === props.author) {
-        arr.push({ action: deleteComment, text: 'Delete!' })
+        arr.push({ action: dropComment, text: 'Delete!' })
       }
       return arr
     })

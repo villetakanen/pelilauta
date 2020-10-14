@@ -1,5 +1,5 @@
 
-import { computed, ref } from 'vue'
+import { computed, ref, ComputedRef } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Reply } from '../stream'
@@ -29,7 +29,18 @@ function addComment (author: string, nick: string, comment: string) {
   }).then(() => {
     parentRef.update({
       lastCommentAt: firebase.firestore.FieldValue.serverTimestamp(),
-      flowTime: firebase.firestore.FieldValue.serverTimestamp()
+      flowTime: firebase.firestore.FieldValue.serverTimestamp(),
+      replyCount: firebase.firestore.FieldValue.increment(1)
+    })
+  })
+}
+
+function deleteComment (commentid:string) {
+  const parentRef = firebase.firestore().collection('stream').doc(parentPostid)
+  const commentRef = parentRef.collection('comments').doc(commentid)
+  commentRef.delete().then(() => {
+    parentRef.update({
+      replyCount: firebase.firestore.FieldValue.increment(-1)
     })
   })
 }
@@ -51,8 +62,12 @@ function init (postid: string) {
     })
   }
 }
-export function useDiscussion (postid: string) {
+export function useDiscussion (postid: string): {
+  discussion: ComputedRef<Reply[]>;
+  addComment: (author: string, nick: string, comment: string) => void;
+  deleteComment: (commentid: string) => void;
+} {
   console.log('useDiscussion', postid)
   init(postid)
-  return { discussion, addComment }
+  return { discussion, addComment, deleteComment }
 }
