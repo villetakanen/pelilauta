@@ -6,7 +6,7 @@
         <MaterialCard>
           <Editor
             v-model="content"
-            v-model:images="images"
+            @new-images="addImages"
           />
         </MaterialCard>
       </div>
@@ -35,8 +35,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Editor from '@/components/editor/Editor.vue'
+import Editor from '@/components/editor/Editor2.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import { PostImage } from '@/lib/stream'
 
 export default defineComponent({
   name: 'EditorTest',
@@ -49,7 +50,11 @@ export default defineComponent({
 
     const images = ref('')
 
-    return { content, images }
+    const addImages = (attrs: PostImage[]) => {
+      console.log(attrs)
+    }
+
+    return { content, images, addImages }
   }
 })
 </script>

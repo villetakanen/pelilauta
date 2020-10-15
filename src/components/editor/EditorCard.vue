@@ -78,9 +78,9 @@ export default defineComponent({
     const { topics } = useMeta()
 
     function setEditorContent (el: HTMLElement) {
-      const { update, newImages } = processContent(el.innerHTML)
+      const { update } = processContent(el.innerHTML)
       content.value = update
-      if (newImages) newImages.forEach((image) => { images.value.push(image) })
+      // if (newImages) newImages.forEach((image) => { images.value.push(image) })
     }
 
     function onPaste (event: ClipboardEvent) {
@@ -115,13 +115,13 @@ export default defineComponent({
       })
     }
 
-    watch(visible, (val) => {
+    /* watch(visible, (val) => {
       if (!val) return
       if (edTopic) chosenTopic.value = edTopic.value
       if (post) {
         content.value = post.value.data.content
       }
-    })
+    }) */
 
     return { title, chosenTopic, topics, content, onPaste, onInput, images, cancel, send, titlePlaceholder }
   }

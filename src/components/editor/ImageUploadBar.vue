@@ -53,7 +53,7 @@ export default defineComponent({
         fileRef.put(file).then((snapshot) => {
           snapshot.ref.getDownloadURL().then((url) => {
             console.log('uploaded!', url)
-            images.value.push({ url: url })
+            images.value.push({ url })
           })
         })
       }

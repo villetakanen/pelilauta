@@ -22,7 +22,7 @@
           <div class="grow">
             <h3>New post</h3>
           </div>
-eid          <div class="post-action">
+          <div class="post-action">
             <MaterialButton
               dark
               text
@@ -40,7 +40,39 @@ eid          <div class="post-action">
         </div>
 
         <!-- Editor fields and post preview card -->
-        <EditorCard @close-dialog="dialog=false" />
+        <!-- Title, topic: shown side by side on desktop, below each other on mobile -->
+        <div class="toolbar toolbar-form">
+          <div class="grow">
+            <input
+              v-model="title"
+              class="material-textfield"
+              type="text"
+              :placeholder="titlePlaceholder"
+            >
+          </div>
+          <select
+            v-model="chosenTopic"
+            name="topic"
+            class="material-select"
+          >
+            <option
+              v-for="(topic) in topics"
+              :key="topic.slug"
+              :value="topic.slug"
+            >
+              {{ topic.title }}
+            </option>
+          </select>
+        </div>
+
+        <Editor2
+          v-model="content"
+          @new-images="addImages"
+        />
+
+        <ImageUploadBar
+          v-model="images"
+        />
 
         <!-- Bottom bar for the dialog -->
         <div class="dialog-bottom-toolbar">
@@ -60,16 +92,22 @@ eid          <div class="post-action">
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useEditorDialog } from '@/lib/editor'
-import EditorCard from '@/components/editor/EditorCard.vue'
+import ImageUploadBar from './ImageUploadBar.vue'
+import Editor2 from './Editor2.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import { PostData, useStream } from '@/lib/stream'
+import { useMeta } from '@/lib/meta'
+import { useAuthz } from '@/lib/authz'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'EditorDialog',
   components: {
-    EditorCard,
-    MaterialButton
+    Editor2,
+    MaterialButton,
+    ImageUploadBar
   },
   props: {
     modelValue: {
@@ -81,20 +119,57 @@ export default defineComponent({
   emits: ['update:modelValue'],
   setup (props, context) {
     const { visible, hideEditor } = useEditorDialog()
+    const { topics } = useMeta()
+    const { addPost } = useStream()
+    const { uid } = useAuthz()
+    const router = useRouter()
+
+    const content = ref('')
+    const chosenTopic = ref('')
+    const images = ref(new Array<string>())
+
+    const title = ref('')
+    const titlePlaceholder = computed(() => {
+      if (title.value.length > 0) return title.value
+      let placeholder = 'Title'
+      if (content.value.length > 0) {
+        if (content.value.length > 11) placeholder = content.value.substring(0, 11)
+        else placeholder = content.value
+      }
+      return placeholder
+    })
 
     const dialog = computed({
       get: () => (props.modelValue || visible),
       set: (value) => {
+        if (!value) {
+          content.value = ''
+        }
         context.emit('update:modelValue', value)
         hideEditor()
       }
     })
 
     const publish = () => {
-      console.log('publish, no-op')
+      const postData:PostData = {
+        content: content.value,
+        title: title.value ? title.value : titlePlaceholder.value,
+        topic: chosenTopic.value,
+        images: images.value.map((url) => ({ url: url }))
+      }
+      console.log('publish, ', postData)
+      addPost(postData, uid.value).then((doc) => {
+        context.emit('update:modelValue', false)
+        hideEditor()
+        router.push('/stream/view/' + doc.id)
+      })
     }
 
-    return { dialog, hideEditor, publish }
+    const addImages = (newImages: Array<string>) => {
+      newImages.forEach((url) => { if (!images.value.includes(url)) images.value.push(url) })
+    }
+
+    return { dialog, hideEditor, publish, content, topics, chosenTopic, title, titlePlaceholder, images, addImages }
   }
 })
 </script>
@@ -115,6 +190,8 @@ export default defineComponent({
   margin: 0
   padding: 0
   background-color: rgba(40,70,100,0.5)
+  .material-textfield, .material-select
+    margin: 0
   .dialog-top-toolbar
     @include ElementColorSecondary()
     h3
