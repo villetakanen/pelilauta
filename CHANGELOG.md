@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/villetakanen/pelilauta/compare/v1.21.0...v3.0.0) (2020-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **stream:** The stream now uses flowtime, which breaks all posts and
+comments before 2.0.0
+
+### Features
+
+* **admin:** freeze user testing ([6b2c70b](https://github.com/villetakanen/pelilauta/commit/6b2c70bb959f0df9bc5b6da1b2ed85e8d0d99519))
+* **admin:** user listing ([66c1e1f](https://github.com/villetakanen/pelilauta/commit/66c1e1ff557cb740ebe863cb6ab9f2feaf6d4538))
+* **authors:** author data from singleton ([7eaacb6](https://github.com/villetakanen/pelilauta/commit/7eaacb66b0b19e6cad19ac73b11701b0adde206b))
+* **editor:** an updated pop-up editor ([1cd44e0](https://github.com/villetakanen/pelilauta/commit/1cd44e0a82df13e6a5221be17fb1e47908c7b050))
+* **editor:** edit posts ([a5a7a8c](https://github.com/villetakanen/pelilauta/commit/a5a7a8c49bfbade1664d81929772ab591a0acead))
+* **editor:** file uploads ([a3d0759](https://github.com/villetakanen/pelilauta/commit/a3d07593b25279132aeac21e5974bf0aebe72bd3))
+* **stream:** flowtime added ([8fc52d3](https://github.com/villetakanen/pelilauta/commit/8fc52d3417beb50487e82537be3b5a7da8beff1a))
+* **ux:** prefetch profiles ([4f18a5d](https://github.com/villetakanen/pelilauta/commit/4f18a5d818be0ae04595897084556af7954aeaae))
+
+
+### Bug Fixes
+
+* **admin:** revoke and elevate fixed ([416e0f6](https://github.com/villetakanen/pelilauta/commit/416e0f6637607c6f27e0f550d13e7c7cbff10e73))
+* **code:** refactoring editor to dialog ([1b35866](https://github.com/villetakanen/pelilauta/commit/1b35866ab1fb112baef1459b2df96a55f7ead1aa))
+* **comments:** moved reply box to a component ([4fdb559](https://github.com/villetakanen/pelilauta/commit/4fdb5591f6d56a27276368aed1c3240a37d1f9f4))
+* **editor:** cancel action ([b64a015](https://github.com/villetakanen/pelilauta/commit/b64a0152b27e3d5af49ba4d58385341446e2eaa4))
+* **editor:** frozen people can no longer post ([b79700c](https://github.com/villetakanen/pelilauta/commit/b79700ce694f325e6f59abc3c98bb47d1bca31f6))
+* **editor:** image uploads persist fix ([afab4ea](https://github.com/villetakanen/pelilauta/commit/afab4eaf873fff9587b08ac199ffb39246789b7d))
+* **editor:** moved editors dialog to a component ([13f4435](https://github.com/villetakanen/pelilauta/commit/13f4435d199493800a59f8ac7eeb5ba0f2175828))
+* **editor:** quality and ux polish ([7196042](https://github.com/villetakanen/pelilauta/commit/7196042c9cfef583cd2604651c7e1954a938780b))
+* **editor:** splitting code to pop-up editor ([56b6be0](https://github.com/villetakanen/pelilauta/commit/56b6be04115a92af9581c2790aa5224fa5fb7d6e))
+* **editor:** topic is chosen if topic is chosen ([fb12300](https://github.com/villetakanen/pelilauta/commit/fb123004c38e9a7a62cf825b00638bbfa8064567))
+* **editor:** uploaded image is shown ([9562895](https://github.com/villetakanen/pelilauta/commit/956289528639c1edaf3e5575ec72cbc197ef0f2b))
+* **icons:** notopic size ([c97e6c4](https://github.com/villetakanen/pelilauta/commit/c97e6c4c9c30e9b65e8a0c7e9b253c9e520daf3e))
+* **material:** dialog component added ([f7812c0](https://github.com/villetakanen/pelilauta/commit/f7812c06272c5834853073f905b14e672acf1a8c))
+* **navigation:** added links ([cf57b6f](https://github.com/villetakanen/pelilauta/commit/cf57b6f109fb5f94067082572127a7a6c9d5d2e6))
+* **post:** remove streampost view ([ecd077b](https://github.com/villetakanen/pelilauta/commit/ecd077b8050b23b316f5a6a77bacdf5bd9e43ca0))
+* **qa:** commented out dead code ([527fca1](https://github.com/villetakanen/pelilauta/commit/527fca15e4a8a144e4db9b089e07840836e77455))
+* **quality:** code splitting ([cd47946](https://github.com/villetakanen/pelilauta/commit/cd47946f90fff7f252abc080983614e93c3e4f06))
+* **quality:** moved freeze actions to a component ([fc4f93d](https://github.com/villetakanen/pelilauta/commit/fc4f93d6bf752251ce329170181c249d0ed01b26))
+* **stream:** moved subscription to singleton ([0172f89](https://github.com/villetakanen/pelilauta/commit/0172f89358a985217bd482b7a72f7d0137c62146))
+* **stream:** patch changes to state ([8e7dcb1](https://github.com/villetakanen/pelilauta/commit/8e7dcb1712d2bed7dd2e8e424d854b583992e772))
+* **types:** removed extra method ([f8389b6](https://github.com/villetakanen/pelilauta/commit/f8389b6e1bfd0c68a07aa2cd32a838eda2005fa4))
+* **ui:** postheader moved to a sfc ([a4bb600](https://github.com/villetakanen/pelilauta/commit/a4bb6003b58b034841231918f395090a08646b97))
+* **ux:** added transition to admin tools ([e4a006f](https://github.com/villetakanen/pelilauta/commit/e4a006fc507c7cb2ef4831faaeee98e80cadfe90))
+* **ux:** avatar never shrinks ([841f8a3](https://github.com/villetakanen/pelilauta/commit/841f8a361daf5f24fb61e7ff64e94632d68a1c30))
+* **ux:** editor route added ([2307845](https://github.com/villetakanen/pelilauta/commit/23078458244db54f8f4b6bc855775f7f214bf661))
+* **ux:** fab position and box coners on mobile ([8bf4fa2](https://github.com/villetakanen/pelilauta/commit/8bf4fa22be3fdbf094d1e8dce8b0948e17875f71))
+* **ux:** menu display and reply deletion ([b1a25f5](https://github.com/villetakanen/pelilauta/commit/b1a25f5b3b190c4d4ec6cdc48c42748b6c012e24))
+* **ux:** top bar links and removed extra space ([5d80047](https://github.com/villetakanen/pelilauta/commit/5d80047ff442aa74618f115d52f81d477b92afbf))
+* **ux:** update notification css ([b4f6df3](https://github.com/villetakanen/pelilauta/commit/b4f6df3f289d2088eb425120dcc731642953f1fa))
+* **ux:** version identifier moved to tailer ([6e6fec5](https://github.com/villetakanen/pelilauta/commit/6e6fec555b9da4ad31d0c03dc5413cfd31b86f35))
+* **ux:** viewpost layout ([0f706ca](https://github.com/villetakanen/pelilauta/commit/0f706ca828302dc7d0f31b16c0e583f898eb83f0))
+* **view post:** moved functionality to singleton ([843b947](https://github.com/villetakanen/pelilauta/commit/843b9477299592b4b9a6724d30fd8a66e3942e09))
+* **view post:** type checks and defaults ([5d61ce6](https://github.com/villetakanen/pelilauta/commit/5d61ce63cbd00e8ecd2e69ca3c02b7ce04726920))
+* **workbox:** iphone localstorage removed ([c9791ef](https://github.com/villetakanen/pelilauta/commit/c9791ef818c78a851cde02135c3b07e1b5267f4d))
+
 ## [2.0.0](https://github.com/villetakanen/pelilauta/compare/v1.25.2...v2.0.0) (2020-10-13)
 
 
