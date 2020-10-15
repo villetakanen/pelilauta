@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/villetakanen/pelilauta/compare/v3.0.1...v3.0.2) (2020-10-15)
+
+
+### Bug Fixes
+
+* **editor:** mobile styling to match design ([9c98940](https://github.com/villetakanen/pelilauta/commit/9c98940cc7c4d77e6f280550e4bee04e19ffc1d6))
+
 ### [3.0.1](https://github.com/villetakanen/pelilauta/compare/v3.0.0...v3.0.1) (2020-10-15)
 
 ## [3.0.0](https://github.com/villetakanen/pelilauta/compare/v1.21.0...v3.0.0) (2020-10-15)
