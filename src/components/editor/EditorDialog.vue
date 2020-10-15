@@ -41,7 +41,7 @@
 
         <!-- Editor fields and post preview card -->
         <!-- Title, topic: shown side by side on desktop, below each other on mobile -->
-        <div class="toolbar toolbar-form">
+        <div class="toolbar-form">
           <div class="grow">
             <input
               v-model="title"
@@ -235,10 +235,27 @@ export default defineComponent({
   .dialog-bottom-toolbar
     padding: 8px
     text-align: right
+  .toolbar-form
+    display: flex
+    padding: 8px
+    .grow
+      flex-grow: 1
+      margin-right: 8px
+    .material-select
+      height: 31px
 
 @include media('<tablet')
   .editor-dialog-container
     background-color: $color-base-dark
+    .toolbar-form
+      .material-textfield
+        height: 24px
+        padding: 8px 8px
+      .material-select
+        width: 100%
+        margin-top: 4px
+        height: 40px
+        padding: 8px
     .editor-dialog
       padding: 0px
       margin: 0px
