@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* **stream:** The stream now uses flowtime, which breaks all posts and
-comments before 2.0.0
+* **Editor:** Editor component total overhaul, editing send posts is broken
+* **Discussion:** Replycount is now stamped, not counted
 
 ### Features
 
