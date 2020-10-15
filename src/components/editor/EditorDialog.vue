@@ -2,13 +2,13 @@
   <teleport to="body">
     <!-- Container for the dialog, visible on desktop -->
     <div
-      v-show="modelValue"
+      v-show="dialog"
       class="editor-dialog-container"
       @click.self="dialog=false"
     >
       <!-- Modal dialog, shown as full-page pane on mobile -->
       <div
-        v-if="modelValue"
+        v-if="dialog"
         class="editor-dialog"
       >
         <!-- Top bar for the dialog -->
@@ -109,18 +109,10 @@ export default defineComponent({
     MaterialButton,
     ImageUploadBar
   },
-  props: {
-    modelValue: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-  },
-  emits: ['update:modelValue'],
   setup (props, context) {
-    const { visible, hideEditor, topic: editorTopic } = useEditorDialog()
+    const { visible, hideEditor, topic: editorTopic, post: editorPost } = useEditorDialog()
     const { topics } = useMeta()
-    const { addPost } = useStream()
+    const { addPost, updatePost } = useStream()
     const { uid } = useAuthz()
     const router = useRouter()
 
@@ -140,13 +132,17 @@ export default defineComponent({
     })
 
     const dialog = computed({
-      get: () => (props.modelValue || visible),
+      get: () => (visible.value),
       set: (value) => {
+        console.log('dialog set', value)
         if (!value) {
           content.value = ''
+          chosenTopic.value = 'Yleinen'
+          title.value = ''
+          images.value = new Array<string>()
+          hideEditor()
         }
-        context.emit('update:modelValue', value)
-        hideEditor()
+        // context.emit('update:modelValue', value)
       }
     })
 
@@ -158,20 +154,37 @@ export default defineComponent({
         images: images.value.map((url) => ({ url: url }))
       }
       console.log('publish, ', postData)
-      addPost(postData, uid.value).then((doc) => {
-        context.emit('update:modelValue', false)
-        hideEditor()
-        router.push('/stream/view/' + doc.id)
-      })
+      if (!editorPost.value) {
+        addPost(postData, uid.value).then(() => {
+          hideEditor()
+          router.push('/')
+        })
+      } else {
+        updatePost(editorPost.value.postid, postData).then(() => {
+          // context.emit('update:modelValue', false)
+          hideEditor()
+          router.push('/')
+        })
+      }
     }
 
     const addImages = (newImages: Array<string>) => {
       newImages.forEach((url) => { if (!images.value.includes(url)) images.value.push(url) })
     }
 
-    /* watch(visible, () => {
+    watch(visible, (v) => {
+      if (!v) return
       if (editorTopic.value) chosenTopic.value = editorTopic.value
-    }) */
+      console.log(editorTopic.value, editorPost.value)
+      if (editorPost.value) {
+        const p = editorPost.value.data
+        content.value = p.content
+        chosenTopic.value = p.topic
+        title.value = p.title
+        if (p.images) images.value = p.images.map((val) => (val.url))
+        console.log('editing?', p)
+      }
+    })
 
     return { dialog, hideEditor, publish, content, topics, chosenTopic, title, titlePlaceholder, images, addImages }
   }

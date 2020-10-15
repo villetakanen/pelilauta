@@ -113,14 +113,15 @@ async function addPost (postData: PostData, author: string) {
   })
 }
 
-async function updatePost (postid: string, title: string, content: string, topic: string) {
+async function updatePost (postid: string, data:PostData) {
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(postid)
 
   postRef.update({
-    title: title,
-    content: content,
-    topic: topic,
+    title: data.title,
+    content: data.content,
+    topic: data.topic,
+    images: data.images,
     updated: firebase.firestore.FieldValue.serverTimestamp()
   })
 }
@@ -128,7 +129,7 @@ async function updatePost (postid: string, title: string, content: string, topic
 export function useStream (): {
   stream: ComputedRef<Post[]>;
   dropPost: (actor: string, postid: string) => Promise<void>;
-  updatePost: (postid: string, title: string, content: string, topic: string) => Promise<void>;
+  updatePost: (postid: string, data:PostData) => Promise<void>;
   addPost: (postData: PostData, author: string) => Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>;
   toDisplayString: (timestamp:firebase.firestore.Timestamp) => string;
   } {

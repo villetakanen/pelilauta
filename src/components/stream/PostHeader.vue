@@ -29,9 +29,10 @@
 import { defineComponent, computed } from 'vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import Avatar from '@/components/app/Avatar.vue'
-import { MenuItem, useStream } from '@/lib/stream'
+import { MenuItem, Post, useStream } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
 import { useMeta } from '@/lib/meta'
+import { useEditorDialog } from '@/lib/editor'
 
 export default defineComponent({
   name: 'PostHeader',
@@ -82,17 +83,24 @@ export default defineComponent({
   setup (props) {
     const { uid } = useAuthz()
     const { isAdmin } = useMeta()
+    const { dropPost, stream } = useStream()
     const showAdminTools = computed(() => (isAdmin(uid.value)))
+
     function drop () {
-      const { dropPost } = useStream()
       dropPost(uid.value, props.postid)
+    }
+
+    function edit () {
+      const { showEditor } = useEditorDialog()
+      const post:Post|undefined = stream.value.find((p) => (p.postid === props.postid))
+      if (post) showEditor(post)
     }
 
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       arr.push({ to: '/stream/view/' + props.postid, text: 'Open' })
       if (isAdmin(uid.value) || uid.value === props.author) {
-        arr.push({ to: '/stream/edit/' + props.postid, icon: 'edit', text: 'Edit' })
+        arr.push({ action: edit, icon: 'edit', text: 'Edit' })
         arr.push({ action: drop, text: 'Delete!' })
       }
       return arr

@@ -15,6 +15,7 @@
     </main>
   </div>
   <MaterialDialog :visible="missingProfile" />
+  <EditorDialog/>
 </template>
 
 <script lang="ts">
@@ -22,6 +23,7 @@ import { defineComponent } from 'vue'
 import AppBar from './components/AppBar.vue'
 import MaterialDialog from './components/material/MaterialDialog.vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
+import EditorDialog from '@/components/editor/EditorDialog.vue'
 import { useAuthz } from './lib/authz'
 import { version } from '../package.json'
 
@@ -29,7 +31,8 @@ export default defineComponent({
   components: {
     AppBar,
     MaterialBanner,
-    MaterialDialog
+    MaterialDialog,
+    EditorDialog
   },
   setup () {
     const { missingProfile } = useAuthz()

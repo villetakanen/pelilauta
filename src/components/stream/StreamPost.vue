@@ -80,7 +80,7 @@ export default defineComponent({
     images: {
       type: Array,
       required: false,
-      default: new Array<ImageData>()
+      default: new Array<string>()
     },
     replycount: {
       type: Number,
@@ -92,7 +92,7 @@ export default defineComponent({
     const { isAuthz } = useAuthz()
 
     const { authors } = useAuthors()
-    console.log(authors, authors.value.find((a) => (a.uid === props.author)))
+    // console.log(authors, authors.value.find((a) => (a.uid === props.author)))
 
     const nick = computed(() => (authors.value.find((a) => (a.uid === props.author))?.nick))
     const photoURL = computed(() => (authors.value.find((a) => (a.uid === props.author))?.photoURL))

@@ -10,6 +10,7 @@ function showEditor (topic: string): void;
 function showEditor (post: Post): void;
 
 function showEditor (attr?: string|Post): void {
+  console.log('showEditor', attr)
   if (!attr) {
     editorTopic.value = ''
     editorPost.value = undefined
@@ -18,13 +19,14 @@ function showEditor (attr?: string|Post): void {
     editorPost.value = undefined
   } else {
     const post = attr as Post
-    editorTopic.value = post.data.topic
+    editorTopic.value = ''
     editorPost.value = post
   }
   show.value = true
 }
 
 function hideEditor (): void {
+  console.log('hideEditor')
   show.value = false
 }
 
