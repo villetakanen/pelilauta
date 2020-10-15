@@ -92,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed, ref, watch } from 'vue'
 import { useEditorDialog } from '@/lib/editor'
 import ImageUploadBar from './ImageUploadBar.vue'
 import Editor2 from './Editor2.vue'
@@ -118,7 +118,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, context) {
-    const { visible, hideEditor } = useEditorDialog()
+    const { visible, hideEditor, topic: editorTopic } = useEditorDialog()
     const { topics } = useMeta()
     const { addPost } = useStream()
     const { uid } = useAuthz()
@@ -168,6 +168,10 @@ export default defineComponent({
     const addImages = (newImages: Array<string>) => {
       newImages.forEach((url) => { if (!images.value.includes(url)) images.value.push(url) })
     }
+
+    /* watch(visible, () => {
+      if (editorTopic.value) chosenTopic.value = editorTopic.value
+    }) */
 
     return { dialog, hideEditor, publish, content, topics, chosenTopic, title, titlePlaceholder, images, addImages }
   }
