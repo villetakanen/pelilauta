@@ -62,7 +62,7 @@ export default defineComponent({
     const router = useRouter()
     const { uid } = useAuthz()
 
-    const { stream, dropPost, toDisplayString, fixReplyCount } = useStream()
+    const { stream, dropPost, toDisplayString } = useStream()
     const post = computed(() => {
       return stream.value.filter((post) => (post.postid === props.postid))[0]
     })
