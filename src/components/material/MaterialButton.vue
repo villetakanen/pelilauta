@@ -32,6 +32,16 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    dark: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    block: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -40,7 +50,9 @@ export default defineComponent({
         'material-button': true,
         'material-button-text': props.text,
         'colortheme-secondary': false,
-        'material-button-icon': props.icon
+        'material-button-icon': props.icon,
+        'theme--dark': props.dark,
+        'block-button': props.block
       }
     )
     // if (typeof props.text !== 'undefined') buttonClasses.value['material-button-text'] = true
@@ -59,6 +71,7 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 @import @/styles/layout.sass
+@import @/styles/include-media.scss
 
 .material-button
   @include TypeButton()
@@ -80,7 +93,6 @@ export default defineComponent({
     background-color: rgba(0,23,37,0)
     box-shadow: none
     &:hover
-      @include  BoxShadow1()
       background-color: rgba(0,23,37,0.1)
 
   &.material-button-icon
@@ -99,4 +111,22 @@ export default defineComponent({
 .material-button + .material-button
   margin-left: 8px
 
+.material-button.theme--dark
+  background-color: $color-theme--dark-base
+  color: $color-theme--dark-front
+  &:hover
+    background-color: $color-theme--dark-base-hover
+  &.material-button-text
+    background: none
+    color: $color-theme--dark-base
+    &:hover
+      background-color: $color-theme--dark-base-11
+
+@include media('<tablet')
+  .material-button.block-button
+    display: block
+    box-sizing: border-box
+    width: 100%
+    clear: both
+    margin: 0 auto
 </style>

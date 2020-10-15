@@ -29,9 +29,13 @@ function hideEditor (): void {
 }
 
 const visible = computed(() => (show.value))
+const topic = computed(() => (editorTopic.value))
+const post = computed(() => (editorPost.value))
 
 export function useEditorDialog (): {
   visible: ComputedRef<boolean>;
+  topic: ComputedRef<string>;
+  post: ComputedRef<Post|undefined>;
   showEditor: {
     (): void;
     (topic: string): void;
@@ -39,5 +43,5 @@ export function useEditorDialog (): {
   };
   hideEditor: () => void;
   } {
-  return { visible, showEditor, hideEditor }
+  return { visible, showEditor, hideEditor, topic, post }
 }

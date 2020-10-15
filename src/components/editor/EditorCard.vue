@@ -1,70 +1,55 @@
 <template>
-  <MaterialCard class="editorCard">
-    <div class="card-content">
-      <div class="toolbar toolbar-form">
-        <div class="grow">
-          <input
-            v-model="title"
-            class="material-textfield"
-            type="text"
-            placeholder="Title"
-          >
-        </div>
-        <select
-          v-model="chosenTopic"
-          name="topic"
+  <div class="editorCard">
+    <!-- Title, topic: shown side by side on desktop, below each other on mobile -->
+    <div class="toolbar toolbar-form">
+      <div class="grow">
+        <input
+          v-model="title"
+          class="material-textfield"
+          type="text"
+          :placeholder="titlePlaceholder"
         >
-          <option
-            v-for="(topic) in topics"
-            :key="topic.slug"
-            :value="topic.slug"
-          >
-            {{ topic.title }}
-          </option>
-        </select>
       </div>
-      <div
-        v-once
-        class="editorContent"
-        :innerHTML="content"
-        contenteditable="true"
-        @paste="onPaste"
-        @input="onInput"
-      />
-      <ImageUploadBar
-        v-model="images"
-      />
-      <div class="toolbar">
-        <div class="spacer" />
-        <MaterialButton
-          text
-          :action="cancel"
+      <select
+        v-model="chosenTopic"
+        name="topic"
+        class="material-select"
+      >
+        <option
+          v-for="(topic) in topics"
+          :key="topic.slug"
+          :value="topic.slug"
         >
-          Cancel
-        </MaterialButton>
-        <MaterialButton :action="send">
-          Send
-        </MaterialButton>
-      </div>
+          {{ topic.title }}
+        </option>
+      </select>
     </div>
-  </MaterialCard>
+    <div
+      v-once
+      class="editorContent"
+      :innerHTML="content"
+      contenteditable="true"
+      @paste="onPaste"
+      @input="onInput"
+    />
+    <ImageUploadBar
+      v-model="images"
+    />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import ImageUploadBar from './ImageUploadBar.vue'
 import { useMeta } from '@/lib/meta'
 import { processContent } from './processors'
 import { useStream, PostData, PostImage } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
 import { useRouter } from 'vue-router'
+import { useEditorDialog } from '@/lib/editor'
 
 export default defineComponent({
   components: {
-    MaterialCard,
-    MaterialButton,
     ImageUploadBar
   },
   props: {
@@ -75,8 +60,18 @@ export default defineComponent({
     const router = useRouter()
     const { uid } = useAuthz()
     const { addPost } = useStream()
+    const { visible, topic: edTopic, post } = useEditorDialog()
 
     const title = ref('')
+    const titlePlaceholder = computed(() => {
+      if (title.value.length > 0) return title.value
+      let placeholder = 'Title'
+      if (content.value.length > 0) {
+        if (content.value.length > 11) placeholder = content.value.substring(0, 11)
+        else placeholder = content.value
+      }
+      return placeholder
+    })
     const chosenTopic = ref('Yleinen')
     const content = ref('')
     const images = ref(new Array<PostImage>())
@@ -120,7 +115,15 @@ export default defineComponent({
       })
     }
 
-    return { title, chosenTopic, topics, content, onPaste, onInput, images, cancel, send }
+    watch(visible, (val) => {
+      if (!val) return
+      if (edTopic) chosenTopic.value = edTopic.value
+      if (post) {
+        content.value = post.value.data.content
+      }
+    })
+
+    return { title, chosenTopic, topics, content, onPaste, onInput, images, cancel, send, titlePlaceholder }
   }
 })
 </script>
@@ -132,32 +135,44 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .editorCard
+  margin: 0
   padding: 8px
-.editorContent
-  width: 434px
-  height: 168px
-  background-color: $color-base-darker
-  padding: 8px
-.toolbar
-  margin-top: 8px
-
-.editorCard
-  padding: 0px
-  margin: 0px
-  .card-content
+  display: relative
+  .material-textfield,.material-select,.editorContent
+    border-bottom: solid 1px $color-secondary-dark
+  .editorContent
+    @include TypeBody2()
     padding: 8px
+    height: 264px
+    background-color: $color-base-dark
+    overflow-y: scroll
+    &:hover, &:focus
+      background-color: $color-base-darker
+
+::-webkit-scrollbar
+  width: 0px  // Remove scrollbar space */
+  background: transparent
 
 @include media('>tablet')
-  .action-icon
-    display: none
+  .editorContent
+    width: 638px
 
 @include media('<tablet')
   .editorCard
     padding: 0px
     margin: 0px
     box-shadow: none
+    .editor-actions
+      position: fixed
+      bottom: 0
+      right: 0
+      padding: 8px
     .toolbar
       margin-top: 0
+      .grow
+        margin-left: 0
     .toolbar.toolbar-form
       display: block
+    .material-select
+      width: 100%
 </style>

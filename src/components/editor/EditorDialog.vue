@@ -22,6 +22,15 @@
           <div class="grow">
             <h3>New post</h3>
           </div>
+eid          <div class="post-action">
+            <MaterialButton
+              dark
+              text
+              :action="publish"
+            >
+              Post
+            </MaterialButton>
+          </div>
           <div
             class="action-icon-desktop"
             @click="dialog=false"
@@ -29,7 +38,22 @@
             <img src="@/assets/action-close.svg">
           </div>
         </div>
+
+        <!-- Editor fields and post preview card -->
         <EditorCard @close-dialog="dialog=false" />
+
+        <!-- Bottom bar for the dialog -->
+        <div class="dialog-bottom-toolbar">
+          <div class="grow block-action">
+            <MaterialButton
+              dark
+              block
+              :action="publish"
+            >
+              Post
+            </MaterialButton>
+          </div>
+        </div>
       </div>
     </div>
   </teleport>
@@ -39,11 +63,13 @@
 import { defineComponent, computed } from 'vue'
 import { useEditorDialog } from '@/lib/editor'
 import EditorCard from '@/components/editor/EditorCard.vue'
+import MaterialButton from '@/components/material/MaterialButton.vue'
 
 export default defineComponent({
   name: 'EditorDialog',
   components: {
-    EditorCard
+    EditorCard,
+    MaterialButton
   },
   props: {
     modelValue: {
@@ -64,7 +90,11 @@ export default defineComponent({
       }
     })
 
-    return { dialog, hideEditor }
+    const publish = () => {
+      console.log('publish, no-op')
+    }
+
+    return { dialog, hideEditor, publish }
   }
 })
 </script>
@@ -101,6 +131,10 @@ export default defineComponent({
         margin: 2px
         opacity: 0.8
 
+.post-action
+  margin-top: 4px
+  margin-right: 8px
+
 @include media('>tablet')
   .editor-dialog
     position: fixed
@@ -121,6 +155,9 @@ export default defineComponent({
         width: 36px
         margin: 7px
         opacity: 0.8
+  .dialog-bottom-toolbar
+    padding: 8px
+    text-align: right
 
 @include media('<tablet')
   .editor-dialog-container
@@ -131,4 +168,8 @@ export default defineComponent({
       position: relative
     .action-icon-desktop
       display: none
+    .block-action
+      box-sizing: border-box
+      flex-grow: 1
+      padding: 8px
 </style>
