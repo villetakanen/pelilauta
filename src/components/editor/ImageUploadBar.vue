@@ -2,10 +2,10 @@
   <div class="image-upload-toolbar">
     <div
       v-for="(image) in images"
-      :key="image.url"
+      :key="image"
       class="image-preview"
     >
-      <img :src="image.url">
+      <img :src="image">
     </div>
     <div class="image-add">
       <input
@@ -23,7 +23,6 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-import { PostImage } from '@/lib/stream'
 import * as firebase from 'firebase/app'
 import 'firebase/storage'
 // import { setCaret, getCaretOffset } from './caret'
@@ -33,12 +32,12 @@ export default defineComponent({
     modelValue: {
       type: Array,
       required: false,
-      default: new Array<PostImage>()
+      default: new Array<string>()
     }
   },
   emits: ['update:modelValue', 'update:selected'],
   setup (props, context) {
-    const images = ref(props.modelValue as Array<PostImage>)
+    const images = ref(props.modelValue as Array<string>)
 
     watch(images, (value) => context.emit('update:modelValue', value))
 
@@ -53,7 +52,7 @@ export default defineComponent({
         fileRef.put(file).then((snapshot) => {
           snapshot.ref.getDownloadURL().then((url) => {
             console.log('uploaded!', url)
-            images.value.push({ url })
+            images.value.push(url)
           })
         })
       }
