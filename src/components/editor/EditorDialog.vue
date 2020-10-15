@@ -125,7 +125,7 @@ export default defineComponent({
     const router = useRouter()
 
     const content = ref('')
-    const chosenTopic = ref('')
+    const chosenTopic = ref('Yleinen')
     const images = ref(new Array<string>())
 
     const title = ref('')
