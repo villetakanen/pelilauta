@@ -2,8 +2,7 @@
   <teleport to="body">
     <MaterialFab
       v-if="showStreamActions"
-      text="New post"
-      to="/stream/post"
+      :action="showDialog"
     >
       <img
         src="@/assets/add.svg"
@@ -12,23 +11,30 @@
     </MaterialFab>
   </teleport>
   <Stream />
+  <EditorDialog v-model="editorDialog" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
 import { useMeta } from '@/lib/meta'
+import EditorDialog from '@/components/editor/EditorDialog.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Stream,
-    MaterialFab
+    MaterialFab,
+    EditorDialog
   },
   setup () {
     const { showStreamActions } = useMeta()
-    return { showStreamActions }
+    const editorDialog = ref(false)
+    const showDialog = () => {
+      editorDialog.value = true
+    }
+    return { showStreamActions, editorDialog, showDialog }
   }
 })
 </script>

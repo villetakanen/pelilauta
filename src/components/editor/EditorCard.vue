@@ -1,50 +1,51 @@
 <template>
   <MaterialCard class="editorCard">
-    <h3>New Post</h3>
-    <div class="toolbar">
-      <div class="grow">
-        <input
-          v-model="title"
-          class="material-textfield"
-          type="text"
-          placeholder="Title"
+    <div class="card-content">
+      <div class="toolbar toolbar-form">
+        <div class="grow">
+          <input
+            v-model="title"
+            class="material-textfield"
+            type="text"
+            placeholder="Title"
+          >
+        </div>
+        <select
+          v-model="chosenTopic"
+          name="topic"
         >
+          <option
+            v-for="(topic) in topics"
+            :key="topic.slug"
+            :value="topic.slug"
+          >
+            {{ topic.title }}
+          </option>
+        </select>
       </div>
-      <select
-        v-model="chosenTopic"
-        name="topic"
-      >
-        <option
-          v-for="(topic) in topics"
-          :key="topic.slug"
-          :value="topic.slug"
+      <div
+        v-once
+        class="editorContent"
+        :innerHTML="content"
+        contenteditable="true"
+        @paste="onPaste"
+        @input="onInput"
+      />
+      <ImageUploadBar
+        v-model="images"
+      />
+      <div class="toolbar">
+        <div class="spacer" />
+        <MaterialButton
+          text
+          :action="cancel"
         >
-          {{ topic.title }}
-        </option>
-      </select>
-    </div>
-    <div
-      v-once
-      class="editorContent"
-      :innerHTML="content"
-      contenteditable="true"
-      @paste="onPaste"
-      @input="onInput"
-    />
-    <ImageUploadBar
-      v-model="images"
-    />
-    <div class="toolbar">
-      <div class="spacer" />
-      <MaterialButton
-        text
-        :action="cancel"
-      >
-        Cancel
-      </MaterialButton>
-      <MaterialButton :action="send">
-        Send
-      </MaterialButton>
+          Cancel
+        </MaterialButton>
+        <MaterialButton :action="send">
+          Send
+        </MaterialButton>
+      </div>
     </div>
   </MaterialCard>
 </template>
@@ -128,6 +129,7 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 @import @/styles/layout.sass
+@import @/styles/include-media.scss
 
 .editorCard
   padding: 8px
@@ -138,4 +140,24 @@ export default defineComponent({
   padding: 8px
 .toolbar
   margin-top: 8px
+
+.editorCard
+  padding: 0px
+  margin: 0px
+  .card-content
+    padding: 8px
+
+@include media('>tablet')
+  .action-icon
+    display: none
+
+@include media('<tablet')
+  .editorCard
+    padding: 0px
+    margin: 0px
+    box-shadow: none
+    .toolbar
+      margin-top: 0
+    .toolbar.toolbar-form
+      display: block
 </style>
