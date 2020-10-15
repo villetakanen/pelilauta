@@ -10,7 +10,7 @@
         :photo="author.photoURL"
         :title="post.data.title"
         :postid="post.postid"
-        :created="post.created + ''"
+        :created="toDisplayString(post.created)"
         :topic="post.data.topic"
         :author="post.author"
       />
@@ -62,7 +62,7 @@ export default defineComponent({
     const router = useRouter()
     const { uid } = useAuthz()
 
-    const { stream, dropPost } = useStream()
+    const { stream, dropPost, toDisplayString, fixReplyCount } = useStream()
     const post = computed(() => {
       return stream.value.filter((post) => (post.postid === props.postid))[0]
     })
@@ -78,7 +78,7 @@ export default defineComponent({
 
     const { showStreamActions } = useMeta()
 
-    return { author, deletePost, showStreamActions, post }
+    return { author, deletePost, showStreamActions, post, toDisplayString }
   }
 })
 </script>

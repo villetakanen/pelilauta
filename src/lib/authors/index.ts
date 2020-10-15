@@ -14,16 +14,19 @@ function _init () {
 
   // fetch all authors
   const db = firebase.firestore()
-  const metaRef = db.collection('meta').doc('pelilauta')
-  metaRef.onSnapshot((doc) => {
-    if (doc.exists) {
-      const author: Profile = {
-        uid: doc.id,
-        nick: doc.data()?.nick,
-        photoURL: doc.data()?.photoURL
+  const profilesRef = db.collection('profiles')
+  profilesRef.onSnapshot((changes) => {
+    changes.docChanges().forEach((change) => {
+      const doc = change.doc
+      if (doc.exists) {
+        const author: Profile = {
+          uid: doc.id,
+          nick: doc.data()?.nick,
+          photoURL: doc.data()?.photoURL
+        }
+        authors.value.push(author)
       }
-      authors.value.push(author)
-    }
+    })
   })
 }
 

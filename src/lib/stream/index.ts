@@ -131,6 +131,7 @@ export function useStream (): {
   updatePost: (postid: string, title: string, content: string, topic: string) => Promise<void>;
   addPost: (postData: PostData, author: string) => Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>;
   toDisplayString: (timestamp:firebase.firestore.Timestamp) => string;
+  fixReplyCount: (postid: string, count: number) => void;
   } {
   subscribe()
   return { stream, dropPost, updatePost, addPost, toDisplayString }
