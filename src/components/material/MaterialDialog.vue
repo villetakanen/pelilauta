@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-if="true || visible"
+      v-if="visible"
       id="material-dialog-container"
     >
       <div id="material-dialog">
