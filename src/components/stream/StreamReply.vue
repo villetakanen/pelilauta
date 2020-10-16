@@ -1,19 +1,22 @@
 <template>
-  <div class="stream-reply">
+  <div
+    :class="replyClasses"
+    class="replyComment"
+  >
     <div class="reply-header toolbar">
       <div class="author">
         {{ nick }}
       </div>
       <div class="spacer" />
-    </div>
-    <div
-      class="message"
-    >
       <MaterialMenu
         v-model="menu"
         small
         style="float: right"
       />
+    </div>
+    <div
+      class="message"
+    >
       <div
         :innerHTML="content"
       />
@@ -22,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref, watch } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useMeta } from '@/lib/meta'
@@ -59,9 +62,18 @@ export default defineComponent({
     const { uid } = useAuthz()
     const { isAdmin } = useMeta()
     const { deleteComment } = useDiscussion(props.postid)
+
+    const replyClasses = ref({
+      fromMe: uid.value === props.author
+    })
+    watch(uid, (val) => {
+      replyClasses.value.fromMe = val === props.author
+    })
+
     const dropComment = () => {
       deleteComment(props.commentid)
     }
+
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       if (isAdmin(uid.value) || uid.value === props.author) {
@@ -69,30 +81,60 @@ export default defineComponent({
       }
       return arr
     })
-    return { menu }
+
+    return { menu, replyClasses }
   }
 })
 </script>
 
 <style lang="sass" scoped>
-@import ../../styles/material-typography.sass
+@import @/styles/material-typography.sass
 @import @/styles/material-colors.sass
 
-.message
-  @include BoxShadow3()
+.replyComment
+  @include TypeBody2()
+  position: relative
+  background-color: $color-base-darker
+  margin: 8px
   padding: 8px
-  border-radius: 0px 6px 6px 6px
-  background-color: white
+  border-radius: 4px
+  // for triangle
+  margin-left: 24px
+  &.fromMe
+    margin-left: 8px
+    margin-right: 24px
+    background: none
+    padding: 7px
+    border: solid 1px $color-base-darker
+
+.author
+  color: $color-primary-dark
+.fromMe .author
+  color: $color-primary-light
+
+.replyComment:after
+  content: ""
+  position: absolute
+  border-style: solid
+  border-color: transparent $color-base-darker
+
+.replyComment:not(.fromMe):after
+  top: 8px // controls vertical position
+  left: -16px // value = - border-left-width - border-right-width */
+  border-width: 8px 16px 8px 0
+  bottom: auto
+
+.replyComment.fromMe:after
+  top: 8px // controls vertical position
+  right: -16px // value = - border-left-width - border-right-width */
+  border-width: 8px 0px 8px 16px
+  bottom: auto
 
 .stream-reply
   @include TypeBody2()
   margin: 8px
 
 #app #mainContentWrapper main
-  .tester
-    background-color: white
-    height: 100px
-    width: 100%
   p.caption
     padding-bottom: 4px
   div.stream-reply
@@ -105,26 +147,5 @@ export default defineComponent({
       line-height: 16px
       color: $color-primary-light
       flex-grow: 0
-    div.mini-action
-      flex-grow: 0
-      height: 24px
-      width: 24px
-      border-radius: 50px
-      background: $color-base-dark
-      position: relative
-      img
-        height: 22px
-        width: 22px
-        margin: 1px
-      &:hover
-        background: $color-base-darker
-      div.action-menu
-        position: absolute
-        z-index: 4
-        top: 12px
-        right: 12px
-        padding: 8px
-        background-color: white
-        @include BoxShadow8()
 
 </style>
