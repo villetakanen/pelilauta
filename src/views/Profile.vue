@@ -6,10 +6,15 @@
       :src="profile.photoURL"
       :alt="profile.nick"
     >
-    <h1>{{ profile.nick }}</h1>
-    <MaterialButton :action="logout">
-      Logout
-    </MaterialButton>
+    <div class="toolbar">
+      <h1>{{ profile.nick }}</h1>
+      <MaterialButton :action="logout">
+        Logout
+      </MaterialButton>
+    </div>
+    <div>
+      {{ $t('language.label') }} <a @click="locale = 'en'">EN</a> / <a @click="locale = 'fi'">FI</a>
+    </div>
     <div style="clear:both" />
   </MaterialCard>
 </template>
@@ -22,6 +27,7 @@ import { useRouter } from 'vue-router'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthz } from '@/lib/authz'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'Home',
@@ -39,7 +45,7 @@ export default defineComponent({
       })
     }
 
-    return { profile, logout }
+    return { profile, logout, ...useI18n() }
   }
 })
 </script>
@@ -47,8 +53,9 @@ export default defineComponent({
 <style lang="sass" scoped>
 img.avatar
   float: left
-  max-width: 180px
-  max-height: 180px
+  max-width: 122px
+  max-height: 122px
   border-radius: 50%
+  margin-right: 8px
 
 </style>
