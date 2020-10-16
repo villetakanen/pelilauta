@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/villetakanen/pelilauta/compare/v3.1.2...v3.1.3) (2020-10-16)
+
+
+### Bug Fixes
+
+* **npm:** package updates ([378f92e](https://github.com/villetakanen/pelilauta/commit/378f92ed7de180999640489db363f06a7bb77c19))
+
 ### [3.1.2](https://github.com/villetakanen/pelilauta/compare/v3.1.1...v3.1.2) (2020-10-16)
 
 
