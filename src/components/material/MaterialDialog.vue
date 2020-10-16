@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-if="visible"
+      v-if="true || visible"
       id="material-dialog-container"
     >
       <div id="material-dialog">
@@ -60,3 +60,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+#material-dialog-container
+  position: fixed
+  z-index: 30000
+</style>

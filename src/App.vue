@@ -14,7 +14,9 @@
       </div>
     </main>
   </div>
-  <MaterialDialog :visible="missingProfile" />
+  <teleport to="body">
+    <MaterialDialog :visible="missingProfile" />
+  </teleport>
   <EditorDialog />
 </template>
 
