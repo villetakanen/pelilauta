@@ -62,6 +62,7 @@ function toPost (postid: string, data:firebase.firestore.DocumentData|undefined)
   const post = data as Post
   post.data = data as PostData
   post.postid = postid
+  if (typeof post.data.images === 'string') delete post.data.images
   return post
 }
 

@@ -23,6 +23,6 @@ function _init () {
   firebase.firestore().enablePersistence()
 }
 
-export function useFirebase () {
+export function useFirebase (): void {
   _init()
 }

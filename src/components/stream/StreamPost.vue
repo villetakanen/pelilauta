@@ -16,16 +16,7 @@
       <div :innerHTML="content" />
     </div>
 
-    <div
-      v-if="images"
-      class="images"
-    >
-      <img
-        v-for="url in images"
-        :key="url"
-        :src="url"
-      >
-    </div>
+    <PhotoBox :photos="images" />
 
     <div
       v-if="replycount > 0"
@@ -41,13 +32,15 @@
 import { computed, defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PostHeader from './PostHeader.vue'
+import PhotoBox from './PhotoBox.vue'
 import { useAuthz } from '@/lib/authz'
 import { useAuthors } from '@/lib/authors'
 
 export default defineComponent({
   components: {
     MaterialCard,
-    PostHeader
+    PostHeader,
+    PhotoBox
   },
   props: {
     content: {
