@@ -2,7 +2,7 @@
   <div class="viewer">
     <div
       v-if="post"
-      class="post-header"
+      class="postHeader"
     >
       <!-- The top bar -->
       <PostHeader
@@ -18,19 +18,13 @@
 
     <div
       v-if="post"
-      class="stream-post-content"
-      :innerHTML="post.data.content"
-    />
-
-    <div
-      v-if="post && post.data.images"
-      class="images"
+      class="postContent"
     >
-      <img
-        v-for="url in post.data.images"
-        :key="url"
-        :src="url"
-      >
+      <div
+        :innerHTML="post.data.content"
+      />
+
+      <PhotoBox :photos="post.data.images" />
     </div>
 
     <Discussion :postid="postid" />
@@ -43,6 +37,7 @@ import Discussion from '@/components/stream/Discussion.vue'
 import { useStream } from '@/lib/stream'
 import { useAuthors } from '@/lib/authors'
 import PostHeader from '@/components/stream/PostHeader.vue'
+import PhotoBox from '@/components/stream/PhotoBox.vue'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/lib/meta'
 import { useAuthz } from '@/lib/authz'
@@ -50,7 +45,8 @@ import { useAuthz } from '@/lib/authz'
 export default defineComponent({
   components: {
     PostHeader,
-    Discussion
+    Discussion,
+    PhotoBox
   },
   props: {
     postid: {
@@ -86,6 +82,11 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
 @import @/styles/material-colors.sass
+
+.viewer
+  .postHeader, .postContent
+    background-color: $color-base
+    padding: 8px
 
 .replybox
   background-color: $color-base-darker
