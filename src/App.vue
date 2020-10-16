@@ -14,6 +14,7 @@
       </div>
     </main>
   </div>
+  <MaterialDialog :visible="missingProfile" />
   <EditorDialog />
 </template>
 
@@ -21,6 +22,7 @@
 import { defineComponent, onMounted, watch } from 'vue'
 import AppBar from './components/AppBar.vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
+import MaterialDialog from './components/material/MaterialDialog.vue'
 import EditorDialog from '@/components/editor/EditorDialog.vue'
 import { useAuthz } from './lib/authz'
 import { version } from '../package.json'
@@ -30,16 +32,17 @@ export default defineComponent({
   components: {
     AppBar,
     MaterialBanner,
-    EditorDialog
+    EditorDialog,
+    MaterialDialog
   },
   setup () {
-    const { lang } = useAuthz()
+    const { missingProfile, lang } = useAuthz()
     const i18n = useI18n()
     onMounted(() => {
       i18n.locale.value = lang.value
       watch(lang, (l) => { i18n.locale.value = l })
     })
-    return { version, ...useI18n() }
+    return { missingProfile, version, ...useI18n() }
   }
 })
 </script>
