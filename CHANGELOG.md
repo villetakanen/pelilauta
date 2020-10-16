@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/villetakanen/pelilauta/compare/v3.1.0...v3.1.1) (2020-10-16)
+
+
+### Bug Fixes
+
+* **view post:** photobox added to the view ([0d1c664](https://github.com/villetakanen/pelilauta/commit/0d1c664fd278cd929f730936e9bf224db8bdd1c8))
+* **workbox:** check updates each 5 minutes ([8651b78](https://github.com/villetakanen/pelilauta/commit/8651b784d4d71f6adaab99cff0b0fe08d8b10151))
+
 ## [3.1.0](https://github.com/villetakanen/pelilauta/compare/v3.0.4...v3.1.0) (2020-10-16)
 
 
