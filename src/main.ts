@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { createI18n, LocaleMessageDictionary, useI18n, VueMessageType } from 'vue-i18n'
+import { createI18n, LocaleMessageDictionary, VueMessageType } from 'vue-i18n'
 import App from './App.vue'
 import router from './router'
 import { useFirebase } from './lib/firebase'

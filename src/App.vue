@@ -18,9 +18,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, onMounted, watch } from 'vue'
+import { defineComponent, onMounted, watch } from 'vue'
 import AppBar from './components/AppBar.vue'
-import MaterialDialog from './components/material/MaterialDialog.vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
 import EditorDialog from '@/components/editor/EditorDialog.vue'
 import { useAuthz } from './lib/authz'
