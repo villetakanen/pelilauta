@@ -17,7 +17,7 @@
       </h1>
       <div class="spacer" />
       <MaterialAction
-        text="Topics"
+        :text="$t('action.toTopicList')"
         icon="topic"
         to="/stream/index"
       /><MaterialAction

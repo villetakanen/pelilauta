@@ -13,7 +13,7 @@
       </h3>
       <div class="caption">
         {{ nick }} {{ created }}
-        <span v-if="topic">in
+        <span v-if="topic"> {{ $t('postHeader.postedInStream') }}
           <router-link :to="`/stream/topic/${tslug}`">{{ topic }}</router-link>
         </span>
       </div>

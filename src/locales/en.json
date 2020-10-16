@@ -4,6 +4,13 @@
       "label": "UI Language"
   },
   "action": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "toTopicList": "Topics"
+  },
+  "postHeader": {
+    "postedInStream": "in"
+  },
+  "post": {
+    "nOfReplies": "replies"
   }
 }

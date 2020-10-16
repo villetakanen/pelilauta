@@ -23,7 +23,7 @@
       class="replycount"
     >
       <router-link :to="`/stream/view/${postid}`">
-        {{ replycount }} replies
+        {{ replycount }} {{ $t('post.nOfReplies') }}
       </router-link>
     </div>
   </MaterialCard>

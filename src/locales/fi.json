@@ -4,6 +4,13 @@
     "label": "Appiksen kieli"
   },
   "action": {
-    "logout": "Kirjaudu ulos"
+    "logout": "Kirjaudu ulos",
+    "toTopicList": "Aiheet"
+  },
+  "postHeader": {
+    "postedInStream": "aiheessa"
+  },
+  "post": {
+    "nOfReplies": "vastausta"
   }
 }
