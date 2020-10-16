@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/villetakanen/pelilauta/compare/v3.1.3...v3.2.0) (2020-10-16)
+
+
+### Features
+
+* **i18n:** added i18n support to profile ([e7cd5cf](https://github.com/villetakanen/pelilauta/commit/e7cd5cfaf9f90cf64151db3917e706b7f550969b))
+* **i18n:** language fixer persistency ([ef78333](https://github.com/villetakanen/pelilauta/commit/ef78333a965c7b50c109ce95e58dc55a7c4a4dd0))
+
+
+### Bug Fixes
+
+* **i18n:** added translations ([5e454d5](https://github.com/villetakanen/pelilauta/commit/5e454d5acbccabe0d006dd6a91f4397c58c03040))
+* code quality issues fixed ([821891c](https://github.com/villetakanen/pelilauta/commit/821891c8d1af2e3d7833404a9cc7e39becf58a5f))
+
 ### [3.1.3](https://github.com/villetakanen/pelilauta/compare/v3.1.2...v3.1.3) (2020-10-16)
 
 
