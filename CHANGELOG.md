@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.2](https://github.com/villetakanen/pelilauta/compare/v3.2.1...v3.2.2) (2020-10-16)
+
+
+### Bug Fixes
+
+* **material:** dialog z-index ([6d15f25](https://github.com/villetakanen/pelilauta/commit/6d15f25faa5ef2503f700e2b710432d85d1d542c))
+
 ### [3.2.1](https://github.com/villetakanen/pelilauta/compare/v3.2.0...v3.2.1) (2020-10-16)
 
 
