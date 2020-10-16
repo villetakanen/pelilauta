@@ -16,7 +16,8 @@ const state = ref({
   profile: {
     nick: '',
     photoURL: ''
-  }
+  },
+  lang: 'en'
 })
 
 const isAuthz = computed(() => (state.value.isAuthz))
@@ -25,6 +26,7 @@ const profile = computed(() => (state.value.profile))
 const uid = computed(() => (state.value.uid))
 const missingProfile = computed(() => (state.value.missingProfile))
 const ssoInfo = computed(() => (state.value.ssoInfo))
+const lang = computed(() => (state.value.lang))
 let unsubscribe = () => {}
 
 function subToProfile (uid: string): void {
@@ -35,6 +37,8 @@ function subToProfile (uid: string): void {
       state.value.missingProfile = false
       state.value.profile.nick = doc.data()?.nick
       state.value.profile.photoURL = doc.data()?.photoURL
+      if (doc.data()?.pelilautaLang) state.value.lang = doc.data()?.pelilautaLang
+      else state.value.lang = 'en'
     } else {
       state.value.missingProfile = true
     }
@@ -79,6 +83,14 @@ function createProfile (): void {
   })
 }
 
+function switchLang (lang: string) {
+  const db = firebase.firestore()
+  const profileRef = db.collection('profiles').doc(uid.value)
+  profileRef.update({
+    pelilautaLang: lang
+  })
+}
+
 export function useAuthz () {
-  return { onAuthStateChanged, isAuthz, profile, uid, missingProfile, ssoInfo, logout, createProfile }
+  return { onAuthStateChanged, isAuthz, profile, uid, missingProfile, ssoInfo, logout, createProfile, lang, switchLang }
 }

@@ -9,11 +9,11 @@
     <div class="toolbar">
       <h1>{{ profile.nick }}</h1>
       <MaterialButton :action="logout">
-        Logout
+        {{ $t('action.logout') }}
       </MaterialButton>
     </div>
     <div>
-      {{ $t('language.label') }} <a @click="locale = 'en'">EN</a> / <a @click="locale = 'fi'">FI</a>
+      {{ $t('language.label') }} <a @click="setLang('en')">EN</a> / <a @click="setLang('fi')">FI</a>
     </div>
     <div style="clear:both" />
   </MaterialCard>
@@ -27,7 +27,6 @@ import { useRouter } from 'vue-router'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthz } from '@/lib/authz'
-import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'Home',
@@ -36,7 +35,7 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
-    const { profile } = useAuthz()
+    const { profile, switchLang } = useAuthz()
     const router = useRouter()
 
     const logout = () => {
@@ -45,7 +44,11 @@ export default defineComponent({
       })
     }
 
-    return { profile, logout, ...useI18n() }
+    function setLang (lang: string) {
+      switchLang(lang)
+    }
+
+    return { profile, logout, setLang }
   }
 })
 </script>

@@ -14,12 +14,11 @@
       </div>
     </main>
   </div>
-  <MaterialDialog :visible="missingProfile" />
   <EditorDialog />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject, onMounted, watch } from 'vue'
 import AppBar from './components/AppBar.vue'
 import MaterialDialog from './components/material/MaterialDialog.vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
@@ -32,12 +31,16 @@ export default defineComponent({
   components: {
     AppBar,
     MaterialBanner,
-    MaterialDialog,
     EditorDialog
   },
   setup () {
-    const { missingProfile } = useAuthz()
-    return { missingProfile, version, ...useI18n() }
+    const { lang } = useAuthz()
+    const i18n = useI18n()
+    onMounted(() => {
+      i18n.locale.value = lang.value
+      watch(lang, (l) => { i18n.locale.value = l })
+    })
+    return { version, ...useI18n() }
   }
 })
 </script>

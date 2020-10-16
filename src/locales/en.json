@@ -2,5 +2,8 @@
   "lang": "EN",
   "language": {
       "label": "UI Language"
+  },
+  "action": {
+    "logout": "Logout"
   }
 }
