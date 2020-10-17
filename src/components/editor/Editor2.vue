@@ -63,7 +63,7 @@ export default defineComponent({
   height: 264px
   background-color: $color-base-dark
   border-bottom: solid 1px $color-primary-dark
-  overflow-y: hidden
+  overflow: hidden
   &:hover
     background-color: $color-base-darker
 

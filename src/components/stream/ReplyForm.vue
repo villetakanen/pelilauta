@@ -78,8 +78,9 @@ export default defineComponent({
   padding: 8px
   border-radius: 8px
   position: relative
-  display: flex
-  justify-content: space-between
+  // display: flex
+  // justify-content: space-between
+  // width: 100%
   .box
     flex-grow: 1
     flex-shrink: 0
@@ -90,7 +91,7 @@ export default defineComponent({
     padding: 4px
     height: 60px
     line-height: 20px
-    margin-right: 24px
+    margin-right: 70px
   .box:after
     content: ""
     position: absolute
@@ -101,8 +102,9 @@ export default defineComponent({
     border-width: 8px 0px 8px 16px
     bottom: auto
   .button
-    flex-grow: 0
-    flex-shrink: 0
+    position: absolute
+    right: 8px
+    top: 16px
 
 p.cap.caption
   margin-top: 4px
