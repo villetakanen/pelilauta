@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.5](https://github.com/villetakanen/pelilauta/compare/v3.2.4...v3.2.5) (2020-10-17)
+
+
+### Bug Fixes
+
+* **discussion:** overflow-x issue fixed ([cdd1aec](https://github.com/villetakanen/pelilauta/commit/cdd1aecdf14f50ff09398fcfaaeac3ba442be47c))
+* **ux:** added icons for love ([d4e82b3](https://github.com/villetakanen/pelilauta/commit/d4e82b33d54056faf43fa60d6296595dbc84b5ef))
+
 ### [3.2.4](https://github.com/villetakanen/pelilauta/compare/v3.2.3...v3.2.4) (2020-10-17)
 
 
