@@ -5,12 +5,18 @@
   },
   "action": {
     "logout": "Logout",
-    "toTopicList": "Topics"
+    "toTopicList": "Topics",
+    "login": "Login"
   },
   "postHeader": {
     "postedInStream": "in"
   },
   "post": {
     "nOfReplies": "replies"
+  },
+  "global": {
+    "messages": {
+      "pleaseLogin": "Please login to comment"
+    }
   }
 }

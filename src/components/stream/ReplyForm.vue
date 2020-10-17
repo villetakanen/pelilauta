@@ -1,10 +1,11 @@
 <template>
-  <p class="caption cap">
-    &nbsp;&nbsp;&nbsp;Reply
-  </p>
-  <div class="reply-form">
-    <textarea
+  <div
+    v-if="isAuthz"
+    class="reply-form"
+  >
+    <Editor
       v-model="reply"
+      :lines="3"
       class="box"
     />
     <MaterialButton
@@ -16,18 +17,32 @@
       <img src="@/assets/send.svg">
     </MaterialButton>
   </div>
+  <div
+    v-if="!isAuthz"
+    style="text-align: center;padding: 16px"
+  >
+    {{ $t('global.messages.pleaseLogin') }}
+    <MaterialButton
+      to="/login"
+      text
+    >
+      {{ $t('action.login') }}
+    </MaterialButton>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import Editor from '@/components/editor/Editor2.vue'
 import { useDiscussion } from '@/lib/discussion'
 import { useAuthz } from '@/lib/authz'
 
 export default defineComponent({
   name: 'ReplyForm',
   components: {
-    MaterialButton
+    MaterialButton,
+    Editor
   },
   props: {
     postid: {
@@ -36,6 +51,7 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const { isAuthz } = useAuthz()
     const reply = ref('')
 
     const send = () => {
@@ -45,7 +61,8 @@ export default defineComponent({
       addComment(uid.value, profile.value.nick, reply.value)
       reply.value = ''
     }
-    return { reply, send }
+
+    return { reply, send, isAuthz }
   }
 })
 </script>
@@ -56,8 +73,7 @@ export default defineComponent({
 
 .reply-form
   // border: solid 1px $color-primary-light
-  @include BoxShadow3()
-  background-color: white
+  background-color: $color-base-darker
   margin: 8px
   padding: 8px
   border-radius: 8px
@@ -72,8 +88,18 @@ export default defineComponent({
     background-color: $color-base-dark
     border: none
     padding: 4px
-    height: 40px
+    height: 60px
     line-height: 20px
+    margin-right: 24px
+  .box:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-color: transparent $color-base-dark
+    top: 16px // controls vertical position
+    right: 64px // value = - border-left-width - border-right-width */
+    border-width: 8px 0px 8px 16px
+    bottom: auto
   .button
     flex-grow: 0
     flex-shrink: 0

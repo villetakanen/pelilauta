@@ -12,5 +12,10 @@
   },
   "post": {
     "nOfReplies": "vastausta"
+  },
+  "global": {
+    "messages": {
+      "pleaseLogin": "Kirjaudu sisään osallistuaksesi keskusteluun"
+    }
   }
 }
