@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.4](https://github.com/villetakanen/pelilauta/compare/v3.2.3...v3.2.4) (2020-10-17)
+
+
+### Bug Fixes
+
+* **discussion:** reply box uses editor2 ([7ecded3](https://github.com/villetakanen/pelilauta/commit/7ecded313079655a6346b3c6312a3ac99028088e))
+
 ### [3.2.3](https://github.com/villetakanen/pelilauta/compare/v3.2.2...v3.2.3) (2020-10-16)
 
 
