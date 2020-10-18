@@ -109,7 +109,6 @@ export default defineComponent({
     const photoURL = computed(() => (authors.value.find((a) => (a.uid === props.author))?.photoURL))
 
     const toggleLove = () => {
-      if ()
       loveThread(uid.value, props.postid)
     }
 
