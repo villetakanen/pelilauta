@@ -23,6 +23,9 @@
         :loved="false"
         :action="toggleLove"
       />
+      <div v-if="lovecount > 0">
+        {{ lovecount }}
+      </div>
       <div class="spacer" />
       <div
         v-if="replycount > 0"
@@ -89,6 +92,11 @@ export default defineComponent({
       type: Number,
       required: false,
       default: -1
+    },
+    lovecount: {
+      type: Number,
+      required: false,
+      default: -1
     }
   },
   setup (props) {
@@ -101,6 +109,7 @@ export default defineComponent({
     const photoURL = computed(() => (authors.value.find((a) => (a.uid === props.author))?.photoURL))
 
     const toggleLove = () => {
+      if ()
       loveThread(uid.value, props.postid)
     }
 

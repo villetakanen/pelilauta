@@ -14,6 +14,7 @@
           :title="post.data.title"
           :images="post.data.images"
           :replycount="post.replyCount"
+          :lovecount="post.lovedCount"
         />
       </div>
     </div>

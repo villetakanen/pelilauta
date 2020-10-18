@@ -23,6 +23,7 @@ export interface Post {
     updated?: firebase.firestore.Timestamp;
     // Meta
     replyCount?: number;
+    lovedCount?: number;
     // Payload
     data: PostData
 }
