@@ -18,29 +18,39 @@
 
     <PhotoBox :photos="images" />
 
-    <div
-      v-if="replycount > 0"
-      class="replycount"
-    >
-      <router-link :to="`/stream/view/${postid}`">
-        {{ replycount }} {{ $t('post.nOfReplies') }}
-      </router-link>
+    <div class="toolbar">
+      <LoveAction
+        :loved="false"
+        :action="toggleLove"
+      />
+      <div class="spacer" />
+      <div
+        v-if="replycount > 0"
+        class="replycount"
+      >
+        <router-link :to="`/stream/view/${postid}`">
+          {{ replycount }} {{ $t('post.nOfReplies') }}
+        </router-link>
+      </div>
     </div>
   </MaterialCard>
 </template>
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import LoveAction from '@/components/app/LoveAction.vue'
 import PostHeader from './PostHeader.vue'
 import PhotoBox from './PhotoBox.vue'
 import { useAuthz } from '@/lib/authz'
 import { useAuthors } from '@/lib/authors'
+import { loveThread } from '@/state/threads'
 
 export default defineComponent({
   components: {
     MaterialCard,
     PostHeader,
-    PhotoBox
+    PhotoBox,
+    LoveAction
   },
   props: {
     content: {
@@ -82,7 +92,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAuthz } = useAuthz()
+    const { isAuthz, uid } = useAuthz()
 
     const { authors } = useAuthors()
     // console.log(authors, authors.value.find((a) => (a.uid === props.author)))
@@ -90,7 +100,11 @@ export default defineComponent({
     const nick = computed(() => (authors.value.find((a) => (a.uid === props.author))?.nick))
     const photoURL = computed(() => (authors.value.find((a) => (a.uid === props.author))?.photoURL))
 
-    return { nick, photoURL, isAuthz }
+    const toggleLove = () => {
+      loveThread(uid.value, props.postid)
+    }
+
+    return { nick, photoURL, isAuthz, toggleLove }
   }
 })
 </script>
