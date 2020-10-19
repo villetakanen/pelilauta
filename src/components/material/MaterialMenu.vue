@@ -105,6 +105,8 @@ export default defineComponent({
     height: 16px
     width: 16px
     padding: 4px
+    .dropdown
+      top: 24px
     .menu-button
       height: 16px
       width: 16px
