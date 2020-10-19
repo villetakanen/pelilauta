@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/villetakanen/pelilauta/compare/v3.3.0...v3.4.0) (2020-10-19)
+
+
+### Features
+
+* **profile:** loved threads ([dd7bfbf](https://github.com/villetakanen/pelilauta/commit/dd7bfbfa6be7fea533d7ef0f1ea555c0e05e2daa))
+* **view thread:** loved count and love ([ab78aa9](https://github.com/villetakanen/pelilauta/commit/ab78aa99402afbbd014e6abb6ed3add1229b0390))
+
 ## [3.3.0](https://github.com/villetakanen/pelilauta/compare/v3.2.5...v3.3.0) (2020-10-19)
 
 
