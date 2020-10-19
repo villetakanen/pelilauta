@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.2](https://github.com/villetakanen/pelilauta/compare/v3.4.1...v3.4.2) (2020-10-19)
+
+
+### Bug Fixes
+
+* **analytics:** re-enabled analytics ([3d02547](https://github.com/villetakanen/pelilauta/commit/3d0254719d799ce63c7252aa98d094a187ef3ebb))
+
 ### [3.4.1](https://github.com/villetakanen/pelilauta/compare/v3.4.0...v3.4.1) (2020-10-19)
 
 
