@@ -114,12 +114,14 @@ function subscribe () {
 }
 
 async function dropPost (actor: string, postid: string) {
+  firebase.analytics().logEvent('dropPost', { author: actor })
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(postid)
   return postRef.delete()
 }
 
 async function addPost (postData: PostData, author: string) {
+  firebase.analytics().logEvent('addPost', { author: author })
   const db = firebase.firestore()
   const streamRef = db.collection('stream')
   return streamRef.add({

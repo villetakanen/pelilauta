@@ -17,7 +17,7 @@
           </router-link>
         </div>
         <div style="text-align: center; padding:16px; line-height: 12px;opacity:0.37; font-size:12px">
-          <a href="https://https://github.com/villetakanen/pelilauta">GitHub</a>
+          <a href="https://github.com/villetakanen/pelilauta">GitHub</a>
         </div>
       </div>
     </main>

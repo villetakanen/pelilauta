@@ -3,6 +3,7 @@ import { computed, ref, ComputedRef } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Reply } from '../stream'
+import 'firebase/analytics'
 
 const discussionState = ref(new Array<Reply>())
 const discussion = computed(() => (discussionState.value))
@@ -19,6 +20,7 @@ function upsertComment (commentid: string, data: Reply) {
 }
 
 function addComment (author: string, nick: string, comment: string) {
+  firebase.analytics().logEvent('addComment', { author: author })
   const parentRef = firebase.firestore().collection('stream').doc(parentPostid)
   const commentRef = parentRef.collection('comments')
   commentRef.add({
@@ -36,6 +38,7 @@ function addComment (author: string, nick: string, comment: string) {
 }
 
 function deleteComment (commentid:string) {
+  firebase.analytics().logEvent('dropComment')
   const parentRef = firebase.firestore().collection('stream').doc(parentPostid)
   const commentRef = parentRef.collection('comments').doc(commentid)
   commentRef.delete().then(() => {
