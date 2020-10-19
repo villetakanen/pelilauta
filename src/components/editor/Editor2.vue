@@ -60,7 +60,8 @@ export default defineComponent({
   display: block
   margin: 0
   padding: 8px
-  height: 264px
+  min-height: 264px
+  max-height: 264px
   background-color: $color-base-dark
   border-bottom: solid 1px $color-primary-dark
   overflow: hidden

@@ -89,9 +89,11 @@ export default defineComponent({
     background-color: $color-base-dark
     border: none
     padding: 4px
-    height: 60px
+    min-height: 60px
+    max-height: 220px
     line-height: 20px
     margin-right: 70px
+    overflow: auto
   .box:after
     content: ""
     position: absolute
@@ -104,7 +106,7 @@ export default defineComponent({
   .button
     position: absolute
     right: 8px
-    top: 16px
+    bottom: 22px
 
 p.cap.caption
   margin-top: 4px
