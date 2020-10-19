@@ -2,12 +2,16 @@
   <div
     class="material-menu"
     :class="styleClasses"
+    @focus="handleFocus"
+    @focusout="handleFocusOut"
+    @blur="handleFocusOut"
+    tabindex="0"
   >
     <img
       class="menu-button"
       src="@/assets/menu-default.svg"
     >
-    <ul class="dropdown">
+    <ul class="dropdown" :class="dropdownClasses">
       <li
         v-for="item in menuItems"
         :key="item.text"
@@ -20,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { MenuItem } from '@/lib/stream'
 
@@ -37,7 +41,7 @@ export default defineComponent({
       default: false
     }
   },
-  setup (props) {
+  setup (props, context) {
     const router = useRouter()
 
     const menuItems = computed(() => {
@@ -65,7 +69,16 @@ export default defineComponent({
       return arr
     })
 
-    return { menuItems, styleClasses }
+    const dropdownClasses = ref('')
+
+    const handleFocus = () => {
+      dropdownClasses.value = 'visible'
+    }
+    const handleFocusOut = () => {
+      dropdownClasses.value = ''
+    }
+
+    return { menuItems, styleClasses, handleFocusOut, handleFocus, dropdownClasses }
   }
 })
 </script>
@@ -99,7 +112,7 @@ export default defineComponent({
         background-color: $color-base-dark
   &:hover
     background-color: $color-base-dark
-    .dropdown
+  .dropdown.visible
       transform: scale(1)
   &.small-icons
     height: 16px
