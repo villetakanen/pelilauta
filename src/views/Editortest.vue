@@ -51,6 +51,7 @@ export default defineComponent({
     const images = ref('')
 
     const addImages = (attrs: PostImage[]) => {
+      // eslint-disable-next-line
       console.log(attrs)
     }
 

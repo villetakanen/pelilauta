@@ -55,7 +55,6 @@ export default defineComponent({
     const reply = ref('')
 
     const send = () => {
-      console.log('sending:', reply.value)
       const { addComment } = useDiscussion(props.postid)
       const { uid, profile } = useAuthz()
       addComment(uid.value, profile.value.nick, reply.value)

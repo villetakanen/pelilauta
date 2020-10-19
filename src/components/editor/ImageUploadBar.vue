@@ -46,12 +46,10 @@ export default defineComponent({
       const element = e.target as HTMLInputElement
       if (element.files && element.files[0]) {
         const file = element.files[0]
-        console.log('uploadImage', file)
         const storageRef = firebase.storage().ref()
         const fileRef = storageRef.child('/stream/uploads/' + new Date().getTime() + file.name)
         fileRef.put(file).then((snapshot) => {
           snapshot.ref.getDownloadURL().then((url) => {
-            console.log('uploaded!', url)
             images.value.push(url)
           })
         })

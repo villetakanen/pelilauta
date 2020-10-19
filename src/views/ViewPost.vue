@@ -86,7 +86,6 @@ export default defineComponent({
 
     const loves = computed(() => {
       if (typeof profile.value.lovedThreads === 'undefined') return false
-      // console.log(profile.value.lovedThreads.includes(props.postid))
       return profile.value.lovedThreads.includes(props.postid)
     })
 

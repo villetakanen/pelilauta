@@ -13,7 +13,6 @@ let parentPostid = ''
 let unsubscribe = () => {}
 
 function upsertComment (commentid: string, data: Reply) {
-  // console.log('upsertComment', commentid, data)
   const comment = { ...data }
   comment.replyid = commentid
   discussionState.value.push(comment)
@@ -70,7 +69,6 @@ export function useDiscussion (postid: string): {
   addComment: (author: string, nick: string, comment: string) => void;
   deleteComment: (commentid: string) => void;
 } {
-  // console.log('useDiscussion', postid)
   init(postid)
   return { discussion, addComment, deleteComment }
 }

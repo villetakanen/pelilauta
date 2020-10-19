@@ -126,12 +126,10 @@ export default defineComponent({
       const element = e.target as HTMLInputElement
       if (element.files && element.files[0]) {
         const file = element.files[0]
-        console.log('uploadImage', file)
         const storageRef = firebase.storage().ref()
         const fileRef = storageRef.child('/stream/uploads/' + new Date().getTime() + file.name)
         fileRef.put(file).then((snapshot) => {
           snapshot.ref.getDownloadURL().then((url) => {
-            console.log('uploaded!', url)
             minedImages.value += url + ';' + minedImages.value
             if (minedImages.value.endsWith(';')) minedImages.value = minedImages.value.substring(0, minedImages.value.length - 1)
           })
@@ -143,7 +141,6 @@ export default defineComponent({
       context.emit('update:modelValue', value)
     })
     watch(minedImages, (value) => {
-      // console.log('emitting', value)
       context.emit('update:images', value)
     })
 

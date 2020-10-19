@@ -103,14 +103,12 @@ export default defineComponent({
     const { isAuthz, uid, profile } = useAuthz()
 
     const { authors } = useAuthors()
-    // console.log(authors, authors.value.find((a) => (a.uid === props.author)))
 
     const nick = computed(() => (authors.value.find((a) => (a.uid === props.author))?.nick))
     const photoURL = computed(() => (authors.value.find((a) => (a.uid === props.author))?.photoURL))
 
     const loves = computed(() => {
       if (typeof profile.value.lovedThreads === 'undefined') return false
-      // console.log(profile.value.lovedThreads.includes(props.postid))
       return profile.value.lovedThreads.includes(props.postid)
     })
 

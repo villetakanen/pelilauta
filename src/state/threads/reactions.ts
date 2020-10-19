@@ -15,8 +15,6 @@ import 'firebase/firestore'
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  */
 export function loveThread (uid: string, threadid: string): void {
-  console.log('threads/loveThread', uid, threadid)
-
   const db = firebase.firestore()
   const threadRef = db.collection('stream').doc(threadid)
   const profileRef = db.collection('profiles').doc(uid)
@@ -52,8 +50,6 @@ export function loveThread (uid: string, threadid: string): void {
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  */
 export function unloveThread (uid: string, threadid: string): void {
-  console.log('threads/unloveThread', uid, threadid)
-
   const db = firebase.firestore()
   const threadRef = db.collection('stream').doc(threadid)
   const profileRef = db.collection('profiles').doc(uid)

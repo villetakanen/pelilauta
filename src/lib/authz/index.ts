@@ -39,7 +39,6 @@ function subToProfile (uid: string): void {
       state.value.profile.nick = doc.data()?.nick
       state.value.profile.photoURL = doc.data()?.photoURL
       state.value.profile.lovedThreads = doc.data()?.lovedThreads
-      console.log('state:', state.value.profile.lovedThreads)
       if (doc.data()?.pelilautaLang) state.value.lang = doc.data()?.pelilautaLang
       else state.value.lang = 'en'
     } else {
