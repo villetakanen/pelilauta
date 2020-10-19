@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.5](https://github.com/villetakanen/pelilauta/compare/v3.4.4...v3.4.5) (2020-10-19)
+
+
+### Bug Fixes
+
+* removed extraneous logging ([275f811](https://github.com/villetakanen/pelilauta/commit/275f811da48b46a824467cdae9e6f3ccce79eb23))
+* **material:** dropdown open on click/press ([572ee1e](https://github.com/villetakanen/pelilauta/commit/572ee1e4d037ed4db2b2f11177711e65ba30128f))
+* **material:** menu admin action theming ([6001734](https://github.com/villetakanen/pelilauta/commit/6001734bd1343abe1b009d3f20247f201676e108))
+* **material:** small icons, menu offset ([e5e99e6](https://github.com/villetakanen/pelilauta/commit/e5e99e67961e552e9adeefbf4bab60dac9154672))
+
 ### [3.4.4](https://github.com/villetakanen/pelilauta/compare/v3.4.3...v3.4.4) (2020-10-19)
 
 
