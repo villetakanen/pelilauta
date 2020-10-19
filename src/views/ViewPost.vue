@@ -25,6 +25,15 @@
       />
 
       <PhotoBox :photos="post.data.images" />
+      <div style="display:flex">
+        <LoveAction
+          :loved="loves"
+          :action="toggleLove"
+        />
+        <div v-if="post.lovedCount > 0">
+          {{ post.lovedCount }}
+        </div>
+      </div>
     </div>
 
     <Discussion :postid="postid" />
@@ -34,6 +43,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import Discussion from '@/components/stream/Discussion.vue'
+import { loveThread, unloveThread } from '@/state/threads'
 import { useStream } from '@/lib/stream'
 import { useAuthors } from '@/lib/authors'
 import PostHeader from '@/components/stream/PostHeader.vue'
@@ -41,12 +51,14 @@ import PhotoBox from '@/components/stream/PhotoBox.vue'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/lib/meta'
 import { useAuthz } from '@/lib/authz'
+import LoveAction from '@/components/app/LoveAction.vue'
 
 export default defineComponent({
   components: {
     PostHeader,
     Discussion,
-    PhotoBox
+    PhotoBox,
+    LoveAction
   },
   props: {
     postid: {
@@ -56,7 +68,7 @@ export default defineComponent({
   },
   setup (props) {
     const router = useRouter()
-    const { uid } = useAuthz()
+    const { uid, profile } = useAuthz()
 
     const { stream, dropPost, toDisplayString } = useStream()
     const post = computed(() => {
@@ -72,9 +84,20 @@ export default defineComponent({
       })
     }
 
+    const loves = computed(() => {
+      if (typeof profile.value.lovedThreads === 'undefined') return false
+      // console.log(profile.value.lovedThreads.includes(props.postid))
+      return profile.value.lovedThreads.includes(props.postid)
+    })
+
+    const toggleLove = () => {
+      if (loves.value) unloveThread(uid.value, props.postid)
+      else loveThread(uid.value, props.postid)
+    }
+
     const { showStreamActions } = useMeta()
 
-    return { author, deletePost, showStreamActions, post, toDisplayString }
+    return { author, deletePost, showStreamActions, post, toDisplayString, toggleLove, loves }
   }
 })
 </script>
