@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/villetakanen/pelilauta/compare/v3.2.5...v3.3.0) (2020-10-19)
+
+
+### Features
+
+* **threads:** love action visuals for stream ([446eefc](https://github.com/villetakanen/pelilauta/commit/446eefc3a14ce085ce8ece8f4eb3f002d70dd933))
+* **threads:** love visualisation and delove ([0004ea4](https://github.com/villetakanen/pelilauta/commit/0004ea462bdb1f8354b25a321991c80f94454457))
+* **threads:** persist love status to db ([11084e6](https://github.com/villetakanen/pelilauta/commit/11084e6f9aed7722f8c757e2f8c6e13d903afb92))
+
+
+### Bug Fixes
+
+* **threads:** code quality ([f4fac8e](https://github.com/villetakanen/pelilauta/commit/f4fac8ed2548c780dd0e4a9a9c17d3abbae45d9a))
+
 ### [3.2.5](https://github.com/villetakanen/pelilauta/compare/v3.2.4...v3.2.5) (2020-10-17)
 
 
