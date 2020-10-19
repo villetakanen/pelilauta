@@ -1,6 +1,7 @@
 import { ref, computed, ComputedRef } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/analytics'
 
 export interface PostImage {
   url: string;
@@ -98,6 +99,8 @@ let init = false
 function subscribe () {
   if (init) return
   init = true
+
+  firebase.analytics().logEvent('firestore_stream_subscribed')
 
   // Firebase references
   const db = firebase.firestore()
