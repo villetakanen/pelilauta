@@ -5,7 +5,7 @@
   >
     <transition name="fade">
       <img
-        v-if="toggle"
+        v-if="loved"
         src="@/assets/icons/action-love-full.svg"
       >
       <img
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'LoveAction',
@@ -34,14 +34,11 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const toggle = ref(props.loved)
-
     const clicked = () => {
-      toggle.value = !toggle.value
       if (props.action) props.action()
     }
 
-    return { toggle, clicked }
+    return { clicked }
   }
 })
 </script>

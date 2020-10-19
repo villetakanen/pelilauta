@@ -1,5 +1,6 @@
-import { loveThread } from './reactions'
+import { loveThread, unloveThread } from './reactions'
 
 export {
-  loveThread
+  loveThread,
+  unloveThread
 }

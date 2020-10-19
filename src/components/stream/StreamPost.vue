@@ -20,7 +20,7 @@
 
     <div class="toolbar">
       <LoveAction
-        :loved="false"
+        :loved="loves"
         :action="toggleLove"
       />
       <div v-if="lovecount > 0">
@@ -46,7 +46,7 @@ import PostHeader from './PostHeader.vue'
 import PhotoBox from './PhotoBox.vue'
 import { useAuthz } from '@/lib/authz'
 import { useAuthors } from '@/lib/authors'
-import { loveThread } from '@/state/threads'
+import { loveThread, unloveThread } from '@/state/threads'
 
 export default defineComponent({
   components: {
@@ -100,7 +100,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAuthz, uid } = useAuthz()
+    const { isAuthz, uid, profile } = useAuthz()
 
     const { authors } = useAuthors()
     // console.log(authors, authors.value.find((a) => (a.uid === props.author)))
@@ -108,11 +108,18 @@ export default defineComponent({
     const nick = computed(() => (authors.value.find((a) => (a.uid === props.author))?.nick))
     const photoURL = computed(() => (authors.value.find((a) => (a.uid === props.author))?.photoURL))
 
+    const loves = computed(() => {
+      if (typeof profile.value.lovedThreads === 'undefined') return false
+      // console.log(profile.value.lovedThreads.includes(props.postid))
+      return profile.value.lovedThreads.includes(props.postid)
+    })
+
     const toggleLove = () => {
-      loveThread(uid.value, props.postid)
+      if (loves.value) unloveThread(uid.value, props.postid)
+      else loveThread(uid.value, props.postid)
     }
 
-    return { nick, photoURL, isAuthz, toggleLove }
+    return { nick, photoURL, isAuthz, toggleLove, loves }
   }
 })
 </script>
