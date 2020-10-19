@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/analytics'
 import { useAuthz } from '../authz'
 
 let init = false
@@ -14,13 +15,15 @@ function _init () {
     projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
     storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.VUE_APP_FIREBASE_APP_ID
+    appId: process.env.VUE_APP_FIREBASE_APP_ID,
+    measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
   })
   firebase.auth().onAuthStateChanged((user) => {
     const { onAuthStateChanged } = useAuthz()
     onAuthStateChanged(user)
   })
   firebase.firestore().enablePersistence()
+  firebase.analytics()
 }
 
 export function useFirebase (): void {
