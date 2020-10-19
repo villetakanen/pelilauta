@@ -1,5 +1,8 @@
 {
   "lang": "EN",
+  "app": {
+    "footnote": "Experimental SPA. All text (c) by the author."
+  },
   "language": {
       "label": "UI Language"
   },
@@ -13,6 +16,10 @@
   },
   "post": {
     "nOfReplies": "replies"
+  },
+  "about": {
+    "title": "About Pelilauta",
+    "text": "What if we wanted more structured and slower conversation than discoes and some allows? Not instead, but in addition."
   },
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {

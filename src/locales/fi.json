@@ -1,5 +1,8 @@
 {
   "lang": "FI",
+  "app": {
+    "footnote": "Kokeellinen SPA -sovellus. Kaikki tekstit kuuluvat kirjoittajilleen."
+  },
   "language": {
     "label": "Appiksen kieli"
   },
@@ -12,6 +15,10 @@
   },
   "post": {
     "nOfReplies": "vastausta"
+  },
+  "about": {
+    "title": "Pelilaudasta",
+    "text": "Jos sittenkin olisi foorumi? Koska vaikka discot on kivoja, ja RPS on somen keskus... niin joskus haluaisi myös rakenteellisempaa tai hitaampaa keskustelua."
   },
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
