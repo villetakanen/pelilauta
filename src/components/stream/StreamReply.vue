@@ -76,8 +76,10 @@ export default defineComponent({
 
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
-      if (isAdmin(uid.value) || uid.value === props.author) {
+      if (uid.value === props.author) {
         arr.push({ action: dropComment, text: 'Delete!' })
+      } else if (isAdmin(uid.value)) {
+        arr.push({ action: dropComment, text: 'Delete!', admin: true })
       }
       return arr
     })

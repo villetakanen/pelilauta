@@ -99,9 +99,12 @@ export default defineComponent({
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       arr.push({ to: '/stream/view/' + props.postid, text: 'Open' })
-      if (isAdmin(uid.value) || uid.value === props.author) {
+      if (uid.value === props.author) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit' })
         arr.push({ action: drop, text: 'Delete!' })
+      } else if (isAdmin(uid.value) || uid.value === props.author) {
+        arr.push({ action: edit, icon: 'edit', text: 'Edit', admin: true })
+        arr.push({ action: drop, text: 'Delete!', admin: true })
       }
       return arr
     })

@@ -49,6 +49,7 @@ export interface MenuItem {
   to?: string;
   action?: () => void
   icon?: string;
+  admin?: boolean;
 }
 
 const streamState = ref(new Array<Post>())

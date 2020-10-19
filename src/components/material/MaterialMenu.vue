@@ -2,21 +2,29 @@
   <div
     class="material-menu"
     :class="styleClasses"
+    tabindex="0"
     @focus="handleFocus"
     @focusout="handleFocusOut"
     @blur="handleFocusOut"
-    tabindex="0"
   >
     <img
       class="menu-button"
       src="@/assets/menu-default.svg"
     >
-    <ul class="dropdown" :class="dropdownClasses">
+    <ul
+      class="dropdown"
+      :class="dropdownClasses"
+    >
       <li
         v-for="item in menuItems"
         :key="item.text"
+        :class="{ adminAction: item.admin }"
         @click="item.action"
       >
+        <img
+          v-if="item.admin"
+          src="@/assets/admin-black.svg"
+        >
         {{ item.text }}
       </li>
     </ul>
@@ -41,7 +49,7 @@ export default defineComponent({
       default: false
     }
   },
-  setup (props, context) {
+  setup (props) {
     const router = useRouter()
 
     const menuItems = computed(() => {
@@ -105,11 +113,15 @@ export default defineComponent({
     transform-origin: 100% 0
     li
       display: block
-      padding: 1em 18px
+      padding: 8px 18px
       cursor: pointer
       white-space: nowrap
       &:hover
         background-color: $color-base-dark
+      img
+        height: 22px
+        vertical-align: middle
+        opacity: 0.5
   &:hover
     background-color: $color-base-dark
   .dropdown.visible
@@ -132,5 +144,8 @@ export default defineComponent({
 
 .disabled
   opacity: 0.2
+
+.adminAction
+  background-color: $color-secondary-light
 
 </style>
