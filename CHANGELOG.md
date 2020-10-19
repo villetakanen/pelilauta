@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.1](https://github.com/villetakanen/pelilauta/compare/v3.4.0...v3.4.1) (2020-10-19)
+
+
+### Bug Fixes
+
+* **identity:** about page updates ([9c4cb07](https://github.com/villetakanen/pelilauta/commit/9c4cb07de1f8826317daa6364f3016fc0a0ca1b1))
+* **replies:** reply-box opens to 11 lines ([6ef45af](https://github.com/villetakanen/pelilauta/commit/6ef45af432862ef3a4a6f066195f851241d51841))
+
 ## [3.4.0](https://github.com/villetakanen/pelilauta/compare/v3.3.0...v3.4.0) (2020-10-19)
 
 
