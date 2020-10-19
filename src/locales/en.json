@@ -14,6 +14,7 @@
   "post": {
     "nOfReplies": "replies"
   },
+  "LovedThreads":{"title": "<3 Stream threads"},
   "global": {
     "messages": {
       "pleaseLogin": "Please login to comment"

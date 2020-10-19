@@ -17,6 +17,7 @@
     </div>
     <div style="clear:both" />
   </MaterialCard>
+  <LovedThreads />
 </template>
 
 <script lang="ts">
@@ -26,13 +27,15 @@ import 'firebase/auth'
 import { useRouter } from 'vue-router'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import LovedThreads from '@/components/profile/LovedThreads.vue'
 import { useAuthz } from '@/lib/authz'
 
 export default defineComponent({
   name: 'Home',
   components: {
     MaterialButton,
-    MaterialCard
+    MaterialCard,
+    LovedThreads
   },
   setup () {
     const { profile, switchLang } = useAuthz()

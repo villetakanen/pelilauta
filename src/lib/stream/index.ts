@@ -20,10 +20,10 @@ export interface Post {
     // Timestamps
     created: firebase.firestore.Timestamp;
     flowTime: firebase.firestore.Timestamp;
-    updated?: firebase.firestore.Timestamp;
+    updated: firebase.firestore.Timestamp;
     // Meta
-    replyCount?: number;
-    lovedCount?: number;
+    replyCount: number;
+    lovedCount: number;
     // Payload
     data: PostData
 }
@@ -60,9 +60,21 @@ function toDisplayString (timestamp:firebase.firestore.Timestamp): string {
 
 function toPost (postid: string, data:firebase.firestore.DocumentData|undefined): Post|undefined {
   if (!data) return undefined
-  const post = data as Post
-  post.data = data as PostData
-  post.postid = postid
+  const post: Post = {
+    postid: postid,
+    author: data.author,
+    created: data.created,
+    flowTime: data.flowTime,
+    replyCount: data.replyCount,
+    lovedCount: data.lovedCount,
+    updated: data.updated,
+    data: {
+      content: data.content,
+      topic: data.topic,
+      title: data.title,
+      images: data.images
+    }
+  }
   if (typeof post.data.images === 'string') delete post.data.images
   return post
 }

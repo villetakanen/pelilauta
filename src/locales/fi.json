@@ -13,6 +13,7 @@
   "post": {
     "nOfReplies": "vastausta"
   },
+  "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
     "messages": {
       "pleaseLogin": "Kirjaudu sisään osallistuaksesi keskusteluun"
