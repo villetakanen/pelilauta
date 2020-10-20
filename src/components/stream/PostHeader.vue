@@ -96,9 +96,22 @@ export default defineComponent({
       if (post) showEditor(post)
     }
 
+    const copyUrl = () => {
+      const dummy = document.createElement('input')
+      document.body.appendChild(dummy)
+      dummy.value = window.location.host + '/stream/view/' + props.postid
+      dummy.select()
+      document.execCommand('copy')
+      document.body.removeChild(dummy)
+      // pushSnack('Success', 'Url copied to clipboard')
+    }
+
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
-      arr.push({ to: '/stream/view/' + props.postid, text: 'Open' })
+
+      // arr.push({ to: '/stream/view/' + props.postid, text: 'Open' })
+      arr.push({ action: copyUrl, text: 'Copy link', icon: 'link' })
+
       if (uid.value === props.author) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit' })
         arr.push({ action: drop, text: 'Delete!' })
