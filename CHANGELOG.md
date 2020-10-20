@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.1](https://github.com/villetakanen/pelilauta/compare/v3.5.0...v3.5.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **analytics:** added view names to page title ([fc5ac09](https://github.com/villetakanen/pelilauta/commit/fc5ac0912408b79ef5c9bdf02cb5a7863f1a3cd1))
+* **project:** readme.md install instructions ([e72e7e8](https://github.com/villetakanen/pelilauta/commit/e72e7e8f1c591d65fa05adf1c33b7dd3e404426a))
+* **project:** updated readme.md ([452cfb1](https://github.com/villetakanen/pelilauta/commit/452cfb12ce8d6fe7429974615ab044fb35612d32))
+
 ## [3.5.0](https://github.com/villetakanen/pelilauta/compare/v3.4.5...v3.5.0) (2020-10-20)
 
 
