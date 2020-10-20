@@ -1,6 +1,6 @@
 <template>
   <div class="discussion">
-    <StreamReply
+    <Reply
       v-for="(comment) in discussion"
       :key="comment.replyid"
       :author="comment.author"
@@ -17,13 +17,13 @@
 import { defineComponent } from 'vue'
 import { useDiscussion } from '@/lib/discussion'
 import ReplyForm from './ReplyForm.vue'
-import StreamReply from './StreamReply.vue'
+import Reply from './Reply.vue'
 
 export default defineComponent({
   name: 'Discussion',
   components: {
     ReplyForm,
-    StreamReply
+    Reply
   },
   props: {
     postid: {

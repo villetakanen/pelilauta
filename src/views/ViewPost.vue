@@ -42,7 +42,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import Discussion from '@/components/stream/Discussion.vue'
+import Discussion from '@/components/discussion/Discussion.vue'
 import { loveThread, unloveThread } from '@/state/threads'
 import { useStream } from '@/lib/stream'
 import { useAuthors } from '@/lib/authors'
