@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useMeta } from '@/lib/meta'
 
@@ -44,6 +44,9 @@ export default defineComponent({
   },
   setup () {
     const { topics } = useMeta()
+    onMounted(() => {
+      document.title = 'Pelilauta - Index'
+    })
     return { topics }
   }
 })

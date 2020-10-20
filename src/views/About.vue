@@ -6,13 +6,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'About',
   components: {
     MaterialCard
+  },
+  setup () {
+    onMounted(() => {
+      document.title = 'Pelilauta - About'
+    })
   }
 })
 </script>

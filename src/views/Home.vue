@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
 import { useMeta } from '@/lib/meta'
@@ -33,6 +33,9 @@ export default defineComponent({
       const { showEditor } = useEditorDialog()
       showEditor()
     }
+    onMounted(() => {
+      document.title = 'Pelilauta'
+    })
     return { showStreamActions, editorDialog, showDialog }
   }
 })

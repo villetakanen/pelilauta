@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, watch, onMounted } from 'vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import { loveThread, unloveThread } from '@/state/threads'
 import { useStream } from '@/lib/stream'
@@ -95,6 +95,13 @@ export default defineComponent({
     }
 
     const { showStreamActions } = useMeta()
+
+    onMounted(() => {
+      document.title = 'Pelilauta ' + post.value.data.title
+      watch(post, (post) => {
+        document.title = 'Pelilauta ' + post.data.title
+      })
+    })
 
     return { author, deletePost, showStreamActions, post, toDisplayString, toggleLove, loves }
   }
