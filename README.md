@@ -1,6 +1,6 @@
 # Pelilauta
 
-_The cleric casts a level 20 resurrection._
+_Elven wizard casts a resurrection: [pelilauta.web.app](https://pelilauta.web.app)_
 
 An Open Source vue3+firebase project for a community site. 
 
@@ -10,6 +10,14 @@ An Open Source vue3+firebase project for a community site.
 3. Provide GDPR tools for Personal data removal
 4. Provide basic tools for community moderation
 5. Super simple to use
+
+## How you can help.
+1. Use the App
+2. Read the code
+3. Log issues to the github tracker of this repo
+4. Ask Ville for access, and start peer reviewing or writin code :P
+5. Ask Ville for access, and start helping with Firebase devops tasks o_O
+6. Use the App.
 
 ## Project setup
 ```
@@ -31,5 +39,8 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Release a new version (from CLI)
+```bash
+npm run release && npm run build && firebase deploy
+git push --follow-tags origin master
+```
