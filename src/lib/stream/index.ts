@@ -106,7 +106,7 @@ function subscribe () {
   // Firebase references
   const db = firebase.firestore()
   const streamRef = db.collection('stream')
-  streamRef.orderBy('flowTime', 'desc').limit(11).onSnapshot((snapshot) => {
+  streamRef.orderBy('flowTime', 'desc').limit(21).onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
       if (change.type !== 'removed') patchPostToState(toPost(change.doc.id, change.doc.data()))
       if (change.type === 'removed') streamState.value = streamState.value.filter((post) => (post.postid !== change.doc.id))
