@@ -24,6 +24,18 @@ An Open Source vue3+firebase project for a community site.
 npm install
 ```
 
+Create a file called env.local and add following data from the Firebase app
+```text
+VUE_APP_FIREBASE_API_KEY = 
+VUE_APP_FIREBASE_AUTH_DOMAIN =  
+VUE_APP_FIREBASE_DATABASE_URL = 
+VUE_APP_FIREBASE_PROJECT_ID  = 
+VUE_APP_FIREBASE_STORAGE_BUCKET  = 
+VUE_APP_FIREBASE_MESSAGING_SENDER_ID =
+VUE_APP_FIREBASE_APP_ID =
+VUE_APP_FIREBASE_MEASUREMENT_ID = 
+```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
