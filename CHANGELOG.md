@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.0](https://github.com/villetakanen/pelilauta/compare/v3.4.5...v3.5.0) (2020-10-20)
+
+
+### Features
+
+* **threads:** adds mekanismi style link sharing ([05cdb9f](https://github.com/villetakanen/pelilauta/commit/05cdb9fb66565791b2114573980234e8678226d3))
+
+
+### Bug Fixes
+
+* **discussion:** branch prep refactors ([275032c](https://github.com/villetakanen/pelilauta/commit/275032c39ca6461890f189ac69f54f87162e453a))
+
 ### [3.4.5](https://github.com/villetakanen/pelilauta/compare/v3.4.4...v3.4.5) (2020-10-19)
 
 
