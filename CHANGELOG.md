@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.2](https://github.com/villetakanen/pelilauta/compare/v3.5.1...v3.5.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **stream:** updated limits ([7561f24](https://github.com/villetakanen/pelilauta/commit/7561f240295d8ac47bf49aaa7aacfeeafc995b4f))
+
 ### [3.5.1](https://github.com/villetakanen/pelilauta/compare/v3.5.0...v3.5.1) (2020-10-20)
 
 
