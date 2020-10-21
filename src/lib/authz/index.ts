@@ -112,8 +112,8 @@ function stampSeen (id: string, flowTime: firebase.firestore.Timestamp) {
   const db = firebase.firestore()
   const profileRef = db.collection('profiles').doc(uid.value)
   profileRef.get().then((doc) => {
-    const arr = doc.data()?.seenThreadsArray ? doc.data()?.seenThreadsArray : new Array<seenThread>()
-    arr.push({ threadid: id, flowTime: flowTime })
+    const arr = doc.data()?.seenThreads ? doc.data()?.seenThreads : new Array<seenThread>()
+    arr.push({ threadid: id, timestamp: flowTime })
     profileRef.update({ seenThreads: arr })
   })
 }

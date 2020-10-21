@@ -46,8 +46,9 @@ export default defineComponent({
     })
 
     function seenThis (t: Thread) {
+      console.log('seenThis', t.flowTime, t.id)
       const lastSeen = profile.value.seenThreads.get(props.threadid)
-      if (!lastSeen || lastSeen.seconds < t.flowTime.seconds) stampSeen(props.threadid, t.flowTime)
+      if (!lastSeen || lastSeen.seconds < t.flowTime.seconds) stampSeen(t.id, t.flowTime)
     }
 
     onMounted(() => {

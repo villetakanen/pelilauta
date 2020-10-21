@@ -10,8 +10,6 @@
     <router-link :to="`/stream/view/${threadid}`">
       {{ thread ? thread.replyCount : '' }} {{ $t('post.nOfReplies') }}
     </router-link>
-    <br>
-    {{ thread ? thread.flowTime : '' }}
   </div>
 </template>
 
@@ -42,14 +40,16 @@ export default defineComponent({
     // const replyCount = computed(() => (1))
     const newReplies = computed(() => {
       if (!profile.value || !thread.value) return false
+      // console.log('we have values?' + props.threadid)
       if (profile.value.seenThreads.has(props.threadid)) {
-        console.log(profile.value.seenThreads?.get(props.threadid)?.seconds, thread.value.flowTime.seconds)
+        // console.log('we have seen this', profile.value.seenThreads?.get(props.threadid)?.seconds)
+        // console.log(profile.value.seenThreads?.get(props.threadid)?.seconds, thread.value.flowTime.seconds)
         const lastSeen = profile.value.seenThreads.get(props.threadid)
         return !lastSeen || lastSeen.seconds < thread.value.flowTime.seconds
       }
       return true
     })
-    return { newReplies, thread }
+    return { newReplies, thread, profile }
   }
 })
 </script>
