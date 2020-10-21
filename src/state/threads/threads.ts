@@ -62,7 +62,7 @@ function toThread (id: string, data:firebase.firestore.DocumentData|undefined): 
  *
  * @param threadid the firestore id of the doc
  */
-export function useThread (threadid: string): ComputedRef<Thread>|undefined {
+export function useThread (threadid: string): ComputedRef<Thread> {
   // @todo: move threads-in-state, like the sream, here:
   if (threadStore.value.has(threadid)) {
     return computed(():Thread => (threadStore.value.get(threadid) as Thread))
@@ -81,5 +81,5 @@ export function useThread (threadid: string): ComputedRef<Thread>|undefined {
   db.collection('stream').doc(threadid).get().then((doc) => {
     if (doc.exists) return toThread(doc.id, doc.data())
   })
-  return undefined
+  throw new Error('thread not found')
 }

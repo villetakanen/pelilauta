@@ -15,6 +15,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useThread } from '@/state/threads'
+import { useAuthz } from '@/lib/authz'
 
 export default defineComponent({
   props: {
@@ -25,8 +26,16 @@ export default defineComponent({
   },
   setup (props) {
     const thread = useThread(props.threadid)
+    const { profile } = useAuthz()
     // const replyCount = computed(() => (1))
-    const newReplies = computed(() => (true))
+    const newReplies = computed(() => {
+      if (!profile.value || !thread) return false
+      if (profile.value.seenThreads.has(props.threadid)) {
+        const lastSeen = profile.value.seenThreads.get(props.threadid)
+        return !lastSeen || lastSeen.seconds < thread.value.flowTime.seconds
+      }
+      return true
+    })
     return { newReplies, thread }
   }
 })

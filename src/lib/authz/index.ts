@@ -16,7 +16,8 @@ const state = ref({
   profile: {
     nick: '',
     photoURL: '',
-    lovedThreads: new Array<string>()
+    lovedThreads: new Array<string>(),
+    seenThreads: new Map<string, firebase.firestore.Timestamp>()
   },
   lang: 'en'
 })
