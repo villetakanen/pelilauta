@@ -15,7 +15,8 @@
     "postedInStream": "in"
   },
   "post": {
-    "nOfReplies": "replies"
+    "nOfReplies": "replies",
+    "newRepliesNote": "new"
   },
   "about": {
     "title": "About Pelilauta",

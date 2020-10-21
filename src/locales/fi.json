@@ -14,7 +14,8 @@
     "postedInStream": "aiheessa"
   },
   "post": {
-    "nOfReplies": "vastausta"
+    "nOfReplies": "vastausta",
+    "newRepliesNote": "uusia"
   },
   "about": {
     "title": "Pelilaudasta",
