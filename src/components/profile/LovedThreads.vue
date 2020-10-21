@@ -3,10 +3,10 @@
     <h1>{{ $t('LovedThreads.title') }}</h1>
     <div
       v-for="post in loved"
-      :key="post.postid"
+      :key="post.threadid"
     >
       <p>
-        <router-link :to="`/stream/view/${post.postid}`">
+        <router-link :to="`/stream/view/${post.threadid}`">
           {{ post.data.title }}
         </router-link>
       </p>
@@ -19,7 +19,7 @@ import { defineComponent, computed } from 'vue'
 // import { useRouter } from 'vue-router'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthz } from '@/lib/authz'
-import { useStream } from '@/lib/stream'
+import { useThreads } from '@/state/threads'
 
 export default defineComponent({
   name: 'LovedTheads',
@@ -28,9 +28,9 @@ export default defineComponent({
   },
   setup () {
     const { profile } = useAuthz()
-    const { stream } = useStream()
+    const { stream } = useThreads()
     const loved = computed(() => {
-      return stream.value.filter((post) => (profile.value.lovedThreads && profile.value.lovedThreads.includes(post.postid)))
+      return stream.value.filter((post) => (profile.value.lovedThreads && profile.value.lovedThreads.includes(post.id)))
     })
     return { profile, loved }
   }

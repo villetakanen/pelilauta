@@ -31,6 +31,19 @@ const ssoInfo = computed(() => (state.value.ssoInfo))
 const lang = computed(() => (state.value.lang))
 let unsubscribe = () => {}
 
+interface seenThread {
+  threadid: string,
+  timestamp: firebase.firestore.Timestamp
+}
+
+function parseSeen (seenArray:Array<seenThread>) {
+  const newMap = new Map<string, firebase.firestore.Timestamp>()
+  seenArray.forEach((seenThread) => {
+    newMap.set(seenThread.threadid, seenThread.timestamp)
+  })
+  profile.value.seenThreads = newMap
+}
+
 function subToProfile (uid: string): void {
   const db = firebase.firestore()
   const profileRef = db.collection('profiles').doc(uid)
@@ -41,6 +54,7 @@ function subToProfile (uid: string): void {
       state.value.profile.photoURL = doc.data()?.photoURL
       state.value.profile.lovedThreads = doc.data()?.lovedThreads
       if (doc.data()?.pelilautaLang) state.value.lang = doc.data()?.pelilautaLang
+      if (doc.data()?.seenThreads) parseSeen(doc.data()?.seenThreads)
       else state.value.lang = 'en'
     } else {
       state.value.missingProfile = true
@@ -94,6 +108,16 @@ function switchLang (lang: string) {
   })
 }
 
+function stampSeen (id: string, flowTime: firebase.firestore.Timestamp) {
+  const db = firebase.firestore()
+  const profileRef = db.collection('profiles').doc(uid.value)
+  profileRef.get().then((doc) => {
+    const arr = doc.data()?.seenThreadsArray ? doc.data()?.seenThreadsArray : new Array<seenThread>()
+    arr.push({ threadid: id, flowTime: flowTime })
+    profileRef.update({ seenThreads: arr })
+  })
+}
+
 export function useAuthz () {
-  return { onAuthStateChanged, isAuthz, profile, uid, missingProfile, ssoInfo, logout, createProfile, lang, switchLang }
+  return { onAuthStateChanged, isAuthz, profile, uid, missingProfile, ssoInfo, logout, createProfile, lang, switchLang, stampSeen }
 }

@@ -47,12 +47,12 @@ function deleteComment (commentid:string) {
   })
 }
 
-function init (postid: string) {
-  if (postid && postid !== parentPostid) {
-    parentPostid = postid
+function init (threadid: string) {
+  if (threadid && threadid !== parentPostid) {
+    parentPostid = threadid
     discussionState.value = new Array<Reply>()
     unsubscribe()
-    const discussionRef = firebase.firestore().collection('stream').doc(postid).collection('comments').orderBy('created', 'asc')
+    const discussionRef = firebase.firestore().collection('stream').doc(threadid).collection('comments').orderBy('created', 'asc')
     unsubscribe = discussionRef.onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === 'added') {
@@ -64,11 +64,11 @@ function init (postid: string) {
     })
   }
 }
-export function useDiscussion (postid: string): {
+export function useDiscussion (threadid: string): {
   discussion: ComputedRef<Reply[]>;
   addComment: (author: string, nick: string, comment: string) => void;
   deleteComment: (commentid: string) => void;
 } {
-  init(postid)
+  init(threadid)
   return { discussion, addComment, deleteComment }
 }

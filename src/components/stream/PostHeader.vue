@@ -7,7 +7,7 @@
     />
     <div class="InfoBar">
       <h3 class="title">
-        <router-link :to="`/stream/view/${postid}`">
+        <router-link :to="`/stream/view/${threadid}`">
           {{ title }}
         </router-link>
       </h3>
@@ -29,10 +29,11 @@
 import { defineComponent, computed } from 'vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import Avatar from '@/components/app/Avatar.vue'
-import { MenuItem, Post, useStream } from '@/lib/stream'
+import { MenuItem, useStream } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
 import { useMeta } from '@/lib/meta'
 import { useEditorDialog } from '@/lib/editor'
+import { Thread, useThreads } from '@/state/threads'
 
 export default defineComponent({
   name: 'PostHeader',
@@ -55,7 +56,7 @@ export default defineComponent({
       type: String,
       required: true
     },
-    postid: {
+    threadid: {
       type: String,
       required: true
     },
@@ -83,23 +84,24 @@ export default defineComponent({
   setup (props) {
     const { uid } = useAuthz()
     const { isAdmin } = useMeta()
-    const { dropPost, stream } = useStream()
+    const { dropPost } = useStream()
+    const { stream } = useThreads()
     const showAdminTools = computed(() => (isAdmin(uid.value)))
 
     function drop () {
-      dropPost(uid.value, props.postid)
+      dropPost(uid.value, props.threadid)
     }
 
     function edit () {
       const { showEditor } = useEditorDialog()
-      const post:Post|undefined = stream.value.find((p) => (p.postid === props.postid))
+      const post:Thread|undefined = stream.value.find((p) => (p.id === props.threadid))
       if (post) showEditor(post)
     }
 
     const copyUrl = () => {
       const dummy = document.createElement('input')
       document.body.appendChild(dummy)
-      dummy.value = window.location.host + '/stream/view/' + props.postid
+      dummy.value = window.location.host + '/stream/view/' + props.threadid
       dummy.select()
       document.execCommand('copy')
       document.body.removeChild(dummy)
@@ -109,7 +111,7 @@ export default defineComponent({
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
 
-      // arr.push({ to: '/stream/view/' + props.postid, text: 'Open' })
+      // arr.push({ to: '/stream/view/' + props.threadid, text: 'Open' })
       arr.push({ action: copyUrl, text: 'Copy link', icon: 'link' })
 
       if (uid.value === props.author) {

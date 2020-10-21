@@ -60,7 +60,7 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/stream/view/:postid',
+    path: '/stream/view/:threadid',
     name: 'StreamView',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

@@ -1,15 +1,15 @@
+import { Thread } from '@/state/threads'
 import { ref, computed, Ref, ComputedRef } from 'vue'
-import { Post } from '../stream'
 
 const show: Ref<boolean> = ref(false)
 const editorTopic: Ref<string> = ref('')
-const editorPost: Ref<Post|undefined> = ref(undefined)
+const editorPost: Ref<Thread|undefined> = ref(undefined)
 
 function showEditor (): void;
 function showEditor (topic: string): void;
-function showEditor (post: Post): void;
+function showEditor (post: Thread): void;
 
-function showEditor (attr?: string|Post): void {
+function showEditor (attr?: string|Thread): void {
   if (!attr) {
     editorTopic.value = ''
     editorPost.value = undefined
@@ -17,7 +17,7 @@ function showEditor (attr?: string|Post): void {
     editorTopic.value = attr
     editorPost.value = undefined
   } else {
-    const post = attr as Post
+    const post = attr as Thread
     editorTopic.value = ''
     editorPost.value = post
   }
@@ -35,11 +35,11 @@ const post = computed(() => (editorPost.value))
 export function useEditorDialog (): {
   visible: ComputedRef<boolean>;
   topic: ComputedRef<string>;
-  post: ComputedRef<Post|undefined>;
+  post: ComputedRef<Thread|undefined>;
   showEditor: {
     (): void;
     (topic: string): void;
-    (post: Post): void;
+    (post: Thread): void;
   };
   hideEditor: () => void;
   } {

@@ -9,7 +9,7 @@
         :nick="author.nick"
         :photo="author.photoURL"
         :title="post.data.title"
-        :postid="post.postid"
+        :threadid="post.id"
         :created="toDisplayString(post.created)"
         :topic="post.data.topic"
         :author="post.author"
@@ -36,14 +36,14 @@
       </div>
     </div>
 
-    <Discussion :postid="postid" />
+    <Discussion :threadid="threadid" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, watch, onMounted } from 'vue'
 import Discussion from '@/components/discussion/Discussion.vue'
-import { loveThread, unloveThread } from '@/state/threads'
+import { useThreads, loveThread, unloveThread } from '@/state/threads'
 import { useStream } from '@/lib/stream'
 import { useAuthors } from '@/lib/authors'
 import PostHeader from '@/components/stream/PostHeader.vue'
@@ -61,7 +61,7 @@ export default defineComponent({
     LoveAction
   },
   props: {
-    postid: {
+    threadid: {
       type: String,
       required: true
     }
@@ -70,28 +70,29 @@ export default defineComponent({
     const router = useRouter()
     const { uid, profile } = useAuthz()
 
-    const { stream, dropPost, toDisplayString } = useStream()
+    const { dropPost, toDisplayString } = useStream()
+    const { stream } = useThreads()
     const post = computed(() => {
-      return stream.value.filter((post) => (post.postid === props.postid))[0]
+      return stream.value.filter((post) => (post.id === props.threadid))[0]
     })
 
     const { getAuthor } = useAuthors()
     const author = computed(() => (getAuthor(post.value?.author)))
 
     function deletePost (): void {
-      dropPost(uid.value, props.postid).then(() => {
+      dropPost(uid.value, props.threadid).then(() => {
         router.push('/')
       })
     }
 
     const loves = computed(() => {
       if (typeof profile.value.lovedThreads === 'undefined') return false
-      return profile.value.lovedThreads.includes(props.postid)
+      return profile.value.lovedThreads.includes(props.threadid)
     })
 
     const toggleLove = () => {
-      if (loves.value) unloveThread(uid.value, props.postid)
-      else loveThread(uid.value, props.postid)
+      if (loves.value) unloveThread(uid.value, props.threadid)
+      else loveThread(uid.value, props.threadid)
     }
 
     const { showStreamActions } = useMeta()

@@ -5,7 +5,7 @@
       :nick="nick"
       :photo="photoURL"
       :title="title"
-      :postid="postid"
+      :threadid="threadid"
       :created="created"
       :topic="topic"
       :tslug="topic.toLowerCase()"
@@ -27,7 +27,7 @@
         {{ lovecount }}
       </div>
       <div class="spacer" />
-      <ReplyCount :threadid="postid" />
+      <ReplyCount :threadid="threadid" />
     </div>
   </MaterialCard>
 </template>
@@ -59,7 +59,7 @@ export default defineComponent({
       type: String,
       required: true
     },
-    postid: {
+    threadid: {
       type: String,
       required: true
     },
@@ -104,12 +104,12 @@ export default defineComponent({
 
     const loves = computed(() => {
       if (typeof profile.value.lovedThreads === 'undefined') return false
-      return profile.value.lovedThreads.includes(props.postid)
+      return profile.value.lovedThreads.includes(props.threadid)
     })
 
     const toggleLove = () => {
-      if (loves.value) unloveThread(uid.value, props.postid)
-      else loveThread(uid.value, props.postid)
+      if (loves.value) unloveThread(uid.value, props.threadid)
+      else loveThread(uid.value, props.threadid)
     }
 
     return { nick, photoURL, isAuthz, toggleLove, loves }

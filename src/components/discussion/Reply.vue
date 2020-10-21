@@ -49,7 +49,7 @@ export default defineComponent({
       type: String,
       required: true
     },
-    postid: {
+    threadid: {
       type: String,
       required: true
     },
@@ -61,7 +61,7 @@ export default defineComponent({
   setup (props) {
     const { uid } = useAuthz()
     const { isAdmin } = useMeta()
-    const { deleteComment } = useDiscussion(props.postid)
+    const { deleteComment } = useDiscussion(props.threadid)
 
     const replyClasses = ref({
       fromMe: uid.value === props.author

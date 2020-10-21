@@ -2,7 +2,7 @@
   <div class="stream">
     <div
       v-for="(post) in posts"
-      :key="post.postid"
+      :key="post.id"
     >
       <div v-if="post.data.content">
         <StreamPost
@@ -10,7 +10,7 @@
           :topic="post.data.topic"
           :author="post.author"
           :content="post.data.content"
-          :postid="post.postid"
+          :threadid="post.id"
           :title="post.data.title"
           :images="post.data.images"
           :replycount="post.replyCount"
@@ -25,6 +25,7 @@
 import { defineComponent, computed } from 'vue'
 import StreamPost from './StreamPost.vue'
 import { useStream } from '@/lib/stream'
+import { useThreads } from '@/state/threads'
 
 export default defineComponent({
   components: {
@@ -38,7 +39,8 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { stream, toDisplayString } = useStream()
+    const { toDisplayString } = useStream()
+    const { stream } = useThreads()
 
     const posts = computed(() => {
       if (props.topic) {

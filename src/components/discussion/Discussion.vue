@@ -7,17 +7,19 @@
       :content="comment.content"
       :commentid="comment.replyid"
       :nick="comment.nick"
-      :postid="postid"
+      :threadid="threadid"
     />
-    <ReplyForm :postid="postid" />
+    <ReplyForm :threadid="threadid" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, watch, computed } from 'vue'
 import { useDiscussion } from '@/lib/discussion'
 import ReplyForm from './ReplyForm.vue'
 import Reply from './Reply.vue'
+import { useAuthz } from '@/lib/authz'
+import { useThreads, Thread, fetchThread } from '@/state/threads'
 
 export default defineComponent({
   name: 'Discussion',
@@ -26,13 +28,34 @@ export default defineComponent({
     Reply
   },
   props: {
-    postid: {
+    threadid: {
       type: String,
       required: true
     }
   },
   setup (props) {
-    const { discussion } = useDiscussion(props.postid)
+    const { discussion } = useDiscussion(props.threadid)
+    const { stampSeen, profile } = useAuthz()
+    const { stream } = useThreads()
+    const thread = computed(() => {
+      const t = stream.value.find((val) => (val.id === props.threadid))
+      if (t) return t
+      fetchThread(props.threadid).then((val) => {
+        return val
+      })
+    })
+
+    function seenThis (t: Thread) {
+      const lastSeen = profile.value.seenThreads.get(props.threadid)
+      if (!lastSeen || lastSeen.seconds < t.flowTime.seconds) stampSeen(props.threadid, t.flowTime)
+    }
+
+    onMounted(() => {
+      if (thread.value) seenThis(thread.value)
+      watch(thread, (t) => {
+        if (t) seenThis(t)
+      })
+    })
     return { discussion }
   }
 })

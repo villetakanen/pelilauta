@@ -45,7 +45,7 @@ export default defineComponent({
     Editor
   },
   props: {
-    postid: {
+    threadid: {
       type: String,
       required: true
     }
@@ -55,7 +55,7 @@ export default defineComponent({
     const reply = ref('')
 
     const send = () => {
-      const { addComment } = useDiscussion(props.postid)
+      const { addComment } = useDiscussion(props.threadid)
       const { uid, profile } = useAuthz()
       addComment(uid.value, profile.value.nick, reply.value)
       reply.value = ''

@@ -53,7 +53,7 @@ export default defineComponent({
     ImageUploadBar
   },
   props: {
-    postid: { type: String, required: false, default: '' }
+    threadid: { type: String, required: false, default: '' }
   },
   emits: ['close-dialog'],
   setup (props, context) {

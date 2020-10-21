@@ -109,7 +109,7 @@ export default defineComponent({
     MaterialButton,
     ImageUploadBar
   },
-  setup (props, context) {
+  setup () {
     const { visible, hideEditor, topic: editorTopic, post: editorPost } = useEditorDialog()
     const { topics } = useMeta()
     const { addPost, updatePost } = useStream()
@@ -160,7 +160,7 @@ export default defineComponent({
           router.push('/')
         })
       } else {
-        updatePost(editorPost.value.postid, postData).then(() => {
+        updatePost(editorPost.value.id, postData).then(() => {
           // context.emit('update:modelValue', false)
           hideEditor()
           router.push('/')
