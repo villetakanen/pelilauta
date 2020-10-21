@@ -1,7 +1,8 @@
 {
   "lang": "EN",
   "app": {
-    "footnote": "Experimental SPA. All text (c) by the author."
+    "footnote": "Experimental SPA. All text (c) by the author.",
+    "updatesAvailable": "A new version of this App is available. Please click update below to reload the App."
   },
   "language": {
       "label": "UI Language"
@@ -9,7 +10,9 @@
   "action": {
     "logout": "Logout",
     "toTopicList": "Topics",
-    "login": "Login"
+    "login": "Login",
+    "update": "Update",
+    "deferUpdate": "Remind me later"
   },
   "postHeader": {
     "postedInStream": "in"

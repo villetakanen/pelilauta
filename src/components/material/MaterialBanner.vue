@@ -5,17 +5,17 @@
       :class="`material-banner ${updatesAvailable ? 'show' : ''}`"
     >
       <div class="banner-container">
-        <p>Update available!</p>
+        <p>{{ $t('app.updatesAvailable') }}</p>
         <div class="actionBar">
           <div class="spacer" />
           <MaterialButton
             :action="deferUpdate"
             text
           >
-            Delay for 30 minutes
+            {{ $t('action.deferUpdate') }}
           </MaterialButton>
           <MaterialButton :action="acceptUpdate">
-            Update the App
+            {{ $t('action.update') }}
           </MaterialButton>
         </div>
       </div>
