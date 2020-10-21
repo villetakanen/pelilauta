@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/villetakanen/pelilauta/compare/v3.5.2...v3.6.0) (2020-10-21)
+
+
+### Features
+
+* **i18n:** new replies note ([3808efa](https://github.com/villetakanen/pelilauta/commit/3808efa7097cb18a73df102bfca29b49804eba0b))
+* **i18n:** updates available ([1727bb9](https://github.com/villetakanen/pelilauta/commit/1727bb93854e5606c29f33f8c2a85b4df3c6684f))
+* **threads:** last seen state components ([9fbca5a](https://github.com/villetakanen/pelilauta/commit/9fbca5a714721b48492ab5b29c8499727637f564))
+* **threads:** new comments component added ([66f2da3](https://github.com/villetakanen/pelilauta/commit/66f2da3c531632a88a93c57d2ac4aee39c494d81))
+* **threads:** refactored stream from to state ([1c0614c](https://github.com/villetakanen/pelilauta/commit/1c0614c792c9451356b6a30a15671cafa3362c2c))
+* **threads:** stamp red-status to profile ([e33e3e3](https://github.com/villetakanen/pelilauta/commit/e33e3e37042b2b1856c330064ed4afd11e09b1d4))
+
 ### [3.5.2](https://github.com/villetakanen/pelilauta/compare/v3.5.1...v3.5.2) (2020-10-20)
 
 
