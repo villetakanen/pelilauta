@@ -27,14 +27,7 @@
         {{ lovecount }}
       </div>
       <div class="spacer" />
-      <div
-        v-if="replycount > 0"
-        class="replycount"
-      >
-        <router-link :to="`/stream/view/${postid}`">
-          {{ replycount }} {{ $t('post.nOfReplies') }}
-        </router-link>
-      </div>
+      <ReplyCount :threadid="postid" />
     </div>
   </MaterialCard>
 </template>
@@ -44,6 +37,7 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import LoveAction from '@/components/app/LoveAction.vue'
 import PostHeader from './PostHeader.vue'
 import PhotoBox from './PhotoBox.vue'
+import ReplyCount from './ReplyCount.vue'
 import { useAuthz } from '@/lib/authz'
 import { useAuthors } from '@/lib/authors'
 import { loveThread, unloveThread } from '@/state/threads'
@@ -53,7 +47,8 @@ export default defineComponent({
     MaterialCard,
     PostHeader,
     PhotoBox,
-    LoveAction
+    LoveAction,
+    ReplyCount
   },
   props: {
     content: {
