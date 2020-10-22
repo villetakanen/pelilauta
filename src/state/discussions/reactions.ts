@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/analytics'
 
 /**
  * Given   I am logged in
@@ -13,15 +14,19 @@ import 'firebase/firestore'
  *
  * @param uid Firebase user UID, with a valid profile data in /database/profiles/{uid}
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
+ * @param replyid the id of a reply, of the thread, found in /database/stream/{threadid}/comments/{replyid}
  */
 export function loveReply (uid: string, threadid: string, replyid: string): void {
   const db = firebase.firestore()
   const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
 
+  console.debug('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
+  firebase.analytics().logEvent('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
+
   db.runTransaction((transaction: firebase.firestore.Transaction) => {
     return transaction.get(replyRef).then((reply) => {
       if (!reply.exists) {
-        throw new Error('state/loveReply, trying to love by a non existing reply' + threadid + "/" + replyid)
+        throw new Error('state/loveReply, trying to love by a non existing reply' + threadid + '/' + replyid)
       }
       const lovesArr = new Array<string>()
       const lovesDataArr = reply.data()?.lovers
@@ -34,66 +39,52 @@ export function loveReply (uid: string, threadid: string, replyid: string): void
       lovesArr.push(uid)
       transaction.update(replyRef, { lovesCount: lovesArr.length, lovers: lovesArr })
 
-      const reactionsRef = db.collection('profiles').doc(uid).collection('reactions').doc()
+      const reactionsRef = db.collection('profiles').doc(uid).collection('reactions').doc(replyid)
 
       transaction.update(reactionsRef, { uid: uid, thread: threadid, reply: replyid, type: 'love', target: 'thread' })
     })
   })
-
-  /* db.runTransaction((transaction: firebase.firestore.Transaction) => {
-    return transaction.get(profileRef).then((profile) => {
-      if (!profile.exists) {
-        throw new Error('state/loveThread, trying to love by a non existing user' + uid)
-      }
-
-      const lovesArr = new Array<string>()
-      const dataArr = profile.data()?.lovedThreads
-      if (dataArr) {
-        if ((dataArr as Array<string>).includes(threadid)) {
-          throw new Error('Can not love a tread one already loves')
-        }
-        (dataArr as Array<string>).forEach((loved: string) => { lovesArr.push(loved) })
-      }
-      lovesArr.push(threadid)
-      transaction.update(profileRef, { lovedThreads: lovesArr })
-
-      transaction.update(threadRef, {
-        lovedCount: firebase.firestore.FieldValue.increment(1)
-      })
-    })
-  }) */
 }
 
 /**
- * See loveThread for more info, undoes it
+ * Given   I am logged in
+ *   And   Have a profile
+ *   And   A reply is loved by me
+ *         (and, thus) The reply exists
+ *  When   I click love on a reply
+ *  Then   // The reply is no longer loved visually
+ *   And   The reply loved count--
+ *   And   The reply is removed from my reactions collection
  *
  * @param uid Firebase user UID, with a valid profile data in /database/profiles/{uid}
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
+ * @param replyid the id of a reply, of the thread, found in /database/stream/{threadid}/comments/{replyid}
  */
-export function unloveThread (uid: string, threadid: string): void {
+export function unloveReply (uid: string, threadid: string, replyid: string): void {
   const db = firebase.firestore()
-  const threadRef = db.collection('stream').doc(threadid)
-  const profileRef = db.collection('profiles').doc(uid)
+  const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
+
+  console.debug('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
+  firebase.analytics().logEvent('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
   db.runTransaction((transaction: firebase.firestore.Transaction) => {
-    return transaction.get(profileRef).then((profile) => {
-      if (!profile.exists) {
-        throw new Error('state/loveThread, trying to love by a non existing user' + uid)
+    return transaction.get(replyRef).then((reply) => {
+      if (!reply.exists) {
+        throw new Error('state/loveReply, trying to love by a non existing reply' + threadid + '/' + replyid)
       }
-
       const lovesArr = new Array<string>()
-      const dataArr = profile.data()?.lovedThreads
-      if (dataArr) {
-        if (!(dataArr as Array<string>).includes(threadid)) {
-          throw new Error('Can not de-love a tread one not-loves')
+      const lovesDataArr = reply.data()?.lovers
+      if (lovesDataArr) {
+        if (!(lovesDataArr as Array<string>).includes(uid)) {
+          throw new Error('Can not remove love from void')
         }
-        (dataArr as Array<string>).forEach((loved: string) => { if (loved !== threadid) lovesArr.push(loved) })
+        (lovesDataArr as Array<string>).forEach((lover: string) => { if (lover !== uid) lovesArr.push(lover) })
       }
-      transaction.update(profileRef, { lovedThreads: lovesArr })
+      transaction.update(replyRef, { lovesCount: lovesArr.length, lovers: lovesArr })
 
-      transaction.update(threadRef, {
-        lovedCount: firebase.firestore.FieldValue.increment(-1)
-      })
+      const reactionsRef = db.collection('profiles').doc(uid).collection('reactions').doc(replyid)
+
+      transaction.delete(reactionsRef)
     })
   })
 }
