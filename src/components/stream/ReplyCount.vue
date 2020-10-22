@@ -8,7 +8,7 @@
       {{ $t('post.newRepliesNote') }}
     </div>
     <router-link :to="`/stream/view/${threadid}`">
-      {{ thread ? thread.replyCount : '' }} {{ $t('post.nOfReplies') }}
+      {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
     </router-link>
   </div>
 </template>
@@ -36,9 +36,10 @@ export default defineComponent({
       })
     })
 
-    const { profile } = useAuthz()
+    const { profile, isAuthz } = useAuthz()
     // const replyCount = computed(() => (1))
     const newReplies = computed(() => {
+      if (!isAuthz) return false
       if (!profile.value || !thread.value) return false
       // console.log('we have values?' + props.threadid)
       if (profile.value.seenThreads.has(props.threadid)) {

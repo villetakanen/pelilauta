@@ -18,7 +18,8 @@
   },
   "post": {
     "nOfReplies": "vastausta",
-    "newRepliesNote": "uusia"
+    "newRepliesNote": "uusi",
+    "more": "Lue lisää"
   },
   "about": {
     "title": "Pelilaudasta",

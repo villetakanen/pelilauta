@@ -19,7 +19,8 @@
   },
   "post": {
     "nOfReplies": "replies",
-    "newRepliesNote": "new"
+    "newRepliesNote": "new",
+    "more": "Read more"
   },
   "about": {
     "title": "About Pelilauta",
