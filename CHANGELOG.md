@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.6.1](https://github.com/villetakanen/pelilauta/compare/v3.6.0...v3.6.1) (2020-10-22)
+
+
+### Bug Fixes
+
+* **stream:** message clamping and mobile header ([7098b1c](https://github.com/villetakanen/pelilauta/commit/7098b1c6ef703506956e29b51dc809b16ef9b034))
+* **stream:** new replies ux polish ([a1853b1](https://github.com/villetakanen/pelilauta/commit/a1853b199f47c53542e6a4e4e6373985d80431fb))
+
 ## [3.6.0](https://github.com/villetakanen/pelilauta/compare/v3.5.2...v3.6.0) (2020-10-21)
 
 
