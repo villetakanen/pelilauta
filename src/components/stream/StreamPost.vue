@@ -121,6 +121,15 @@ export default defineComponent({
 @import ../../styles/material-typography.sass
 @import @/styles/material-colors.sass
 
+.stream-post-content
+  @include TypeBody2()
+  padding: 0 8px
+  margin: 8px 0
+  display: -webkit-box
+  -webkit-line-clamp: 7
+  -webkit-box-orient: vertical
+  overflow: hidden
+
 #app #mainContentWrapper main
   .tester
     background-color: white
@@ -156,12 +165,6 @@ export default defineComponent({
         left: 0
         top: 0
         border-radius: 50%
-    .stream-post-content
-      //background-color: $color-base-dark
-      @include TypeBody2()
-      padding: 8px
-      word-break: break-word
-      overflow-x: hidden
     .replycount
       @include TypeBody1()
       text-align: right

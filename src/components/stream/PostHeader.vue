@@ -148,4 +148,8 @@ export default defineComponent({
   .caption
     @include TypeCaption()
 
+@include media('<=tablet')
+  h3
+    @include TypeHeadline6()
+
 </style>
