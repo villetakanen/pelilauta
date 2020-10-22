@@ -129,6 +129,7 @@ export default defineComponent({
   -webkit-line-clamp: 7
   -webkit-box-orient: vertical
   overflow: hidden
+  color: $color-font-medium
 
 #app #mainContentWrapper main
   .tester

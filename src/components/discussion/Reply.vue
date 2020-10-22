@@ -102,6 +102,7 @@ export default defineComponent({
   border-radius: 4px
   // for triangle
   margin-left: 24px
+  color: $color-font-medium
   &.fromMe
     margin-left: 8px
     margin-right: 24px

@@ -110,13 +110,25 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 @import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
 
-.viewer
-  .postHeader, .postContent
-    background-color: $color-base
-    padding: 8px
+.postHeader, .postContent
+  background-color: $color-base
+  padding: 16px
+
+.postContent
+  @include TypeBody2()
+  padding: 16px
+  color: $color-font-medium
+  padding-top: 0
+
+@include media('>tablet')
+  .postContent
+    @include TypeBody1()
+    padding-top: 0
+    padding: 16px
 
 .replybox
   background-color: $color-base-darker
