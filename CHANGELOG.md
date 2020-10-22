@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.6.2](https://github.com/villetakanen/pelilauta/compare/v3.6.1...v3.6.2) (2020-10-22)
+
+
+### Bug Fixes
+
+* material font color ([74b2d11](https://github.com/villetakanen/pelilauta/commit/74b2d114ff06e7ae1ac49f604231a3e00afcd326))
+
 ### [3.6.1](https://github.com/villetakanen/pelilauta/compare/v3.6.0...v3.6.1) (2020-10-22)
 
 
