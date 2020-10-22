@@ -41,6 +41,8 @@ export interface Reply {
   author: string;
   createdSeconds?: number;
   created?: firebase.firestore.Timestamp;
+  lovesCount?: number;
+  lovers?: Array<string>;
 }
 
 export interface MenuItem {

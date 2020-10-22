@@ -20,12 +20,16 @@
       <div
         :innerHTML="content"
       />
+      <div v-if="author !== uid">
+        <LoveAction :loved="false" />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref, watch } from 'vue'
+import LoveAction from '@/components/app/LoveAction.vue'
 import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useMeta } from '@/lib/meta'
@@ -34,7 +38,8 @@ import { useDiscussion } from '@/lib/discussion'
 
 export default defineComponent({
   components: {
-    MaterialMenu
+    MaterialMenu,
+    LoveAction
   },
   props: {
     content: {
@@ -63,6 +68,9 @@ export default defineComponent({
     const { isAdmin } = useMeta()
     const { deleteComment } = useDiscussion(props.threadid)
 
+    const { discussion } = useDiscussion(props.threadid)
+    const reply = discussion.value.find((r) => (r.replyid === props.commentid))
+
     const replyClasses = ref({
       fromMe: uid.value === props.author
     })
@@ -84,7 +92,7 @@ export default defineComponent({
       return arr
     })
 
-    return { menu, replyClasses }
+    return { menu, replyClasses, reply, uid }
   }
 })
 </script>
