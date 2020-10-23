@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.0](https://github.com/villetakanen/pelilauta/compare/v3.6.2...v3.7.0) (2020-10-23)
+
+
+### Features
+
+* **discussion:** love a reply ([1aea2ba](https://github.com/villetakanen/pelilauta/commit/1aea2ba2dbc19353cc616fae26953e37b6761c17))
+* **discussion:** love reply state ([6e31c4b](https://github.com/villetakanen/pelilauta/commit/6e31c4b55316a094ef13f8e763e895d0fc7379ec))
+* **discussion:** loveaction to template ([f130e1c](https://github.com/villetakanen/pelilauta/commit/f130e1c9ea9e100b46dbd9eee2847837d4681bbc))
+* **discussion:** unlove reply state ([2f03714](https://github.com/villetakanen/pelilauta/commit/2f037145450790b2e9934689eb88ce6f443e2f98))
+
 ### [3.6.2](https://github.com/villetakanen/pelilauta/compare/v3.6.1...v3.6.2) (2020-10-22)
 
 
