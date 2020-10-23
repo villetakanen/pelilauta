@@ -101,33 +101,3 @@ export function useThreads (): {
   init()
   return { stream }
 }
-/* *
- * Gets the metadata and opening post for a Thread
- *
- * If the thread is already part of stream and thus subscribed, we use the copy
- * from the stream. If not, we'll try to fetch it from the Firestore.
- *
- * @param threadid the firestore id of the doc
- * /
-/* (threadid: string): Promise<ComputedRef<Thread>> {
-  // @todo: move threads-in-state, like the sream, here:
-  if (threadStore.value.has(threadid)) {
-    return computed(():Thread => (threadStore.value.get(threadid) as Thread))
-  }
-  // @todo: refactor stream subscriptions into this module
-  const { stream } = useStream()
-  const threadInStream = stream.value.find((val) => (val.threadid === threadid))
-  // Post and Thread interfaces are the same, former shoud be deprecated
-  // as the todo above is done.
-  if (threadInStream) return computed(() => ((threadInStream as unknown) as Thread))
-
-  const analytics = firebase.analytics()
-  analytics.logEvent('Direct fetch of a thread', { id: threadid })
-  console.log('Direct fetch of a thread', { id: threadid })
-  const db = firebase.firestore()
-  return new Promise(() => {
-    db.collection('stream').doc(threadid).get().then((doc) => {
-      if (doc.exists) return toThread(doc.id, doc.data())
-    })
-  })
-} */

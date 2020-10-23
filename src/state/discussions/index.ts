@@ -1,3 +1,3 @@
-import { loveReply } from './reactions'
+import { loveReply, unloveReply } from './reactions'
 
-export { loveReply }
+export { loveReply, unloveReply }

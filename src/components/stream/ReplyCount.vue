@@ -41,10 +41,7 @@ export default defineComponent({
     const newReplies = computed(() => {
       if (!isAuthz) return false
       if (!profile.value || !thread.value) return false
-      // console.log('we have values?' + props.threadid)
       if (profile.value.seenThreads.has(props.threadid)) {
-        // console.log('we have seen this', profile.value.seenThreads?.get(props.threadid)?.seconds)
-        // console.log(profile.value.seenThreads?.get(props.threadid)?.seconds, thread.value.flowTime.seconds)
         const lastSeen = profile.value.seenThreads.get(props.threadid)
         return !lastSeen || lastSeen.seconds < thread.value.flowTime.seconds
       }

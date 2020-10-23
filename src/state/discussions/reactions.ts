@@ -20,7 +20,7 @@ export function loveReply (uid: string, threadid: string, replyid: string): void
   const db = firebase.firestore()
   const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
 
-  console.debug('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
+  // console.log('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
   firebase.analytics().logEvent('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
   db.runTransaction((transaction: firebase.firestore.Transaction) => {
@@ -41,7 +41,7 @@ export function loveReply (uid: string, threadid: string, replyid: string): void
 
       const reactionsRef = db.collection('profiles').doc(uid).collection('reactions').doc(replyid)
 
-      transaction.update(reactionsRef, { uid: uid, thread: threadid, reply: replyid, type: 'love', target: 'thread' })
+      transaction.set(reactionsRef, { uid: uid, thread: threadid, reply: replyid, type: 'love', target: 'thread' })
     })
   })
 }
@@ -64,7 +64,7 @@ export function unloveReply (uid: string, threadid: string, replyid: string): vo
   const db = firebase.firestore()
   const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
 
-  console.debug('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
+  // console.log('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
   firebase.analytics().logEvent('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
   db.runTransaction((transaction: firebase.firestore.Transaction) => {

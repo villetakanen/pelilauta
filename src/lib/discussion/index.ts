@@ -13,9 +13,12 @@ let parentPostid = ''
 let unsubscribe = () => {}
 
 function upsertComment (commentid: string, data: Reply) {
+  // console.log('upsertReply', commentid)
   const comment = { ...data }
   comment.replyid = commentid
+  discussionState.value = discussionState.value.filter((a) => (a.replyid !== commentid))
   discussionState.value.push(comment)
+  discussionState.value.sort((a, b) => (typeof a.created === 'undefined' || typeof b.created === 'undefined' ? -1 : a.created.seconds - b.created.seconds))
 }
 
 function addComment (author: string, nick: string, comment: string) {
@@ -55,9 +58,9 @@ function init (threadid: string) {
     const discussionRef = firebase.firestore().collection('stream').doc(threadid).collection('comments').orderBy('created', 'asc')
     unsubscribe = discussionRef.onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
-        if (change.type === 'added') {
+        if (change.type !== 'removed') {
           upsertComment(change.doc.id, change.doc.data() as Reply)
-        } else if (change.type === 'removed') {
+        } else {
           discussionState.value = discussionState.value.filter((reply) => (reply.replyid !== change.doc.id))
         }
       })

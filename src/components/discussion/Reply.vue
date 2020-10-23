@@ -20,8 +20,13 @@
       <div
         :innerHTML="content"
       />
-      <div v-if="author !== uid">
-        <LoveAction :loved="false" />
+      <div v-if="author !== uid" class="toolbar">
+        <LoveAction
+          :loved="loves"
+          :action="toggleLove"
+        />
+        <div v-if="reply && reply.lovesCount && reply.lovesCount > 0">&nbsp;{{ reply.lovesCount }}</div>
+        <div class="spacer" />
       </div>
     </div>
   </div>
@@ -35,6 +40,7 @@ import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useMeta } from '@/lib/meta'
 import { MenuItem } from '@/lib/stream'
 import { useDiscussion } from '@/lib/discussion'
+import { loveReply, unloveReply } from '@/state/discussions'
 
 export default defineComponent({
   components: {
@@ -64,12 +70,12 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { uid } = useAuthz()
+    const { uid, isAuthz } = useAuthz()
     const { isAdmin } = useMeta()
     const { deleteComment } = useDiscussion(props.threadid)
 
     const { discussion } = useDiscussion(props.threadid)
-    const reply = discussion.value.find((r) => (r.replyid === props.commentid))
+    const reply = computed(() => discussion.value.find((r) => (r.replyid === props.commentid)))
 
     const replyClasses = ref({
       fromMe: uid.value === props.author
@@ -82,6 +88,18 @@ export default defineComponent({
       deleteComment(props.commentid)
     }
 
+    const loves = computed(() => {
+      if (!reply.value) return false
+      if (!reply.value.lovers) return false
+      return reply.value.lovers.includes(uid.value)
+    })
+
+    const toggleLove = () => {
+      if (!isAuthz) return
+      if (loves.value) unloveReply(uid.value, props.threadid, props.commentid)
+      else loveReply(uid.value, props.threadid, props.commentid)
+    }
+
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       if (uid.value === props.author) {
@@ -92,7 +110,7 @@ export default defineComponent({
       return arr
     })
 
-    return { menu, replyClasses, reply, uid }
+    return { menu, replyClasses, reply, uid, loves, toggleLove }
   }
 })
 </script>
