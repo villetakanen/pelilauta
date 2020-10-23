@@ -20,12 +20,17 @@
       <div
         :innerHTML="content"
       />
-      <div v-if="author !== uid" class="toolbar">
+      <div
+        v-if="author !== uid"
+        class="toolbar"
+      >
         <LoveAction
           :loved="loves"
           :action="toggleLove"
         />
-        <div v-if="reply && reply.lovesCount && reply.lovesCount > 0">&nbsp;{{ reply.lovesCount }}</div>
+        <div v-if="reply && reply.lovesCount && reply.lovesCount > 0">
+          &nbsp;{{ reply.lovesCount }}
+        </div>
         <div class="spacer" />
       </div>
     </div>
