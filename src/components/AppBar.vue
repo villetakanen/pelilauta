@@ -12,7 +12,7 @@
       />
       <h1 class="font-button">
         <router-link to="/">
-          Pelilauta 2
+          Pelilauta
         </router-link>
       </h1>
       <div class="spacer" />
@@ -20,17 +20,18 @@
         :text="$t('action.toTopicList')"
         icon="topic"
         to="/stream/index"
-      /><MaterialAction
-        v-if="showAdminTools"
-        text="Admin"
-        icon="admin"
-        to="/admin"
       />
-
       <MaterialAction
         desktop
         to="/about"
         icon="about"
+        text="About"
+      />
+      <MaterialAction
+        v-if="showAdminTools"
+        text="Admin"
+        icon="admin"
+        to="/admin"
       />
       <ProfileAction />
     </div>
