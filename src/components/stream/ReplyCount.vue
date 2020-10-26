@@ -1,12 +1,14 @@
 <template>
   <div class="replyCount">
-    <div
-      v-if="newReplies"
-      class="notificationPill"
-    >
-      <img src="@/assets/icons/pulse.svg">
-      {{ $t('post.newRepliesNote') }}
-    </div>
+    <transition name="fade">
+      <div
+        v-if="isAuthz && newReplies"
+        class="notificationPill"
+      >
+        <img src="@/assets/icons/pulse.svg">
+        {{ $t('post.newRepliesNote') }}
+      </div>
+    </transition>
     <router-link :to="`/stream/view/${threadid}`">
       {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
     </router-link>
@@ -47,7 +49,7 @@ export default defineComponent({
       }
       return true
     })
-    return { newReplies, thread, profile }
+    return { newReplies, thread, profile, isAuthz }
   }
 })
 </script>
