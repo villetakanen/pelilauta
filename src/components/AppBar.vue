@@ -7,7 +7,7 @@
       id="AppBarToolbar"
       class="toolbar"
     >
-      <SideNav />
+      <SideNav v-if="false" />
       <MaterialAction
         to="/"
       />

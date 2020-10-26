@@ -4,7 +4,7 @@
     <MaterialBanner />
     <main>
       <WelcomeCard v-if="!isAuthz && route.name !== 'Login'" />
-      <router-view />
+      <router-view v-else />
       <div style="text-align: center; padding:16px" class="footnote">
         <span style="line-height: 56px;opacity:0.37; font-size:12px">Pelilauta</span>
         <img
