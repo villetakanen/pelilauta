@@ -26,6 +26,10 @@
     "title": "About Pelilauta",
     "text": "What if we wanted more structured and slower conversation than discoes and some allows? Not instead, but in addition."
   },
+  "welcome": {
+    "header": "Pelilauta",
+    "paragraph": "The Elven Wizard casts a level 20 resurrection. Please login to continue."
+  },
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {
     "messages": {

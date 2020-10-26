@@ -25,6 +25,10 @@
     "title": "Pelilaudasta",
     "text": "Jos sittenkin olisi foorumi? Koska vaikka discot on kivoja, ja RPS on somen keskus... niin joskus haluaisi myös rakenteellisempaa tai hitaampaa keskustelua."
   },
+  "welcome": {
+    "header": "Pelilauta",
+    "paragraph": "Kirjaudu sovellukseen osallistuaksesi keskusteluun."
+  },
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
     "messages": {

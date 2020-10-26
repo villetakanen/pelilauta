@@ -3,6 +3,7 @@
   <div id="mainContentWrapper">
     <MaterialBanner />
     <main>
+      <WelcomeCard v-if="!isAuthz && route.name !== 'Login'" />
       <router-view />
       <div style="text-align: center; padding:16px" class="footnote">
         <span style="line-height: 56px;opacity:0.37; font-size:12px">Pelilauta</span>
@@ -34,25 +35,29 @@ import AppBar from './components/AppBar.vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
 import MaterialDialog from './components/material/MaterialDialog.vue'
 import EditorDialog from '@/components/editor/EditorDialog.vue'
+import WelcomeCard from '@/components/app/WelcomeCard.vue'
 import { useAuthz } from './lib/authz'
 import { version } from '../package.json'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   components: {
     AppBar,
     MaterialBanner,
     EditorDialog,
-    MaterialDialog
+    MaterialDialog,
+    WelcomeCard
   },
   setup () {
-    const { missingProfile, lang } = useAuthz()
+    const { missingProfile, lang, isAuthz } = useAuthz()
     const i18n = useI18n()
+    const route = useRoute()
     onMounted(() => {
       i18n.locale.value = lang.value
       watch(lang, (l) => { i18n.locale.value = l })
     })
-    return { missingProfile, version, ...useI18n() }
+    return { isAuthz, missingProfile, version, ...useI18n(), route }
   }
 })
 </script>

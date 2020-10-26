@@ -1,5 +1,5 @@
 <template>
-  <div class="main-view">
+  <MaterialCard class="main-view">
     <p>Please login or register to Pelilauta with the buttons below.</p>
     <div style="text-align: center">
       <MaterialButton
@@ -25,7 +25,7 @@
         > Login with Facebook
       </MaterialButton>
     </div>
-  </div>
+  </MaterialCard>
 </template>
 
 <script lang="ts">
@@ -33,11 +33,13 @@ import { defineComponent } from 'vue'
 
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
+import MaterialCard from '../components/material/MaterialCard.vue'
 import MaterialButton from '../components/material/MaterialButton.vue'
 
 export default defineComponent({
   components: {
-    MaterialButton
+    MaterialButton,
+    MaterialCard
   },
   setup () {
     function socialGoogleLogin () {

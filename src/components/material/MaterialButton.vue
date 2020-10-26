@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   props: {
@@ -42,9 +43,15 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    to: {
+      type: String,
+      required: false,
+      default: undefined
     }
   },
   setup (props) {
+    const router = useRouter()
     const buttonClasses = ref(
       {
         'material-button': true,
@@ -60,6 +67,7 @@ export default defineComponent({
 
     const clicked = () => {
       if (props.action) props.action()
+      else if (props.to) router.push(props.to)
     }
 
     return { buttonClasses, clicked }
@@ -94,6 +102,11 @@ export default defineComponent({
     box-shadow: none
     &:hover
       background-color: rgba(0,23,37,0.1)
+  img
+    max-height: 22px
+    vertical-align: middle
+    margin-left: -4px
+    margin-right: 4px
 
   &.material-button-icon
     height: 48px
