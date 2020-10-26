@@ -6,7 +6,6 @@
       :author="comment.author"
       :content="comment.content"
       :commentid="comment.replyid"
-      :nick="comment.nick"
       :threadid="threadid"
     />
     <ReplyForm :threadid="threadid" />
