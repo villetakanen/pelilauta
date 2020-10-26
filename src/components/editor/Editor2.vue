@@ -43,7 +43,13 @@ export default defineComponent({
         selection.getRangeAt(0).insertNode(document.createTextNode(pasted))
         selection.collapseToEnd()
       }
-      updateModelValue((event.target as HTMLElement).innerHTML)
+      let el = (event.target as HTMLElement)
+      while (!el.classList.contains('editorField')) {
+        // console.log(el.classList)
+        if (el.parentElement === null) throw Error('Paste fails to find the editor field')
+        el = el.parentElement
+      }
+      updateModelValue(el.innerHTML)
     }
     return { onBlur, onPaste }
   }
