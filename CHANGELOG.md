@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.3](https://github.com/villetakanen/pelilauta/compare/v3.7.2...v3.7.3) (2020-10-26)
+
+
+### Bug Fixes
+
+* top bar branding and icons ([08c1fc5](https://github.com/villetakanen/pelilauta/commit/08c1fc5e7965855833518477fd7ad70a477da5c4))
+* **discussion:** removed dead prop ([3e2dc9d](https://github.com/villetakanen/pelilauta/commit/3e2dc9d69356ced4d07bceb0dccb398745bd5496))
+* **discussion:** reply top bar polish ([c0e5a38](https://github.com/villetakanen/pelilauta/commit/c0e5a38b29624b77c8fe11cf9d104770cc5483cb))
+
 ### [3.7.2](https://github.com/villetakanen/pelilauta/compare/v3.7.1...v3.7.2) (2020-10-26)
 
 
