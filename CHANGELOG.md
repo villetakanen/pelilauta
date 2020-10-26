@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.1](https://github.com/villetakanen/pelilauta/compare/v3.7.0...v3.7.1) (2020-10-26)
+
+
+### Bug Fixes
+
+* **editor:** paste to a child element fixed ([43c45fa](https://github.com/villetakanen/pelilauta/commit/43c45fadc8145cc62a464ffb9e4b1e38565e9dff))
+* **editor:** removed deprecated code ([d1fe2cc](https://github.com/villetakanen/pelilauta/commit/d1fe2cce8ae366ec54320790fda85ad37d092cc0))
+* **stream:** new post indicator bug on anon user ([44457f6](https://github.com/villetakanen/pelilauta/commit/44457f6b81df68acebd50e8bd8f3e219cf5ece79))
+* linter recomendations ([7e1db1c](https://github.com/villetakanen/pelilauta/commit/7e1db1c19a564b89c28534685eb7672ef45b9d20))
+
 ## [3.7.0](https://github.com/villetakanen/pelilauta/compare/v3.6.2...v3.7.0) (2020-10-23)
 
 
