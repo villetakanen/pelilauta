@@ -21,16 +21,22 @@
         :innerHTML="content"
       />
       <div
-        v-if="author !== uid"
         class="toolbar"
       >
         <LoveAction
+          v-if="author !== uid"
           :loved="loves"
           :action="toggleLove"
         />
+        <img
+          v-else
+          src="@/assets/icons/action-love-hollow.svg"
+          style="height:24px; opacity:0.5"
+        >
         <div v-if="reply && reply.lovesCount && reply.lovesCount > 0">
           &nbsp;{{ reply.lovesCount }}
         </div>
+        <span v-else>&nbsp;0</span>
         <div class="spacer" />
       </div>
     </div>
