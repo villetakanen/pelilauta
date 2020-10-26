@@ -7,6 +7,7 @@
       id="AppBarToolbar"
       class="toolbar"
     >
+      <SideNav />
       <MaterialAction
         to="/"
       />
@@ -44,10 +45,12 @@ import { useAuthz } from '@/lib/authz'
 import { useMeta } from '@/lib/meta'
 import ProfileAction from './ProfileAction.vue'
 import MaterialAction from '@/components/material/MaterialAction.vue'
+import SideNav from '@/components/app/SideNav.vue'
 export default defineComponent({
   components: {
     ProfileAction,
-    MaterialAction
+    MaterialAction,
+    SideNav
   },
   setup () {
     const appBarClasses = ref({
