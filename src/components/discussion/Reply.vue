@@ -1,19 +1,24 @@
 <template>
   <div
+    v-if="reply"
     :class="replyClasses"
     class="replyComment"
   >
+    <!-- Top toolbar for the reply-card -->
     <div class="reply-header toolbar">
       <div class="author">
-        {{ nick }}
+        {{ reply.nick }}
       </div>
+
       <div class="spacer" />
+
       <MaterialMenu
         v-model="menu"
         small
         style="float: right"
       />
     </div>
+
     <div
       class="message"
     >
@@ -72,10 +77,6 @@ export default defineComponent({
       required: true
     },
     threadid: {
-      type: String,
-      required: true
-    },
-    nick: {
       type: String,
       required: true
     }
