@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.7.2](https://github.com/villetakanen/pelilauta/compare/v3.7.1...v3.7.2) (2020-10-26)
+
+
+### Bug Fixes
+
+* **discussion:** show love of own comments ([b59e54d](https://github.com/villetakanen/pelilauta/commit/b59e54d51fe983fd05971b4eb9d91eff168dd82a))
+
 ### [3.7.1](https://github.com/villetakanen/pelilauta/compare/v3.7.0...v3.7.1) (2020-10-26)
 
 
