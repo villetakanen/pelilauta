@@ -7,10 +7,10 @@
       id="AppBarToolbar"
       class="toolbar"
     >
-      <SideNav v-if="false" />
-      <MaterialAction
-        to="/"
-      />
+      <!--MaterialAction
+        icon="burger"
+        :action="toggle"
+      /-->
       <h1 class="font-button">
         <router-link to="/">
           Pelilauta
@@ -40,17 +40,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, computed } from 'vue'
+import { defineComponent, ref, onMounted, computed, inject } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import { useMeta } from '@/lib/meta'
 import ProfileAction from './ProfileAction.vue'
 import MaterialAction from '@/components/material/MaterialAction.vue'
-import SideNav from '@/components/app/SideNav.vue'
 export default defineComponent({
   components: {
     ProfileAction,
-    MaterialAction,
-    SideNav
+    MaterialAction
   },
   setup () {
     const appBarClasses = ref({
@@ -66,7 +64,9 @@ export default defineComponent({
       else appBarClasses.value.elevated = false
     }
     onMounted(() => { window.addEventListener('scroll', handleScroll) })
-    return { appBarClasses, showAdminTools }
+
+    const toggle: CallableFunction = inject('toggleNav') as CallableFunction
+    return { appBarClasses, showAdminTools, toggle }
   }
 })
 </script>

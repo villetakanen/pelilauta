@@ -5,6 +5,11 @@
     @click="clicked"
   >
     <img
+      v-if="icon === 'burger' && !image"
+      class="material-action-icon"
+      src="@/assets/icons/menu-burger.svg"
+    >
+    <img
       v-if="icon === 'topic' && !image"
       class="material-action-icon"
       src="@/assets/topic.svg"

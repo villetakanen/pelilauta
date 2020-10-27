@@ -29,6 +29,9 @@
     "header": "Pelilauta",
     "paragraph": "Kirjaudu sovellukseen osallistuaksesi keskusteluun."
   },
+  "sideBar": {
+    "title": "Aiheet"
+  },
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
     "messages": {

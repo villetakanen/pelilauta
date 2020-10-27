@@ -30,6 +30,9 @@
     "header": "Pelilauta",
     "paragraph": "The Elven Wizard casts a level 20 resurrection. Please login to continue."
   },
+  "sideBar": {
+    "title": "Topics"
+  },
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {
     "messages": {
