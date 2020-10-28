@@ -12,7 +12,8 @@
     "toTopicList": "Topics",
     "login": "Login",
     "update": "Update",
-    "deferUpdate": "Remind me later"
+    "deferUpdate": "Remind me later",
+    "readMore": "Read more..."
   },
   "postHeader": {
     "postedInStream": "in"
@@ -35,6 +36,10 @@
     "toIndexRoute": "Topic Index",
     "toAboutRoute": "About",
     "toAdminRoute": "Admin"
+  },
+  "siteInfo": {
+    "title": "Pelilauta 2",
+    "text": "An experimental Single Page App for (RPG) community sites."
   },
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {

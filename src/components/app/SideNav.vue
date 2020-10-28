@@ -71,6 +71,7 @@
         </li>
       </ul>
     </div>
+    <SiteInfo />
   </div>
 </template>
 
@@ -78,13 +79,15 @@
 import { defineComponent, inject } from 'vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import SiteInfo from '@/components/app/SiteInfo.vue'
 import { useMeta } from '@/lib/meta'
 import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'SideNav',
   components: {
-    MaterialButton
+    MaterialButton,
+    SiteInfo
   },
   props: {
     modelValue: {
