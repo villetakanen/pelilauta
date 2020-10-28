@@ -29,10 +29,8 @@
     "header": "Pelilauta",
     "paragraph": "Kirjaudu sovellukseen osallistuaksesi keskusteluun."
   },
-  "sideBar": {
-    "title": "Aiheet"
-  },
   "sideNav": {
+    "title": "Pelilauta",
     "toIndexRoute": "Aiheet",
     "toAboutRoute": "Tietoja Sivustosta",
     "toAdminRoute": "Admin"

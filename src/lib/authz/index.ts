@@ -1,3 +1,6 @@
+/**
+ * DEPRECATED: If you need to change this file, please move the functionality to /composables, /state, or /utils
+ */
 import { ref, computed } from 'vue'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'

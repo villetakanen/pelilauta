@@ -15,54 +15,55 @@
       <div class="avatar">
         <img src="@/assets/fox.svg">
       </div>
-      <h1>{{ $t('sideBar.title') }}</h1>
+      <h1>{{ $t('sideNav.title') }}</h1>
     </div>
     <div class="menu-container">
-      <div
-        v-for="(topic, index) in topics"
-        :key="index"
-        class="topicCard"
-      >
-        <img
-          v-if="topic.icon === 'discussion'"
-          class="topicIcon"
-          src="@/assets/discussion.svg"
-        >
-        <img
-          v-if="topic.icon === 'd20'"
-          class="topicIcon"
-          src="@/assets/d20.svg"
-        >
-        <img
-          v-if="!topic.icon"
-          class="topicIcon"
-          src="@/assets/notopic.svg"
-        >
-        <h1 @click="toggle">
-          <router-link
-            :to="`/stream/topic/${topic.slug}`"
-          >
-            {{ topic.title }}
-          </router-link>
-        </h1>
-        <!--p v-if="topic.description">
-          {{ topic.description }}
-        </p-->
-      </div>
       <ul>
         <li>
           <router-link to="/stream/index">
             <img src="@/assets/icons/action-about.svg">
             {{ $t('sideNav.toIndexRoute') }}
           </router-link>
+          <ul>
+            <li
+              v-for="(topic, index) in topics"
+              :key="index"
+              class="topicLink"
+              @click="toggle"
+            >
+              <router-link
+                :to="`/stream/topic/${topic.slug}`"
+              >
+                <img
+                  v-if="topic.icon === 'discussion'"
+                  class="topicIcon"
+                  src="@/assets/discussion.svg"
+                >
+                <img
+                  v-if="topic.icon === 'd20'"
+                  class="topicIcon"
+                  src="@/assets/d20.svg"
+                >
+                <img
+                  v-if="!topic.icon"
+                  class="topicIcon"
+                  src="@/assets/notopic.svg"
+                >
+                {{ topic.title }}
+              </router-link>
+            </li>
+          </ul>
         </li>
-        <li>
+        <li @click="toggle">
           <router-link to="/about">
             <img src="@/assets/icons/action-about.svg">
             {{ $t('sideNav.toAboutRoute') }}
           </router-link>
         </li>
-        <li>
+        <li
+          v-if="isAdmin"
+          @click="toggle"
+        >
           <router-link to="/admin">
             <img src="@/assets/icons/action-admin.svg">
             {{ $t('sideNav.toAdminRoute') }}
@@ -78,6 +79,7 @@ import { defineComponent, inject } from 'vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useMeta } from '@/lib/meta'
+import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'SideNav',
@@ -91,12 +93,13 @@ export default defineComponent({
     }
   },
   setup () {
+    const { isAdmin } = useProfile()
     const toggleNav: CallableFunction = inject('toggleNav') as CallableFunction
     const toggle = () => {
       if (window.innerWidth < 768) toggleNav()
     }
     const { topics } = useMeta()
-    return { toggle, topics, toggleNav }
+    return { toggle, topics, toggleNav, isAdmin }
   }
 })
 </script>
@@ -151,6 +154,10 @@ export default defineComponent({
   ul
     margin: 0
     padding: 0px
+    ul
+      margin-left: 8px
+      border-left: 4px solid opacify($color-base-darker, 0.5)
+      padding-left: 4px
     li
       @include TypeButton()
       margin: 0
