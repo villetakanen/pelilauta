@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="false"
     id="sideNav"
     :class="{ toggled: modelValue }"
   >
@@ -39,14 +38,16 @@
           class="topicIcon"
           src="@/assets/notopic.svg"
         >
-        <h1>
-          <router-link :to="`/stream/topic/${topic.slug}`">
+        <h1 @click="toggle">
+          <router-link
+            :to="`/stream/topic/${topic.slug}`"
+          >
             {{ topic.title }}
           </router-link>
         </h1>
-        <p v-if="topic.description">
+        <!--p v-if="topic.description">
           {{ topic.description }}
-        </p>
+        </p-->
       </div>
     </div>
   </div>
@@ -76,8 +77,11 @@ export default defineComponent({
   },
   setup () {
     const toggleNav: CallableFunction = inject('toggleNav') as CallableFunction
+    const toggle = () => {
+      if (window.innerWidth < 768) toggleNav()
+    }
     const { topics } = useMeta()
-    return { toggleNav, topics }
+    return { toggle, topics, toggleNav }
   }
 })
 </script>
@@ -133,8 +137,8 @@ export default defineComponent({
 .topicCard
   margin: 16px
   position: relative
-  min-height: 72px
-  padding-left: 56px
+  min-height: 24px
+  padding-left: 32px
   h1
     @include TypeHeadline6()
   p
@@ -144,8 +148,8 @@ export default defineComponent({
     position: absolute
     top: 0px
     left: 0px
-    height: 48px
-    width: 48px
+    height: 24px
+    width: 24px
     background-color: $color-secondary-light
     border-radius: 50%
 
@@ -161,11 +165,14 @@ export default defineComponent({
       transform: translateX(-400px)
     .menuHeader
       margin-top: 56px
+    .back
+      display: none
 
 @include media('<tablet')
   #sideNav
+    width: 100vw
     z-index: 1000
-    transform: translateX(-400px)
+    transform: translateX(-100vw)
     &.toggled
       transform: translateX(0px)
 

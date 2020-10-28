@@ -8,7 +8,7 @@
     <MaterialBanner />
     <main>
       <WelcomeCard v-if="!isAuthz && route.name !== 'Login'" />
-      <router-view v-else />
+      <router-view />
       <div
         style="text-align: center; padding:16px"
         class="footnote"
@@ -70,9 +70,9 @@ export default defineComponent({
     // Navigation drawer programmatic visibility
     const navModel = ref(false)
     const toggleNav = () => {
-      console.log('toggleNav')
       navModel.value = !navModel.value
     }
+    provide('navModel', navModel)
     provide('toggleNav', toggleNav)
 
     return { isAuthz, missingProfile, version, ...useI18n(), route, navModel }
@@ -90,7 +90,7 @@ main
   #mainContentWrapper
     transition: margin 0.4s ease-in-out
     &.toggle
-    //  margin-left: 400px
+      margin-left: 400px
 
 .footnote
   a

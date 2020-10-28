@@ -68,9 +68,9 @@ export default defineComponent({
     width: 44px
     margin: 6px
 
-@include media('>1024px')
-  .material-fab
-    left:50%
-    transform: translate(354px, 0)
+// @include media('>1024px')
+//  .material-fab
+//    left:50%
+//    transform: translate(354px, 0)
 
 </style>
