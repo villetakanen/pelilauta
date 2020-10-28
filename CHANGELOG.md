@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.8.0](https://github.com/villetakanen/pelilauta/compare/v3.7.4...v3.8.0) (2020-10-28)
+
+
+### Features
+
+* **discusssion:** edit reply ([62c7ee0](https://github.com/villetakanen/pelilauta/commit/62c7ee08b5e1a70b6d1e144ba536c6a7593d5fdc))
+* **sidenav:** added sidenav element ([8d6e911](https://github.com/villetakanen/pelilauta/commit/8d6e9118a273a0842128bbf590adea957068d5cf))
+* **sidenav:** moved topics to sidenav ([7de8c3f](https://github.com/villetakanen/pelilauta/commit/7de8c3f0de22bfd5aee731623adb30fbcfced83a))
+
+
+### Bug Fixes
+
+* **sidenav:** base styles and ux in place ([855a8e6](https://github.com/villetakanen/pelilauta/commit/855a8e63c5c92dcf80caf6fb9bff40977a22ebe1))
+* ncu -u and npm update ([7bb8c79](https://github.com/villetakanen/pelilauta/commit/7bb8c79577bc33f90e204e1039250ae9db509fdb))
+
 ### [3.7.4](https://github.com/villetakanen/pelilauta/compare/v3.7.3...v3.7.4) (2020-10-26)
 
 
