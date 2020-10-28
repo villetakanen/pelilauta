@@ -33,6 +33,11 @@
   "sideBar": {
     "title": "Topics"
   },
+  "sideNav": {
+    "toIndexRoute": "Topic Index",
+    "toAboutRoute": "About",
+    "toAdminRoute": "Admin"
+  },
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {
     "messages": {

@@ -32,6 +32,11 @@
   "sideBar": {
     "title": "Aiheet"
   },
+  "sideNav": {
+    "toIndexRoute": "Aiheet",
+    "toAboutRoute": "Tietoja Sivustosta",
+    "toAdminRoute": "Admin"
+  },
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
     "messages": {

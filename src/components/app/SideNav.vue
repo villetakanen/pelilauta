@@ -49,13 +49,28 @@
           {{ topic.description }}
         </p-->
       </div>
+      <ul>
+        <li>
+          <router-link to="/stream/index">
+            <img src="@/assets/icons/action-about.svg">
+            {{ $t('sideNav.toIndexRoute') }}
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/about">
+            <img src="@/assets/icons/action-about.svg">
+            {{ $t('sideNav.toAboutRoute') }}
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/admin">
+            <img src="@/assets/icons/action-admin.svg">
+            {{ $t('sideNav.toAdminRoute') }}
+          </router-link>
+        </li>
+      </ul>
     </div>
   </div>
-  <a
-    id="nav-screen-overlay"
-    href="#"
-    target="_self"
-  />
 </template>
 
 <script lang="ts">
@@ -133,6 +148,24 @@ export default defineComponent({
     border-bottom: 200px solid $color-secondary-light
     border-right: 120px solid transparent
     opacity: 0.2
+  ul
+    margin: 0
+    padding: 0px
+    li
+      @include TypeButton()
+      margin: 0
+      padding: 8px 16px
+      list-style-type: none
+      a
+        text-decoration: none
+        color: $color-font-medium
+      img
+        height: 24px
+        width: 24px
+        vertical-align: middle
+        margin-right: 8px
+      &:hover
+        background-color: $color-secondary-light
 
 .topicCard
   margin: 16px
