@@ -20,6 +20,7 @@
     </div>
 
     <div
+      v-if="!editReply"
       class="message"
     >
       <div
@@ -45,6 +46,24 @@
         <div class="spacer" />
       </div>
     </div>
+    <div
+      v-if="editReply"
+      class="message"
+    >
+      <Editor
+        v-model="replyContent"
+        :lines="3"
+        class="box"
+      />
+      <MaterialButton
+        icon
+        class="button"
+        color="secondary"
+        :action="updateReply"
+      >
+        <img src="@/assets/send.svg">
+      </MaterialButton>
+    </div>
   </div>
 </template>
 
@@ -53,15 +72,19 @@ import { defineComponent, computed, ref, watch } from 'vue'
 import LoveAction from '@/components/app/LoveAction.vue'
 import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
+import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useMeta } from '@/lib/meta'
 import { MenuItem } from '@/lib/stream'
 import { useDiscussion } from '@/lib/discussion'
-import { loveReply, unloveReply } from '@/state/discussions'
+import { loveReply, unloveReply, updateReplyContent } from '@/state/discussions'
+import Editor from '@/components/editor/Editor2.vue'
 
 export default defineComponent({
   components: {
     MaterialMenu,
-    LoveAction
+    LoveAction,
+    Editor,
+    MaterialButton
   },
   props: {
     content: {
@@ -85,6 +108,8 @@ export default defineComponent({
     const { uid, isAuthz } = useAuthz()
     const { isAdmin } = useMeta()
     const { deleteComment } = useDiscussion(props.threadid)
+    const editReply = ref(false)
+    const replyContent = ref(props.content)
 
     const { discussion } = useDiscussion(props.threadid)
     const reply = computed(() => discussion.value.find((r) => (r.replyid === props.commentid)))
@@ -98,6 +123,10 @@ export default defineComponent({
 
     const dropComment = () => {
       deleteComment(props.commentid)
+    }
+
+    const editComment = () => {
+      editReply.value = true
     }
 
     const loves = computed(() => {
@@ -116,13 +145,19 @@ export default defineComponent({
       const arr = new Array<MenuItem>()
       if (uid.value === props.author) {
         arr.push({ action: dropComment, text: 'Delete!' })
+        arr.push({ action: editComment, text: 'Edit' })
       } else if (isAdmin(uid.value)) {
         arr.push({ action: dropComment, text: 'Delete!', admin: true })
       }
       return arr
     })
 
-    return { menu, replyClasses, reply, uid, loves, toggleLove }
+    const updateReply = () => {
+      editReply.value = false
+      updateReplyContent(uid.value, props.threadid, props.commentid, replyContent.value)
+    }
+
+    return { menu, replyClasses, reply, uid, loves, toggleLove, editReply, replyContent, updateReply }
   }
 })
 </script>
@@ -188,5 +223,29 @@ export default defineComponent({
       line-height: 16px
       color: $color-primary-light
       flex-grow: 0
-
+.box
+  position: relative
+  margin-right: 8px
+  border-radius: 4px
+  background-color: $color-base
+  border: solid 1px $color-base
+  padding: 4px
+  min-height: 60px
+  max-height: 220px
+  line-height: 20px
+  margin-right: 70px
+  overflow: auto
+  .box:after
+    content: ""
+    position: absolute
+    border-style: solid
+    border-color: transparent white
+    top: 16px // controls vertical position
+    right: 64px // value = - border-left-width - border-right-width */
+    border-width: 8px 0px 8px 16px
+    bottom: auto
+.button
+    position: absolute
+    right: 8px
+    bottom: 22px
 </style>
