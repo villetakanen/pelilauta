@@ -11,7 +11,10 @@
         {{ $t('lang') }}
       </h3>
       <p>
-        {{ $t('siteInfo.text') }} <router-link to="/about">
+        {{ $t('siteInfo.text') }}
+      </p>
+      <p>
+        <router-link to="/about">
           {{ $t('action.readMore') }}
         </router-link>
       </p>
@@ -51,12 +54,12 @@ export default defineComponent({
   p
     @include TypeCaption()
     color: $color-font-disabled
-    margin-right: 56px
+    margin-right: 74px
     margin-bottom: 8px
 
 .relativeBox
   position: relative
-  width: 362px
+  width: 276px
 
 .icon
   @include SpacingIcon2X()

@@ -3,7 +3,7 @@
     <img class="logo" src="@/assets/fox-on-blue.png">
     <h1>{{ $t('welcome.header') }}</h1>
     <p>{{ $t('welcome.paragraph') }}</p>
-    <MaterialButton to="/login">
+    <MaterialButton text to="/login">
       {{ $t('action.login') }}
     </MaterialButton>
   </MaterialCard>
@@ -30,6 +30,9 @@ export default defineComponent({
 
 .welcome
   text-align: center
+  background-color: $color-primary-light
+  padding-top: 16px
+  margin-top: -8px
   h1, p
     text-align: center
 

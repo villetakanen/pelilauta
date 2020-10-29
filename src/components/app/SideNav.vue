@@ -1,17 +1,24 @@
 <template>
+  <transition name="fadeFast">
+    <div
+      v-if="!modelValue"
+      class="overlay"
+      @click="toggle"
+    />
+  </transition>
   <div
     id="sideNav"
     :class="{ toggled: modelValue }"
   >
     <div class="menuHeader">
-      <MaterialButton
+      <!--MaterialButton
         :action="toggleNav"
         icon
         text
         class="back"
       >
         <img src="@/assets/icons/action-back-light.svg">
-      </MaterialButton>
+      </MaterialButton-->
       <div class="avatar">
         <img src="@/assets/fox.svg">
       </div>
@@ -91,7 +98,7 @@
 <script lang="ts">
 import { defineComponent, inject } from 'vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+// import MaterialButton from '@/components/material/MaterialButton.vue'
 import ProfileAction from '@/components/ProfileAction.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 import { useMeta } from '@/lib/meta'
@@ -100,7 +107,7 @@ import { useProfile } from '@/state/authz'
 export default defineComponent({
   name: 'SideNav',
   components: {
-    MaterialButton,
+    // MaterialButton,
     SiteInfo,
     ProfileAction
   },
@@ -129,12 +136,13 @@ export default defineComponent({
 
 #sideNav
   position: fixed
+  z-index: 1000
   top: 0
   left: 0
-  width: 400px
+  width: 310px
   height: 100vh
   transition: transform 0.3s ease-in-out
-  @include BoxShadow3()
+  @include BoxShadow8()
   background-color: $color-base
   .sideNavAvatarAction
     position: absolute
@@ -234,11 +242,22 @@ export default defineComponent({
 
 @include media('<tablet')
   #sideNav
-    width: 100vw
+    width: 84vw
     z-index: 1000
     transform: translateX(0px)
     &.toggled
       transform: translateX(-100vw)
+  .overlay
+     position: fixed
+     top: 0
+     left: 0
+     height: 100vh
+     width: 100vw
+     background-color: $color-primary-dark
+     opacity: 0.37
+     z-index: 999
+     &.toggled
+       display: none
 
 // deprecated from here on
 
@@ -316,4 +335,12 @@ export default defineComponent({
   cursor: default
   pointer-events: none
   transition: opacity 0.5s ease-in-out
+
+.fadeFast-enter-active,
+.fadeFast-leave-active
+  transition: opacity 0.3s ease
+
+.fadeFast-enter-from,
+.fadeFast-leave-to
+  opacity: 0
 </style>

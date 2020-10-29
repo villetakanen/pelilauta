@@ -103,7 +103,7 @@ export default defineComponent({
       max-width: 878px
       margin: 0 auto
     &.toggle
-      margin-left: 400px
+      margin-left: 310px
 
 .footnote
   a
