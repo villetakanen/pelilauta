@@ -1,7 +1,7 @@
 <template>
-  <MaterialCard>
-    <h1>{{ pageTitle }}</h1>
-  </MaterialCard>
+  <h1 class="viewHeader">
+    {{ pageTitle.title }}
+  </h1>
   <teleport to="body">
     <MaterialFab
       v-if="showStreamActions"
@@ -14,23 +14,23 @@
       >
     </MaterialFab>
   </teleport>
-  <Stream :topic="topic" />
+  <Stream :topic="routeTopic" />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useMeta } from '@/lib/meta'
 import { useEditorDialog } from '@/lib/editor'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     Stream,
-    MaterialFab,
-    MaterialCard
+    MaterialFab
   },
   props: {
     topic: {
@@ -39,7 +39,15 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const pageTitle = ref(props.topic.substring(0, 1).toUpperCase() + props.topic.substring(1))
+    const { topics } = useMeta()
+    const route = useRoute()
+    const routeTopic = ref(route.params.topic as string)
+    watch(route, (val) => { routeTopic.value = val.params.topic as string })
+    const pageTitle = computed(() => {
+      const t = topics.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
+      if (t) return t
+      return { title: '-' }
+    })
     const { showStreamActions } = useMeta()
 
     const newPostDialog = () => {
@@ -47,7 +55,7 @@ export default defineComponent({
       showEditor(props.topic)
     }
 
-    return { pageTitle, showStreamActions, newPostDialog }
+    return { pageTitle, showStreamActions, newPostDialog, routeTopic }
   }
 })
 </script>

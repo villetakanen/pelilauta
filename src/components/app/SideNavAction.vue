@@ -38,7 +38,7 @@ export default defineComponent({
   height: 44px
   width: 44px
   margin:6px
-  position: relative
+  position: absolute
   img
     position: absolute
     top: 0

@@ -4,6 +4,9 @@
     "footnote": "Experimental SPA. All text (c) by the author.",
     "updatesAvailable": "A new version of this App is available. Please click update below to reload the App."
   },
+  "stream": {
+    "title": "Pelilauta"
+  },
   "language": {
       "label": "UI Language"
   },
@@ -35,7 +38,8 @@
     "title": "Pelilauta",
     "toIndexRoute": "Topic Index",
     "toAboutRoute": "About",
-    "toAdminRoute": "Admin"
+    "toAdminRoute": "Admin",
+    "toProfileRoute": "My Profile"
   },
   "siteInfo": {
     "title": "Pelilauta 2",

@@ -16,10 +16,17 @@
         <img src="@/assets/fox.svg">
       </div>
       <h1>{{ $t('sideNav.title') }}</h1>
+      <ProfileAction class="sideNavAvatarAction" />
     </div>
     <div class="menu-container">
       <ul>
-        <li>
+        <li @click="toggle">
+          <router-link to="/">
+            <img src="@/assets/icons/d12-black.svg">
+            Pelilauta
+          </router-link>
+        </li>
+        <li class="subtitle">
           <router-link to="/stream/index">
             <img src="@/assets/icons/action-about.svg">
             {{ $t('sideNav.toIndexRoute') }}
@@ -60,6 +67,12 @@
             {{ $t('sideNav.toAboutRoute') }}
           </router-link>
         </li>
+        <li @click="toggle">
+          <router-link to="/profile">
+            <img src="@/assets/icons/action-about.svg">
+            {{ $t('sideNav.toProfileRoute') }}
+          </router-link>
+        </li>
         <li
           v-if="isAdmin"
           @click="toggle"
@@ -79,6 +92,7 @@
 import { defineComponent, inject } from 'vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import ProfileAction from '@/components/ProfileAction.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 import { useMeta } from '@/lib/meta'
 import { useProfile } from '@/state/authz'
@@ -87,7 +101,8 @@ export default defineComponent({
   name: 'SideNav',
   components: {
     MaterialButton,
-    SiteInfo
+    SiteInfo,
+    ProfileAction
   },
   props: {
     modelValue: {
@@ -121,6 +136,10 @@ export default defineComponent({
   transition: transform 0.3s ease-in-out
   @include BoxShadow3()
   background-color: $color-base
+  .sideNavAvatarAction
+    position: absolute
+    bottom: 0
+    right: 0
   .menuHeader
     background: linear-gradient(151deg, $color-primary-dark 0%, $color-primary 23%, $color-primary-light 100%)
     position: relative
@@ -144,6 +163,7 @@ export default defineComponent({
       right: 16px
       color: $color-base
       opacity: 0.8
+      margin-right: 56px
   .menuHeader:after
     content: ""
     position: absolute
@@ -176,6 +196,9 @@ export default defineComponent({
         margin-right: 8px
       &:hover
         background-color: $color-secondary-light
+      &.subtitle
+        &:hover
+          background: none
 
 .topicCard
   margin: 16px
@@ -206,8 +229,6 @@ export default defineComponent({
   #sideNav
     &.toggled
       transform: translateX(-400px)
-    .menuHeader
-      margin-top: 56px
     .back
       display: none
 
@@ -215,9 +236,9 @@ export default defineComponent({
   #sideNav
     width: 100vw
     z-index: 1000
-    transform: translateX(-100vw)
+    transform: translateX(0px)
     &.toggled
-      transform: translateX(0px)
+      transform: translateX(-100vw)
 
 // deprecated from here on
 
@@ -268,8 +289,6 @@ export default defineComponent({
       padding: 0
       height: 48px
       color: $color-font-medium
-      &:hover
-        background-color: $color-base-darker
       img
         height: 40px
         vertical-align: middle

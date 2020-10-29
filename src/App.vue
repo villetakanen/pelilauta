@@ -1,5 +1,6 @@
 <template>
-  <AppBar />
+  <!-- AppBar /-->
+  <SideNavAction class="topLeftFab"/>
   <SideNav v-model="navModel" />
   <div
     id="mainContentWrapper"
@@ -37,13 +38,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, provide, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
 import AppBar from './components/AppBar.vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
 import MaterialDialog from './components/material/MaterialDialog.vue'
 import EditorDialog from '@/components/editor/EditorDialog.vue'
 import WelcomeCard from '@/components/app/WelcomeCard.vue'
 import SideNav from '@/components/app/SideNav.vue'
+import SideNavAction from '@/components/app/SideNavAction.vue'
 import { useAuthz } from './lib/authz'
 import { version } from '../package.json'
 import { useI18n } from 'vue-i18n'
@@ -51,7 +53,7 @@ import { useRoute } from 'vue-router'
 
 export default defineComponent({
   components: {
-    AppBar,
+    SideNavAction,
     MaterialBanner,
     EditorDialog,
     MaterialDialog,
@@ -68,14 +70,16 @@ export default defineComponent({
     })
 
     // Navigation drawer programmatic visibility
-    const navModel = ref(false)
+    const navModel = ref(window.innerWidth < 768)
     const toggleNav = () => {
       navModel.value = !navModel.value
     }
     provide('navModel', navModel)
     provide('toggleNav', toggleNav)
 
-    return { isAuthz, missingProfile, version, ...useI18n(), route, navModel }
+    const onMobile = computed(() => (window.innerWidth < 768))
+
+    return { isAuthz, missingProfile, version, ...useI18n(), route, navModel, onMobile }
   }
 })
 </script>
@@ -83,12 +87,18 @@ export default defineComponent({
 <style lang="sass">
 @import styles/base.sass
 
-main
-  padding-top: 62px
+.topLeftFab
+  position: fixed
+  top: 16px
+  left: 16px
+  z-index: 10000
 
 @include media('>=tablet')
   #mainContentWrapper
     transition: margin 0.4s ease-in-out
+    main
+      max-width: 878px
+      margin: 0 auto
     &.toggle
       margin-left: 400px
 

@@ -33,7 +33,8 @@
     "title": "Pelilauta",
     "toIndexRoute": "Aiheet",
     "toAboutRoute": "Tietoja Sivustosta",
-    "toAdminRoute": "Admin"
+    "toAdminRoute": "Admin",
+    "toProfileRoute": "Oma profiilini"
   },
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {

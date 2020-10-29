@@ -3,13 +3,7 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 44 44" style="enable-background:new 0 0 44 44;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.23;fill:#579FED;}
-	.st1{fill:#FFFFFF;}
+	.st0{opacity:0.37;fill:none;stroke:#0271BA;stroke-width:5;stroke-miterlimit:10;enable-background:new    ;}
 </style>
-<circle class="st0" cx="22" cy="22" r="22"/>
-<g>
-	<polygon class="st1" points="37,14.2 7,14.2 7,10.4 34.9,10.4 	"/>
-	<polygon class="st1" points="32.6,23.9 7,23.9 7,20.1 30.4,20.1 	"/>
-	<polygon class="st1" points="28.4,33.6 7,33.6 7,29.8 26.3,29.8 	"/>
-</g>
+<circle class="st0" cx="22" cy="22" r="10.9"/>
 </svg>
