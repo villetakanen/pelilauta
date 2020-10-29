@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.10.1](https://github.com/villetakanen/pelilauta/compare/v3.10.0...v3.10.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* added header to profile page ([1193fa3](https://github.com/villetakanen/pelilauta/commit/1193fa3f59ab7b676ac608ffe4847b4f98f52686))
+
 ## [3.10.0](https://github.com/villetakanen/pelilauta/compare/v3.9.2...v3.10.0) (2020-10-29)
 
 
