@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.10.0](https://github.com/villetakanen/pelilauta/compare/v3.9.2...v3.10.0) (2020-10-29)
+
+
+### Features
+
+* navigation moved to sidenav ([769108f](https://github.com/villetakanen/pelilauta/commit/769108f14fcf2b862882cb17b67a160e482255b6))
+
 ### [3.9.2](https://github.com/villetakanen/pelilauta/compare/v3.9.1...v3.9.2) (2020-10-28)
 
 
