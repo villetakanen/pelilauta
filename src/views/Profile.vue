@@ -1,4 +1,7 @@
 <template>
+  <h1 class="viewHeader">
+    {{ profile.nick }}
+  </h1>
   <MaterialCard>
     <img
       v-if="profile.photoURL"
@@ -7,7 +10,6 @@
       :alt="profile.nick"
     >
     <div class="toolbar">
-      <h1>{{ profile.nick }}</h1>
       <MaterialButton :action="logout">
         {{ $t('action.logout') }}
       </MaterialButton>
