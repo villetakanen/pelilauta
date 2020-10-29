@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.10.3](https://github.com/villetakanen/pelilauta/compare/v3.10.2...v3.10.3) (2020-10-29)
+
+
+### Bug Fixes
+
+* side bar ux responsiveness ([9aad30a](https://github.com/villetakanen/pelilauta/commit/9aad30a402dc3d84463b37ce32b7d35d3a9a91df))
+
 ### [3.10.2](https://github.com/villetakanen/pelilauta/compare/v3.10.1...v3.10.2) (2020-10-29)
 
 ### [3.10.1](https://github.com/villetakanen/pelilauta/compare/v3.10.0...v3.10.1) (2020-10-29)
