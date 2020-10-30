@@ -6,7 +6,7 @@
     <transition name="scaleToFull">
       <img
         v-if="toggled"
-        src="@/assets/icons/action-menu-closed.svg"
+        src="@/assets/fox-on-blue.png"
       >
       <img
         v-else
@@ -43,6 +43,8 @@ export default defineComponent({
     position: absolute
     top: 0
     left: 0
+    height: 44px
+    width: 44px
 
 .scaleToFull-enter-active,
 .scaleToFull-leave-active
