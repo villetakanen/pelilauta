@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.10.4](https://github.com/villetakanen/pelilauta/compare/v3.10.3...v3.10.4) (2020-10-30)
+
+
+### Bug Fixes
+
+* banner clipping fixed ([e9c1907](https://github.com/villetakanen/pelilauta/commit/e9c190732a30e1ca91c873d0a1ffc6868d24c252))
+* no longer undefined vastausta ([5daa03a](https://github.com/villetakanen/pelilauta/commit/5daa03a0861c7d3f040d5ef4b47b62c4d7445a04))
+* simpler signage ([73a1b11](https://github.com/villetakanen/pelilauta/commit/73a1b11373f0317a0a8b48656516964b7dfed3e5))
+
 ### [3.10.3](https://github.com/villetakanen/pelilauta/compare/v3.10.2...v3.10.3) (2020-10-29)
 
 
