@@ -47,6 +47,7 @@ function toThread (id: string, data:firebase.firestore.DocumentData|undefined): 
       images: data.images
     }
   }
+  if (!post.replyCount) post.replyCount = 0
   if (typeof post.data.images === 'string') delete post.data.images
   return post
 }
