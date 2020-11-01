@@ -6,18 +6,12 @@
         src="@/assets/icons/d12-black.svg"
       >
       <h3>
-        {{ $t('siteInfo.title') }} –
-        {{ version }} –
+        {{ $t('siteInfo.title') }}
+      </h3>
+      <h3>
+        {{ version }} /
         {{ $t('lang') }}
       </h3>
-      <p>
-        {{ $t('siteInfo.text') }}
-      </p>
-      <p>
-        <router-link to="/about">
-          {{ $t('action.readMore') }}
-        </router-link>
-      </p>
     </div>
   </div>
 </template>
@@ -46,27 +40,19 @@ export default defineComponent({
   left: 0px
   margin: 16px
   padding-top: 8px
-  border-top: solid 1px $color-font-disabled
   h3
     @include TypeButton()
     color: $color-font-disabled
     margin-bottom: 8px
-  p
-    @include TypeCaption()
-    color: $color-font-disabled
-    margin-right: 74px
-    margin-bottom: 8px
-
-.relativeBox
-  position: relative
-  width: 276px
+    padding-right: 60px
 
 .icon
   @include SpacingIcon2X()
   padding-left: 8px
   border-left: solid 1px $color-font-disabled
   position: absolute
-  right: 0
+  left: 100px
   top: 0
+  height: 36px
 
 </style>
