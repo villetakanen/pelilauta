@@ -151,14 +151,14 @@ export default defineComponent({
   .menuHeader
     background: linear-gradient(151deg, $color-primary-dark 0%, $color-primary 23%, $color-primary-light 100%)
     position: relative
-    height: 192px
+    height: 168px
     .avatar
       position: absolute
       top: 16px
       left: 16px
       z-index: 1
       img
-        height: 160px
+        height: 132px
         width: 160px
     .back
       float: right
