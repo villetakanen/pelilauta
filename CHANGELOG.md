@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.10.5](https://github.com/villetakanen/pelilauta/compare/v3.10.4...v3.10.5) (2020-11-01)
+
+
+### Bug Fixes
+
+* **ux:** sidenav header to 7 lines ([df5a8d2](https://github.com/villetakanen/pelilauta/commit/df5a8d29661029730d02e4b8d3a61b2e7096f889))
+* **ux:** sidenav min width with older iphone + dt ([c7c9c51](https://github.com/villetakanen/pelilauta/commit/c7c9c510a59f9bcba906966496200f3fa8411fc3))
+
 ### [3.10.4](https://github.com/villetakanen/pelilauta/compare/v3.10.3...v3.10.4) (2020-10-30)
 
 
