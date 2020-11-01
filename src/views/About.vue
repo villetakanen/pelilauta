@@ -1,13 +1,20 @@
 <template>
+  <h1 class="viewHeader">
+    {{ $t('about.title') }}
+  </h1>
   <MaterialCard class="about">
-    <h1>{{ $t('about.title') }}</h1>
-    <p>{{ $t('about.text') }}</p>
+    <div :innerHTML="aboutContent" />
+    <div class="origin">
+      <a href="https://mekanismi.web.app/">https://mekanismi.web.app/</a>
+    </div>
   </MaterialCard>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
 
 export default defineComponent({
   name: 'About',
@@ -15,9 +22,16 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
+    const aboutContent = ref('...')
     onMounted(() => {
       document.title = 'Pelilauta - About'
+      const db = firebase.firestore()
+      const aboutRef = db.collection('sites').doc('mekanismi').collection('pages').doc('pelilauta-about')
+      aboutRef.get().then((doc) => {
+        aboutContent.value = doc.data()?.htmlContent
+      })
     })
+    return { aboutContent }
   }
 })
 </script>
