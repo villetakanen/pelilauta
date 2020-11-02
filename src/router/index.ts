@@ -53,7 +53,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/stream/topic/:topic',
     name: 'StreamTopic',
-    component: () => StreamTopic,
+    component: StreamTopic,
     props: true
   },
   {
