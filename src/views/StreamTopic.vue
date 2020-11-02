@@ -38,7 +38,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { topics } = useMeta()
+    const { topics, showStreamActions } = useMeta()
 
     const route = useRoute()
     const routeTopic = ref('')
@@ -54,12 +54,11 @@ export default defineComponent({
     })
 
     const pageTitle = computed(() => {
+      if (!topics.value || topics.value.length < 1) return { title: routeTopic.value }
       const t = topics.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
       if (t) return t
-      return { title: '-' }
+      return { title: routeTopic.value }
     })
-
-    const { showStreamActions } = useMeta()
 
     const newPostDialog = () => {
       const { showEditor } = useEditorDialog()
