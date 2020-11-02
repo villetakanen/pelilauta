@@ -91,7 +91,7 @@ export default defineComponent({
 
 #mainContentWrapper
   margin-top: 56px // app-bar height
-  padding-top: 16px
+  padding-top: 8px
   main
     margin-top: 8px
 

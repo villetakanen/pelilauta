@@ -1,7 +1,4 @@
 <template>
-  <h1 class="viewHeader">
-    {{ $t('about.title') }}
-  </h1>
   <MaterialCard class="about">
     <div :innerHTML="aboutContent" />
     <div class="origin">

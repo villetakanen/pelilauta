@@ -10,9 +10,6 @@
       >
     </MaterialFab>
   </teleport>
-  <h1 class="viewHeader">
-    {{ $t('stream.title') }}
-  </h1>
   <Stream />
 </template>
 
