@@ -1,9 +1,9 @@
 <template>
-  <!-- AppBar /-->
+  <!-- The top navigation bar: contains search field, menu button, and search button. Maybe profile icon too. -->
+  <AppBar />
   <transition name="scaleToFull">
     <div id="identitySplash" v-if="navModel" />
   </transition>
-  <SideNavAction class="topLeftFab"/>
   <SideNav v-model="navModel" />
   <div
     id="mainContentWrapper"
@@ -47,7 +47,7 @@ import MaterialDialog from './components/material/MaterialDialog.vue'
 import EditorDialog from '@/components/editor/EditorDialog.vue'
 import WelcomeCard from '@/components/app/WelcomeCard.vue'
 import SideNav from '@/components/app/SideNav.vue'
-import SideNavAction from '@/components/app/SideNavAction.vue'
+import AppBar from '@/components/app/AppBar.vue'
 import { useAuthz } from './lib/authz'
 import { version } from '../package.json'
 import { useI18n } from 'vue-i18n'
@@ -55,12 +55,12 @@ import { useRoute } from 'vue-router'
 
 export default defineComponent({
   components: {
-    SideNavAction,
     MaterialBanner,
     EditorDialog,
     MaterialDialog,
     WelcomeCard,
-    SideNav
+    SideNav,
+    AppBar
   },
   setup () {
     const { missingProfile, lang, isAuthz } = useAuthz()
@@ -88,6 +88,12 @@ export default defineComponent({
 
 <style lang="sass">
 @import styles/base.sass
+
+#mainContentWrapper
+  margin-top: 56px // app-bar height
+  padding-top: 16px
+  main
+    margin-top: 8px
 
 .topLeftFab
   position: fixed
