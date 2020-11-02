@@ -20,6 +20,15 @@ An Open Source vue3+firebase project for a community site.
 6. Use the App.
 
 ## Project setup
+
+### Prequisites
+
+Since 4.0.0, you need to have:
+1. A Firebase project
+2. An Algolia index
+3. A clone of [pelilauta-functions](https://github.com/villetakanen/pelilauta-functions)
+
+### Install
 ```
 npm install
 ```
