@@ -1,7 +1,8 @@
 // import { useAuthz } from '@/lib/authz'
 // import { watch } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '@/views/Home.vue'
+import StreamTopic from '@/views/StreamTopic.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -52,10 +53,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/stream/topic/:topic',
     name: 'StreamTopic',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/StreamTopic.vue'),
+    component: () => StreamTopic,
     props: true
   },
   {
