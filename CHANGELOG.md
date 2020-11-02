@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/villetakanen/pelilauta/compare/v3.11.0...v4.0.0) (2020-11-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **search:** Requires Algolia Search account and pelilauta-functions
+
+### Features
+
+* **search:** hidden demo of search mvp ([cd8ec02](https://github.com/villetakanen/pelilauta/commit/cd8ec02709bca07d4fccdd6910a3fc499e771b02))
+
 ## [3.11.0](https://github.com/villetakanen/pelilauta/compare/v3.10.5...v3.11.0) (2020-11-01)
 
 
