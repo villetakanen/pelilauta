@@ -1,6 +1,7 @@
 {
   "lang": "EN",
   "app": {
+    "title": "Pelilauta",
     "footnote": "Experimental SPA. All text (c) by the author.",
     "updatesAvailable": "A new version of this App is available. Please click update below to reload the App."
   },

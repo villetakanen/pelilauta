@@ -37,7 +37,10 @@ export default defineComponent({
 .sideNavAction
   height: 44px
   width: 44px
-  position: relative
+  position: fixed
+  z-index: 10000
+  top: 6px
+  left: 6px
   img
     position: absolute
     top: 0

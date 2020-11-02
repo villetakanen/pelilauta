@@ -1,17 +1,25 @@
 <template>
   <div id="AppBar">
-    <SideNavAction class="topLeftFab"/>
+    <SideNavAction />
+    <h1>
+      <router-link to="/">
+        {{ $t('app.title') }}
+      </router-link>
+    </h1>
+    <ProfileAction class="absoluteRight" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import SideNavAction from '@/components/app/SideNavAction.vue'
+import ProfileAction from '@/components/ProfileAction.vue'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
-    SideNavAction
+    SideNavAction,
+    ProfileAction
   }
 })
 </script>
@@ -30,5 +38,13 @@ export default defineComponent({
   padding: 4px
   box-sizing: border-box
   border-bottom: solid 1px $color-font-disabled
+  h1
+    @include TypeButton()
+    margin-left: 56px
+    line-height: 48px
+  .absoluteRight
+    position: absolute
+    top: 0px
+    right: 0px
 
 </style>
