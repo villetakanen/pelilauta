@@ -14,7 +14,7 @@
       >
     </MaterialFab>
   </teleport>
-  <Stream :topic="routeTopic" />
+  <!-- Stream :topic="routeTopic" /-->
 </template>
 
 <script lang="ts">
@@ -28,7 +28,7 @@ import { useRoute } from 'vue-router'
 export default defineComponent({
   name: 'StreamTopic',
   components: {
-    Stream,
+    // Stream,
     MaterialFab
   },
   props: {
@@ -41,6 +41,11 @@ export default defineComponent({
     const { topics, showStreamActions } = useMeta()
 
     const route = useRoute()
+    const routeTopic = computed(() => {
+      return Array.isArray(route.params.topic) ? route.params.topic[0] : route.params.topic
+    })
+
+    /*
     const routeTopic = ref('')
     onMounted(() => {
       if (route?.params?.topic) routeTopic.value = route.params.topic as string
@@ -51,7 +56,7 @@ export default defineComponent({
         }
         routeTopic.value = val.params.topic as string
       })
-    })
+    }) */
 
     const pageTitle = computed(() => {
       if (!topics.value || topics.value.length < 1) return { title: routeTopic.value }
