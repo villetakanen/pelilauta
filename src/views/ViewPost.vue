@@ -1,5 +1,5 @@
 <template>
-  <div class="viewer" style="margin-top: 80px">
+  <div class="viewer">
     <div
       v-if="post"
       class="postHeader"
