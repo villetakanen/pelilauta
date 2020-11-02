@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 
 export default defineComponent({

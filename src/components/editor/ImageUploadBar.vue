@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/storage'
 // import { setCaret, getCaretOffset } from './caret'
 

@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'

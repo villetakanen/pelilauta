@@ -1,5 +1,5 @@
 import { ref, computed, ComputedRef } from 'vue'
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { useAuthz } from '../authz'
 

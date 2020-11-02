@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/auth'
 import { useRouter } from 'vue-router'
 import MaterialButton from '@/components/material/MaterialButton.vue'

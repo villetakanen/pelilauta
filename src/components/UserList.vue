@@ -19,7 +19,7 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import UserListRow from '@/components/UserListRow.vue'
 import { useMeta } from '@/lib/meta'
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { useAuthz } from '@/lib/authz'
 
