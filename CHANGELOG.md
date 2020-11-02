@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1](https://github.com/villetakanen/pelilauta/compare/v4.2.0...v4.2.1) (2020-11-02)
+
+
+### Bug Fixes
+
+* **ux:** small ux polish after app-bar resurrect ([449266d](https://github.com/villetakanen/pelilauta/commit/449266d304e619053f94a6f00b29d56ad9c26f5c))
+
 ## [4.2.0](https://github.com/villetakanen/pelilauta/compare/v4.1.0...v4.2.0) (2020-11-02)
 
 
