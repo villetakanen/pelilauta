@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/villetakanen/pelilauta/compare/v4.0.8...v4.1.0) (2020-11-02)
+
+
+### Features
+
+* **navigation:** app bar links restored ([7d932ea](https://github.com/villetakanen/pelilauta/commit/7d932eab51a44c03eec2681112f25be77808cbde))
+* **ux:** return of AppBar ([8a25fdd](https://github.com/villetakanen/pelilauta/commit/8a25fddd827ffef97c425b737cceef7d81d55de4))
+
+
+### Bug Fixes
+
+* **banner:** correct top margin with appbar ([5b160c0](https://github.com/villetakanen/pelilauta/commit/5b160c0c1737184901e3ad0b4d8aaf3688cc01e2))
+
 ### [4.0.8](https://github.com/villetakanen/pelilauta/compare/v4.0.7...v4.0.8) (2020-11-02)
 
 
