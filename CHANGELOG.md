@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.7](https://github.com/villetakanen/pelilauta/compare/v4.0.6...v4.0.7) (2020-11-02)
+
+
+### Bug Fixes
+
+* router onMounted ([1807cc1](https://github.com/villetakanen/pelilauta/commit/1807cc14b3dcc1f5a7ed4e217a91ef31c9c14067))
+
 ### [4.0.6](https://github.com/villetakanen/pelilauta/compare/v4.0.5...v4.0.6) (2020-11-02)
 
 
