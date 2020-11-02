@@ -70,6 +70,11 @@
                   class="topicIcon"
                   src="@/assets/notopic.svg"
                 >
+                <img
+                  v-if="topic.icon === 'monsters'"
+                  class="topicIcon"
+                  src="@/assets/themes/monsters.svg"
+                >
                 {{ topic.title }}
               </router-link>
             </li>
