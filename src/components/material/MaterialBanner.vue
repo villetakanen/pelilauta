@@ -1,7 +1,7 @@
 <template>
   <transition>
     <div
-      v-if="true || updatesAvailable"
+      v-if="updatesAvailable"
       :class="`material-banner ${updatesAvailable ? 'show' : ''}`"
     >
       <div class="banner-container">
