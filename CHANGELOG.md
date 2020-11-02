@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.8](https://github.com/villetakanen/pelilauta/compare/v4.0.7...v4.0.8) (2020-11-02)
+
+
+### Bug Fixes
+
+* moved to suggested routing ([7c791fc](https://github.com/villetakanen/pelilauta/commit/7c791fc10e7eb41f1b310dea2547d21a9da1aeb4))
+* restored stream component ([35d1a26](https://github.com/villetakanen/pelilauta/commit/35d1a26ac35be87fd659b3a0121c08e5b846a879))
+* topic view fixes ([bd0d535](https://github.com/villetakanen/pelilauta/commit/bd0d53542b708cf91b0747881e89edc02ba3c2ee))
+
 ### [4.0.7](https://github.com/villetakanen/pelilauta/compare/v4.0.6...v4.0.7) (2020-11-02)
 
 
