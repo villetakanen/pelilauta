@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.6](https://github.com/villetakanen/pelilauta/compare/v4.0.5...v4.0.6) (2020-11-02)
+
+
+### Bug Fixes
+
+* removed function route ([7cb43e3](https://github.com/villetakanen/pelilauta/commit/7cb43e36468599fa216e8934432249645ef1d1cb))
+
 ### [4.0.5](https://github.com/villetakanen/pelilauta/compare/v4.0.4...v4.0.5) (2020-11-02)
 
 
