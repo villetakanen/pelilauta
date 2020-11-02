@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.2](https://github.com/villetakanen/pelilauta/compare/v4.2.1...v4.2.2) (2020-11-02)
+
+
+### Bug Fixes
+
+* remove viewer extra padding ([6f03deb](https://github.com/villetakanen/pelilauta/commit/6f03deb0aefe48f37e9e664f1bb1aa0a972b4059))
+
 ### [4.2.1](https://github.com/villetakanen/pelilauta/compare/v4.2.0...v4.2.1) (2020-11-02)
 
 
