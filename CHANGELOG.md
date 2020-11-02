@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/villetakanen/pelilauta/compare/v4.0.0...v4.0.1) (2020-11-02)
+
+
+### Bug Fixes
+
+* hotfix for chrome-router-error ([c85472a](https://github.com/villetakanen/pelilauta/commit/c85472a935dc9668c644ae2c2d7e8ef5ed10cc71))
+
 ## [4.0.0](https://github.com/villetakanen/pelilauta/compare/v3.11.0...v4.0.0) (2020-11-02)
 
 
