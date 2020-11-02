@@ -14,11 +14,11 @@
       >
     </MaterialFab>
   </teleport>
-  <!-- Stream :topic="routeTopic" /-->
+  <Stream :topic="routeTopic" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref, watch } from 'vue'
+import { computed, defineComponent } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
 import { useMeta } from '@/lib/meta'
@@ -28,7 +28,7 @@ import { useRoute } from 'vue-router'
 export default defineComponent({
   name: 'StreamTopic',
   components: {
-    // Stream,
+    Stream,
     MaterialFab
   },
   props: {
