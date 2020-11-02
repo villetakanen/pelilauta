@@ -45,8 +45,8 @@
               class="topicLink"
               @click="toggle"
             >
-              <router-link
-                :to="`/stream/topic/${topic.slug}`"
+              <a
+                :href="`https://pelilauta.web.app/stream/topic/${topic.slug}`"
               >
                 <img
                   v-if="topic.icon === 'discussion'"
@@ -64,7 +64,7 @@
                   src="@/assets/notopic.svg"
                 >
                 {{ topic.title }}
-              </router-link>
+              </a>
             </li>
           </ul>
         </li>
