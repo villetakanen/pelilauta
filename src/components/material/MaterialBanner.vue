@@ -1,7 +1,7 @@
 <template>
   <transition>
     <div
-      v-if="updatesAvailable"
+      v-if="true || updatesAvailable"
       :class="`material-banner ${updatesAvailable ? 'show' : ''}`"
     >
       <div class="banner-container">
@@ -104,4 +104,5 @@ export default defineComponent({
 #app .material-banner
   // padding-top: 72px
   // margin-bottom: -60px
+  margin-top: -16px
 </style>
