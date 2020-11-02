@@ -32,12 +32,19 @@
             <img src="@/assets/icons/d12-black.svg">
             Pelilauta
           </router-link>
+        </li>        <li
+          v-if="isAdmin"
+          @click="toggle"
+        >
+          <router-link to="/search/results">
+            <img src="@/assets/icons/action-admin.svg">
+            [ search demo page ]
+          </router-link>
         </li>
         <li class="subtitle">
-          <router-link to="/stream/index">
-            <img src="@/assets/icons/action-about.svg">
-            {{ $t('sideNav.toIndexRoute') }}
-          </router-link>
+          <img src="@/assets/icons/action-about.svg">
+          {{ $t('sideNav.toIndexRoute') }}
+
           <ul>
             <li
               v-for="(topic, index) in topics"

@@ -42,7 +42,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
-import AppBar from './components/AppBar.vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
 import MaterialDialog from './components/material/MaterialDialog.vue'
 import EditorDialog from '@/components/editor/EditorDialog.vue'
