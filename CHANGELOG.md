@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/villetakanen/pelilauta/compare/v4.0.1...v4.0.2) (2020-11-02)
+
+
+### Bug Fixes
+
+* firebase version ([ff93e87](https://github.com/villetakanen/pelilauta/commit/ff93e8711582a49e6c44c78b2a4d624ec053a389))
+
 ### [4.0.1](https://github.com/villetakanen/pelilauta/compare/v4.0.0...v4.0.1) (2020-11-02)
 
 
