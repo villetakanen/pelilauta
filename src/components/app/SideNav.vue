@@ -32,14 +32,6 @@
             <img src="@/assets/icons/d12-black.svg">
             Pelilauta
           </router-link>
-        </li>        <li
-          v-if="isAdmin"
-          @click="toggle"
-        >
-          <router-link to="/search/results">
-            <img src="@/assets/icons/action-admin.svg">
-            [ search demo page ]
-          </router-link>
         </li>
         <li class="subtitle">
           <img src="@/assets/icons/action-about.svg">
@@ -86,7 +78,10 @@
             {{ $t('sideNav.toAboutRoute') }}
           </router-link>
         </li>
-        <li @click="toggle">
+        <li
+          v-if="isAuthz"
+          @click="toggle"
+        >
           <router-link to="/profile">
             <img src="@/assets/icons/action-about.svg">
             {{ $t('sideNav.toProfileRoute') }}
@@ -115,6 +110,7 @@ import ProfileAction from '@/components/ProfileAction.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 import { useMeta } from '@/lib/meta'
 import { useProfile } from '@/state/authz'
+import { useAuthz } from '@/lib/authz'
 
 export default defineComponent({
   name: 'SideNav',
@@ -130,13 +126,14 @@ export default defineComponent({
     }
   },
   setup () {
+    const { isAuthz } = useAuthz()
     const { isAdmin } = useProfile()
     const toggleNav: CallableFunction = inject('toggleNav') as CallableFunction
     const toggle = () => {
       if (window.innerWidth < 768) toggleNav()
     }
     const { topics } = useMeta()
-    return { toggle, topics, toggleNav, isAdmin }
+    return { toggle, topics, toggleNav, isAdmin, isAuthz }
   }
 })
 </script>
