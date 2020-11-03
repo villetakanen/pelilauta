@@ -4,14 +4,22 @@
     @click="toggle"
   >
     <transition name="scaleToFull">
-      <img
+      <div
         v-if="toggled"
-        src="@/assets/fox-on-blue.png"
+        class="foxIcon"
       >
-      <img
+        <img
+          src="@/assets/fox.svg"
+        >
+      </div>
+      <div
         v-else
-        src="@/assets/icons/action-menu-open.svg"
+        class="closedIcon"
       >
+        <img
+          src="@/assets/fox.svg"
+        >
+      </div>
     </transition>
   </div>
 </template>
@@ -35,18 +43,32 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .sideNavAction
-  height: 44px
-  width: 44px
-  position: fixed
-  z-index: 10000
-  top: 6px
-  left: 6px
-  img
+  height: 48px
+  width: 48px
+  position: absolute
+  top: 4px
+  left:4px
+  .foxIcon, .closedIcon
     position: absolute
     top: 0
     left: 0
-    height: 44px
-    width: 44px
+    margin: 2px
+    background-color: $color-fill-primary-light
+    border-radius: 50%
+    width: 42px
+    height: 42px
+    box-sizing: border-box
+    padding: 2px
+  img
+    height: 38px
+    width: 38px
+  .closedIcon
+    background: none
+    border: solid 5px $color-fill-primary-light
+    img
+      margin-top: -5px
+      margin-left: -5px
+      opacity: 0.5
 
 .scaleToFull-enter-active,
 .scaleToFull-leave-active

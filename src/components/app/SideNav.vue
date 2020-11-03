@@ -26,6 +26,7 @@
       <ProfileAction class="sideNavAvatarAction" />
     </div -->
     <div class="menuContainer">
+      <SideNavMenu />
       <ul>
         <li @click="toggle">
           <router-link to="/">
@@ -107,6 +108,7 @@ import { defineComponent, inject } from 'vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
 // import MaterialButton from '@/components/material/MaterialButton.vue'
 // import ProfileAction from '@/components/ProfileAction.vue'
+import SideNavMenu from '@/components/app/SideNavMenu.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 import { useMeta } from '@/lib/meta'
 import { useProfile } from '@/state/authz'
@@ -115,9 +117,8 @@ import { useAuthz } from '@/lib/authz'
 export default defineComponent({
   name: 'SideNav',
   components: {
-    // MaterialButton,
-    SiteInfo
-    // ProfileAction
+    SiteInfo,
+    SideNavMenu
   },
   props: {
     modelValue: {
@@ -145,7 +146,7 @@ export default defineComponent({
 
 #sideNav
   position: fixed
-  z-index: 1000
+  z-index: 900
   top: 0
   left: 0
   width: 310px
@@ -260,7 +261,7 @@ export default defineComponent({
     @include BoxShadow24()
     background-color: $color-base
     width: 84vw
-    z-index: 1000
+    z-index: 20000
     transform: translateX(0px)
     .menuContainer
       margin-top: 72px

@@ -54,18 +54,21 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #AppBar
-  position: absolute
+  background-color: $color-fill-primary
+  position: fixed
   top: 0
   left: 0
+  z-index: 1000
   width: 100vw
   height: 56px // 24 x 2 lines
   padding: 4px
   box-sizing: border-box
-  border-bottom: solid 1px $color-font-disabled
   h1
     @include TypeButton()
     margin-left: 56px
     line-height: 48px
+    a
+      color: $color-dark-font-high
   .absoluteRight
     position: absolute
     top: 0px
@@ -80,7 +83,8 @@ export default defineComponent({
     border: none
     border-radius: 18px
     min-width: 30vw
-    background-color: $color-fill-dark
+    background-color: rgba($color-fill-primary,0.22)
+    color: $color-font-high
     opacity: 0.8
 
 .labelForSearch
