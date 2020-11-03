@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.5](https://github.com/villetakanen/pelilauta/compare/v4.2.4...v4.2.5) (2020-11-03)
+
+
+### Bug Fixes
+
+* **banner:** colors ([0b25fab](https://github.com/villetakanen/pelilauta/commit/0b25fab05a974d0987ddfe845e9294e554364aeb))
+* **light theme:** color correctios for app-bar ([0baef80](https://github.com/villetakanen/pelilauta/commit/0baef80366aa4368a701fb0ad28c5c055444062f))
+
 ### [4.2.4](https://github.com/villetakanen/pelilauta/compare/v4.2.3...v4.2.4) (2020-11-03)
 
 
