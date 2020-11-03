@@ -5,12 +5,12 @@
       <router-link to="/">
         {{ $t('app.title') }}
       </router-link>
-    </h1>
-    <input
-      v-model="searchString"
-      class="searchBar"
-      @input="toSearch"
-    >
+    </h1><form @submit.prevent="toSearch">
+      <input
+        v-model="searchString"
+        class="searchBar"
+      >
+    </form>
     <img
       class="labelForSearch"
       src="@/assets/icons/search.svg"
@@ -35,12 +35,13 @@ export default defineComponent({
   setup () {
     const { searchResults, search } = useSearch()
     const searchString = ref('')
-    watch(searchString, (s: string) => {
-      search(s)
-    })
     const router = useRouter()
-    function toSearch () {
+    function toSearch (event: Event) {
+      console.log((event as KeyboardEvent).key)
+      // if ((event as KeyboardEvent).key === '13') {
+      search(searchString.value)
       router.push('/search/results')
+      // }
     }
     return { searchString, searchResults, toSearch }
   }
