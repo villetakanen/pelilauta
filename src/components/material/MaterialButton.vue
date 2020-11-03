@@ -131,7 +131,7 @@ export default defineComponent({
     background-color: $color-theme--dark-base-hover
   &.material-button-text
     background: none
-    color: $color-theme--dark-base
+    color: white
     &:hover
       background-color: $color-theme--dark-base-11
 

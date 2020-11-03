@@ -11,6 +11,7 @@
           <MaterialButton
             :action="deferUpdate"
             text
+            dark
           >
             {{ $t('action.deferUpdate') }}
           </MaterialButton>
@@ -101,8 +102,11 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/include-media.scss
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+
 #app .material-banner
-  // padding-top: 72px
-  // margin-bottom: -60px
-  margin-top: -16px
+  background-color: $color-fill-darker
+  margin-top: -8px
 </style>
