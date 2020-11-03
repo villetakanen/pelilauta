@@ -44,9 +44,15 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/include-media.scss
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+
 .avatar-image
   height: 40px
   widht: 40px
   margin: 2px
   border-radius: 50%
+.material-action.profileButton
+  background-color: $color-fill-darker
 </style>

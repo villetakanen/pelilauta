@@ -74,19 +74,24 @@ export default defineComponent({
     position: absolute
     top: 8px
     right: 56px
-    height: 36px
+    height: 40px
     padding: 0 16px
     margin: 0
-    border: solid 1px $color-font-disabled
+    border: none
     border-radius: 18px
     min-width: 30vw
+    background-color: $color-fill-dark
 
 .labelForSearch
-  height: 28px
-  width: 28px
+  height: 30px
+  width: 30px
   position: absolute
-  top: 12px
-  right: 66px
+  top: 8px
+  right: 55px
+  background-color: $color-primary
+  padding: 5px
+  border-radius: 50%
+  opacity: 50%
 
 @include media('<=tablet')
   .searchBar

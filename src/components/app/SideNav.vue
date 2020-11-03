@@ -195,7 +195,7 @@ export default defineComponent({
     padding: 0px
     ul
       margin-left: 8px
-      border-left: 4px solid opacify($color-base-darker, 0.5)
+      // border-left: 4px solid opacify($color-base-darker, 0.5)
       padding-left: 4px
     li
       @include TypeButton()
@@ -209,7 +209,11 @@ export default defineComponent({
         height: 24px
         width: 24px
         vertical-align: middle
-        margin-right: 8px
+        margin-right: 4px
+        background-color: white
+        border-radius: 50%
+        padding: 4px
+        opacity: 0.9
       &:hover
         background-color: $color-secondary-light
       &.subtitle
