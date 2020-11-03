@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.3](https://github.com/villetakanen/pelilauta/compare/v4.2.2...v4.2.3) (2020-11-03)
+
+
+### Bug Fixes
+
+* welcome card styling ([a7c8d5e](https://github.com/villetakanen/pelilauta/commit/a7c8d5e500bd5d9cf6860e138ff9b8f891c59d89))
+
 ### [4.2.2](https://github.com/villetakanen/pelilauta/compare/v4.2.1...v4.2.2) (2020-11-02)
 
 
