@@ -15,7 +15,7 @@ div.material-card
   @include SpacingContainer()
   background-color: white
   // @include BoxShadow1()
-  border-radius: 4px
+  // border-radius: 4px
   .title
     margin-bottom: 8px
   h1

@@ -51,8 +51,9 @@ export default defineComponent({
 .avatar-image
   height: 40px
   widht: 40px
-  margin: 2px
+  margin-top: 2px
   border-radius: 50%
 .material-action.profileButton
-  background-color: $color-fill-darker
+  background-color: $color-fill-primary-light
+  margin-top: 2px
 </style>
