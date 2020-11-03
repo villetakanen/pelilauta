@@ -10,22 +10,22 @@
     id="sideNav"
     :class="{ toggled: modelValue }"
   >
-    <div class="menuHeader">
-      <!--MaterialButton
+    <!-- div class="menuHeader">
+      <!- -MaterialButton
         :action="toggleNav"
         icon
         text
         class="back"
       >
         <img src="@/assets/icons/action-back-light.svg">
-      </MaterialButton-->
+      </MaterialButton- ->
       <div class="avatar">
         <img src="@/assets/fox.svg">
       </div>
       <h1>{{ $t('sideNav.title') }}</h1>
       <ProfileAction class="sideNavAvatarAction" />
-    </div>
-    <div class="menu-container">
+    </div -->
+    <div class="menuContainer">
       <ul>
         <li @click="toggle">
           <router-link to="/">
@@ -106,7 +106,7 @@
 import { defineComponent, inject } from 'vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
 // import MaterialButton from '@/components/material/MaterialButton.vue'
-import ProfileAction from '@/components/ProfileAction.vue'
+// import ProfileAction from '@/components/ProfileAction.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 import { useMeta } from '@/lib/meta'
 import { useProfile } from '@/state/authz'
@@ -116,8 +116,8 @@ export default defineComponent({
   name: 'SideNav',
   components: {
     // MaterialButton,
-    SiteInfo,
-    ProfileAction
+    SiteInfo
+    // ProfileAction
   },
   props: {
     modelValue: {
@@ -151,8 +151,7 @@ export default defineComponent({
   width: 310px
   height: 100vh
   transition: transform 0.3s ease-in-out
-  @include BoxShadow8()
-  background-color: $color-base
+  // @include BoxShadow8()
   .sideNavAvatarAction
     position: absolute
     bottom: 0
@@ -248,12 +247,19 @@ export default defineComponent({
       transform: translateX(-400px)
     .back
       display: none
+    .menuContainer
+      margin-top: 72px
+      // border-right: solid 1px $color-primary-light
 
 @include media('<tablet')
   #sideNav
+    @include BoxShadow24()
+    background-color: $color-base
     width: 84vw
     z-index: 1000
     transform: translateX(0px)
+    .menuContainer
+      margin-top: 72px
     &.toggled
       transform: translateX(-100vw)
   .overlay
