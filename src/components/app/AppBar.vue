@@ -1,49 +1,29 @@
 <template>
-  <div id="AppBar">
+  <div id="AppBar" class="toolbar">
     <SideNavAction />
     <h1>
       <router-link to="/">
         {{ $t('app.title') }}
       </router-link>
-    </h1><form @submit.prevent="toSearch">
-      <input
-        v-model="searchString"
-        class="searchBar"
-      >
-    </form>
-    <img
-      class="labelForSearch"
-      src="@/assets/icons/search.svg"
-    >
-    <ProfileAction class="absoluteRight" />
+    </h1>
+    <div class="spacer" />
+    <AppBarSearch />
+    <ProfileAction />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref } from 'vue'
+import { defineComponent } from 'vue'
 import SideNavAction from '@/components/app/SideNavAction.vue'
 import ProfileAction from '@/components/ProfileAction.vue'
-import { useSearch } from '@/composables/search'
-import { useRouter } from 'vue-router'
+import AppBarSearch from './AppBarSearch.vue'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
-    ProfileAction
-  },
-  setup () {
-    const { searchResults, search } = useSearch()
-    const searchString = ref('')
-    const router = useRouter()
-    function toSearch (event: Event) {
-      console.log((event as KeyboardEvent).key)
-      // if ((event as KeyboardEvent).key === '13') {
-      search(searchString.value)
-      router.push('/search/results')
-      // }
-    }
-    return { searchString, searchResults, toSearch }
+    ProfileAction,
+    AppBarSearch
   }
 })
 </script>
@@ -63,6 +43,7 @@ export default defineComponent({
   height: 56px // 24 x 2 lines
   padding: 4px
   box-sizing: border-box
+  display: flex
   h1
     @include TypeButton()
     margin-left: 56px
