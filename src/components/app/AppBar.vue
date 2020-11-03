@@ -81,6 +81,7 @@ export default defineComponent({
     border-radius: 18px
     min-width: 30vw
     background-color: $color-fill-dark
+    opacity: 0.8
 
 .labelForSearch
   height: 30px
@@ -92,6 +93,7 @@ export default defineComponent({
   padding: 5px
   border-radius: 50%
   opacity: 50%
+  z-index: 100000
 
 @include media('<=tablet')
   .searchBar
