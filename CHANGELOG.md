@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.4](https://github.com/villetakanen/pelilauta/compare/v4.2.3...v4.2.4) (2020-11-03)
+
+
+### Bug Fixes
+
+* **ux:** hide extraneous sidenav links ([9aa068e](https://github.com/villetakanen/pelilauta/commit/9aa068e2b2358b1f79a455013735825e60ffdd18))
+* **ux:** sidenav to support app-bar ([4c47b50](https://github.com/villetakanen/pelilauta/commit/4c47b50a094286b277c8c206ca111bff01f351b7))
+
 ### [4.2.3](https://github.com/villetakanen/pelilauta/compare/v4.2.2...v4.2.3) (2020-11-03)
 
 
