@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.6](https://github.com/villetakanen/pelilauta/compare/v4.2.5...v4.2.6) (2020-11-04)
+
+
+### Bug Fixes
+
+* **theme:** updated colors for profile-action ([8c85331](https://github.com/villetakanen/pelilauta/commit/8c85331387ef77475c888fd3e42e64c464ce6108))
+* search bar theme ([4aa2094](https://github.com/villetakanen/pelilauta/commit/4aa2094c6b3c37ba704bbf523a03e92603412533))
+* **theme:** main colors to high contrast ([2d76f58](https://github.com/villetakanen/pelilauta/commit/2d76f58d90575a50cd007bde22bf8b77273e84a9))
+* **theme:** small tweaks ([eceae50](https://github.com/villetakanen/pelilauta/commit/eceae50b9b53411bb3eb8f15bf7d2eb9818e37cb))
+
 ### [4.2.5](https://github.com/villetakanen/pelilauta/compare/v4.2.4...v4.2.5) (2020-11-03)
 
 
