@@ -173,7 +173,7 @@ export default defineComponent({
   margin-top: 4px
 .admin
   background-color: $color-secondary-light
-  color: $color-primary-dark
+  color: $color-fill-primary-dark
 .frozen
   background-color: lighten($color-primary-light, 32%)
   color: #666

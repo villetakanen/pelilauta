@@ -69,7 +69,7 @@ export default defineComponent({
   min-height: 264px
   max-height: 264px
   background-color: $color-base-dark
-  border-bottom: solid 1px $color-primary-dark
+  border-bottom: solid 1px $color-fill-primary-dark
   overflow: hidden
   &:hover
     background-color: $color-base-darker

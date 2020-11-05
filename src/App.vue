@@ -123,7 +123,7 @@ export default defineComponent({
   width: 74vw
   border-radius: 50%
   position: absolute
-  background-color: $color-primary
+  background-color: $color-fill-primary
   opacity: 0.22
   z-index:-1
   top: -37vw

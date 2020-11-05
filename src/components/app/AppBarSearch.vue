@@ -69,4 +69,10 @@ export default defineComponent({
     top: 12px
     right: 12px
 
+@include media('<=tablet')
+  #AppBarSearch
+    input
+      width: 70px
+      min-width: 70px
+
 </style>

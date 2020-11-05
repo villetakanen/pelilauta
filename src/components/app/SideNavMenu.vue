@@ -1,5 +1,5 @@
 <template>
-  <div class="sideNavMenu">
+  <div class="sideNavMenu" v-if="false">
     <ul>
       <li>SideNavMenu</li>
     </ul>

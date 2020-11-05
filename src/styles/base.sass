@@ -7,11 +7,16 @@
 *:focus
   outline: none
 
+::-webkit-scrollbar
+  width: 0px
+::-webkit-scrollbar-track
+  -webkit-box-shadow: none
+
 body
   margin: 0
   padding: 0
   @include TypeBody1()
-  background: $color-base-dark
+  background: white
   min-width: 370px
 
 h1
@@ -22,7 +27,7 @@ textarea
   @include TypeBody2()
 a
   text-decoration: underline
-  color: $color-primary-dark
+  color: $color-fill-primary-dark
   h1, h2, h3, h4
     text-decoration-line: none
     text-decoration-color: white
@@ -37,7 +42,7 @@ select
   height: 30px 
 
   background-color: $color-base-dark
-  border-bottom: solid 1px $color-primary-dark
+  border-bottom: solid 1px $color-fill-primary-dark
   &:hover
     background-color: $color-base-darker
   &:focus
@@ -50,7 +55,7 @@ select
 
 .viewHeader
   @include TypeHeadline3()
-  color: $color-primary-dark
+  color: $color-fill-primary-dark
   margin-left: 16px
 
 @include media('<tablet')
@@ -81,7 +86,7 @@ div.toolbar
   height: 28px
   margin-top: 2px
   background-color: $color-base-dark
-  border-bottom: solid 1px $color-primary-dark
+  border-bottom: solid 1px $color-fill-primary-dark
   &:hover
     background-color: $color-base-darker
   &:focus

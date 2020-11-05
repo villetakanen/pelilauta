@@ -158,7 +158,7 @@ export default defineComponent({
     bottom: 0
     right: 0
   .menuHeader
-    background: linear-gradient(151deg, $color-primary-dark 0%, $color-primary 23%, $color-primary-light 100%)
+    background: linear-gradient(151deg, $color-fill-primary-dark 0%, $color-primary 23%, $color-primary-light 100%)
     position: relative
     height: 136px
     .avatar
@@ -248,6 +248,7 @@ export default defineComponent({
 
 @include media('>=tablet')
   #sideNav
+    background-color: rgba(0,0,0,0.04)
     &.toggled
       transform: translateX(-400px)
     .back
@@ -273,7 +274,7 @@ export default defineComponent({
      left: 0
      height: 100vh
      width: 100vw
-     background-color: $color-primary-dark
+     background-color: $color-fill-primary-dark
      opacity: 0.37
      z-index: 999
      &.toggled
@@ -311,7 +312,7 @@ export default defineComponent({
       border-radius: 48px
       height: 96px
       width: 96px
-      background-color: $color-primary-dark
+      background-color: $color-fill-primary-dark
       img
         height: 82px
         width: 82px
@@ -350,7 +351,7 @@ export default defineComponent({
   z-index: 2
   height: 100vh
   width: 100vw
-  background-color: $color-primary-dark
+  background-color: $color-fill-primary-dark
   opacity: 0
   cursor: default
   pointer-events: none

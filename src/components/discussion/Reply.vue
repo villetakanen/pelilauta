@@ -179,12 +179,12 @@ export default defineComponent({
   &.fromMe
     margin-left: 8px
     margin-right: 24px
-    background: none
+    background-color: white
     padding: 7px
     border: solid 1px $color-base-darker
 
 .author
-  color: $color-primary-dark
+  color: $color-fill-primary-dark
 .fromMe .author
   color: $color-primary-light
 
