@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.4.3](https://github.com/villetakanen/pelilauta/compare/v4.4.2...v4.4.3) (2020-11-06)
+
+
+### Bug Fixes
+
+* removed old color codes ([77e0fc9](https://github.com/villetakanen/pelilauta/commit/77e0fc925f6f1583600962e8882d63a02621e22f))
+
 ### [4.4.2](https://github.com/villetakanen/pelilauta/compare/v4.4.1...v4.4.2) (2020-11-06)
 
 
