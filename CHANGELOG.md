@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.4.2](https://github.com/villetakanen/pelilauta/compare/v4.4.1...v4.4.2) (2020-11-06)
+
+
+### Bug Fixes
+
+* body fonts ([4c8b401](https://github.com/villetakanen/pelilauta/commit/4c8b401a52ab96d30d9b9f326b153ccae5c5236b))
+
 ### [4.4.1](https://github.com/villetakanen/pelilauta/compare/v4.4.0...v4.4.1) (2020-11-06)
 
 
