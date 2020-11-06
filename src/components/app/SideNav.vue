@@ -27,74 +27,38 @@
     </div -->
     <div class="menuContainer">
       <SideNavMenu />
-      <ul>
-        <li @click="toggle">
-          <router-link to="/">
-            <img src="@/assets/icons/d12-black.svg">
-            Pelilauta
-          </router-link>
-        </li>
-        <li class="subtitle">
-          <img src="@/assets/icons/action-about.svg">
-          {{ $t('sideNav.toIndexRoute') }}
 
-          <ul>
-            <li
-              v-for="(topic, index) in topics"
-              :key="index"
-              class="topicLink"
-              @click="toggle"
+      <ul>
+        <li
+          v-for="(topic, index) in topics"
+          :key="index"
+          class="topicLink"
+          @click="toggle"
+        >
+          <router-link
+            :to="`/stream/topic/${topic.slug}`"
+          >
+            <img
+              v-if="topic.icon === 'discussion'"
+              class="topicIcon"
+              src="@/assets/discussion.svg"
             >
-              <router-link
-                :to="`/stream/topic/${topic.slug}`"
-              >
-                <img
-                  v-if="topic.icon === 'discussion'"
-                  class="topicIcon"
-                  src="@/assets/discussion.svg"
-                >
-                <img
-                  v-if="topic.icon === 'd20'"
-                  class="topicIcon"
-                  src="@/assets/d20.svg"
-                >
-                <img
-                  v-if="!topic.icon"
-                  class="topicIcon"
-                  src="@/assets/notopic.svg"
-                >
-                <img
-                  v-if="topic.icon === 'monsters'"
-                  class="topicIcon"
-                  src="@/assets/themes/monsters.svg"
-                >
-                {{ topic.title }}
-              </router-link>
-            </li>
-          </ul>
-        </li>
-        <li @click="toggle">
-          <router-link to="/about">
-            <img src="@/assets/icons/action-about.svg">
-            {{ $t('sideNav.toAboutRoute') }}
-          </router-link>
-        </li>
-        <li
-          v-if="isAuthz"
-          @click="toggle"
-        >
-          <router-link to="/profile">
-            <img src="@/assets/icons/action-about.svg">
-            {{ $t('sideNav.toProfileRoute') }}
-          </router-link>
-        </li>
-        <li
-          v-if="isAdmin"
-          @click="toggle"
-        >
-          <router-link to="/admin">
-            <img src="@/assets/icons/action-admin.svg">
-            {{ $t('sideNav.toAdminRoute') }}
+            <img
+              v-if="topic.icon === 'd20'"
+              class="topicIcon"
+              src="@/assets/d20.svg"
+            >
+            <img
+              v-if="!topic.icon"
+              class="topicIcon"
+              src="@/assets/notopic.svg"
+            >
+            <img
+              v-if="topic.icon === 'monsters'"
+              class="topicIcon"
+              src="@/assets/themes/monsters.svg"
+            >
+            {{ topic.title }}
           </router-link>
         </li>
       </ul>

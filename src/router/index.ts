@@ -3,6 +3,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
+import Stylebook from '@/views/Stylebook.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -49,6 +50,12 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
+  },
+  {
+    path: '/styleguide',
+    name: 'Stylebook',
+    component: Stylebook,
+    props: true
   },
   {
     path: '/stream/topic/:topic',
