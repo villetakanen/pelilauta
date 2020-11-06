@@ -44,6 +44,7 @@ export default defineComponent({
   padding: 4px
   box-sizing: border-box
   display: flex
+  box-shadow: 0px 7px 15px 0px rgba($color-fill-primary-dark, .37)
   h1
     @include TypeButton()
     margin-left: 56px

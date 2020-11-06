@@ -92,7 +92,8 @@ export default defineComponent({
 #mainContentWrapper
   margin-top: 56px // app-bar height
   padding-top: 8px
-  background-color: $color-fill-primary-light
+  background-color: rgba(0,0,0,0.04)
+  // background-color: $color-fill-primary-light
   // background-image: url('./assets/backgrounds/inverse-mountains.svg')
   // background-size: auto
   // background-repeat: no-repeat
