@@ -63,7 +63,7 @@ export default defineComponent({
     bottom: 0
     right: 0
   .menuHeader
-    background: linear-gradient(151deg, $color-fill-primary-dark 0%, $color-primary 23%, $color-primary-light 100%)
+    background: linear-gradient(151deg, $color-fill-primary-dark 0%, $color-primary 23%, $color-fill-primary-light 100%)
     position: relative
     height: 136px
     .avatar
@@ -146,7 +146,7 @@ export default defineComponent({
     border-radius: 50%
 
 .topicCard + .topicCard
-  border-top: solid 1px $color-primary-light
+  border-top: solid 1px $color-fill-primary-light
   padding-top: 16px
   .topicIcon
     top: 16px
@@ -209,7 +209,7 @@ export default defineComponent({
   transition: transform 0.3s ease-in-out
   background-color: $color-base
   .menu-header
-    background-color: $color-primary-light
+    background-color: $color-fill-primary-light
     padding: 8px
     .back
       float: right

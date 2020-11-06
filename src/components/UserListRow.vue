@@ -175,7 +175,7 @@ export default defineComponent({
   background-color: $color-secondary-light
   color: $color-fill-primary-dark
 .frozen
-  background-color: lighten($color-primary-light, 32%)
+  background-color: lighten($color-fill-primary-light, 32%)
   color: #666
 .myself
   color: $color-primary

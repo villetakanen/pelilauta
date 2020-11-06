@@ -139,7 +139,7 @@ export default defineComponent({
   &:first-of-type
     margin-left: 0
   &.material-action-image
-    background-color: $color-primary-light
+    background-color: $color-fill-primary-light
 
 .material-action-text
   width: auto

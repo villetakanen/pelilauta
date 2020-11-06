@@ -186,7 +186,7 @@ export default defineComponent({
 .author
   color: $color-fill-primary-dark
 .fromMe .author
-  color: $color-primary-light
+  color: $color-fill-primary-light
 
 .replyComment:after
   content: ""
@@ -221,7 +221,7 @@ export default defineComponent({
       margin-right: 8px
       padding:4px 0
       line-height: 16px
-      color: $color-primary-light
+      color: $color-fill-primary-light
       flex-grow: 0
 .box
   position: relative
