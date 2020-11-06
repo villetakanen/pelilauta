@@ -1,6 +1,5 @@
 <template>
   <button
-    v-ripple
     :class="buttonClasses"
     @click="clicked"
   >
@@ -83,25 +82,24 @@ export default defineComponent({
 
 .material-button
   @include TypeButton()
-  @include SpacingButton()
-  @include ElementColorPrimary()
   @include  BoxShadow3()
+  height: 36px
+  padding: 6px 16px
   border: none
   position: relative
   overflow: hidden
   transition-property: box-shadow background
   transition-duration: 0.8s
-  .materialRippleEffect
-    background-color: $color-secondary-light
+  background-color: $color-fill-primary
+  color: $color-dark-font-high
   &:hover
-    @include  BoxShadow8()
-    background-color: lighten($color-primary, 5%)
+    background-color: lighten($color-fill-primary, 11%)
   &.material-button-text
-    @include TypeColorPrimary()
-    background-color: rgba(0,23,37,0)
+    color: $color-fill-primary
+    background-color: #00233711
     box-shadow: none
     &:hover
-      background-color: rgba(0,23,37,0.1)
+      background-color: #00233737
   img
     max-height: 22px
     vertical-align: middle
