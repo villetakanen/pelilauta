@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/villetakanen/pelilauta/compare/v4.3.0...v4.4.0) (2020-11-06)
+
+
+### Features
+
+* sidebar refactor ([980bb12](https://github.com/villetakanen/pelilauta/commit/980bb12427f875bccb4774ce10abcb3c72ce16d6))
+
 ## [4.3.0](https://github.com/villetakanen/pelilauta/compare/v4.2.7...v4.3.0) (2020-11-06)
 
 
