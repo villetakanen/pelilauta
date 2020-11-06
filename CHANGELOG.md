@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/villetakanen/pelilauta/compare/v4.2.7...v4.3.0) (2020-11-06)
+
+
+### Features
+
+* sidenav menu split from the nav component ([c42d30e](https://github.com/villetakanen/pelilauta/commit/c42d30effc6574ad971140a0a3ddd0649217b215))
+* sidenav modal items moved to child component ([0735b68](https://github.com/villetakanen/pelilauta/commit/0735b68beef89d1d8363ebfe0bf3ca6f52a4b9c8))
+* updated fonts for the uplift ([69bfeeb](https://github.com/villetakanen/pelilauta/commit/69bfeebb7cc032eacc94c0a6d89c778477e08e31))
+
 ### [4.2.7](https://github.com/villetakanen/pelilauta/compare/v4.2.6...v4.2.7) (2020-11-06)
 
 
