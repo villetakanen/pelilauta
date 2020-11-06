@@ -16,36 +16,69 @@
           src="@/assets/icons/d12-black.svg"
         >
         <img
+          v-if="item.icon === 'd20'"
+          src="@/assets/icons/d20-black.svg"
+        >
+        <img
+          v-if="item.icon === 'discussion'"
+          src="@/assets/icons/discussion.svg"
+        >
+        <img
+          v-if="item.icon === 'monsters'"
+          src="@/assets/themes/monsters.svg"
+        >
+        <img
           v-if="item.icon === 'player'"
           src="@/assets/icons/player.svg"
         >
-        {{ item.text }}
+        {{ item.content || $t('sideNav.' + item.key) }}
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, inject } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import { useProfile } from '@/state/authz'
 import { useRouter } from 'vue-router'
+import { useMeta } from '@/lib/meta'
+
+interface NavItem {
+  key: string;
+  to?: string;
+  icon?: string;
+  admin?: boolean,
+  sub?: boolean,
+  authz?: boolean
+  content?: string
+}
 
 export default defineComponent({
   name: 'SideNavMenu',
   setup () {
     const { isAuthz } = useAuthz()
     const { isAdmin } = useProfile()
+    const { topics } = useMeta()
     const sideNavItems = computed(() => {
-      const allNavItems = [
-        { key: 'Home', text: 'Pelilauta', to: '/', icon: 'd12' },
-        { key: 'Admin', text: 'Admin', admin: true, to: '/admin', icon: 'admin' },
-        { key: 'Meta', text: 'Meta', sub: true },
-        { key: 'StyleGuide', text: 'Styleguide', admin: true, to: '/styleguide', icon: 'admin' },
-        { key: 'Profile', text: 'My Profile', authz: true, to: '/profile', icon: 'player' },
-        { key: 'About', text: 'About', to: '/about', icon: 'd12' },
-        { key: 'Sections', text: 'Sections', sub: true }
+      const allNavItems: NavItem[] = [
+        { key: 'home', to: '/', icon: 'd12' }
       ]
+      allNavItems.push({ key: 'admin', admin: true, to: '/admin', icon: 'admin' })
+      allNavItems.push({ key: 'sections', sub: true })
+      topics.value.forEach((topic) => {
+        allNavItems.push({
+          key: topic.slug,
+          content: topic.title,
+          to: '/stream/topic/' + topic.slug,
+          icon: topic.icon || 'd20'
+        })
+      })
+      // Meta items start
+      allNavItems.push({ key: 'meta', sub: true })
+      allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
+      allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'player' })
+      allNavItems.push({ key: 'about', to: '/about', icon: 'd12' })
       return allNavItems.filter((val) => (
         isAdmin.value ||
         (isAuthz.value && val.authz) ||
@@ -53,8 +86,10 @@ export default defineComponent({
       )
     })
     const router = useRouter()
+    const toggleNav: CallableFunction = inject('toggleNav') as CallableFunction
     const routeTo = (to: string|undefined) => {
       if (!to) return
+      if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
     return { isAuthz, sideNavItems, routeTo }

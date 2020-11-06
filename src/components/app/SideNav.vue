@@ -10,73 +10,17 @@
     id="sideNav"
     :class="{ toggled: modelValue }"
   >
-    <!-- div class="menuHeader">
-      <!- -MaterialButton
-        :action="toggleNav"
-        icon
-        text
-        class="back"
-      >
-        <img src="@/assets/icons/action-back-light.svg">
-      </MaterialButton- ->
-      <div class="avatar">
-        <img src="@/assets/fox.svg">
-      </div>
-      <h1>{{ $t('sideNav.title') }}</h1>
-      <ProfileAction class="sideNavAvatarAction" />
-    </div -->
     <div class="menuContainer">
       <SideNavMenu />
-
-      <ul>
-        <li
-          v-for="(topic, index) in topics"
-          :key="index"
-          class="topicLink"
-          @click="toggle"
-        >
-          <router-link
-            :to="`/stream/topic/${topic.slug}`"
-          >
-            <img
-              v-if="topic.icon === 'discussion'"
-              class="topicIcon"
-              src="@/assets/discussion.svg"
-            >
-            <img
-              v-if="topic.icon === 'd20'"
-              class="topicIcon"
-              src="@/assets/d20.svg"
-            >
-            <img
-              v-if="!topic.icon"
-              class="topicIcon"
-              src="@/assets/notopic.svg"
-            >
-            <img
-              v-if="topic.icon === 'monsters'"
-              class="topicIcon"
-              src="@/assets/themes/monsters.svg"
-            >
-            {{ topic.title }}
-          </router-link>
-        </li>
-      </ul>
+      <SiteInfo />
     </div>
-    <SiteInfo />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue'
-// import MaterialCard from '@/components/material/MaterialCard.vue'
-// import MaterialButton from '@/components/material/MaterialButton.vue'
-// import ProfileAction from '@/components/ProfileAction.vue'
 import SideNavMenu from '@/components/app/SideNavMenu.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
-import { useMeta } from '@/lib/meta'
-import { useProfile } from '@/state/authz'
-import { useAuthz } from '@/lib/authz'
 
 export default defineComponent({
   name: 'SideNav',
@@ -91,14 +35,11 @@ export default defineComponent({
     }
   },
   setup () {
-    const { isAuthz } = useAuthz()
-    const { isAdmin } = useProfile()
     const toggleNav: CallableFunction = inject('toggleNav') as CallableFunction
     const toggle = () => {
       if (window.innerWidth < 768) toggleNav()
     }
-    const { topics } = useMeta()
-    return { toggle, topics, toggleNav, isAdmin, isAuthz }
+    return { toggle }
   }
 })
 </script>
@@ -229,7 +170,7 @@ export default defineComponent({
     z-index: 20000
     transform: translateX(0px)
     .menuContainer
-      margin-top: 72px
+      margin-top: 0px
     &.toggled
       transform: translateX(-100vw)
   .overlay

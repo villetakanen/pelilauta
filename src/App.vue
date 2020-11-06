@@ -1,9 +1,6 @@
 <template>
   <!-- The top navigation bar: contains search field, menu button, and search button. Maybe profile icon too. -->
   <AppBar />
-  <transition name="scaleToFull">
-    <div id="identitySplash" v-if="navModel" />
-  </transition>
   <SideNav v-model="navModel" />
   <div
     id="mainContentWrapper"

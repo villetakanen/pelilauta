@@ -30,11 +30,13 @@
     "paragraph": "Kirjaudu sovellukseen osallistuaksesi keskusteluun."
   },
   "sideNav": {
-    "title": "Pelilauta",
-    "toIndexRoute": "Aiheet",
-    "toAboutRoute": "Tietoja Sivustosta",
-    "toAdminRoute": "Admin",
-    "toProfileRoute": "Oma profiilini"
+    "home": "Pelilauta",
+    "admin": "Admin",
+    "sections": "Aiheet",
+    "meta": "Meta",
+    "about": "Tietoja Pelilaudasta",
+    "profile": "Oma profiilini",
+    "stylebook": "Stylebook"
   },
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
