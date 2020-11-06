@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.7](https://github.com/villetakanen/pelilauta/compare/v4.2.6...v4.2.7) (2020-11-06)
+
+
+### Bug Fixes
+
+* restored white background ([638ca09](https://github.com/villetakanen/pelilauta/commit/638ca090846f6ed944e15aa54646abfcf84e5482))
+* theming ([3d14aa6](https://github.com/villetakanen/pelilauta/commit/3d14aa69abb140b205e0d943ddbbc87df24c622d))
+
 ### [4.2.6](https://github.com/villetakanen/pelilauta/compare/v4.2.5...v4.2.6) (2020-11-04)
 
 
