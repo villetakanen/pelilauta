@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.4.1](https://github.com/villetakanen/pelilauta/compare/v4.4.0...v4.4.1) (2020-11-06)
+
+
+### Bug Fixes
+
+* material button cleanups ([6b5c504](https://github.com/villetakanen/pelilauta/commit/6b5c504804393e3b5a5d34eb85b15158d6466246))
+
 ## [4.4.0](https://github.com/villetakanen/pelilauta/compare/v4.3.0...v4.4.0) (2020-11-06)
 
 
