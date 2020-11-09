@@ -27,6 +27,10 @@
     "newRepliesNote": "new",
     "more": "Read more"
   },
+  "profile": {
+    "publicInfoTitle": "Profile",
+    "publicInfoHelper": "Your public profile data, visible to anyone browsing the site."
+  },
   "about": {
     "title": "About Pelilauta",
     "text": "What if we wanted more structured and slower conversation than discoes and some allows? Not instead, but in addition."

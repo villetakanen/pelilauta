@@ -6,6 +6,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { useRouter } from 'vue-router'
 import { useAuthState } from '@/state/authz'
+import { useFirebase } from '../firebase'
 
 const state = ref({
   isAuthz: false,
@@ -79,6 +80,9 @@ function onAuthStateChanged (user: firebase.User|null): void {
     state.value.missingProfile = false
     return
   }
+
+  const { uid } = useAuthState()
+  uid.value = user.uid
 
   state.value.ssoInfo.displayName = user.displayName as string
   state.value.ssoInfo.photoUrl = user.photoURL as string
