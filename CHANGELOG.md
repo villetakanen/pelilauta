@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.5.1](https://github.com/villetakanen/pelilauta/compare/v4.5.0...v4.5.1) (2020-11-09)
+
+
+### Bug Fixes
+
+* kick ci ([34e8697](https://github.com/villetakanen/pelilauta/commit/34e86978b3d9d62e9d8232e25ffd1ad2496c5dd9))
+
 ## [4.5.0](https://github.com/villetakanen/pelilauta/compare/v4.4.9...v4.5.0) (2020-11-09)
 
 
