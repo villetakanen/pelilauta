@@ -48,7 +48,7 @@ export default defineComponent({
   background-position: top left
   background-size: cover
   height: 120px
-  padding: 8px
+  padding-bottom: 16px
   h1, p
     text-align: left
     margin-left: 80px
