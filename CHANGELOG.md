@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.5.2](https://github.com/villetakanen/pelilauta/compare/v4.5.1...v4.5.2) (2020-11-09)
+
+
+### Bug Fixes
+
+* added firebase for deploy ([ef743ad](https://github.com/villetakanen/pelilauta/commit/ef743ad78f8b60da50738f673cb76f0f91776178))
+
 ### [4.5.1](https://github.com/villetakanen/pelilauta/compare/v4.5.0...v4.5.1) (2020-11-09)
 
 
