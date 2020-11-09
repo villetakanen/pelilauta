@@ -14,6 +14,8 @@
     </div>
     <div style="clear:both" />
   </MaterialCard>
+  <PublicProfile />
+  <PrivateInfo />
   <LovedThreads />
   <ProfileActions />
 </template>
@@ -22,6 +24,8 @@
 import { defineComponent } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import PrivateInfo from '@/components/profile/PrivateInfo.vue'
+import PublicProfile from '@/components/profile/PublicProfile.vue'
 import LovedThreads from '@/components/profile/LovedThreads.vue'
 import ProfileActions from '@/components/profile/ProfileActions.vue'
 import { useAuthz } from '@/lib/authz'
@@ -31,7 +35,9 @@ export default defineComponent({
   components: {
     MaterialCard,
     LovedThreads,
-    ProfileActions
+    ProfileActions,
+    PrivateInfo,
+    PublicProfile
   },
   setup () {
     const { profile, switchLang } = useAuthz()
