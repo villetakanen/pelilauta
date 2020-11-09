@@ -40,7 +40,7 @@ export interface Reply {
   nick: string;
   author: string;
   createdSeconds?: number;
-  created?: firebase.firestore.Timestamp;
+  created: firebase.firestore.Timestamp;
   lovesCount?: number;
   lovers?: Array<string>;
 }

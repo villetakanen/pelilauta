@@ -1,6 +1,5 @@
 <template>
   <div
-    v-ripple="'fixed'"
     class="material-fab"
     @click="clicked"
   >

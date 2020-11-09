@@ -29,7 +29,7 @@ function addComment (author: string, nick: string, comment: string) {
     author: author,
     nick: nick,
     content: comment,
-    created: firebase.firestore.FieldValue.serverTimestamp()
+    created: firebase.firestore.FieldValue.serverTimestamp() || { seconds: 0 }
   }).then(() => {
     parentRef.update({
       lastCommentAt: firebase.firestore.FieldValue.serverTimestamp(),

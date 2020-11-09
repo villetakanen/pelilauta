@@ -4,7 +4,7 @@
       v-for="(post) in posts"
       :key="post.id"
     >
-      <div v-if="post.data.content">
+      <div v-if="post && post.data.content">
         <StreamPost
           :created="toDisplayString(post.created)"
           :topic="post.data.topic"

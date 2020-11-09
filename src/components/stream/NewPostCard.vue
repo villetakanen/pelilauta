@@ -127,8 +127,8 @@ export default defineComponent({
           title: t,
           author: uid.value,
           content: c,
-          created: firebase.firestore.FieldValue.serverTimestamp(),
-          flowTime: firebase.firestore.FieldValue.serverTimestamp(),
+          created: firebase.firestore.FieldValue.serverTimestamp() || { seconds: 0 },
+          flowTime: firebase.firestore.FieldValue.serverTimestamp() || { seconds: 0 },
           topic: chosenTopic.value,
           images: images.value
         }).then(() => {
