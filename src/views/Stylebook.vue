@@ -14,18 +14,23 @@
       <MaterialButton dark>Button: dark</MaterialButton>
       <MaterialButton dark text>Button: dark text</MaterialButton>
     </div>
+    <div class="section">
+      <h1>Stateless components</h1>
+      <Loader />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import { useAuthz } from '@/lib/authz'
+import Loader from '@/components/app/Loader.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
-    MaterialButton
+    MaterialButton,
+    Loader
   }
 })
 </script>

@@ -1,25 +1,27 @@
 <template>
-  <MaterialCard
-    v-if="!isAuthz"
-    class="welcome"
-  >
-    <img
-      class="logo"
-      src="@/assets/fox.svg"
+  <transition name="fade">
+    <MaterialCard
+      v-if="isAnonymous"
+      class="welcome"
     >
-    <h1>{{ $t('welcome.header') }}</h1>
-    <p>{{ $t('welcome.paragraph') }}</p>
-    <MaterialButton to="/login">
-      {{ $t('action.login') }}
-    </MaterialButton>
-  </MaterialCard>
+      <img
+        class="logo"
+        src="@/assets/fox.svg"
+      >
+      <h1>{{ $t('welcome.header') }}</h1>
+      <p>{{ $t('welcome.paragraph') }}</p>
+      <MaterialButton to="/login">
+        {{ $t('action.login') }}
+      </MaterialButton>
+    </MaterialCard>
+  </transition>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import { useAuthz } from '@/lib/authz'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -28,8 +30,8 @@ export default defineComponent({
     MaterialButton
   },
   setup () {
-    const { isAuthz } = useAuthz()
-    return { isAuthz }
+    const { isAnonymous } = useAuthState()
+    return { isAnonymous }
   }
 })
 </script>

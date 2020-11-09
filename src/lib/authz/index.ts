@@ -5,6 +5,7 @@ import { ref, computed } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { useRouter } from 'vue-router'
+import { useAuthState } from '@/state/authz'
 
 const state = ref({
   isAuthz: false,
@@ -66,6 +67,10 @@ function subToProfile (uid: string): void {
 }
 
 function onAuthStateChanged (user: firebase.User|null): void {
+  if (user === null) {
+    const { anonymousSession } = useAuthState()
+    anonymousSession.value = true
+  }
   if (user && user.uid === state.value.uid) return
   unsubscribe()
   if (typeof user === 'undefined' || user === null) {
