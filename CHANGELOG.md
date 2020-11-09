@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.4.9](https://github.com/villetakanen/pelilauta/compare/v4.4.8...v4.4.9) (2020-11-09)
+
+
+### Bug Fixes
+
+* removed ripple ([3d76b2f](https://github.com/villetakanen/pelilauta/commit/3d76b2fc90de1ebebf8d899e0517ca7a292aa3a6))
+
 ### [4.4.8](https://github.com/villetakanen/pelilauta/compare/v4.4.7...v4.4.8) (2020-11-09)
 
 ### [4.4.7](https://github.com/villetakanen/pelilauta/compare/v4.4.6...v4.4.7) (2020-11-09)
