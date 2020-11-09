@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.0](https://github.com/villetakanen/pelilauta/compare/v4.4.9...v4.5.0) (2020-11-09)
+
+
+### Features
+
+* circleci ([a17316e](https://github.com/villetakanen/pelilauta/commit/a17316e10b5d9c9fe71870b1ee0b99710b1debb8))
+
 ### [4.4.9](https://github.com/villetakanen/pelilauta/compare/v4.4.8...v4.4.9) (2020-11-09)
 
 
