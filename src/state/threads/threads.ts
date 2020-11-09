@@ -78,7 +78,7 @@ function init () {
   // Firebase references
   const db = firebase.firestore()
   const streamRef = db.collection('stream')
-  streamRef.orderBy('flowTime', 'desc').limit(21).onSnapshot((snapshot) => {
+  streamRef.orderBy('flowTime', 'desc').onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
       if (change.type !== 'removed') patchToSubscribed(toThread(change.doc.id, change.doc.data()))
       else subscribedThreads.value = subscribedThreads.value.filter((thread) => (thread.id !== change.doc.id))
