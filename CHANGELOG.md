@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.4.6](https://github.com/villetakanen/pelilauta/compare/v4.4.5...v4.4.6) (2020-11-09)
+
+
+### Bug Fixes
+
+* remove limit of threads experiment ([2e83f6d](https://github.com/villetakanen/pelilauta/commit/2e83f6dfadae8733171917ce2ef25ee3f888411c))
+* removed extra ripple ([2c094aa](https://github.com/villetakanen/pelilauta/commit/2c094aa2322387963b9492256a849b2ad7918570))
+* welcome card sizing ([a21dd98](https://github.com/villetakanen/pelilauta/commit/a21dd98b7f4595509844a7cf8173984d49c750c8))
+
 ### [4.4.5](https://github.com/villetakanen/pelilauta/compare/v4.4.4...v4.4.5) (2020-11-09)
 
 
