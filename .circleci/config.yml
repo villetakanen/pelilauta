@@ -1,0 +1,41 @@
+version: 2.1
+
+workflows:
+  version: 2
+  build:
+   jobs:
+     - build:
+         filters:
+           branches:
+             only: master
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: install-npm
+          command: 'npm install'
+      - run:
+          name: create-dotenv
+          command: echo 'VUE_APP_FIREBASE_API_KEY = "${VUE_APP_FIREBASE_API_KEY}"\nVUE_APP_FIREBASE_AUTH_DOMAIN =  "${VUE_APP_FIREBASE_AUTH_DOMAIN}"\nVUE_APP_FIREBASE_DATABASE_URL = "${VUE_APP_FIREBASE_DATABASE_URL}"\nVUE_APP_FIREBASE_PROJECT_ID  = "${VUE_APP_FIREBASE_PROJECT_ID}"\nVUE_APP_FIREBASE_STORAGE_BUCKET  = "${VUE_APP_FIREBASE_STORAGE_BUCKET}"\nVUE_APP_FIREBASE_MESSAGING_SENDER_ID = "${VUE_APP_FIREBASE_MESSAGING_SENDER_ID}"\nVUE_APP_FIREBASE_APP_ID = "${VUE_APP_FIREBASE_APP_ID}"\nVUE_APP_FIREBASE_MEASUREMENT_ID = "${VUE_APP_FIREBASE_MEASUREMENT_ID}"\nVUE_APP_ALGOLIA_APP_ID = "${VUE_APP_ALGOLIA_APP_ID}"\nVUE_APP_ALGOLIA_APP_SEARCH_KEY = "${VUE_APP_ALGOLIA_APP_SEARCH_KEY}"\n' > .env && echo .env
+      - run:
+          name: npm-run-build
+          command: 'npm run build'
+      - run:
+          name: setup-git
+          command: 'git config user.email "${GIT_EMAIL_ADDRESS}" && git config user.name "${GIT_USER_NAME}"'
+      - run:
+          name: npm-run-release
+          command: 'npm run release'
+      - run:
+          name: git-skip-ci
+          command: 'git commit -m "chore: [skip ci] for release" --allow-empty'
+      - run:
+          name: npm-run-publish
+          command: 'git push --follow-tags origin master'
+      - run:
+          name: Firebase-Deploy
+          command: 'npx firebase deploy --token "$FIREBASE_TOKEN" --only hosting'
