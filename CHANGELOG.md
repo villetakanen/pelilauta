@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.4.5](https://github.com/villetakanen/pelilauta/compare/v4.4.4...v4.4.5) (2020-11-09)
+
+
+### Bug Fixes
+
+* sniffs out default locale ([be30619](https://github.com/villetakanen/pelilauta/commit/be30619a1aa87d382e614cd1382e05a5e9d271dc))
+
 ### [4.4.4](https://github.com/villetakanen/pelilauta/compare/v4.4.3...v4.4.4) (2020-11-09)
 
 
