@@ -49,6 +49,15 @@ function fetchProfile (uid:string|null) {
   }
 }
 
+async function updateProfile (fields: Record<string, string>): Promise<void> {
+  if (fields.nick || fields.tagline) {
+    const db = firebase.firestore()
+    const { uid } = useAuthState()
+    const fbProfileRef = db.collection('profiles').doc(uid.value)
+    return fbProfileRef.update(fields)
+  }
+}
+
 let _init = false
 function init () {
   if (_init) return
@@ -62,8 +71,9 @@ function init () {
 export function useProfile (): {
     isAdmin: ComputedRef<boolean>;
     sSOData: ComputedRef<SSOData>;
-    profile: ComputedRef<PublicProfile>
+    profile: ComputedRef<PublicProfile>;
+    updateProfile: (fields: Record<string, string>) => Promise<void>
     } {
   init()
-  return { isAdmin, sSOData, profile }
+  return { isAdmin, sSOData, profile, updateProfile }
 }

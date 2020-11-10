@@ -108,7 +108,7 @@ export default defineComponent({
     background-color: lighten($color-fill-primary, 11%)
   &:disabled
     opacity: 0.2
-  &.material-button-text
+  &.material-button-text, &.material-button-icon
     color: $color-fill-primary
     background-color: #00233711
     box-shadow: none
