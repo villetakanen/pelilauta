@@ -29,7 +29,9 @@
   },
   "profile": {
     "publicInfoTitle": "Profile",
-    "publicInfoHelper": "Your public profile data, visible to anyone browsing the site."
+    "publicInfoHelper": "Your public profile data, visible to anyone browsing the site.",
+    "ssoInfocardTitle": "Personal information",
+    "ssoInfocardHelper": "Your personal profile data, visible to you and administration of the site."
   },
   "about": {
     "title": "About Pelilauta",

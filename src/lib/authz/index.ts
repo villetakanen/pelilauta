@@ -6,7 +6,6 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { useRouter } from 'vue-router'
 import { useAuthState } from '@/state/authz'
-import { useFirebase } from '../firebase'
 
 const state = ref({
   isAuthz: false,
