@@ -16,10 +16,11 @@
         <MaterialButton
           icon
           inline
-          :disabled="!v.nickname.$error && v.nickname.$dirty"
+          :disabled="v.nickname.$error || !v.nickname.$dirty"
         >
           <img src="@/assets/fox.svg">
         </MaterialButton>
+        {{ !v.nickname.$error && v.nickname.$dirty }}
         <div v-if="v.nickname.$error">
           Name field has an error.
         </div>
