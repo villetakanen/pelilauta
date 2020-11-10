@@ -15,7 +15,7 @@
     <div style="clear:both" />
   </MaterialCard>
   <PublicProfile />
-  <PrivateInfo />
+  <PrivateInfo v-if="false" />
   <LovedThreads />
   <ProfileActions />
 </template>
