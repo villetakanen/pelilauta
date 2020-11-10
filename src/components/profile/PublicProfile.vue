@@ -5,14 +5,25 @@
     >
       <h2>{{ $t('profile.publicInfoTitle') }}</h2>
       <p>{{ $t('profile.publicInfoHelper') }}</p>
-      <label for="nickName">Nick</label>
-      <input
-        id="nickName"
-        v-model="v.nickname.$model"
-        class="material-textfield"
-        @blur="debug"
-      >
-      <div v-if="v.nickname.$error">Name field has an error.</div>
+      <div>
+        <label for="nickName">Nick</label>
+        <input
+          id="nickName"
+          v-model="v.nickname.$model"
+          class="material-textfield"
+          @blur="debug"
+        >
+        <MaterialButton
+          icon
+          inline
+          :disabled="!v.nickname.$error && v.nickname.$dirty"
+        >
+          <img src="@/assets/fox.svg">
+        </MaterialButton>
+        <div v-if="v.nickname.$error">
+          Name field has an error.
+        </div>
+      </div>
       <label for="tagLine">Tagline</label>
       <input
         id="tagLine"
@@ -43,14 +54,17 @@ export default defineComponent({
   },
   setup () {
     const { profile } = useProfile()
+
+    // Nick field and persistency
     const localNick:Ref<string|null> = ref(null)
     const nickname = computed({
       get: () => (localNick.value === null ? profile.value.nick : localNick.value),
       set: (val:string) => {
-        console.log('set to:', val)
         localNick.value = val
+        if (!v.value.nickname.$error) console.log('can be set to:', val, v.value.nickname.$dirty)
       }
     })
+
     const tagline = computed({
       get: () => (profile.value.tagline),
       set: (val:string) => {
@@ -73,5 +87,9 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+
+.material-textfield
+  margin-right: 8px
+  max-width: 300px
 
 </style>
