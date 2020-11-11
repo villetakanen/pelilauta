@@ -2,7 +2,9 @@
   <ViewHeader>
     {{ pageTitle.title }}
   </ViewHeader>
-  <ThreadList :topic="routeTopic" />
+  <div class="contentGrid">
+    <ThreadList :topic="routeTopic" />
+  </div>
   <teleport to="body">
     <MaterialFab
       v-if="showStreamActions"

@@ -141,3 +141,13 @@ div.toolbar
     transform: scale(0) translate(-50%, -50%)
   100%
     transform: scale(1) translate(-50%, -50%)
+
+// Content Grid, usable on views
+div.contentGrid
+  padding: 0 8px
+
+@include media('>tablet')
+  div.contentGrid
+    max-width: 878px
+    margin: 0 auto
+    padding: 0

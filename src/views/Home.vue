@@ -10,7 +10,9 @@
       >
     </MaterialFab>
   </teleport>
-  <Stream />
+  <div class="contentGrid">
+    <Stream />
+  </div>
 </template>
 
 <script lang="ts">
