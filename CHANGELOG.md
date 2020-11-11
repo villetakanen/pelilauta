@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.6.0](https://github.com/villetakanen/pelilauta/compare/v4.5.2...v4.6.0) (2020-11-11)
+
+
+### Features
+
+* added vuelidate ([9a74fb7](https://github.com/villetakanen/pelilauta/commit/9a74fb721d673b478bffb0432803256ab07bbe76))
+* disabled buttons ([baace20](https://github.com/villetakanen/pelilauta/commit/baace20453c236b22fa50758aa01ce30f382643a))
+* error checking scaffold in place ([87066c1](https://github.com/villetakanen/pelilauta/commit/87066c1dbf6b25bf77231e673454eb58a6a6074c))
+* fetch profile to state ([f20299c](https://github.com/villetakanen/pelilauta/commit/f20299c75faa0c5065f4adee8b3fa0fc8fbe42e0))
+* nickname changing feature complete ([b3be19f](https://github.com/villetakanen/pelilauta/commit/b3be19ffefc6db8880465e9c6cc352ac581706bb))
+* sections for public and private info ([bd3b3b6](https://github.com/villetakanen/pelilauta/commit/bd3b3b62272730ac9e0eebf6734f50309e626d0e))
+
+
+### Bug Fixes
+
+* disable state for nick field ([a663400](https://github.com/villetakanen/pelilauta/commit/a66340000ea3fae4a5993d1fde119f3a1b10aac1))
+* hide uncomplete profile tools ([28cc828](https://github.com/villetakanen/pelilauta/commit/28cc82853648fdbf74a2fe83303a7dbde8280bb1))
+* login and logout redirects ([8015491](https://github.com/villetakanen/pelilauta/commit/80154913cd5d6a2378f5b9f1f64c922f49e4d882))
+* package versions ([4e15aa2](https://github.com/villetakanen/pelilauta/commit/4e15aa21c294dc068ef9cc06374e808338ca7620))
+* removed firebase.json from repo ([5be9710](https://github.com/villetakanen/pelilauta/commit/5be9710943bd76b8120c640d8ea27d1deedc8bde))
+
 ### [4.5.2](https://github.com/villetakanen/pelilauta/compare/v4.5.1...v4.5.2) (2020-11-09)
 
 
