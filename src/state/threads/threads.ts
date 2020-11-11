@@ -30,7 +30,7 @@ export interface Thread {
     data: PostData
 }
 
-function toThread (id: string, data:firebase.firestore.DocumentData|undefined): Thread {
+export function toThread (id: string, data:firebase.firestore.DocumentData|undefined): Thread {
   if (!data) throw new Error('toThread from undefined')
   const post: Thread = {
     id: id,

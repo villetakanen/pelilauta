@@ -12,7 +12,8 @@
     "logout": "Kirjaudu ulos",
     "toTopicList": "Aiheet",
     "update": "Päivitä",
-    "deferUpdate": "Muistuta myöhemmin"
+    "deferUpdate": "Muistuta myöhemmin",
+    "nextPage": "Lataa lisää"
   },
   "postHeader": {
     "postedInStream": "aiheessa"
