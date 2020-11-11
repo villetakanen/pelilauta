@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "skaldbase",
+    "site": "pelilauta",
     "public": "dist",
     "ignore": [
       "firebase.json",
