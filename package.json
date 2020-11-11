@@ -9,6 +9,8 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "@vuelidate/core": "^2.0.0-alpha.7",
+    "@vuelidate/validators": "^2.0.0-alpha.5",
     "algoliasearch": "^4.6.0",
     "firebase": "^8.0.1",
     "register-service-worker": "^1.7.1",

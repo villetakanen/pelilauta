@@ -10,9 +10,18 @@
     <div class="section">
       <h1>Actions</h1>
       <MaterialButton>Button</MaterialButton>
-      <MaterialButton text>Button: text</MaterialButton>
-      <MaterialButton dark>Button: dark</MaterialButton>
-      <MaterialButton dark text>Button: dark text</MaterialButton>
+      <MaterialButton text>
+        Button: text
+      </MaterialButton>
+      <MaterialButton dark>
+        Button: dark
+      </MaterialButton>
+      <MaterialButton
+        dark
+        text
+      >
+        Button: dark text
+      </MaterialButton>
     </div>
     <div class="section">
       <h1>Stateless components</h1>

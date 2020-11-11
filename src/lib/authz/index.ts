@@ -80,6 +80,9 @@ function onAuthStateChanged (user: firebase.User|null): void {
     return
   }
 
+  const { uid } = useAuthState()
+  uid.value = user.uid
+
   state.value.ssoInfo.displayName = user.displayName as string
   state.value.ssoInfo.photoUrl = user.photoURL as string
   state.value.ssoInfo.email = user.email as string

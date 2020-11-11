@@ -35,6 +35,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import MaterialCard from '../components/material/MaterialCard.vue'
 import MaterialButton from '../components/material/MaterialButton.vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   components: {
@@ -42,16 +43,22 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
+    const router = useRouter()
+
     function socialGoogleLogin () {
       const provider = new firebase.auth.GoogleAuthProvider()
       provider.addScope('email')
-      firebase.auth().signInWithPopup(provider)
+      firebase.auth().signInWithPopup(provider).then(() => {
+        router.push('/')
+      })
     }
 
     function socialFacebookLogin () {
       const provider = new firebase.auth.FacebookAuthProvider()
       provider.addScope('email')
-      firebase.auth().signInWithPopup(provider)
+      firebase.auth().signInWithPopup(provider).then(() => {
+        router.push('/')
+      })
     }
 
     return { socialGoogleLogin, socialFacebookLogin }

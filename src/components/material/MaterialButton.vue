@@ -1,6 +1,7 @@
 <template>
   <button
     :class="buttonClasses"
+    :disabled="disabled"
     @click="clicked"
   >
     <slot />
@@ -47,6 +48,16 @@ export default defineComponent({
       type: String,
       required: false,
       default: undefined
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -58,7 +69,8 @@ export default defineComponent({
         'colortheme-secondary': false,
         'material-button-icon': props.icon,
         'theme--dark': props.dark,
-        'block-button': props.block
+        'block-button': props.block,
+        inline: props.inline
       }
     )
     // if (typeof props.text !== 'undefined') buttonClasses.value['material-button-text'] = true
@@ -94,7 +106,9 @@ export default defineComponent({
   color: $color-dark-font-high
   &:hover
     background-color: lighten($color-fill-primary, 11%)
-  &.material-button-text
+  &:disabled
+    opacity: 0.2
+  &.material-button-text, &.material-button-icon
     color: $color-fill-primary
     background-color: #00233711
     box-shadow: none
@@ -115,7 +129,14 @@ export default defineComponent({
       max-height: 36px
       max-width: 36px
       margin: 0
-
+    &.inline
+      height: 28px
+      width: 28px
+      padding: 0
+      margin: -2px 0
+      img
+        max-height: 28px
+      max-width: 28px
   &.colortheme-secondary
    @include ElementColorSecondary()
 

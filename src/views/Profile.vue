@@ -9,51 +9,44 @@
       :src="profile.photoURL"
       :alt="profile.nick"
     >
-    <div class="toolbar">
-      <MaterialButton :action="logout">
-        {{ $t('action.logout') }}
-      </MaterialButton>
-    </div>
     <div>
       {{ $t('language.label') }} <a @click="setLang('en')">EN</a> / <a @click="setLang('fi')">FI</a>
     </div>
     <div style="clear:both" />
   </MaterialCard>
+  <PublicProfile />
+  <PrivateInfo v-if="false" />
   <LovedThreads />
+  <ProfileActions />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import { useRouter } from 'vue-router'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import PrivateInfo from '@/components/profile/PrivateInfo.vue'
+import PublicProfile from '@/components/profile/PublicProfile.vue'
 import LovedThreads from '@/components/profile/LovedThreads.vue'
+import ProfileActions from '@/components/profile/ProfileActions.vue'
 import { useAuthz } from '@/lib/authz'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    MaterialButton,
     MaterialCard,
-    LovedThreads
+    LovedThreads,
+    ProfileActions,
+    PrivateInfo,
+    PublicProfile
   },
   setup () {
     const { profile, switchLang } = useAuthz()
-    const router = useRouter()
-
-    const logout = () => {
-      firebase.auth().signOut().then(() => {
-        router.push('/')
-      })
-    }
 
     function setLang (lang: string) {
       switchLang(lang)
     }
 
-    return { profile, logout, setLang }
+    return { profile, setLang }
   }
 })
 </script>
