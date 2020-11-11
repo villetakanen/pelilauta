@@ -4,7 +4,7 @@
       v-for="thread in localThreads"
       :key="thread.id"
     >
-      {{ thread.name }}
+      {{ thread.data.title }}
     </div>
     <MaterialButton
       text
@@ -38,22 +38,25 @@ export default defineComponent({
   setup (props) {
     const localThreads = ref(new Array<Thread>())
     const atEnd = ref(false)
+    let offset:undefined|firebase.firestore.DocumentReference
 
-    function fetchThreads (topic: string, count = 10, offset?:Thread) {
+    function fetchThreads (topic: string, count = 5) {
       const db = firebase.firestore()
       if (offset) {
-        const cursor = db.collection('stream').doc(offset.id)
-        db.collection('stream').where('topic', '==', topic).orderBy('flowTime', 'desc').startAt(cursor).limit(count).get().then((snapshot) => {
+        // const cursor = db.collection('stream').doc(offset.id)
+        db.collection('stream').where('topic', '==', topic).orderBy('flowTime', 'desc').startAfter(offset).limit(count).get().then((snapshot) => {
           if (snapshot.size < count) atEnd.value = true
           snapshot.forEach((doc) => {
-            localThreads.value.push(toThread(doc))
+            localThreads.value.push(toThread(doc.id, doc.data()))
+            offset = doc
           })
         })
       } else {
         db.collection('stream').where('topic', '==', topic).orderBy('flowTime', 'desc').limit(count).get().then((snapshot) => {
           if (snapshot.size < count) atEnd.value = true
           snapshot.forEach((doc) => {
-            localThreads.value.push(toThread(doc))
+            localThreads.value.push(toThread(doc.id, doc.data()))
+            offset = doc
           })
         })
       }
@@ -61,14 +64,14 @@ export default defineComponent({
 
     async function nextPage () {
       if (atEnd.value) return
-      fetchThreads(props.topic, 10, localThreads.value[localThreads.value.length - 1])
+      fetchThreads(props.topic)
     }
 
     onMounted(() => {
       fetchThreads(props.topic)
     })
 
-    return { nextPage, atEnd }
+    return { nextPage, atEnd, localThreads }
   }
 })
 </script>
