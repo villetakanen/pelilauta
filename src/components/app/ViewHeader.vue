@@ -11,6 +11,7 @@
 
 @include media('>phone')
   h1.viewHeader
-    @include TypeDisplay1()
+    @include TypeHeadline3()
+    color: #002337
     opacity: 0.37
 </style>

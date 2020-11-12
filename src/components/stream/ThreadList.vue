@@ -1,11 +1,10 @@
 <template>
   <div class="stream">
-    <div
+    <ThreadCard
       v-for="thread in localThreads"
       :key="thread.id"
-    >
-      {{ thread.data.title }}
-    </div>
+      :thread="thread"
+    />
     <MaterialButton
       text
       :disabled="atEnd"
@@ -23,11 +22,13 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { Thread, toThread } from '@/state/threads'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import ThreadCard from './ThreadCard'
 
 export default defineComponent({
   name: 'Threadlist',
   components: {
-    MaterialButton
+    MaterialButton,
+    ThreadCard
   },
   props: {
     topic: {
