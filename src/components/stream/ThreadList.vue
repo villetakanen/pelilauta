@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
@@ -71,6 +71,13 @@ export default defineComponent({
     onMounted(() => {
       fetchThreads(props.topic)
     })
+    watch(() => props.topic, (val) => {
+      localThreads.value = new Array<Thread>()
+      atEnd.value = false
+      offset = undefined
+      fetchThreads(val)
+      console.log('watch', val)
+    })
 
     return { nextPage, atEnd, localThreads }
   }
@@ -78,5 +85,4 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-.stream
 </style>
