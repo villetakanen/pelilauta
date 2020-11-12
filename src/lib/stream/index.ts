@@ -58,13 +58,6 @@ function toDisplayString (timestamp:firebase.firestore.Timestamp): string {
   return dateString.substring(11, 19) + ' - ' + dateString.substring(0, 10)
 }
 
-async function dropPost (actor: string, threadid: string) {
-  firebase.analytics().logEvent('dropPost', { author: actor })
-  const db = firebase.firestore()
-  const postRef = db.collection('stream').doc(threadid)
-  return postRef.delete()
-}
-
 async function addPost (postData: PostData, author: string) {
   firebase.analytics().logEvent('addPost', { author: author })
   const db = firebase.firestore()
@@ -91,10 +84,9 @@ async function updatePost (threadid: string, data:PostData) {
 }
 
 export function useStream (): {
-  dropPost: (actor: string, threadid: string) => Promise<void>;
   updatePost: (threadid: string, data:PostData) => Promise<void>;
   addPost: (postData: PostData, author: string) => Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>;
   toDisplayString: (timestamp:firebase.firestore.Timestamp) => string;
   } {
-  return { dropPost, updatePost, addPost, toDisplayString }
+  return { updatePost, addPost, toDisplayString }
 }

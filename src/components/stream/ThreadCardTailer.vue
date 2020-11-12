@@ -3,7 +3,9 @@
     <div class="credits">
       <transition name="fade">
         <div v-if="author">
-          <p class="author">{{ author.nick }}</p>
+          <p class="author">
+            {{ author.nick }}
+          </p>
           <p class="caption">
             {{ author.nick }}
           </p>
@@ -22,10 +24,6 @@
 import { computed, defineComponent, PropType } from 'vue'
 import { Thread } from '@/state/threads'
 import { useAuthors } from '@/lib/authors'
-// import firebase from 'firebase/app'
-// import 'firebase/firestore'
-// import { useI18n } from 'vue-i18n'
-// import MaterialCard from '@/components/material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'ThreadCardHeader',

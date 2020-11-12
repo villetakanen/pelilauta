@@ -29,11 +29,10 @@
 import { defineComponent, computed } from 'vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import Avatar from '@/components/app/Avatar.vue'
-import { MenuItem, useStream } from '@/lib/stream'
 import { useAuthz } from '@/lib/authz'
-import { useMeta } from '@/lib/meta'
+import { useMeta, MenuItem } from '@/lib/meta'
 import { useEditorDialog } from '@/lib/editor'
-import { Thread, useThreads } from '@/state/threads'
+import { Thread, useThreads, deleteThread } from '@/state/threads'
 
 export default defineComponent({
   name: 'PostHeader',
@@ -84,12 +83,11 @@ export default defineComponent({
   setup (props) {
     const { uid } = useAuthz()
     const { isAdmin } = useMeta()
-    const { dropPost } = useStream()
     const { stream } = useThreads()
     const showAdminTools = computed(() => (isAdmin(uid.value)))
 
     function drop () {
-      dropPost(uid.value, props.threadid)
+      deleteThread(uid.value, props.threadid)
     }
 
     function edit () {

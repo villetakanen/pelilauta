@@ -97,6 +97,13 @@ export async function fetchThread (threadid: string): Promise<Thread|undefined> 
   })
 }
 
+export async function deleteThread (actor: string, threadid: string): Promise<void> {
+  firebase.analytics().logEvent('dropPost', { author: actor })
+  const db = firebase.firestore()
+  const postRef = db.collection('stream').doc(threadid)
+  return postRef.delete()
+}
+
 export function useThreads (): {
     stream: ComputedRef<Thread[]> } {
   init()

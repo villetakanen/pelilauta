@@ -1,7 +1,10 @@
 <template>
   <MaterialCard>
     <ThreadCardHeader :thread="thread" />
-    <div :innerHTML="thread.data.content" class="cardContent"/>
+    <div
+      :innerHTML="thread.data.content"
+      class="cardContent"
+    />
     <ThreadCardTailer :thread="thread" />
   </MaterialCard>
 </template>

@@ -43,7 +43,7 @@
 <script lang="ts">
 import { defineComponent, computed, watch, onMounted } from 'vue'
 import Discussion from '@/components/discussion/Discussion.vue'
-import { useThreads, loveThread, unloveThread } from '@/state/threads'
+import { useThreads, loveThread, unloveThread, deleteThread } from '@/state/threads'
 import { useStream } from '@/lib/stream'
 import { useAuthors } from '@/lib/authors'
 import PostHeader from '@/components/stream/PostHeader.vue'
@@ -70,7 +70,7 @@ export default defineComponent({
     const router = useRouter()
     const { uid, profile } = useAuthz()
 
-    const { dropPost, toDisplayString } = useStream()
+    const { toDisplayString } = useStream()
     const { stream } = useThreads()
     const post = computed(() => {
       return stream.value.filter((post) => (post.id === props.threadid))[0]
@@ -80,7 +80,7 @@ export default defineComponent({
     const author = computed(() => (getAuthor(post.value?.author)))
 
     function deletePost (): void {
-      dropPost(uid.value, props.threadid).then(() => {
+      deleteThread(uid.value, props.threadid).then(() => {
         router.push('/')
       })
     }

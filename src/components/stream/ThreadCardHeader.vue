@@ -18,7 +18,7 @@ import { computed, defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { Thread, dropPost } from '@/state/threads'
+import { Thread, deleteThread } from '@/state/threads'
 import { MenuItem, useMeta } from '@/lib/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuthState } from '@/state/authz'
@@ -58,7 +58,7 @@ export default defineComponent({
     const { isAdmin } = useMeta()
 
     function drop () {
-      dropPost(uid.value, props.threadid)
+      deleteThread(uid.value, props.thread.id)
     }
 
     function edit () {
