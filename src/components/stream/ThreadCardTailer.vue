@@ -14,10 +14,19 @@
     </div>
     <div class="spacer" />
     <div>
-      <div>
-        <ThreadRepliesLink :thread="thread" />
-      </div>
-      <div>responses</div>
+      <ThreadRepliesLink :thread="thread" />
+    </div>
+    <div class="alignRight">
+      <p>
+        <span v-if="thread.lovedCount > 0">
+          {{ thread.lovedCount }}
+        </span>
+        <LoveAction
+          class="inline"
+          :loved="loves"
+          :action="toggleLove"
+        />
+      </p>
     </div>
   </div>
 </template>
@@ -27,11 +36,13 @@ import { computed, defineComponent, PropType } from 'vue'
 import { Thread } from '@/state/threads'
 import { useAuthors } from '@/lib/authors'
 import ThreadRepliesLink from './ThreadRepliesLink.vue'
+import LoveAction from '@/components/app/LoveAction.vue'
 
 export default defineComponent({
   name: 'ThreadCardTailer',
   components: {
-    ThreadRepliesLink
+    ThreadRepliesLink,
+    LoveAction
   },
   props: {
     thread: {
@@ -57,9 +68,13 @@ export default defineComponent({
   height: 48px
   div
     align-self: center
+  div+div
+    margin-left: 8px
 .caption
   color: $color-font-disabled
 .author
   margin: 0
   padding: 0
+div.inline
+  display: inline-block
 </style>

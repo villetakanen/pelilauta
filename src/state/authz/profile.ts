@@ -18,6 +18,7 @@ export interface PublicProfile {
 export interface ProfileMeta {
   lovedThreads: Array<string>;
   seenThreads: Map<string, firebase.firestore.Timestamp>;
+  pelilautaLang?: string
 }
 
 const isAdmin: ComputedRef<boolean> = computed(() => {
@@ -42,6 +43,19 @@ const profileMeta = computed(() => profileMetaRef.value)
 
 let unsubscribe = () => {}
 
+interface seenThread {
+  threadid: string,
+  timestamp: firebase.firestore.Timestamp
+}
+
+function parseSeen (seenArray:Array<seenThread>) {
+  const newMap = new Map<string, firebase.firestore.Timestamp>()
+  seenArray.forEach((seenThread) => {
+    newMap.set(seenThread.threadid, seenThread.timestamp)
+  })
+  return newMap
+}
+
 function fetchProfile (uid:string|null) {
   console.log('fetchProfile', uid)
   unsubscribe()
@@ -59,7 +73,8 @@ function fetchProfile (uid:string|null) {
       }
       profileMetaRef.value = {
         lovedThreads: snap.data()?.lovedThreads,
-        seenThreads: snap.data()?.seenThreads
+        seenThreads: parseSeen(snap.data()?.seenThreads),
+        pelilautaLang: snap.data()?.pelilautaLang
       }
     })
   }

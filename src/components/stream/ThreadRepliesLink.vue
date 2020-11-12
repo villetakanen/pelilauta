@@ -8,7 +8,7 @@
       {{ $t('post.newRepliesNote') }}
     </div>
   </transition>
-  <router-link :to="`/stream/view/${threadid}`">
+  <router-link :to="`/stream/view/${thread.id}`">
     {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
   </router-link>
 </template>

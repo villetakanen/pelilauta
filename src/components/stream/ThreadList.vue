@@ -69,6 +69,8 @@ export default defineComponent({
     }
 
     onMounted(() => {
+      atEnd.value = false
+      offset = undefined
       fetchThreads(props.topic)
     })
     watch(() => props.topic, (val) => {
