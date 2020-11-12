@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PrivateInfo from '@/components/profile/PrivateInfo.vue'
 import PublicProfile from '@/components/profile/PublicProfile.vue'

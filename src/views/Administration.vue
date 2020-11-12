@@ -16,7 +16,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Dialog from '@/components/material/Dialog.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import UserList from '@/components/UserList.vue'
 

@@ -14,7 +14,9 @@
     </div>
     <div class="spacer" />
     <div>
-      <div>likes</div>
+      <div>
+        <ThreadRepliesLink :thread="thread" />
+      </div>
       <div>responses</div>
     </div>
   </div>
@@ -24,9 +26,13 @@
 import { computed, defineComponent, PropType } from 'vue'
 import { Thread } from '@/state/threads'
 import { useAuthors } from '@/lib/authors'
+import ThreadRepliesLink from './ThreadRepliesLink.vue'
 
 export default defineComponent({
-  name: 'ThreadCardHeader',
+  name: 'ThreadCardTailer',
+  components: {
+    ThreadRepliesLink
+  },
   props: {
     thread: {
       type: Object as PropType<Thread>,
