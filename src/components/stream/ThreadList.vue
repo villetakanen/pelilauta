@@ -22,7 +22,7 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { Thread, toThread } from '@/state/threads'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import ThreadCard from './ThreadCard'
+import ThreadCard from './ThreadCard.vue'
 
 export default defineComponent({
   name: 'Threadlist',
@@ -39,7 +39,7 @@ export default defineComponent({
   setup (props) {
     const localThreads = ref(new Array<Thread>())
     const atEnd = ref(false)
-    let offset:undefined|firebase.firestore.DocumentReference
+    let offset:undefined|firebase.firestore.QueryDocumentSnapshot
 
     function fetchThreads (topic: string, count = 5) {
       const db = firebase.firestore()
