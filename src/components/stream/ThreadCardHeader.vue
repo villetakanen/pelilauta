@@ -69,7 +69,7 @@ export default defineComponent({
     const copyUrl = () => {
       const dummy = document.createElement('input')
       document.body.appendChild(dummy)
-      dummy.value = window.location.host + '/stream/view/' + props.threadid
+      dummy.value = window.location.host + '/stream/view/' + props.thread.id
       dummy.select()
       document.execCommand('copy')
       document.body.removeChild(dummy)
@@ -85,7 +85,7 @@ export default defineComponent({
       if (uid.value === props.thread.author) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit' })
         arr.push({ action: drop, text: 'Delete!' })
-      } else if (isAdmin(uid.value) || uid.value === props.author) {
+      } else if (isAdmin(uid.value) || uid.value === props.thread.author) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit', admin: true })
         arr.push({ action: drop, text: 'Delete!', admin: true })
       }

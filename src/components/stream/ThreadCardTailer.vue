@@ -1,10 +1,20 @@
 <template>
-  <div>
-    <p class="caption">
+  <div class="toolbar">
+    <div class="credits">
       <transition name="fade">
-        <span v-if="author">{{ author.nick }}</span>
+        <div v-if="author">
+          <p class="author">{{ author.nick }}</p>
+          <p class="caption">
+            {{ author.nick }}
+          </p>
+        </div>
       </transition>
-    </p>
+    </div>
+    <div class="spacer" />
+    <div>
+      <div>likes</div>
+      <div>responses</div>
+    </div>
   </div>
 </template>
 
@@ -32,3 +42,20 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/include-media.scss
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+
+.toolbar
+  margin-top: 16px
+  height: 48px
+  div
+    align-self: center
+.caption
+  color: $color-font-disabled
+.author
+  margin: 0
+  padding: 0
+</style>
