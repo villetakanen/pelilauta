@@ -10,6 +10,14 @@ export interface Topic {
   icon?: string;
 }
 
+export interface MenuItem {
+  text: string;
+  to?: string;
+  action?: () => void
+  icon?: string;
+  admin?: boolean;
+}
+
 interface MetaState {
   admins: string[];
   topics: Topic[];
