@@ -1,42 +1,45 @@
 <template>
-  <div class="toolbar">
+  <div class="toolbar spaced">
     <div class="credits">
       <transition name="fade">
         <div v-if="author">
           <p class="author">
             {{ author.nick }}
           </p>
-          <p class="caption">
-            {{ author.nick }}
+          <p
+            v-if="author.tagline"
+            class="caption"
+          >
+            {{ author.tagline }}
           </p>
         </div>
       </transition>
     </div>
+  </div>
+  <div class="toolbar">
+    <LoveAction
+      class="inline"
+      :loved="loves"
+      :action="toggleLove"
+    />
+    <div v-if="thread.lovedCount > 0">
+      {{ thread.lovedCount }}
+    </div>
+
     <div class="spacer" />
     <div>
       <ThreadRepliesLink :thread="thread" />
-    </div>
-    <div class="alignRight">
-      <p>
-        <span v-if="thread.lovedCount > 0">
-          {{ thread.lovedCount }}
-        </span>
-        <LoveAction
-          class="inline"
-          :loved="loves"
-          :action="toggleLove"
-        />
-      </p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import { Thread } from '@/state/threads'
+import { Thread, loveThread, unloveThread } from '@/state/threads'
 import { useAuthors } from '@/lib/authors'
 import ThreadRepliesLink from './ThreadRepliesLink.vue'
 import LoveAction from '@/components/app/LoveAction.vue'
+import { useAuthState, useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'ThreadCardTailer',
@@ -53,7 +56,21 @@ export default defineComponent({
   setup (props) {
     const { authors } = useAuthors()
     const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
-    return { author }
+
+    const { profileMeta } = useProfile()
+    const { uid } = useAuthState()
+
+    const loves = computed(() => {
+      if (typeof profileMeta.value.lovedThreads === 'undefined') return false
+      return profileMeta.value.lovedThreads.includes(props.thread.id)
+    })
+
+    const toggleLove = () => {
+      if (loves.value) unloveThread(uid.value, props.thread.id)
+      else loveThread(uid.value, props.thread.id)
+    }
+
+    return { author, loves, toggleLove }
   }
 })
 </script>
@@ -62,14 +79,15 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
-
-.toolbar
-  margin-top: 16px
+.spaced
+  margin: 8px 0
   height: 48px
+.toolbar
   div
     align-self: center
-  div+div
-    margin-left: 8px
+  p
+    margin: 0
+    padding: 0
 .caption
   color: $color-font-disabled
 .author

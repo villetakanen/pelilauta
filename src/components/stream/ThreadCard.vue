@@ -3,7 +3,7 @@
     <ThreadCardHeader :thread="thread" />
     <div
       :innerHTML="thread.data.content"
-      class="cardContent"
+      class="cardContent dont-break-out"
     />
     <ThreadCardTailer :thread="thread" />
   </MaterialCard>
