@@ -8,10 +8,17 @@ import { useAuthState } from './state'
 export interface SSOData {
   displayName: string
 }
+
 export interface PublicProfile {
   nick: string
   tagline: string
   photoURL?: string
+}
+
+export interface ProfileMeta {
+  lovedThreads: Array<string>;
+  seenThreads: Map<string, firebase.firestore.Timestamp>;
+  pelilautaLang?: string
 }
 
 const isAdmin: ComputedRef<boolean> = computed(() => {
@@ -28,7 +35,26 @@ const profileRef:Ref<PublicProfile> = ref({
 })
 const profile = computed(() => profileRef.value)
 
+const profileMetaRef:Ref<ProfileMeta> = ref({
+  lovedThreads: new Array<string>(),
+  seenThreads: new Map<string, firebase.firestore.Timestamp>()
+})
+const profileMeta = computed(() => profileMetaRef.value)
+
 let unsubscribe = () => {}
+
+interface seenThread {
+  threadid: string,
+  timestamp: firebase.firestore.Timestamp
+}
+
+function parseSeen (seenArray:Array<seenThread>) {
+  const newMap = new Map<string, firebase.firestore.Timestamp>()
+  seenArray.forEach((seenThread) => {
+    newMap.set(seenThread.threadid, seenThread.timestamp)
+  })
+  return newMap
+}
 
 function fetchProfile (uid:string|null) {
   console.log('fetchProfile', uid)
@@ -44,6 +70,11 @@ function fetchProfile (uid:string|null) {
         nick: snap.data()?.nick || '',
         tagline: snap.data()?.tagline || '',
         photoURL: snap.data()?.photoURL || ''
+      }
+      profileMetaRef.value = {
+        lovedThreads: snap.data()?.lovedThreads,
+        seenThreads: parseSeen(snap.data()?.seenThreads),
+        pelilautaLang: snap.data()?.pelilautaLang
       }
     })
   }
@@ -72,8 +103,9 @@ export function useProfile (): {
     isAdmin: ComputedRef<boolean>;
     sSOData: ComputedRef<SSOData>;
     profile: ComputedRef<PublicProfile>;
+    profileMeta: ComputedRef<ProfileMeta>;
     updateProfile: (fields: Record<string, string>) => Promise<void>
     } {
   init()
-  return { isAdmin, sSOData, profile, updateProfile }
+  return { isAdmin, sSOData, profile, profileMeta, updateProfile }
 }

@@ -1,11 +1,13 @@
 <template>
-  <h1 class="viewHeader">
+  <ViewHeader>
     {{ pageTitle.title }}
-  </h1>
+  </ViewHeader>
+  <div class="contentGrid">
+    <ThreadList :topic="routeTopic" />
+  </div>
   <teleport to="body">
     <MaterialFab
       v-if="showStreamActions"
-      text="New post"
       :action="newPostDialog"
     >
       <img
@@ -14,13 +16,13 @@
       >
     </MaterialFab>
   </teleport>
-  <Stream :topic="routeTopic" />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import Stream from '@/components/stream/Stream.vue'
+import ThreadList from '@/components/stream/ThreadList.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
+import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useMeta } from '@/lib/meta'
 import { useEditorDialog } from '@/lib/editor'
 import { useRoute } from 'vue-router'
@@ -28,8 +30,9 @@ import { useRoute } from 'vue-router'
 export default defineComponent({
   name: 'StreamTopic',
   components: {
-    Stream,
-    MaterialFab
+    ThreadList,
+    MaterialFab,
+    ViewHeader
   },
   props: {
     topic: {

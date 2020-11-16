@@ -1,10 +1,15 @@
 <template>
-  <MaterialCard class="about">
-    <div :innerHTML="aboutContent" />
-    <div class="origin">
-      <a href="https://mekanismi.web.app/">https://mekanismi.web.app/</a>
-    </div>
-  </MaterialCard>
+  <h1 class="viewHeader">
+    {{ $t('app.title') }}
+  </h1>
+  <div class="contentGrid">
+    <MaterialCard class="about">
+      <div :innerHTML="aboutContent" />
+      <div class="origin">
+        <a href="https://mekanismi.web.app/">https://mekanismi.web.app/</a>
+      </div>
+    </MaterialCard>
+  </div>
 </template>
 
 <script lang="ts">

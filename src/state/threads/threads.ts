@@ -30,7 +30,7 @@ export interface Thread {
     data: PostData
 }
 
-function toThread (id: string, data:firebase.firestore.DocumentData|undefined): Thread {
+export function toThread (id: string, data:firebase.firestore.DocumentData|undefined): Thread {
   if (!data) throw new Error('toThread from undefined')
   const post: Thread = {
     id: id,
@@ -95,6 +95,13 @@ export async function fetchThread (threadid: string): Promise<Thread|undefined> 
   return db.collection('stream').doc(threadid).get().then((doc) => {
     if (doc.exists) return toThread(doc.id, doc.data())
   })
+}
+
+export async function deleteThread (actor: string, threadid: string): Promise<void> {
+  firebase.analytics().logEvent('dropPost', { author: actor })
+  const db = firebase.firestore()
+  const postRef = db.collection('stream').doc(threadid)
+  return postRef.delete()
 }
 
 export function useThreads (): {

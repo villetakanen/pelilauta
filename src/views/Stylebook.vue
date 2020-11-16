@@ -1,31 +1,33 @@
 <template>
-  <div id="Stylebook">
-    <h1>Headline 1</h1>
-    <h2>Headline 2</h2>
-    <h3>Headline 3</h3>
-    <h4>Headline 4</h4>
-    <p class="materialButton">
-      p class="materialButton"
-    </p>
-    <div class="section">
-      <h1>Actions</h1>
-      <MaterialButton>Button</MaterialButton>
-      <MaterialButton text>
-        Button: text
-      </MaterialButton>
-      <MaterialButton dark>
-        Button: dark
-      </MaterialButton>
-      <MaterialButton
-        dark
-        text
-      >
-        Button: dark text
-      </MaterialButton>
-    </div>
-    <div class="section">
-      <h1>Stateless components</h1>
-      <Loader />
+  <div class="contentGrid">
+    <div id="Stylebook">
+      <h1>Headline 1</h1>
+      <h2>Headline 2</h2>
+      <h3>Headline 3</h3>
+      <h4>Headline 4</h4>
+      <p class="materialButton">
+        p class="materialButton"
+      </p>
+      <div class="section">
+        <h1>Actions</h1>
+        <MaterialButton>Button</MaterialButton>
+        <MaterialButton text>
+          Button: text
+        </MaterialButton>
+        <MaterialButton dark>
+          Button: dark
+        </MaterialButton>
+        <MaterialButton
+          dark
+          text
+        >
+          Button: dark text
+        </MaterialButton>
+      </div>
+      <div class="section">
+        <h1>Stateless components</h1>
+        <Loader />
+      </div>
     </div>
   </div>
 </template>
