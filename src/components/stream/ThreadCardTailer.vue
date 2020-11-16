@@ -53,7 +53,8 @@ export default defineComponent({
       required: true
     }
   },
-  setup (props) {
+  emits: ['updated'],
+  setup (props, context) {
     const { authors } = useAuthors()
     const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
 
@@ -66,8 +67,15 @@ export default defineComponent({
     })
 
     const toggleLove = () => {
-      if (loves.value) unloveThread(uid.value, props.thread.id)
-      else loveThread(uid.value, props.thread.id)
+      if (loves.value) {
+        unloveThread(uid.value, props.thread.id).then(() => {
+          context.emit('updated')
+        })
+      } else {
+        loveThread(uid.value, props.thread.id).then(() => {
+          context.emit('updated')
+        })
+      }
     }
 
     return { author, loves, toggleLove }

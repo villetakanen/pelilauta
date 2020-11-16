@@ -14,12 +14,12 @@ import 'firebase/firestore'
  * @param uid Firebase user UID, with a valid profile data in /database/profiles/{uid}
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  */
-export function loveThread (uid: string, threadid: string): void {
+export async function loveThread (uid: string, threadid: string): Promise<void> {
   const db = firebase.firestore()
   const threadRef = db.collection('stream').doc(threadid)
   const profileRef = db.collection('profiles').doc(uid)
 
-  db.runTransaction((transaction: firebase.firestore.Transaction) => {
+  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
     return transaction.get(profileRef).then((profile) => {
       if (!profile.exists) {
         throw new Error('state/loveThread, trying to love by a non existing user' + uid)
@@ -49,12 +49,12 @@ export function loveThread (uid: string, threadid: string): void {
  * @param uid Firebase user UID, with a valid profile data in /database/profiles/{uid}
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  */
-export function unloveThread (uid: string, threadid: string): void {
+export async function unloveThread (uid: string, threadid: string): Promise<void> {
   const db = firebase.firestore()
   const threadRef = db.collection('stream').doc(threadid)
   const profileRef = db.collection('profiles').doc(uid)
 
-  db.runTransaction((transaction: firebase.firestore.Transaction) => {
+  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
     return transaction.get(profileRef).then((profile) => {
       if (!profile.exists) {
         throw new Error('state/loveThread, trying to love by a non existing user' + uid)

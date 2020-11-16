@@ -4,6 +4,7 @@
       v-for="thread in localThreads"
       :key="thread.id"
       :thread="thread"
+      @updated="reload(thread.id)"
     />
     <MaterialButton
       text
@@ -20,7 +21,7 @@ import { defineComponent, onMounted, ref, watch } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { Thread, toThread } from '@/state/threads'
+import { Thread, toThread, fetchThread } from '@/state/threads'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import ThreadCard from './ThreadCard.vue'
 
@@ -63,6 +64,16 @@ export default defineComponent({
       }
     }
 
+    async function reload (id: string) {
+      console.log('reload')
+      const updated = await fetchThread(id)
+      if (!updated) return
+      localThreads.value.forEach((val, index) => {
+        if (val.id !== id) return
+        localThreads.value[index] = updated
+      })
+    }
+
     async function nextPage () {
       if (atEnd.value) return
       fetchThreads(props.topic)
@@ -81,7 +92,7 @@ export default defineComponent({
       console.log('watch', val)
     })
 
-    return { nextPage, atEnd, localThreads }
+    return { nextPage, atEnd, localThreads, reload }
   }
 })
 </script>

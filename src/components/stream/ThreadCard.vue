@@ -5,7 +5,10 @@
       :innerHTML="thread.data.content"
       class="cardContent dont-break-out"
     />
-    <ThreadCardTailer :thread="thread" />
+    <ThreadCardTailer
+      :thread="thread"
+      @updated="updated"
+    />
   </MaterialCard>
 </template>
 
@@ -28,6 +31,14 @@ export default defineComponent({
       type: Object as () => Thread,
       required: true
     }
+  },
+  emits: ['updated'],
+  setup (props, context) {
+    const updated = () => {
+      console.log('emits2!')
+      context.emit('updated')
+    }
+    return { updated }
   }
 })
 </script>
