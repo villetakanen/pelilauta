@@ -1,31 +1,33 @@
 <template>
-  <MaterialCard class="main-view">
-    <p>Please login or register to Pelilauta with the buttons below.</p>
-    <div style="text-align: center">
-      <MaterialButton
-        :action="socialGoogleLogin"
-        class="googleLoginButton"
-      >
-        <img
-          src="../assets/google.svg"
-          alt="G"
-          class="icon"
-        > Login with Google
-      </MaterialButton>
-    </div>
-    <div style="text-align: center">
-      <MaterialButton
-        :action="socialFacebookLogin"
-        class="facebookLoginButton"
-      >
-        <img
-          src="../assets/facebook.svg"
-          alt="F"
-          class="icon"
-        > Login with Facebook
-      </MaterialButton>
-    </div>
-  </MaterialCard>
+  <div class="contentGrid">
+    <MaterialCard class="main-view">
+      <p>Please login or register to Pelilauta with the buttons below.</p>
+      <div style="text-align: center">
+        <MaterialButton
+          :action="socialGoogleLogin"
+          class="googleLoginButton"
+        >
+          <img
+            src="../assets/google.svg"
+            alt="G"
+            class="icon"
+          > Login with Google
+        </MaterialButton>
+      </div>
+      <div style="text-align: center">
+        <MaterialButton
+          :action="socialFacebookLogin"
+          class="facebookLoginButton"
+        >
+          <img
+            src="../assets/facebook.svg"
+            alt="F"
+            class="icon"
+          > Login with Facebook
+        </MaterialButton>
+      </div>
+    </MaterialCard>
+  </div>
 </template>
 
 <script lang="ts">

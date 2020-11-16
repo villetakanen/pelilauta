@@ -2,22 +2,24 @@
   <h1 class="viewHeader">
     {{ profile.nick }}
   </h1>
-  <MaterialCard>
-    <img
-      v-if="profile.photoURL"
-      class="avatar"
-      :src="profile.photoURL"
-      :alt="profile.nick"
-    >
-    <div>
-      {{ $t('language.label') }} <a @click="setLang('en')">EN</a> / <a @click="setLang('fi')">FI</a>
-    </div>
-    <div style="clear:both" />
-  </MaterialCard>
-  <PublicProfile />
-  <PrivateInfo v-if="false" />
-  <LovedThreads />
-  <ProfileActions />
+  <div class="contentGrid">
+    <MaterialCard>
+      <img
+        v-if="profile.photoURL"
+        class="avatar"
+        :src="profile.photoURL"
+        :alt="profile.nick"
+      >
+      <div>
+        {{ $t('language.label') }} <a @click="setLang('en')">EN</a> / <a @click="setLang('fi')">FI</a>
+      </div>
+      <div style="clear:both" />
+    </MaterialCard>
+    <PublicProfile />
+    <PrivateInfo v-if="false" />
+    <LovedThreads />
+    <ProfileActions />
+  </div>
 </template>
 
 <script lang="ts">
