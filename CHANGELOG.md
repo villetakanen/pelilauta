@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.7.0](https://github.com/villetakanen/pelilauta/compare/v4.6.2...v4.7.0) (2020-11-16)
+
+
+### Features
+
+* loves to redesigned threadcard ([6af6266](https://github.com/villetakanen/pelilauta/commit/6af626629e60c15f7a58f9c53000b33fa4d354a1))
+* new thead-card-tailer component ([1853713](https://github.com/villetakanen/pelilauta/commit/1853713ab84d0bf3c0dd6aa21680c03719f0dc7b))
+* new thread header fc ([707d387](https://github.com/villetakanen/pelilauta/commit/707d387607218e7aad48de8b050a5fd45d5691bf))
+* refactored thread delete to state ([7cbee72](https://github.com/villetakanen/pelilauta/commit/7cbee72acd29f737540c81e576c47aa7ac9b8dd8))
+* refactored thread-post-in-stream component ([40d9ca4](https://github.com/villetakanen/pelilauta/commit/40d9ca4c17dd9f54339e4bfb1f04b0f135511f02))
+* repliescount ([22a03d7](https://github.com/villetakanen/pelilauta/commit/22a03d7b2e3242055630c3fa03aada694020fc9a))
+* ruoter-view support for threads ([36d3e7c](https://github.com/villetakanen/pelilauta/commit/36d3e7cc8bd59d265d11a881d8cb5d7e5458683d))
+* since method for posts ([4791c65](https://github.com/villetakanen/pelilauta/commit/4791c65776895482e966eb8e2ff54ee0e4c101d0))
+* thread card feature complete ([869d565](https://github.com/villetakanen/pelilauta/commit/869d565e918371ab05aa035daa7367cb38dc11cf))
+* topic page paging added ([e29e0a0](https://github.com/villetakanen/pelilauta/commit/e29e0a0ce539f8b1ce824e6ea5f5ac567a979f4d))
+
+
+### Bug Fixes
+
+* base layout fix to all views ([a6b00d3](https://github.com/villetakanen/pelilauta/commit/a6b00d37018abc8e45809201033158e15c046723))
+* base layout update ([c475a00](https://github.com/villetakanen/pelilauta/commit/c475a00e63882ff55c4fdbe20809bafee2428cbb))
+* ingore firebase.json ([c9eda5f](https://github.com/villetakanen/pelilauta/commit/c9eda5ffb4a060df68b96f3bcd726754c1b7fde6))
+* loved.then ([ba08684](https://github.com/villetakanen/pelilauta/commit/ba086843b7461f87a32999d632c986bf6d979457))
+* offset handling ([efb0ae9](https://github.com/villetakanen/pelilauta/commit/efb0ae9d75ae27de9c5cc9a6f784d03461a07a5f))
+* removed cache of firebase.json ([f449d25](https://github.com/villetakanen/pelilauta/commit/f449d25ef2753593d4b80b0f773c8d807f2b5558))
+
 ### [4.6.2](https://github.com/villetakanen/pelilauta/compare/v4.6.1...v4.6.2) (2020-11-11)
 
 
