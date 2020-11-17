@@ -23,16 +23,23 @@
           <img src="@/assets/icons/save.svg">
         </MaterialButton>
       </div>
-      <!-- label for="tagLine">Tagline</label>
-      <input
-        id="tagLine"
-        v-model="tagline"
-        class="material-textfield"
-      >
-      <MaterialButton :disabled="profile.nick === nickname">
-        save
-      </MaterialButton>
-      <!- - p>{{ profile }}</p -->
+      <div class="materialField">
+        <label for="tagline">{{ $t('profile.tagline') }}</label>
+        <input
+          id="tagline"
+          v-model="v.tagline.$model"
+          class="material-textfield"
+          @input="debug"
+        >
+        <MaterialButton
+          icon
+          inline
+          :disabled="v.tagline.$error || !v.tagline.$dirty"
+          :action="saveTagline"
+        >
+          <img src="@/assets/icons/save.svg">
+        </MaterialButton>
+      </div>
     </MaterialCard>
   </transition>
 </template>
@@ -68,12 +75,19 @@ export default defineComponent({
         typeof localNick.value === 'string') updateProfile({ nick: localNick.value })
     }
 
+    // Tagline field and persistency
+    const localTagline:Ref<string|null> = ref(null)
     const tagline = computed({
-      get: () => (profile.value.tagline),
-      set: (val:string) => {
-        // noop
+      get: () => (localTagline.value === null ? profile.value.tagline : localTagline.value),
+      set: (val:string|undefined) => {
+        localTagline.value = val || ''
       }
     })
+    const saveTagline = () => {
+      if (!v.value.tagline.$error &&
+        typeof localTagline.value === 'string') updateProfile({ tagline: localTagline.value })
+    }
+
     const { authors } = useAuthors()
     const uniqueNick = (value:any) => (value.toLowerCase() === profile.value.nick.toLowerCase() || !authors.value.find((target) => (target.nick.toLowerCase() === value.toLowerCase())))
     const minLength = (value:any) => (value.length > 3)
@@ -81,13 +95,13 @@ export default defineComponent({
 
     const rules = {
       nickname: { required, uniqueNick, minLength, maxLength },
-      tagline: { maxLength }
+      tagline: { maxLength, minLength }
     }
-    const v = useVuelidate(rules, { nickname })
+    const v = useVuelidate(rules, { nickname, tagline })
     function debug () {
-      console.log(v)
+      console.log(v.value.tagline)
     }
-    return { profile, nickname, tagline, v, debug, saveNick }
+    return { profile, nickname, tagline, v, debug, saveNick, saveTagline }
   }
 })
 </script>

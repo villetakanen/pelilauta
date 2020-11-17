@@ -2,9 +2,9 @@
 import { ref, computed, ComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { Profile } from '../stream'
+import { PublicProfile } from '@/state/authz'
 
-const authorsState = ref(new Array<Profile>())
+const authorsState = ref(new Array<PublicProfile>())
 const authors = computed(() => authorsState.value)
 
 let init = false
@@ -19,10 +19,11 @@ function _init () {
     changes.docChanges().forEach((change) => {
       const doc = change.doc
       if (doc.exists) {
-        const author: Profile = {
+        const author: PublicProfile = {
           uid: doc.id,
           nick: doc.data()?.nick,
-          photoURL: doc.data()?.photoURL
+          photoURL: doc.data()?.photoURL,
+          tagline: doc.data()?.tagline
         }
         authors.value.push(author)
       }
@@ -30,7 +31,7 @@ function _init () {
   })
 }
 
-function getAuthor (uid: string): Profile {
+function getAuthor (uid: string): PublicProfile {
   const profile = authors.value.find((p) => (p.uid === uid))
   if (profile) return profile
   return {
@@ -41,8 +42,8 @@ function getAuthor (uid: string): Profile {
 }
 
 export function useAuthors (): {
-  authors: ComputedRef<Profile[]>;
-  getAuthor: (uid: string) => Profile;
+  authors: ComputedRef<PublicProfile[]>;
+  getAuthor: (uid: string) => PublicProfile;
   } {
   _init()
   return { authors, getAuthor }

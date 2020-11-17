@@ -27,7 +27,8 @@
     "publicInfoTitle": "Julkinen profiilini",
     "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
     "ssoInfocardTitle": "Omat tietoni",
-    "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle."
+    "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
+    "tagline": "Allekirjoitus"
   },
   "about": {
     "title": "Pelilaudasta",
