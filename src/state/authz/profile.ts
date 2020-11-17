@@ -10,8 +10,9 @@ export interface SSOData {
 }
 
 export interface PublicProfile {
+  uid?: string
   nick: string
-  tagline: string
+  tagline?: string
   photoURL?: string
 }
 
