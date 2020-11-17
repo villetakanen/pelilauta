@@ -32,7 +32,8 @@
     "publicInfoTitle": "Profile",
     "publicInfoHelper": "Your public profile data, visible to anyone browsing the site.",
     "ssoInfocardTitle": "Personal information",
-    "ssoInfocardHelper": "Your personal profile data, visible to you and administration of the site."
+    "ssoInfocardHelper": "Your personal profile data, visible to you and administration of the site.",
+    "tagline": "Tagline"
   },
   "about": {
     "title": "About Pelilauta",
