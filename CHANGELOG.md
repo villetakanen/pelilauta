@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.0](https://github.com/villetakanen/pelilauta/compare/v4.7.0...v4.8.0) (2020-11-17)
+
+
+### Features
+
+* tagline i18n ([f4130e6](https://github.com/villetakanen/pelilauta/commit/f4130e607dca4285078aefd3009342595ac5911c))
+* taglines ([48cebaf](https://github.com/villetakanen/pelilauta/commit/48cebaf3f315a9aafcb1a98e1b03d5b3f5788708))
+
 ## [4.7.0](https://github.com/villetakanen/pelilauta/compare/v4.6.2...v4.7.0) (2020-11-16)
 
 
