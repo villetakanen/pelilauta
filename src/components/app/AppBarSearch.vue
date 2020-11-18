@@ -10,6 +10,7 @@
     <img
       id="labelForSearch"
       src="@/assets/icons/search.svg"
+      alt=""
     >
   </div>
 </template>
@@ -23,16 +24,14 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'AppBarSearch',
   setup () {
+    // @TODO: isAuthz should be moved to authstate.ts
     const { isAuthz } = useAuthz()
     const { searchResults, search } = useSearch()
     const searchString = ref('')
     const router = useRouter()
-    function toSearch (event: Event) {
-      console.log((event as KeyboardEvent).key)
-      // if ((event as KeyboardEvent).key === '13') {
+    function toSearch () {
       search(searchString.value)
       router.push('/search/results')
-      // }
     }
     return { isAuthz, searchString, searchResults, toSearch }
   }
