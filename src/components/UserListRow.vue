@@ -121,7 +121,7 @@ export default defineComponent({
         if (meta.exists) {
           let frozen: string[] = meta.data()?.frozen
           if (frozen) {
-            frozen = frozen.filter((frozen) => (frozen !== props.uid))
+            frozen = frozen.filter((f) => (f !== props.uid))
           }
           metaRef.update({ frozen: frozen })
         }
