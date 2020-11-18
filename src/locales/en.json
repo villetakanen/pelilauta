@@ -1,5 +1,8 @@
 {
   "lang": "EN",
+  "admin": {
+    "title": "Admin"
+  },
   "app": {
     "title": "Pelilauta",
     "footnote": "Experimental SPA. All text (c) by the author.",
