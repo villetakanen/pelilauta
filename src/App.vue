@@ -1,6 +1,7 @@
 <template>
   <!-- The top navigation bar: contains search field, menu button, and search button. Maybe profile icon too. -->
   <AppBar />
+  <!-- The side navigation drawer, with mobile and desktop modes distinctively -->
   <SideNav v-model="navModel" />
   <div
     id="mainContentWrapper"
@@ -18,6 +19,7 @@
         <img
           style="max-height: 56px; max-width:96px; vertical-align: middle"
           src="@/assets/fox.svg"
+          alt="Pelilauta Logo"
         >
         <span style="line-height: 56px;opacity:0.37; font-size:12px">{{ version }} {{ $t('lang') }}</span>
         <div style="text-align: center; padding:16px; line-height: 12px;opacity:0.37; font-size:12px">
