@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.9.7](https://github.com/villetakanen/pelilauta/compare/v4.9.6...v4.9.7) (2020-11-18)
+
+
+### Bug Fixes
+
+* added avatar to stylebook ([602fb70](https://github.com/villetakanen/pelilauta/commit/602fb70659836d2310487a1c6a0988fff7f59003))
+
 ### [4.9.6](https://github.com/villetakanen/pelilauta/compare/v4.9.5...v4.9.6) (2020-11-18)
 
 
