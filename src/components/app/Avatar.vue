@@ -10,6 +10,7 @@
         v-else
         src="@/assets/avatar.svg"
         style="opacity:0.5"
+        alt="Avatar Image not Set"
       >
     </transition>
   </div>
@@ -41,7 +42,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 div.avatar
-  @include ElementColorPrimaryLight()
+  background-color: $color-fill-primary
   margin: 0
   padding: 2px
   height: 44px
