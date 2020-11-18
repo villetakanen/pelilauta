@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.9.4](https://github.com/villetakanen/pelilauta/compare/v4.9.3...v4.9.4) (2020-11-18)
+
+
+### Bug Fixes
+
+* login screen ux and code quality fixes ([84f6c6e](https://github.com/villetakanen/pelilauta/commit/84f6c6e7837b759c5b80be17d3e1e62d22899e7d))
+
 ### [4.9.3](https://github.com/villetakanen/pelilauta/compare/v4.9.2...v4.9.3) (2020-11-18)
 
 
