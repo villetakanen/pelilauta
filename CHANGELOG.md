@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.9.6](https://github.com/villetakanen/pelilauta/compare/v4.9.5...v4.9.6) (2020-11-18)
+
+
+### Bug Fixes
+
+* appbarsearch alt and other code quality ([8ebddfa](https://github.com/villetakanen/pelilauta/commit/8ebddfa57949b86a6ba9f551116288c01884c3bd))
+* avatar alt for empty image ([eb02082](https://github.com/villetakanen/pelilauta/commit/eb02082e13dd4ea440e88fe6fcebf7f2dccaef48))
+
 ### [4.9.5](https://github.com/villetakanen/pelilauta/compare/v4.9.4...v4.9.5) (2020-11-18)
 
 
