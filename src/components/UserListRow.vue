@@ -4,6 +4,7 @@
       v-if="photo"
       :src="photo"
       class="avatar"
+      alt="Author's Avatar image"
     >
   </td>
   <td
