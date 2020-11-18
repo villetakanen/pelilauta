@@ -1,5 +1,7 @@
 # Pelilauta
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=villetakanen_pelilauta2&metric=alert_status)](https://sonarcloud.io/dashboard?id=villetakanen_pelilauta2)
+
 _Elven wizard casts a resurrection: [pelilauta.web.app](https://pelilauta.web.app)_
 
 An Open Source vue3+firebase project for a community site. 
