@@ -3,9 +3,15 @@
     <table>
       <caption>User Admin</caption>
       <tr>
-        <th>Avatar</th>
-        <th>Author</th>
-        <th>State</th>
+        <th scope="col">
+          Avatar
+        </th>
+        <th scope="col">
+          Author
+        </th>
+        <th scope="col">
+          State
+        </th>
       </tr>
       <tr
         v-for="user in users"
