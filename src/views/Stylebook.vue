@@ -1,4 +1,5 @@
 <template>
+  <ViewHeader>STYLEBOOK</ViewHeader>
   <div class="contentGrid">
     <div id="Stylebook">
       <h1>Headline 1</h1>
@@ -28,6 +29,10 @@
         <h1>Stateless components</h1>
         <Loader />
       </div>
+      <div class="section">
+        <h1>Statefull components</h1>
+        <Avatar nick="no-image" />
+      </div>
     </div>
   </div>
 </template>
@@ -35,13 +40,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import ViewHeader from '@/components/app/ViewHeader.vue'
+import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
     MaterialButton,
-    Loader
+    Loader,
+    ViewHeader,
+    Avatar
   }
 })
 </script>
