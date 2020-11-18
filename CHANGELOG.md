@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.9.2](https://github.com/villetakanen/pelilauta/compare/v4.9.1...v4.9.2) (2020-11-18)
+
+
+### Bug Fixes
+
+* admin view fixes ([33c5239](https://github.com/villetakanen/pelilauta/commit/33c523982e53d42cbddeea9505fd69c3a685065d))
+* code quality for app.vue ([78851b5](https://github.com/villetakanen/pelilauta/commit/78851b5d9ba2dc9f9518d8e2e24764376fba8725))
+* refactored main content tailer out of app.vue ([7bf1ac8](https://github.com/villetakanen/pelilauta/commit/7bf1ac852c5e67556d2e80ab05c55fe827c539e9))
+* removed dead code from app.vue ([14b3d8b](https://github.com/villetakanen/pelilauta/commit/14b3d8bf1da26512b2039b18d7f276c5c750b48d))
+
 ### [4.9.1](https://github.com/villetakanen/pelilauta/compare/v4.9.0...v4.9.1) (2020-11-18)
 
 ## [4.9.0](https://github.com/villetakanen/pelilauta/compare/v4.8.0...v4.9.0) (2020-11-18)
