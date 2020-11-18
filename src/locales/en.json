@@ -8,8 +8,9 @@
     "footnote": "Experimental SPA. All text (c) by the author.",
     "updatesAvailable": "A new version of this App is available. Please click update below to reload the App."
   },
-  "stream": {
-    "title": "Pelilauta"
+  "editorDialog": {
+    "title": "Post",
+    "titleFieldPlaceholder": "Thread title"
   },
   "language": {
       "label": "UI Language"
@@ -28,7 +29,8 @@
     "deferUpdate": "Remind me later",
     "readMore": "Read more...",
     "nextPage": "Load more threads",
-    "quote": "Quote"
+    "quote": "Quote",
+    "send": "Send"
   },
   "postHeader": {
     "postedInStream": "in"
@@ -44,6 +46,9 @@
     "ssoInfocardTitle": "Personal information",
     "ssoInfocardHelper": "Your personal profile data, visible to you and administration of the site.",
     "tagline": "Tagline"
+  },
+  "stream": {
+    "title": "Pelilauta"
   },
   "about": {
     "title": "About Pelilauta",
