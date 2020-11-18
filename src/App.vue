@@ -88,23 +88,4 @@ export default defineComponent({
     &.toggle
       margin-left: 310px
 
-#identitySplash
-  height: 74vw
-  width: 74vw
-  border-radius: 50%
-  position: absolute
-  background-color: $color-fill-primary
-  opacity: 0.22
-  z-index:-1
-  top: -37vw
-  left: -37vw
-
-.scaleToFull-enter-active,
-.scaleToFull-leave-active
-  transition: transform 0.3s ease
-
-.scaleToFull-enter-from,
-.scaleToFull-leave-to
-  transform: scale(0)
-
 </style>
