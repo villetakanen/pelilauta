@@ -8,6 +8,12 @@
   "language": {
     "label": "Appiksen kieli"
   },
+  "login": {
+    "title": "Kirjaudu tai rekisteröidy",
+    "message": "Voit kirjautua sovellukseen Googlen tai Facebookin avulla allaolevilla nappuloilla.",
+    "withGoogleButton": "Googlella",
+    "withFacebookButton": "Facebookila"
+  },
   "action": {
     "logout": "Kirjaudu ulos",
     "toTopicList": "Aiheet",
