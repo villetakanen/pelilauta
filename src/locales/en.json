@@ -14,6 +14,12 @@
   "language": {
       "label": "UI Language"
   },
+  "login": {
+    "title": "Login or Register",
+    "message": "Please login or register using the buttons below",
+    "withGoogleButton": "Google",
+    "withFacebookButton": "Facebook"
+  },
   "action": {
     "logout": "Logout",
     "toTopicList": "Topics",
