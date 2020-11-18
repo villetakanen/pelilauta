@@ -13,7 +13,8 @@
     "toTopicList": "Aiheet",
     "update": "Päivitä",
     "deferUpdate": "Muistuta myöhemmin",
-    "nextPage": "Lataa lisää"
+    "nextPage": "Lataa lisää",
+    "quote": "Lainaa"
   },
   "postHeader": {
     "postedInStream": "aiheessa"

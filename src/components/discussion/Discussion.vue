@@ -7,13 +7,14 @@
       :content="comment.content"
       :commentid="comment.replyid"
       :threadid="threadid"
+      @quote="addQuote"
     />
-    <ReplyForm :threadid="threadid" />
+    <ReplyForm :threadid="threadid" :quoted="quote" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, watch, computed } from 'vue'
+import { defineComponent, onMounted, watch, computed, ref, Ref } from 'vue'
 import { useDiscussion } from '@/lib/discussion'
 import ReplyForm from './ReplyForm.vue'
 import Reply from './Reply.vue'
@@ -56,7 +57,14 @@ export default defineComponent({
         if (t) seenThis(t)
       })
     })
-    return { discussion }
+
+    const quote:Ref<Record<string, string>|null> = ref(null)
+
+    function addQuote (q: Record<string, string>) {
+      quote.value = q
+    }
+
+    return { discussion, addQuote, quote }
   }
 })
 </script>

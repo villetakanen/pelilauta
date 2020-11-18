@@ -78,6 +78,7 @@ import { MenuItem } from '@/lib/stream'
 import { useDiscussion } from '@/lib/discussion'
 import { loveReply, unloveReply, updateReplyContent } from '@/state/discussions'
 import Editor from '@/components/editor/Editor2.vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   components: {
@@ -104,7 +105,8 @@ export default defineComponent({
       required: true
     }
   },
-  setup (props) {
+  emits: ['quote'],
+  setup (props, context) {
     const { uid, isAuthz } = useAuthz()
     const { isAdmin } = useMeta()
     const { deleteComment } = useDiscussion(props.threadid)
@@ -141,8 +143,15 @@ export default defineComponent({
       else loveReply(uid.value, props.threadid, props.commentid)
     }
 
+    const quoteComment = () => {
+      if (reply.value) context.emit('quote', { content: props.content, author: reply.value.nick })
+    }
+
+    const i18n = useI18n()
+
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
+      arr.push({ action: quoteComment, text: i18n.t('action.quote') })
       if (uid.value === props.author) {
         arr.push({ action: dropComment, text: 'Delete!' })
         arr.push({ action: editComment, text: 'Edit' })
