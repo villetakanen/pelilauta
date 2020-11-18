@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.9.3](https://github.com/villetakanen/pelilauta/compare/v4.9.2...v4.9.3) (2020-11-18)
+
+
+### Bug Fixes
+
+* added alt to avatar image ([73c6867](https://github.com/villetakanen/pelilauta/commit/73c6867d54ace3bd24143830750960fddf7ca660))
+* closure scope fix ([a599c2f](https://github.com/villetakanen/pelilauta/commit/a599c2fb43f601989049bc5d86e18b4623f370a1))
+* removed dead appbar component ([a2a05dc](https://github.com/villetakanen/pelilauta/commit/a2a05dc457e3d8d0ec1062080681ba5ac0ae2aef))
+* scopes for ths ([809813e](https://github.com/villetakanen/pelilauta/commit/809813ec3dc8f25ccb42c7db814908dd91a2bcaa))
+
 ### [4.9.2](https://github.com/villetakanen/pelilauta/compare/v4.9.1...v4.9.2) (2020-11-18)
 
 
