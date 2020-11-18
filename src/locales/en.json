@@ -18,7 +18,8 @@
     "update": "Update",
     "deferUpdate": "Remind me later",
     "readMore": "Read more...",
-    "nextPage": "Load more threads"
+    "nextPage": "Load more threads",
+    "quote": "Quote"
   },
   "postHeader": {
     "postedInStream": "in"

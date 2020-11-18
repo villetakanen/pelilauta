@@ -1,42 +1,50 @@
 <template>
-  <div
-    v-if="isAuthz"
-    class="reply-form"
-  >
-    <Editor
-      v-model="reply"
-      :lines="3"
-      class="box"
-    />
-    <MaterialButton
-      icon
-      class="button"
-      color="secondary"
-      :action="send"
+  <div>
+    <div
+      v-if="isAuthz"
+      class="reply-form"
     >
-      <img src="@/assets/send.svg">
-    </MaterialButton>
-  </div>
-  <div
-    v-if="!isAuthz"
-    style="text-align: center;padding: 16px"
-  >
-    {{ $t('global.messages.pleaseLogin') }}
-    <MaterialButton
-      to="/login"
-      text
+      <Editor
+        v-model="reply"
+        :lines="3"
+        class="box"
+      />
+      <MaterialButton
+        icon
+        class="button"
+        color="secondary"
+        :action="send"
+      >
+        <img src="@/assets/send.svg">
+      </MaterialButton>
+    </div>
+    <div
+      v-if="!isAuthz"
+      style="text-align: center;padding: 16px"
     >
-      {{ $t('action.login') }}
-    </MaterialButton>
+      {{ $t('global.messages.pleaseLogin') }}
+      <MaterialButton
+        to="/login"
+        text
+      >
+        {{ $t('action.login') }}
+      </MaterialButton>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, PropType, onMounted, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import Editor from '@/components/editor/Editor2.vue'
 import { useDiscussion } from '@/lib/discussion'
 import { useAuthz } from '@/lib/authz'
+import { required } from '@vuelidate/validators'
+
+interface Quote {
+  content: string
+  author: string
+}
 
 export default defineComponent({
   name: 'ReplyForm',
@@ -48,6 +56,11 @@ export default defineComponent({
     threadid: {
       type: String,
       required: true
+    },
+    quoted: {
+      type: Object as PropType<Quote>,
+      required: false,
+      default: { content: '', author: '' }
     }
   },
   setup (props) {
@@ -60,6 +73,13 @@ export default defineComponent({
       addComment(uid.value, profile.value.nick, reply.value)
       reply.value = ''
     }
+
+    onMounted(() => {
+      watch(() => props.quoted, (val) => {
+        console.log('quote:', val)
+        reply.value = reply.value + '<div class="quoteReply"><div class="reply">' + val.content + '</div><div class="replyAuthor">' + val.author + '</div></div><div><br/></div>'
+      })
+    })
 
     return { reply, send, isAuthz }
   }
