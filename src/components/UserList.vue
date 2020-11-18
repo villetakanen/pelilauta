@@ -1,6 +1,12 @@
 <template>
   <div class="userlist">
     <table>
+      <caption>User Admin</caption>
+      <tr>
+        <th>Avatar</th>
+        <th>Author</th>
+        <th>State</th>
+      </tr>
       <tr
         v-for="user in users"
         :key="user.uid"
