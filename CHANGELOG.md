@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.9.9](https://github.com/villetakanen/pelilauta/compare/v4.9.8...v4.9.9) (2020-11-19)
+
+
+### Bug Fixes
+
+* algolia keys to readme ([84a16ba](https://github.com/villetakanen/pelilauta/commit/84a16ba51b0821ca12a5c679caddcf14d86b1d15))
+* editordialog code quality fixes ([35ec61e](https://github.com/villetakanen/pelilauta/commit/35ec61e4c741acb84871653cc9f7619e135e4861))
+* image uploader code quality ([35ad65e](https://github.com/villetakanen/pelilauta/commit/35ad65e4ff04400aaa7f843c975f3708bb2c6389))
+
 ### [4.9.8](https://github.com/villetakanen/pelilauta/compare/v4.9.7...v4.9.8) (2020-11-18)
 
 ### [4.9.7](https://github.com/villetakanen/pelilauta/compare/v4.9.6...v4.9.7) (2020-11-18)
