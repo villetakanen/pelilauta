@@ -10,8 +10,8 @@ const isAnonymous = computed(() => {
 })
 
 const isAdmin = computed(() => {
-  const { isAdmin } = useMeta()
-  return isAdmin(uid.value)
+  const { isAdmin: inAdmins } = useMeta()
+  return inAdmins(uid.value)
 })
 
 const authUid = ref('')
