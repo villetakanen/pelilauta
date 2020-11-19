@@ -7,10 +7,12 @@
       <img
         v-if="loved"
         src="@/assets/icons/action-love-full.svg"
+        alt="You love this thread, click to unlove"
       >
       <img
         v-else
         src="@/assets/icons/action-love-hollow.svg"
+        alt="You dont love this thread yet, click to love"
       >
     </transition>
   </div>
