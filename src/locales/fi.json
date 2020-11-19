@@ -5,6 +5,10 @@
     "footnote": "Kokeellinen SPA -sovellus. Kaikki tekstit kuuluvat kirjoittajilleen.",
     "updatesAvailable": "Sovelluksesta on saatavilla uusi versio. Klikkaa päivitä -nappulaa alta ladataksesi uuden version"
   },
+  "editorDialog": {
+    "title": "Viesti",
+    "titleFieldPlaceholder": "Ketjun otsikko"
+  },
   "language": {
     "label": "Appiksen kieli"
   },
@@ -20,7 +24,8 @@
     "update": "Päivitä",
     "deferUpdate": "Muistuta myöhemmin",
     "nextPage": "Lataa lisää",
-    "quote": "Lainaa"
+    "quote": "Lainaa",
+    "send": "Lähetä"
   },
   "postHeader": {
     "postedInStream": "aiheessa"

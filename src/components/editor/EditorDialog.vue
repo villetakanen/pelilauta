@@ -1,10 +1,10 @@
 <template>
   <teleport to="body">
-    <!-- Container for the dialog, visible on desktop -->
+    <!-- Container for the dialog, visible on desktop
+      @click.self="dialog=false"  -->
     <div
       v-show="dialog"
       class="editor-dialog-container"
-      @click.self="dialog=false"
     >
       <!-- Modal dialog, shown as full-page pane on mobile -->
       <div
@@ -20,16 +20,7 @@
             <img src="@/assets/action-back.svg">
           </div>
           <div class="grow">
-            <h3>New post</h3>
-          </div>
-          <div class="post-action">
-            <MaterialButton
-              dark
-              text
-              :action="publish"
-            >
-              Post
-            </MaterialButton>
+            <h3>{{ $t('editorDialog.title') }}</h3>
           </div>
           <div
             class="action-icon-desktop"
@@ -82,7 +73,7 @@
               block
               :action="publish"
             >
-              Post
+              {{ $t('action.send') }}
             </MaterialButton>
           </div>
         </div>
@@ -101,6 +92,7 @@ import { PostData, useStream } from '@/lib/stream'
 import { useMeta } from '@/lib/meta'
 import { useAuthz } from '@/lib/authz'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'EditorDialog',
@@ -121,9 +113,10 @@ export default defineComponent({
     const images = ref(new Array<string>())
 
     const title = ref('')
+    const i18n = useI18n()
     const titlePlaceholder = computed(() => {
       if (title.value.length > 0) return title.value
-      let placeholder = 'Title'
+      let placeholder = i18n.t('editorDialog.titleFieldPlaceholder')
       if (content.value.length > 0) {
         if (content.value.length > 11) placeholder = content.value.substring(0, 11)
         else placeholder = content.value
