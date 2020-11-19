@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.9.10](https://github.com/villetakanen/pelilauta/compare/v4.9.9...v4.9.10) (2020-11-19)
+
+
+### Bug Fixes
+
+* code smells removed ([7f998dd](https://github.com/villetakanen/pelilauta/commit/7f998dd1adba07cd31ac9c7da0c0f23b6fc54b9d))
+* loveaction alts ([3a5bfc6](https://github.com/villetakanen/pelilauta/commit/3a5bfc6501781296829cd3f7347a213a364d6034))
+
 ### [4.9.9](https://github.com/villetakanen/pelilauta/compare/v4.9.8...v4.9.9) (2020-11-19)
 
 
