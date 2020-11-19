@@ -1,6 +1,9 @@
 <template>
   <div class="loaderContainer">
-    <img src="@/assets/fox.svg">
+    <img
+      src="@/assets/fox.svg"
+      alt="Loading..."
+    >
     <div class="loader" />
   </div>
 </template>
@@ -19,6 +22,23 @@
   border-radius: 50%
   width: 56px
   height: 56px
+
+.small
+  .loaderContainer
+    img
+      height: 44px
+      width: 44px
+
+  .loader, .loader:after
+    border-radius: 50%
+    width: 32px
+    height: 32px
+  .loader
+    margin: 2px
+    border-top: 6px solid #00233711
+    border-right: 6px solid #00233711
+    border-bottom: 6px solid #00233711
+    border-left: 6px solid #00233744
 
 .loader
   position: relative

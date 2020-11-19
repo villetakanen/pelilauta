@@ -5,7 +5,10 @@
       :key="image"
       class="image-preview"
     >
-      <img :src="image">
+      <img
+        :src="image"
+        alt="preview of the image"
+      >
     </div>
     <div class="image-add">
       <input
@@ -15,7 +18,15 @@
         @change="uploadImage"
       >
       <label for="file">
-        <img src="@/assets/add-photo-action.svg">
+        <img
+          v-if="!uploading"
+          src="@/assets/add-photo-action.svg"
+          alt="Upload file labed"
+        >
+        <Loader
+          v-if="uploading"
+          class="small"
+        />
       </label>
     </div>
   </div>
@@ -25,9 +36,12 @@
 import { defineComponent, ref, watch } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/storage'
-// import { setCaret, getCaretOffset } from './caret'
+import Loader from '@/components/app/Loader.vue'
 
 export default defineComponent({
+  components: {
+    Loader
+  },
   props: {
     modelValue: {
       type: Array,
@@ -38,12 +52,14 @@ export default defineComponent({
   emits: ['update:modelValue', 'update:selected'],
   setup (props, context) {
     const images = ref(props.modelValue as Array<string>)
+    const uploading = ref(false)
 
     watch(images, (value) => context.emit('update:modelValue', value))
 
     function uploadImage (e: Event) {
       if (!e.target) return
       const element = e.target as HTMLInputElement
+      uploading.value = true
       if (element.files && element.files[0]) {
         const file = element.files[0]
         const storageRef = firebase.storage().ref()
@@ -51,12 +67,13 @@ export default defineComponent({
         fileRef.put(file).then((snapshot) => {
           snapshot.ref.getDownloadURL().then((url) => {
             images.value.push(url)
+            uploading.value = false
           })
         })
       }
     }
 
-    return { images, focus, uploadImage }
+    return { images, focus, uploadImage, uploading }
   }
 })
 </script>
