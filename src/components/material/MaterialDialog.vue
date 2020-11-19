@@ -41,8 +41,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import firebase from 'firebase/app'
+import { useRouter } from 'vue-router'
 import { useAuthz } from '@/lib/authz'
+import MaterialButton from '@/components/material/MaterialButton.vue'
 
 export default defineComponent({
   components: {
@@ -55,8 +57,16 @@ export default defineComponent({
     }
   },
   setup () {
-    const { ssoInfo, logout, createProfile } = useAuthz()
-    return { ssoInfo, logout, createProfile }
+    const { ssoInfo, createProfile } = useAuthz()
+    const router = useRouter()
+
+    function logout () {
+      firebase.auth().signOut().then(() => {
+        router.push('/')
+      })
+    }
+
+    return { ssoInfo, createProfile, logout }
   }
 })
 </script>

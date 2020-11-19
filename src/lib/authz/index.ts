@@ -4,7 +4,6 @@
 import { ref, computed } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { useRouter } from 'vue-router'
 import { useAuthState } from '@/state/authz'
 
 const state = ref({
@@ -93,13 +92,6 @@ function onAuthStateChanged (user: firebase.User|null): void {
   subToProfile(user.uid)
 }
 
-function logout (): void {
-  const router = useRouter()
-  firebase.auth().signOut().then(() => {
-    router.push('/')
-  })
-}
-
 function createProfile (): void {
   const db = firebase.firestore()
   const profileRef = db.collection('profiles').doc(uid.value)
@@ -130,5 +122,5 @@ function stampSeen (id: string, flowTime: firebase.firestore.Timestamp) {
 }
 
 export function useAuthz () {
-  return { onAuthStateChanged, isAuthz, profile, uid, missingProfile, ssoInfo, logout, createProfile, lang, switchLang, stampSeen }
+  return { onAuthStateChanged, isAuthz, profile, uid, missingProfile, ssoInfo, createProfile, lang, switchLang, stampSeen }
 }
