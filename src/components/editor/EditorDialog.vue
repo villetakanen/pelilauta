@@ -1,7 +1,6 @@
 <template>
   <teleport to="body">
-    <!-- Container for the dialog, visible on desktop
-      @click.self="dialog=false"  -->
+    <!-- Container for the dialog, visible on desktop -->
     <div
       v-show="dialog"
       class="editor-dialog-container"
