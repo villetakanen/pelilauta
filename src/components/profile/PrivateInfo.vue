@@ -13,7 +13,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'PrivateProfileInfoCard',
@@ -21,7 +20,7 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
-    const { sSOData } = useProfile()
+    const sSOData = null
     return { sSOData }
   }
 })

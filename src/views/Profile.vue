@@ -30,6 +30,7 @@ import PublicProfile from '@/components/profile/PublicProfile.vue'
 import LovedThreads from '@/components/profile/LovedThreads.vue'
 import ProfileActions from '@/components/profile/ProfileActions.vue'
 import { useAuthz } from '@/lib/authz'
+import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'Home',
@@ -41,7 +42,8 @@ export default defineComponent({
     PublicProfile
   },
   setup () {
-    const { profile, switchLang } = useAuthz()
+    const { switchLang } = useAuthz()
+    const { profile } = useProfile()
 
     function setLang (lang: string) {
       switchLang(lang)

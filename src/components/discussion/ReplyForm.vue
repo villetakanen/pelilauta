@@ -40,6 +40,7 @@ import Editor from '@/components/editor/Editor2.vue'
 import { useDiscussion } from '@/lib/discussion'
 import { useAuthz } from '@/lib/authz'
 import { required } from '@vuelidate/validators'
+import { useProfile } from '@/state/authz'
 
 interface Quote {
   content: string
@@ -69,7 +70,8 @@ export default defineComponent({
 
     const send = () => {
       const { addComment } = useDiscussion(props.threadid)
-      const { uid, profile } = useAuthz()
+      const { uid } = useAuthz()
+      const { profile } = useProfile()
       addComment(uid.value, profile.value.nick, reply.value)
       reply.value = ''
     }

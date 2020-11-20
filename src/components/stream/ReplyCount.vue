@@ -19,6 +19,7 @@
 import { defineComponent, computed } from 'vue'
 import { useThreads, fetchThread } from '@/state/threads'
 import { useAuthz } from '@/lib/authz'
+import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   props: {
@@ -38,18 +39,19 @@ export default defineComponent({
       })
     })
 
-    const { profile, isAuthz } = useAuthz()
+    const { isAuthz } = useAuthz()
+    const { profileMeta } = useProfile()
     // const replyCount = computed(() => (1))
     const newReplies = computed(() => {
       if (!isAuthz) return false
-      if (!profile.value || !thread.value) return false
-      if (profile.value.seenThreads.has(props.threadid)) {
-        const lastSeen = profile.value.seenThreads.get(props.threadid)
+      if (!profileMeta.value || !thread.value) return false
+      if (profileMeta.value.seenThreads.has(props.threadid)) {
+        const lastSeen = profileMeta.value.seenThreads.get(props.threadid)
         return !lastSeen || lastSeen.seconds < thread.value.flowTime.seconds
       }
       return true
     })
-    return { newReplies, thread, profile, isAuthz }
+    return { newReplies, thread, isAuthz }
   }
 })
 </script>

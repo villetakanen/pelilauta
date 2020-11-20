@@ -41,6 +41,7 @@ import ReplyCount from './ReplyCount.vue'
 import { useAuthz } from '@/lib/authz'
 import { useAuthors } from '@/lib/authors'
 import { loveThread, unloveThread } from '@/state/threads'
+import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   components: {
@@ -95,7 +96,8 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAuthz, uid, profile } = useAuthz()
+    const { isAuthz, uid } = useAuthz()
+    const { profileMeta } = useProfile()
 
     const { authors } = useAuthors()
 
@@ -103,8 +105,8 @@ export default defineComponent({
     const photoURL = computed(() => (authors.value.find((a) => (a.uid === props.author))?.photoURL))
 
     const loves = computed(() => {
-      if (typeof profile.value.lovedThreads === 'undefined') return false
-      return profile.value.lovedThreads.includes(props.threadid)
+      if (typeof profileMeta.value.lovedThreads === 'undefined') return false
+      return profileMeta.value.lovedThreads.includes(props.threadid)
     })
 
     const toggleLove = () => {

@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts">
+import { useProfile } from '@/state/authz'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthz } from '../lib/authz'
@@ -32,7 +33,8 @@ export default defineComponent({
   },
   setup () {
     const router = useRouter()
-    const { isAuthz, profile } = useAuthz()
+    const { isAuthz } = useAuthz()
+    const { profile } = useProfile()
 
     const reroute = () => {
       if (!isAuthz.value) router.push('/login')

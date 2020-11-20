@@ -52,6 +52,7 @@ import { useRouter } from 'vue-router'
 import { useMeta } from '@/lib/meta'
 import { useAuthz } from '@/lib/authz'
 import LoveAction from '@/components/app/LoveAction.vue'
+import { useAuthState, useProfile } from '@/state/authz'
 
 export default defineComponent({
   components: {
@@ -68,7 +69,8 @@ export default defineComponent({
   },
   setup (props) {
     const router = useRouter()
-    const { uid, profile } = useAuthz()
+    const { profile, profileMeta } = useProfile()
+    const { uid } = useAuthState()
 
     const { toDisplayString } = useStream()
     const { stream } = useThreads()
@@ -86,8 +88,8 @@ export default defineComponent({
     }
 
     const loves = computed(() => {
-      if (typeof profile.value.lovedThreads === 'undefined') return false
-      return profile.value.lovedThreads.includes(props.threadid)
+      if (typeof profileMeta.value.lovedThreads === 'undefined') return false
+      return profileMeta.value.lovedThreads.includes(props.threadid)
     })
 
     const toggleLove = () => {

@@ -14,7 +14,7 @@
           <img
             class="avatar"
             alt="avatar"
-            :src="ssoInfo.photoUrl"
+            :src="ssoInfo.photoURL"
           >
           <p>{{ ssoInfo.displayName }}</p>
           <p>{{ ssoInfo.email }} &nbsp; </p>
@@ -43,8 +43,8 @@
 import { defineComponent } from 'vue'
 import firebase from 'firebase/app'
 import { useRouter } from 'vue-router'
-import { useAuthz } from '@/lib/authz'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   components: {
@@ -57,7 +57,12 @@ export default defineComponent({
     }
   },
   setup () {
-    const { ssoInfo, createProfile } = useAuthz()
+    const { createProfile } = useProfile()
+    const ssoInfo = {
+      displayName: firebase.auth().currentUser?.displayName,
+      email: firebase.auth().currentUser?.email,
+      photoURL: firebase.auth().currentUser?.photoURL
+    }
     const router = useRouter()
 
     function logout () {
