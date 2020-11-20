@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import firebase from 'firebase/app'
 import { useRouter } from 'vue-router'
 import MaterialButton from '@/components/material/MaterialButton.vue'
@@ -58,11 +58,11 @@ export default defineComponent({
   },
   setup () {
     const { createProfile } = useProfile()
-    const ssoInfo = {
+    const ssoInfo = ref({
       displayName: firebase.auth().currentUser?.displayName,
       email: firebase.auth().currentUser?.email,
       photoURL: firebase.auth().currentUser?.photoURL
-    }
+    })
     const router = useRouter()
 
     function logout () {
