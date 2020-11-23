@@ -88,6 +88,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/admin',
     component: () => import(/* webpackChunkName: "about" */ '../views/Administration.vue')
+  },
+  {
+    path: '/mekanismi',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/WikiIndex.vue')
   }
 ]
 
