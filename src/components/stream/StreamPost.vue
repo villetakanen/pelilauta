@@ -109,9 +109,9 @@ export default defineComponent({
       return profileMeta.value.lovedThreads.includes(props.threadid)
     })
 
-    const toggleLove = () => {
-      if (loves.value) unloveThread(uid.value, props.threadid)
-      else loveThread(uid.value, props.threadid)
+    async function toggleLove () {
+      if (loves.value) return unloveThread(uid.value, props.threadid)
+      else return loveThread(uid.value, props.threadid)
     }
 
     return { nick, photoURL, isAuthz, toggleLove, loves }
