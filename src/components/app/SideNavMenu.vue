@@ -16,6 +16,10 @@
           src="@/assets/icons/d12-black.svg"
         >
         <img
+          v-if="item.icon === 'mekanismi'"
+          src="@/assets/icons/d6-black.svg"
+        >
+        <img
           v-if="item.icon === 'd20'"
           src="@/assets/icons/d20-black.svg"
         >
@@ -64,6 +68,7 @@ export default defineComponent({
       const allNavItems: NavItem[] = [
         { key: 'home', to: '/', icon: 'd12' }
       ]
+      allNavItems.push({ key: 'mekanismi', to: '/mekanismi', icon: 'mekanismi' })
       allNavItems.push({ key: 'admin', admin: true, to: '/admin', icon: 'admin' })
       allNavItems.push({ key: 'sections', sub: true })
       topics.value.forEach((topic) => {

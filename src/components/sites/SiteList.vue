@@ -1,22 +1,57 @@
 <template>
   <div>
-    <MaterialAction>{{ $t('action.createSite') }}</MaterialAction>
-    <div
+    <!-- MaterialButton>{{ $t('action.createSite') }}</MaterialButton -->
+    <MaterialCard
       v-for="site in sites"
-      :key="site.name"
+      :key="site.id"
     >
-      {{ site.name }}
-    </div>
+      <h3> {{ site.name }} </h3>
+      <p>{{ site.description }}</p>
+      <p><a :href="'https://mekanismi.web.app/#/v/'+site.id">{{ 'mekanismi.web.app/#/v/'+site.id }}</a></p>
+    </MaterialCard>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/analytics'
+// import MaterialButton from '@/components/material/MaterialButton.vue'
+import MaterialCard from '@/components/material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'SiteList',
+  components: {
+    // MaterialButton,
+    MaterialCard
+  },
   setup () {
-    const sites = ref([{ name: 'aa' }])
+    const sites = ref([])
+
+    let unsubscribe = () => {}
+
+    async function subscribeToSites () {
+      unsubscribe()
+      const db = firebase.firestore()
+      unsubscribe = db.collection('sites').where('hidden', '==', false).orderBy('lastUpdated', 'desc').onSnapshot((snap) => {
+        console.log(snap.size)
+        snap.docChanges().forEach((change) => {
+          console.log(change)
+          sites.value.push({ id: change.doc.id, ...change.doc.data() })
+        })
+      })
+    }
+
+    subscribeToSites()
+    onMounted(() => {
+      subscribeToSites()
+    })
+
+    onUnmounted(() => {
+      unsubscribe()
+    })
+
     return { sites }
   }
 })
