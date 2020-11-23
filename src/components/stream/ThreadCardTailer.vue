@@ -66,13 +66,13 @@ export default defineComponent({
       return profileMeta.value.lovedThreads.includes(props.thread.id)
     })
 
-    const toggleLove = () => {
+    async function toggleLove () {
       if (loves.value) {
-        unloveThread(uid.value, props.thread.id).then(() => {
+        return unloveThread(uid.value, props.thread.id).then(() => {
           context.emit('updated')
         })
       } else {
-        loveThread(uid.value, props.thread.id).then(() => {
+        return loveThread(uid.value, props.thread.id).then(() => {
           context.emit('updated')
         })
       }

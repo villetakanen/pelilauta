@@ -16,14 +16,14 @@ import 'firebase/analytics'
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  * @param replyid the id of a reply, of the thread, found in /database/stream/{threadid}/comments/{replyid}
  */
-export function loveReply (uid: string, threadid: string, replyid: string): void {
+export async function loveReply (uid: string, threadid: string, replyid: string): Promise<void> {
   const db = firebase.firestore()
   const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
 
   // console.log('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
   firebase.analytics().logEvent('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
-  db.runTransaction((transaction: firebase.firestore.Transaction) => {
+  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
     return transaction.get(replyRef).then((reply) => {
       if (!reply.exists) {
         throw new Error('state/loveReply, trying to love by a non existing reply' + threadid + '/' + replyid)
@@ -60,14 +60,14 @@ export function loveReply (uid: string, threadid: string, replyid: string): void
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  * @param replyid the id of a reply, of the thread, found in /database/stream/{threadid}/comments/{replyid}
  */
-export function unloveReply (uid: string, threadid: string, replyid: string): void {
+export async function unloveReply (uid: string, threadid: string, replyid: string): Promise<void> {
   const db = firebase.firestore()
   const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
 
   // console.log('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
   firebase.analytics().logEvent('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
-  db.runTransaction((transaction: firebase.firestore.Transaction) => {
+  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
     return transaction.get(replyRef).then((reply) => {
       if (!reply.exists) {
         throw new Error('state/loveReply, trying to love by a non existing reply' + threadid + '/' + replyid)
