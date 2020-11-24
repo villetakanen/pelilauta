@@ -13,12 +13,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { defineComponent, onMounted, onUnmounted, ref, Ref } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 // import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+
+interface Site {
+  id: string;
+  name?: string;
+  description?: string;
+}
 
 export default defineComponent({
   name: 'SiteList',
@@ -27,14 +33,14 @@ export default defineComponent({
     MaterialCard
   },
   setup () {
-    const sites = ref([])
+    const sites:Ref<Site[]> = ref([])
 
     let unsubscribe = () => {}
 
     async function subscribeToSites () {
       unsubscribe()
       const db = firebase.firestore()
-      unsubscribe = db.collection('sites').where('hidden', '==', false).orderBy('lastUpdated', 'desc').onSnapshot((snap) => {
+      unsubscribe = db.collection('sites').where('hidden', '==', false).orderBy('lastUpdate', 'desc').onSnapshot((snap) => {
         console.log(snap.size)
         snap.docChanges().forEach((change) => {
           console.log(change)
