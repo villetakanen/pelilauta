@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Editortest.vue</h1>
+  <ViewHeader>EDITOR PLAYGROUND</ViewHeader>
+  <div class="contentGrid">
     <div class="test-container">
       <div class="test-box">
         <MaterialCard>
@@ -37,13 +37,15 @@
 import { defineComponent, ref } from 'vue'
 import Editor from '@/components/editor/Editor2.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import ViewHeader from '@/components/app/ViewHeader.vue'
 import { PostImage } from '@/lib/stream'
 
 export default defineComponent({
   name: 'EditorTest',
   components: {
     Editor,
-    MaterialCard
+    MaterialCard,
+    ViewHeader
   },
   setup () {
     const content = ref('')

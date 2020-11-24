@@ -83,6 +83,7 @@ export default defineComponent({
       allNavItems.push({ key: 'meta', sub: true })
       allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
       allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'player' })
+      allNavItems.push({ key: 'editorTest', to: '/editortest', admin: true, icon: 'd12' })
       allNavItems.push({ key: 'about', to: '/about', icon: 'd12' })
       return allNavItems.filter((val) => (
         isAdmin.value ||
