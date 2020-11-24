@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/villetakanen/pelilauta/compare/v4.9.10...v5.0.0) (2020-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* - the site now expects mekanismi wiki sites to exist.
+
+### Features
+
+* love animation ([a9be8e1](https://github.com/villetakanen/pelilauta/commit/a9be8e19b99a8ef06dea76d851e7788bda89607e))
+* love animation proliferated ([6a00e9a](https://github.com/villetakanen/pelilauta/commit/6a00e9a8bfc4d5ea676b917f3aa2e836ee042c37))
+* mekanismi merger ([9fe7764](https://github.com/villetakanen/pelilauta/commit/9fe7764e4d94cff501b2fd48f339892e7c7e294b))
+* mekanismi site listin view added ([5f75309](https://github.com/villetakanen/pelilauta/commit/5f75309c36da8345c6a93cb963cef9ab9bb45af6))
+* more stylebook options ([7f8b306](https://github.com/villetakanen/pelilauta/commit/7f8b3068bdf95618d5ac98161c8c5d6c1a894f23))
+* scaffold for bold/italic ([89f0d19](https://github.com/villetakanen/pelilauta/commit/89f0d193b240512363802fd3f3988d16168ef876))
+
+
+### Bug Fixes
+
+* alt to siteinfo ([51714dc](https://github.com/villetakanen/pelilauta/commit/51714dc4db65d50dc801d70c0055ae537465c7fb))
+* color corrections ([555da34](https://github.com/villetakanen/pelilauta/commit/555da345d7676b5766b43ea7cbdc4c352ecae37c))
+* correct name for sites flowtime ([b1b210e](https://github.com/villetakanen/pelilauta/commit/b1b210e3d2fcabfaac80ae87e2e34c9486425e23))
+* ref for ssodata ([10b0246](https://github.com/villetakanen/pelilauta/commit/10b0246b06cb44534b991b443f5da8511f966ee8))
+* refactored authstate to authz state.ts ([71baf5e](https://github.com/villetakanen/pelilauta/commit/71baf5e48339ae41acb423d406a5b639a67d399d))
+* removed misplaced logic from authz lib ([83ae1c7](https://github.com/villetakanen/pelilauta/commit/83ae1c7f5e5209a40c29f9195bf92fc2122973a8))
+
 ### [4.9.10](https://github.com/villetakanen/pelilauta/compare/v4.9.9...v4.9.10) (2020-11-19)
 
 
