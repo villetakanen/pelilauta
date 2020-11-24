@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/analytics'
 import { useAuthz } from '../authz'
+import { useAuthState } from '@/state/authz'
 
 let init = false
 
@@ -20,7 +21,9 @@ function _init () {
   })
   firebase.auth().onAuthStateChanged((user) => {
     const { onAuthStateChanged } = useAuthz()
+    const { onAuthStateChanged: onAuthStateChangedNew } = useAuthState()
     onAuthStateChanged(user)
+    onAuthStateChangedNew(user)
   })
   firebase.firestore().enablePersistence()
   firebase.analytics()

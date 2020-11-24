@@ -2,6 +2,13 @@
   <ViewHeader>STYLEBOOK</ViewHeader>
   <div class="contentGrid">
     <div id="Stylebook">
+      <div class="section">
+        <div class="colorbox color1" />
+        <div class="colorbox color2" />
+        <div class="colorbox color3" />
+        <div class="colorbox color4" />
+        <div class="colorbox color5" />
+      </div>
       <h1>Headline 1</h1>
       <h2>Headline 2</h2>
       <h3>Headline 3</h3>
@@ -56,8 +63,25 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/material-colors.sass
+
 .section
   padding-top: 8px
   margin-top: 7px
   border-top: solid 3px #12002337
+
+.colorbox
+  height: 72px
+  width: 72px
+  border-radius: 36px
+  margin: 8px
+  display: inline-block
+.colorbox+.colorbox
+  margin-left:-22px
+.color1
+  background-color: $color-fill-primary
+.color2
+  background-color: $color-fill-secondary
+.color3
+  background-color: white
 </style>

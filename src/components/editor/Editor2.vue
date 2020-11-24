@@ -6,6 +6,7 @@
     :innerHTML="modelValue"
     @paste="onPaste"
     @blur="onBlur"
+    @input="onMarkup"
   />
 </template>
 
@@ -51,7 +52,10 @@ export default defineComponent({
       }
       updateModelValue(el.innerHTML)
     }
-    return { onBlur, onPaste }
+
+    const onMarkup = () => {}
+
+    return { onBlur, onPaste, onMarkup }
   }
 })
 </script>
@@ -71,6 +75,7 @@ export default defineComponent({
   background-color: $color-base-dark
   border-bottom: solid 1px $color-fill-primary-dark
   overflow: hidden
+  overflow-y: scroll
   &:hover
     background-color: $color-base-darker
 

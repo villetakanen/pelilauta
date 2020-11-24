@@ -4,6 +4,7 @@
       <img
         class="icon"
         src="@/assets/icons/d12-black.svg"
+        alt="D12 is the site secondary logo"
       >
       <h3>
         {{ $t('siteInfo.title') }}

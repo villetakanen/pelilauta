@@ -137,10 +137,10 @@ export default defineComponent({
       return reply.value.lovers.includes(uid.value)
     })
 
-    const toggleLove = () => {
+    async function toggleLove () {
       if (!isAuthz) return
-      if (loves.value) unloveReply(uid.value, props.threadid, props.commentid)
-      else loveReply(uid.value, props.threadid, props.commentid)
+      if (loves.value) return unloveReply(uid.value, props.threadid, props.commentid)
+      else return loveReply(uid.value, props.threadid, props.commentid)
     }
 
     const quoteComment = () => {

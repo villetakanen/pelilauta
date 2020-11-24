@@ -57,7 +57,11 @@
     "meta": "Meta",
     "about": "Tietoja Pelilaudasta",
     "profile": "Oma profiilini",
-    "stylebook": "Stylebook"
+    "stylebook": "Stylebook",
+    "mekanismi": "Mekanismi"
+  },
+  "mekanismi": {
+    "title": "Mekanismi"
   },
   "siteInfo": {
     "title": "Pelilauta 2",

@@ -20,6 +20,7 @@ import ReplyForm from './ReplyForm.vue'
 import Reply from './Reply.vue'
 import { useAuthz } from '@/lib/authz'
 import { useThreads, Thread, fetchThread } from '@/state/threads'
+import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'Discussion',
@@ -35,7 +36,8 @@ export default defineComponent({
   },
   setup (props) {
     const { discussion } = useDiscussion(props.threadid)
-    const { stampSeen, profile } = useAuthz()
+    const { stampSeen } = useAuthz()
+    const { profileMeta } = useProfile()
     const { stream } = useThreads()
     const thread = computed(() => {
       const t = stream.value.find((val) => (val.id === props.threadid))
@@ -47,7 +49,7 @@ export default defineComponent({
 
     function seenThis (t: Thread) {
       console.log('seenThis', t.flowTime, t.id)
-      const lastSeen = profile.value.seenThreads.get(props.threadid)
+      const lastSeen = profileMeta.value.seenThreads.get(props.threadid)
       if (!lastSeen || lastSeen.seconds < t.flowTime.seconds) stampSeen(t.id, t.flowTime)
     }
 
