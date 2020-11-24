@@ -8,6 +8,7 @@
             v-model="content"
             @new-images="addImages"
           />
+          <QuillEditor />
         </MaterialCard>
       </div>
       <div class="test-box">
@@ -38,6 +39,7 @@ import { defineComponent, ref } from 'vue'
 import Editor from '@/components/editor/Editor2.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
+import QuillEditor from '@/components/quill/QuillEditor.vue'
 import { PostImage } from '@/lib/stream'
 
 export default defineComponent({
@@ -45,7 +47,8 @@ export default defineComponent({
   components: {
     Editor,
     MaterialCard,
-    ViewHeader
+    ViewHeader,
+    QuillEditor
   },
   setup () {
     const content = ref('')
