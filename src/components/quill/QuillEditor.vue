@@ -1,8 +1,9 @@
 <template>
-  <div>a</div>
-  <div id="editor">
-    <p>Testing?</p>
-  </div>
+  <div
+    v-once
+    id="editor"
+    :innerHTML="modelValue"
+  />
 </template>
 
 <script lang="ts">
@@ -11,13 +12,22 @@ import Quill from 'quill'
 
 export default defineComponent({
   name: 'QuillEditor',
-  setup () {
+  props: {
+    modelValue: { type: String, required: false, default: '' },
+    toolbar: { type: Boolean, required: false, default: false }
+  },
+  emits: ['update:modelValue', 'new-images'],
+  setup (props, context) {
     onMounted(() => {
       const options = {
+        theme: props.toolbar ? 'snow' : undefined
       }
-      const editor = new Quill('#editor', options)
+      const quill = new Quill('#editor', options)
+      quill.on('text-change', () => {
+        console.log(quill.root.innerHTML)
+        context.emit('update:modelValue', quill.root.innerHTML)
+      })
     })
   }
 })
-
 </script>
