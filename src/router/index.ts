@@ -92,6 +92,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/mekanismi',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/WikiIndex.vue')
+  },
+  {
+    path: '/mekanismi/edit/:siteid/:pageid',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/EditPage.vue'),
+    props: true
   }
 ]
 

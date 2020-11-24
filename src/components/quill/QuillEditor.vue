@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, watch } from 'vue'
 import Quill from 'quill'
 
 export default defineComponent({
@@ -26,6 +26,10 @@ export default defineComponent({
       quill.on('text-change', () => {
         console.log(quill.root.innerHTML)
         context.emit('update:modelValue', quill.root.innerHTML)
+      })
+      watch(() => props.modelValue, (val) => {
+        if (quill.root.innerHTML === val) return
+        quill.root.innerHTML = val
       })
     })
   }
