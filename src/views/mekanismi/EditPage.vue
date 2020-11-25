@@ -72,7 +72,10 @@ export default defineComponent({
     async function savePage () {
       const db = firebase.firestore()
       const pageRef = db.collection('sites').doc(routeSiteid.value).collection('pages').doc(routePageid.value)
-      return pageRef.update({ htmlContent: pageContent.value }).then(() => {
+      return pageRef.update({
+        author: uid.value,
+        htmlContent: pageContent.value
+      }).then(() => {
         router.push(`/mekanismi/view/${routeSiteid.value}/${routePageid.value}`)
       })
     }
