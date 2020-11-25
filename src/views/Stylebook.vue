@@ -33,6 +33,27 @@
         </MaterialButton>
       </div>
       <div class="section">
+        <h1>Cards</h1>
+        <div style="display:flex">
+          <MaterialCard>
+            <h1>Headline 1</h1>
+            <h2>Headline 2</h2>
+            <h3>Headline 3</h3>
+            <h4>Headline 4</h4>
+          </MaterialCard>
+          <MaterialCard>
+            <ol>
+              <li>
+                list item
+                <ol>
+                  <li>secondary</li>
+                </ol>
+              </li>
+            </ol>
+          </MaterialCard>
+        </div>
+      </div>
+      <div class="section">
         <h1>Stateless components</h1>
         <Loader />
       </div>
@@ -47,6 +68,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
@@ -57,7 +79,8 @@ export default defineComponent({
     MaterialButton,
     Loader,
     ViewHeader,
-    Avatar
+    Avatar,
+    MaterialCard
   }
 })
 </script>
