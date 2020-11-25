@@ -1,12 +1,23 @@
 <template>
-  <ViewHeader>
-    {{ $t('mekanismi.title') + ' ' + routeSiteid + '/' + routePageid }}
-  </ViewHeader>
-  <div class="contentGrid">
-    <QuillEditor
-      v-model="pageContent"
-      :toolbar="true"
-    />
+  <div>
+    <ViewHeader>
+      {{ $t('mekanismi.title') + ' ' + routeSiteid + '/' + routePageid }}
+    </ViewHeader>
+    <div class="contentGrid">
+      <div
+        v-if="memberActions"
+        class="toolbar"
+      >
+        <div class="spacer" />
+        <MaterialButton :action="savePage">
+          {{ $t('action.save') }}
+        </MaterialButton>
+      </div>
+      <QuillEditor
+        v-model="pageContent"
+        :toolbar="true"
+      />
+    </div>
   </div>
 </template>
 
@@ -14,19 +25,26 @@
 import { defineComponent, ref, computed, onMounted, onUnmounted } from 'vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
-import { useRoute } from 'vue-router'
+import MaterialButton from '@/components/material/MaterialButton.vue'
+import { useRoute, useRouter } from 'vue-router'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
+import { useAuthState } from '@/state/authz'
+import { useMembers } from '@/state/site'
 
 export default defineComponent({
-  name: 'WikiIndex',
+  name: 'EditPage',
   components: {
     ViewHeader,
-    QuillEditor
+    QuillEditor,
+    MaterialButton
   },
   setup () {
     const pageContent = ref('')
+    const { members } = useMembers()
+    const { uid } = useAuthState()
+    const memberActions = computed(() => (members.value.includes(uid.value)))
 
     const route = useRoute()
     const routePageid = computed(() => {
@@ -49,6 +67,15 @@ export default defineComponent({
         }
       })
     }
+    const router = useRouter()
+
+    async function savePage () {
+      const db = firebase.firestore()
+      const pageRef = db.collection('sites').doc(routeSiteid.value).collection('pages').doc(routePageid.value)
+      return pageRef.update({ htmlContent: pageContent.value }).then(() => {
+        router.push(`/mekanismi/view/${routeSiteid.value}/${routePageid.value}`)
+      })
+    }
 
     onMounted(() => {
       fetchPage()
@@ -58,7 +85,12 @@ export default defineComponent({
       unsubscribe()
     })
 
-    return { pageContent, routePageid, routeSiteid }
+    return { pageContent, routePageid, routeSiteid, memberActions, savePage }
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.toolbar
+  margin-bottom: 8px
+</style>

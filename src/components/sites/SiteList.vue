@@ -5,7 +5,11 @@
       v-for="site in sites"
       :key="site.id"
     >
-      <h3> {{ site.name }} </h3>
+      <h3>
+        <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
+          {{ site.name }}
+        </router-link>
+      </h3>
       <p>{{ site.description }}</p>
       <p><a :href="'https://mekanismi.web.app/#/v/'+site.id">{{ 'mekanismi.web.app/#/v/'+site.id }}</a></p>
     </MaterialCard>
