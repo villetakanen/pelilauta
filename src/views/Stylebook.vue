@@ -31,6 +31,17 @@
         >
           Button: dark text
         </MaterialButton>
+        <MaterialButton
+          icon
+          color="tertiary"
+        >
+          <img src="@/assets/icons/share.svg">
+        </MaterialButton>
+        <MaterialButton
+          icon
+        >
+          <img src="@/assets/icons/edit.svg">
+        </MaterialButton>
       </div>
       <div class="section">
         <h1>Cards</h1>
@@ -107,4 +118,6 @@ export default defineComponent({
   background-color: $color-fill-secondary
 .color3
   background-color: white
+.color4
+  background-color: $color-fill-tertiary
 </style>

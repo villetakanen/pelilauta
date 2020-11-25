@@ -1,17 +1,14 @@
 <template>
   <ViewHeader>
-    {{ $t('mekanismi.title') + ' ' + routeSiteid + '/' + routePageid }}
+    {{ $t('mekanismi.title') }}
   </ViewHeader>
   <div class="contentGrid">
-    <div class="toolbar">
-      <p>{{ routeSiteid + '/' + routePageid }}</p>
-      <router-link :to="`/mekanismi/edit/${routeSiteid}/${routePageid}`">
-        Edit
-      </router-link>
-    </div>
-    <div
-      :innerHTML="pageContent"
-    />
+    <PageToolbar :title="routeSiteid + ' / ' + routePageid " />
+    <MaterialCard>
+      <div
+        :innerHTML="pageContent"
+      />
+    </MaterialCard>
   </div>
 </template>
 
@@ -22,11 +19,15 @@ import { useRoute } from 'vue-router'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
+import MaterialCard from '@/components/material/MaterialCard.vue'
+import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
-    ViewHeader
+    ViewHeader,
+    PageToolbar,
+    MaterialCard
   },
   setup () {
     const pageContent = ref('...')
