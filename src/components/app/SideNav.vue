@@ -153,7 +153,6 @@ export default defineComponent({
 
 @include media('>=tablet')
   #sideNav
-    background-color: rgba(0,0,0,0.09)
     &.toggled
       transform: translateX(-400px)
     .back

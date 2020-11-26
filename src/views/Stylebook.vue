@@ -113,11 +113,13 @@ export default defineComponent({
 .colorbox+.colorbox
   margin-left:-22px
 .color1
-  background-color: $color-fill-primary
+  background-color: $color-fill-primary-dark
 .color2
-  background-color: $color-fill-secondary
+  background-color: $color-fill-primary
 .color3
-  background-color: white
+  background-color: $color-fill-primary-light
 .color4
+  background-color: $color-fill-secondary
+.color5
   background-color: $color-fill-tertiary
 </style>

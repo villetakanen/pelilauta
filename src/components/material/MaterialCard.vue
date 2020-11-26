@@ -14,16 +14,10 @@ div.material-card
   @include TypeColorDark()
   @include SpacingContainer()
   background-color: white
-  // @include BoxShadow1()
-  // border-radius: 4px
+  border: solid 1px #00233733
   .title
     margin-bottom: 8px
   h1
     @include TypeHeadline5()
-
-@include media('<desktop')
-  div.material-card
-    border-radius: 0px
-    // @include BoxShadow3()
 
 </style>
