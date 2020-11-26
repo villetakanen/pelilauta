@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/villetakanen/pelilauta/compare/v5.0.0...v5.1.0) (2020-11-26)
+
+
+### Features
+
+* card styles in stylebook ([ad4990c](https://github.com/villetakanen/pelilauta/commit/ad4990c3299506649d3ee20d9d5007f32f3adb96))
+* color scheme support added ([160c0f9](https://github.com/villetakanen/pelilauta/commit/160c0f92e2daa6f62a7bb8ebd3ced8c113f3f689))
+* edit page saves author ([ef831a7](https://github.com/villetakanen/pelilauta/commit/ef831a7ffc819d890b1bfd753c3a1532a46dfd22))
+* mekanismi editor opens data ([7090c9c](https://github.com/villetakanen/pelilauta/commit/7090c9c53226ce9b88b8fc4039f4ccd7f4d92b34))
+* mekanismi page view ([65625c7](https://github.com/villetakanen/pelilauta/commit/65625c7acd40f4c7893cb29d0564bea71ae01d0c))
+* mekanismi toolbar for viewpage ([c712b1e](https://github.com/villetakanen/pelilauta/commit/c712b1e4e3032fc87cb5522c76fad1c47816811f))
+* mekanismi wiki page saving works for members ([68d8450](https://github.com/villetakanen/pelilauta/commit/68d84505d77aa8f9e8070a7c7b14ae1adba8d5c3))
+* original theme ([d177a2b](https://github.com/villetakanen/pelilauta/commit/d177a2bf708ca14797a72871adfcaa1770c90751))
+* posters ([7beefc7](https://github.com/villetakanen/pelilauta/commit/7beefc71dab81bc70035a2eca18198abaa03723f))
+* quill editor ([c2d3dec](https://github.com/villetakanen/pelilauta/commit/c2d3dec5b62a3e19a1b370d93eebaf7fde2b38f2))
+* quill editor files added ([a038c07](https://github.com/villetakanen/pelilauta/commit/a038c07c96619e3983fc963e10d2dcc7fb9ee488))
+* quill editor test complete ([27fef88](https://github.com/villetakanen/pelilauta/commit/27fef88ad11c13a1f9e4903be0e5357ca7591390))
+
+
+### Bug Fixes
+
+* editor playground styling ([acd0239](https://github.com/villetakanen/pelilauta/commit/acd0239ebd11eb6e78e888dd3ff7ad6b153854c8))
+* quality polish ([2f23f80](https://github.com/villetakanen/pelilauta/commit/2f23f80e7150798111ff2c64571b02f53ac4a254))
+* viewpage toolbar edit link restored ([3206454](https://github.com/villetakanen/pelilauta/commit/3206454cc2e88f4a4930c8556187b39bbcd0bdb5))
+
 ## [5.0.0](https://github.com/villetakanen/pelilauta/compare/v4.9.10...v5.0.0) (2020-11-24)
 
 
