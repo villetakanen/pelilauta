@@ -9,7 +9,10 @@
       :threadid="threadid"
       @quote="addQuote"
     />
-    <ReplyForm :threadid="threadid" :quoted="quote" />
+    <ReplyForm
+      :threadid="threadid"
+      :quoted="quote"
+    />
   </div>
 </template>
 

@@ -72,7 +72,7 @@ export default defineComponent({
 
 #mainContentWrapper
   margin-top: 56px // app-bar height
-  background-color: rgba(0,0,0,0.04)
+  // background-color: rgba(0,0,0,0.04)
 
 .topLeftFab
   position: fixed

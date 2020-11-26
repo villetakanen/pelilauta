@@ -67,6 +67,7 @@ export default defineComponent({
         'material-button': true,
         'material-button-text': props.text,
         'colortheme-secondary': false,
+        'colortheme-tertiary': false,
         'material-button-icon': props.icon,
         'theme--dark': props.dark,
         'block-button': props.block,
@@ -75,6 +76,7 @@ export default defineComponent({
     )
     // if (typeof props.text !== 'undefined') buttonClasses.value['material-button-text'] = true
     if (props.color === 'secondary') buttonClasses.value['colortheme-secondary'] = true
+    else if (props.color === 'tertiary') buttonClasses.value['colortheme-tertiary'] = true
 
     const clicked = () => {
       if (props.action) props.action()
@@ -106,8 +108,6 @@ export default defineComponent({
   color: $color-dark-font-high
   &:hover
     background-color: lighten($color-fill-primary, 11%)
-  &:disabled
-    opacity: 0.2
   &.material-button-text, &.material-button-icon
     color: $color-fill-primary
     background-color: #00233711
@@ -138,7 +138,13 @@ export default defineComponent({
         max-height: 28px
       max-width: 28px
   &.colortheme-secondary
-   @include ElementColorSecondary()
+    @include ElementColorSecondary()
+  &.colortheme-tertiary
+    background-color: $color-fill-tertiary
+    color: white
+  &:disabled
+    opacity: 0.7
+    background-color: #00233744
 
 .material-button + .material-button
   margin-left: 8px

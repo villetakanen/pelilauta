@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <h1>Editortest.vue</h1>
+  <ViewHeader>EDITOR PLAYGROUND</ViewHeader>
+  <div class="contentGrid">
     <div class="test-container">
       <div class="test-box">
         <MaterialCard>
           <Editor
             v-model="content"
             @new-images="addImages"
+          />
+          <QuillEditor
+            v-model="content"
+            :toolbar="true"
           />
         </MaterialCard>
       </div>
@@ -37,13 +41,17 @@
 import { defineComponent, ref } from 'vue'
 import Editor from '@/components/editor/Editor2.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import ViewHeader from '@/components/app/ViewHeader.vue'
+import QuillEditor from '@/components/quill/QuillEditor.vue'
 import { PostImage } from '@/lib/stream'
 
 export default defineComponent({
   name: 'EditorTest',
   components: {
     Editor,
-    MaterialCard
+    MaterialCard,
+    ViewHeader,
+    QuillEditor
   },
   setup () {
     const content = ref('')

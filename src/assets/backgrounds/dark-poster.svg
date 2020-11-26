@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1920 1080" style="enable-background:new 0 0 1920 1080;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#002337;}
+	.st1{fill:#008080;}
+	.st2{opacity:0.4;}
+	.st3{fill:url(#SVGID_1_);}
+	.st4{fill:url(#SVGID_2_);}
+	.st5{fill:url(#SVGID_3_);}
+	.st6{fill:url(#SVGID_4_);}
+	.st7{fill:url(#SVGID_5_);}
+	.st8{fill:url(#SVGID_6_);}
+</style>
+<g id="Layer_1">
+	<g>
+		<rect y="0" class="st0" width="1920" height="1080"/>
+	</g>
+</g>
+<g id="Layer_2">
+	<g>
+		<rect class="st1" width="1920" height="1080"/>
+	</g>
+	<g class="st2">
+		
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="192.5025" y1="540" x2="1313.5024" y2="540" gradientTransform="matrix(-1 0 0 1 2112.5024 0)">
+			<stop  offset="0" style="stop-color:#CCE0F4;stop-opacity:0"/>
+			<stop  offset="0.2823" style="stop-color:#D5E6F6;stop-opacity:0.2823"/>
+			<stop  offset="0.7501" style="stop-color:#EFF5FB;stop-opacity:0.7501"/>
+			<stop  offset="1" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+		<polygon class="st3" points="1475,1080 1920,1080 1920,0 799,0 		"/>
+	</g>
+	<g class="st2">
+		
+			<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-159" y1="1308.6506" x2="962" y2="1308.6506" gradientTransform="matrix(1 0 0 -1 0 1848.6506)">
+			<stop  offset="0" style="stop-color:#CCE0F4;stop-opacity:0"/>
+			<stop  offset="0.1003" style="stop-color:#C3DEF5;stop-opacity:0.1003"/>
+			<stop  offset="0.2671" style="stop-color:#A9D8F6;stop-opacity:0.2671"/>
+			<stop  offset="0.4799" style="stop-color:#80CEF8;stop-opacity:0.4799"/>
+			<stop  offset="0.7304" style="stop-color:#46C1FB;stop-opacity:0.7304"/>
+			<stop  offset="1" style="stop-color:#00B1FF"/>
+		</linearGradient>
+		<polygon class="st4" points="286,0 -159,0 -159,1080 962,1080 		"/>
+	</g>
+	<g class="st2">
+		
+			<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="310.5025" y1="540" x2="1431.5024" y2="540" gradientTransform="matrix(-1 0 0 1 2112.5024 0)">
+			<stop  offset="0" style="stop-color:#CCE0F4;stop-opacity:0"/>
+			<stop  offset="0.2823" style="stop-color:#D5E6F6;stop-opacity:0.2823"/>
+			<stop  offset="0.7501" style="stop-color:#EFF5FB;stop-opacity:0.7501"/>
+			<stop  offset="1" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+		<polygon class="st5" points="1357,1080 1802,1080 1802,0 681,0 		"/>
+	</g>
+	<g class="st2">
+		<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="121" y1="540" x2="1242" y2="540">
+			<stop  offset="0" style="stop-color:#CCE0F4;stop-opacity:0"/>
+			<stop  offset="0.1164" style="stop-color:#CEE2EB;stop-opacity:0.1164"/>
+			<stop  offset="0.31" style="stop-color:#D5E6D1;stop-opacity:0.31"/>
+			<stop  offset="0.557" style="stop-color:#DFEEA8;stop-opacity:0.557"/>
+			<stop  offset="0.8448" style="stop-color:#EEF96F;stop-opacity:0.8448"/>
+			<stop  offset="1" style="stop-color:#F6FF4D"/>
+		</linearGradient>
+		<polygon class="st6" points="566,1080 121,1080 121,0 1242,0 		"/>
+	</g>
+	<g class="st2">
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="-211" y1="540" x2="910" y2="540">
+			<stop  offset="0" style="stop-color:#CCE0F4;stop-opacity:0"/>
+			<stop  offset="0.1003" style="stop-color:#C3DEF5;stop-opacity:0.1003"/>
+			<stop  offset="0.2671" style="stop-color:#A9D8F6;stop-opacity:0.2671"/>
+			<stop  offset="0.4799" style="stop-color:#80CEF8;stop-opacity:0.4799"/>
+			<stop  offset="0.7304" style="stop-color:#46C1FB;stop-opacity:0.7304"/>
+			<stop  offset="1" style="stop-color:#00B1FF"/>
+		</linearGradient>
+		<polygon class="st7" points="234,1080 -211,1080 -211,0 910,0 		"/>
+	</g>
+	<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="960.5179" y1="41.0855" x2="962.5182" y2="1051.1649">
+		<stop  offset="0" style="stop-color:#002337;stop-opacity:0"/>
+		<stop  offset="1" style="stop-color:#002337"/>
+	</linearGradient>
+	<rect y="-3" class="st8" width="1923" height="1080"/>
+</g>
+</svg>
