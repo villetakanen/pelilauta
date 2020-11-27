@@ -32,6 +32,7 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { useAuthState } from '@/state/authz'
 import { useMembers } from '@/state/site'
+import { extractTags } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'EditPage',
@@ -42,6 +43,7 @@ export default defineComponent({
   },
   setup () {
     const pageContent = ref('')
+    const pageTitle = ref('')
     const { members } = useMembers()
     const { uid } = useAuthState()
     const memberActions = computed(() => (members.value.includes(uid.value)))
@@ -64,6 +66,7 @@ export default defineComponent({
       unsubscribe = pageRef.onSnapshot((snap) => {
         if (snap.exists) {
           pageContent.value = snap.data()?.htmlContent
+          pageTitle.value = snap.data()?.pageTitle
         }
       })
     }
@@ -72,11 +75,20 @@ export default defineComponent({
     async function savePage () {
       const db = firebase.firestore()
       const pageRef = db.collection('sites').doc(routeSiteid.value).collection('pages').doc(routePageid.value)
+      const { formattedContent, tags } = extractTags(pageContent.value)
       return pageRef.update({
         author: uid.value,
-        htmlContent: pageContent.value
+        htmlContent: formattedContent
       }).then(() => {
         router.push(`/mekanismi/view/${routeSiteid.value}/${routePageid.value}`)
+        tags.forEach((tag) => {
+          const tagRef = db.collection('tags').doc(tag)
+          const taggedRef = tagRef.collection('tagged').doc(routePageid.value)
+          taggedRef.set({
+            type: 'wikipage',
+            title: pageTitle.value
+          })
+        })
       })
     }
 
