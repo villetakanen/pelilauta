@@ -122,6 +122,19 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import ../../styles/material-typography.sass
 @import @/styles/material-colors.sass
+.stream-post
+  overflow: hidden
+
+.stream-post-content:before
+  content: ''
+  position: absolute
+  background-image: url('../../assets/icons-in-primary/d12-primary.svg')
+  background-size: 200px 200px
+  height: 200px
+  width: 200px
+  bottom: -52px
+  right: -33px
+  opacity: 0.11
 
 .stream-post-content
   @include TypeBody2()
