@@ -34,7 +34,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #AppBar
-  background-color: $color-fill-primary
+  background-color: $color-fill-dark
   position: fixed
   top: 0
   left: 0
@@ -55,19 +55,6 @@ export default defineComponent({
     position: absolute
     top: 0px
     right: 0px
-  .searchBar
-    position: absolute
-    top: 8px
-    right: 56px
-    height: 40px
-    padding: 0 16px
-    margin: 0
-    border: none
-    border-radius: 18px
-    min-width: 30vw
-    background-color: rgba($color-fill-primary,0.22)
-    color: $color-font-high
-    opacity: 0.8
 
 .labelForSearch
   height: 30px

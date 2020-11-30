@@ -107,6 +107,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #app .material-banner
-  background-color: $color-fill-darker
+  background-color: $color-fill-light
   margin-top: -8px
 </style>

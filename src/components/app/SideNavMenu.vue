@@ -134,12 +134,14 @@ export default defineComponent({
       vertical-align: middle
       margin-right: 8px
     &:hover
-      background-color: rgba($color-fill-secondary, 0.5)
+      background-color: lighten($color-fill-primary-light, 11%)
     &.subtitle
       color: $color-font-medium
       border-bottom: solid 1px $color-font-disabled
       margin: 0 16px
       padding-left: 0
+      &:hover
+        background: none
 
 @include media('=<tablet')
   .sideNavMenu

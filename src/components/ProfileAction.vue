@@ -56,6 +56,6 @@ export default defineComponent({
   margin-top: 2px
   border-radius: 50%
 .material-action.profileButton
-  background-color: $color-fill-primary-light
+  background-color: rgba($color-fill-light, 0.44)
   margin-top: 2px
 </style>

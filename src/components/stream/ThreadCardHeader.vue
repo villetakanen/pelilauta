@@ -1,7 +1,11 @@
 <template>
   <div class="toolbar">
     <div>
-      <h1>{{ thread.data.title }}</h1>
+      <h1>
+        <router-link :to="'/stream/view/' + thread.id">
+          {{ thread.data.title }}
+        </router-link>
+      </h1>
       <p class="caption">
         <span v-if="since">{{ since }}</span>
       </p>

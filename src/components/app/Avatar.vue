@@ -42,7 +42,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 div.avatar
-  background-color: $color-fill-primary
+  background-color: $color-fill-primary-dark
   margin: 0
   padding: 2px
   height: 44px

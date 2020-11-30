@@ -144,7 +144,6 @@ export default defineComponent({
     border-top: solid 1px $color-base-darker
   .stream-post
     position: relative
-    box-shadow: none
     .images
       height: 48px
       width: 100%

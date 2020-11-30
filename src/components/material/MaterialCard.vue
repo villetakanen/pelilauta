@@ -14,10 +14,13 @@ div.material-card
   @include TypeColorDark()
   @include SpacingContainer()
   background-color: white
-  border: solid 1px #00233733
+  border: solid 1px #00233722
+  box-shadow: 0px 0px 4px 0px rgba(0,35,55,0.11)
   .title
     margin-bottom: 8px
-  h1
+  h1, h2, h3, h4
     @include TypeHeadline5()
+    a
+      color: $color-fill-dark
 
 </style>
