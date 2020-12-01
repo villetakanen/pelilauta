@@ -1,40 +1,42 @@
 <template>
-  <div class="viewer">
-    <div
-      v-if="post"
-      class="postHeader"
-    >
-      <!-- The top bar -->
-      <PostHeader
-        :nick="author.nick"
-        :photo="author.photoURL"
-        :title="post.data.title"
-        :threadid="post.id"
-        :created="toDisplayString(post.created)"
-        :topic="post.data.topic"
-        :author="post.author"
-      />
-    </div>
-
-    <div
-      v-if="post"
-      class="postContent"
-    >
+  <div class="viewer contentGrid">
+    <MaterialCard>
       <div
-        :innerHTML="post.data.content"
-      />
-
-      <PhotoBox :photos="post.data.images" />
-      <div style="display:flex">
-        <LoveAction
-          :loved="loves"
-          :action="toggleLove"
+        v-if="post"
+        class="postHeader"
+      >
+        <!-- The top bar -->
+        <PostHeader
+          :nick="author.nick"
+          :photo="author.photoURL"
+          :title="post.data.title"
+          :threadid="post.id"
+          :created="toDisplayString(post.created)"
+          :topic="post.data.topic"
+          :author="post.author"
         />
-        <div v-if="post.lovedCount > 0">
-          {{ post.lovedCount }}
+      </div>
+
+      <div
+        v-if="post"
+        class="postContent"
+      >
+        <div
+          :innerHTML="post.data.content"
+        />
+
+        <PhotoBox :photos="post.data.images" />
+        <div style="display:flex">
+          <LoveAction
+            :loved="loves"
+            :action="toggleLove"
+          />
+          <div v-if="post.lovedCount > 0">
+            {{ post.lovedCount }}
+          </div>
         </div>
       </div>
-    </div>
+    </MaterialCard>
 
     <Discussion :threadid="threadid" />
   </div>
@@ -50,8 +52,8 @@ import PostHeader from '@/components/stream/PostHeader.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/lib/meta'
-import { useAuthz } from '@/lib/authz'
 import LoveAction from '@/components/app/LoveAction.vue'
+import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 
 export default defineComponent({
@@ -59,7 +61,8 @@ export default defineComponent({
     PostHeader,
     Discussion,
     PhotoBox,
-    LoveAction
+    LoveAction,
+    MaterialCard
   },
   props: {
     threadid: {
@@ -69,7 +72,7 @@ export default defineComponent({
   },
   setup (props) {
     const router = useRouter()
-    const { profile, profileMeta } = useProfile()
+    const { profileMeta } = useProfile()
     const { uid } = useAuthState()
 
     const { toDisplayString } = useStream()
@@ -92,15 +95,15 @@ export default defineComponent({
       return profileMeta.value.lovedThreads.includes(props.threadid)
     })
 
-    const toggleLove = () => {
-      if (loves.value) unloveThread(uid.value, props.threadid)
-      else loveThread(uid.value, props.threadid)
+    const toggleLove = async () => {
+      if (loves.value) return unloveThread(uid.value, props.threadid)
+      else return loveThread(uid.value, props.threadid)
     }
 
     const { showStreamActions } = useMeta()
 
     onMounted(() => {
-      document.title = 'Pelilauta ' + post.value.data.title
+      document.title = 'Pelilauta ' + post.value?.data.title
       watch(post, (post) => {
         document.title = 'Pelilauta ' + post.data.title
       })
