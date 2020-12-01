@@ -35,12 +35,19 @@
           icon
           color="tertiary"
         >
-          <img src="@/assets/icons/share.svg">
+          <img
+            src="@/assets/icons/share.svg"
+            alt="share icon"
+          >
         </MaterialButton>
         <MaterialButton
           icon
+          color="tertiary"
         >
-          <img src="@/assets/icons/edit.svg">
+          <img
+            src="@/assets/icons/edit.svg"
+            alt="edit icon"
+          >
         </MaterialButton>
       </div>
       <div class="section">

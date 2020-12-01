@@ -10,30 +10,37 @@
         <img
           v-if="item.icon === 'admin'"
           src="@/assets/icons/action-admin.svg"
+          alt="admin"
         >
         <img
           v-if="item.icon === 'd12'"
           src="@/assets/icons/d12-black.svg"
+          alt="d12"
         >
         <img
           v-if="item.icon === 'mekanismi'"
           src="@/assets/icons/d6-black.svg"
+          alt="mekanismi"
         >
         <img
           v-if="item.icon === 'd20'"
           src="@/assets/icons/d20-black.svg"
+          alt="d20"
         >
         <img
           v-if="item.icon === 'discussion'"
           src="@/assets/icons/discussion.svg"
+          alt="discussion"
         >
         <img
           v-if="item.icon === 'monsters'"
           src="@/assets/themes/monsters.svg"
+          alt="monsters"
         >
         <img
           v-if="item.icon === 'player'"
           src="@/assets/icons/player.svg"
+          alt="player"
         >
         {{ item.content || $t('sideNav.' + item.key) }}
       </li>

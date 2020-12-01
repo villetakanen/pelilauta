@@ -47,7 +47,7 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import { PostImage } from '@/lib/stream'
-import { extractTags } from '@/utils/contentFormat'
+import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 
 export default defineComponent({
@@ -70,7 +70,8 @@ export default defineComponent({
     }
 
     const simulateSave = () => {
-      const { formattedContent, tags } = extractTags(content.value)
+      const { formattedContent: fc1, tags } = extractTags(content.value)
+      const { formattedContent } = extractLinks(fc1)
       content.value = formattedContent
       console.log(tags)
     }

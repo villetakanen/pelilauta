@@ -6,14 +6,20 @@
       icon
       color="tertiary"
     >
-      <img src="@/assets/icons/share.svg">
+      <img
+        src="@/assets/icons/share.svg"
+        alt="share icon"
+      >
     </MaterialButton>
     <MaterialButton
       icon
       color="tertiary"
       :to="`/mekanismi/edit/${siteid}/${pageid}`"
     >
-      <img src="@/assets/icons/edit.svg">
+      <img
+        src="@/assets/icons/edit.svg"
+        alt="edit icon"
+      >
     </MaterialButton>
   </div>
 </template>
