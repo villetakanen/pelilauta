@@ -13,6 +13,9 @@
             :toolbar="true"
           />
         </MaterialCard>
+        <MaterialButton :action="simulateSave">
+          Simulate Save
+        </MaterialButton>
       </div>
       <div class="test-box">
         <h3>This is what the end result looks like</h3>
@@ -44,6 +47,8 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import { PostImage } from '@/lib/stream'
+import { extractTags } from '@/utils/contentFormat'
+import MaterialButton from '@/components/material/MaterialButton.vue'
 
 export default defineComponent({
   name: 'EditorTest',
@@ -51,7 +56,8 @@ export default defineComponent({
     Editor,
     MaterialCard,
     ViewHeader,
-    QuillEditor
+    QuillEditor,
+    MaterialButton
   },
   setup () {
     const content = ref('')
@@ -63,7 +69,13 @@ export default defineComponent({
       console.log(attrs)
     }
 
-    return { content, images, addImages }
+    const simulateSave = () => {
+      const { formattedContent, tags } = extractTags(content.value)
+      content.value = formattedContent
+      console.log(tags)
+    }
+
+    return { content, images, addImages, simulateSave }
   }
 })
 </script>

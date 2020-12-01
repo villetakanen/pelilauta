@@ -45,9 +45,9 @@ export default defineComponent({
       unsubscribe()
       const db = firebase.firestore()
       unsubscribe = db.collection('sites').where('hidden', '==', false).orderBy('lastUpdate', 'desc').onSnapshot((snap) => {
-        console.log(snap.size)
+        // console.log(snap.size)
         snap.docChanges().forEach((change) => {
-          console.log(change)
+          // console.log(change)
           sites.value.push({ id: change.doc.id, ...change.doc.data() })
         })
       })

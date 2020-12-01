@@ -58,7 +58,8 @@
     "about": "Tietoja Pelilaudasta",
     "profile": "Oma profiilini",
     "stylebook": "Stylebook",
-    "mekanismi": "Mekanismi"
+    "mekanismi": "Mekanismi",
+    "editorTest": "Editor testing"
   },
   "mekanismi": {
     "title": "Mekanismi"

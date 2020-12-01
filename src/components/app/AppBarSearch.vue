@@ -49,8 +49,9 @@ export default defineComponent({
   margin: 0 8px
   input
     box-sizing: border-box
-    background-color: $color-fill-primary-light
+    background-color: rgba($color-fill-light, 0.11)
     border: none
+    border-bottom: solid 1px rgba($color-fill-light, 0.44)
     margin: 0
     padding: 4px 8px
     line-height: 24px
@@ -61,7 +62,7 @@ export default defineComponent({
       min-width: 57vw
   #labelForSearch
     position: absolute
-    background-color: $color-fill-primary-dark
+    background-color: rgba($color-fill-light, 0.22)
     height: 20px
     width: 20px
     padding: 2px

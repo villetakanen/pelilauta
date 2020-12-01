@@ -53,7 +53,7 @@ export default defineComponent({
     top: 0
     left: 0
     margin: 2px
-    background-color: $color-fill-primary-light
+    background-color: rgba($color-fill-light, 0.44)
     border-radius: 50%
     width: 42px
     height: 42px
@@ -64,11 +64,11 @@ export default defineComponent({
     width: 38px
   .closedIcon
     background: none
-    border: solid 5px $color-fill-primary-light
+    border: solid 5px rgba($color-fill-light, 0.44)
     img
       margin-top: -5px
       margin-left: -5px
-      opacity: 0.5
+      // opacity: 0.5
 
 .scaleToFull-enter-active,
 .scaleToFull-leave-active

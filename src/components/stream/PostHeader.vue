@@ -1,10 +1,5 @@
 <template>
   <div class="PostHeader toolbar">
-    <Avatar
-      :nick="nick"
-      :photo="photo"
-      :uid="author"
-    />
     <div class="InfoBar">
       <h3 class="title">
         <router-link :to="`/stream/view/${threadid}`">
@@ -19,6 +14,12 @@
       </div>
     </div>
     <div class="spacer" />
+    <Avatar
+      class="hideOnMobile"
+      :nick="nick"
+      :photo="photo"
+      :uid="author"
+    />
     <div>
       <MaterialMenu v-model="menu" />
     </div>

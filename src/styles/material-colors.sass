@@ -9,21 +9,14 @@ $color-dark-font-medium: rgba(255, 255, 255, 0.6)
 $color-dark-font-disabled: rgba(255, 255, 255, 0.38)
 
 // Universal Fill colors
-$color-fill-primary: #2f4962 // #388e3c // #00536b
-$color-fill-primary-light: #5b7490 // #6abf69 // #417f99
-$color-fill-primary-dark:#002337 // #00600f // #002a40
-$color-fill-secodary: #eeff41
-$color-fill-tertiary: #f50057 // #BB1187
+$color-fill-primary: #00c853//#2f4962 // #388e3c // #00536b
+$color-fill-primary-light: #eeff41 // #6abf69 // #417f99
+$color-fill-primary-dark:#00796b // #00600f // #002a40
+$color-fill-secondary: #BB1187// #eeff41
+$color-fill-tertiary: #002337 // #BB1187
 $color-fill-light: #fff
 $color-fill-dark: #002337
 
-
-// Fills
-$color-fill-medium: rgb(204, 217, 237)
-$color-fill-dark: rgb(149, 172, 207)
-$color-fill-darker: #648ec0
-
-$color-fill-secondary: #eeff41
 // --  
   
 $color-front: rgb(0,23,37)
@@ -42,12 +35,12 @@ $color-theme--dark-base-11: rgba(29,39,49, 0.11)
 $color-theme--dark-front: #EEEEEE
 
 a
-  color: $color-fill-primary
+  color: $color-fill-primary-dark
 
 @mixin TypeColorDark()
   color: $color-front
   h1, h2, h3, h4
-    color: $color-fill-primary-dark
+    color: $color-fill-dark
 
 @mixin TypeColorLight()
   color: rgb(218,230,240)

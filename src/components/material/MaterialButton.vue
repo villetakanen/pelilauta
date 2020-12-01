@@ -104,12 +104,14 @@ export default defineComponent({
   overflow: hidden
   transition-property: box-shadow background
   transition-duration: 0.8s
-  background-color: $color-fill-primary
+  background-color: $color-fill-primary-dark
   color: $color-dark-font-high
   &:hover
-    background-color: lighten($color-fill-primary, 11%)
+    background-color: $color-fill-primary
+    &.theme--dark
+      background-color: $color-fill-primary-dark
   &.material-button-text, &.material-button-icon
-    color: $color-fill-primary
+    color: $color-fill-primary-dark
     background-color: #00233711
     box-shadow: none
     &:hover
@@ -150,10 +152,10 @@ export default defineComponent({
   margin-left: 8px
 
 .material-button.theme--dark
-  background-color: $color-theme--dark-base
-  color: $color-theme--dark-front
+  background-color: $color-fill-dark
+  color: $color-fill-light
   &:hover
-    background-color: $color-theme--dark-base-hover
+    background-color: $color-fill-primary-dark
   &.material-button-text
     background: none
     color: white
