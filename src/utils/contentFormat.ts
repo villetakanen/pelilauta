@@ -1,3 +1,7 @@
+
+const urlPatternStart = '(<div>|<br>|<p>| |^|&nbsp;)'
+const urlPatternEnd = '(&nbsp;| |<div>|</div>|<br>|</p>|$)'
+
 /**
  * Extracts tags, and adds a-href's to them. Run on save of reply, wikipage, and thread
  *
@@ -18,6 +22,10 @@ export function extractTags (htmlContent:string): { formattedContent: string, ta
  *
  * @param htmlContent a string from Quill editor, containing HTML
  */
-export function extractWikilinks (htmlContent:string): { formattedContent: string } {
-  return { formattedContent: htmlContent }
+export function extractLinks (htmlContent:string): { formattedContent: string } {
+  const r = new RegExp(urlPatternStart + '(https?:\\/\\/[a-zA-Z0-9=\\?#:\\/_\\.-]*)' + urlPatternEnd, 'gmu')
+  const formattedContent = htmlContent.replace(r, (match, p1, p2, p3) => {
+    return `${p1}<a href="${p2.trim()}">${p2.trim()}</a>${p3}`
+  })
+  return { formattedContent }
 }
