@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/villetakanen/pelilauta/compare/v5.1.0...v5.2.0) (2020-12-01)
+
+
+### Features
+
+* card graphics demo ([a3ac566](https://github.com/villetakanen/pelilauta/commit/a3ac566226e83b02087e6c4b54f951b76ec98d3c))
+* formatters exracted to utils ([20c76b8](https://github.com/villetakanen/pelilauta/commit/20c76b868c1b1002f8e135814b93788650e06b98))
+* tags added to wikipages ([ea797ba](https://github.com/villetakanen/pelilauta/commit/ea797ba4a0c70643457ce4dd4c90ea6b28793b7c))
+* yet another retheming ([cc8edc3](https://github.com/villetakanen/pelilauta/commit/cc8edc335892c23dd0dde01c6c385dcbcb2384a8))
+
+
+### Bug Fixes
+
+* missing translations and quality fixes ([794b529](https://github.com/villetakanen/pelilauta/commit/794b529bdc00d30f96639126b307450136e77487))
+
 ## [5.1.0](https://github.com/villetakanen/pelilauta/compare/v5.0.0...v5.1.0) (2020-11-26)
 
 
