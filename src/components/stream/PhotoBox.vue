@@ -4,18 +4,19 @@
       v-for="url in postImages"
       :key="url.url"
       :src="url.url"
+      alt=""
     >
   </div>
 </template>
 
 <script lang="ts">
 import { PostImage } from '@/lib/stream'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 export default defineComponent({
   name: 'PhotoBox',
   props: {
     photos: {
-      type: Array,
+      type: Array as PropType<PostImage[]>,
       required: true,
       default: new Array<PostImage>()
     }
