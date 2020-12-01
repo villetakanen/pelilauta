@@ -39,17 +39,33 @@
             class="material-select"
           >
             <option
-              v-for="(topic) in topics"
-              :key="topic.slug"
-              :value="topic.slug"
+              v-for="(t) in topics"
+              :key="t.slug"
+              :value="t.slug"
             >
-              {{ topic.title }}
+              {{ t.title }}
             </option>
           </select>
         </div>
 
         <!-- Editor box-->
         <QuillEditor :toolbar="true" />
+
+        <ImageUploadBar
+          v-model="images"
+        />
+
+        <!-- Bottom bar for the dialog -->
+        <div class="dialogBottomToolbar">
+          <div class="grow blockAction">
+            <MaterialButton
+              block
+              :action="publish"
+            >
+              {{ $t('action.send') }}
+            </MaterialButton>
+          </div>
+        </div>
       </div>
     </div>
   </teleport>
@@ -58,11 +74,13 @@
 <script lang="ts">
 import { useMeta } from '@/lib/meta'
 import { defineComponent, ref } from 'vue'
+import ImageUploadBar from '../editor/ImageUploadBar.vue'
+import MaterialButton from '../material/MaterialButton.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
 
 export default defineComponent({
   name: 'AppEditorDialog',
-  components: { QuillEditor },
+  components: { QuillEditor, ImageUploadBar, MaterialButton },
   props: {
     modelValue: {
       type: Boolean,
@@ -82,12 +100,13 @@ export default defineComponent({
     }
     const chosenTopic = ref(props.topic || 'Yleinen')
     const { topics } = useMeta()
-    return { hide, topics, chosenTopic }
+    const images = ref(new Array<string>())
+    return { hide, topics, chosenTopic, images }
   }
 })
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 @import @/styles/material-colors.sass
 @import @/styles/layout.sass
 @import @/styles/material-typography.sass
@@ -107,6 +126,21 @@ export default defineComponent({
     padding: 8px
   .material-textfield, .material-select
     margin: 0
+  .ql-editor
+    min-height: 292px
+    background-color: #00233711
+    &:hover
+      background-color: #00233722
+  .ql-toolbar
+      border-left: none
+      border-right: none
+  .ql-container
+    border: none
+    border-bottom: solid 1px $color-fill-primary-dark
+  .dialogBottomToolbar
+    padding: 8px
+    display: flex
+    flex-direction: row-reverse
 
 @include media('>=tablet')
   .editorDialog
