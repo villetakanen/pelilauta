@@ -1,10 +1,23 @@
 <template>
-  <ViewHeader>
-    {{ pageTitle.title }}
-  </ViewHeader>
+  <div class="toolbar">
+    <ViewHeader>
+      {{ pageTitle.title }}
+    </ViewHeader>
+    <div class="spacer" />
+    <Fab
+      :action="newThread"
+      :text="$t('action.addThread')"
+    >
+      <img
+        src="@/assets/icons/add.svg"
+        alt="new post"
+      >
+    </Fab>
+  </div>
   <div class="contentGrid">
     <ThreadList :topic="routeTopic" />
   </div>
+  <EditorDialog v-model="showEditorDialog" />
   <teleport to="body">
     <MaterialFab
       v-if="showStreamActions"
@@ -19,20 +32,24 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
 import MaterialFab from '@/components/material/MaterialFab.vue'
+import Fab from '@/components/material/Fab.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useMeta } from '@/lib/meta'
 import { useEditorDialog } from '@/lib/editor'
 import { useRoute } from 'vue-router'
+import EditorDialog from '@/components/app/EditorDialog.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
     MaterialFab,
-    ViewHeader
+    ViewHeader,
+    Fab,
+    EditorDialog
   },
   props: {
     topic: {
@@ -73,7 +90,14 @@ export default defineComponent({
       showEditor(props.topic)
     }
 
-    return { pageTitle, showStreamActions, newPostDialog, routeTopic }
+    const showEditorDialog = ref(false)
+
+    const newThread = () => {
+      console.log('newThread')
+      showEditorDialog.value = true
+    }
+
+    return { pageTitle, showStreamActions, newPostDialog, routeTopic, newThread, showEditorDialog }
   }
 })
 </script>

@@ -30,7 +30,8 @@
     "readMore": "Read more...",
     "nextPage": "Load more threads",
     "quote": "Quote",
-    "send": "Send"
+    "send": "Send",
+    "addThread": "New Thread"
   },
   "postHeader": {
     "postedInStream": "in"

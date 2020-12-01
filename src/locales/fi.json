@@ -25,7 +25,8 @@
     "deferUpdate": "Muistuta myöhemmin",
     "nextPage": "Lataa lisää",
     "quote": "Lainaa",
-    "send": "Lähetä"
+    "send": "Lähetä",
+    "addThread": "Uusi aihe"
   },
   "postHeader": {
     "postedInStream": "aiheessa"
