@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.3.0](https://github.com/villetakanen/pelilauta/compare/v5.2.0...v5.3.0) (2020-12-01)
+
+
+### Features
+
+* url links to quill editor save ([7db4e90](https://github.com/villetakanen/pelilauta/commit/7db4e90f146c1eadcd3203155f37985c716721d7))
+
+
+### Bug Fixes
+
+* added alts to images ([036f76f](https://github.com/villetakanen/pelilauta/commit/036f76f985d3cd02f971288af897f5d77d72e601))
+
 ## [5.2.0](https://github.com/villetakanen/pelilauta/compare/v5.1.0...v5.2.0) (2020-12-01)
 
 
