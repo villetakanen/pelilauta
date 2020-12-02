@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.2](https://github.com/villetakanen/pelilauta/compare/v5.3.1...v5.3.2) (2020-12-02)
+
+
+### Bug Fixes
+
+* transparent background makes clicking hard ([f8debd0](https://github.com/villetakanen/pelilauta/commit/f8debd06d71038aacbce77e60c87f441b111e32b))
+
 ### [5.3.1](https://github.com/villetakanen/pelilauta/compare/v5.3.0...v5.3.1) (2020-12-01)
 
 
