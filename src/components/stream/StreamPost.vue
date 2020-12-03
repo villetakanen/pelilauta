@@ -135,6 +135,7 @@ export default defineComponent({
   bottom: -52px
   right: -33px
   opacity: 0.11
+  pointer-events: none
 
 .stream-post-content
   @include TypeBody2()

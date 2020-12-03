@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.3.2](https://github.com/villetakanen/pelilauta/compare/v5.3.1...v5.3.2) (2020-12-02)
+
+
+### Bug Fixes
+
+* transparent background makes clicking hard ([f8debd0](https://github.com/villetakanen/pelilauta/commit/f8debd06d71038aacbce77e60c87f441b111e32b))
+
+### [5.3.1](https://github.com/villetakanen/pelilauta/compare/v5.3.0...v5.3.1) (2020-12-01)
+
+
+### Bug Fixes
+
+* small quality fixes to thread views ([9bcb166](https://github.com/villetakanen/pelilauta/commit/9bcb1667db7f91f1c27d09da04d03aa875003c10))
+
+## [5.3.0](https://github.com/villetakanen/pelilauta/compare/v5.2.0...v5.3.0) (2020-12-01)
+
+
+### Features
+
+* url links to quill editor save ([7db4e90](https://github.com/villetakanen/pelilauta/commit/7db4e90f146c1eadcd3203155f37985c716721d7))
+
+
+### Bug Fixes
+
+* added alts to images ([036f76f](https://github.com/villetakanen/pelilauta/commit/036f76f985d3cd02f971288af897f5d77d72e601))
+
+## [5.2.0](https://github.com/villetakanen/pelilauta/compare/v5.1.0...v5.2.0) (2020-12-01)
+
+
+### Features
+
+* card graphics demo ([a3ac566](https://github.com/villetakanen/pelilauta/commit/a3ac566226e83b02087e6c4b54f951b76ec98d3c))
+* formatters exracted to utils ([20c76b8](https://github.com/villetakanen/pelilauta/commit/20c76b868c1b1002f8e135814b93788650e06b98))
+* tags added to wikipages ([ea797ba](https://github.com/villetakanen/pelilauta/commit/ea797ba4a0c70643457ce4dd4c90ea6b28793b7c))
+* yet another retheming ([cc8edc3](https://github.com/villetakanen/pelilauta/commit/cc8edc335892c23dd0dde01c6c385dcbcb2384a8))
+
+
+### Bug Fixes
+
+* missing translations and quality fixes ([794b529](https://github.com/villetakanen/pelilauta/commit/794b529bdc00d30f96639126b307450136e77487))
+
 ## [5.1.0](https://github.com/villetakanen/pelilauta/compare/v5.0.0...v5.1.0) (2020-11-26)
 
 
