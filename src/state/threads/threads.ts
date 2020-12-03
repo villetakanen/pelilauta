@@ -97,6 +97,22 @@ export async function fetchThread (threadid: string): Promise<Thread|undefined> 
   })
 }
 
+export async function createThread (actor: string, data:PostData): Promise<string> {
+  firebase.analytics().logEvent('createThread', { author: actor })
+  const db = firebase.firestore()
+  const postRef = db.collection('stream').doc()
+  return postRef.set({
+    author: actor,
+    ...data,
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+    flowTime: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(() => {
+    return postRef.get().then((doc) => {
+      return doc.id
+    })
+  })
+}
+
 export async function deleteThread (actor: string, threadid: string): Promise<void> {
   firebase.analytics().logEvent('dropPost', { author: actor })
   const db = firebase.firestore()

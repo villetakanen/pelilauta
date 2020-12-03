@@ -18,7 +18,10 @@
             class="actionIcon"
             @click="hide"
           >
-            <img src="@/assets/action-close.svg">
+            <img
+              src="@/assets/action-close.svg"
+              alt="close"
+            >
           </div>
         </div>
 
@@ -30,7 +33,7 @@
               v-model="title"
               class="material-textfield"
               type="text"
-              :placeholder="titlePlaceholder"
+              :placeholder="titleModel"
             >
           </div>
           <select
@@ -39,30 +42,54 @@
             class="material-select"
           >
             <option
-              v-for="(topic) in topics"
-              :key="topic.slug"
-              :value="topic.slug"
+              v-for="(t) in topics"
+              :key="t.slug"
+              :value="t.slug"
             >
-              {{ topic.title }}
+              {{ t.title }}
             </option>
           </select>
         </div>
 
         <!-- Editor box-->
-        <QuillEditor :toolbar="true" />
+        <QuillEditor
+          v-model="content"
+          :toolbar="true"
+        />
+
+        <!-- Photo uploader -->
+        <ImageUploadBar v-model="images" />
+
+        <!-- Bottom bar for the dialog -->
+        <div class="dialogBottomToolbar">
+          <div class="grow blockAction">
+            <MaterialButton
+              dark
+              block
+              :action="publish"
+            >
+              {{ $t('action.send') }}
+            </MaterialButton>
+          </div>
+        </div>
       </div>
     </div>
   </teleport>
 </template>
 
 <script lang="ts">
-import { useMeta } from '@/lib/meta'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
+import ImageUploadBar from '../editor/ImageUploadBar.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
+import { useMeta } from '@/lib/meta'
+import { PostData, createThread } from '@/state/threads/threads'
+import { useAuthState } from '@/state/authz'
+import { useRouter } from 'vue-router'
+import MaterialButton from '../material/MaterialButton.vue'
 
 export default defineComponent({
   name: 'AppEditorDialog',
-  components: { QuillEditor },
+  components: { QuillEditor, ImageUploadBar, MaterialButton },
   props: {
     modelValue: {
       type: Boolean,
@@ -77,17 +104,48 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, context) {
+    const { topics } = useMeta()
+    const { uid } = useAuthState()
+    const router = useRouter()
+
+    const chosenTopic = ref(props.topic || 'Yleinen')
+    const content = ref('')
+    const title = ref('')
+    const images = ref(new Array<string>())
+
+    const titleModel = computed({
+      get: () => {
+        return title.value || '...'
+      },
+      set: (newTitle: string) => {
+        title.value = newTitle
+      }
+    })
+
     function hide (): void {
       context.emit('update:modelValue', false)
     }
-    const chosenTopic = ref(props.topic || 'Yleinen')
-    const { topics } = useMeta()
-    return { hide, topics, chosenTopic }
+
+    function publish () {
+      const postData:PostData = {
+        content: content.value,
+        title: titleModel.value,
+        topic: chosenTopic.value,
+        images: images.value.map((url) => ({ url: url }))
+      }
+      console.log('publish, ', postData)
+      createThread(uid.value, postData).then((slug: string) => {
+        hide()
+        router.push('/stream/view/' + slug)
+      })
+    }
+
+    return { hide, topics, chosenTopic, images, publish, title, titleModel, content }
   }
 })
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 @import @/styles/material-colors.sass
 @import @/styles/layout.sass
 @import @/styles/material-typography.sass
@@ -107,6 +165,31 @@ export default defineComponent({
     padding: 8px
   .material-textfield, .material-select
     margin: 0
+  .dialogBottomToolbar
+    padding: 8px
+    display: flex
+    flex-direction: row-reverse
+  .ql-container
+    border: none
+  .ql-editor
+    min-height: 276px
+    background-color: rgba($color-fill-dark, 0.08)
+    border-bottom: solid 1px $color-fill-primary-dark
+    &:hover
+      background-color: rgba($color-fill-dark, 0.13)
+  .ql-toolbar
+    border: none
+    border-bottom: solid 1px rgba($color-fill-dark, 0.4)
+    border-top: solid 1px rgba($color-fill-dark, 0.4)
+    padding: 0
+    height: 38px
+  .ql-formats:hover
+    // background-color: rgba($color-fill-dark, 0.12)
+  .ql-formats
+    display: inline-block
+    line-height: 24px
+    margin: 0px
+    padding: 6px
 
 @include media('>=tablet')
   .editorDialog
@@ -118,6 +201,21 @@ export default defineComponent({
       div
         padding: 8px
         height: 24px
+        img
+          height: 24px
+          width: 24px
+
+@include media('<tablet')
+  .editorDialog
+    background-color: $color-fill-light
+    .dialogTopToolbar
+      padding: 8px
+      background-color: $color-fill-primary-light
+      div
+        padding: 8px
+        height: 24px
+        h4
+          line-height: 24px
         img
           height: 24px
           width: 24px

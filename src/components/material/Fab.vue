@@ -60,7 +60,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .materialFab
-  background-color: $color-fill-primary-light
+  background-color: $color-fill-primary
   height: 56px// 3*24=72, 72-2*8=56
   width: 56px
   padding: 0
@@ -87,7 +87,7 @@ export default defineComponent({
     vertical-align: middle
     padding-bottom: 4px
   &:hover
-    background: lighten($color-fill-primary-light, 2%) radial-gradient(circle, transparent 1%, $color-fill-primary-light 1%) center/15000%
+    background: lighten($color-fill-primary, 2%) radial-gradient(circle, transparent 1%, $color-fill-primary 1%) center/15000%
   &:active
     background-color: $color-fill-primary-dark
     background-size: 100%

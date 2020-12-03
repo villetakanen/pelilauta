@@ -5,6 +5,7 @@
     </ViewHeader>
     <div class="spacer" />
     <Fab
+      style="margin: 4px"
       :action="newThread"
       :text="$t('action.addThread')"
     >
@@ -18,23 +19,11 @@
     <ThreadList :topic="routeTopic" />
   </div>
   <EditorDialog v-model="showEditorDialog" />
-  <teleport to="body">
-    <MaterialFab
-      v-if="showStreamActions"
-      :action="newPostDialog"
-    >
-      <img
-        src="@/assets/add.svg"
-        alt="new comment"
-      >
-    </MaterialFab>
-  </teleport>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
-import MaterialFab from '@/components/material/MaterialFab.vue'
 import Fab from '@/components/material/Fab.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useMeta } from '@/lib/meta'
@@ -46,7 +35,6 @@ export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
-    MaterialFab,
     ViewHeader,
     Fab,
     EditorDialog
