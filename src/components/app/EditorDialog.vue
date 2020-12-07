@@ -78,14 +78,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed, PropType, onMounted } from 'vue'
 import ImageUploadBar from '../editor/ImageUploadBar.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
 import { useMeta } from '@/lib/meta'
-import { PostData, createThread } from '@/state/threads/threads'
+import { PostData, createThread, PostImage } from '@/state/threads/threads'
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import MaterialButton from '../material/MaterialButton.vue'
+import { Thread } from '@/state/threads'
 
 export default defineComponent({
   name: 'AppEditorDialog',
@@ -100,6 +101,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    thread: {
+      type: Object as PropType<Thread>,
+      required: false,
+      default: undefined
     }
   },
   emits: ['update:modelValue'],
@@ -108,10 +114,10 @@ export default defineComponent({
     const { uid } = useAuthState()
     const router = useRouter()
 
-    const chosenTopic = ref(props.topic || 'Yleinen')
+    const chosenTopic = ref('')
     const content = ref('')
     const title = ref('')
-    const images = ref(new Array<string>())
+    const images = ref(new Array<PostImage>())
 
     const titleModel = computed({
       get: () => {
@@ -131,7 +137,7 @@ export default defineComponent({
         content: content.value,
         title: titleModel.value,
         topic: chosenTopic.value,
-        images: images.value.map((url) => ({ url: url }))
+        images: images.value
       }
       console.log('publish, ', postData)
       createThread(uid.value, postData).then((slug: string) => {
@@ -139,6 +145,17 @@ export default defineComponent({
         router.push('/stream/view/' + slug)
       })
     }
+
+    onMounted(() => {
+      if (props.topic) {
+        chosenTopic.value = props.topic || 'Yleinen'
+      } else if (props.thread) {
+        chosenTopic.value = props.thread.data.topic || 'Yleinen'
+        content.value = props.thread.data.content || ''
+        title.value = props.thread.data.title || ''
+        images.value = props.thread.data.images || new Array<PostImage>()
+      }
+    })
 
     return { hide, topics, chosenTopic, images, publish, title, titleModel, content }
   }
