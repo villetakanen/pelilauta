@@ -35,6 +35,7 @@ export default defineComponent({
 
 #AppBar
   background-color: $color-fill-dark
+  background: linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
   position: fixed
   top: 0
   left: 0

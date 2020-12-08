@@ -5,16 +5,8 @@
       :key="post.id"
     >
       <div v-if="post && post.data.content">
-        <StreamPost
-          :created="toDisplayString(post.created)"
-          :topic="post.data.topic"
-          :author="post.author"
-          :content="post.data.content"
-          :threadid="post.id"
-          :title="post.data.title"
-          :images="post.data.images"
-          :replycount="post.replyCount"
-          :lovecount="post.lovedCount"
+        <ThreadCard
+          :thread="post"
         />
       </div>
     </div>
@@ -23,13 +15,13 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import StreamPost from './StreamPost.vue'
 import { useStream } from '@/lib/stream'
 import { useThreads } from '@/state/threads'
+import ThreadCard from './ThreadCard.vue'
 
 export default defineComponent({
   components: {
-    StreamPost
+    ThreadCard
   },
   props: {
     topic: {

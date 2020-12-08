@@ -1,38 +1,42 @@
 <template>
-  <ViewHeader>
-    {{ pageTitle.title }}
-  </ViewHeader>
+  <div class="toolbar">
+    <ViewHeader>
+      {{ pageTitle.title }}
+    </ViewHeader>
+    <div class="spacer" />
+    <Fab
+      style="margin: 4px"
+      :action="newThread"
+      :text="$t('action.addThread')"
+    >
+      <img
+        src="@/assets/icons/add.svg"
+        alt="new post"
+      >
+    </Fab>
+  </div>
   <div class="contentGrid">
     <ThreadList :topic="routeTopic" />
   </div>
-  <teleport to="body">
-    <MaterialFab
-      v-if="showStreamActions"
-      :action="newPostDialog"
-    >
-      <img
-        src="@/assets/add.svg"
-        alt="new comment"
-      >
-    </MaterialFab>
-  </teleport>
+  <EditorDialog v-model="showEditorDialog" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
-import MaterialFab from '@/components/material/MaterialFab.vue'
+import Fab from '@/components/material/Fab.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useMeta } from '@/lib/meta'
-import { useEditorDialog } from '@/lib/editor'
 import { useRoute } from 'vue-router'
+import EditorDialog from '@/components/app/EditorDialog.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
-    MaterialFab,
-    ViewHeader
+    ViewHeader,
+    Fab,
+    EditorDialog
   },
   props: {
     topic: {
@@ -48,19 +52,6 @@ export default defineComponent({
       return Array.isArray(route.params.topic) ? route.params.topic[0] : route.params.topic
     })
 
-    /*
-    const routeTopic = ref('')
-    onMounted(() => {
-      if (route?.params?.topic) routeTopic.value = route.params.topic as string
-      watch(route, (val) => {
-        if (!route.params?.topic) {
-          // eslint-disable-next-line
-          console.warn('no topic')
-        }
-        routeTopic.value = val.params.topic as string
-      })
-    }) */
-
     const pageTitle = computed(() => {
       if (!topics.value || topics.value.length < 1) return { title: routeTopic.value }
       const t = topics.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
@@ -68,12 +59,14 @@ export default defineComponent({
       return { title: routeTopic.value }
     })
 
-    const newPostDialog = () => {
-      const { showEditor } = useEditorDialog()
-      showEditor(props.topic)
+    const showEditorDialog = ref(false)
+
+    const newThread = () => {
+      console.log('newThread')
+      showEditorDialog.value = true
     }
 
-    return { pageTitle, showStreamActions, newPostDialog, routeTopic }
+    return { pageTitle, showStreamActions, routeTopic, newThread, showEditorDialog }
   }
 })
 </script>

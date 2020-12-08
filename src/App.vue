@@ -24,7 +24,6 @@
 import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
 import MaterialBanner from './components/material/MaterialBanner.vue'
 import MaterialDialog from './components/material/MaterialDialog.vue'
-import EditorDialog from '@/components/editor/EditorDialog.vue'
 import WelcomeCard from '@/components/app/WelcomeCard.vue'
 import SideNav from '@/components/app/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
@@ -36,7 +35,6 @@ import { useRoute } from 'vue-router'
 export default defineComponent({
   components: {
     MaterialBanner,
-    EditorDialog,
     MaterialDialog,
     WelcomeCard,
     SideNav,

@@ -50,7 +50,7 @@ export default defineComponent({
   height: 20px
   margin: 4px
   padding: 0px 8px
-  background-color: $color-fill-primary-light
+  background-color: $color-fill-primary
   color: $color-dark-font-high
   border-radius: 16px
   display: inline-block

@@ -12,6 +12,6 @@
 @include media('>phone')
   h1.viewHeader
     @include TypeHeadline3()
-    color: #002337
-    opacity: 0.37
+    color: $color-fill-primary-dark
+    opacity: 0.44
 </style>

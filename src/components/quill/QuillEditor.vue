@@ -18,17 +18,19 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'new-images'],
   setup (props, context) {
+    // console.log('quill.root.innerHTML', props.modelValue)
     onMounted(() => {
       const options = {
         theme: props.toolbar ? 'snow' : undefined
       }
       const quill = new Quill('#editor', options)
       quill.on('text-change', () => {
-        console.log(quill.root.innerHTML)
+        console.log('text-change', quill.root.innerHTML)
         context.emit('update:modelValue', quill.root.innerHTML)
       })
       watch(() => props.modelValue, (val) => {
         if (quill.root.innerHTML === val) return
+        console.log('quill.root.innerHTML', val)
         quill.root.innerHTML = val
       })
     })

@@ -14,11 +14,17 @@
     <div>
       <MaterialMenu v-model="menu" />
     </div>
+    <template v-if="editorVisible">
+      <EditorDialog
+        v-model="editorVisible"
+        :thread="thread"
+      />
+    </template>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -26,13 +32,15 @@ import { Thread, deleteThread } from '@/state/threads'
 import { MenuItem, useMeta } from '@/lib/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuthState } from '@/state/authz'
-import { useEditorDialog } from '@/lib/editor'
+// import { useEditorDialog } from '@/lib/editor'
+import EditorDialog from '../app/EditorDialog.vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'ThreadCardHeader',
   components: {
-    MaterialMenu
+    MaterialMenu,
+    EditorDialog
   },
   props: {
     thread: {
@@ -65,9 +73,12 @@ export default defineComponent({
       deleteThread(uid.value, props.thread.id)
     }
 
+    const editorVisible = ref(false)
+
     function edit () {
-      const { showEditor } = useEditorDialog()
-      showEditor(props.thread)
+      editorVisible.value = true
+      // const { showEditor } = useEditorDialog()
+      // showEditor(props.thread)
     }
 
     const copyUrl = () => {
@@ -97,7 +108,7 @@ export default defineComponent({
     })
 
     const since = computed(() => (toSince(props.thread.created)))
-    return { since, menu }
+    return { since, menu, editorVisible }
   }
 })
 </script>
