@@ -6,17 +6,8 @@
         class="postHeader"
       >
         <!-- The top bar -->
-        <PostHeader
-          :nick="author.nick"
-          :photo="author.photoURL"
-          :title="post.data.title"
-          :threadid="post.id"
-          :created="toDisplayString(post.created)"
-          :topic="post.data.topic"
-          :author="post.author"
-        />
+        <ThreadCardHeader :thread="post" />
       </div>
-
       <div
         v-if="post"
         class="postContent"
@@ -48,21 +39,21 @@ import Discussion from '@/components/discussion/Discussion.vue'
 import { useThreads, loveThread, unloveThread, deleteThread } from '@/state/threads'
 import { useStream } from '@/lib/stream'
 import { useAuthors } from '@/lib/authors'
-import PostHeader from '@/components/stream/PostHeader.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/lib/meta'
 import LoveAction from '@/components/app/LoveAction.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthState, useProfile } from '@/state/authz'
+import ThreadCardHeader from '@/components/stream/ThreadCardHeader.vue'
 
 export default defineComponent({
   components: {
-    PostHeader,
     Discussion,
     PhotoBox,
     LoveAction,
-    MaterialCard
+    MaterialCard,
+    ThreadCardHeader
   },
   props: {
     threadid: {
