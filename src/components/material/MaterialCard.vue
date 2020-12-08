@@ -12,7 +12,9 @@
 
 div.material-card
   @include TypeColorDark()
-  @include SpacingContainer()
+  margin: 0
+  margin-bottom: 16px
+  padding: 16px
   background-color: white
   border: solid 1px #00233722
   box-shadow: 0px 0px 4px 0px rgba(0,35,55,0.11)

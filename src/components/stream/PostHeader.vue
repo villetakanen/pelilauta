@@ -135,6 +135,7 @@ export default defineComponent({
 
 .PostHeader
   .avatar
+    margin-right: 16px
     img
       height: 40px
       width: 40px
@@ -142,8 +143,7 @@ export default defineComponent({
       padding: 0
       border-radius: 50%
   .InfoBar
-    padding-left: 8px
-    padding-right: 8px
+    padding-right: 16px
   .caption
     @include TypeCaption()
 

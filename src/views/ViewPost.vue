@@ -121,11 +121,9 @@ export default defineComponent({
 
 .postHeader, .postContent
   background-color: $color-base
-  padding: 16px
 
 .postContent
   @include TypeBody2()
-  padding: 16px
   color: $color-font-medium
   padding-top: 0
 
@@ -133,7 +131,6 @@ export default defineComponent({
   .postContent
     @include TypeBody1()
     padding-top: 0
-    padding: 16px
 
 .replybox
   background-color: $color-base-darker
