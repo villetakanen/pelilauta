@@ -15,7 +15,10 @@
         color="secondary"
         :action="send"
       >
-        <img src="@/assets/send.svg">
+        <img
+          src="@/assets/send.svg"
+          alt="Send comment"
+        >
       </MaterialButton>
     </div>
     <div
@@ -39,13 +42,8 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 import Editor from '@/components/editor/Editor2.vue'
 import { useDiscussion } from '@/lib/discussion'
 import { useAuthz } from '@/lib/authz'
-import { required } from '@vuelidate/validators'
 import { useProfile } from '@/state/authz'
-
-interface Quote {
-  content: string
-  author: string
-}
+import { Quote } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'ReplyForm',
