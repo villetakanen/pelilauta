@@ -178,42 +178,44 @@ export default defineComponent({
 .replyComment
   @include TypeBody2()
   position: relative
-  background-color: $color-base-darker
+  background-color: rgba($color-fill-primary-dark, 0.33)
   margin: 8px
-  padding: 8px
-  border-radius: 4px
+  padding: 16px
+  border-radius: 0 6px 6px 6px
   // for triangle
   margin-left: 24px
   color: $color-font-medium
   &.fromMe
     margin-left: 8px
     margin-right: 24px
-    background-color: white
-    padding: 7px
-    border: solid 1px $color-base-darker
+    background-color: rgba($color-fill-primary, 0.22)
+    //border: solid 1px rgba($color-fill-primary, 0.22)
+    border-radius: 8px 0px 8px 8px
 
 .author
   color: $color-fill-primary-dark
+  font-weight: bold
 .fromMe .author
-  color: $color-fill-primary-light
+  color: $color-font-medium
 
 .replyComment:after
   content: ""
   position: absolute
   border-style: solid
-  border-color: transparent $color-base-darker
+  border-color: transparent rgba($color-fill-primary-dark, 0.33)
 
 .replyComment:not(.fromMe):after
-  top: 8px // controls vertical position
+  top: 0px // controls vertical position
   left: -16px // value = - border-left-width - border-right-width */
-  border-width: 8px 16px 8px 0
+  border-width: 0px 16px 16px 0
   bottom: auto
 
 .replyComment.fromMe:after
-  top: 8px // controls vertical position
+  top: 0px // controls vertical position
   right: -16px // value = - border-left-width - border-right-width */
-  border-width: 8px 0px 8px 16px
+  border-width: 0px 0px 16px 16px
   bottom: auto
+  border-color: transparent rgba($color-fill-primary, 0.22)
 
 .stream-reply
   @include TypeBody2()
