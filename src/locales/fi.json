@@ -69,6 +69,11 @@
     "title": "Pelilauta 2",
     "text": "Kokeellinen SPA yhteisösivustoille"
   },
+  "since": {
+    "lessThanHalfh": "Hetki sitten",
+    "lessThanTwoHours": "Alle 2 tuntia sitten",
+    "lessThan24h": "Alle 24 tuntia sitten"
+  },
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
     "messages": {
