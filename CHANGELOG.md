@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.0](https://github.com/villetakanen/pelilauta/compare/v5.3.2...v5.4.0) (2020-12-08)
+
+
+### Features
+
+* deprecated older post headers ([db20e84](https://github.com/villetakanen/pelilauta/commit/db20e84f2baea8f70a028c6f62033b61a33ba97f))
+* new editor dialog view done ([ff383be](https://github.com/villetakanen/pelilauta/commit/ff383be633b18ada321c9eef000b0d7be201b505))
+* new fab and new editor dialog ([5771686](https://github.com/villetakanen/pelilauta/commit/5771686a065d09bb22c0a43600eef0a596c54f9f))
+* quill editordialog supports editing threads ([c4dbb76](https://github.com/villetakanen/pelilauta/commit/c4dbb768ee6edb909995117bc8a99fe038980858))
+* quill for editing threads ([047d1f3](https://github.com/villetakanen/pelilauta/commit/047d1f38b1dbbb6c75c9262d02aca472fbf9e924))
+* quill-editor for topic pages ([a8f6201](https://github.com/villetakanen/pelilauta/commit/a8f6201b74f1bb54cff1c2237b292060e7acb746))
+
+
+### Bug Fixes
+
+* ux polish for editors ([a2b7d11](https://github.com/villetakanen/pelilauta/commit/a2b7d111c082119f9ad665a324956c1fbd7ad3e9))
+
 ### [5.3.2](https://github.com/villetakanen/pelilauta/compare/v5.3.1...v5.3.2) (2020-12-02)
 
 
