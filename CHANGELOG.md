@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.0](https://github.com/villetakanen/pelilauta/compare/v5.4.0...v5.5.0) (2020-12-08)
+
+
+### Features
+
+* since i18n ([947d5d5](https://github.com/villetakanen/pelilauta/commit/947d5d5e92eef52be9154fbcdb0bb76d65111d81))
+
+
+### Bug Fixes
+
+* added alts to sidenavaction icons ([78b650f](https://github.com/villetakanen/pelilauta/commit/78b650f7ea075b4dbbe3003a16206be6160e28d7))
+* discussion components code quality fixes ([ef482b8](https://github.com/villetakanen/pelilauta/commit/ef482b88e31627448db75c2adada19d47ef47385))
+* empty alt for decorative image ([9946e07](https://github.com/villetakanen/pelilauta/commit/9946e07d78532b986f4f1b921c858b547708a019))
+
 ## [5.4.0](https://github.com/villetakanen/pelilauta/compare/v5.3.2...v5.4.0) (2020-12-08)
 
 
