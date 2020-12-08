@@ -78,15 +78,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, PropType, onMounted } from 'vue'
-import ImageUploadBar from '../editor/ImageUploadBar.vue'
+import { defineComponent, ref, computed, PropType } from 'vue'
+import ImageUploadBar from './ImageUploadBar.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
 import { useMeta } from '@/lib/meta'
-import { PostData, createThread, PostImage } from '@/state/threads/threads'
+import { Thread, PostData, createThread, PostImage, updateThread } from '@/state/threads'
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import MaterialButton from '../material/MaterialButton.vue'
-import { Thread } from '@/state/threads'
 
 export default defineComponent({
   name: 'AppEditorDialog',
@@ -118,6 +117,7 @@ export default defineComponent({
     const content = ref('')
     const title = ref('')
     const images = ref(new Array<PostImage>())
+    const update = ref(false)
 
     const titleModel = computed({
       get: () => {
@@ -140,22 +140,33 @@ export default defineComponent({
         images: images.value
       }
       console.log('publish, ', postData)
-      createThread(uid.value, postData).then((slug: string) => {
-        hide()
-        router.push('/stream/view/' + slug)
-      })
+      if (!update.value) {
+        createThread(uid.value, postData).then((slug: string) => {
+          hide()
+          router.push('/stream/view/' + slug)
+        })
+      } else {
+        const post = props.thread
+        post.data = { ...postData }
+        updateThread(uid.value, post).then((slug: string) => {
+          hide()
+          router.push('/stream/view/' + slug)
+        })
+      }
     }
 
-    onMounted(() => {
-      if (props.topic) {
-        chosenTopic.value = props.topic || 'Yleinen'
-      } else if (props.thread) {
-        chosenTopic.value = props.thread.data.topic || 'Yleinen'
-        content.value = props.thread.data.content || ''
-        title.value = props.thread.data.title || ''
-        images.value = props.thread.data.images || new Array<PostImage>()
-      }
-    })
+    // onMounted(() => {
+    if (props.topic) {
+      chosenTopic.value = props.topic || 'Yleinen'
+    } else if (props.thread) {
+      console.log(props.thread)
+      update.value = true
+      chosenTopic.value = props.thread.data.topic || 'Yleinen'
+      content.value = props.thread.data.content || ''
+      title.value = props.thread.data.title || ''
+      images.value = props.thread.data.images || new Array<PostImage>()
+    }
+    // })
 
     return { hide, topics, chosenTopic, images, publish, title, titleModel, content }
   }
