@@ -7,6 +7,7 @@
       <img
         class="logo"
         src="@/assets/fox.svg"
+        alt=""
       >
       <h1>{{ $t('welcome.header') }}</h1>
       <p>{{ $t('welcome.paragraph') }}</p>

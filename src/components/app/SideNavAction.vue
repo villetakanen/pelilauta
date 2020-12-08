@@ -10,6 +10,7 @@
       >
         <img
           src="@/assets/fox.svg"
+          alt="Pelilauta logo"
         >
       </div>
       <div
@@ -18,6 +19,7 @@
       >
         <img
           src="@/assets/fox.svg"
+          alt="Pelilauta logo"
         >
       </div>
     </transition>
@@ -68,7 +70,6 @@ export default defineComponent({
     img
       margin-top: -5px
       margin-left: -5px
-      // opacity: 0.5
 
 .scaleToFull-enter-active,
 .scaleToFull-leave-active

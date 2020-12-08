@@ -2,6 +2,11 @@
 const urlPatternStart = '(<div>|<br>|<p>| |^|&nbsp;)'
 const urlPatternEnd = '(&nbsp;| |<div>|</div>|<br>|</p>|$)'
 
+export interface Quote {
+  content: string
+  author: string
+}
+
 /**
  * Extracts tags, and adds a-href's to them. Run on save of reply, wikipage, and thread
  *

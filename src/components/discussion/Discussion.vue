@@ -24,6 +24,7 @@ import Reply from './Reply.vue'
 import { useAuthz } from '@/lib/authz'
 import { useThreads, Thread, fetchThread } from '@/state/threads'
 import { useProfile } from '@/state/authz'
+import { Quote } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'Discussion',
@@ -63,9 +64,9 @@ export default defineComponent({
       })
     })
 
-    const quote:Ref<Record<string, string>|null> = ref(null)
+    const quote:Ref<Quote|null> = ref(null)
 
-    function addQuote (q: Record<string, string>) {
+    function addQuote (q: Quote) {
       quote.value = q
     }
 
