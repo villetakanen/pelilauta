@@ -1,21 +1,4 @@
 <template>
-  <div class="toolbar spaced">
-    <div class="credits">
-      <transition name="fade">
-        <div v-if="author">
-          <p class="author">
-            {{ author.nick }}
-          </p>
-          <p
-            v-if="author.tagline"
-            class="caption"
-          >
-            {{ author.tagline }}
-          </p>
-        </div>
-      </transition>
-    </div>
-  </div>
   <div class="toolbar">
     <LoveAction
       class="inline"
@@ -36,7 +19,6 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 import { Thread, loveThread, unloveThread } from '@/state/threads'
-import { useAuthors } from '@/lib/authors'
 import ThreadRepliesLink from './ThreadRepliesLink.vue'
 import LoveAction from '@/components/app/LoveAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
@@ -55,9 +37,6 @@ export default defineComponent({
   },
   emits: ['updated'],
   setup (props, context) {
-    const { authors } = useAuthors()
-    const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
-
     const { profileMeta } = useProfile()
     const { uid } = useAuthState()
 
@@ -78,7 +57,7 @@ export default defineComponent({
       }
     }
 
-    return { author, loves, toggleLove }
+    return { loves, toggleLove }
   }
 })
 </script>
@@ -91,6 +70,7 @@ export default defineComponent({
   margin: 8px 0
   height: 48px
 .toolbar
+  margin-top: 16px
   div
     align-self: center
   p

@@ -8,6 +8,8 @@
       </h1>
       <p class="caption">
         <span v-if="since">{{ since }}</span>
+        {{ $t('postHeader.postedInStream') }}
+        <span v-if="topicName"><a :href="`/stream/topic/${thread.data.topic}`">{{ topicName.title }}</a></span>
       </p>
     </div>
     <div class="spacer" />
@@ -50,6 +52,8 @@ export default defineComponent({
   },
   setup (props) {
     const i18n = useI18n()
+    const { topics } = useMeta()
+    const topicName = computed(() => (topics.value.find((val) => (val.slug.toLowerCase() === props.thread.data.topic.toLowerCase()))))
     // @todo: extract to /utils
     function toSince (timestamp: firebase.firestore.Timestamp) {
       let date = new Date(timestamp.seconds * 1000)
@@ -108,7 +112,7 @@ export default defineComponent({
     })
 
     const since = computed(() => (toSince(props.thread.created)))
-    return { since, menu, editorVisible }
+    return { since, menu, editorVisible, topicName }
   }
 })
 </script>
@@ -119,7 +123,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .toolbar
-  margin-bottom: 16px
+  margin-bottom: 8px
   h1
     color: $color-fill-primary
 .caption

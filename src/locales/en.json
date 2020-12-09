@@ -1,5 +1,17 @@
 {
   "lang": "EN",
+  "action": {
+    "logout": "Logout",
+    "toTopicList": "Topics",
+    "login": "Login",
+    "update": "Update",
+    "deferUpdate": "Remind me later",
+    "readMore": "Read more...",
+    "nextPage": "Load more threads",
+    "quote": "Quote",
+    "send": "Send",
+    "addThread": "New Thread"
+  },
   "admin": {
     "title": "Admin"
   },
@@ -20,18 +32,6 @@
     "message": "Please login or register using the buttons below",
     "withGoogleButton": "Google",
     "withFacebookButton": "Facebook"
-  },
-  "action": {
-    "logout": "Logout",
-    "toTopicList": "Topics",
-    "login": "Login",
-    "update": "Update",
-    "deferUpdate": "Remind me later",
-    "readMore": "Read more...",
-    "nextPage": "Load more threads",
-    "quote": "Quote",
-    "send": "Send",
-    "addThread": "New Thread"
   },
   "postHeader": {
     "postedInStream": "in"
