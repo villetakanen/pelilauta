@@ -123,7 +123,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .toolbar
-  margin-bottom: 16px
+  margin-bottom: 8px
   h1
     color: $color-fill-primary
 .caption
