@@ -119,7 +119,7 @@ export async function updateThread (actor: string, post:Thread): Promise<string>
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(post.id)
   return postRef.update({
-    author: actor,
+    editor: actor,
     ...post.data,
     created: firebase.firestore.FieldValue.serverTimestamp(),
     flowTime: firebase.firestore.FieldValue.serverTimestamp()
