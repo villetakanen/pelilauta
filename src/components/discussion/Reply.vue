@@ -62,7 +62,7 @@
         color="secondary"
         :action="updateReply"
       >
-        <img src="@/assets/send.svg">
+        <img src="@/assets/send.svg" alt="send">
       </MaterialButton>
     </div>
   </div>
