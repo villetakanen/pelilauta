@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.1](https://github.com/villetakanen/pelilauta/compare/v5.6.0...v5.6.1) (2020-12-09)
+
+
+### Bug Fixes
+
+* editing does not update author ([0f65e70](https://github.com/villetakanen/pelilauta/commit/0f65e7017087d38ead6534d3cfec58580c4b9236))
+
 ## [5.6.0](https://github.com/villetakanen/pelilauta/compare/v5.5.0...v5.6.0) (2020-12-08)
 
 
