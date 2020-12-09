@@ -1,5 +1,8 @@
 import { useMembers } from './members'
+import { usePages, Page } from './pages'
 
 export {
-  useMembers
+  Page,
+  useMembers,
+  usePages
 }
