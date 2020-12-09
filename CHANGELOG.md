@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.2](https://github.com/villetakanen/pelilauta/compare/v5.6.1...v5.6.2) (2020-12-09)
+
+
+### Bug Fixes
+
+* refactor of photobox ([93610ca](https://github.com/villetakanen/pelilauta/commit/93610caf118d3164fc7b274bef7856dc212d9bcc))
+* topic name restored to card header ([95385df](https://github.com/villetakanen/pelilauta/commit/95385dfdde770271ed7e252f2a7566190ed10fb9))
+
 ### [5.6.1](https://github.com/villetakanen/pelilauta/compare/v5.6.0...v5.6.1) (2020-12-09)
 
 
