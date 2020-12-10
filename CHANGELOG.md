@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.3](https://github.com/villetakanen/pelilauta/compare/v5.6.2...v5.6.3) (2020-12-10)
+
+
+### Bug Fixes
+
+* another qa fix for replies ([4e85468](https://github.com/villetakanen/pelilauta/commit/4e85468dbf1c94e8228f903fcd8987a280c5fbf7))
+* code quality on replies ([b9303f8](https://github.com/villetakanen/pelilauta/commit/b9303f89f1953472ffc85bdf6928c9ee4fdad4e6))
+* code style ([f6d576a](https://github.com/villetakanen/pelilauta/commit/f6d576a8b2b1d6ce0706176747e49c97842ea85d))
+* mekanismi ux fixes ([79ae545](https://github.com/villetakanen/pelilauta/commit/79ae545cfd00a8c323a42d1c7aaaf38b9773b4e9))
+* mobile layout for the image box ([cc1ef75](https://github.com/villetakanen/pelilauta/commit/cc1ef75b3bf42865553924ed07c93a920b1ccca4))
+
 ### [5.6.2](https://github.com/villetakanen/pelilauta/compare/v5.6.1...v5.6.2) (2020-12-09)
 
 
