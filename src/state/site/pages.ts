@@ -1,8 +1,8 @@
-import { Ref, ref, computed, watch, ComputedRef } from 'vue'
+import { Ref, ref, computed, ComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { useRoute } from 'vue-router'
+import { createSite } from '.'
 
 export interface Page {
   siteid: string,
@@ -42,7 +42,7 @@ function dropFromSubscribed (pageid: string) {
   subscribedPages.value = subscribedPages.value.filter((p) => (pageid !== p.id))
 }
 
-function subscribeTo (siteid:string|null|undefined) {
+export function subscribeTo (siteid:string|null|undefined): void {
   console.log('members.ts: subscribeTo', siteid)
   if (!siteid) {
     unsubscribe()
@@ -62,21 +62,7 @@ function subscribeTo (siteid:string|null|undefined) {
   })
 }
 
-let _init = false
-function init () {
-  if (_init) return
-  _init = true
-
-  firebase.analytics().logEvent('Init members')
-
-  const route = useRoute()
-  subscribeTo(Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid)
-  watch(route, () => {
-    subscribeTo(Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid)
-  })
-}
-
 export function usePages (): { pages: ComputedRef<Page[]> } {
-  init()
+  createSite()
   return { pages }
 }
