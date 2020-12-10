@@ -102,6 +102,5 @@ export default defineComponent({
           max-width: 38vw
           max-height: 38vw
           padding: 1vw
-          
 
 </style>
