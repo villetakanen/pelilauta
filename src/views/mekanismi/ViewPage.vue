@@ -1,37 +1,60 @@
 <template>
-  <ViewHeader>
+  <ViewHeader v-if="!page">
     {{ $t('mekanismi.title') }}
   </ViewHeader>
-  <div class="contentGrid">
-    <PageToolbar :title="routeSiteid + ' / ' + routePageid " />
+  <transition name="fade">
+    <PageToolbar
+      v-if="page"
+      :title="page.name"
+      :subtitle="routeSiteid"
+    />
+  </transition>
+  <div style="display:flex">
     <MaterialCard>
+      <transition name="fade">
+        <div
+          v-if="page"
+          :innerHTML="page.htmlContent"
+        />
+      </transition>
       <div
-        :innerHTML="pageContent"
-      />
+        v-if="!page"
+        class="centerBlock"
+      >
+        <Loader />
+      </div>
     </MaterialCard>
+    <transition name="fade">
+      <MaterialCard v-if="sideBar" style="min-width: 220px; flex-shrink: 0">
+        <div
+          :innerHTML="sideBar.htmlContent"
+        />
+      </MaterialCard>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, onUnmounted } from 'vue'
+import { defineComponent, computed } from 'vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useRoute } from 'vue-router'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
+import { usePages } from '@/state/site'
+import Loader from '@/components/app/Loader.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
     ViewHeader,
     PageToolbar,
-    MaterialCard
+    MaterialCard,
+    Loader
   },
   setup () {
-    const pageContent = ref('...')
-
+    const { pages } = usePages()
+    const page = computed(() => pages.value.find((p) => (p.id === routePageid.value)))
+    const sideBar = computed(() => pages.value.find((p) => (p.id === 'sidebar')))
     const route = useRoute()
     const routePageid = computed(() => {
       return Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid
@@ -40,29 +63,14 @@ export default defineComponent({
       return Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid
     })
 
-    let unsubscribe = () => {
-    }
-
-    function fetchPage () {
-      unsubscribe()
-      const db = firebase.firestore()
-      const pageRef = db.collection('sites').doc(routeSiteid.value).collection('pages').doc(routePageid.value)
-      unsubscribe = pageRef.onSnapshot((snap) => {
-        if (snap.exists) {
-          pageContent.value = snap.data()?.htmlContent
-        }
-      })
-    }
-
-    onMounted(() => {
-      fetchPage()
-    })
-
-    onUnmounted(() => {
-      unsubscribe()
-    })
-
-    return { pageContent, routePageid, routeSiteid }
+    return { page, routePageid, routeSiteid, sideBar }
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.centerBlock
+  display: flex
+  justify-content: center
+
+</style>

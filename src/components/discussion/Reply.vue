@@ -38,6 +38,7 @@
           v-else
           src="@/assets/icons/action-love-hollow.svg"
           style="height:24px; opacity:0.5"
+          alt="Loves"
         >
         <div v-if="reply && reply.lovesCount && reply.lovesCount > 0">
           &nbsp;{{ reply.lovesCount }}
@@ -61,7 +62,7 @@
         color="secondary"
         :action="updateReply"
       >
-        <img src="@/assets/send.svg">
+        <img src="@/assets/send.svg" alt="send">
       </MaterialButton>
     </div>
   </div>

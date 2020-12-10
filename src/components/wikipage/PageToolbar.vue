@@ -1,6 +1,11 @@
 <template>
   <div class="toolbar">
-    <h1>{{ title }}</h1>
+    <div>
+      <h1 class="subtitle">
+        {{ subtitle }}
+      </h1>
+      <h1>{{ title }}</h1>
+    </div>
     <div class="spacer" />
     <MaterialButton
       icon
@@ -39,6 +44,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: 'Mekanismi'
+    },
+    subtitle: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   setup () {
@@ -61,7 +71,14 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .toolbar
-  margin-bottom: -40px
+  margin-bottom: 8px
   h1
     @include TypeButton()
+    font-size: 22px
+    line-height: 32px
+    color: $color-fill-primary-dark
+    &.subtitle
+      @include TypeButton()
+      font-size: 12px
+      line-height: 16px
 </style>

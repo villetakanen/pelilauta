@@ -56,6 +56,8 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .imageBox
+  background: linear-gradient(203deg, rgba(0,121,107,1) 0%, rgba(0,35,55,1) 71%)
+  vertical-align: middle
   &.album
     width: 212px
     height: 212px
@@ -76,12 +78,29 @@ export default defineComponent({
 
 @include media('>tablet')
   .imageBox
-    background: linear-gradient(203deg, rgba(0,121,107,1) 0%, rgba(0,35,55,1) 71%)
-    vertical-align: middle
     img
       max-width: 220px
       margin-left: auto
       margin-right: auto
       display: block
+
+@include media('<tablet')
+  .imageBox
+    img
+      max-width: 100%
+      max-height: 600px
+    &.album
+      width: 80vw
+      height: 80vw
+      padding:0
+      div.frame
+        width: 40vw
+        height: 40vw
+        padding: 0
+        margin: 0
+        img
+          max-width: 38vw
+          max-height: 38vw
+          padding: 1vw
 
 </style>
