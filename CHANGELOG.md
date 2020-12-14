@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.7.0](https://github.com/villetakanen/pelilauta/compare/v5.6.4...v5.7.0) (2020-12-14)
+
+
+### Features
+
+* restored new thread button to frontpage ([640f4fc](https://github.com/villetakanen/pelilauta/commit/640f4fcdeda47c0f8696d007ce01d58262fefb3e))
+
 ### [5.6.4](https://github.com/villetakanen/pelilauta/compare/v5.6.3...v5.6.4) (2020-12-10)
 
 
