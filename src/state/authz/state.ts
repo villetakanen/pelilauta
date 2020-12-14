@@ -13,6 +13,11 @@ const isAnonymous = computed(() => {
   return isAuthz.value === false && anonymousSession.value
 })
 
+const isAuthz = computed(() => {
+  const { isAuthz } = useAuthz()
+  return isAuthz.value
+})
+
 const isAdmin = computed(() => {
   if (isAnonymous.value) return false
   // Admins are listed on meta-data, lets see if our uid is in
@@ -52,9 +57,10 @@ function onAuthStateChanged (user: firebase.User|null): void {
 export function useAuthState (): {
   anonymousSession: Ref<boolean>;
   isAnonymous: ComputedRef<boolean>;
+  isAuthz: ComputedRef<boolean>;
   uid: WritableComputedRef<string>;
   isAdmin: ComputedRef<boolean>;
   onAuthStateChanged: (user: firebase.User|null) => void;
   } {
-  return { anonymousSession, isAnonymous, uid, isAdmin, onAuthStateChanged }
+  return { anonymousSession, isAnonymous, uid, isAdmin, onAuthStateChanged, isAuthz }
 }
