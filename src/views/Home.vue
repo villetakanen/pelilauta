@@ -20,9 +20,10 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import Stream from '@/components/stream/Stream.vue'
-import { useMeta } from '@/lib/meta'
 import Fab from '@/components/material/Fab.vue'
 import EditorDialog from '@/components/app/EditorDialog.vue'
+import { useAuthState } from '@/state/authz'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Home',
@@ -32,7 +33,8 @@ export default defineComponent({
     EditorDialog
   },
   setup () {
-    const { showStreamActions } = useMeta()
+    const { isAuthz } = useAuthState()
+    const router = useRouter()
     const editorDialog = ref(false)
     onMounted(() => {
       document.title = 'Pelilauta'
@@ -40,10 +42,11 @@ export default defineComponent({
     const showEditorDialog = ref(false)
 
     const newThread = () => {
-      console.log('newThread')
-      showEditorDialog.value = true
+      if (!isAuthz.value) {
+        router.push('(/login')
+      } else showEditorDialog.value = true
     }
-    return { showStreamActions, editorDialog, showEditorDialog, newThread }
+    return { editorDialog, showEditorDialog, newThread }
   }
 })
 </script>
