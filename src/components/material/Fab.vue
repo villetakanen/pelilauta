@@ -67,8 +67,6 @@ export default defineComponent({
   margin: 7ßpx
   border-radius: 28px
   border: none
-  // border: solid 1px #00233722
-  // box-shadow: 0px 0px 4px 0px rgba(0,35,55,0.11)
   background-position: center
   transition: background 0.8s
   &.text
@@ -97,4 +95,13 @@ export default defineComponent({
     color: white
     &:hover
       background: lighten($color-fill-secondary, 2%) radial-gradient(circle, transparent 1%, $color-fill-primary 1%) center/15000%
+
+@include media('<tablet')
+  .materialFab.text
+    img
+      margin-top: 4px
+      margin-left: 4px
+      margin-right: 4px
+    .label
+      display: none
 </style>
