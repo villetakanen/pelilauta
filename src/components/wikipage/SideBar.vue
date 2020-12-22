@@ -1,5 +1,8 @@
 <template>
-  <div class="sidebar" style="position: relative">
+  <div
+    class="sidebar"
+    style="position: relative"
+  >
     <MaterialButton
       :action="toggle"
       :icon="true"
@@ -7,13 +10,30 @@
     >
       x
     </MaterialButton>
-    <h1>SideBar demo</h1>
+    <transition name="fade">
+      <div v-if="site">
+        <h1>{{ site.name }}</h1>
+        <p><i>{{ site.description }}</i></p>
+        <h2>{{ $t('mekanismi.sidebar.pagelist') }}</h2>
+        <ul>
+          <li
+            v-for="page in pages"
+            :key="page.id"
+          >
+            <router-link :to="`/mekanismi/view/${site.siteid}/${page.id}`">
+              {{ page.name }}
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import { usePages, useSite } from '@/state/site'
 
 export default defineComponent({
   name: 'WikiSideBar',
@@ -29,12 +49,14 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, context) {
+    const { site } = useSite()
+    const { pages } = usePages()
     const open = ref(props.modelValue)
     function toggle () {
       open.value = !open.value
       context.emit('update:modelValue', open.value)
     }
-    return { toggle, open }
+    return { toggle, open, site, pages }
   }
 })
 </script>

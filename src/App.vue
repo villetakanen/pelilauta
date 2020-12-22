@@ -17,7 +17,6 @@
   <teleport to="body">
     <MaterialDialog :visible="missingProfile" />
   </teleport>
-  <EditorDialog />
 </template>
 
 <script lang="ts">
