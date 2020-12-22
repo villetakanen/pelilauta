@@ -27,6 +27,7 @@
 
     <MaterialCard style="width: 220px; flex-shrink: 0">
       <SideBar />
+      {{ routePageid }}
       <p style="font-style: italic">
         {{ site.description }}
       </p>
