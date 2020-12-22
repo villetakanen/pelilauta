@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.9.1](https://github.com/villetakanen/pelilauta/compare/v5.9.0...v5.9.1) (2020-12-22)
+
+
+### Bug Fixes
+
+* i to em qa fix ([3ed01ed](https://github.com/villetakanen/pelilauta/commit/3ed01ed975beab7c328513f068161dc3758e315a))
+* sidebar uses subscribed page data ([e6b046c](https://github.com/villetakanen/pelilauta/commit/e6b046ccfceb311065e023697e200f77dc7e4378))
+
 ## [5.9.0](https://github.com/villetakanen/pelilauta/compare/v5.8.0...v5.9.0) (2020-12-22)
 
 
