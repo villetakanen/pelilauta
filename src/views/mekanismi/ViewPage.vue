@@ -1,54 +1,45 @@
 <template>
-  <ViewHeader v-if="!page">
-    {{ $t('mekanismi.title') }}
-  </ViewHeader>
-  <transition name="fade">
-    <PageToolbar
-      v-if="page"
-      :title="page.name"
-      :subtitle="site.name"
-    />
-  </transition>
-  <div style="display:flex">
-    <MaterialCard>
-      <transition name="fade">
+  <div>
+    <ViewHeader v-if="!page">
+      {{ $t('mekanismi.title') }}
+    </ViewHeader>
+    <transition name="fade">
+      <PageToolbar
+        v-if="page"
+        :title="page.name"
+        :subtitle="site.name"
+      />
+    </transition>
+    <div style="display:flex">
+      <MaterialCard>
+        <transition name="fade">
+          <div
+            v-if="page"
+            :innerHTML="page.htmlContent"
+          />
+        </transition>
         <div
-          v-if="page"
-          :innerHTML="page.htmlContent"
-        />
-      </transition>
-      <div
-        v-if="!page"
-        class="centerBlock"
-      >
-        <Loader />
-      </div>
-    </MaterialCard>
+          v-if="!page"
+          class="centerBlock"
+        >
+          <Loader />
+        </div>
+      </MaterialCard>
 
-    <MaterialCard style="width: 220px; flex-shrink: 0">
-      <SideBar />
-      {{ routePageid }}
-      <p style="font-style: italic">
-        {{ site.description }}
-      </p>
-      <transition name="fade">
-        <div
-          v-if="sideBar"
-          :innerHTML="sideBar.htmlContent"
-        />
-      </transition>
-      <p class="caption">
-        Site settings available via <br>
-        <a :href="'https://mekanismi.web.app/#/c/site/'+site.siteid">mekanismi.web.app</a>
-      </p>
-    </MaterialCard>
+      <MaterialCard style="width: 220px; flex-shrink: 0">
+        <SideBar />
+        <p class="caption">
+          Site settings available via <br>
+          <a :href="'https://mekanismi.web.app/#/c/site/'+site.siteid">mekanismi.web.app</a>
+        </p>
+      </MaterialCard>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
-import { useRoute } from 'vue-router'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
@@ -66,15 +57,13 @@ export default defineComponent({
   },
   setup () {
     const { site } = useSite()
-    const { pages } = usePages()
-    const page = computed(() => pages.value.find((p) => (p.id === routePageid.value)))
-    const sideBar = computed(() => pages.value.find((p) => (p.id === 'sidebar')))
-    const route = useRoute()
-    const routePageid = computed(() => {
-      return Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid
+    const { page, pages } = usePages()
+
+    onMounted(() => {
+      console.log(pages, page)
     })
 
-    return { page, routePageid, sideBar, site }
+    return { page, site }
   }
 })
 </script>

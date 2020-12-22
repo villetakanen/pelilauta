@@ -77,6 +77,7 @@ function createSite (): void {
     route,
     () => {
       routeSiteid.value = Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid
+      console.log('reroute to:' + routeSiteid.value)
       subscribeTo(routeSiteid.value)
       subToPages(routeSiteid.value)
       subToMembers(routeSiteid.value)
