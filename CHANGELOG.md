@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.9.0](https://github.com/villetakanen/pelilauta/compare/v5.8.0...v5.9.0) (2020-12-22)
+
+
+### Features
+
+* sidebar component ([197f601](https://github.com/villetakanen/pelilauta/commit/197f601d6864731aaebd0e3c2d508d93e465c27d))
+
 ## [5.8.0](https://github.com/villetakanen/pelilauta/compare/v5.7.3...v5.8.0) (2020-12-22)
 
 
