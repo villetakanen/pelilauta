@@ -25,7 +25,8 @@
       </div>
     </MaterialCard>
 
-    <MaterialCard style="min-width: 220px; flex-shrink: 0">
+    <MaterialCard style="width: 220px; flex-shrink: 0">
+      <SideBar />
       <p style="font-style: italic">
         {{ site.description }}
       </p>
@@ -49,6 +50,7 @@ import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useRoute } from 'vue-router'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
+import SideBar from '@/components/wikipage/SideBar.vue'
 import { usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 
@@ -58,7 +60,8 @@ export default defineComponent({
     ViewHeader,
     PageToolbar,
     MaterialCard,
-    Loader
+    Loader,
+    SideBar
   },
   setup () {
     const { site } = useSite()
