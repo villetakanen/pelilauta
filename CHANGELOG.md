@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.8.0](https://github.com/villetakanen/pelilauta/compare/v5.7.3...v5.8.0) (2020-12-22)
+
+
+### Features
+
+* mekanismi site settings link ([d8c8dc1](https://github.com/villetakanen/pelilauta/commit/d8c8dc1151e25b8a6dde3300e09d12687e193c24))
+* site data subscribed to state ([9439f38](https://github.com/villetakanen/pelilauta/commit/9439f387ae5eaf05f103221b13dbcb0c9ee49ffb))
+
 ### [5.7.3](https://github.com/villetakanen/pelilauta/compare/v5.7.2...v5.7.3) (2020-12-22)
 
 
