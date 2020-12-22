@@ -6,7 +6,7 @@
     <PageToolbar
       v-if="page"
       :title="page.name"
-      :subtitle="routeSiteid"
+      :subtitle="site.name"
     />
   </transition>
   <div style="display:flex">
@@ -26,6 +26,9 @@
     </MaterialCard>
 
     <MaterialCard style="min-width: 220px; flex-shrink: 0">
+      <p style="font-style: italic">
+        {{ site.description }}
+      </p>
       <transition name="fade">
         <div
           v-if="sideBar"
@@ -34,7 +37,7 @@
       </transition>
       <p class="caption">
         Site settings available via <br>
-        <a :href="'https://mekanismi.web.app/#/c/site/'+routeSiteid">mekanismi.web.app</a>
+        <a :href="'https://mekanismi.web.app/#/c/site/'+site.siteid">mekanismi.web.app</a>
       </p>
     </MaterialCard>
   </div>
@@ -46,7 +49,7 @@ import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useRoute } from 'vue-router'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
-import { usePages } from '@/state/site'
+import { usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 
 export default defineComponent({
@@ -58,6 +61,7 @@ export default defineComponent({
     Loader
   },
   setup () {
+    const { site } = useSite()
     const { pages } = usePages()
     const page = computed(() => pages.value.find((p) => (p.id === routePageid.value)))
     const sideBar = computed(() => pages.value.find((p) => (p.id === 'sidebar')))
@@ -65,11 +69,8 @@ export default defineComponent({
     const routePageid = computed(() => {
       return Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid
     })
-    const routeSiteid = computed(() => {
-      return Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid
-    })
 
-    return { page, routePageid, routeSiteid, sideBar }
+    return { page, routePageid, sideBar, site }
   }
 })
 </script>
