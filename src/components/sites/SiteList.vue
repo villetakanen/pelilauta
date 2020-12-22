@@ -4,14 +4,20 @@
     <MaterialCard
       v-for="site in sites"
       :key="site.id"
+      class="siteCard"
     >
+      <div
+        v-if="site.posterURL"
+        :style="`background-image: url(${site.posterURL})`"
+        class="poster"
+      />
       <h3>
         <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
           {{ site.name }}
         </router-link>
       </h3>
       <p>{{ site.description }}</p>
-      <p><a :href="'https://mekanismi.web.app/#/v/'+site.id">{{ 'mekanismi.web.app/#/v/'+site.id }}</a></p>
+      <!--p><a :href="'https://mekanismi.web.app/#/v/'+site.id">{{ 'mekanismi.web.app/#/v/'+site.id }}</a></p-->
     </MaterialCard>
   </div>
 </template>
@@ -23,11 +29,13 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 // import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import { fireStoreURL } from '@/utils/firebaseTools'
 
 interface Site {
-  id: string;
-  name?: string;
-  description?: string;
+  id: string,
+  name?: string,
+  description?: string,
+  posterURL?: string
 }
 
 export default defineComponent({
@@ -49,6 +57,11 @@ export default defineComponent({
         snap.docChanges().forEach((change) => {
           // console.log(change)
           sites.value.push({ id: change.doc.id, ...change.doc.data() })
+          fireStoreURL(change.doc.id + '/' + change.doc.data().posterURL).then((url) => {
+            sites.value.forEach((site) => {
+              if (site.id === change.doc.id) site.posterURL = url
+            })
+          })
         })
       })
     }
@@ -62,7 +75,21 @@ export default defineComponent({
       unsubscribe()
     })
 
-    return { sites }
+    return { sites, fireStoreURL }
   }
 })
 </script>
+
+<style lang="sass">
+div.material-card.siteCard
+  h3
+    a
+      color: rgba(0, 121, 107, 1)
+  .poster
+    height: 72px
+    width: 72px
+    float: right
+    border-radius: 36px
+    background-size: cover
+    box-shadow: 0px 0px 14px 0px rgba(0, 121, 107, 0.7)
+</style>
