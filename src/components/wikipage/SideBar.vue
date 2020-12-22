@@ -13,7 +13,7 @@
     <transition name="fade">
       <div v-if="site">
         <h1>{{ site.name }}</h1>
-        <p><i>{{ site.description }}</i></p>
+        <p><em>{{ site.description }}</em></p>
         <h2>{{ $t('mekanismi.sidebar.pagelist') }}</h2>
         <ul>
           <li
