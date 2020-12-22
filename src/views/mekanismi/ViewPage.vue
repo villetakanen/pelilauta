@@ -24,13 +24,19 @@
         <Loader />
       </div>
     </MaterialCard>
-    <transition name="fade">
-      <MaterialCard v-if="sideBar" style="min-width: 220px; flex-shrink: 0">
+
+    <MaterialCard style="min-width: 220px; flex-shrink: 0">
+      <transition name="fade">
         <div
+          v-if="sideBar"
           :innerHTML="sideBar.htmlContent"
         />
-      </MaterialCard>
-    </transition>
+      </transition>
+      <p class="caption">
+        Site settings available via <br>
+        <a :href="'https://mekanismi.web.app/#/c/site/'+routeSiteid">mekanismi.web.app</a>
+      </p>
+    </MaterialCard>
   </div>
 </template>
 
