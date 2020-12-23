@@ -76,7 +76,10 @@
     "editorTest": "Editor testing"
   },
   "mekanismi": {
-    "title": "Mekanismi"
+    "title": "Mekanismi",
+    "sidebar": {
+      "pagelist": "Index"
+    }
   },
   "siteInfo": {
     "title": "Pelilauta 2",

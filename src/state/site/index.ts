@@ -7,8 +7,7 @@ import { useMembers, subscribeTo as subToMembers } from './members'
 import { usePages, Page, subscribeTo as subToPages } from './pages'
 
 let _init = false
-const routeSiteid = ref('')
-const siteid = computed(() => (routeSiteid))
+let stateId = ''
 
 export interface Site {
   siteid: string,
@@ -48,9 +47,12 @@ function subscribeTo (id: string): void {
   stateSite.value = toSite(null)
 
   if (!id) {
+    stateId = ''
     unsubscribe()
     return
   }
+
+  stateId = id
 
   firebase.analytics().logEvent('subscribe to Site', { id: id })
 
@@ -71,22 +73,26 @@ function subscribeTo (id: string): void {
  */
 function createSite (): void {
   if (_init) return
+  console.log('create site state machine')
   _init = true
   const route = useRoute()
   watch(
     route,
     () => {
-      routeSiteid.value = Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid
-      console.log('reroute to:' + routeSiteid.value)
-      subscribeTo(routeSiteid.value)
-      subToPages(routeSiteid.value)
-      subToMembers(routeSiteid.value)
+      const id = Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid || ''
+      console.log('reroute to:' + id)
+      if (stateId !== id) {
+        subscribeTo(id)
+        // subToPages(routeSiteid.value)
+        // subToMembers(routeSiteid.value)
+      }
     },
     { immediate: true }
   )
 }
 
 function useSite (): { site: ComputedRef<Site> } {
+  console.log('useSite')
   createSite()
   return { site }
 }
@@ -94,7 +100,6 @@ function useSite (): { site: ComputedRef<Site> } {
 export {
   createSite,
   Page,
-  siteid,
   useMembers,
   usePages,
   useSite

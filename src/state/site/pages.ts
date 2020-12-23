@@ -96,7 +96,7 @@ function createPage (): void {
   watch(
     route,
     () => {
-      routePageid.value = Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid
+      routePageid.value = Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid || ''
       statePage.value = pages.value.find((p) => (p.id === routePageid.value)) || toPage()
       console.log('route page to: ', routePageid.value)
     },
