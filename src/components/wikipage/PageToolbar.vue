@@ -2,9 +2,9 @@
   <div class="toolbar">
     <div>
       <h1 class="subtitle">
-        {{ subtitle }}
+        {{ site.name }}
       </h1>
-      <h1>{{ title }}</h1>
+      <h1>{{ page.name }}</h1>
     </div>
     <div class="spacer" />
     <MaterialButton
@@ -19,7 +19,7 @@
     <MaterialButton
       icon
       color="tertiary"
-      :to="`/mekanismi/edit/${siteid}/${pageid}`"
+      :to="`/mekanismi/edit/${site.siteid}/${page.id}`"
     >
       <img
         src="@/assets/icons/edit.svg"
@@ -30,36 +30,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import { useRoute } from 'vue-router'
+import { usePages, useSite } from '@/state/site'
 
 export default defineComponent({
   name: 'PageToolbar',
   components: {
     MaterialButton
   },
-  props: {
-    title: {
-      type: String,
-      required: false,
-      default: 'Mekanismi'
-    },
-    subtitle: {
-      type: String,
-      required: false,
-      default: ''
-    }
-  },
   setup () {
-    const route = useRoute()
-    const pageid = computed(() => {
-      return Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid || siteid.value
-    })
-    const siteid = computed(() => {
-      return Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid
-    })
-    return { siteid, pageid }
+    const { site } = useSite()
+    const { page } = usePages()
+    return { site, page }
   }
 })
 </script>

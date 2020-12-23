@@ -1,45 +1,31 @@
 <template>
   <div>
-    <ViewHeader v-if="!page">
-      {{ $t('mekanismi.title') }}
-    </ViewHeader>
     <transition name="fade">
-      <PageToolbar
-        v-if="page"
-        :title="page.name"
-        :subtitle="site.name"
+      <div v-if="site.name && page.name">
+        <PageToolbar />
+        <div class="mekanismiGrid">
+          <MaterialCard class="mainCard">
+            <div :innerHTML="page.htmlContent" />
+          </MaterialCard>
+          <MaterialCard class="sideCard">
+            <SideBar />
+            <p class="caption">
+              Site settings available via <br>
+              <a :href="'https://mekanismi.web.app/#/c/site/'+site.siteid">mekanismi.web.app</a>
+            </p>
+          </MaterialCard>
+        </div>
+      </div>
+      <Loader
+        v-else
+        class="toCenter"
       />
     </transition>
-    <div style="display:flex">
-      <MaterialCard>
-        <transition name="fade">
-          <div
-            v-if="page"
-            :innerHTML="page.htmlContent"
-          />
-        </transition>
-        <div
-          v-if="!page"
-          class="centerBlock"
-        >
-          <Loader />
-        </div>
-      </MaterialCard>
-
-      <MaterialCard style="width: 220px; flex-shrink: 0">
-        <SideBar />
-        <p class="caption">
-          Site settings available via <br>
-          <a :href="'https://mekanismi.web.app/#/c/site/'+site.siteid">mekanismi.web.app</a>
-        </p>
-      </MaterialCard>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
@@ -49,7 +35,6 @@ import Loader from '@/components/app/Loader.vue'
 export default defineComponent({
   name: 'WikiIndex',
   components: {
-    ViewHeader,
     PageToolbar,
     MaterialCard,
     Loader,
@@ -69,8 +54,26 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-.centerBlock
-  display: flex
-  justify-content: center
+@import @/styles/include-media.scss
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
 
+.mekanismiGrid
+    position: relative
+    .mainCard
+      overflow: hidden
+      word-break: break-word
+    .sideCard
+      overflow: hidden
+      word-break: break-word
+
+@include media('>tablet')
+  .mekanismiGrid
+    .mainCard
+      margin-right: 264px
+    .sideCard
+      position: absolute
+      width: 220px
+      top: 0px
+      right: 0
 </style>
