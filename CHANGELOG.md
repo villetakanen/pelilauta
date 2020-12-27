@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.10.2](https://github.com/villetakanen/pelilauta/compare/v5.10.1...v5.10.2) (2020-12-27)
+
+
+### Bug Fixes
+
+* code quality fixes ([b154458](https://github.com/villetakanen/pelilauta/commit/b154458aa545d7514eb4a81349b066352bf2e6b0))
+* site and page state cleared up ([2a61b14](https://github.com/villetakanen/pelilauta/commit/2a61b14ff44aad12f3d38b5a71cc50a9f1927d98))
+* state site management fixed ([f19f291](https://github.com/villetakanen/pelilauta/commit/f19f291b44074ccad88860c090ba7f114e0ac898))
+
 ### [5.10.1](https://github.com/villetakanen/pelilauta/compare/v5.10.0...v5.10.1) (2020-12-23)
 
 
