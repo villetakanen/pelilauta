@@ -1,10 +1,9 @@
-import { computed, ComputedRef, Ref, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, ComputedRef, Ref, ref } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { useMembers, subscribeTo as subToMembers } from './members'
-import { usePages, Page, fetchPage } from './pages'
+import { useMembers } from './members'
+import { usePages, Page, fetchPage, subscribeTo as subscribeToPages } from './pages'
 
 export interface Site {
   id: string,
@@ -48,7 +47,7 @@ let unsubscribe = () => {}
 
 function subscribeTo (id: string): void {
   if (id === stateSite.value.id) {
-    console.log('keeping sub to:', stateSite.value.id)
+    return
   }
 
   if (!id) {
@@ -56,6 +55,8 @@ function subscribeTo (id: string): void {
     unsubscribe()
     return
   }
+
+  subscribeToPages(id)
 
   firebase.analytics().logEvent('Subscribing Site', { id: id })
 
@@ -68,9 +69,8 @@ function subscribeTo (id: string): void {
   })
 }
 
-function useSite (): { site: ComputedRef<Site> } {
-  // console.log('useSite')
-  // createSite()
+function useSite (id?: string): { site: ComputedRef<Site> } {
+  if (id) subscribeTo(id)
   return { site }
 }
 

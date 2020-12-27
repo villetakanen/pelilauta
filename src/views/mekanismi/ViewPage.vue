@@ -53,17 +53,11 @@ export default defineComponent({
 
     watch(() => route.params, (r) => {
       const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
-      console.log('route changed, siteid is', id, r)
       subscribeTo(id)
 
       const pid = Array.isArray(r.pageid) ? r.pageid[0] : r.pageid || ''
-      console.log('route changed, siteid is', id, r)
       fetchPage(pid || id)
     }, { immediate: true })
-
-    onMounted(() => {
-      console.log(pages, page)
-    })
 
     return { page, site }
   }
