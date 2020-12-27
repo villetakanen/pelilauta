@@ -1,9 +1,7 @@
-import { Ref, ref, computed, ComputedRef, watch } from 'vue'
+import { Ref, ref, computed, ComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { createSite } from '.'
-import { useRoute } from 'vue-router'
 
 export interface Page {
   siteid: string,
@@ -13,13 +11,10 @@ export interface Page {
   lastUpdate: firebase.firestore.Timestamp|null
 }
 
-let _init = false
-const routePageid = ref('')
-const pageid = computed(() => (routePageid.value))
-
 const subscribedPages: Ref<Page[]> = ref(new Array<Page>())
 const pages = computed(() => (subscribedPages.value))
 
+let requestedPage = '::none::'
 const statePage: Ref<Page> = ref(toPage())
 const page = computed(() => (statePage.value))
 
@@ -44,6 +39,12 @@ function toPage (siteid?:string, id?:string, data?:firebase.firestore.DocumentDa
   }
 }
 
+export function fetchPage (id: string): void {
+  if (requestedPage === id) return
+  requestedPage = id
+  statePage.value = subscribedPages.value.find((p) => (p.id === id)) || toPage()
+}
+
 /**
  * Patches a page to the Site
  */
@@ -51,7 +52,7 @@ function patchToSubscribed (page: Page|undefined) {
   if (page) {
     subscribedPages.value = subscribedPages.value.filter((p) => (page.id !== p.id))
     subscribedPages.value.push(page)
-    if (page.id === routePageid.value) {
+    if (page.id === requestedPage) {
       statePage.value = page
     }
   }
@@ -64,7 +65,6 @@ function dropFromSubscribed (pageid: string) {
 }
 
 export function subscribeTo (siteid:string|null|undefined): void {
-  console.log('members.ts: subscribeTo', siteid)
   if (!siteid) {
     unsubscribe()
     return
@@ -88,7 +88,7 @@ export function subscribeTo (siteid:string|null|undefined): void {
  * starts Listening to changes for the page
  *
  * This functionality is not needed befor a user accesses a wiki page
- */
+ * /
 function createPage (): void {
   if (_init) return
   _init = true
@@ -96,16 +96,15 @@ function createPage (): void {
   watch(
     route,
     () => {
-      routePageid.value = Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid
+      routePageid.value = Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid || ''
       statePage.value = pages.value.find((p) => (p.id === routePageid.value)) || toPage()
       console.log('route page to: ', routePageid.value)
     },
     { immediate: true }
   )
-}
+} */
 
-export function usePages (): { pages: ComputedRef<Page[]>, pageid: ComputedRef<string>, page:ComputedRef<Page> } {
-  createSite()
-  createPage()
-  return { pages, pageid, page }
+export function usePages (): { pages: ComputedRef<Page[]>, page:ComputedRef<Page> } {
+  // createPage()
+  return { pages, page }
 }

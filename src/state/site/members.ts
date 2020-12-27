@@ -1,7 +1,5 @@
 import { computed, ComputedRef, ref, Ref } from 'vue'
 
-import { createSite } from '.'
-
 const localMembers:Ref<string[]> = ref([])
 const members = computed(() => (localMembers.value))
 
@@ -16,6 +14,5 @@ export function useMembers (): {
   members: ComputedRef<string[]>,
   owners: ComputedRef<string[]>
   } {
-  createSite()
   return { members, owners }
 }

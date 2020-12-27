@@ -57,11 +57,13 @@ export default defineComponent({
         snap.docChanges().forEach((change) => {
           // console.log(change)
           sites.value.push({ id: change.doc.id, ...change.doc.data() })
-          fireStoreURL(change.doc.id + '/' + change.doc.data().posterURL).then((url) => {
-            sites.value.forEach((site) => {
-              if (site.id === change.doc.id) site.posterURL = url
+          if (change.doc.data().posterURL) {
+            fireStoreURL(change.doc.id + '/' + change.doc.data().posterURL).then((url) => {
+              sites.value.forEach((site) => {
+                if (site.id === change.doc.id) site.posterURL = url
+              })
             })
-          })
+          }
         })
       })
     }

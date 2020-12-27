@@ -11,7 +11,7 @@
             <SideBar />
             <p class="caption">
               Site settings available via <br>
-              <a :href="'https://mekanismi.web.app/#/c/site/'+site.siteid">mekanismi.web.app</a>
+              <a :href="'https://mekanismi.web.app/#/c/site/'+site.id">mekanismi.web.app</a>
             </p>
           </MaterialCard>
         </div>
@@ -25,12 +25,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, provide, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
-import { usePages, useSite } from '@/state/site'
+import { usePages, useSite, subscribeTo, fetchPage } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -44,9 +45,19 @@ export default defineComponent({
     const { site } = useSite()
     const { page, pages } = usePages()
 
-    onMounted(() => {
-      console.log(pages, page)
-    })
+    const route = useRoute()
+
+    provide('site', site)
+    provide('page', page)
+    provide('pages', pages)
+
+    watch(() => route.params, (r) => {
+      const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
+      subscribeTo(id)
+
+      const pid = Array.isArray(r.pageid) ? r.pageid[0] : r.pageid || ''
+      fetchPage(pid || id)
+    }, { immediate: true })
 
     return { page, site }
   }
