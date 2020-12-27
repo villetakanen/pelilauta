@@ -2,7 +2,6 @@ import { Ref, ref, computed, ComputedRef, watch } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { createSite } from '.'
 import { useRoute } from 'vue-router'
 
 export interface Page {
@@ -42,6 +41,10 @@ function toPage (siteid?:string, id?:string, data?:firebase.firestore.DocumentDa
     htmlContent: data?.htmlContent || data?.content || '',
     lastUpdate: data?.lastUpdate || null
   }
+}
+
+export function fetchPage (id: string): Page {
+  return toPage(id)
 }
 
 /**
@@ -105,7 +108,6 @@ function createPage (): void {
 }
 
 export function usePages (): { pages: ComputedRef<Page[]>, pageid: ComputedRef<string>, page:ComputedRef<Page> } {
-  createSite()
   createPage()
   return { pages, pageid, page }
 }
