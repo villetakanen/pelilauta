@@ -1,29 +1,24 @@
 <template>
   <div>
-    <ViewHeader>
-      {{ $t('mekanismi.title') + ' ' + routeSiteid + '/' + routePageid }}
-    </ViewHeader>
-    <div class="contentGrid">
-      <div
-        v-if="memberActions"
-        class="toolbar"
-      >
-        <div class="spacer" />
+    <transition name="fade">
+      <div v-if="site.name && page.name">
+        <PageToolbar />
         <MaterialButton :action="savePage">
           {{ $t('action.save') }}
         </MaterialButton>
+        <QuillEditor
+          v-model="pageContent"
+          :toolbar="true"
+        />
       </div>
-      <QuillEditor
-        v-model="pageContent"
-        :toolbar="true"
-      />
-    </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, onUnmounted } from 'vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
+import { computed, defineComponent, provide, ref, watch } from 'vue'
+import { usePages, useSite, subscribeTo, fetchPage, updatePage } from '@/state/site'
+import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -31,17 +26,64 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import { useAuthState } from '@/state/authz'
-import { useMembers } from '@/state/site'
 import { extractTags } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'EditPage',
   components: {
-    ViewHeader,
+    PageToolbar,
     QuillEditor,
     MaterialButton
   },
   setup () {
+    const { site } = useSite()
+    const { page, pages } = usePages()
+    const { uid } = useAuthState()
+    const router = useRouter()
+
+    const pageContent = ref('')
+
+    const route = useRoute()
+
+    provide('site', site)
+    provide('page', page)
+    provide('pages', pages)
+
+    watch(() => route.params, (r) => {
+      const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
+      subscribeTo(id)
+
+      const pid = Array.isArray(r.pageid) ? r.pageid[0] : r.pageid || ''
+      fetchPage(pid || id)
+    }, { immediate: true })
+
+    watch(page, (val) => {
+      pageContent.value = val.htmlContent
+    }, { immediate: true })
+
+    async function savePage () {
+      const db = firebase.firestore()
+      const pageRef = db.collection('sites').doc(page.value.siteid).collection('pages').doc(page.value.id)
+      const { formattedContent, tags } = extractTags(pageContent.value)
+      return pageRef.update({
+        author: uid.value,
+        htmlContent: formattedContent
+      }).then(() => {
+        router.push(`/mekanismi/view/${page.value.siteid}/${page.value.id}`)
+        tags.forEach((tag) => {
+          const tagRef = db.collection('tags').doc(tag)
+          const taggedRef = tagRef.collection('tagged').doc(page.value.id)
+          taggedRef.set({
+            type: 'wikipage',
+            title: page.value.name
+          })
+        })
+      })
+    }
+
+    return { page, site, pageContent, savePage }
+
+    /*
     const pageContent = ref('')
     const pageTitle = ref('')
     const { members } = useMembers()
@@ -72,26 +114,6 @@ export default defineComponent({
     }
     const router = useRouter()
 
-    async function savePage () {
-      const db = firebase.firestore()
-      const pageRef = db.collection('sites').doc(routeSiteid.value).collection('pages').doc(routePageid.value)
-      const { formattedContent, tags } = extractTags(pageContent.value)
-      return pageRef.update({
-        author: uid.value,
-        htmlContent: formattedContent
-      }).then(() => {
-        router.push(`/mekanismi/view/${routeSiteid.value}/${routePageid.value}`)
-        tags.forEach((tag) => {
-          const tagRef = db.collection('tags').doc(tag)
-          const taggedRef = tagRef.collection('tagged').doc(routePageid.value)
-          taggedRef.set({
-            type: 'wikipage',
-            title: pageTitle.value
-          })
-        })
-      })
-    }
-
     onMounted(() => {
       fetchPage()
     })
@@ -100,7 +122,7 @@ export default defineComponent({
       unsubscribe()
     })
 
-    return { pageContent, routePageid, routeSiteid, memberActions, savePage }
+    return { pageContent, routePageid, routeSiteid, memberActions, savePage } */
   }
 })
 </script>
