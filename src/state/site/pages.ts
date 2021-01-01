@@ -83,6 +83,10 @@ export function subscribeTo (siteid:string|null|undefined): void {
   })
 }
 
+export function updatePage (pageid: string, content: string): void {
+  console.log('update: ', pageid, content)
+}
+
 /**
  * Creates Mekanismi State functionality for a page, and
  * starts Listening to changes for the page

@@ -16,6 +16,22 @@
           :innerHTML="post.data.content"
         />
 
+        <div class="credits">
+          <transition name="fade">
+            <div v-if="author">
+              <p class="author">
+                {{ author.nick }}
+              </p>
+              <p
+                v-if="author.tagline"
+                class="caption"
+              >
+                {{ author.tagline }}
+              </p>
+            </div>
+          </transition>
+        </div>
+
         <PhotoBox :photos="post.data.images" />
         <div style="display:flex">
           <LoveAction
@@ -72,8 +88,8 @@ export default defineComponent({
       return stream.value.filter((post) => (post.id === props.threadid))[0]
     })
 
-    const { getAuthor } = useAuthors()
-    const author = computed(() => (getAuthor(post.value?.author)))
+    const { authors } = useAuthors()
+    const author = computed(() => (authors.value.find((val) => (val.uid === post.value.author))))
 
     function deletePost (): void {
       deleteThread(uid.value, props.threadid).then(() => {
