@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.11.0](https://github.com/villetakanen/pelilauta/compare/v5.10.2...v5.11.0) (2021-01-01)
+
+
+### Features
+
+* mekanismi page edit functional ([6e31253](https://github.com/villetakanen/pelilauta/commit/6e31253811c4ffbc16eb3c5c30087f464be52b40))
+
+
+### Bug Fixes
+
+* display author on thread page ([c598eae](https://github.com/villetakanen/pelilauta/commit/c598eae1dc5fcb3b98f9efeae5d79edb0111d3e1))
+
 ### [5.10.2](https://github.com/villetakanen/pelilauta/compare/v5.10.1...v5.10.2) (2020-12-27)
 
 
