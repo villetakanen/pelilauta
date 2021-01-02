@@ -19,30 +19,47 @@
     <MaterialButton
       icon
       color="tertiary"
-      :to="`/mekanismi/edit/${site.siteid}/${page.id}`"
+      :to="`/mekanismi/edit/${site.id}/${page.id}`"
     >
       <img
         src="@/assets/icons/edit.svg"
         alt="edit icon"
       >
     </MaterialButton>
+    <MaterialMenu v-model="menu" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject, computed, ComputedRef } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import { usePages, useSite } from '@/state/site'
+import { Page, Site } from '@/state/site'
+import { copyUrl } from '@/utils/window'
+import { MenuItem } from '@/lib/meta'
+import MaterialMenu from '@/components/material/MaterialMenu.vue'
 
 export default defineComponent({
   name: 'PageToolbar',
   components: {
-    MaterialButton
+    MaterialButton,
+    MaterialMenu
   },
   setup () {
-    const { site } = useSite()
-    const { page } = usePages()
-    return { site, page }
+    const site = inject('site') as ComputedRef<Site>
+    const page = inject('page') as ComputedRef<Page>
+
+    function _copyUrl () {
+      copyUrl('/mekanismi/view/' + site.value.id + '/' + page.value.id)
+    }
+
+    const menu = computed(() => {
+      const arr = new Array<MenuItem>()
+      arr.push({ action: _copyUrl, text: 'Copy link', icon: 'link' })
+      arr.push({ to: '/mekanismi/siteinfo/' + site.value.id, text: 'Site info', icon: 'site' })
+      return arr
+    })
+
+    return { site, page, menu }
   }
 })
 </script>
