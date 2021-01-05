@@ -13,7 +13,10 @@
             :key="owner"
             :uid="owner"
           />
-          <div v-if="actions" style="border-top: solid 1px black">
+          <div
+            v-if="actions"
+            style="border-top: solid 1px black"
+          >
             <p>{{ $t('site.addOwner') }}</p>
             <OwnerPill
               v-for="author in nonOwners"
