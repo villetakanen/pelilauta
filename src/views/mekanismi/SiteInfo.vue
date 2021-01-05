@@ -13,6 +13,13 @@
             :key="owner"
             :uid="owner"
           />
+          <hr>
+          <OwnerPill
+            v-for="author in nonOwners"
+            :key="author"
+            :uid="author"
+            :add="true"
+          />
         </MaterialCard>
         <MaterialCard>
           {{ site }}
@@ -24,12 +31,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide, watch } from 'vue'
+import { computed, defineComponent, provide, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useSite, subscribeTo } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useRoute } from 'vue-router'
 import OwnerPill from '@/components/sites/OwnerPill.vue'
+import { useAuthors } from '@/lib/authors'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -40,7 +48,13 @@ export default defineComponent({
   },
   setup () {
     const { site } = useSite()
-
+    const { authors } = useAuthors()
+    const nonOwners = computed(() => {
+      const availableAuthors = authors.value.filter((author) => {
+        return site.value.owners && !site.value.owners.includes(author.uid || '')
+      })
+      return availableAuthors.map((author) => (author?.uid || ''))
+    })
     const route = useRoute()
 
     provide('site', site)
@@ -50,7 +64,7 @@ export default defineComponent({
       subscribeTo(id)
     }, { immediate: true })
 
-    return { site }
+    return { site, nonOwners }
   }
 })
 </script>

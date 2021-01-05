@@ -1,5 +1,5 @@
 <template>
-  <Pill :action="(actions && uid !== currentAuthor) ? revoke : null">
+  <Pill :action="(actions && uid !== currentAuthor) ? action : null">
     {{ owner.nick }}
   </Pill>
 </template>
@@ -17,18 +17,24 @@ export default defineComponent({
     uid: {
       type: String,
       required: true
+    },
+    add: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
     const { getAuthor } = useAuthors()
     const { uid: currentAuthor } = useAuthState()
-    const { hasAdmin, revokeOwner } = useSite()
+    const { hasAdmin, revokeOwner, addOwner } = useSite()
     const actions = computed(() => hasAdmin(currentAuthor.value))
     const owner = computed(() => (getAuthor(props.uid)))
-    function revoke () {
-      revokeOwner(props.uid)
+    function action () {
+      if (props.add) addOwner(props.uid)
+      else revokeOwner(props.uid)
     }
-    return { owner, actions, currentAuthor, revoke }
+    return { owner, actions, currentAuthor, action }
   }
 })
 </script>

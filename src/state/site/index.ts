@@ -91,14 +91,28 @@ async function revokeOwner (uid: string) {
   })
 }
 
+async function addOwner (uid: string) {
+  const db = firebase.firestore()
+  const siteRef = db.collection('sites').doc(stateSite.value.id)
+  siteRef.get().then((doc) => {
+    if (!doc.exists) throw new Error('Trying to remove an owner from non-existing site')
+    let owners = doc.data()?.owners
+    if (!Array.isArray(owners)) throw new Error('Trying to remove an owner, from pre 6.0 site data')
+    owners = owners.filter((owner) => (owner !== uid))
+    owners.push(uid)
+    return siteRef.update({ owners: owners })
+  })
+}
+
 function useSite (id?: string):
   {
     site: ComputedRef<Site>,
     hasAdmin: (uid: string) => boolean,
     revokeOwner: (uid: string) => Promise<void>
+    addOwner: (uid: string) => Promise<void>
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner }
+  return { hasAdmin, site, revokeOwner, addOwner }
 }
 
 export {
