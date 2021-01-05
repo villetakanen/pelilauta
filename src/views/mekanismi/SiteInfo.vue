@@ -13,13 +13,15 @@
             :key="owner"
             :uid="owner"
           />
-          <hr>
-          <OwnerPill
-            v-for="author in nonOwners"
-            :key="author"
-            :uid="author"
-            :add="true"
-          />
+          <div v-if="actions" style="border-top: solid 1px black">
+            <p>{{ $t('site.addOwner') }}</p>
+            <OwnerPill
+              v-for="author in nonOwners"
+              :key="author"
+              :uid="author"
+              :add="true"
+            />
+          </div>
         </MaterialCard>
         <MaterialCard>
           {{ site }}
@@ -38,6 +40,7 @@ import Loader from '@/components/app/Loader.vue'
 import { useRoute } from 'vue-router'
 import OwnerPill from '@/components/sites/OwnerPill.vue'
 import { useAuthors } from '@/lib/authors'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -47,7 +50,8 @@ export default defineComponent({
     OwnerPill
   },
   setup () {
-    const { site } = useSite()
+    const { uid } = useAuthState()
+    const { site, hasAdmin } = useSite()
     const { authors } = useAuthors()
     const nonOwners = computed(() => {
       const availableAuthors = authors.value.filter((author) => {
@@ -57,6 +61,8 @@ export default defineComponent({
     })
     const route = useRoute()
 
+    const actions = computed(() => hasAdmin(uid.value))
+
     provide('site', site)
 
     watch(() => route.params, (r) => {
@@ -64,7 +70,7 @@ export default defineComponent({
       subscribeTo(id)
     }, { immediate: true })
 
-    return { site, nonOwners }
+    return { site, nonOwners, actions }
   }
 })
 </script>
