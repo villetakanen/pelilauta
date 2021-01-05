@@ -12,6 +12,8 @@ export interface Site {
   silent: boolean,
   lastUpdate?: firebase.firestore.Timestamp,
   name: string
+  owners: string[]|null
+  players: string[]|null
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -31,7 +33,9 @@ function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
       hidden: data?.hidden || '',
       silent: data?.silent,
       lastUpdate: data?.lastUpdate,
-      name: data?.data || id
+      name: data?.data || id,
+      players: data?.players || null,
+      owners: data?.owners || null
     }
   }
   return {
@@ -39,7 +43,9 @@ function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
     description: '',
     hidden: false,
     silent: false,
-    name: ''
+    name: '',
+    players: null,
+    owners: null
   }
 }
 
