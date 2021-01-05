@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.14.0](https://github.com/villetakanen/pelilauta/compare/v5.13.0...v5.14.0) (2021-01-05)
+
+
+### Features
+
+* fetches new-style owners ([0cc5dbe](https://github.com/villetakanen/pelilauta/commit/0cc5dbed1356b3470981ad268870bfad63de7200))
+
 ## [5.13.0](https://github.com/villetakanen/pelilauta/compare/v5.12.0...v5.13.0) (2021-01-05)
 
 
