@@ -7,6 +7,15 @@
           <p><i>{{ site.description }}</i></p>
         </MaterialCard>
         <MaterialCard>
+          <h1>{{ $t('site.owners') }}</h1>
+          <Pill
+            v-for="owner in site.owners"
+            :key="owner"
+          >
+            {{ owner }}
+          </Pill>
+        </MaterialCard>
+        <MaterialCard>
           {{ site }}
         </MaterialCard>
       </div>
@@ -21,12 +30,14 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useSite, subscribeTo } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useRoute } from 'vue-router'
+import Pill from '@/components/material/Pill.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
     MaterialCard,
-    Loader
+    Loader,
+    Pill
   },
   setup () {
     const { site } = useSite()
