@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.15.0](https://github.com/villetakanen/pelilauta/compare/v5.14.0...v5.15.0) (2021-01-05)
+
+
+### Features
+
+* remove owners from site ([85f76a9](https://github.com/villetakanen/pelilauta/commit/85f76a93b9b11c7e22e03d46850f9abfc40c36d6))
+* remove owners post 6.0 structures ([d3be1e8](https://github.com/villetakanen/pelilauta/commit/d3be1e8378980ef9a44283ebc1d22357fa11fb88))
+* site owners use author state ([7b64c21](https://github.com/villetakanen/pelilauta/commit/7b64c213bb728ecacd89d57a5cb568869c804985))
+
+
+### Bug Fixes
+
+* site owners ux polish ([a9fc010](https://github.com/villetakanen/pelilauta/commit/a9fc0107e94ce44989674f47098a38556d49319d))
+* ux polish ([c94394a](https://github.com/villetakanen/pelilauta/commit/c94394acbd4702597c4087e15228856728accda8))
+
 ## [5.14.0](https://github.com/villetakanen/pelilauta/compare/v5.13.0...v5.14.0) (2021-01-05)
 
 
