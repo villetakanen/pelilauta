@@ -8,12 +8,23 @@
         </MaterialCard>
         <MaterialCard>
           <h1>{{ $t('site.owners') }}</h1>
-          <Pill
+          <OwnerPill
             v-for="owner in site.owners"
             :key="owner"
+            :uid="owner"
+          />
+          <div
+            v-if="actions"
+            style="border-top: solid 1px black"
           >
-            {{ owner }}
-          </Pill>
+            <p>{{ $t('site.addOwner') }}</p>
+            <OwnerPill
+              v-for="author in nonOwners"
+              :key="author"
+              :uid="author"
+              :add="true"
+            />
+          </div>
         </MaterialCard>
         <MaterialCard>
           {{ site }}
@@ -25,24 +36,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide, watch } from 'vue'
+import { computed, defineComponent, provide, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useSite, subscribeTo } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useRoute } from 'vue-router'
-import Pill from '@/components/material/Pill.vue'
+import OwnerPill from '@/components/sites/OwnerPill.vue'
+import { useAuthors } from '@/lib/authors'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
     MaterialCard,
     Loader,
-    Pill
+    OwnerPill
   },
   setup () {
-    const { site } = useSite()
-
+    const { uid } = useAuthState()
+    const { site, hasAdmin } = useSite()
+    const { authors } = useAuthors()
+    const nonOwners = computed(() => {
+      const availableAuthors = authors.value.filter((author) => {
+        return site.value.owners && !site.value.owners.includes(author.uid || '')
+      })
+      return availableAuthors.map((author) => (author?.uid || ''))
+    })
     const route = useRoute()
+
+    const actions = computed(() => hasAdmin(uid.value))
 
     provide('site', site)
 
@@ -51,7 +73,7 @@ export default defineComponent({
       subscribeTo(id)
     }, { immediate: true })
 
-    return { site }
+    return { site, nonOwners, actions }
   }
 })
 </script>
