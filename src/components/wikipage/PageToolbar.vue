@@ -28,16 +28,7 @@
     </MaterialButton>
     <MaterialMenu v-model="menu" />
     <Dialog v-model="dialog">
-      <MaterialCard>
-        <h1>Add a new page</h1>
-        <input
-          type="text"
-          class="material-textfield"
-        >
-        <br>
-        <br>
-        <MaterialButton>Add page</MaterialButton>
-      </MaterialCard>
+      <AddPageCard />
     </Dialog>
   </div>
 </template>
@@ -51,6 +42,7 @@ import { MenuItem } from '@/lib/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialCard from '../material/MaterialCard.vue'
+import AddPageCard from './AddPageCard.vue'
 
 export default defineComponent({
   name: 'PageToolbar',
@@ -58,7 +50,7 @@ export default defineComponent({
     MaterialButton,
     MaterialMenu,
     Dialog,
-    MaterialCard
+    AddPageCard
   },
   setup () {
     const site = inject('site') as ComputedRef<Site>

@@ -2,6 +2,8 @@
   "lang": "EN",
   "action": {
     "logout": "Logout",
+    "cancel": "Cancel",
+    "create": "Create",
     "toTopicList": "Topics",
     "login": "Login",
     "update": "Update",
@@ -79,6 +81,9 @@
     "title": "Mekanismi",
     "sidebar": {
       "pagelist": "Index"
+    },
+    "addPageCard": {
+      "title": "Add a new page"
     }
   },
   "siteInfo": {
