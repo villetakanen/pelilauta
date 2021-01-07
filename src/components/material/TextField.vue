@@ -1,9 +1,15 @@
 <template>
-  <input
-    class="materialTextfield"
-    v-model="fieldValue"
-    @blur="onUpdate"
-  >
+  <div class="materialTextfield">
+    <input
+      v-model="fieldValue"
+      :name="name"
+      @blur="onUpdate"
+    >
+    <label
+      v-if="label"
+      :for="name"
+    >{{ label }}</label>
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,7 +18,9 @@ import { defineComponent, watch, ref } from 'vue'
 export default defineComponent({
   name: 'MaterialInpuTextfield',
   props: {
-    modelValue: { type: String, required: false, default: '' }
+    modelValue: { type: String, required: false, default: '' },
+    name: { type: String, required: false, default: 'input-' + Math.floor(Math.random() * 100000) },
+    label: { type: String, required: false, default: '' }
   },
   emits: ['update:modelValue'],
   setup (props, context) {

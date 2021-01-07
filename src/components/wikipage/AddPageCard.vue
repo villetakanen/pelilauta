@@ -1,5 +1,5 @@
 <template>
-  <MaterialCard>
+  <MaterialCard class="addPageCard">
     <h1>{{ $t('mekanismi.addPageCard.title') }}</h1>
     <TextField v-model="newPageTitle" />
     <p class="caption">
@@ -39,3 +39,13 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+@import @/styles/layout.sass
+@import @/styles/include-media.scss
+
+.addPageCard
+  min-width: 50%
+</style>
