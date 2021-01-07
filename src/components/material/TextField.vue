@@ -1,5 +1,8 @@
 <template>
-  <div class="materialTextfield">
+  <div
+    class="materialTextfield"
+    :class="{withLabel: true && label }"
+  >
     <input
       v-model="fieldValue"
       :name="name"
@@ -8,6 +11,7 @@
     <label
       v-if="label"
       :for="name"
+      :class="{toSide: true && fieldValue }"
     >{{ label }}</label>
   </div>
 </template>
@@ -47,15 +51,41 @@ export default defineComponent({
 
 .materialTextfield
   width: 100%
-  border: 0
-  height: 28px
-  margin-top: 2px
   border-bottom: solid 1px $color-fill-primary-dark
   background-color: rgba($color-fill-primary-dark, 0.11)
+  padding-left: 4px
+  padding-right: 4px
+  position: relative
+  margin-top: 4px
+  margin-bottom: 4px
+  &.withLabel
+    input
+      margin-top: 8px
+  input
+    border: 0
+    height: 28px
+    margin-top: 2px
+    background: none
+    width: 100%
+  label
+    position: absolute
+    left: 4px
+    top: 14px
+    width: 100%
+    transition: 0.2s
+    font-size: 14px
+    z-index: -1
+    line-height: 14px
+    color: $color-fill-primary-dark
   &:hover
     background-color: rgba($color-fill-primary-dark, 0.22)
   &:focus
     background-color: rgba($color-fill-primary-dark, 0.22)
+  .toSide, input:focus + label
+      top: 4px
+      left: 4px
+      font-size: 10px
+      line-height: 10px
   &.error
     border-bottom: solid 1px $color-fill-secondary
     background-color: rgba($color-fill-secondary, 0.33)

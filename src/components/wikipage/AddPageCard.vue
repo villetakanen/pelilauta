@@ -1,7 +1,10 @@
 <template>
   <MaterialCard class="addPageCard">
     <h1>{{ $t('mekanismi.addPageCard.title') }}</h1>
-    <TextField v-model="newPageTitle" />
+    <TextField
+      v-model="newPageTitle"
+      :label="$t('mekanismi.addPageCard.newPageTitle')"
+    />
     <p class="caption">
       {{ newPageUrl }}
     </p>
