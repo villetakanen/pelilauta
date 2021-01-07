@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.17.0](https://github.com/villetakanen/pelilauta/compare/v5.16.0...v5.17.0) (2021-01-07)
+
+
+### Features
+
+* labels for material textfields ([fe363d6](https://github.com/villetakanen/pelilauta/commit/fe363d6cc36df9a2d4898a56c16f553bf1d3f49a))
+* material textfield extracted to a component ([5721868](https://github.com/villetakanen/pelilauta/commit/572186883c38d96989f97f8554b4b670e1d459f8))
+
 ## [5.16.0](https://github.com/villetakanen/pelilauta/compare/v5.15.0...v5.16.0) (2021-01-07)
 
 
