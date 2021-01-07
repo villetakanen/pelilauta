@@ -83,7 +83,8 @@
       "pagelist": "Index"
     },
     "addPageCard": {
-      "title": "Add a new page"
+      "title": "Add a new page",
+      "newPageTitle": "Name of the new page"
     }
   },
   "siteInfo": {

@@ -79,6 +79,11 @@
         <h1>Statefull components</h1>
         <Avatar nick="no-image" />
       </div>
+      <div class="section">
+        <h1>Inputs</h1>
+        <TextField />
+        <TextField label="label" />
+      </div>
     </div>
   </div>
 </template>
@@ -90,6 +95,7 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
+import TextField from '@/components/material/TextField.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -98,7 +104,8 @@ export default defineComponent({
     Loader,
     ViewHeader,
     Avatar,
-    MaterialCard
+    MaterialCard,
+    TextField
   }
 })
 </script>
