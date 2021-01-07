@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.16.0](https://github.com/villetakanen/pelilauta/compare/v5.15.0...v5.16.0) (2021-01-07)
+
+
+### Features
+
+* add page card visuals ([87335b7](https://github.com/villetakanen/pelilauta/commit/87335b7ff9611dcb321d29994108384820238a27))
+
+
+### Bug Fixes
+
+* component styles in prep for add page ([8f1b72e](https://github.com/villetakanen/pelilauta/commit/8f1b72e34a775564dcb5398428526ea65bc6fbcf))
+* ts code quality fix ([c7af126](https://github.com/villetakanen/pelilauta/commit/c7af1267c3f08ac9863ab714d7c895edb9484733))
+
 ## [5.15.0](https://github.com/villetakanen/pelilauta/compare/v5.14.0...v5.15.0) (2021-01-05)
 
 
