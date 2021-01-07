@@ -9,7 +9,7 @@
         <MaterialCard>
           <h1>{{ $t('site.owners') }}</h1>
           <OwnerPill
-            v-for="owner in site.owners"
+            v-for="owner in site.owners || []"
             :key="owner"
             :uid="owner"
           />
