@@ -20,7 +20,7 @@
             v-for="page in pages"
             :key="page.id"
           >
-            <router-link :to="`/mekanismi/view/${site.siteid}/${page.id}`">
+            <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
               {{ page.name }}
             </router-link>
           </li>
