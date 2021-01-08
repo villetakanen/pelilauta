@@ -29,6 +29,7 @@
               v-for="url in images.split(';')"
               :key="url"
               :src="url"
+              alt=""
             >
           </div>
         </MaterialCard>
@@ -88,7 +89,7 @@ export default defineComponent({
   .test-box
     width: 400px
     flex-flow: 0
-    flex-flex-shrink: 0
+    flex-shrink: 0
 
 .carousel
   display: flex
