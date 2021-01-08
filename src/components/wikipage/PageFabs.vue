@@ -1,35 +1,56 @@
 <template>
   <teleport to="body">
     <div class="pageFabs">
-      <Fab>
+      <Fab
+        color="secondary"
+        :action="_addPageDialog"
+        :text="$t('action.create')"
+      >
         <Icon
           name="add"
-          :text="$t('actions.add')"
+          color="dark"
         />
       </Fab>
-      <Fab>
+      <Fab
+        :text="$t('action.edit')"
+        :to="`/mekanismi/edit/${page.siteid}/${page.id}`"
+      >
         <Icon
           name="edit"
-          :text="$t('actions.create')"
-          color="secondary"
         />
       </Fab>
+      <Dialog v-model="dialog">
+        <AddPageCard />
+      </Dialog>
     </div>
   </teleport>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { Page } from '@/state/site'
+import { ComputedRef, defineComponent, inject, ref } from 'vue'
+import Dialog from '../material/Dialog.vue'
 import Fab from '../material/Fab.vue'
 import Icon from '../material/Icon.vue'
+import AddPageCard from './AddPageCard.vue'
 
 export default defineComponent({
   name: 'PageFabs',
   components: {
     Fab,
-    Icon
+    Icon,
+    Dialog,
+    AddPageCard
   },
-  setup () {}
+  setup () {
+    const page = inject('page') as ComputedRef<Page>
+    const dialog = ref(false)
+    function _addPageDialog () {
+      dialog.value = true
+    }
+
+    return { page, dialog, _addPageDialog }
+  }
 })
 </script>
 
@@ -47,6 +68,8 @@ export default defineComponent({
     right: 16px
     z-index: 20000
     display: block
+    .materialFab
+      @include BoxShadow8()
     button+button
       margin-left: 16px
 
@@ -54,9 +77,13 @@ export default defineComponent({
   .pageFabs
     position: fixed
     bottom: 16px
-    right: 16px
+    left: 50%
+    transform: translateX(-50%)
     z-index: 20000
     display: block
+    width: 128px
+    .materialFab
+      @include BoxShadow8()
     button+button
       margin-left: 16px
 
