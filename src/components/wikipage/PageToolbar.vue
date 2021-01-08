@@ -16,65 +16,40 @@
         alt="share icon"
       >
     </MaterialButton>
-    <MaterialButton
-      icon
-      color="tertiary"
-      :to="`/mekanismi/edit/${site.id}/${page.id}`"
-    >
-      <img
-        src="@/assets/icons/edit.svg"
-        alt="edit icon"
-      >
-    </MaterialButton>
     <MaterialMenu v-model="menu" />
-    <Dialog v-model="dialog">
-      <AddPageCard />
-    </Dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, computed, ComputedRef, ref } from 'vue'
+import { defineComponent, inject, computed, ComputedRef } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { Page, Site } from '@/state/site'
 import { copyUrl } from '@/utils/window'
 import { MenuItem } from '@/lib/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
-import Dialog from '../material/Dialog.vue'
-import MaterialCard from '../material/MaterialCard.vue'
-import AddPageCard from './AddPageCard.vue'
 
 export default defineComponent({
   name: 'PageToolbar',
   components: {
     MaterialButton,
-    MaterialMenu,
-    Dialog,
-    AddPageCard
+    MaterialMenu
   },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const page = inject('page') as ComputedRef<Page>
-    const dialog = ref(false)
 
     function _copyUrl () {
       copyUrl('/mekanismi/view/' + site.value.id + '/' + page.value.id)
     }
 
-    function _addPageDialog () {
-      console.log('adding a page is not implemented yet')
-      dialog.value = true
-    }
-
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       arr.push({ action: _copyUrl, text: 'Copy link', icon: 'link' })
-      arr.push({ action: _addPageDialog, text: 'Create new wikipage', icon: 'new' })
       arr.push({ to: '/mekanismi/siteinfo/' + site.value.id, text: 'Site info', icon: 'site' })
       return arr
     })
 
-    return { site, page, menu, dialog }
+    return { site, page, menu }
   }
 })
 </script>

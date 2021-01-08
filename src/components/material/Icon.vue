@@ -1,8 +1,19 @@
 <template>
   <div class="icon">
     <img
-      v-if="name === 'add'"
+      v-if="name === 'add' && color !== 'dark'"
       src="@/assets/icons/add.svg"
+      alt="add"
+    >
+    <img
+      v-else-if="name === 'add' && color === 'dark'"
+      src="@/assets/icons/dark/add.svg"
+      alt="add"
+    >
+    <img
+      v-else-if="name === 'edit'"
+      src="@/assets/icons/edit.svg"
+      alt="edit"
     >
     <img
       v-else
@@ -20,6 +31,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    color: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 })
@@ -30,10 +46,8 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-.material-pill
-  .icon
-    img
-      height: 16px
-      width: 16px
-      padding: 1px
+.icon
+  display: inline-block
+  vertical-align: middle
+
 </style>

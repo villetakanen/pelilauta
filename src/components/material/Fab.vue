@@ -90,6 +90,11 @@ export default defineComponent({
     background-color: $color-fill-primary-dark
     background-size: 100%
     transition: background 0s
+  &.dark
+    background-color: $color-fill-primary-dark
+    color: white
+    &:hover
+      background: lighten($color-fill-primary-dark, 2%) radial-gradient(circle, transparent 1%, $color-fill-primary-dark 1%) center/15000%
   &.secondary
     background-color: $color-fill-secondary
     color: white
