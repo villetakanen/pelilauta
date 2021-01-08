@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, ref, watch } from 'vue'
-import { usePages, useSite, subscribeTo, fetchPage, updatePage } from '@/state/site'
+import { defineComponent, provide, ref, watch } from 'vue'
+import { usePages, useSite, subscribeTo, fetchPage } from '@/state/site'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
@@ -82,47 +82,6 @@ export default defineComponent({
     }
 
     return { page, site, pageContent, savePage }
-
-    /*
-    const pageContent = ref('')
-    const pageTitle = ref('')
-    const { members } = useMembers()
-    const { uid } = useAuthState()
-    const memberActions = computed(() => (members.value.includes(uid.value)))
-
-    const route = useRoute()
-    const routePageid = computed(() => {
-      return Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid
-    })
-    const routeSiteid = computed(() => {
-      return Array.isArray(route.params.siteid) ? route.params.siteid[0] : route.params.siteid
-    })
-
-    let unsubscribe = () => {
-    }
-
-    function fetchPage () {
-      unsubscribe()
-      const db = firebase.firestore()
-      const pageRef = db.collection('sites').doc(routeSiteid.value).collection('pages').doc(routePageid.value)
-      unsubscribe = pageRef.onSnapshot((snap) => {
-        if (snap.exists) {
-          pageContent.value = snap.data()?.htmlContent
-          pageTitle.value = snap.data()?.pageTitle
-        }
-      })
-    }
-    const router = useRouter()
-
-    onMounted(() => {
-      fetchPage()
-    })
-
-    onUnmounted(() => {
-      unsubscribe()
-    })
-
-    return { pageContent, routePageid, routeSiteid, memberActions, savePage } */
   }
 })
 </script>

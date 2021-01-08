@@ -4,7 +4,7 @@
       <div v-if="site && site.name">
         <MaterialCard>
           <h1>{{ site.name }}</h1>
-          <p><i>{{ site.description }}</i></p>
+          <p><em>{{ site.description }}</em></p>
         </MaterialCard>
         <MaterialCard>
           <h1>{{ $t('site.owners') }}</h1>
