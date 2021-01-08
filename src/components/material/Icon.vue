@@ -5,6 +5,10 @@
       src="@/assets/icons/add.svg"
     >
     <img
+      v-else-if="name === 'edit'"
+      src="@/assets/icons/edit.svg"
+    >
+    <img
       v-else
       src="@/assets/icons/d12-black.svg"
     >

@@ -21,6 +21,7 @@
         class="toCenter"
       />
     </transition>
+    <PageFabs />
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import SideBar from '@/components/wikipage/SideBar.vue'
 import { usePages, useSite, subscribeTo, fetchPage } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useRoute } from 'vue-router'
+import PageFabs from '@/components/wikipage/PageFabs.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -39,7 +41,8 @@ export default defineComponent({
     PageToolbar,
     MaterialCard,
     Loader,
-    SideBar
+    SideBar,
+    PageFabs
   },
   setup () {
     const { site } = useSite()
