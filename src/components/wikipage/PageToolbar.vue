@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, computed, ComputedRef, ref } from 'vue'
+import { defineComponent, inject, computed, ComputedRef } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { Page, Site } from '@/state/site'
 import { copyUrl } from '@/utils/window'
