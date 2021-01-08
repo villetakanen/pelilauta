@@ -2,6 +2,7 @@ import { Ref, ref, computed, ComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
+import { toMekanismiURI } from '@/utils/contentFormat'
 
 export interface Page {
   siteid: string,
@@ -85,6 +86,24 @@ export function subscribeTo (siteid:string|null|undefined): void {
 
 export function updatePage (pageid: string, content: string): void {
   console.log('update: ', pageid, content)
+}
+
+export async function addPage (authorUid: string, siteid: string, pageName: string): Promise<void> {
+  const pageid = toMekanismiURI(pageName)
+
+  const db = firebase.firestore()
+  const pageRef = db.collection('sites').doc(siteid).collection('pages').doc(pageid)
+
+  firebase.analytics().logEvent('addPage', { site: siteid, page: pageid, author: authorUid })
+
+  return pageRef.set({
+    author: authorUid,
+    creator: authorUid,
+    name: pageName,
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+    lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+    htmlContent: '<p>...</p>'
+  })
 }
 
 /**

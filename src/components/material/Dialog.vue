@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, provide } from 'vue'
 
 export default defineComponent({
   name: 'Dialog',
@@ -34,6 +34,7 @@ export default defineComponent({
     function close () {
       context.emit('update:modelValue', false)
     }
+    provide('close', close)
     return { close }
   }
 })
