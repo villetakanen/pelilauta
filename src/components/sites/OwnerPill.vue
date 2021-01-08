@@ -1,5 +1,9 @@
 <template>
-  <Pill :action="(actions && uid !== currentAuthor) ? action : null">
+  <Pill
+    :action="(actions && uid !== currentAuthor) ? action : () => {}"
+    :action-icon="add ? 'add' : 'remove'"
+    :color="add ? 'primary' : 'secondary'"
+  >
     {{ owner.nick }}
   </Pill>
 </template>
