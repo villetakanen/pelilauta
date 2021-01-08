@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/villetakanen/pelilauta/compare/v5.17.0...v6.0.0) (2021-01-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* - this version requires a new authz structure in
+the firebase project. Not compatible with Skald 2.x site authz or
+settings tool
+
+### Features
+
+* 6.0.0 ([a9aed0d](https://github.com/villetakanen/pelilauta/commit/a9aed0d88aaca324acc047d78f231ba897e4e136))
+* add page functionality ([6d84327](https://github.com/villetakanen/pelilauta/commit/6d8432791289e280832f9c198e53a7a411ffeb05))
+
 ## [5.17.0](https://github.com/villetakanen/pelilauta/compare/v5.16.0...v5.17.0) (2021-01-07)
 
 
