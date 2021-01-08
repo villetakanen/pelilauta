@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.1.1](https://github.com/villetakanen/pelilauta/compare/v6.1.0...v6.1.1) (2021-01-08)
+
+
+### Bug Fixes
+
+* editor text-spacing ([63810be](https://github.com/villetakanen/pelilauta/commit/63810be9ec084d854728ebe0e903128ece7e79a1))
+* owner editor ux fixes ([507da38](https://github.com/villetakanen/pelilauta/commit/507da3887c03008b35b8b3c6f9f086bb04ec793c))
+
 ## [6.1.0](https://github.com/villetakanen/pelilauta/compare/v6.0.0...v6.1.0) (2021-01-08)
 
 
