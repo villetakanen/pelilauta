@@ -21,6 +21,11 @@ An Open Source vue3+firebase project for a community site.
 5. Ask Ville for access, and start helping with Firebase devops tasks o_O
 6. Use the App.
 
+## Breaking changes
+
+6.0.0
+- No longer compatible with skald 2.x site members model, requires a migration update for owners/members to firebase data structures
+
 ## Project setup
 
 ### Prequisites

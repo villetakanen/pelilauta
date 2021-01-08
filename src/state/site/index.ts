@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import { useMembers } from './members'
-import { usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage } from './pages'
+import { usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage } from './pages'
 
 export interface Site {
   id: string,
@@ -117,6 +117,7 @@ function useSite (id?: string):
 
 export {
   // createSite,
+  addPage,
   Page,
   useMembers,
   usePages,

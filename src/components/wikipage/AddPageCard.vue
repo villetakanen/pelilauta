@@ -10,10 +10,16 @@
     </p>
     <div class="cardToolbar toolbar">
       <div class="spacer" />
-      <MaterialButton :text="true">
+      <MaterialButton
+        :text="true"
+        :action="close"
+      >
         {{ $t('action.cancel') }}
       </MaterialButton>
-      <MaterialButton :disabled="!newPageTitle">
+      <MaterialButton
+        :disabled="!newPageTitle"
+        :action="createPage"
+      >
         {{ $t('action.create') }}
       </MaterialButton>
     </div>
@@ -25,7 +31,10 @@ import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import TextField from '../material/TextField.vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import { Site } from '@/state/site'
+import { Site, addPage } from '@/state/site'
+import { useAuthState } from '@/state/authz'
+import { toMekanismiURI } from '@/utils/contentFormat'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'AddPageCard',
@@ -36,9 +45,21 @@ export default defineComponent({
   },
   setup () {
     const newPageTitle = ref('')
-    const newPageUrl = computed(() => (window.location.host + '/' + site.value.id + '/' + newPageTitle.value))
+    const newPageUrl = computed(() => (window.location.host + '/' + site.value.id + '/' + toMekanismiURI(newPageTitle.value)))
     const site = inject('site') as ComputedRef<Site>
-    return { newPageTitle, newPageUrl }
+    const close = inject('close') as CallableFunction
+    const { uid } = useAuthState()
+    const router = useRouter()
+
+    function createPage () {
+      addPage(uid.value, site.value.id, newPageTitle.value).then(() => {
+        router.push('/mekanismi/edit/' + site.value.id + '/' + toMekanismiURI(newPageTitle.value)).then(() => {
+          close()
+        })
+      })
+    }
+
+    return { newPageTitle, newPageUrl, close, createPage }
   }
 })
 </script>
