@@ -81,6 +81,20 @@
       </div>
       <div class="section">
         <h1>Inputs</h1>
+        <Pill>Chip</Pill>
+        <Pill action-icon="add">
+          Chip with Add Icon
+        </Pill>
+        <Pill action-icon="remove">
+          Chip with Remove Icon
+        </Pill>
+        <Pill
+          color="secondary"
+          action-icon="remove"
+        >
+          Secondary chip with Remove Icon
+        </Pill>
+        <hr>
         <TextField />
         <TextField label="label" />
       </div>
@@ -96,6 +110,7 @@ import ViewHeader from '@/components/app/ViewHeader.vue'
 import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
 import TextField from '@/components/material/TextField.vue'
+import Pill from '@/components/material/Pill.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -105,7 +120,8 @@ export default defineComponent({
     ViewHeader,
     Avatar,
     MaterialCard,
-    TextField
+    TextField,
+    Pill
   }
 })
 </script>

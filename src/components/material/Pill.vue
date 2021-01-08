@@ -1,12 +1,18 @@
 <template>
-  <div class="material-pill">
+  <div
+    class="material-pill"
+    :class="{ secondary: color === 'secondary' }"
+  >
     <slot />
     <div
-      v-if="action"
+      v-if="action || actionIcon"
       class="icon-container"
       @click="action"
     >
-      <Icon :name="actionIcon" />
+      <Icon
+        v-if="actionIcon"
+        :name="actionIcon"
+      />
     </div>
   </div>
 </template>
@@ -27,6 +33,11 @@ export default defineComponent({
       type: Function,
       required: false,
       default: undefined
+    },
+    color: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 })
@@ -39,19 +50,28 @@ export default defineComponent({
 
 .material-pill
   @include TypeCaption()
-  border: solid 1px black
+  background-color: rgba($color-fill-primary, 0.37)
   height: 18px
   border-radius: 16px
   display: inline-block
-  padding: 7px
+  padding: 7px 12px
   margin: 4px
   line-height: 18px
+  vertical-align: middle
   .icon-container
     vertical-align: middle
     display: inline-block
-    height: 18px
-    widht: 18px
-    border-radius: 9px
-    background-color: rgba(0,0,0,0.2)
-    margin-left: 8px
+    height: 32px
+    width: 32px
+    border-radius: 16px
+    background-color: $color-fill-primary
+    margin-left: 4px
+    margin-right: -12px
+    margin-top: -7px
+    overflow: hidden
+
+  &.secondary
+    background-color: rgba($color-fill-secondary, 0.37)
+    .icon-container
+      background-color: $color-fill-secondary
 </style>

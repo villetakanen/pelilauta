@@ -11,6 +11,12 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'remove'"
+      src="@/assets/icons/add.svg"
+      style="transform: rotate(42deg)"
+      alt="remove"
+    >
+    <img
       v-else-if="name === 'edit'"
       src="@/assets/icons/edit.svg"
       alt="edit"
@@ -49,5 +55,14 @@ export default defineComponent({
 .icon
   display: inline-block
   vertical-align: middle
+
+.material-pill
+  .icon-container
+    .icon
+      img
+        height: 28px
+        width: 28px
+        padding: 2px
+        vertical-align: middle
 
 </style>

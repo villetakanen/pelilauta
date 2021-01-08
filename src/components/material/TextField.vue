@@ -6,7 +6,7 @@
     <input
       v-model="fieldValue"
       :name="name"
-      @blur="onUpdate"
+      @input="onUpdate"
     >
     <label
       v-if="label"
