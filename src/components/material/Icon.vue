@@ -24,6 +24,7 @@
     <img
       v-else
       src="@/assets/icons/d12-black.svg"
+      alt="d12"
     >
   </div>
 </template>
