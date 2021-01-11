@@ -71,6 +71,7 @@ export default defineComponent({
         'material-button-icon': props.icon,
         'theme--dark': props.dark,
         'block-button': props.block,
+        working: false,
         inline: props.inline
       }
     )
@@ -79,8 +80,14 @@ export default defineComponent({
     else if (props.color === 'tertiary') buttonClasses.value['colortheme-tertiary'] = true
 
     const clicked = () => {
-      if (props.action) props.action()
-      else if (props.to) router.push(props.to)
+      if (props.action) {
+        if (props.action.constructor.name === 'AsyncFunction') {
+          buttonClasses.value.working = true
+          props.action().then(() => {
+            buttonClasses.value.working = false
+          })
+        } else props.action()
+      } else if (props.to) router.push(props.to)
     }
 
     return { buttonClasses, clicked }
