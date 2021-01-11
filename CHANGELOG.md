@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.3.1](https://github.com/villetakanen/pelilauta/compare/v6.3.0...v6.3.1) (2021-01-11)
+
+
+### Bug Fixes
+
+* pages ordered alphabetically ([1f03f4a](https://github.com/villetakanen/pelilauta/commit/1f03f4a200eae448743ca19a41f9db2602bdc5d8))
+* wikipage ux deprecations ([96cc876](https://github.com/villetakanen/pelilauta/commit/96cc87677dee6479a6d3232b7253edecb2cc5c45))
+
 ## [6.3.0](https://github.com/villetakanen/pelilauta/compare/v6.2.0...v6.3.0) (2021-01-11)
 
 
