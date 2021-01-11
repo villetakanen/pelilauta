@@ -56,6 +56,11 @@ function patchToSubscribed (page: Page|undefined) {
     if (page.id === requestedPage) {
       statePage.value = page
     }
+    subscribedPages.value.sort((a, b) => {
+      if (a.name < b.name) { return -1 }
+      if (a.name > b.name) { return 1 }
+      return 0
+    })
   }
 }
 /**
