@@ -25,12 +25,10 @@ export default defineComponent({
       }
       const quill = new Quill('#editor', options)
       quill.on('text-change', () => {
-        console.log('text-change', quill.root.innerHTML)
         context.emit('update:modelValue', quill.root.innerHTML)
       })
       watch(() => props.modelValue, (val) => {
         if (quill.root.innerHTML === val) return
-        console.log('quill.root.innerHTML', val)
         quill.root.innerHTML = val
       })
     })

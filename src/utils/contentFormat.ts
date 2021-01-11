@@ -33,8 +33,7 @@ export function extractTags (htmlContent:string): { formattedContent: string, ta
  */
 export function extractLinks (htmlContent:string): { formattedContent: string } {
   const r = new RegExp(urlPatternStart + urlPattern + urlPatternEnd, 'gmu')
-  const formattedContent = htmlContent.replace(r, (match, p1, p2, p3, p4) => {
-    console.log(p1, p2, p3, p4, match)
+  const formattedContent = htmlContent.replace(r, (match, p1, p2, p3) => {
     return `${p1}<a href="${p2.trim()}">${p2.trim()}</a>${p3}`
   })
   return { formattedContent }
