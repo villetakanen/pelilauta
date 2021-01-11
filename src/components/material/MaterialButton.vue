@@ -113,6 +113,9 @@ export default defineComponent({
   transition-duration: 0.8s
   background-color: $color-fill-primary-dark
   color: $color-dark-font-high
+  &.working
+    opacity: 0.5
+    pointer-events: none
   &:hover
     background-color: $color-fill-primary
     &.theme--dark

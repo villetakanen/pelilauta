@@ -15,6 +15,11 @@ export interface Site {
   owners: string[]|null
   players: string[]|null
 }
+export interface SiteData {
+  id: string,
+  name?: string,
+  description?: string
+}
 
 const stateSite:Ref<Site> = ref(toSite())
 const site = computed(() => (stateSite.value))
@@ -33,7 +38,7 @@ function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
       hidden: data?.hidden || '',
       silent: data?.silent,
       lastUpdate: data?.lastUpdate,
-      name: data?.data || id,
+      name: data?.name || id,
       players: data?.players || null,
       owners: data?.owners || null
     }
@@ -77,6 +82,12 @@ function subscribeTo (id: string): void {
 
 function hasAdmin (uid: string): boolean {
   return stateSite.value.owners !== null && stateSite.value.owners.includes(uid)
+}
+
+async function updateSite (data: SiteData): Promise<void> {
+  const db = firebase.firestore()
+  const siteRef = db.collection('sites').doc(stateSite.value.id)
+  return siteRef.update(data)
 }
 
 async function revokeOwner (uid: string) {
@@ -124,5 +135,6 @@ export {
   useSite,
   subscribeTo,
   fetchPage,
-  updatePage
+  updatePage,
+  updateSite
 }
