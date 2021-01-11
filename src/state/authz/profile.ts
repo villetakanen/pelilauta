@@ -52,7 +52,6 @@ function parseSeen (seenArray:Array<seenThread>) {
 }
 
 function fetchProfile (uid:string|null) {
-  console.log('fetchProfile', uid)
   unsubscribe()
   if (!uid) {
     profileRef.value = { nick: '', tagline: '' }

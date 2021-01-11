@@ -2,12 +2,13 @@
   <div>
     <transition name="fade">
       <div v-if="site && site.name">
+        <SiteMeta />
         <MaterialCard>
           <h1>{{ site.name }}</h1>
           <p><em>{{ site.description }}</em></p>
         </MaterialCard>
         <MaterialCard>
-          <h1>{{ $t('site.owners') }}</h1>
+          <h1>{{ $t('mekanismi.site.owners') }}</h1>
           <OwnerPill
             v-for="owner in site.owners || []"
             :key="owner"
@@ -17,7 +18,7 @@
             v-if="actions"
             style="border-top: solid 1px black"
           >
-            <p>{{ $t('site.addOwner') }}</p>
+            <p>{{ $t('mekanismi.site.addOwner') }}</p>
             <OwnerPill
               v-for="author in nonOwners"
               :key="author"
@@ -44,13 +45,15 @@ import { useRoute } from 'vue-router'
 import OwnerPill from '@/components/sites/OwnerPill.vue'
 import { useAuthors } from '@/lib/authors'
 import { useAuthState } from '@/state/authz'
+import SiteMeta from '@/components/sites/SiteMeta.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
     MaterialCard,
     Loader,
-    OwnerPill
+    OwnerPill,
+    SiteMeta
   },
   setup () {
     const { uid } = useAuthState()

@@ -5,7 +5,7 @@
       <div class="cardContent">
         <div
           :innerHTML="thread.data.content"
-          class="cardContent dont-break-out"
+          class="cardContent dont-break-out stream-post-content"
         />
         <div class="credits">
           <transition name="fade">
@@ -94,6 +94,17 @@ export default defineComponent({
   color: $color-font-high
   margin: 0
   padding: 0
+
+.stream-post-content
+  @include TypeBody2()
+  display: -webkit-box
+  -webkit-line-clamp: 5
+  -webkit-box-orient: vertical
+  overflow: hidden
+  color: $color-font-medium
+  padding-bottom: 8px
+  div:empty, p:empty
+    display: none
 
 @include media('>tablet')
   .cardGrid
