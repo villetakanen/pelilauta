@@ -9,10 +9,6 @@
           </MaterialCard>
           <MaterialCard class="sideCard">
             <SideBar />
-            <p class="caption">
-              Site settings available via <br>
-              <a :href="'https://mekanismi.web.app/#/c/site/'+site.id">mekanismi.web.app</a>
-            </p>
           </MaterialCard>
         </div>
       </div>
@@ -83,11 +79,13 @@ export default defineComponent({
 
 @include media('>tablet')
   .mekanismiGrid
+    justify-content: center
+    display: flex
     .mainCard
-      margin-right: 264px
+      width: 720px
+      margin-right: 16px
     .sideCard
-      position: absolute
-      width: 220px
+      width: 360px
       top: 0px
       right: 0
 </style>

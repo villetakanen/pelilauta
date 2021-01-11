@@ -3,13 +3,6 @@
     class="sidebar"
     style="position: relative"
   >
-    <MaterialButton
-      :action="toggle"
-      :icon="true"
-      style="position:absolute;right:-8px;top:-8px"
-    >
-      x
-    </MaterialButton>
     <transition name="fade">
       <div v-if="site">
         <h1>{{ site.name }}</h1>
@@ -32,14 +25,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import { usePages, useSite } from '@/state/site'
 
 export default defineComponent({
   name: 'WikiSideBar',
-  components: {
-    MaterialButton
-  },
   props: {
     modelValue: {
       type: Boolean,
