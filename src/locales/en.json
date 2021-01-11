@@ -87,6 +87,12 @@
     "addPageCard": {
       "title": "Add a new page",
       "newPageTitle": "Name of the new page"
+    },
+    "site": {
+      "name": "Site Name",
+      "owners": "Site Owners (full control of the site)",
+      "addOwner": "Add an owner?",
+      "description": "Site Description"
     }
   },
   "siteInfo": {

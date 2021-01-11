@@ -43,7 +43,6 @@ function flushAuth () {
 }
 
 function loginAs (user: firebase.User) {
-  console.log('loginAs', user.uid)
   anonymousSession.value = false
   // ./profile.ts watches this change!
   authUid.value = user.uid

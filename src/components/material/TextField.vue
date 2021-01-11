@@ -74,7 +74,7 @@ export default defineComponent({
     width: 100%
     transition: 0.2s
     font-size: 14px
-    z-index: -1
+    pointer-events: none
     line-height: 14px
     color: $color-fill-primary-dark
   &:hover
