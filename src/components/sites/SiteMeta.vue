@@ -10,13 +10,15 @@
     />
     <div class="toolbar">
       <div class="spacer" />
-      <MaterialButton>{{ $t('action.save') }}</MaterialButton>
+      <MaterialButton :action="update">
+        {{ $t('action.save') }}
+      </MaterialButton>
     </div>
   </MaterialCard>
 </template>
 
 <script lang="ts">
-import { Site } from '@/state/site'
+import { Site, SiteData, updateSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialCard from '../material/MaterialCard.vue'
@@ -36,7 +38,13 @@ export default defineComponent({
       get: () => (localDescription.value || site.value.description || ''),
       set: (val) => { localDescription.value = val }
     })
-    return { site, siteName, siteDescription }
+    function update () {
+      const data: SiteData = { id: site.value.id }
+      if (localName.value) data.name = localName.value
+      if (localDescription.value) data.description = localDescription.value
+      if (data.name || data.description) updateSite(data)
+    }
+    return { site, siteName, siteDescription, update }
   }
 })
 </script>
