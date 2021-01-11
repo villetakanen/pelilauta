@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.2.0](https://github.com/villetakanen/pelilauta/compare/v6.1.2...v6.2.0) (2021-01-11)
+
+
+### Features
+
+* materialbutton supports async ([edc7c7b](https://github.com/villetakanen/pelilauta/commit/edc7c7b04f607f1dbd49ee2fc0814f5c776626c3))
+* site meta editor views ([7905863](https://github.com/villetakanen/pelilauta/commit/7905863dfe4bbac9fe53779beaf9098701f8468d))
+
+
+### Bug Fixes
+
+* front page message clapping restored ([6ed297d](https://github.com/villetakanen/pelilauta/commit/6ed297d4f58a3edea854b481efefa98df0418e12))
+
 ### [6.1.2](https://github.com/villetakanen/pelilauta/compare/v6.1.1...v6.1.2) (2021-01-08)
 
 
