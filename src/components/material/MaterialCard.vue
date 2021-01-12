@@ -22,7 +22,12 @@ div.material-card
     margin-bottom: 8px
   h1, h2, h3, h4
     @include TypeHeadline5()
+    overflow: hidden
+    text-overflow: ellipsis
+    word-break: break-word
+    display: block
     a
       color: $color-fill-dark
+      text-overflow: ellipsis
 
 </style>
