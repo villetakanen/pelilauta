@@ -27,7 +27,6 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
-import { processContent } from '@/components/editor/processors'
 
 export default defineComponent({
   name: 'EditPage',
