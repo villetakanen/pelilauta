@@ -30,6 +30,7 @@ import MainTailer from '@/components/app/MainTailer.vue'
 import { useAuthz } from './lib/authz'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
+import { useSnack } from '@/composables/useSnack'
 
 export default defineComponent({
   components: {
@@ -48,6 +49,9 @@ export default defineComponent({
       i18n.locale.value = lang.value
       watch(lang, (l) => { i18n.locale.value = l })
     })
+
+    const { pushSnack } = useSnack()
+    provide('pushSnack', pushSnack)
 
     // Navigation drawer programmatic visibility
     const navModel = ref(window.innerWidth < 768)
