@@ -26,7 +26,8 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import { useAuthState } from '@/state/authz'
-import { extractTags } from '@/utils/contentFormat'
+import { extractLinks, extractTags } from '@/utils/contentFormat'
+import { processContent } from '@/components/editor/processors'
 
 export default defineComponent({
   name: 'EditPage',
@@ -64,7 +65,8 @@ export default defineComponent({
     async function savePage () {
       const db = firebase.firestore()
       const pageRef = db.collection('sites').doc(page.value.siteid).collection('pages').doc(page.value.id)
-      const { formattedContent, tags } = extractTags(pageContent.value)
+      const { formattedContent: pc } = extractLinks(pageContent.value)
+      const { formattedContent, tags } = extractTags(pc)
       return pageRef.update({
         author: uid.value,
         htmlContent: formattedContent
