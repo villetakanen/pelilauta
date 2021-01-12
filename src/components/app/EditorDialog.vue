@@ -86,7 +86,6 @@ import { Thread, PostData, createThread, PostImage, updateThread } from '@/state
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import MaterialButton from '../material/MaterialButton.vue'
-import { processContent } from '../editor/processors'
 import { extractLinks } from '@/utils/contentFormat'
 
 export default defineComponent({
