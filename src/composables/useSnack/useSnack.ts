@@ -1,4 +1,4 @@
-import { computed, ComputedRef, ref } from 'vue'
+import { computed, ComputedRef, ref, Ref } from 'vue'
 
 export interface SnackMessage {
   topic: string,
@@ -8,6 +8,7 @@ export interface SnackMessage {
 }
 
 const snackStack = ref(new Array<SnackMessage>())
+const snackMessages = computed(() => (snackStack.value))
 
 const snackStackLength = computed(() => (snackStack.value.length))
 
@@ -20,6 +21,6 @@ function popSnack (): SnackMessage|undefined {
   return snackStack.value.pop()
 }
 
-export function useSnack (): { pushSnack(message: SnackMessage): void, popSnack (): SnackMessage|undefined, snackStackLength: ComputedRef } {
-  return { pushSnack, popSnack, snackStackLength }
+export function useSnack (): { pushSnack(message: SnackMessage): void, popSnack (): SnackMessage|undefined, snackStackLength: ComputedRef<number>, snackMessages: ComputedRef<Array<SnackMessage>> } {
+  return { pushSnack, popSnack, snackStackLength, snackMessages }
 }

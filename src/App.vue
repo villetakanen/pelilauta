@@ -17,6 +17,7 @@
   <teleport to="body">
     <MaterialDialog :visible="missingProfile" />
   </teleport>
+  <SnackBar />
 </template>
 
 <script lang="ts">
@@ -31,6 +32,7 @@ import { useAuthz } from './lib/authz'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
+import SnackBar from './components/app/SnackBar.vue'
 
 export default defineComponent({
   components: {
@@ -39,7 +41,8 @@ export default defineComponent({
     WelcomeCard,
     SideNav,
     AppBar,
-    MainTailer
+    MainTailer,
+    SnackBar
   },
   setup () {
     const { missingProfile, lang, isAuthz } = useAuthz()
