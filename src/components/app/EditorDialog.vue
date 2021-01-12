@@ -86,6 +86,8 @@ import { Thread, PostData, createThread, PostImage, updateThread } from '@/state
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import MaterialButton from '../material/MaterialButton.vue'
+import { processContent } from '../editor/processors'
+import { extractLinks } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'AppEditorDialog',
@@ -133,13 +135,13 @@ export default defineComponent({
     }
 
     function publish () {
+      const { formattedContent } = extractLinks(content.value)
       const postData:PostData = {
-        content: content.value,
+        content: formattedContent,
         title: titleModel.value,
         topic: chosenTopic.value,
         images: images.value
       }
-      console.log('publish, ', postData)
       if (!update.value) {
         createThread(uid.value, postData).then((slug: string) => {
           hide()
@@ -155,7 +157,6 @@ export default defineComponent({
       }
     }
 
-    // onMounted(() => {
     if (props.topic) {
       chosenTopic.value = props.topic || 'Yleinen'
     } else if (props.thread) {
@@ -166,7 +167,6 @@ export default defineComponent({
       title.value = props.thread.data.title || ''
       images.value = props.thread.data.images || new Array<PostImage>()
     }
-    // })
 
     return { hide, topics, chosenTopic, images, publish, title, titleModel, content }
   }

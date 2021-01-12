@@ -118,6 +118,8 @@ export default defineComponent({
 .sideNavMenu
   margin: 8px 0
   padding: 0
+  overflow: hidden
+  overflow-y: scroll
   ul
     margin: 0
     padding: 0
