@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.3.3](https://github.com/villetakanen/pelilauta/compare/v6.3.2...v6.3.3) (2021-01-12)
+
+
+### Bug Fixes
+
+* code quality fixes ([c40447e](https://github.com/villetakanen/pelilauta/commit/c40447ea9a290b02cb7c1d5e68a241ebeda9b02a))
+* extractlinks reactivated to save flows ([e5112f1](https://github.com/villetakanen/pelilauta/commit/e5112f16a0faa8cab3274ae02c7d98aa916f6da4))
+* hotfix for side nav menu ([007d7ba](https://github.com/villetakanen/pelilauta/commit/007d7ba764a873eaf0d156ade02023677b039f16))
+
 ### [6.3.2](https://github.com/villetakanen/pelilauta/compare/v6.3.1...v6.3.2) (2021-01-11)
 
 
