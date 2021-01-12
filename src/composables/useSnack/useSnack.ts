@@ -12,8 +12,8 @@ const snackStack = ref(new Array<SnackMessage>())
 const snackStackLength = computed(() => (snackStack.value.length))
 
 function pushSnack (message: SnackMessage) {
-  console.log('snack', message)
   snackStack.value.push(message)
+  console.log('snacks', snackStack.value)
 }
 
 function popSnack (): SnackMessage|undefined {

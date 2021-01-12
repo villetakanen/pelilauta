@@ -78,6 +78,9 @@
       <div class="section">
         <h1>Statefull components</h1>
         <Avatar nick="no-image" />
+        <MaterialButton :action="sendSnack">
+          Push a snack to the stack
+        </MaterialButton>
       </div>
       <div class="section">
         <h1>Inputs</h1>
@@ -103,7 +106,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
@@ -111,6 +114,7 @@ import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
 import TextField from '@/components/material/TextField.vue'
 import Pill from '@/components/material/Pill.vue'
+import { useSnack } from '@/composables/useSnack'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -122,6 +126,13 @@ export default defineComponent({
     MaterialCard,
     TextField,
     Pill
+  },
+  setup () {
+    function sendSnack () {
+      const { pushSnack } = useSnack()
+      pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString() })
+    }
+    return { sendSnack }
   }
 })
 </script>
