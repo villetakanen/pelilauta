@@ -57,6 +57,8 @@ export default defineComponent({
   width: 310px
   height: 100vh
   transition: transform 0.3s ease-in-out
+  overflow: hidden
+  overflow-y: scroll
   // @include BoxShadow8()
   .sideNavAvatarAction
     position: absolute

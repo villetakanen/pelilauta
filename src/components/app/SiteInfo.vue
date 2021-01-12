@@ -36,11 +36,13 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #siteInfo
-  position: absolute
+  position: relative
   bottom: 0px
   left: 0px
   margin: 16px
   padding-top: 8px
+  pointer-events: none
+  background-color: white
   h3
     @include TypeButton()
     color: $color-font-disabled
