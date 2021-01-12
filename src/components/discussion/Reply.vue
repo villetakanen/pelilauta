@@ -62,7 +62,10 @@
         color="secondary"
         :action="updateReply"
       >
-        <img src="@/assets/send.svg" alt="send">
+        <img
+          src="@/assets/send.svg"
+          alt="send"
+        >
       </MaterialButton>
     </div>
   </div>
@@ -78,7 +81,7 @@ import { useMeta } from '@/lib/meta'
 import { MenuItem } from '@/lib/stream'
 import { useDiscussion } from '@/lib/discussion'
 import { loveReply, unloveReply, updateReplyContent } from '@/state/discussions'
-import Editor from '@/components/editor/Editor2.vue'
+import Editor from '@/components/quill/QuillEditor.vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
