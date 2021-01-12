@@ -68,24 +68,4 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-.mekanismiGrid
-    position: relative
-    .mainCard
-      overflow: hidden
-      word-break: break-word
-    .sideCard
-      overflow: hidden
-      word-break: break-word
-
-@include media('>tablet')
-  .mekanismiGrid
-    justify-content: center
-    display: flex
-    .mainCard
-      width: 720px
-      margin-right: 16px
-    .sideCard
-      width: 360px
-      top: 0px
-      right: 0
 </style>

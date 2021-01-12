@@ -29,5 +29,9 @@ div.material-card
     a
       color: $color-fill-dark
       text-overflow: ellipsis
-
+  .cardActions
+    padding: 0
+    margin-top: 8px
+  .ql-container
+    height: auto
 </style>

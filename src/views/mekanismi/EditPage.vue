@@ -1,15 +1,29 @@
 <template>
   <div>
     <transition name="fade">
-      <div v-if="site.name && page.name">
-        <PageToolbar />
-        <MaterialButton :action="savePage">
-          {{ $t('action.save') }}
-        </MaterialButton>
-        <QuillEditor
-          v-model="pageContent"
-          :toolbar="true"
-        />
+      <div
+        v-if="site.name && page.name"
+        class="mekanismiGrid"
+      >
+        <MaterialCard>
+          <PageToolbar />
+          <QuillEditor
+            v-model="pageContent"
+            :toolbar="true"
+          />
+          <div class="toolbar cardActions">
+            <div class="spacer" />
+            <MaterialButton
+              :to="`/mekanismi/view/${site.id}/${page.id}`"
+              :text="true"
+            >
+              {{ $t('action.cancel') }}
+            </MaterialButton>
+            <MaterialButton :action="savePage">
+              {{ $t('action.save') }}
+            </MaterialButton>
+          </div>
+        </MaterialCard>
       </div>
     </transition>
   </div>
@@ -27,13 +41,15 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
+import MaterialCard from '@/components/material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'EditPage',
   components: {
     PageToolbar,
     QuillEditor,
-    MaterialButton
+    MaterialButton,
+    MaterialCard
   },
   setup () {
     const { site } = useSite()
