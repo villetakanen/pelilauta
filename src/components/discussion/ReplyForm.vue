@@ -39,7 +39,7 @@
 <script lang="ts">
 import { defineComponent, ref, PropType, onMounted, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import Editor from '@/components/editor/Editor2.vue'
+import Editor from '@/components/quill/QuillEditor.vue'
 import { useDiscussion } from '@/lib/discussion'
 import { useAuthz } from '@/lib/authz'
 import { useProfile } from '@/state/authz'

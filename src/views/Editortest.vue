@@ -43,7 +43,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Editor from '@/components/editor/Editor2.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
@@ -54,7 +53,6 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 export default defineComponent({
   name: 'EditorTest',
   components: {
-    Editor,
     MaterialCard,
     ViewHeader,
     QuillEditor,
