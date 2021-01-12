@@ -2,18 +2,18 @@
   <div class="viewer contentGrid">
     <MaterialCard>
       <div
-        v-if="post"
+        v-if="thread"
         class="postHeader"
       >
         <!-- The top bar -->
-        <ThreadCardHeader :thread="post" />
+        <ThreadCardHeader :thread="thread" />
       </div>
       <div
-        v-if="post"
+        v-if="thread"
         class="postContent"
       >
         <div
-          :innerHTML="post.data.content"
+          :innerHTML="thread.data.content"
         />
 
         <div class="credits">
@@ -32,20 +32,20 @@
           </transition>
         </div>
 
-        <PhotoBox :photos="post.data.images" />
+        <PhotoBox :photos="thread.data.images" />
         <div style="display:flex">
           <LoveAction
             :loved="loves"
             :action="toggleLove"
           />
-          <div v-if="post.lovedCount > 0">
-            {{ post.lovedCount }}
+          <div v-if="thread.lovedCount > 0">
+            {{ thread.lovedCount }}
           </div>
         </div>
       </div>
     </MaterialCard>
 
-    <Discussion :threadid="threadid" />
+    <Discussion :thread="thread" />
   </div>
 </template>
 
@@ -84,12 +84,12 @@ export default defineComponent({
 
     const { toDisplayString } = useStream()
     const { stream } = useThreads()
-    const post = computed(() => {
+    const thread = computed(() => {
       return stream.value.filter((post) => (post.id === props.threadid))[0]
     })
 
     const { authors } = useAuthors()
-    const author = computed(() => (authors.value.find((val) => (val.uid === post.value.author))))
+    const author = computed(() => (authors.value.find((val) => (val.uid === thread.value.author))))
 
     function deletePost (): void {
       deleteThread(uid.value, props.threadid).then(() => {
@@ -110,13 +110,13 @@ export default defineComponent({
     const { showStreamActions } = useMeta()
 
     onMounted(() => {
-      document.title = 'Pelilauta ' + post.value?.data.title
-      watch(post, (post) => {
+      document.title = 'Pelilauta ' + thread.value?.data.title
+      watch(thread, (post) => {
         document.title = 'Pelilauta ' + post.data.title
       })
     })
 
-    return { author, deletePost, showStreamActions, post, toDisplayString, toggleLove, loves }
+    return { author, deletePost, showStreamActions, thread, toDisplayString, toggleLove, loves }
   }
 })
 </script>
@@ -133,6 +133,8 @@ export default defineComponent({
   @include TypeBody2()
   color: $color-font-medium
   padding-top: 0
+  text-overflow: ellipsis
+  word-break: break-word
 
 @include media('>tablet')
   .postContent
@@ -147,6 +149,7 @@ export default defineComponent({
 #app #mainContentWrapper main
   .stream-post
     position: relative
+    word-break: break-word
     .stream-post-top-bar
       position: relative
       padding-left: 52px
@@ -158,8 +161,5 @@ export default defineComponent({
       left: 0
       top: 0
       border-radius: 50%
-    .stream-post-content
-      background-color: $color-base-dark
-      padding: 4px
 
 </style>
