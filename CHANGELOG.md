@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.4.0](https://github.com/villetakanen/pelilauta/compare/v6.3.6...v6.4.0) (2021-01-13)
+
+
+### Features
+
+* app provides composable snack message array ([77804f4](https://github.com/villetakanen/pelilauta/commit/77804f4fbdd608c56e360e425fcc227b478d05ea))
+* snack message push stylebook components ([e8e20f1](https://github.com/villetakanen/pelilauta/commit/e8e20f1f16d1801b53de42020720eb921b887f1e))
+* snackbar feature-complete ([5c50c90](https://github.com/villetakanen/pelilauta/commit/5c50c90ff8a52e8ff92725010283d01dae83a9dc))
+* snackbar MVP working for messages ([8be6796](https://github.com/villetakanen/pelilauta/commit/8be6796e88e32440bc54315023e891cdf07e8e0f))
+
 ### [6.3.6](https://github.com/villetakanen/pelilauta/compare/v6.3.5...v6.3.6) (2021-01-12)
 
 
