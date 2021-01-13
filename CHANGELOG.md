@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.3.6](https://github.com/villetakanen/pelilauta/compare/v6.3.5...v6.3.6) (2021-01-12)
+
+
+### Bug Fixes
+
+* deprecate editor2 ([685ef7d](https://github.com/villetakanen/pelilauta/commit/685ef7d86e25fa81fac8ae9af8bae1867b1b43d9))
+* remove extra editor2-link ([ef87b51](https://github.com/villetakanen/pelilauta/commit/ef87b51cb17c94f1ed92724b335209faf8e9acef))
+* removed dead code ([a587af8](https://github.com/villetakanen/pelilauta/commit/a587af8b11af70d304660d4c7dc7e670b4a61cd9))
+* removed deprecated editor2 from reply edit ([a2cf8a9](https://github.com/villetakanen/pelilauta/commit/a2cf8a9d53b2fdc7c071cd9722d4bba0dc921ac4))
+* removed links to old process-content module ([8a1cc39](https://github.com/villetakanen/pelilauta/commit/8a1cc395867409e84ee24238b995df003aca5bff))
+
+### [6.3.5](https://github.com/villetakanen/pelilauta/compare/v6.3.4...v6.3.5) (2021-01-12)
+
+
+### Bug Fixes
+
+* material card layout for toolbars ([ba053d5](https://github.com/villetakanen/pelilauta/commit/ba053d5c4394364e511a2b40bd9184cd01da3c88))
+* small quality fixes for thread view ([831396e](https://github.com/villetakanen/pelilauta/commit/831396e7f60aa4d6715097dd59bba055771a2a19))
+
+### [6.3.4](https://github.com/villetakanen/pelilauta/compare/v6.3.3...v6.3.4) (2021-01-12)
+
+
+### Bug Fixes
+
+* word break on frontpage ([699e2f7](https://github.com/villetakanen/pelilauta/commit/699e2f72b41381baff6a1c1af759a8f8fa60dbd0))
+
 ### [6.3.3](https://github.com/villetakanen/pelilauta/compare/v6.3.2...v6.3.3) (2021-01-12)
 
 
