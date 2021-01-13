@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.5.0](https://github.com/villetakanen/pelilauta/compare/v6.4.0...v6.5.0) (2021-01-13)
+
+
+### Features
+
+* move refresh to snack ([6e1bc39](https://github.com/villetakanen/pelilauta/commit/6e1bc39ec6811bd490da468f159ec2fadc23c6aa))
+
 ## [6.4.0](https://github.com/villetakanen/pelilauta/compare/v6.3.6...v6.4.0) (2021-01-13)
 
 
