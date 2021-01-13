@@ -1,10 +1,11 @@
-import { computed, ComputedRef, ref, Ref } from 'vue'
+import { computed, ComputedRef, ref } from 'vue'
 
 export interface SnackMessage {
   topic: string,
   message?: string,
   code?: string
-  action?: CallableFunction
+  action?: CallableFunction,
+  actionMessage?: string
 }
 
 const snackStack = ref(new Array<SnackMessage>())

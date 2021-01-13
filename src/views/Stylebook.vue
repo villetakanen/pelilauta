@@ -130,7 +130,7 @@ export default defineComponent({
   setup () {
     function sendSnack () {
       const { pushSnack } = useSnack()
-      pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString() })
+      pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') } })
     }
     return { sendSnack }
   }
