@@ -17,6 +17,11 @@
       alt="remove"
     >
     <img
+      v-else-if="name === 'close' && color === 'dark'"
+      src="@/assets/icons/dark/close.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'edit'"
       src="@/assets/icons/edit.svg"
       alt="edit"
