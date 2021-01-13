@@ -7,7 +7,6 @@
     id="mainContentWrapper"
     :class="{toggle: !navModel}"
   >
-    <MaterialBanner />
     <main>
       <WelcomeCard v-if="!isAuthz && route.name !== 'Login'" />
       <router-view />
@@ -22,7 +21,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
-import MaterialBanner from './components/material/MaterialBanner.vue'
 import MaterialDialog from './components/material/MaterialDialog.vue'
 import WelcomeCard from '@/components/app/WelcomeCard.vue'
 import SideNav from '@/components/app/SideNav.vue'
@@ -33,10 +31,10 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
+import { register } from 'register-service-worker'
 
 export default defineComponent({
   components: {
-    MaterialBanner,
     MaterialDialog,
     WelcomeCard,
     SideNav,
@@ -65,6 +63,61 @@ export default defineComponent({
     provide('toggleNav', toggleNav)
 
     const onMobile = computed(() => (window.innerWidth < 768))
+
+    // ************************************************************************
+    // * SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE                         *
+    // ************************************************************************
+    let swr: ServiceWorkerRegistration|undefined
+
+    register('/service-worker.js', {
+      registrationOptions: { scope: './' },
+      ready (registration) {
+        console.log('Service worker is active.', registration)
+      },
+      registered (registration) {
+        console.log('Service worker has been registered.')
+        setInterval(() => {
+          registration.update()
+        }, 60 * 1000 * 5) // 1000 * 60) // minute checks for testing * 60) // e.g. hourly checks
+      },
+      cached (registration) {
+        console.log('Content has been cached for offline use.', registration)
+      },
+      updatefound (registration) {
+        console.log('New content is downloading.', registration)
+      },
+      updated (registration: ServiceWorkerRegistration) {
+        console.log('New content is available; please refresh.')
+        pushSnack({
+          topic: i18n.t('app.title'),
+          message: i18n.t('app.updatesAvailable'),
+          action: acceptUpdate,
+          actionMessage: i18n.t('actions.update')
+        })
+        swr = registration
+      },
+      offline () {
+        console.log('No internet connection found. App is running in offline mode.')
+      },
+      error (error) {
+        console.error('Error during service worker registration:', error)
+      }
+    })
+
+    let refreshing = false
+    // Refresh all open app tabs when a new service worker is installed.
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (refreshing) return
+      refreshing = true
+      window.location.reload()
+    })
+
+    function acceptUpdate () {
+      if (!swr || !swr.waiting) { return }
+      swr.waiting.postMessage('skipWaiting')
+    }
+
+    // *** end SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE *******************
 
     return { isAuthz, missingProfile, ...useI18n(), route, navModel, onMobile }
   }
