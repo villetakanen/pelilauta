@@ -4,6 +4,15 @@
   </ViewHeader>
   <div class="contentGrid">
     <MaterialCard>
+      <router-link to="/admin">
+        User Admin
+      </router-link>
+      -
+      <router-link to="/admin/topics">
+        Topics
+      </router-link>
+    </MaterialCard>
+    <MaterialCard>
       <UserList />
     </MaterialCard>
     <MaterialCard>
