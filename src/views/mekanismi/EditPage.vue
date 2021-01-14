@@ -103,7 +103,10 @@ export default defineComponent({
 })
 </script>
 
-<style lang="sass" scoped>
-.toolbar
-  margin-bottom: 8px
+<style lang="sass">
+.mekanismiGrid
+  .toolbar
+    margin-bottom: 8px
+  #editor
+    max-width: 700px
 </style>
