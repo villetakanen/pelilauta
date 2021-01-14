@@ -18,6 +18,7 @@ export interface Quote {
  */
 export function extractTags (htmlContent:string): { formattedContent: string, tags: string[] } {
   const tags = new Array<string>()
+  // eslint-disable-next-line
   const regex = new RegExp('( |>|,|,|\\.)(#[a-zA-Z]+)(<| )(?!\\/a)', 'gmu')
   const formattedContent = htmlContent.replace(regex, (match, p1, p2, p3) => {
     tags.push(p2.trim().toLowerCase())
@@ -45,6 +46,7 @@ export function extractLinks (htmlContent:string): { formattedContent: string } 
  */
 export function toMekanismiURI (s: string): string {
   if (s === null) return ''
+  // eslint-disable-next-line
   const re = new RegExp('[^a-öA-Ö0-9]', 'gmu')
   let r = s.replace(re, '-')
   while (r.includes('--')) {
