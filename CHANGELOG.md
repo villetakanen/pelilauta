@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.6.0](https://github.com/villetakanen/pelilauta/compare/v6.5.1...v6.6.0) (2021-01-14)
+
+
+### Features
+
+* topic admin route and topic reading from fb ([c924341](https://github.com/villetakanen/pelilauta/commit/c924341e192263f7ea4c02d19fa1f120c8493b9a))
+
+
+### Bug Fixes
+
+* no self love ([6246124](https://github.com/villetakanen/pelilauta/commit/624612425c540f9625bb16f55a97595dfe5fede1))
+
 ### [6.5.1](https://github.com/villetakanen/pelilauta/compare/v6.5.0...v6.5.1) (2021-01-14)
 
 
