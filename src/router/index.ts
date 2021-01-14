@@ -87,7 +87,11 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/admin',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Administration.vue')
+    component: () => import(/* webpackChunkName: "admin" */ '../views/Administration.vue')
+  },
+  {
+    path: '/admin/topics',
+    component: () => import(/* webpackChunkName: "admin" */ '../views/admin/Topics.vue')
   },
   {
     path: '/mekanismi',

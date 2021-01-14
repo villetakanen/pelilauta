@@ -46,6 +46,9 @@ export default defineComponent({
     })
 
     async function toggleLove () {
+      // no-op if the author is trying to love their own posts
+      if (props.thread.author === uid.value) return
+      // love/unlove
       if (loves.value) {
         return unloveThread(uid.value, props.thread.id).then(() => {
           context.emit('updated')
