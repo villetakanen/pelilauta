@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.5.1](https://github.com/villetakanen/pelilauta/compare/v6.5.0...v6.5.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* editpage width ([6eddc6a](https://github.com/villetakanen/pelilauta/commit/6eddc6a8a11b0c2e95304969e18bbc262e171661))
+
 ## [6.5.0](https://github.com/villetakanen/pelilauta/compare/v6.4.0...v6.5.0) (2021-01-13)
 
 
