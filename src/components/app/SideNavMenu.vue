@@ -42,7 +42,10 @@
           src="@/assets/icons/player.svg"
           alt="player"
         >
-        {{ item.content || $t('sideNav.' + item.key) }}
+        {{ item.content || $t('sideNav.' + item.key) }} <span
+          v-if="item.secondaryContent"
+          class="secondaryContent"
+        >{{ item.secondaryContent }}</span>
       </li>
     </ul>
   </div>
@@ -53,7 +56,7 @@ import { computed, defineComponent, inject } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import { useProfile } from '@/state/authz'
 import { useRouter } from 'vue-router'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 
 interface NavItem {
   key: string;
@@ -63,6 +66,7 @@ interface NavItem {
   sub?: boolean,
   authz?: boolean
   content?: string
+  secondaryContent?: string
 }
 
 export default defineComponent({
@@ -70,7 +74,7 @@ export default defineComponent({
   setup () {
     const { isAuthz } = useAuthz()
     const { isAdmin } = useProfile()
-    const { topics } = useMeta()
+    const { streams } = useMeta()
     const sideNavItems = computed(() => {
       const allNavItems: NavItem[] = [
         { key: 'home', to: '/', icon: 'd12' }
@@ -78,13 +82,16 @@ export default defineComponent({
       allNavItems.push({ key: 'mekanismi', to: '/mekanismi', icon: 'mekanismi' })
       allNavItems.push({ key: 'admin', admin: true, to: '/admin', icon: 'admin' })
       allNavItems.push({ key: 'sections', sub: true })
-      topics.value.forEach((topic) => {
-        allNavItems.push({
-          key: topic.slug,
-          content: topic.title,
-          to: '/stream/topic/' + topic.slug,
-          icon: topic.icon || 'd20'
-        })
+      streams.value.forEach((topic) => {
+        if (topic.slug !== '-') {
+          allNavItems.push({
+            key: topic.slug,
+            content: topic.name,
+            to: '/stream/topic/' + topic.slug,
+            icon: topic.icon || 'd20',
+            secondaryContent: topic.count.toString()
+          })
+        }
       })
       // Meta items start
       allNavItems.push({ key: 'meta', sub: true })
@@ -134,6 +141,11 @@ export default defineComponent({
     height: 48px
     line-height: 48px
     padding-left: 16px
+    span.secondaryContent
+      color: $color-fill-primary-dark
+      background-color: rgba($color-fill-primary-dark, 0.22)
+      padding: 0 8px
+      border-radius: 12px
     img
       height: 32px
       width: 32px

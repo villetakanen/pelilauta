@@ -35,7 +35,8 @@ export interface Stream {
   name: string
   description: string
   icon: string
-  count: number
+  count: number,
+  order: number
 }
 
 export function toThread (id: string, data:firebase.firestore.DocumentData|undefined): Thread {
