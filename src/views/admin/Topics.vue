@@ -1,20 +1,37 @@
 <template>
   <MaterialCard>
     <h1>Topic admin</h1>
-    <table class="dataTable">
+    <table
+      class="dataTable"
+      aria-label="Stream metadata"
+    >
       <tr>
-        <th>#</th>
-        <th>Slug</th>
-        <th>Topic</th>
-        <th>Description</th>
-        <th>Icon</th>
-        <th>Count</th>
+        <th scope="col">
+          #
+        </th>
+        <th scope="col">
+          Slug
+        </th>
+        <th scope="col">
+          Topic
+        </th>
+        <th scope="col">
+          Description
+        </th>
+        <th scope="col">
+          Icon
+        </th>
+        <th scope="col">
+          Count
+        </th>
       </tr>
       <tr
         v-for="(topic, key) in topics"
         :key="key"
       >
-        <td style="width: 3em"><TextField v-model="topic.order" /></td>
+        <td style="width: 3em">
+          <TextField v-model="topic.order" />
+        </td>
         <td><TextField v-model="topic.slug" /></td>
         <td><TextField v-model="topic.name" /></td>
         <td><TextField v-model="topic.description" /></td>
