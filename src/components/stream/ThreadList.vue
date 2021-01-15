@@ -65,7 +65,6 @@ export default defineComponent({
     }
 
     async function reload (id: string) {
-      console.log('reload')
       const updated = await fetchThread(id)
       if (!updated) return
       localThreads.value.forEach((val, index) => {
@@ -89,7 +88,6 @@ export default defineComponent({
       atEnd.value = false
       offset = undefined
       fetchThreads(val)
-      console.log('watch', val)
     })
 
     return { nextPage, atEnd, localThreads, reload }

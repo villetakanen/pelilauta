@@ -54,14 +54,11 @@ export default defineComponent({
     const message:Ref<SnackMessage|null> = ref(null)
 
     watch(snackStackLength, () => {
-      // console.log('stack change', message.value, snackMessages.value)
       if (snackMessages.value.length > 0 && message.value === null) {
         message.value = snackMessages.value[snackMessages.value.length - 1]
-        console.log('showing', message.value)
         if (!message.value.action) {
           // There is no way to close the snack --> hide it after a while
           setTimeout(() => {
-            console.log('flushing')
             message.value = null
             setTimeout(() => {
               popSnack()

@@ -159,7 +159,6 @@ export default defineComponent({
     if (props.topic) {
       chosenTopic.value = props.topic || 'Yleinen'
     } else if (props.thread) {
-      console.log(props.thread)
       update.value = true
       chosenTopic.value = props.thread.data.topic || 'Yleinen'
       content.value = props.thread.data.content || ''

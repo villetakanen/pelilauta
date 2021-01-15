@@ -7,6 +7,7 @@
       v-model="fieldValue"
       :name="name"
       @input="onUpdate"
+      @blur="onBlur"
     >
     <label
       v-if="label"
@@ -24,7 +25,8 @@ export default defineComponent({
   props: {
     modelValue: { type: String, required: false, default: '' },
     name: { type: String, required: false, default: 'input-' + Math.floor(Math.random() * 100000) },
-    label: { type: String, required: false, default: '' }
+    label: { type: String, required: false, default: '' },
+    blur: { type: Boolean, required: false, default: false }
   },
   emits: ['update:modelValue'],
   setup (props, context) {
@@ -35,10 +37,13 @@ export default defineComponent({
     })
 
     function onUpdate () {
-      context.emit('update:modelValue', fieldValue.value)
+      if (!props.blur) context.emit('update:modelValue', fieldValue.value)
+    }
+    function onBlur () {
+      if (props.blur) context.emit('update:modelValue', fieldValue.value)
     }
 
-    return { fieldValue, onUpdate }
+    return { fieldValue, onUpdate, onBlur }
   }
 })
 </script>

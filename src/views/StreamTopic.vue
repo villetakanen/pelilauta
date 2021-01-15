@@ -62,7 +62,6 @@ export default defineComponent({
     const showEditorDialog = ref(false)
 
     const newThread = () => {
-      console.log('newThread')
       showEditorDialog.value = true
     }
 
