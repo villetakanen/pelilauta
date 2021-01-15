@@ -18,7 +18,6 @@ export default defineComponent({
   },
   emits: ['update:modelValue', 'new-images'],
   setup (props, context) {
-    // console.log('quill.root.innerHTML', props.modelValue)
     onMounted(() => {
       const options = {
         theme: props.toolbar ? 'snow' : undefined

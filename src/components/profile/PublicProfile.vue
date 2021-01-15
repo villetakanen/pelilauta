@@ -12,7 +12,6 @@
           v-model="v.nickname.$model"
           class="material-textfield"
           :class="{ error: v.nickname.$error }"
-          @blur="debug"
         >
         <MaterialButton
           icon
@@ -29,7 +28,6 @@
           id="tagline"
           v-model="v.tagline.$model"
           class="material-textfield"
-          @input="debug"
         >
         <MaterialButton
           icon
@@ -98,10 +96,8 @@ export default defineComponent({
       tagline: { maxLength, minLength }
     }
     const v = useVuelidate(rules, { nickname, tagline })
-    function debug () {
-      console.log(v.value.tagline)
-    }
-    return { profile, nickname, tagline, v, debug, saveNick, saveTagline }
+
+    return { profile, nickname, tagline, v, saveNick, saveTagline }
   }
 })
 </script>

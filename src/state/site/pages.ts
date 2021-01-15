@@ -111,28 +111,6 @@ export async function addPage (authorUid: string, siteid: string, pageName: stri
   })
 }
 
-/**
- * Creates Mekanismi State functionality for a page, and
- * starts Listening to changes for the page
- *
- * This functionality is not needed befor a user accesses a wiki page
- * /
-function createPage (): void {
-  if (_init) return
-  _init = true
-  const route = useRoute()
-  watch(
-    route,
-    () => {
-      routePageid.value = Array.isArray(route.params.pageid) ? route.params.pageid[0] : route.params.pageid || ''
-      statePage.value = pages.value.find((p) => (p.id === routePageid.value)) || toPage()
-      console.log('route page to: ', routePageid.value)
-    },
-    { immediate: true }
-  )
-} */
-
 export function usePages (): { pages: ComputedRef<Page[]>, page:ComputedRef<Page> } {
-  // createPage()
   return { pages, page }
 }

@@ -54,7 +54,6 @@ export default defineComponent({
       const db = firebase.firestore()
       const metaRef = db.collection('meta').doc('pelilauta')
       metaRef.onSnapshot((metaDoc) => {
-        console.log(metaDoc.data()?.streams)
         const t = new Array<Stream>()
         for (const key in metaDoc.data()?.streams) {
           t.push({
@@ -84,7 +83,6 @@ export default defineComponent({
         s.forEach((doc) => {
           const rawTopic:string = doc.data()?.topic || '-'
           const topic = rawTopic
-          console.log(topic)
           if (!topicsMap.has(topic)) {
             topicsMap.set(topic, { slug: topic, name: topic, description: topic, icon: 'd12', count: 1, order: 0 })
           } else {
@@ -98,8 +96,6 @@ export default defineComponent({
     }
 
     async function updateTopics () {
-      console.log(topics.value)
-
       return updateCounts()
     }
 
