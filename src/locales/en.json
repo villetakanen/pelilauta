@@ -1,6 +1,7 @@
 {
   "lang": "EN",
   "action": {
+    "admin": "Admin",
     "logout": "Logout",
     "cancel": "Cancel",
     "create": "Create",
