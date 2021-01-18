@@ -1,28 +1,28 @@
 {
   "lang": "EN",
   "action": {
+    "addThread": "New Thread",
     "admin": "Admin",
-    "logout": "Logout",
     "cancel": "Cancel",
     "create": "Create",
+    "deferUpdate": "Remind me later",
     "edit": "Edit",
     "save": "Save",
     "toTopicList": "Topics",
     "login": "Login",
-    "update": "Update",
-    "deferUpdate": "Remind me later",
-    "readMore": "Read more...",
+    "logout": "Logout",
     "nextPage": "Load more threads",
     "quote": "Quote",
+    "readMore": "Read more...",
     "send": "Send",
-    "addThread": "New Thread"
+    "update": "Update"
   },
   "admin": {
     "title": "Admin"
   },
   "app": {
     "title": "Pelilauta",
-    "footnote": "Experimental SPA. All text (c) by the author.",
+    "footnote": "A Community SPA. All text content (c) by the author(s).",
     "updatesAvailable": "A new version of this App is available. Please click update below to reload the App."
   },
   "editorDialog": {
