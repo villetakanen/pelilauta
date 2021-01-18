@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar">
+  <div class="toolbar wikiPageToolbar">
     <div>
       <h1 class="subtitle">
         {{ site.name }}
@@ -7,22 +7,12 @@
       <h1>{{ page.name }}</h1>
     </div>
     <div class="spacer" />
-    <MaterialButton
-      icon
-      color="tertiary"
-    >
-      <img
-        src="@/assets/icons/share.svg"
-        alt="share icon"
-      >
-    </MaterialButton>
     <MaterialMenu v-model="menu" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject, computed, ComputedRef } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import { Page, Site } from '@/state/site'
 import { copyUrl } from '@/utils/window'
 import { MenuItem } from '@/lib/meta'
@@ -31,7 +21,6 @@ import MaterialMenu from '@/components/material/MaterialMenu.vue'
 export default defineComponent({
   name: 'PageToolbar',
   components: {
-    MaterialButton,
     MaterialMenu
   },
   setup () {
@@ -62,6 +51,7 @@ export default defineComponent({
 
 .toolbar
   margin-bottom: 8px
+  padding: 8px
   h1
     @include TypeButton()
     font-size: 22px
@@ -71,4 +61,15 @@ export default defineComponent({
       @include TypeButton()
       font-size: 12px
       line-height: 16px
+
+@include media('<tablet')
+  .wikiPageToolbar
+    margin-bottom: 0
+    padding-bottom: 0
+    h1.subtitle
+      padding: 8px
+      padding-bottom: 0
+    h1
+      padding: 8px
+      padding-top: 0
 </style>
