@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.8.0](https://github.com/villetakanen/pelilauta/compare/v6.7.1...v6.8.0) (2021-01-18)
+
+
+### Features
+
+* mekanismi top bar v1 ([0d0ee9c](https://github.com/villetakanen/pelilauta/commit/0d0ee9c05e82e84a8548db67ce256a6d71dc3ff9))
+
+
+### Bug Fixes
+
+* restore front page limit of threads ([3d2c030](https://github.com/villetakanen/pelilauta/commit/3d2c030058169834cc57c71e0715f9f87cf70062))
+* small locale quality issues ([8a596b7](https://github.com/villetakanen/pelilauta/commit/8a596b75e383b839f65d3b4f5d10ff6f7268a094))
+
 ### [6.7.1](https://github.com/villetakanen/pelilauta/compare/v6.7.0...v6.7.1) (2021-01-18)
 
 
