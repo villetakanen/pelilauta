@@ -1,5 +1,8 @@
 <template>
-  <div id="AppBar" class="toolbar">
+  <div
+    id="AppBar"
+    class="toolbar"
+  >
     <SideNavAction />
     <h1>
       <router-link to="/">
@@ -8,6 +11,13 @@
     </h1>
     <div class="spacer" />
     <AppBarSearch />
+    <MaterialAction
+      v-if="isAdmin"
+      icon="admin"
+      to="/admin"
+      :text="$t('action.admin')"
+      style="margin: 2px"
+    />
     <ProfileAction />
   </div>
 </template>
@@ -17,13 +27,20 @@ import { defineComponent } from 'vue'
 import SideNavAction from '@/components/app/SideNavAction.vue'
 import ProfileAction from '@/components/ProfileAction.vue'
 import AppBarSearch from './AppBarSearch.vue'
+import MaterialAction from '../material/MaterialAction.vue'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
     ProfileAction,
-    AppBarSearch
+    AppBarSearch,
+    MaterialAction
+  },
+  setup () {
+    const { isAdmin } = useAuthState()
+    return { isAdmin }
   }
 })
 </script>

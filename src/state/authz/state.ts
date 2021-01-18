@@ -4,7 +4,6 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { useMeta } from '@/lib/meta'
 import { useAuthz } from '../../lib/authz'
-import { useProfile } from '.'
 
 const anonymousSession = ref(false)
 

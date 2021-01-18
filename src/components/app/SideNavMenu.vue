@@ -80,7 +80,7 @@ export default defineComponent({
         { key: 'home', to: '/', icon: 'd12' }
       ]
       allNavItems.push({ key: 'mekanismi', to: '/mekanismi', icon: 'mekanismi' })
-      allNavItems.push({ key: 'admin', admin: true, to: '/admin', icon: 'admin' })
+      // allNavItems.push({ key: 'admin', admin: true, to: '/admin', icon: 'admin' })
       allNavItems.push({ key: 'sections', sub: true })
       streams.value.forEach((topic) => {
         if (topic.slug !== '-') {
