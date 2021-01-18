@@ -1,8 +1,8 @@
 {
   "lang": "FI",
   "app": {
-    "title": "Pelilauta",
-    "footnote": "Kokeellinen SPA -sovellus. Kaikki tekstit kuuluvat kirjoittajilleen.",
+    "title": "Pelilauta 2",
+    "footnote": "Beta- tasoinen PWA yhteisösivustoille",
     "updatesAvailable": "Sovelluksesta on saatavilla uusi versio. Klikkaa päivitä -nappulaa alta ladataksesi uuden version"
   },
   "editorDialog": {
@@ -76,7 +76,7 @@
   },
   "siteInfo": {
     "title": "Pelilauta 2",
-    "text": "Kokeellinen SPA yhteisösivustoille"
+    "text": "PWA yhteisösivustoille"
   },
   "since": {
     "lessThanHalfh": "Hetki sitten",
