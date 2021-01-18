@@ -95,22 +95,26 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/mekanismi',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/WikiIndex.vue')
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/WikiIndex.vue'),
+    name: 'mekanismi'
   },
   {
     path: '/mekanismi/view/:siteid/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/ViewPage.vue'),
-    props: true
+    props: true,
+    name: 'mekanismi.view'
   },
   {
     path: '/mekanismi/edit/:siteid/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/EditPage.vue'),
-    props: true
+    props: true,
+    name: 'mekanismi.edit'
   },
   {
     path: '/mekanismi/siteinfo/:siteid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/SiteInfo.vue'),
-    props: true
+    props: true,
+    name: 'mekanismi.siteinfo'
   }
 ]
 

@@ -56,13 +56,13 @@ export default defineComponent({
 
     // Navigation drawer programmatic visibility
     const navModel = ref(window.innerWidth < 768)
+    const mobileView = computed(() => (window.innerWidth < 768))
     const toggleNav = () => {
       navModel.value = !navModel.value
     }
     provide('navModel', navModel)
     provide('toggleNav', toggleNav)
-
-    const onMobile = computed(() => (window.innerWidth < 768))
+    provide('mobileViewport', mobileView)
 
     // ************************************************************************
     // * SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE                         *
@@ -119,7 +119,7 @@ export default defineComponent({
 
     // *** end SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE *******************
 
-    return { isAuthz, missingProfile, ...useI18n(), route, navModel, onMobile }
+    return { isAuthz, missingProfile, ...useI18n(), route, navModel }
   }
 })
 </script>

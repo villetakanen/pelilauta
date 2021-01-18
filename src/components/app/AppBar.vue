@@ -12,6 +12,26 @@
     <div class="spacer" />
     <AppBarSearch />
     <MaterialAction
+      v-if="!mobileViewport && mekanismi"
+      to="/mekanismi"
+      :text="$t('mekanismi.index')"
+      style="margin: 2px"
+    />
+    <MaterialAction
+      v-if="!mobileViewport && !mekanismi"
+      icon="d6"
+      to="/mekanismi"
+      text="Mekanismi"
+      style="margin: 2px"
+    />
+    <MaterialAction
+      v-else-if="!mobileViewport && mekanismi"
+      icon="d12"
+      to="/"
+      text="pelilauta"
+      style="margin: 2px"
+    />
+    <MaterialAction
       v-if="isAdmin"
       icon="admin"
       to="/admin"
@@ -23,12 +43,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, inject } from 'vue'
 import SideNavAction from '@/components/app/SideNavAction.vue'
 import ProfileAction from '@/components/ProfileAction.vue'
 import AppBarSearch from './AppBarSearch.vue'
 import MaterialAction from '../material/MaterialAction.vue'
 import { useAuthState } from '@/state/authz'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'AppBar',
@@ -40,7 +61,10 @@ export default defineComponent({
   },
   setup () {
     const { isAdmin } = useAuthState()
-    return { isAdmin }
+    const mobileViewport = inject('mobileViewport')
+    const route = useRoute()
+    const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
+    return { isAdmin, mobileViewport, mekanismi }
   }
 })
 </script>
