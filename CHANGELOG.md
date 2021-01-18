@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.7.1](https://github.com/villetakanen/pelilauta/compare/v6.7.0...v6.7.1) (2021-01-18)
+
+
+### Bug Fixes
+
+* admin link returned to top bar ([69e5942](https://github.com/villetakanen/pelilauta/commit/69e5942bc26d9307e76762a39968bbbd25d20569))
+
 ## [6.7.0](https://github.com/villetakanen/pelilauta/compare/v6.6.0...v6.7.0) (2021-01-15)
 
 
