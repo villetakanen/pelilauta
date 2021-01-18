@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.8.1](https://github.com/villetakanen/pelilauta/compare/v6.8.0...v6.8.1) (2021-01-18)
+
+
+### Bug Fixes
+
+* tailer styling ([7face01](https://github.com/villetakanen/pelilauta/commit/7face019f96d2b2bd84b6822899e5dad4a7aa57e))
+* ux polish for wikipage ([493c240](https://github.com/villetakanen/pelilauta/commit/493c240640762473f0d2493354475f929e7e5025))
+
 ## [6.8.0](https://github.com/villetakanen/pelilauta/compare/v6.7.1...v6.8.0) (2021-01-18)
 
 
