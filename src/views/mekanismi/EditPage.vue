@@ -5,7 +5,7 @@
         v-if="site.name && page.name"
         class="mekanismiGrid"
       >
-        <MaterialCard>
+        <MaterialCard class="mainCard">
           <PageToolbar />
           <QuillEditor
             v-model="pageContent"
@@ -23,6 +23,14 @@
               {{ $t('action.save') }}
             </MaterialButton>
           </div>
+        </MaterialCard>
+        <MaterialCard class="sideCard">
+          <TextField
+            :label="$t('mekanismi.edit.pageName')"
+          />
+          <TextField
+            :label="$t('mekanismi.edit.pageCategory')"
+          />
         </MaterialCard>
       </div>
     </transition>
@@ -42,6 +50,7 @@ import 'firebase/analytics'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import TextField from '@/components/material/TextField.vue'
 
 export default defineComponent({
   name: 'EditPage',
@@ -49,7 +58,8 @@ export default defineComponent({
     PageToolbar,
     QuillEditor,
     MaterialButton,
-    MaterialCard
+    MaterialCard,
+    TextField
   },
   setup () {
     const { site } = useSite()
