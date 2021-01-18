@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.8.2](https://github.com/villetakanen/pelilauta/compare/v6.8.1...v6.8.2) (2021-01-18)
+
+
+### Bug Fixes
+
+* mekanismi edit grid ([a26af37](https://github.com/villetakanen/pelilauta/commit/a26af372ca07254d5f91e54a7b43da45b3740eff))
+
 ### [6.8.1](https://github.com/villetakanen/pelilauta/compare/v6.8.0...v6.8.1) (2021-01-18)
 
 
