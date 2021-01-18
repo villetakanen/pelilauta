@@ -4,9 +4,12 @@
       <div v-if="site.name && page.name">
         <PageToolbar />
         <div class="mekanismiGrid">
-          <MaterialCard class="mainCard">
-            <div :innerHTML="page.htmlContent" />
-          </MaterialCard>
+          <div class="mainCard">
+            <div
+              class="wikipage"
+              :innerHTML="page.htmlContent"
+            />
+          </div>
           <MaterialCard class="sideCard">
             <SideBar />
           </MaterialCard>
@@ -22,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, provide, watch } from 'vue'
+import { defineComponent, provide, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
@@ -68,4 +71,10 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
+.wikipage
+  margin: 0
+  padding: 0 16px
+  p
+    margin-top: 0
+    margin-block-start: 0
 </style>

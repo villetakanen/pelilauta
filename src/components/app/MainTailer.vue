@@ -4,6 +4,7 @@
     <img
       style="max-height: 56px; max-width:96px; vertical-align: middle"
       src="@/assets/fox.svg"
+      class="shadowLogo"
       alt="Pelilauta Logo"
     >
     <span style="line-height: 56px;opacity:0.37; font-size:12px">{{ version }} {{ $t('lang') }}</span>
@@ -40,4 +41,7 @@ export default defineComponent({
   padding:16px
   a
     text-decoration: none
+
+.shadowLogo
+  filter: drop-shadow( 0px 0px 12px rgba($color-fill-primary-dark, 1))
 </style>
