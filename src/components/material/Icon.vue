@@ -11,6 +11,16 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'd6' && color === 'dark'"
+      src="@/assets/icons/dark/d6.svg"
+      alt="d6"
+    >
+    <img
+      v-else-if="name === 'd6'"
+      src="@/assets/icons/d6.svg"
+      alt="d6"
+    >
+    <img
       v-else-if="name === 'remove'"
       src="@/assets/icons/add.svg"
       style="transform: rotate(42deg)"
@@ -25,6 +35,11 @@
       v-else-if="name === 'edit'"
       src="@/assets/icons/edit.svg"
       alt="edit"
+    >
+    <img
+      v-else-if="color === 'dark'"
+      src="@/assets/icons/dark/d12.svg"
+      alt="d12"
     >
     <img
       v-else
@@ -61,6 +76,13 @@ export default defineComponent({
 .icon
   display: inline-block
   vertical-align: middle
+
+.material-action
+  .icon
+    margin-right: 8px
+    img
+      height: 32px
+      width: 32px
 
 .material-pill
   .icon-container

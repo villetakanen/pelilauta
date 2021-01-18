@@ -82,6 +82,7 @@
   },
   "mekanismi": {
     "title": "Mekanismi",
+    "index": "Site Index",
     "sidebar": {
       "pagelist": "Index"
     },

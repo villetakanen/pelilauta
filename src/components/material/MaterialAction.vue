@@ -4,6 +4,11 @@
     :class="classes"
     @click="clicked"
   >
+    <Icon
+      v-if="icon === 'd6' || icon === 'd12'"
+      :name="icon"
+      color="dark"
+    />
     <img
       v-if="icon === 'burger' && !image"
       class="material-action-icon"
@@ -49,8 +54,10 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import Icon from './Icon.vue'
 export default defineComponent({
   name: 'MaterialAction',
+  components: { Icon },
   props: {
     icon: {
       type: String,
