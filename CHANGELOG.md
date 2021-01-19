@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.10.0](https://github.com/villetakanen/pelilauta/compare/v6.9.1...v6.10.0) (2021-01-19)
+
+
+### Features
+
+* mekanismi-app-bar ([71669f9](https://github.com/villetakanen/pelilauta/commit/71669f9ef8251c492c8987237beeca8757e25f29))
+
+
+### Bug Fixes
+
+* link styles for mekanismi bar ([7c96c2a](https://github.com/villetakanen/pelilauta/commit/7c96c2aaa8857cc1ae52618480b05ffd060462a2))
+* removed dead css ([b0ede3a](https://github.com/villetakanen/pelilauta/commit/b0ede3a27feafbdd975587a63f40636771f65bba))
+* top bar nailed to grid ([bc928a9](https://github.com/villetakanen/pelilauta/commit/bc928a9bd25327f6c3438a50e17a68671a09a8a1))
+* top bar no longer floating ([2df77fc](https://github.com/villetakanen/pelilauta/commit/2df77fc02b0ec7461db867c2f363bb69caec7b51))
+
 ### [6.9.1](https://github.com/villetakanen/pelilauta/compare/v6.9.0...v6.9.1) (2021-01-19)
 
 
