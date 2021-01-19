@@ -133,7 +133,7 @@ export default defineComponent({
 @import styles/base.sass
 
 #mainContentWrapper
-  margin-top: 56px // app-bar height
+  // margin-top: 56px // app-bar height
   // background-color: rgba(0,0,0,0.04)
 
 .topLeftFab
