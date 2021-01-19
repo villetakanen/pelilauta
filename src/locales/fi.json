@@ -72,6 +72,13 @@
       "owners": "Sivuston omistajat",
       "addOwner": "Lisää omistaja",
       "description": "Sivuston kuvaus"
+    },
+    "page": {
+      "name": "Nimi",
+      "category": "Kategoria",
+      "meta": {
+        "title": "Metatiedot"
+      }
     }
   },
   "siteInfo": {

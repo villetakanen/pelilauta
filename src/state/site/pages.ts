@@ -8,8 +8,17 @@ export interface Page {
   siteid: string,
   id: string,
   name: string,
+  category: string,
   htmlContent: string,
   lastUpdate: firebase.firestore.Timestamp|null
+}
+export interface PageFragment {
+  siteid: string,
+  id: string,
+  name?: string,
+  category?: string,
+  htmlContent?: string,
+  lastUpdate?: firebase.firestore.Timestamp|null
 }
 
 const subscribedPages: Ref<Page[]> = ref(new Array<Page>())
@@ -28,6 +37,7 @@ function toPage (siteid?:string, id?:string, data?:firebase.firestore.DocumentDa
       id: '',
       name: 'not found',
       htmlContent: '',
+      category: '',
       lastUpdate: null
     }
   }
@@ -36,6 +46,7 @@ function toPage (siteid?:string, id?:string, data?:firebase.firestore.DocumentDa
     id: id,
     name: data?.name || '',
     htmlContent: data?.htmlContent || data?.content || '',
+    category: data?.category || '',
     lastUpdate: data?.lastUpdate || null
   }
 }
@@ -89,8 +100,8 @@ export function subscribeTo (siteid:string|null|undefined): void {
   })
 }
 
-export function updatePage (pageid: string, content: string): void {
-  console.log('update: ', pageid, content)
+export function updatePage (page: PageFragment): void {
+  console.log('not impmlemented yet! update data: ', page.id, page)
 }
 
 export async function addPage (authorUid: string, siteid: string, pageName: string): Promise<void> {
