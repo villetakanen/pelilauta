@@ -24,14 +24,7 @@
             </MaterialButton>
           </div>
         </MaterialCard>
-        <MaterialCard class="sideCard">
-          <TextField
-            :label="$t('mekanismi.edit.pageName')"
-          />
-          <TextField
-            :label="$t('mekanismi.edit.pageCategory')"
-          />
-        </MaterialCard>
+        <PageMeta class="sideCard" />
       </div>
     </transition>
   </div>
@@ -50,7 +43,7 @@ import 'firebase/analytics'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import TextField from '@/components/material/TextField.vue'
+import PageMeta from '@/components/wikipage/PageMeta.vue'
 
 export default defineComponent({
   name: 'EditPage',
@@ -59,7 +52,7 @@ export default defineComponent({
     QuillEditor,
     MaterialButton,
     MaterialCard,
-    TextField
+    PageMeta
   },
   setup () {
     const { site } = useSite()

@@ -95,6 +95,13 @@
       "owners": "Site Owners (full control of the site)",
       "addOwner": "Add an owner?",
       "description": "Site Description"
+    },
+    "page": {
+      "name": "Page title",
+      "category": "Page category",
+      "meta": {
+        "title": "Page metadata"
+      } 
     }
   },
   "siteInfo": {

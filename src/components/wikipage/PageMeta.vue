@@ -1,5 +1,6 @@
 <template>
   <MaterialCard>
+    <h1>{{ $t('mekanismi.page.meta.title') }}</h1>
     <TextField
       v-model="pageName"
       :label="$t('mekanismi.page.name')"
@@ -18,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Page, Site, SiteData, updateSite } from '@/state/site'
+import { Page, Site, PageFragment, updatePage } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialCard from '../material/MaterialCard.vue'
@@ -30,22 +31,22 @@ export default defineComponent({
     const site = inject('site') as ComputedRef<Site>
     const page = inject('page') as ComputedRef<Page>
     const localName = ref('')
-    const siteName = computed({
-      get: () => (localName.value || site.value.name || site.value.id),
+    const pageName = computed({
+      get: () => (localName.value || page.value.name || page.value.id),
       set: (val) => { localName.value = val }
     })
-    const localDescription = ref('')
-    const siteDescription = computed({
-      get: () => (localDescription.value || site.value.description || ''),
-      set: (val) => { localDescription.value = val }
+    const localCategory = ref('')
+    const pageCategory = computed({
+      get: () => (localCategory.value || page.value.category || ''),
+      set: (val) => { localCategory.value = val }
     })
     function update () {
-      const data: PageData = { id: site.value.id }
+      const data: PageFragment = { id: page.value.id, siteid: site.value.id }
       if (localName.value) data.name = localName.value
-      if (localDescription.value) data.description = localDescription.value
-      if (data.name || data.description) updateSite(data)
+      if (localCategory.value) data.category = localCategory.value
+      if (data.name || data.category) updatePage(data)
     }
-    return { site, siteName, siteDescription, update }
+    return { site, pageName, pageCategory, update }
   }
 })
 </script>
