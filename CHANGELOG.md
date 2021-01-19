@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.9.1](https://github.com/villetakanen/pelilauta/compare/v6.9.0...v6.9.1) (2021-01-19)
+
+
+### Bug Fixes
+
+* added missing fi translations ([592c13f](https://github.com/villetakanen/pelilauta/commit/592c13f5bd295fe08bacd9fa6014398fa9a68104))
+* async action buttons work again ([62cae71](https://github.com/villetakanen/pelilauta/commit/62cae71bd0ebe61f0cd6f65d7850931b55cab092))
+* hotfix editor height ([887568a](https://github.com/villetakanen/pelilauta/commit/887568ad71cef201d5c1e09af4a48b246bc292bf))
+
 ## [6.9.0](https://github.com/villetakanen/pelilauta/compare/v6.8.2...v6.9.0) (2021-01-19)
 
 
