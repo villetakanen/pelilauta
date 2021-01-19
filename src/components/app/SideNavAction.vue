@@ -47,14 +47,16 @@ export default defineComponent({
 .sideNavAction
   height: 48px
   width: 48px
-  position: absolute
+  position: fixed
   top: 4px
-  left:4px
+  left: 4px
+  background-color: $color-fill-primary-dark
+  border-radius: 24px
   .foxIcon, .closedIcon
     position: absolute
     top: 0
     left: 0
-    margin: 2px
+    margin: 3px
     background-color: rgba($color-fill-light, 0.44)
     border-radius: 50%
     width: 42px
