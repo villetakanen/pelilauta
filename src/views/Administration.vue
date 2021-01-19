@@ -11,6 +11,10 @@
       <router-link to="/admin/topics">
         Topics
       </router-link>
+      -
+      <router-link to="/Styleguide">
+        Stylebook
+      </router-link>
     </MaterialCard>
     <MaterialCard>
       <UserList />

@@ -24,6 +24,11 @@ export default defineComponent({
       required: false,
       default: undefined
     },
+    asyncAction: {
+      type: Object.getPrototypeOf(async function () {}).constructor,
+      required: false,
+      default: undefined
+    },
     icon: {
       type: Boolean,
       required: false,
@@ -81,12 +86,12 @@ export default defineComponent({
 
     const clicked = () => {
       if (props.action) {
-        if (props.action.constructor.name === 'AsyncFunction') {
-          buttonClasses.value.working = true
-          props.action().then(() => {
-            buttonClasses.value.working = false
-          })
-        } else props.action()
+        props.action()
+      } else if (props.asyncAction) {
+        buttonClasses.value.working = true
+        props.asyncAction().then(() => {
+          buttonClasses.value.working = false
+        })
       } else if (props.to) router.push(props.to)
     }
 

@@ -18,7 +18,9 @@
       </p>
       <div class="section">
         <h1>Actions</h1>
-        <MaterialButton>Button</MaterialButton>
+        <MaterialButton :async-action="asyncWaitDemo">
+          Button: Async
+        </MaterialButton>
         <MaterialButton text>
           Button: text
         </MaterialButton>
@@ -106,7 +108,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
+import { defineComponent } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
@@ -132,7 +134,10 @@ export default defineComponent({
       const { pushSnack } = useSnack()
       pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') } })
     }
-    return { sendSnack }
+    async function asyncWaitDemo () {
+      return new Promise((resolve) => { setTimeout(() => resolve('done'), 3000) })
+    }
+    return { sendSnack, asyncWaitDemo }
   }
 })
 </script>
