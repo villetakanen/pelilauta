@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.9.0](https://github.com/villetakanen/pelilauta/compare/v6.8.2...v6.9.0) (2021-01-19)
+
+
+### Features
+
+* page meta persistency ([666d99e](https://github.com/villetakanen/pelilauta/commit/666d99e980f8afebc2c71e40a1b4aa648879d1f6))
+* page metadata editor component ([307514b](https://github.com/villetakanen/pelilauta/commit/307514b0db4293760a18a66f35068384a209b87d))
+
 ### [6.8.2](https://github.com/villetakanen/pelilauta/compare/v6.8.1...v6.8.2) (2021-01-18)
 
 
