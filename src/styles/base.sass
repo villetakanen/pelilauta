@@ -4,21 +4,6 @@
 @import include-media.scss
 @import layout.sass
 
-*:focus
-  outline: none
-
-::-webkit-scrollbar
-  width: 0px
-::-webkit-scrollbar-track
-  -webkit-box-shadow: none
-
-body
-  margin: 0
-  padding: 0
-  @include TypeBody1()
-  background: white
-  min-width: 370px
-
 h1
   @include TypeHeadline3()
 h3
@@ -190,3 +175,26 @@ div.contentGrid
       width: 360px
       top: 0px
       right: 0
+
+
+// Cleared from here on ******************************
+//
+// The base grid height is     8px
+// Single line is              24px
+
+
+// Remove browser default behaviour, where not needed
+*:focus
+  outline: none
+::-webkit-scrollbar
+  width: 0px
+::-webkit-scrollbar-track
+  -webkit-box-shadow: none
+
+// Base styles for the site
+body
+  @include TypeBody1() // Default body font
+  margin: 0
+  padding: 0
+  background: white
+  min-width: 370px

@@ -75,17 +75,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #AppBar
-  background-color: $color-fill-dark
-  background: linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
-  position: absolute
-  top: 0
-  left: 0
-  z-index: 1000
-  width: 100vw
-  height: 56px // 24 x 2 lines
-  padding: 4px
-  box-sizing: border-box
-  display: flex
   // box-shadow: 0px 7px 15px 0px rgba($color-fill-primary-dark, .37)
   h1
     @include TypeButton()
@@ -116,5 +105,20 @@ export default defineComponent({
     transition: width 0.3s ease
     &:focus
       width: 57vw
+
+// Cleared from this on
+
+#AppBar
+  @include BoxShadow8()
+  position: relative
+  margin-bottom: 16px
+  background-color: $color-fill-dark
+  background: linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
+  height: 56px
+  padding: 4px
+  box-sizing: border-box
+  display: flex
+
+@include media('>phone')
 
 </style>
