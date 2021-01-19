@@ -100,8 +100,11 @@ export function subscribeTo (siteid:string|null|undefined): void {
   })
 }
 
-export function updatePage (page: PageFragment): void {
+export async function updatePage (page: PageFragment): Promise<void> {
   console.log('not impmlemented yet! update data: ', page.id, page)
+  const db = firebase.firestore()
+  const pageRef = db.collection('sites').doc(page.siteid).collection('pages').doc(page.id)
+  return pageRef.update(page)
 }
 
 export async function addPage (authorUid: string, siteid: string, pageName: string): Promise<void> {
