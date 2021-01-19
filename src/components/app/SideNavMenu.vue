@@ -95,7 +95,7 @@ export default defineComponent({
       })
       // Meta items start
       allNavItems.push({ key: 'meta', sub: true })
-      allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
+      // allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
       allNavItems.push({ key: 'editorTest', to: '/editortest', admin: true, icon: 'admin' })
       allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'player' })
       allNavItems.push({ key: 'about', to: '/about', icon: 'd12' })

@@ -20,7 +20,8 @@ export default defineComponent({
   setup (props, context) {
     onMounted(() => {
       const options = {
-        theme: props.toolbar ? 'snow' : undefined
+        theme: props.toolbar ? 'snow' : undefined,
+        scrollingContainer: '#editor'
       }
       const quill = new Quill('#editor', options)
       quill.on('text-change', () => {
@@ -39,11 +40,15 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #editor
+  max-height: calc(100vh - 268px)
+  overflow: scroll
   .ql-editor
+    padding: 8px
     h1, h2, h3, h4
      font-size: 24px
     p
       @include TypeBody2()
     p, h1, h2, h3, h4
       margin-bottom: 12px
+
 </style>
