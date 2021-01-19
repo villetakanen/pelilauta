@@ -1,6 +1,7 @@
 <template>
   <!-- The top navigation bar: contains search field, menu button, and search button. Maybe profile icon too. -->
   <AppBar />
+  <MekanismiBar v-if="mekanismi" />
   <!-- The side navigation drawer, with mobile and desktop modes distinctively -->
   <SideNav v-model="navModel" />
   <div
@@ -25,6 +26,7 @@ import MaterialDialog from './components/material/MaterialDialog.vue'
 import WelcomeCard from '@/components/app/WelcomeCard.vue'
 import SideNav from '@/components/app/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
+import MekanismiBar from '@/components/app/MekanismiBar.vue'
 import MainTailer from '@/components/app/MainTailer.vue'
 import { useAuthz } from './lib/authz'
 import { useI18n } from 'vue-i18n'
@@ -40,7 +42,8 @@ export default defineComponent({
     SideNav,
     AppBar,
     MainTailer,
-    SnackBar
+    SnackBar,
+    MekanismiBar
   },
   setup () {
     const { missingProfile, lang, isAuthz } = useAuthz()
@@ -119,7 +122,9 @@ export default defineComponent({
 
     // *** end SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE *******************
 
-    return { isAuthz, missingProfile, ...useI18n(), route, navModel }
+    const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
+
+    return { isAuthz, missingProfile, ...useI18n(), route, navModel, mekanismi }
   }
 })
 </script>
@@ -128,7 +133,7 @@ export default defineComponent({
 @import styles/base.sass
 
 #mainContentWrapper
-  margin-top: 56px // app-bar height
+  // margin-top: 56px // app-bar height
   // background-color: rgba(0,0,0,0.04)
 
 .topLeftFab

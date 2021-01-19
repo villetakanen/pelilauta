@@ -4,21 +4,6 @@
 @import include-media.scss
 @import layout.sass
 
-*:focus
-  outline: none
-
-::-webkit-scrollbar
-  width: 0px
-::-webkit-scrollbar-track
-  -webkit-box-shadow: none
-
-body
-  margin: 0
-  padding: 0
-  @include TypeBody1()
-  background: white
-  min-width: 370px
-
 h1
   @include TypeHeadline3()
 h3
@@ -96,23 +81,7 @@ div.toolbar
     background-color: #F5005737
 .cardToolbar
   margin-top: 16px
-.material-banner
-  margin: 0
-  padding: 8px 0px
-  background-color: rgba(0,23,37,0.1)
-  border-bottom: rgba(0,23,37,0.3) solid 1px
-  .banner-container
-    max-width: 808px
-    margin: 0 auto
-    padding: 0px 16px
-  p
-    line-height: 24px
-    margin: 0
-    padding: 0
-  .actionBar
-    display: flex
-    .spacer
-      flex-grow: 1
+
 .materialRippleEffect
   width: 2px
   height: 2px
@@ -206,3 +175,27 @@ div.contentGrid
       width: 360px
       top: 0px
       right: 0
+
+
+// Cleared from here on ******************************
+//
+// The base grid height is     8px
+// Single line is              24px
+
+
+// Remove browser default behaviour, where not needed
+*:focus
+  outline: none
+::-webkit-scrollbar
+  width: 0px
+::-webkit-scrollbar-track
+  -webkit-box-shadow: none
+
+// Base styles for the site
+body
+  @include TypeBody1() // Default body font
+  margin: 0
+  padding: 0
+  background: white
+  min-width: 370px
+  background-color: #eff6f6
