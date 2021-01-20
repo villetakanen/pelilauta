@@ -77,6 +77,7 @@
       "pagelist": "Sivut"
     },
     "site": {
+      "meta": "Sivun tiedot",
       "name": "Sivuston nimi",
       "owners": "Sivuston omistajat",
       "addOwner": "Lisää omistaja",

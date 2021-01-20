@@ -1,13 +1,16 @@
 <template>
   <MaterialCard>
-    <TextField
-      v-model="siteName"
-      :label="$t('mekanismi.site.name')"
-    />
-    <TextField
-      v-model="siteDescription"
-      :label="$t('mekanismi.site.description')"
-    />
+    <h1>{{ $t('mekanismi.site.meta') }}</h1>
+    <div>
+      <TextField
+        v-model="siteName"
+        :label="$t('mekanismi.site.name')"
+      />
+      <TextField
+        v-model="siteDescription"
+        :label="$t('mekanismi.site.description')"
+      />
+    </div>
     <div class="toolbar">
       <div class="spacer" />
       <MaterialButton :action="update">

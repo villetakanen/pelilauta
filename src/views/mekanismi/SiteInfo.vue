@@ -1,37 +1,47 @@
 <template>
   <div>
     <transition name="fade">
-      <div v-if="site && site.name">
-        <SiteMeta />
-        <MaterialCard>
-          <h1>{{ site.name }}</h1>
-          <p><em>{{ site.description }}</em></p>
-        </MaterialCard>
-        <MaterialCard>
-          <h1>{{ $t('mekanismi.site.owners') }}</h1>
-          <OwnerPill
-            v-for="owner in site.owners || []"
-            :key="owner"
-            :uid="owner"
-          />
-          <div
-            v-if="actions"
-            style="border-top: solid 1px black"
-          >
-            <p>{{ $t('mekanismi.site.addOwner') }}</p>
-            <OwnerPill
-              v-for="author in nonOwners"
-              :key="author"
-              :uid="author"
-              :add="true"
-            />
+      <div
+        v-if="site && site.name"
+        class="mekanismiGrid2"
+      >
+        <div class="mrow">
+          <div class="mcol">
+            <SiteMeta />
+            <SiteIdentity />
           </div>
-        </MaterialCard>
+          <div class="mcol">
+            <MaterialCard>
+              <h1>{{ $t('mekanismi.site.owners') }}</h1>
+              <OwnerPill
+                v-for="owner in site.owners || []"
+                :key="owner"
+                :uid="owner"
+              />
+              <div
+                v-if="actions"
+                style="border-top: solid 1px black"
+              >
+                <p>{{ $t('mekanismi.site.addOwner') }}</p>
+                <OwnerPill
+                  v-for="author in nonOwners"
+                  :key="author"
+                  :uid="author"
+                  :add="true"
+                />
+              </div>
+            </MaterialCard>
+          </div>
+        </div>
+
         <MaterialCard>
           {{ site }}
         </MaterialCard>
       </div>
-      <Loader v-else />
+      <Loader
+        v-else
+        style="position:absolute"
+      />
     </transition>
     <teleport to="#AppBarSubmenu">
       <MekanismiBar />
@@ -50,6 +60,7 @@ import { useAuthors } from '@/lib/authors'
 import { useAuthState } from '@/state/authz'
 import SiteMeta from '@/components/sites/SiteMeta.vue'
 import MekanismiBar from '@/components/app/MekanismiBar.vue'
+import SiteIdentity from './SiteIdentity.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -58,7 +69,8 @@ export default defineComponent({
     Loader,
     OwnerPill,
     SiteMeta,
-    MekanismiBar
+    MekanismiBar,
+    SiteIdentity
   },
   setup () {
     const { uid } = useAuthState()
@@ -85,3 +97,16 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.mekanismiGrid2
+  .mrow
+    display: flex
+    justify-content: center
+    .mcol
+      flex-grow: 0
+      flex-shrink: 0
+      flex-basis: 496px
+      padding: 8px
+      padding-top: 0
+</style>

@@ -92,6 +92,8 @@
       "newPageTitle": "Name of the new page"
     },
     "site": {
+      "meta": "Site info",
+      "identity": "Identity",
       "name": "Site Name",
       "owners": "Site Owners (full control of the site)",
       "addOwner": "Add an owner?",
