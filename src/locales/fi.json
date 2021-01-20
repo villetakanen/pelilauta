@@ -71,6 +71,7 @@
   "mekanismi": {
     "index": "Sivustot",
     "title": "Mekanismi",
+    "siteinfo": "Site info",
     "sidebar": {
       "pagelist": "Sivut"
     },

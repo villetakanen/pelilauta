@@ -21,11 +21,14 @@
       />
     </transition>
     <PageFabs />
+    <teleport to="#AppBarSubmenu">
+      <MekanismiBar v-if="!mobileViewport" />
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, provide, watch } from 'vue'
+import { ComputedRef, defineComponent, inject, provide, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
@@ -33,6 +36,7 @@ import { usePages, useSite, subscribeTo, fetchPage } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useRoute } from 'vue-router'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
+import MekanismiBar from '@/components/app/MekanismiBar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -41,13 +45,15 @@ export default defineComponent({
     MaterialCard,
     Loader,
     SideBar,
-    PageFabs
+    PageFabs,
+    MekanismiBar
   },
   setup () {
     const { site } = useSite()
     const { page, pages } = usePages()
 
     const route = useRoute()
+    const mobileViewport = inject('mobileViewport') as ComputedRef<boolean>
 
     provide('site', site)
     provide('page', page)
@@ -61,7 +67,7 @@ export default defineComponent({
       fetchPage(pid || id)
     }, { immediate: true })
 
-    return { page, site }
+    return { page, site, mobileViewport }
   }
 })
 </script>

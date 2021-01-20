@@ -1,7 +1,7 @@
 <template>
   <!-- The top navigation bar: contains search field, menu button, and search button. Maybe profile icon too. -->
   <AppBar />
-  <MekanismiBar v-if="mekanismi" />
+  <div id="AppBarSubmenu" />
   <!-- The side navigation drawer, with mobile and desktop modes distinctively -->
   <SideNav v-model="navModel" />
   <div
@@ -26,7 +26,7 @@ import MaterialDialog from './components/material/MaterialDialog.vue'
 import WelcomeCard from '@/components/app/WelcomeCard.vue'
 import SideNav from '@/components/app/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
-import MekanismiBar from '@/components/app/MekanismiBar.vue'
+// import MekanismiBar from '@/components/app/MekanismiBar.vue'
 import MainTailer from '@/components/app/MainTailer.vue'
 import { useAuthz } from './lib/authz'
 import { useI18n } from 'vue-i18n'
@@ -42,8 +42,8 @@ export default defineComponent({
     SideNav,
     AppBar,
     MainTailer,
-    SnackBar,
-    MekanismiBar
+    SnackBar// ,
+    // MekanismiBar
   },
   setup () {
     const { missingProfile, lang, isAuthz } = useAuthz()

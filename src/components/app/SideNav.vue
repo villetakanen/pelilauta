@@ -160,7 +160,7 @@ export default defineComponent({
     .back
       display: none
     .menuContainer
-      margin-top: 72px
+      margin-top: 96px
       // border-right: solid 1px $color-primary-light
 
 @include media('<tablet')
