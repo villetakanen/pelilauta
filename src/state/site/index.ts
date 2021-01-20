@@ -14,11 +14,13 @@ export interface Site {
   name: string
   owners: string[]|null
   players: string[]|null
+  splashURL: string
 }
 export interface SiteData {
   id: string,
   name?: string,
-  description?: string
+  description?: string,
+  splashURL?: string
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -40,7 +42,8 @@ function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
       lastUpdate: data?.lastUpdate,
       name: data?.name || id,
       players: data?.players || null,
-      owners: data?.owners || null
+      owners: data?.owners || null,
+      splashURL: data?.splashURL || ''
     }
   }
   return {
@@ -50,7 +53,8 @@ function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
     silent: false,
     name: '',
     players: null,
-    owners: null
+    owners: null,
+    splashURL: ''
   }
 }
 
