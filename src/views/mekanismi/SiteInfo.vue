@@ -33,6 +33,9 @@
       </div>
       <Loader v-else />
     </transition>
+    <teleport to="#AppBarSubmenu">
+      <MekanismiBar />
+    </teleport>
   </div>
 </template>
 
@@ -46,6 +49,7 @@ import OwnerPill from '@/components/sites/OwnerPill.vue'
 import { useAuthors } from '@/lib/authors'
 import { useAuthState } from '@/state/authz'
 import SiteMeta from '@/components/sites/SiteMeta.vue'
+import MekanismiBar from '@/components/app/MekanismiBar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -53,7 +57,8 @@ export default defineComponent({
     MaterialCard,
     Loader,
     OwnerPill,
-    SiteMeta
+    SiteMeta,
+    MekanismiBar
   },
   setup () {
     const { uid } = useAuthState()

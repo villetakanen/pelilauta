@@ -42,7 +42,6 @@ export default defineComponent({
   margin: 16px
   padding-top: 8px
   pointer-events: none
-  background-color: white
   h3
     @include TypeButton()
     color: $color-font-disabled

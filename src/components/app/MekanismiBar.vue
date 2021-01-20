@@ -1,14 +1,18 @@
 <template>
   <div
-    v-if="site && site.id"
+    v-if="site && site.id && !mobileViewport"
     id="mekanismiBar"
     class="toolbar"
   >
     <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
       {{ site.name }}
-    </router-link>&nbsp;/&nbsp;<router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
-      {{ page.name }}
     </router-link>
+    <div v-if="page && page.id">
+      &nbsp;/&nbsp;
+      <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
+        {{ page.name }}
+      </router-link>
+    </div>
     <div class="spacer" />
     <router-link :to="`/mekanismi/siteinfo/${site.id}/`">
       {{ $t('mekanismi.siteinfo') }}
@@ -24,7 +28,8 @@ export default defineComponent({
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const page = inject('page') as ComputedRef<Page>
-    return { site, page }
+    const mobileViewport = inject('mobileViewport') as ComputedRef<boolean>
+    return { site, page, mobileViewport }
   }
 })
 </script>

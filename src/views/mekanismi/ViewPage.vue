@@ -22,7 +22,7 @@
     </transition>
     <PageFabs />
     <teleport to="#AppBarSubmenu">
-      <MekanismiBar v-if="!mobileViewport" />
+      <MekanismiBar />
     </teleport>
   </div>
 </template>

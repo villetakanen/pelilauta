@@ -3,16 +3,18 @@
   <AppBar />
   <div id="AppBarSubmenu" />
   <!-- The side navigation drawer, with mobile and desktop modes distinctively -->
-  <SideNav v-model="navModel" />
-  <div
-    id="mainContentWrapper"
-    :class="{toggle: !navModel}"
-  >
-    <main>
-      <WelcomeCard v-if="!isAuthz && route.name !== 'Login'" />
-      <router-view />
-      <MainTailer />
-    </main>
+  <div style="position: relative">
+    <SideNav v-model="navModel" />
+    <div
+      id="mainContentWrapper"
+      :class="{toggle: !navModel}"
+    >
+      <main>
+        <WelcomeCard v-if="!isAuthz && route.name !== 'Login'" />
+        <router-view />
+        <MainTailer />
+      </main>
+    </div>
   </div>
   <teleport to="body">
     <MaterialDialog :visible="missingProfile" />
