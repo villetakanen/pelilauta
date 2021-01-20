@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.11.1](https://github.com/villetakanen/pelilauta/compare/v6.11.0...v6.11.1) (2021-01-20)
+
+
+### Bug Fixes
+
+* replybox styling ([454e47d](https://github.com/villetakanen/pelilauta/commit/454e47d2ebd8784c83282570dd25aa7eb5580daa))
+
 ## [6.11.0](https://github.com/villetakanen/pelilauta/compare/v6.10.0...v6.11.0) (2021-01-20)
 
 
