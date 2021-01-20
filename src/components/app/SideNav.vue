@@ -50,7 +50,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #sideNav
-  position: fixed
+  position: absolute
   z-index: 900
   top: 0
   left: 0
@@ -160,11 +160,11 @@ export default defineComponent({
     .back
       display: none
     .menuContainer
-      margin-top: 72px
       // border-right: solid 1px $color-primary-light
 
 @include media('<tablet')
   #sideNav
+    position: fixed
     @include BoxShadow24()
     background-color: $color-base
     width: 84vw

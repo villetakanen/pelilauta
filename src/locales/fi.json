@@ -22,17 +22,18 @@
     "withFacebookButton": "Facebookila"
   },
   "action": {
+    "addThread": "Uusi aihe",
     "admin": "Admin",
     "create": "Uusi",
+    "deferUpdate": "Muistuta myöhemmin",
     "edit": "Muokkaa",
     "logout": "Kirjaudu ulos",
+    "save": "Tallenna",
     "toTopicList": "Aiheet",
     "update": "Päivitä",
-    "deferUpdate": "Muistuta myöhemmin",
     "nextPage": "Lataa lisää",
     "quote": "Lainaa",
-    "send": "Lähetä",
-    "addThread": "Uusi aihe"
+    "send": "Lähetä"
   },
   "postHeader": {
     "postedInStream": "aiheessa"
@@ -71,6 +72,7 @@
   "mekanismi": {
     "index": "Sivustot",
     "title": "Mekanismi",
+    "siteinfo": "Site info",
     "sidebar": {
       "pagelist": "Sivut"
     },
