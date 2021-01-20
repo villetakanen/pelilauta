@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.11.0](https://github.com/villetakanen/pelilauta/compare/v6.10.0...v6.11.0) (2021-01-20)
+
+
+### Features
+
+* mekanismi top bar and links ([f45c028](https://github.com/villetakanen/pelilauta/commit/f45c028b39d6a31725af4f1af3c63510087be4ac))
+
+
+### Bug Fixes
+
+* mekanismi desktop top bar to all rel views ([423f80c](https://github.com/villetakanen/pelilauta/commit/423f80c8385a7020a46a29a30bfc559dcb1f820b))
+
 ## [6.10.0](https://github.com/villetakanen/pelilauta/compare/v6.9.1...v6.10.0) (2021-01-19)
 
 
