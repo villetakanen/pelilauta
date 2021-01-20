@@ -41,9 +41,8 @@ import { defineComponent, ref, PropType, onMounted, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import Editor from '@/components/quill/QuillEditor.vue'
 import { useDiscussion } from '@/lib/discussion'
-import { useAuthz } from '@/lib/authz'
-import { useProfile } from '@/state/authz'
-import { Quote } from '@/utils/contentFormat'
+import { useAuthState, useProfile } from '@/state/authz'
+import { extractLinks, Quote } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'ReplyForm',
@@ -63,14 +62,14 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAuthz } = useAuthz()
+    const { isAuthz, uid } = useAuthState()
     const reply = ref('')
 
     const send = () => {
       const { addComment } = useDiscussion(props.threadid)
-      const { uid } = useAuthz()
       const { profile } = useProfile()
-      addComment(uid.value, profile.value.nick, reply.value)
+      const { formattedContent } = extractLinks(reply.value)
+      addComment(uid.value, profile.value.nick, formattedContent)
       reply.value = ''
     }
 
@@ -91,15 +90,13 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .reply-form
-  // border: solid 1px $color-primary-light
-  background-color: $color-base-darker
+  @include BoxShadow1()
+  background-color: rgba($color-fill-primary-dark, 0.22)
   margin: 8px
-  padding: 8px
+  padding: 7px
   border-radius: 8px
+  border: solid 1px rgba($color-fill-tertiary, 0.11)
   position: relative
-  // display: flex
-  // justify-content: space-between
-  // width: 100%
   .box
     flex-grow: 1
     flex-shrink: 0
@@ -118,14 +115,15 @@ export default defineComponent({
     position: absolute
     border-style: solid
     border-color: transparent $color-base-dark
-    top: 16px // controls vertical position
+    top: 7px // controls vertical position
     right: 64px // value = - border-left-width - border-right-width */
-    border-width: 8px 0px 8px 16px
+    border-width: 0px 0px 16px 16px
     bottom: auto
   .button
+    @include BoxShadow8()
     position: absolute
-    right: 8px
-    bottom: 22px
+    right: 15px
+    bottom: 15px
 
 p.cap.caption
   margin-top: 4px
