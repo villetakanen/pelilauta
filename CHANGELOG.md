@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.12.0](https://github.com/villetakanen/pelilauta/compare/v6.11.1...v6.12.0) (2021-01-20)
+
+
+### Features
+
+* site identity widget skeleton ([c4236f5](https://github.com/villetakanen/pelilauta/commit/c4236f555d5210176ef67dd5804a85d7f54d974f))
+
+
+### Bug Fixes
+
+* mekanismi site info layout ([92e751b](https://github.com/villetakanen/pelilauta/commit/92e751bffa43b061c79b80e5d15669e0157ed303))
+
 ### [6.11.1](https://github.com/villetakanen/pelilauta/compare/v6.11.0...v6.11.1) (2021-01-20)
 
 
