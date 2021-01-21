@@ -2,14 +2,14 @@
   <div>
     <transition name="fade">
       <div v-if="site.name && page.name">
-        <PageToolbar />
         <div class="mekanismiGrid">
-          <div class="mainCard">
+          <MaterialCard class="mainCard">
+            <PageToolbar />
             <div
               class="wikipage"
               :innerHTML="page.htmlContent"
             />
-          </div>
+          </MaterialCard>
           <MaterialCard class="sideCard">
             <SideBar />
           </MaterialCard>
@@ -79,7 +79,7 @@ export default defineComponent({
 
 .wikipage
   margin: 0
-  padding: 0 16px
+  padding: 0
   p
     margin-top: 0
     margin-block-start: 0

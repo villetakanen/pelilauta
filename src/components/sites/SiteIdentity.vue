@@ -1,12 +1,22 @@
 <template>
   <MaterialCard>
     <h1>{{ $t('mekanismi.site.identity') }}</h1>
-    <img
+    <div
       v-if="site.splashURL"
-      class="cardPoster"
-      alt="Site splash image"
-      :src="site.splashURL"
+      style="position:relative"
     >
+      <div
+        class="previewAvatar"
+        alt="previewAvatar"
+        :style="`background-image: url(${site.splashURL}`"
+      />
+      <img
+        v-if="site.splashURL"
+        class="cardPoster"
+        alt="Site splash image"
+        :src="site.splashURL"
+      >
+    </div>
     <MaterialSelect
       v-model="selected"
       :label="$t('mekanismi.splashImage')"
@@ -42,3 +52,21 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/include-media.scss
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+
+.previewAvatar
+  position: absolute
+  right: 0px
+  top: 16px
+  height: 72px
+  width: 72px
+  // border: solid 2px rgba($color-fill-primary-light, 0.22)
+  border-radius: 36px
+  background-size: cover
+  @include BoxShadow8()
+
+</style>
