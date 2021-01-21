@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { defineComponent, provide, ref, watch } from 'vue'
-import { usePages, useSite, subscribeTo, fetchPage } from '@/state/site'
+import { usePages, useSite, fetchPage } from '@/state/site'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
