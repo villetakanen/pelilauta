@@ -4,6 +4,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
+import { useSite } from '@/state/site'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -131,6 +132,17 @@ const router = createRouter({
     // always scroll to top
     return { top: 0 }
   }
+})
+
+router.beforeEach((to, from, next) => {
+  // console.log(to, from)
+  if (to.name && to.name.toString().startsWith('mekanismi')) {
+    const id = Array.isArray(to.params.siteid) ? to.params.siteid[0] : to.params.siteid || ''
+    console.log('routing to mekanismi', id)
+    useSite(id)
+    // subscribeTo(id)
+  }
+  next()
 })
 
 /* const { missingProfile } = useAuthz()

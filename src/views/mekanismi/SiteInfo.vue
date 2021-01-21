@@ -50,11 +50,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, watch } from 'vue'
+import { computed, defineComponent, provide } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import { useSite, subscribeTo } from '@/state/site'
+import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-import { useRoute } from 'vue-router'
 import OwnerPill from '@/components/sites/OwnerPill.vue'
 import { useAuthors } from '@/lib/authors'
 import { useAuthState } from '@/state/authz'
@@ -82,16 +81,10 @@ export default defineComponent({
       })
       return availableAuthors.map((author) => (author?.uid || ''))
     })
-    const route = useRoute()
 
     const actions = computed(() => hasAdmin(uid.value))
 
     provide('site', site)
-
-    watch(() => route.params, (r) => {
-      const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
-      subscribeTo(id)
-    }, { immediate: true })
 
     return { site, nonOwners, actions }
   }
