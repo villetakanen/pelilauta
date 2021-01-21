@@ -14,6 +14,9 @@
       </router-link>
     </div>
     <div class="spacer" />
+    <router-link :to="`/mekanismi/attachments/${site.id}/`">
+      {{ $t('mekanismi.attachments') }}
+    </router-link>
     <router-link :to="`/mekanismi/siteinfo/${site.id}/`">
       {{ $t('mekanismi.siteinfo') }}
     </router-link>
@@ -52,6 +55,8 @@ export default defineComponent({
   a
     color: white
     text-decoration: none
+  a+a
+    margin-left: 16px
 #mekanismiBarSpacer
   height: 20px
 </style>

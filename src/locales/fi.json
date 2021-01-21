@@ -72,7 +72,8 @@
   "mekanismi": {
     "index": "Sivustot",
     "title": "Mekanismi",
-    "siteinfo": "Site info",
+    "siteinfo": "Meta",
+    "attachments": "Liitteet",
     "sidebar": {
       "pagelist": "Sivut"
     },
