@@ -11,7 +11,11 @@
             v-for="file in files"
             :key="file[1]"
           >
-            {{ file[0] }} - <img :src="file[1]" style="max-height: 128px; max-width: 128px">
+            {{ file[0] }} - <img
+              :src="file[1]"
+              style="max-height: 128px; max-width: 128px"
+              :alt="file[0]"
+            >
           </div>
         </MaterialCard>
         <MaterialCard class="sideCard">
