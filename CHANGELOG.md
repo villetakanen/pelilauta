@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.13.0](https://github.com/villetakanen/pelilauta/compare/v6.12.0...v6.13.0) (2021-01-21)
+
+
+### Features
+
+* added splashURL to site data ([6a5efc1](https://github.com/villetakanen/pelilauta/commit/6a5efc11947b921a2fc368ec261fbb05bce1efc5))
+* route to attachments ([9e763bd](https://github.com/villetakanen/pelilauta/commit/9e763bdeda8149fbc19626f78ff3d54fb1f9885b))
+
+
+### Bug Fixes
+
+* corrected url for attachment route ([645b4ba](https://github.com/villetakanen/pelilauta/commit/645b4ba7affc68e24e159c36ae05baa38b97777b))
+
 ## [6.12.0](https://github.com/villetakanen/pelilauta/compare/v6.11.1...v6.12.0) (2021-01-20)
 
 
