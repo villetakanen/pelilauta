@@ -7,6 +7,12 @@
       <div v-if="site">
         <h1>{{ site.name }}</h1>
         <p><em>{{ site.description }}</em></p>
+        <img
+          v-if="site.splashURL"
+          class="cardPoster"
+          alt="Site splash image"
+          :src="site.splashURL"
+        >
         <h2>{{ $t('mekanismi.sidebar.pagelist') }}</h2>
         <ul>
           <li

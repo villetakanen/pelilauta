@@ -2,14 +2,14 @@
   <div>
     <transition name="fade">
       <div v-if="site.name && page.name">
-        <PageToolbar />
         <div class="mekanismiGrid">
-          <div class="mainCard">
+          <MaterialCard class="mainCard">
+            <PageToolbar />
             <div
               class="wikipage"
               :innerHTML="page.htmlContent"
             />
-          </div>
+          </MaterialCard>
           <MaterialCard class="sideCard">
             <SideBar />
           </MaterialCard>
@@ -32,7 +32,7 @@ import { ComputedRef, defineComponent, inject, provide, watch } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
-import { usePages, useSite, subscribeTo, fetchPage } from '@/state/site'
+import { usePages, useSite, fetchPage } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useRoute } from 'vue-router'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
@@ -61,7 +61,7 @@ export default defineComponent({
 
     watch(() => route.params, (r) => {
       const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
-      subscribeTo(id)
+      // subscribeTo(id)
 
       const pid = Array.isArray(r.pageid) ? r.pageid[0] : r.pageid || ''
       fetchPage(pid || id)
@@ -79,7 +79,7 @@ export default defineComponent({
 
 .wikipage
   margin: 0
-  padding: 0 16px
+  padding: 0
   p
     margin-top: 0
     margin-block-start: 0

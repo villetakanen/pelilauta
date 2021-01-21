@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { defineComponent, provide, ref, watch } from 'vue'
-import { usePages, useSite, subscribeTo, fetchPage } from '@/state/site'
+import { usePages, useSite, fetchPage } from '@/state/site'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
@@ -75,7 +75,7 @@ export default defineComponent({
 
     watch(() => route.params, (r) => {
       const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
-      subscribeTo(id)
+      // subscribeTo(id)
 
       const pid = Array.isArray(r.pageid) ? r.pageid[0] : r.pageid || ''
       fetchPage(pid || id)

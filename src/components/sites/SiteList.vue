@@ -7,16 +7,32 @@
       class="siteCard"
     >
       <div
-        v-if="site.posterURL"
+        v-if="site.splashURL"
+        :style="`background-image: url(${site.splashURL})`"
+        class="splash"
+      />
+      <div
+        v-if="site.splashURL"
+        class="siteCardThemePosterBlur"
+      />
+      <div
+        v-if="site.splashURL"
+        :style="`background-image: url(${site.splashURL})`"
+        class="poster"
+      />
+      <div
+        v-else-if="site.posterURL"
         :style="`background-image: url(${site.posterURL})`"
         class="poster"
       />
-      <h3>
-        <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
-          {{ site.name }}
-        </router-link>
-      </h3>
-      <p>{{ site.description }}</p>
+      <div style="z-index: 11; position: relative">
+        <h3>
+          <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
+            {{ site.name }}
+          </router-link>
+        </h3>
+        <p>{{ site.description }}</p>
+      </div>
       <!--p><a :href="'https://mekanismi.web.app/#/v/'+site.id">{{ 'mekanismi.web.app/#/v/'+site.id }}</a></p-->
     </MaterialCard>
   </div>
@@ -83,15 +99,40 @@ export default defineComponent({
 </script>
 
 <style lang="sass">
+@import @/styles/include-media.scss
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+
 div.material-card.siteCard
+  overflow: hidden
+  position: relative
   h3
     a
       color: rgba(0, 121, 107, 1)
   .poster
     height: 72px
     width: 72px
-    float: right
+    position: absolute
+    top: 16px
+    right: 16px
     border-radius: 36px
     background-size: cover
     box-shadow: 0px 0px 14px 0px rgba(0, 121, 107, 0.7)
+  .splash
+    height: 240px
+    width: 480px
+    position: absolute
+    top: -97px
+    right: -16px
+    background-size: cover
+    pointer-events: none
+    opacity: 0.4
+  .siteCardThemePosterBlur
+    height: 200px
+    width: 480px
+    position: absolute
+    top: -16px
+    right: -16px
+    background: linear-gradient(101deg, rgba($color-fill-light,1) 8%, rgba($color-fill-primary-light, 0.2) 44%, rgba($color-fill-primary, 0.2) 64%, rgba($color-fill-primary-dark, 0.1) 100%)
+
 </style>

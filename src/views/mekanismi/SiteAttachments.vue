@@ -7,6 +7,16 @@
       >
         <MaterialCard class="mainCard">
           <h1>Attachments</h1>
+          <div
+            v-for="file in files"
+            :key="file[1]"
+          >
+            {{ file[0] }} - <img
+              :src="file[1]"
+              style="max-height: 128px; max-width: 128px"
+              :alt="file[0]"
+            >
+          </div>
         </MaterialCard>
         <MaterialCard class="sideCard">
           <SideBar />
@@ -24,9 +34,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide, watch } from 'vue'
-import { useSite, subscribeTo } from '@/state/site'
-import { useRoute } from 'vue-router'
+import { defineComponent, provide } from 'vue'
+import { useSite, useFiles } from '@/state/site'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import Loader from '@/components/app/Loader.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
@@ -42,13 +51,10 @@ export default defineComponent({
   },
   setup () {
     const { site } = useSite()
-    const route = useRoute()
+    const { files } = useFiles()
     provide('site', site)
-    watch(() => route.params, (r) => {
-      const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
-      subscribeTo(id)
-    }, { immediate: true })
-    return { site }
+
+    return { site, files }
   }
 })
 </script>

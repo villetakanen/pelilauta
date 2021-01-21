@@ -4,6 +4,7 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { useMembers } from './members'
 import { usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment } from './pages'
+import { refreshStorage, useFiles } from './attachments'
 
 export interface Site {
   id: string,
@@ -70,7 +71,7 @@ function subscribeTo (id: string): void {
     unsubscribe()
     return
   }
-
+  refreshStorage(id)
   subscribeToPages(id)
 
   firebase.analytics().logEvent('Subscribing Site', { id: id })
@@ -136,6 +137,7 @@ export {
   fetchPage,
   Page,
   PageFragment,
+  useFiles,
   useMembers,
   usePages,
   useSite,
