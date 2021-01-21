@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.14.0](https://github.com/villetakanen/pelilauta/compare/v6.13.0...v6.14.0) (2021-01-21)
+
+
+### Features
+
+* lists attachments from the storage bucket ([6406b99](https://github.com/villetakanen/pelilauta/commit/6406b995e3873ee3882c3b695f0f7c9d7075edcc))
+* splash image for sidebar and site listing ([848949c](https://github.com/villetakanen/pelilauta/commit/848949c13dab64b245222a78ec72f11b71d137b3))
+* splash-image selector ([c51a443](https://github.com/villetakanen/pelilauta/commit/c51a443b6de121a7adf1d3d316e7d4f085f864d6))
+
+
+### Bug Fixes
+
+* add alt to an image ([7dec993](https://github.com/villetakanen/pelilauta/commit/7dec99366786f4d1b4766157249a9d3458abb8ac))
+* move site loading to router ([cd48a63](https://github.com/villetakanen/pelilauta/commit/cd48a637aba74cd2e0bb17c7de3a2e69df1008d6))
+* removed dead code ([eff4367](https://github.com/villetakanen/pelilauta/commit/eff43679d530f382e98a086d5e2d2b34052d3d5f))
+
 ## [6.13.0](https://github.com/villetakanen/pelilauta/compare/v6.12.0...v6.13.0) (2021-01-21)
 
 
