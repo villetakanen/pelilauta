@@ -14,7 +14,7 @@
       </router-link>
     </div>
     <div class="spacer" />
-    <router-link :to="`/mekanismi/siteinfo/${site.id}/`">
+    <router-link :to="`/mekanismi/attachments/${site.id}/`">
       {{ $t('mekanismi.attachments') }}
     </router-link>
     <router-link :to="`/mekanismi/siteinfo/${site.id}/`">
