@@ -19,6 +19,12 @@ div.material-card
   border: solid 1px #00233722
   box-shadow: 0px 0px 4px 0px rgba(0,35,55,0.11)
   border-radius: 8px
+  img
+    max-width: 100%
+    &.cardPoster
+     width: calc(100% + 32px)
+     max-width: calc(100% + 32px)
+     margin: 8px -16px
   .title
     margin-bottom: 8px
   h1, h2, h3, h4
