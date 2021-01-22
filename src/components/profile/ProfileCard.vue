@@ -6,11 +6,8 @@
         text
         :action="stampAllSeen"
       >
-        {{ $t('actions.markAllRead') }}
+        {{ $t('action.markAllRead') }}
       </MaterialButton>
-      <div style="font-size:8px; opacity: 0.5">
-        {{ profileMeta }}
-      </div>
     </div>
     <Loader v-else />
   </MaterialCard>
