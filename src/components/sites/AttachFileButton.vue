@@ -2,6 +2,7 @@
   <div>
     <MaterialButton
       color="secondary"
+      :disabled="!canEdit"
       @click="attachDialog = true"
     >
       {{ $t('action.addAttachment') }}
@@ -20,7 +21,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { useAuthState } from '@/state/authz'
+import { useSite } from '@/state/site'
+import { computed, defineComponent, ref } from 'vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialCard from '../material/MaterialCard.vue'
@@ -34,7 +37,12 @@ export default defineComponent({
   },
   setup () {
     const attachDialog = ref(false)
-    return { attachDialog }
+    const canEdit = computed(() => {
+      const { uid } = useAuthState()
+      const { hasAdmin } = useSite()
+      return hasAdmin(uid.value)
+    })
+    return { attachDialog, canEdit }
   }
 })
 </script>
