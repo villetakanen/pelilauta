@@ -3,6 +3,7 @@
     {{ profile.nick }}
   </h1>
   <div class="contentGrid">
+    <ProfileCard />
     <MaterialCard>
       <img
         v-if="profile.photoURL"
@@ -23,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, provide } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PrivateInfo from '@/components/profile/PrivateInfo.vue'
 import PublicProfile from '@/components/profile/PublicProfile.vue'
@@ -31,19 +32,24 @@ import LovedThreads from '@/components/profile/LovedThreads.vue'
 import ProfileActions from '@/components/profile/ProfileActions.vue'
 import { useAuthz } from '@/lib/authz'
 import { useProfile } from '@/state/authz'
+import ProfileCard from '@/components/profile/ProfileCard.vue'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'ProfileView',
   components: {
     MaterialCard,
     LovedThreads,
     ProfileActions,
     PrivateInfo,
-    PublicProfile
+    PublicProfile,
+    ProfileCard
   },
   setup () {
     const { switchLang } = useAuthz()
-    const { profile } = useProfile()
+    const { profile, profileMeta } = useProfile()
+
+    provide('profileMeta', profileMeta)
+    provide('publicProfile', profile)
 
     function setLang (lang: string) {
       switchLang(lang)
