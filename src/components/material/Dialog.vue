@@ -56,11 +56,16 @@ export default defineComponent({
   background-color: rgba($color-fill-primary-dark, 0.37)
   .material-dialog-content
     position: fixed
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    max-width: 500px
+    top: 16px
+    left: 16px
   .material-card
     @include BoxShadow24()
 
+@include media('>tablet')
+  .material-dialog-container
+    .material-dialog-content
+      position: fixed
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
 </style>
