@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.15.1](https://github.com/villetakanen/pelilauta/compare/v6.15.0...v6.15.1) (2021-01-22)
+
+
+### Bug Fixes
+
+* disables edit buttons for wiki nonowners ([23f38a4](https://github.com/villetakanen/pelilauta/commit/23f38a44c6b731a3a8b3dd36d099871de0db543c))
+
 ## [6.15.0](https://github.com/villetakanen/pelilauta/compare/v6.14.0...v6.15.0) (2021-01-22)
 
 
