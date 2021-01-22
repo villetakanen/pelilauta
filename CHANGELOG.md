@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.15.0](https://github.com/villetakanen/pelilauta/compare/v6.14.0...v6.15.0) (2021-01-22)
+
+
+### Features
+
+* mark all threads red ([0965824](https://github.com/villetakanen/pelilauta/commit/096582420350bdd0f1d592ed7a34f1f60810dceb))
+* thread card uses hasseen from state ([fdb8c7a](https://github.com/villetakanen/pelilauta/commit/fdb8c7aae42d0e323028f9f85ff609ce027df343))
+
+
+### Bug Fixes
+
+* added missing type exports ([5b5b6af](https://github.com/villetakanen/pelilauta/commit/5b5b6affa8d16363e58ae88385df054ac940eca6))
+* locales for thread read button ([90bf8dc](https://github.com/villetakanen/pelilauta/commit/90bf8dc18b58d3130fcd026e9bc90a3ad40dfa89))
+
 ## [6.14.0](https://github.com/villetakanen/pelilauta/compare/v6.13.0...v6.14.0) (2021-01-21)
 
 
