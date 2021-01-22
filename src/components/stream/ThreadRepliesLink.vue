@@ -27,15 +27,15 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { profileMeta } = useProfile()
-    const newRepliesPill = computed(() => {
+    const { hasSeen } = useProfile()
+    const newRepliesPill = computed(() => (!hasSeen(props.thread.id, props.thread.flowTime))) /* {
       if (props.thread.replyCount < 1) return false
       const seen = profileMeta.value.seenThreads
       if (!seen || seen.size < 1) return false
       const seenThisAt = seen.get(props.thread.id)
       if (!seenThisAt) return true
       return seenThisAt.seconds < props.thread.flowTime.seconds
-    })
+    }) */
     return { newRepliesPill }
   }
 })

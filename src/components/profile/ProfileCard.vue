@@ -38,6 +38,7 @@ export default defineComponent({
       const { markAllThreadsRead } = useProfile()
       markAllThreadsRead()
     }
+
     return { profileMeta, publicProfile, stampAllSeen }
   }
 })

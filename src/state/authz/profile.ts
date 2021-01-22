@@ -104,8 +104,13 @@ async function updateProfile (fields: Record<string, string>): Promise<void> {
   }
 }
 
-function hasSeen (threadid: string, flowTime: firebase.firestore.Timestamp): boolean {
-  if (profileMeta.value.allThreadsSeenSince && profileMeta.value.allThreadsSeenSince > flowTime) return true
+function hasSeen (threadid: string, flowTime?: firebase.firestore.Timestamp): boolean {
+  if (!flowTime) return false
+  console.log(profileMeta.value.allThreadsSeenSince?.seconds,
+    flowTime.seconds,
+    (profileMeta.value.allThreadsSeenSince?.seconds || 0) >= flowTime.seconds
+  )
+  if (profileMeta.value.allThreadsSeenSince && profileMeta.value.allThreadsSeenSince.seconds >= flowTime.seconds) return true
   if (profileMeta.value.seenThreads) {
     return ((profileMeta.value.seenThreads.get(threadid) || 0) >= flowTime)
   }
