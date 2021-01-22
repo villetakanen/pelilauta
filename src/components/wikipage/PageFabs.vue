@@ -5,6 +5,7 @@
         color="secondary"
         :action="_addPageDialog"
         :text="$t('action.create')"
+        :disabled="!canEdit"
       >
         <Icon
           name="add"
@@ -14,6 +15,7 @@
       <Fab
         :text="$t('action.edit')"
         :to="`/mekanismi/edit/${page.siteid}/${page.id}`"
+        :disabled="!canEdit"
       >
         <Icon
           name="edit"
@@ -27,8 +29,9 @@
 </template>
 
 <script lang="ts">
-import { Page } from '@/state/site'
-import { ComputedRef, defineComponent, inject, ref } from 'vue'
+import { useAuthState } from '@/state/authz'
+import { Page, useSite } from '@/state/site'
+import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import Dialog from '../material/Dialog.vue'
 import Fab from '../material/Fab.vue'
 import Icon from '../material/Icon.vue'
@@ -48,8 +51,14 @@ export default defineComponent({
     function _addPageDialog () {
       dialog.value = true
     }
+    const canEdit = computed(() => {
+      const { hasAdmin } = useSite()
+      const { uid } = useAuthState()
+      console.log(uid.value, hasAdmin(uid.value))
+      return hasAdmin(uid.value)
+    })
 
-    return { page, dialog, _addPageDialog }
+    return { page, dialog, _addPageDialog, canEdit }
   }
 })
 </script>

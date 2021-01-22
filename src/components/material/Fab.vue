@@ -2,6 +2,7 @@
   <button
     class="materialFab"
     :class="{ text: text, secondary: color === 'secondary' }"
+    :disabled="disabled"
     @click="clicked"
   >
     <div
@@ -39,6 +40,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -100,6 +106,9 @@ export default defineComponent({
     color: white
     &:hover
       background: lighten($color-fill-secondary, 2%) radial-gradient(circle, transparent 1%, $color-fill-primary 1%) center/15000%
+  &:disabled
+    filter: grayscale(1)
+    opacity: 0.7
 
 @include media('<tablet')
   .materialFab.text

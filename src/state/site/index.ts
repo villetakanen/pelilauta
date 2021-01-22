@@ -86,7 +86,8 @@ function subscribeTo (id: string): void {
 }
 
 function hasAdmin (uid: string): boolean {
-  return stateSite.value.owners !== null && stateSite.value.owners.includes(uid)
+  if (stateSite.value.owners === null) return false
+  return stateSite.value.owners.includes(uid)
 }
 
 async function updateSite (data: SiteData): Promise<void> {
