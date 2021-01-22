@@ -22,6 +22,7 @@
     "withFacebookButton": "Facebookila"
   },
   "action": {
+    "addAttachment": "Lisää tiedosto",
     "addThread": "Uusi aihe",
     "admin": "Admin",
     "create": "Uusi",

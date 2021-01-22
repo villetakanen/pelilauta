@@ -1,6 +1,7 @@
 {
   "lang": "EN",
   "action": {
+    "addAttachment": "Add a file",
     "addThread": "New Thread",
     "admin": "Admin",
     "cancel": "Cancel",

@@ -7,6 +7,10 @@
       >
         <MaterialCard class="mainCard">
           <h1>Attachments</h1>
+          <div class="toolbar" style="margin-bottom: 16px">
+            <div class="spacer" />
+            <AttachFileButton />
+          </div>
           <div
             v-for="file in files"
             :key="file[1]"
@@ -40,6 +44,7 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import Loader from '@/components/app/Loader.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
 import MekanismiBar from '@/components/app/MekanismiBar.vue'
+import AttachFileButton from '@/components/sites/AttachFileButton.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -47,7 +52,8 @@ export default defineComponent({
     MaterialCard,
     Loader,
     SideBar,
-    MekanismiBar
+    MekanismiBar,
+    AttachFileButton
   },
   setup () {
     const { site } = useSite()
