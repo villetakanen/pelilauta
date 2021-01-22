@@ -7,7 +7,10 @@
       >
         <MaterialCard class="mainCard">
           <h1>Attachments</h1>
-          <div class="toolbar" style="margin-bottom: 16px">
+          <div
+            class="toolbar"
+            style="margin-bottom: 16px"
+          >
             <div class="spacer" />
             <AttachFileButton />
           </div>
