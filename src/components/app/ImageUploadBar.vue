@@ -79,7 +79,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 @import @/styles/layout.sass

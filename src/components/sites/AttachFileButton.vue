@@ -10,6 +10,10 @@
     <Dialog v-model="attachDialog">
       <MaterialCard class="dialogCard">
         <h1>Skeleton for file upload card</h1>
+        <ImageUploader
+          :target="`/${site.id}`"
+          @imageUploaded="attachDialog = false"
+        />
         <div class="toolbar pushBottom">
           <div class="spacer" />
           <MaterialButton>{{ $t('action.cancel') }}</MaterialButton>
@@ -22,8 +26,9 @@
 
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
-import { useSite } from '@/state/site'
-import { computed, defineComponent, ref } from 'vue'
+import { Site, useSite } from '@/state/site'
+import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
+import ImageUploader from '../images/ImageUploader.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialCard from '../material/MaterialCard.vue'
@@ -33,7 +38,8 @@ export default defineComponent({
   components: {
     MaterialButton,
     Dialog,
-    MaterialCard
+    MaterialCard,
+    ImageUploader
   },
   setup () {
     const attachDialog = ref(false)
@@ -42,7 +48,8 @@ export default defineComponent({
       const { hasAdmin } = useSite()
       return hasAdmin(uid.value)
     })
-    return { attachDialog, canEdit }
+    const site = inject('site') as ComputedRef<Site>
+    return { attachDialog, canEdit, site }
   }
 })
 </script>

@@ -24,7 +24,7 @@ export const fireStoreURL = function (path: string): Promise<string> {
   })
 }
 
-export const getSeconds = function (time: firebase.firestore.Timestamp|null): number {
+export const getSeconds = function (time?: firebase.firestore.Timestamp|null): number {
   if (!time) return 0
   return time.seconds
 }

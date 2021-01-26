@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { defineComponent, provide, ref, watch } from 'vue'
-import { usePages, useSite, fetchPage } from '@/state/site'
+import { usePages, useSite, fetchPage, updatePage } from '@/state/site'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
@@ -87,10 +87,11 @@ export default defineComponent({
 
     async function savePage () {
       const db = firebase.firestore()
-      const pageRef = db.collection('sites').doc(page.value.siteid).collection('pages').doc(page.value.id)
       const { formattedContent: pc } = extractLinks(pageContent.value)
       const { formattedContent, tags } = extractTags(pc)
-      return pageRef.update({
+      return updatePage({
+        id: page.value.id,
+        siteid: page.value.siteid,
         author: uid.value,
         htmlContent: formattedContent
       }).then(() => {
