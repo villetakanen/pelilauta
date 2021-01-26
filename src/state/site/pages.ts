@@ -15,6 +15,7 @@ export interface Page {
 export interface PageFragment {
   siteid: string,
   id: string,
+  author?: string,
   name?: string,
   category?: string,
   htmlContent?: string,
@@ -101,10 +102,13 @@ export function subscribeTo (siteid:string|null|undefined): void {
 }
 
 export async function updatePage (page: PageFragment): Promise<void> {
-  console.log('not impmlemented yet! update data: ', page.id, page)
+  console.log('update data: ', page.id, page)
   const db = firebase.firestore()
   const pageRef = db.collection('sites').doc(page.siteid).collection('pages').doc(page.id)
-  return pageRef.update(page)
+  return pageRef.update(page).then(() => {
+    const siteRef = db.collection('sites').doc(page.siteid)
+    return siteRef.update({ lastUpdate: firebase.firestore.FieldValue.serverTimestamp() })
+  })
 }
 
 export async function addPage (authorUid: string, siteid: string, pageName: string): Promise<void> {

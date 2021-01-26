@@ -45,14 +45,8 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 // import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import { fireStoreURL } from '@/utils/firebaseTools'
-
-interface Site {
-  id: string,
-  name?: string,
-  description?: string,
-  posterURL?: string
-}
+import { fireStoreURL, getSeconds } from '@/utils/firebaseTools'
+import { Site, toSite } from '@/state/site'
 
 export default defineComponent({
   name: 'SiteList',
@@ -72,15 +66,9 @@ export default defineComponent({
         // console.log(snap.size)
         snap.docChanges().forEach((change) => {
           // console.log(change)
-          sites.value.push({ id: change.doc.id, ...change.doc.data() })
-          if (change.doc.data().posterURL) {
-            fireStoreURL(change.doc.id + '/' + change.doc.data().posterURL).then((url) => {
-              sites.value.forEach((site) => {
-                if (site.id === change.doc.id) site.posterURL = url
-              })
-            })
-          }
+          sites.value.push(toSite(change.doc.id, change.doc.data()))
         })
+        sites.value.sort((a, b) => (getSeconds(b.lastUpdate) - getSeconds(a.lastUpdate)))
       })
     }
 

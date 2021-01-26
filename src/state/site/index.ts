@@ -33,14 +33,14 @@ const site = computed(() => (stateSite.value))
  * @param id siteDoc.id from firestore
  * @param data siteDoc.data() from firestore
  */
-function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
+export function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
   if (id) {
     return {
       id: id,
       description: data?.description || '',
       hidden: data?.hidden || '',
       silent: data?.silent,
-      lastUpdate: data?.lastUpdate,
+      lastUpdate: data?.lastUpdate || null,
       name: data?.name || id,
       players: data?.players || null,
       owners: data?.owners || null,
