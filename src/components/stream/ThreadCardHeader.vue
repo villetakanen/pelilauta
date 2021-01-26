@@ -37,6 +37,7 @@ import { useAuthState } from '@/state/authz'
 // import { useEditorDialog } from '@/lib/editor'
 import EditorDialog from '../app/EditorDialog.vue'
 // import MaterialCard from '@/components/material/MaterialCard.vue'
+import { getSeconds } from '@/utils/firebaseTools'
 
 export default defineComponent({
   name: 'ThreadCardHeader',
@@ -53,10 +54,13 @@ export default defineComponent({
   setup (props) {
     const i18n = useI18n()
     const { topics } = useMeta()
-    const topicName = computed(() => (topics.value.find((val) => (val.slug.toLowerCase() === props.thread.data.topic.toLowerCase()))))
+    const topicName = computed(() => {
+      if (!props.thread.data.topic) return ''
+      return topics.value.find((val) => (val.slug.toLowerCase() === props.thread.data.topic.toLowerCase()))
+    })
     // @todo: extract to /utils
-    function toSince (timestamp: firebase.firestore.Timestamp) {
-      let date = new Date(timestamp.seconds * 1000)
+    function toSince (timestamp: firebase.firestore.Timestamp|null) {
+      let date = new Date(getSeconds(timestamp) * 1000)
       const now = new Date()
       const diff = (now.getTime() - date.getTime()) / 1000 / 60
       let s = ''
@@ -64,7 +68,7 @@ export default defineComponent({
       else if (diff < 120) s = i18n.t('since.lessThanTwoHours')
       else if (diff < 1440) s = i18n.t('since.lessThan24h')
       else {
-        date = new Date(timestamp.seconds * 1000 + 10800000)
+        date = new Date(getSeconds(timestamp) * 1000 + 10800000)
         s = date.toISOString().substring(0, 10) + ', ' + date.toISOString().substring(11, 16)
       }
       return s

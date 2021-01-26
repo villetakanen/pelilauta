@@ -13,7 +13,7 @@
         icon
         class="button"
         color="secondary"
-        :action="send"
+        :async-action="send"
       >
         <img
           src="@/assets/send.svg"
@@ -65,12 +65,14 @@ export default defineComponent({
     const { isAuthz, uid } = useAuthState()
     const reply = ref('')
 
-    const send = () => {
+    const send = async () => {
       const { addComment } = useDiscussion(props.threadid)
       const { profile } = useProfile()
       const { formattedContent } = extractLinks(reply.value)
-      addComment(uid.value, profile.value.nick, formattedContent)
-      reply.value = ''
+      return addComment(uid.value, profile.value.nick, formattedContent).then(() => {
+        console.log('got here?')
+        reply.value = ''
+      })
     }
 
     onMounted(() => {

@@ -4,6 +4,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Reply } from '../stream'
 import 'firebase/analytics'
+import { useProfile } from '@/state/authz'
 
 const discussionState = ref(new Array<Reply>())
 const discussion = computed(() => (discussionState.value))
@@ -21,17 +22,24 @@ function upsertComment (commentid: string, data: Reply) {
   discussionState.value.sort((a, b) => (typeof a.created === 'undefined' || typeof b.created === 'undefined' ? -1 : a.created.seconds - b.created.seconds))
 }
 
-function addComment (author: string, nick: string, comment: string) {
-  firebase.analytics().logEvent('addComment', { author: author })
+/**
+ * Adds a Comment to a Stream Thread. Returns Promise<void> when done.
+ *
+ * @param author uid of the autor
+ * @param nick current nick for the author, @deprecated
+ * @param comment the comment payload as HTML
+ */
+async function addComment (author: string, nick: string, comment: string): Promise<void> {
+  firebase.analytics().logEvent('addComment', { author: author, comment: comment })
   const parentRef = firebase.firestore().collection('stream').doc(parentPostid)
   const commentRef = parentRef.collection('comments')
-  commentRef.add({
+  return commentRef.add({
     author: author,
     nick: nick,
     content: comment,
     created: firebase.firestore.FieldValue.serverTimestamp() || { seconds: 0 }
   }).then(() => {
-    parentRef.update({
+    return parentRef.update({
       lastCommentAt: firebase.firestore.FieldValue.serverTimestamp(),
       flowTime: firebase.firestore.FieldValue.serverTimestamp(),
       replyCount: firebase.firestore.FieldValue.increment(1)
@@ -68,9 +76,9 @@ function init (threadid: string) {
   }
 }
 export function useDiscussion (threadid: string): {
-  discussion: ComputedRef<Reply[]>;
-  addComment: (author: string, nick: string, comment: string) => void;
-  deleteComment: (commentid: string) => void;
+  discussion: ComputedRef<Reply[]>
+  addComment: (author: string, nick: string, comment: string) => Promise<void>
+  deleteComment: (commentid: string) => void
 } {
   init(threadid)
   return { discussion, addComment, deleteComment }
