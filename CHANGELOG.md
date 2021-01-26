@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.17.0](https://github.com/villetakanen/pelilauta/compare/v6.16.0...v6.17.0) (2021-01-26)
+
+
+### Features
+
+* upload works ([53fcaa8](https://github.com/villetakanen/pelilauta/commit/53fcaa87d96760941ec4a5821f2525dff1aa119e))
+
+
+### Bug Fixes
+
+* mekanismi site editor saves flowtime ([08e6cdb](https://github.com/villetakanen/pelilauta/commit/08e6cdb60371f637baea421b22773eda17bf7934))
+
 ## [6.16.0](https://github.com/villetakanen/pelilauta/compare/v6.15.1...v6.16.0) (2021-01-26)
 
 
