@@ -104,7 +104,7 @@ async function updateProfile (fields: Record<string, string>): Promise<void> {
   }
 }
 
-function hasSeen (threadid: string, flowTime?: firebase.firestore.Timestamp): boolean {
+function hasSeen (threadid: string, flowTime?: firebase.firestore.Timestamp|null): boolean {
   if (!flowTime) return false
   /* console.log(profileMeta.value.allThreadsSeenSince?.seconds,
     flowTime.seconds,
@@ -125,6 +125,18 @@ async function markAllThreadsRead (): Promise<void> {
   return fbProfileRef.update({ allThreadsSeenSince: firebase.firestore.FieldValue.serverTimestamp() })
 }
 
+async function stampSeen (threadid:string, flowTime?:firebase.firestore.Timestamp|number): Promise<void> {
+  const { uid } = useAuthState()
+  const db = firebase.firestore()
+  const profileRef = db.collection('profiles').doc(uid.value)
+  return profileRef.get().then((doc) => {
+    let arr = doc.data()?.seenThreads ? doc.data()?.seenThreads : new Array<seenThread>()
+    arr = arr.filter((val:seenThread) => (val.threadid !== threadid))
+    arr.push({ threadid: threadid, timestamp: flowTime || firebase.firestore.FieldValue.serverTimestamp() })
+    return profileRef.update({ seenThreads: arr })
+  })
+}
+
 let _init = false
 function init () {
   if (_init) return
@@ -142,8 +154,9 @@ export function useProfile (): {
     updateProfile: (fields: Record<string, string>) => Promise<void>
     createProfile: () => Promise<void>
     markAllThreadsRead: () => Promise<void>
-    hasSeen: (threadid: string, flowTime: firebase.firestore.Timestamp) => boolean
+    hasSeen: (threadid: string, flowTime?: firebase.firestore.Timestamp|null) => boolean
+    stampSeen: (threadid:string, flowTime?:firebase.firestore.Timestamp|number) => Promise<void>
     } {
   init()
-  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen }
+  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen }
 }

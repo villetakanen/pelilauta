@@ -75,7 +75,7 @@ function switchLang (lang: string) {
   })
 }
 
-function stampSeen (id: string, flowTime: firebase.firestore.Timestamp) {
+/* function stampSeen (id: string, flowTime: firebase.firestore.Timestamp) {
   const db = firebase.firestore()
   const profileRef = db.collection('profiles').doc(uid.value)
   profileRef.get().then((doc) => {
@@ -83,8 +83,8 @@ function stampSeen (id: string, flowTime: firebase.firestore.Timestamp) {
     arr.push({ threadid: id, timestamp: flowTime })
     profileRef.update({ seenThreads: arr })
   })
-}
+} */
 
 export function useAuthz () {
-  return { onAuthStateChanged, isAuthz, uid, missingProfile, lang, switchLang, stampSeen }
+  return { onAuthStateChanged, isAuthz, uid, missingProfile, lang, switchLang }
 }

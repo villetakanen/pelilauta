@@ -3,6 +3,8 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 
 import { computed, ComputedRef, ref } from 'vue'
+import { getSeconds } from '@/utils/firebaseTools'
+import { useAuthState, useProfile } from '../authz'
 
 export interface PostImage {
     url: string;
@@ -20,9 +22,9 @@ export interface Thread {
     id: string;
     author: string;
     // Timestamps
-    created: firebase.firestore.Timestamp;
-    flowTime: firebase.firestore.Timestamp;
-    updated: firebase.firestore.Timestamp;
+    created: firebase.firestore.Timestamp|null;
+    flowTime: firebase.firestore.Timestamp|null;
+    updated: firebase.firestore.Timestamp|null;
     // Meta
     replyCount: number;
     lovedCount: number;
@@ -39,8 +41,23 @@ export interface Stream {
   order: number
 }
 
-export function toThread (id: string, data:firebase.firestore.DocumentData|undefined): Thread {
-  if (!data) throw new Error('toThread from undefined')
+export function toThread (id: string, data?:firebase.firestore.DocumentData): Thread {
+  if (!data) {
+    return {
+      id: id,
+      author: '',
+      created: null,
+      flowTime: null,
+      updated: null,
+      replyCount: 0,
+      lovedCount: 0,
+      data: {
+        content: '',
+        topic: '',
+        title: ''
+      }
+    }
+  }
   const post: Thread = {
     id: id,
     author: data.author,
@@ -73,7 +90,7 @@ function patchToSubscribed (thread: Thread|undefined) {
   if (thread) {
     subscribedThreads.value = subscribedThreads.value.filter((p) => (thread.id !== p.id))
     subscribedThreads.value.push(thread)
-    subscribedThreads.value = subscribedThreads.value.sort((a, b) => (typeof a.flowTime === 'undefined' ? -1 : b.flowTime.seconds - a.flowTime.seconds))
+    subscribedThreads.value = subscribedThreads.value.sort((a, b) => (typeof a.flowTime === 'undefined' ? -1 : getSeconds(b.flowTime) - getSeconds(a.flowTime)))
   }
 }
 
@@ -92,17 +109,6 @@ function init () {
       if (change.type !== 'removed') patchToSubscribed(toThread(change.doc.id, change.doc.data()))
       else subscribedThreads.value = subscribedThreads.value.filter((thread) => (thread.id !== change.doc.id))
     })
-  })
-}
-
-export async function fetchThread (threadid: string): Promise<Thread|undefined> {
-  if (subscribedThreads.value.find((val) => (val.id === threadid))) {
-    // eslint-disable-next-line
-    console.warn('Fetching an already subscibed thread from Firebase. Please use the Thread from the computed { stream } instead')
-  }
-  const db = firebase.firestore()
-  return db.collection('stream').doc(threadid).get().then((doc) => {
-    if (doc.exists) return toThread(doc.id, doc.data())
   })
 }
 
@@ -136,6 +142,27 @@ export async function updateThread (actor: string, post:Thread): Promise<string>
     return post.id
   })
 }
+const subscribedPage = ref(toThread(''))
+const thread = computed(() => (subscribedPage.value))
+let unsubscribePage = () => {}
+
+export function subscribeThread (id?: string): void {
+  console.log('subscribing thread:', id)
+  if (subscribedPage.value.id === id) return
+  unsubscribePage()
+  if (!id) return
+  subscribedPage.value = toThread(id)
+  const db = firebase.firestore()
+  const threadRef = db.collection('stream').doc(id)
+  unsubscribePage = threadRef.onSnapshot((doc) => {
+    if (doc.exists) {
+      console.log('patching thread contents')
+      subscribedPage.value = toThread(id, doc.data())
+      const { stampSeen } = useProfile()
+      stampSeen(id, doc.data()?.flowTime)
+    }
+  })
+}
 
 export async function deleteThread (actor: string, threadid: string): Promise<void> {
   firebase.analytics().logEvent('dropPost', { author: actor })
@@ -145,7 +172,8 @@ export async function deleteThread (actor: string, threadid: string): Promise<vo
 }
 
 export function useThreads (): {
-    stream: ComputedRef<Thread[]> } {
+    stream: ComputedRef<Thread[]>
+    thread: ComputedRef<Thread> } {
   init()
-  return { stream }
+  return { stream, thread }
 }

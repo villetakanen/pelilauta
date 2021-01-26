@@ -52,8 +52,7 @@
 <script lang="ts">
 import { defineComponent, computed, watch, onMounted } from 'vue'
 import Discussion from '@/components/discussion/Discussion.vue'
-import { useThreads, loveThread, unloveThread, deleteThread } from '@/state/threads'
-import { useStream } from '@/lib/stream'
+import { loveThread, unloveThread, deleteThread, useThreads } from '@/state/threads'
 import { useAuthors } from '@/lib/authors'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import { useRouter } from 'vue-router'
@@ -82,11 +81,7 @@ export default defineComponent({
     const { profileMeta } = useProfile()
     const { uid } = useAuthState()
 
-    const { toDisplayString } = useStream()
-    const { stream } = useThreads()
-    const thread = computed(() => {
-      return stream.value.filter((post) => (post.id === props.threadid))[0]
-    })
+    const { thread } = useThreads()
 
     const { authors } = useAuthors()
     const author = computed(() => (authors.value.find((val) => (val.uid === thread.value.author))))
@@ -116,7 +111,7 @@ export default defineComponent({
       })
     })
 
-    return { author, deletePost, showStreamActions, thread, toDisplayString, toggleLove, loves }
+    return { author, deletePost, showStreamActions, thread, toggleLove, loves }
   }
 })
 </script>

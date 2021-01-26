@@ -5,6 +5,7 @@ import Home from '@/views/Home.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite } from '@/state/site'
+import { subscribeThread } from '@/state/threads/threads'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -142,6 +143,10 @@ router.beforeEach((to, from, next) => {
     useSite(id)
     // subscribeTo(id)
   }
+  // If we have a thread we need to pull from FB, we pull it to state here
+  const threadid = Array.isArray(to.params.threadid) ? to.params.threadid[0] : to.params.threadid || ''
+  subscribeThread(threadid)
+  // next!
   next()
 })
 
