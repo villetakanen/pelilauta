@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.16.0](https://github.com/villetakanen/pelilauta/compare/v6.15.1...v6.16.0) (2021-01-26)
+
+
+### Features
+
+* add a file button to site attachments view ([7d983a7](https://github.com/villetakanen/pelilauta/commit/7d983a7f5f026797be97782415e1867e2bf3052f))
+* dialog card ux grid ([e1fa7aa](https://github.com/villetakanen/pelilauta/commit/e1fa7aa59b3d929cbae5e5f3d9fa720fba6dd7e9))
+* disable add file button for nonowners ([d5df1b2](https://github.com/villetakanen/pelilauta/commit/d5df1b206e74010c8db453a574df9b312be6d717))
+
+
+### Bug Fixes
+
+* lints ([5708d2c](https://github.com/villetakanen/pelilauta/commit/5708d2c43e43de5103e1448a33d0a804c78ee3bc))
+* thread loading sequence updated ([73d733b](https://github.com/villetakanen/pelilauta/commit/73d733b2d39e1e4d4cc8b3e0627e30c4ac1f85f0))
+
 ### [6.15.1](https://github.com/villetakanen/pelilauta/compare/v6.15.0...v6.15.1) (2021-01-22)
 
 
