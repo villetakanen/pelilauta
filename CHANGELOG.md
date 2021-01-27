@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.18.0](https://github.com/villetakanen/pelilauta/compare/v6.17.1...v6.18.0) (2021-01-27)
+
+
+### Features
+
+* delete attachment button authz-ux ([f840bf1](https://github.com/villetakanen/pelilauta/commit/f840bf1a1a4551c6b03fb64f3b4191a2a969d855))
+* file deletion works ([211a8ae](https://github.com/villetakanen/pelilauta/commit/211a8ae61f971d3647a88729224b1de877fa3825))
+
+
+### Bug Fixes
+
+* locales for delete button ([82c1ef4](https://github.com/villetakanen/pelilauta/commit/82c1ef45e3d9e059fe362b525ea09a3b0ae97bdc))
+
 ### [6.17.1](https://github.com/villetakanen/pelilauta/compare/v6.17.0...v6.17.1) (2021-01-27)
 
 
