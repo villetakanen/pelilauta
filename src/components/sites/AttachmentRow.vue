@@ -7,13 +7,21 @@
         alt=""
       >
     </div>
-    <MaterialButton>{{ $t('action.delete') }}</MaterialButton>
+    <MaterialButton
+      color="tertiary"
+      :async-action="deleteAttachment"
+      :disabled="!canEdit"
+    >
+      {{ $t('action.delete') }}
+    </MaterialButton>
   </div>
 </template>
 
 <script lang="ts">
+import { useAuthState } from '@/state/authz'
+import { useSite } from '@/state/site'
 import { Attachment } from '@/state/site/attachments'
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 
 export default defineComponent({
@@ -26,6 +34,20 @@ export default defineComponent({
       type: Object as PropType<Attachment>,
       required: true
     }
+  },
+  setup () {
+    const canEdit = computed(() => {
+      const { hasAdmin } = useSite()
+      const { uid } = useAuthState()
+      console.log(uid.value, hasAdmin(uid.value))
+      return hasAdmin(uid.value)
+    })
+
+    function deleteAttachment () {
+
+    }
+
+    return { canEdit, deleteAttachment }
   }
 })
 </script>
