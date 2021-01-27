@@ -8,7 +8,7 @@ workflows:
          filters:
            branches:
              only: master
-    - staging:
+     - staging:
         filters:
           branches:
             only: staging
@@ -60,7 +60,7 @@ jobs:
       - run:
           name: npm-test-build
           command: 'npm run build'
-     - run:
+      - run:
           name: set-staging-env
           command: 'rm firebase.json && mv firebase-staging.json firebase.json'
       - run:
