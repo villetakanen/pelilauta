@@ -6,7 +6,7 @@
         class="suspense mekanismiGrid"
       >
         <MaterialCard class="mainCard">
-          <h1>Attachments</h1>
+          <h1>{{ $t('mekanismi.attachments.title') }}</h1>
           <div
             class="toolbar"
             style="margin-bottom: 16px"
