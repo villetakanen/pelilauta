@@ -24,7 +24,7 @@
           </div>
           <Loader
             v-else
-            class="absoluteCenter"
+            poster
           />
         </MaterialCard>
         <MaterialCard class="sideCard">

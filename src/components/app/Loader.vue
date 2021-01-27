@@ -1,12 +1,32 @@
 <template>
-  <div class="loaderContainer">
+  <div
+    class="loaderContainer"
+    :class="{ poster: poster }"
+  >
     <img
       src="@/assets/fox.svg"
       alt="Loading..."
     >
-    <div class="loader" />
+    <div
+      class="loader"
+    />
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'Loader',
+  props: {
+    poster: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  }
+})
+</script>
 
 <style lang="sass" scoped>
 .loaderContainer
@@ -17,6 +37,20 @@
     left: 0
     height: 72px
     width: 72px
+  &.poster
+    display: block
+    width: 100%
+    height: 72px
+    img
+      position: absolute
+      top: 40px
+      left: 50%
+      transform: translate(0, -50%)
+    .loader
+      position: absolute
+      top: 0px
+      left: 50%
+      transform: translate(0, -50%)
 
 .loader, .loader:after
   border-radius: 50%

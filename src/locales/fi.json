@@ -76,7 +76,9 @@
     "index": "Sivustot",
     "title": "Mekanismi",
     "siteinfo": "Meta",
-    "attachments": "Liitteet",
+    "attachments": {
+      "title": "Liitteet"
+    }, 
     "sidebar": {
       "pagelist": "Sivut"
     },

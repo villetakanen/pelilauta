@@ -76,6 +76,7 @@
       <div class="section">
         <h1>Stateless components</h1>
         <Loader />
+        <Loader poster />
       </div>
       <div class="section">
         <h1>Statefull components</h1>
