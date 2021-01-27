@@ -7,7 +7,8 @@ export interface Attachment {
   url: string,
   name: string,
   site?: string
-  thread?: string
+  thread?: string,
+  fullPath: string
 }
 
 const cachedFilelisting = ref(new Array<[string, string]>()) // @deprecated
@@ -32,7 +33,7 @@ export function refreshStorage (siteid: string): void {
       // All the items under listRef.
       itemRef.getDownloadURL().then((url) => {
         cachedFilelisting.value.push([itemRef.name, url])
-        cachedAttachments.value.set(itemRef.name, { name: itemRef.name, url: url, site: siteid })
+        cachedAttachments.value.set(itemRef.name, { name: itemRef.name, url: url, site: siteid, fullPath: itemRef.fullPath })
       })
     })
   }).catch((error) => {
