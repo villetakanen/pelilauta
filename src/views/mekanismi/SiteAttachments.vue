@@ -18,7 +18,7 @@
             <AttachmentRow
               v-for="attachment, key in attachments"
               :key="key"
-              :attachment="attachment"
+              :attachment="attachment[1]"
             />
           </div>
         </MaterialCard>
