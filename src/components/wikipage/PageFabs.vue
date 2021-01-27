@@ -5,7 +5,6 @@
         v-if="canEdit"
         color="tertiary"
         :to="`/mekanismi/attachments/${page.siteid}`"
-        :text="$t('action.site')"
       >
         <Icon
           name="site"
