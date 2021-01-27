@@ -27,6 +27,7 @@
     "admin": "Admin",
     "create": "Uusi",
     "deferUpdate": "Muistuta myöhemmin",
+    "delete": "Poista",
     "edit": "Muokkaa",
     "logout": "Kirjaudu ulos",
     "markAllRead": "Merkitse kaikki aiheet luetuiksi",
