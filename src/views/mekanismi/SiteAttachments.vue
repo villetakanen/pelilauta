@@ -14,15 +14,12 @@
             <div class="spacer" />
             <AttachFileButton />
           </div>
-          <div
-            v-for="file in files"
-            :key="file[1]"
-          >
-            {{ file[0] }} - <img
-              :src="file[1]"
-              style="max-height: 128px; max-width: 128px"
-              :alt="file[0]"
-            >
+          <div class="attachments">
+            <AttachmentRow
+              v-for="attachment, key in attachments"
+              :key="key"
+              :attachment="attachment"
+            />
           </div>
         </MaterialCard>
         <MaterialCard class="sideCard">
@@ -48,6 +45,7 @@ import Loader from '@/components/app/Loader.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
 import MekanismiBar from '@/components/app/MekanismiBar.vue'
 import AttachFileButton from '@/components/sites/AttachFileButton.vue'
+import AttachmentRow from '@/components/sites/AttachmentRow.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -56,14 +54,15 @@ export default defineComponent({
     Loader,
     SideBar,
     MekanismiBar,
-    AttachFileButton
+    AttachFileButton,
+    AttachmentRow
   },
   setup () {
     const { site } = useSite()
-    const { files } = useFiles()
+    const { attachments } = useFiles()
     provide('site', site)
 
-    return { site, files }
+    return { site, attachments }
   }
 })
 </script>

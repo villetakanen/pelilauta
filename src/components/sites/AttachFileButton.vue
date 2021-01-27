@@ -12,12 +12,12 @@
         <h1>Skeleton for file upload card</h1>
         <ImageUploader
           :target="`/${site.id}`"
-          @imageUploaded="attachDialog = false"
+          @imageUploaded="imageUploaded"
         />
         <div class="toolbar pushBottom">
           <div class="spacer" />
           <MaterialButton>{{ $t('action.cancel') }}</MaterialButton>
-          <MaterialButton>{{ $t('action.save') }}</MaterialButton>
+          <MaterialButton>{{ $t('action.ok') }}</MaterialButton>
         </div>
       </MaterialCard>
     </Dialog>
@@ -27,6 +27,7 @@
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
 import { Site, useSite } from '@/state/site'
+import { refreshStorage } from '@/state/site/attachments'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import ImageUploader from '../images/ImageUploader.vue'
 import Dialog from '../material/Dialog.vue'
@@ -49,7 +50,11 @@ export default defineComponent({
       return hasAdmin(uid.value)
     })
     const site = inject('site') as ComputedRef<Site>
-    return { attachDialog, canEdit, site }
+    function imageUploaded () {
+      refreshStorage(site.value.id)
+      attachDialog.value = false
+    }
+    return { attachDialog, canEdit, site, imageUploaded }
   }
 })
 </script>
