@@ -41,4 +41,8 @@ div.material-card
     margin-top: 8px
   .ql-container
     height: auto
+
+// @include media('>tablet')
+//   div.material-card
+//    border-radius: 0
 </style>
