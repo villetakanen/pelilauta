@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.19.0](https://github.com/villetakanen/pelilauta/compare/v6.18.0...v6.19.0) (2021-01-28)
+
+
+### Features
+
+* mobile button for attachments ([be034f6](https://github.com/villetakanen/pelilauta/commit/be034f66e9f784065f6b4d324e0d899e502ee28b))
+* removed wellcome card from app components ([f6495d0](https://github.com/villetakanen/pelilauta/commit/f6495d091673ec34f4963d1a6a68d09d7bffde96))
+
+
+### Bug Fixes
+
+* block-loader and attachment page ux ([17e283b](https://github.com/villetakanen/pelilauta/commit/17e283b73b69355114e48ac60fcef606d3380296))
+* locale structure update ([16a06b2](https://github.com/villetakanen/pelilauta/commit/16a06b2d93e471eae34f1db85f2675de7be577fd))
+* mekanismi-grid mobile view ([dcd8eb7](https://github.com/villetakanen/pelilauta/commit/dcd8eb794108edeb19161299e6aa77832ad9f3a5))
+* mobile attachment fab ([c82470e](https://github.com/villetakanen/pelilauta/commit/c82470e9699b7a0223969f4cbcb7a63e7f5247fd))
+* snack position above fabs ([936d88f](https://github.com/villetakanen/pelilauta/commit/936d88f025a52455acf369580b2e7e2d09c7c131))
+* staging ci ([95a7703](https://github.com/villetakanen/pelilauta/commit/95a7703ceeb4e6a5b9a916bc0dbaf0242eb0f56b))
+* style adjustment test ([a898b51](https://github.com/villetakanen/pelilauta/commit/a898b51161fcc1dff893459b8aa4016eca22d46c))
+* view attachments code quality ([134e8e8](https://github.com/villetakanen/pelilauta/commit/134e8e85dfc3ce6385c69de80cc602c35febb841))
+
 ## [6.18.0](https://github.com/villetakanen/pelilauta/compare/v6.17.1...v6.18.0) (2021-01-27)
 
 
