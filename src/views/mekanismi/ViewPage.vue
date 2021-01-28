@@ -1,25 +1,32 @@
 <template>
   <div>
-    <transition name="fade">
-      <div v-if="site.name && page.name">
-        <div class="mekanismiGrid">
-          <MaterialCard class="mainCard">
-            <PageToolbar />
+    <div class="mekanismiGrid">
+      <MaterialCard class="mainCard">
+        <PageToolbar />
+        <transition name="fade">
+          <div v-if="site.name && page.name">
             <div
               class="wikipage"
               :innerHTML="page.htmlContent"
             />
-          </MaterialCard>
-          <MaterialCard class="sideCard">
-            <SideBar />
-          </MaterialCard>
-        </div>
-      </div>
-      <Loader
-        v-else
-        class="toCenter"
-      />
-    </transition>
+          </div>
+          <Loader
+            v-else
+            poster
+            style="margin-bottom: -80px"
+          />
+        </transition>
+      </MaterialCard>
+      <MaterialCard class="sideCard">
+        <transition name="fade">
+          <SideBar v-if="site.name" />
+          <Loader
+            v-else
+            poster
+          />
+        </transition>
+      </MaterialCard>
+    </div>
     <PageFabs />
     <teleport to="#AppBarSubmenu">
       <MekanismiBar />
@@ -77,6 +84,8 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
+.mainCard
+  min-height: 152px
 .wikipage
   margin: 0
   padding: 0
