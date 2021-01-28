@@ -91,7 +91,7 @@ export default defineComponent({
 
 #snackContainer
   position: fixed
-  bottom: 0px
+  bottom: 72px
   left: 0px
   width: 100vw
   height: 104px

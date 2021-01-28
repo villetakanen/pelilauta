@@ -2,34 +2,35 @@
   <div>
     <transition name="fade">
       <div
-        v-if="site && site.id"
         class="suspense mekanismiGrid"
       >
         <MaterialCard class="mainCard">
-          <h1>Attachments</h1>
-          <div
-            class="toolbar"
-            style="margin-bottom: 16px"
-          >
-            <div class="spacer" />
-            <AttachFileButton />
+          <div v-if="site && site.id">
+            <div
+              class="toolbar"
+              style="margin-bottom: 16px"
+            >
+              <h1>{{ $t('mekanismi.attachments.title') }}</h1>
+              <div class="spacer" />
+              <AttachFileButton />
+            </div>
+            <div class="attachments">
+              <AttachmentRow
+                v-for="attachment, key in attachments"
+                :key="key"
+                :attachment="attachment[1]"
+              />
+            </div>
           </div>
-          <div class="attachments">
-            <AttachmentRow
-              v-for="attachment, key in attachments"
-              :key="key"
-              :attachment="attachment[1]"
-            />
-          </div>
+          <Loader
+            v-else
+            poster
+          />
         </MaterialCard>
         <MaterialCard class="sideCard">
           <SideBar />
         </MaterialCard>
       </div>
-      <Loader
-        v-else
-        class="absoluteCenter"
-      />
     </transition>
     <teleport to="#AppBarSubmenu">
       <MekanismiBar />
@@ -61,7 +62,6 @@ export default defineComponent({
     const { site } = useSite()
     const { attachments } = useFiles()
     provide('site', site)
-
     return { site, attachments }
   }
 })
@@ -71,12 +71,5 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
-
-.suspense
-  position: relative
-  .absoluteCenter
-    position: absolute
-    left: 50%
-    top: 16px
 
 </style>

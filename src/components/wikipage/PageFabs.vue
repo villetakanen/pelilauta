@@ -2,10 +2,20 @@
   <teleport to="body">
     <div class="pageFabs">
       <Fab
+        v-if="canEdit"
+        color="tertiary"
+        :to="`/mekanismi/attachments/${page.siteid}`"
+      >
+        <Icon
+          name="site"
+          color="dark"
+        />
+      </Fab>
+      <Fab
+        v-if="canEdit"
         color="secondary"
         :action="_addPageDialog"
         :text="$t('action.create')"
-        :disabled="!canEdit"
       >
         <Icon
           name="add"
@@ -13,9 +23,9 @@
         />
       </Fab>
       <Fab
+        v-if="canEdit"
         :text="$t('action.edit')"
         :to="`/mekanismi/edit/${page.siteid}/${page.id}`"
-        :disabled="!canEdit"
       >
         <Icon
           name="edit"
@@ -90,7 +100,7 @@ export default defineComponent({
     transform: translateX(-50%)
     z-index: 20000
     display: block
-    width: 128px
+    width: 200px
     .materialFab
       @include BoxShadow8()
     button+button

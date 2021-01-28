@@ -87,7 +87,9 @@
     "title": "Mekanismi",
     "index": "Site Index",
     "siteinfo": "Site info",
-    "attachments": "Attachments",
+    "attachments": {
+      "title": "Attachments"
+    },
     "sidebar": {
       "pagelist": "Index"
     },
