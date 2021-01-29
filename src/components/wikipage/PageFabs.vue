@@ -1,5 +1,5 @@
 <template>
-  <teleport to="body">
+  <teleport to="#ScreenBottomFloatRight">
     <div class="pageFabs">
       <Fab
         v-if="canEdit"
@@ -78,32 +78,5 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 @import @/styles/layout.sass
 @import @/styles/include-media.scss
-
-@include media('>tablet')
-  .pageFabs
-    position: fixed
-    position: fixed
-    bottom: 16px
-    right: 16px
-    z-index: 20000
-    display: block
-    .materialFab
-      @include BoxShadow8()
-    button+button
-      margin-left: 16px
-
-@include media('<=tablet')
-  .pageFabs
-    position: fixed
-    bottom: 16px
-    left: 50%
-    transform: translateX(-50%)
-    z-index: 20000
-    display: block
-    width: 200px
-    .materialFab
-      @include BoxShadow8()
-    button+button
-      margin-left: 16px
 
 </style>

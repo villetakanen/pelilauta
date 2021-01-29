@@ -2,7 +2,7 @@
   <div class="contentGrid">
     <Stream />
   </div>
-  <teleport to="body">
+  <teleport to="#ScreenBottomFloatRight">
     <Fab
       id="addThreadFab"
       :action="newThread"
@@ -56,10 +56,4 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-#addThreadFab
-  @include BoxShadow8()
-  position: fixed
-  left: 50%
-  transform: translateX(-50%)
-  bottom: 16px
 </style>

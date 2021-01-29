@@ -21,7 +21,7 @@ div#ScreenBottomFloatContainer
   box-sizing: border-box
   margin: 0
   padding: 16px
-  z-index: 30000
+  z-index: 10000
   div#ScreenBottomFloatRight
     text-align: right
 
