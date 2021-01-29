@@ -26,8 +26,11 @@ div#ScreenBottomFloatContainer
     text-align: right
 
 @include media('<tablet')
-  div#ScreenBottomFloatLeft
-    padding-bottom: 16px
+  div#ScreenBottomFloatContainer
+    div#ScreenBottomFloatLeft
+      padding-bottom: 16px
+    div#ScreenBottomFloatRight
+      text-align: center
 
 @include media('>=tablet')
   div#ScreenBottomFloatContainer
