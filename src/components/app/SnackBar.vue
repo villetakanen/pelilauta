@@ -58,7 +58,9 @@ export default defineComponent({
 
     function dismiss () {
       message.value = null
-      popSnack()
+      setTimeout(() => {
+        popSnack()
+      }, 1000)
     }
 
     function snackAction () {
