@@ -7,7 +7,7 @@
         :to="`/mekanismi/attachments/${page.siteid}`"
       >
         <Icon
-          name="site"
+          name="mekanismi"
           color="dark"
         />
       </Fab>
