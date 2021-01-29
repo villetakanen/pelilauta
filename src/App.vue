@@ -19,6 +19,7 @@
     <MaterialDialog :visible="missingProfile" />
   </teleport>
   <SnackBar />
+  <ScreenBottomFloatContainer />
 </template>
 
 <script lang="ts">
