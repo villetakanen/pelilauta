@@ -22,6 +22,8 @@ div#ScreenBottomFloatContainer
   margin: 0
   padding: 16px
   z-index: 30000
+  div#ScreenBottomFloatRight
+    text-align: right
 
 @include media('<tablet')
   div#ScreenBottomFloatLeft
