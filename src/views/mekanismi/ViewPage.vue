@@ -41,7 +41,7 @@ import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
 import { usePages, useSite, fetchPage } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-import { useRoute } from 'vue-router'
+// import { useRoute } from 'vue-router'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
 import MekanismiBar from '@/components/app/MekanismiBar.vue'
 
@@ -59,20 +59,20 @@ export default defineComponent({
     const { site } = useSite()
     const { page, pages } = usePages()
 
-    const route = useRoute()
+    // const route = useRoute()
     const mobileViewport = inject('mobileViewport') as ComputedRef<boolean>
 
     provide('site', site)
     provide('page', page)
     provide('pages', pages)
 
-    watch(() => route.params, (r) => {
+    /* watch(() => route.params, (r) => {
       const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
       // subscribeTo(id)
 
       const pid = Array.isArray(r.pageid) ? r.pageid[0] : r.pageid || ''
       fetchPage(pid || id)
-    }, { immediate: true })
+    }, { immediate: true }) */
 
     return { page, site, mobileViewport }
   }
