@@ -173,9 +173,10 @@ export default defineComponent({
     background-color: $color-fill-primary-dark
   &.material-button-text
     background: none
-    color: white
+    color: $color-fill-primary
+    box-shadow: unset
     &:hover
-      background-color: $color-theme--dark-base-11
+      background-color: rgba($color-fill-primary-light, 0.11)
 
 @include media('<tablet')
   .material-button.block-button

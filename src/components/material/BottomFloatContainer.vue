@@ -1,12 +1,18 @@
 <template>
   <div id="ScreenBottomFloatContainer">
-    <div id="ScreenBottomFloatLeft" />
-    <div id="ScreenBottomFloatRight" />
+    <div id="ScreenBottomFloatLeft">
+      <slot name="left" />
+    </div>
+    <div id="ScreenBottomFloatRight">
+      <slot name="right" />
+    </div>
   </div>
 </template>
 
 <style lang="sass" scoped>
-div.#ScreenBottomFloatContainer
+@import @/styles/include-media.scss
+
+div#ScreenBottomFloatContainer
   position: fixed
   bottom: 0
   left: 0
@@ -16,4 +22,16 @@ div.#ScreenBottomFloatContainer
   margin: 0
   padding: 16px
   z-index: 30000
+
+@include media('<tablet')
+  div#ScreenBottomFloatLeft
+    padding-bottom: 16px
+
+@include media('>=tablet')
+  div#ScreenBottomFloatContainer
+    display: flex
+    flex-wrap: nowrap
+    justify-content: space-between
+    align-items: flex-end
+
 </style>

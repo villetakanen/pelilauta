@@ -51,6 +51,10 @@
             alt="edit icon"
           >
         </MaterialButton>
+        <Fab>+</Fab>
+        <teleport to="#BottomFabsContainer">
+          <Fab>+</Fab>
+        </teleport>
       </div>
       <div class="section">
         <h1>Cards</h1>
@@ -118,6 +122,7 @@ import Loader from '@/components/app/Loader.vue'
 import TextField from '@/components/material/TextField.vue'
 import Pill from '@/components/material/Pill.vue'
 import { useSnack } from '@/composables/useSnack'
+import Fab from '@/components/material/Fab.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -128,12 +133,13 @@ export default defineComponent({
     Avatar,
     MaterialCard,
     TextField,
-    Pill
+    Pill,
+    Fab
   },
   setup () {
     function sendSnack () {
       const { pushSnack } = useSnack()
-      pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') } })
+      pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') }, actionMessage: 'alert?' })
     }
     async function asyncWaitDemo () {
       return new Promise((resolve) => { setTimeout(() => resolve('done'), 3000) })
