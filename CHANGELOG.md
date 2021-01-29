@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.20.0](https://github.com/villetakanen/pelilauta/compare/v6.19.0...v6.20.0) (2021-01-29)
+
+
+### Features
+
+* updates for mekanismi logoes ([580ea7f](https://github.com/villetakanen/pelilauta/commit/580ea7fbf4824fd012110a01c9842e1dfd357e76))
+
+
+### Bug Fixes
+
+* mekanismi page loading sequence ([565179c](https://github.com/villetakanen/pelilauta/commit/565179c3b66d0d87bd5483df34aef64cff099056))
+* opened state change via route ([3847796](https://github.com/villetakanen/pelilauta/commit/38477966d60ce8e736dd1f09a963035d29745e1f))
+* pagelist flushing fixed ([866acbc](https://github.com/villetakanen/pelilauta/commit/866acbc15cc1ae30e96fa7d8b67695b25cd8781d))
+
 ## [6.19.0](https://github.com/villetakanen/pelilauta/compare/v6.18.0...v6.19.0) (2021-01-28)
 
 
