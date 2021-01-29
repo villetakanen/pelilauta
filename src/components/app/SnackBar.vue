@@ -1,40 +1,30 @@
 <template>
-  <teleport to="body">
+  <div
+    id="snackContainer"
+  >
     <transition name="fade">
       <div
         v-if="message"
-        id="snackContainer"
+        id="snackBar"
       >
-        <div
-          id="snackBar"
-        >
-          <h1>{{ message.topic }}</h1>
-          <p v-if="message.message">
-            {{ message.message }}
-          </p>
+        <p>
+          {{ message.topic }}
+          {{ message.message }}
+          {{ message.code }}
+
           <MaterialButton
             v-if="message.action"
             id="snackAction"
             :action="snackAction"
             dark
+            text
           >
-            Ok
+            {{ message.actionMessage || 'X' }}
           </MaterialButton>
-          <MaterialButton
-            id="snackHide"
-            icon
-            dark
-            :action="dismiss"
-          >
-            <Icon
-              name="close"
-              color="dark"
-            />
-          </MaterialButton>
-        </div>
+        </p>
       </div>
     </transition>
-  </teleport>
+  </div>
 </template>
 
 <script lang="ts">
@@ -42,12 +32,10 @@ import { defineComponent, watch, ref, Ref } from 'vue'
 import { useSnack } from '@/composables/useSnack'
 import { SnackMessage } from '@/composables/useSnack/useSnack'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   components: {
-    MaterialButton,
-    Icon
+    MaterialButton
   },
   setup () {
     const { popSnack, snackMessages, snackStackLength } = useSnack()
@@ -70,7 +58,9 @@ export default defineComponent({
 
     function dismiss () {
       message.value = null
-      popSnack()
+      setTimeout(() => {
+        popSnack()
+      }, 1000)
     }
 
     function snackAction () {
@@ -89,37 +79,25 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-#snackContainer
-  position: fixed
-  bottom: 72px
-  left: 0px
-  width: 100vw
-  height: 104px
-
 #snackBar
   @include BoxShadow24()
   position: relative
-  margin: 16px
-  height: 72px
+  max-height: 96px
   background-color: $color-fill-dark
   border-radius: 8px
-  z-index: 30000
-  #snackHide
-    position: absolute
-    top: 8px
-    right: 8px
   #snackAction
-    position: absolute
-    top: 16px
-    right: 56px
-  h1
-    @include TypeBody1()
-    padding: 12px 16px
-    padding-bottom: 0
-    color: $color-dark-font-high
+    display: inline-block
+    margin: 0
+    margin-left: 8px
   p
     @include TypeBody2()
-    padding: 12px 16px
-    padding-top: 0
+    padding: 16px
     color: $color-dark-font-medium
+
+@include media('<tablet')
+  #snackBar
+    max-height: 120px
+    #snackAction
+      display: block
+      margin: 8px 0px
 </style>

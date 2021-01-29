@@ -12,6 +12,13 @@
     <div class="spacer" />
     <AppBarSearch />
     <MaterialAction
+      v-if="isAdmin"
+      icon="admin"
+      to="/admin"
+      :text="$t('action.admin')"
+      style="margin: 2px"
+    />
+    <MaterialAction
       v-if="!mobileViewport && mekanismi"
       to="/mekanismi"
       :text="$t('mekanismi.index')"
@@ -29,13 +36,6 @@
       icon="d12"
       to="/"
       text="pelilauta"
-      style="margin: 2px"
-    />
-    <MaterialAction
-      v-if="isAdmin"
-      icon="admin"
-      to="/admin"
-      :text="$t('action.admin')"
       style="margin: 2px"
     />
   </div>

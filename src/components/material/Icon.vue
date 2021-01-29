@@ -11,6 +11,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'mekanismi' && color === 'dark'"
+      src="@/assets/icons/dark/mekanismi-icon.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'site' && color === 'dark'"
       src="@/assets/icons/dark/site.svg"
       alt="add"

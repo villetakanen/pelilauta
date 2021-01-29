@@ -44,6 +44,7 @@ export default defineComponent({
 
 #mekanismiBar
   @include TypeButton()
+  @include BoxShadow8()
   position: relative
   margin-top: -16px
   height: 24px

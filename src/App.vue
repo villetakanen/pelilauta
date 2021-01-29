@@ -18,7 +18,14 @@
   <teleport to="body">
     <MaterialDialog :visible="missingProfile" />
   </teleport>
-  <SnackBar />
+  <BottomFloatContainer>
+    <template #left>
+      <SnackBar />
+    </template>
+    <template #right>
+      <div id="BottomFabsContainer" />
+    </template>
+  </BottomFloatContainer>
 </template>
 
 <script lang="ts">
@@ -33,6 +40,7 @@ import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
 import { register } from 'register-service-worker'
+import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
 
 export default defineComponent({
   components: {
@@ -40,7 +48,8 @@ export default defineComponent({
     SideNav,
     AppBar,
     MainTailer,
-    SnackBar// ,
+    SnackBar,
+    BottomFloatContainer// ,
     // MekanismiBar
   },
   setup () {
