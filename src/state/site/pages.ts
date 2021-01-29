@@ -52,6 +52,12 @@ function toPage (siteid?:string, id?:string, data?:firebase.firestore.DocumentDa
   }
 }
 
+export function usePage (id: string): ComputedRef<Page> {
+  if (requestedPage !== id) statePage.value = subscribedPages.value.find((p) => (p.id === id)) || toPage()
+  requestedPage = id
+  return computed(() => (statePage.value))
+}
+
 export function fetchPage (id: string): void {
   if (requestedPage === id) return
   requestedPage = id
@@ -82,7 +88,16 @@ function dropFromSubscribed (pageid: string) {
   subscribedPages.value = subscribedPages.value.filter((p) => (pageid !== p.id))
 }
 
+/**
+ * Site state internal subscription to Pages of the site. This is called primarily from index.ts
+ *
+ * @param siteid id of the site we subscribe to.
+ */
 export function subscribeTo (siteid:string|null|undefined): void {
+  // flush the state. Do note that the site subscription code in index.ts contains
+  // some code to skip unneccessary flushes, and thus this function should only be
+  // called from there.
+  subscribedPages.value = new Array<Page>()
   if (!siteid) {
     unsubscribe()
     return

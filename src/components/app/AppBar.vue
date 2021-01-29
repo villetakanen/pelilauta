@@ -38,7 +38,6 @@
       :text="$t('action.admin')"
       style="margin: 2px"
     />
-    <ProfileAction />
   </div>
 </template>
 
@@ -55,7 +54,6 @@ export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
-    ProfileAction,
     AppBarSearch,
     MaterialAction
   },
