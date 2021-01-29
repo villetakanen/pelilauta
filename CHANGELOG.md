@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.21.0](https://github.com/villetakanen/pelilauta/compare/v6.20.0...v6.21.0) (2021-01-29)
+
+
+### Features
+
+* screen bottom container for snack and fabs ([4a44852](https://github.com/villetakanen/pelilauta/commit/4a44852119c43621b31b1f21ea0d0e80fa24e5a8))
+* snack and fab ux moved to bottom floats ([fb1be88](https://github.com/villetakanen/pelilauta/commit/fb1be8849a70a1c405c7ab0a1d902381fe42ab49))
+
+
+### Bug Fixes
+
+* center mobile fabs ([3e06ae1](https://github.com/villetakanen/pelilauta/commit/3e06ae1c7cbc3f3f1c42c4d8c8cec6b822003224))
+* lots of ux polish on snack, fabs ([5845bc0](https://github.com/villetakanen/pelilauta/commit/5845bc088c6c0be3f5e97b4cefd73c27a9858369))
+* moved key fabs to bottomfloats ([b507280](https://github.com/villetakanen/pelilauta/commit/b50728013279955ec9a8d5c0fe1bedddbb405e44))
+* snack popping delay for nicer visuals ([d8f334b](https://github.com/villetakanen/pelilauta/commit/d8f334ba5fdb898356c0cc7111f63e5db1aa33a0))
+* ux - mekanismi bar depth fix ([a706c17](https://github.com/villetakanen/pelilauta/commit/a706c177d5caddd28043dd51defafedb6a4697bd))
+
 ## [6.20.0](https://github.com/villetakanen/pelilauta/compare/v6.19.0...v6.20.0) (2021-01-29)
 
 
