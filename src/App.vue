@@ -102,7 +102,7 @@ export default defineComponent({
           topic: i18n.t('app.title'),
           message: i18n.t('app.updatesAvailable'),
           action: acceptUpdate,
-          actionMessage: i18n.t('actions.update')
+          actionMessage: i18n.t('action.update')
         })
         swr = registration
       },
