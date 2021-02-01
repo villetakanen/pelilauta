@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.21.2](https://github.com/villetakanen/pelilauta/compare/v6.21.1...v6.21.2) (2021-02-01)
+
+
+### Bug Fixes
+
+* editor shows correct topics and preselects ([826eb93](https://github.com/villetakanen/pelilauta/commit/826eb9392a15a945a18e7031ac33b6dac389577b))
+
 ### [6.21.1](https://github.com/villetakanen/pelilauta/compare/v6.21.0...v6.21.1) (2021-01-29)
 
 
