@@ -84,6 +84,13 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
+    path: '/stream/view2/:threadid',
+    name: 'pelilauta.viewThread',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/ViewThread.vue'),
+    props: true
+  },
+  {
     path: '/editortest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
   },
