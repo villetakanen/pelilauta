@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.22.0](https://github.com/villetakanen/pelilauta/compare/v6.21.2...v6.22.0) (2021-02-01)
+
+
+### Features
+
+* login fab skeleton ([96a0d1e](https://github.com/villetakanen/pelilauta/commit/96a0d1e98fc0bea30986ed35cde57070732a6911))
+* login fab to front page ([8bd1dba](https://github.com/villetakanen/pelilauta/commit/8bd1dba36e6c3bd4cd3f1342c2bb3ae84994fdbc))
+* refactored thread view component skeleton ([f7ab6cf](https://github.com/villetakanen/pelilauta/commit/f7ab6cfe4e718d3783c1810800f9f442aa0800f4))
+* temporary route for the updated thread view ([e57c220](https://github.com/villetakanen/pelilauta/commit/e57c22058a9c47e2dc248ab2b78cadf975ea85c4))
+
+
+### Bug Fixes
+
+* some grid enhancements ([43b55ff](https://github.com/villetakanen/pelilauta/commit/43b55ff3eab71ecafe3ec4dfe634fb50acf44fee))
+
 ### [6.21.2](https://github.com/villetakanen/pelilauta/compare/v6.21.1...v6.21.2) (2021-02-01)
 
 
