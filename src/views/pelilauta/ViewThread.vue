@@ -9,7 +9,13 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ViewThread',
-  components: {}
+  components: {},
+  props: {
+    threadid: {
+      type: String,
+      required: true
+    }
+  }
 })
 </script>
 
