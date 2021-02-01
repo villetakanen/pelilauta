@@ -35,11 +35,11 @@
 </template>
 
 <script lang="ts">
-import { ComputedRef, defineComponent, inject, provide, watch } from 'vue'
+import { ComputedRef, defineComponent, inject, provide } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
-import { usePages, useSite, fetchPage } from '@/state/site'
+import { usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 // import { useRoute } from 'vue-router'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
