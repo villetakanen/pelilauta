@@ -21,6 +21,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'avatar' && color === 'dark'"
+      src="@/assets/icons/dark/avatar.svg"
+      alt="d6"
+    >
+    <img
       v-else-if="name === 'd6' && color === 'dark'"
       src="@/assets/icons/dark/d6.svg"
       alt="d6"

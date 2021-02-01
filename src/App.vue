@@ -153,7 +153,6 @@ export default defineComponent({
   #mainContentWrapper
     transition: margin 0.4s ease-in-out
     main
-      padding: 16px
     &.toggle
       margin-left: 310px
 
