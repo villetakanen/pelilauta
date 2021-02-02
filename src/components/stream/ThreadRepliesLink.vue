@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-if="newRepliesPill"
+      v-if="!isAnonymous && hasNotSeen"
       class="notificationPill"
     >
       <img src="@/assets/icons/pulse.svg">
@@ -16,7 +16,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 import { Thread } from '@/state/threads'
-import { useProfile } from '@/state/authz'
+import { useAuthState, useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'ThreadRepliesLink',
@@ -28,15 +28,10 @@ export default defineComponent({
   },
   setup (props) {
     const { hasSeen } = useProfile()
-    const newRepliesPill = computed(() => (!hasSeen(props.thread.id, props.thread.flowTime))) /* {
-      if (props.thread.replyCount < 1) return false
-      const seen = profileMeta.value.seenThreads
-      if (!seen || seen.size < 1) return false
-      const seenThisAt = seen.get(props.thread.id)
-      if (!seenThisAt) return true
-      return seenThisAt.seconds < props.thread.flowTime.seconds
-    }) */
-    return { newRepliesPill }
+    const { isAnonymous } = useAuthState()
+    const hasNotSeen = computed(() => (!hasSeen(props.thread.id, props.thread.flowTime)))
+
+    return { hasNotSeen, isAnonymous }
   }
 })
 </script>
@@ -47,8 +42,8 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .notificationPill
-  height: 20px
-  margin: 4px
+  height: 22px
+  margin: 0 8px
   padding: 0px 8px
   background-color: $color-fill-primary
   color: $color-dark-font-high
