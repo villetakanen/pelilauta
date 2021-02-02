@@ -96,6 +96,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/admin',
+    name: 'global.admin',
     component: () => import(/* webpackChunkName: "admin" */ '../views/Administration.vue')
   },
   {

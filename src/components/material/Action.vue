@@ -27,24 +27,53 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const route = useRoute()
+    const router = useRouter()
+
     const active = computed(() => {
-      const route = useRoute()
+      console.log(route.name, props.to)
       return (route.name === props.to)
     })
+
     const clicked = () => {
-      const router = useRouter()
-      router.push(props.to)
+      router.push({ name: props.to })
     }
+
     return { active, clicked }
   }
 })
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
+@import @/styles/include-media.scss
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+
 .materialAction
+  @include TypeButton()
+  height: 24px
+  padding: 8px 14px
+  margin: 4px
+  line-height: 24px
+  border-radius: 20px
+  transition: background-color 300ms linear
+  div.icon
+    margin: 0
+    padding: 0
+    img
+      height: 24px
+      width: 24px
+      margin: 0
+      margin-right: 4px
+      padding: 0
+      vertical-align: middle
   &:hover
   .active
   &.theme--dark
-    &:hover
-    .active
+    color: white
+    &:hover, &.active:hover
+      background-color: rgba(255,255,255,0.22)
+    &.active
+      background-color: rgba(255,255,255,0.11)
+
 </style>
