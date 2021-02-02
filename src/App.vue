@@ -18,7 +18,14 @@
   <teleport to="body">
     <MaterialDialog :visible="missingProfile" />
   </teleport>
-  <SnackBar />
+  <BottomFloatContainer>
+    <template #left>
+      <SnackBar />
+    </template>
+    <template #right>
+      <div id="BottomFabsContainer" />
+    </template>
+  </BottomFloatContainer>
 </template>
 
 <script lang="ts">
@@ -33,6 +40,7 @@ import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
 import { register } from 'register-service-worker'
+import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
 
 export default defineComponent({
   components: {
@@ -40,7 +48,8 @@ export default defineComponent({
     SideNav,
     AppBar,
     MainTailer,
-    SnackBar// ,
+    SnackBar,
+    BottomFloatContainer// ,
     // MekanismiBar
   },
   setup () {
@@ -93,7 +102,7 @@ export default defineComponent({
           topic: i18n.t('app.title'),
           message: i18n.t('app.updatesAvailable'),
           action: acceptUpdate,
-          actionMessage: i18n.t('actions.update')
+          actionMessage: i18n.t('action.update')
         })
         swr = registration
       },
@@ -121,6 +130,7 @@ export default defineComponent({
     // *** end SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE *******************
 
     const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
+    provide('appMode', mekanismi)
 
     return { isAuthz, missingProfile, ...useI18n(), route, navModel, mekanismi }
   }
@@ -144,7 +154,6 @@ export default defineComponent({
   #mainContentWrapper
     transition: margin 0.4s ease-in-out
     main
-      padding: 16px
     &.toggle
       margin-left: 310px
 

@@ -4,13 +4,25 @@
     class="toolbar"
   >
     <SideNavAction />
-    <h1>
-      <router-link to="/">
-        {{ $t('app.title') }}
-      </router-link>
-    </h1>
+    <AppAction style="margin-left: 56px" />
     <div class="spacer" />
     <AppBarSearch />
+    <Action
+      v-if="isAdmin"
+      dark
+      to="global.admin"
+    >
+      <Icon
+        name="admin"
+        color="dark"
+      />
+      <template
+        v-if="!mobileViewport"
+        name="append"
+      >
+        {{ $t('action.admin') }}
+      </template>
+    </Action>
     <MaterialAction
       v-if="!mobileViewport && mekanismi"
       to="/mekanismi"
@@ -31,33 +43,29 @@
       text="pelilauta"
       style="margin: 2px"
     />
-    <MaterialAction
-      v-if="isAdmin"
-      icon="admin"
-      to="/admin"
-      :text="$t('action.admin')"
-      style="margin: 2px"
-    />
-    <ProfileAction />
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue'
 import SideNavAction from '@/components/app/SideNavAction.vue'
-import ProfileAction from '@/components/ProfileAction.vue'
 import AppBarSearch from './AppBarSearch.vue'
 import MaterialAction from '../material/MaterialAction.vue'
 import { useAuthState } from '@/state/authz'
 import { useRoute } from 'vue-router'
+import AppAction from './AppAction.vue'
+import Action from '../material/Action.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
-    ProfileAction,
     AppBarSearch,
-    MaterialAction
+    MaterialAction,
+    AppAction,
+    Action,
+    Icon
   },
   setup () {
     const { isAdmin } = useAuthState()

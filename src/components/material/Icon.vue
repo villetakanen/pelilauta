@@ -11,9 +11,24 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'admin' && color === 'dark'"
+      src="@/assets/icons/dark/admin.svg"
+      alt="add"
+    >
+    <img
+      v-else-if="name === 'mekanismi' && color === 'dark'"
+      src="@/assets/icons/dark/mekanismi-icon.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'site' && color === 'dark'"
       src="@/assets/icons/dark/site.svg"
       alt="add"
+    >
+    <img
+      v-else-if="name === 'avatar' && color === 'dark'"
+      src="@/assets/icons/dark/avatar.svg"
+      alt="d6"
     >
     <img
       v-else-if="name === 'd6' && color === 'dark'"

@@ -2,8 +2,20 @@
   <div class="contentGrid">
     <Stream />
   </div>
-  <teleport to="body">
+  <teleport to="#ScreenBottomFloatRight">
     <Fab
+      v-if="isAnonymous"
+      to="/login"
+      :text="$t('action.login')"
+      color="tertiary"
+    >
+      <Icon
+        name="avatar"
+        color="dark"
+      />
+    </Fab>
+    <Fab
+      v-if="!isAnonymous"
       id="addThreadFab"
       :action="newThread"
       :text="$t('action.addThread')"
@@ -24,16 +36,18 @@ import Fab from '@/components/material/Fab.vue'
 import EditorDialog from '@/components/app/EditorDialog.vue'
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
+import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Stream,
     Fab,
-    EditorDialog
+    EditorDialog,
+    Icon
   },
   setup () {
-    const { isAuthz } = useAuthState()
+    const { isAuthz, isAnonymous } = useAuthState()
     const router = useRouter()
     const editorDialog = ref(false)
     onMounted(() => {
@@ -46,7 +60,7 @@ export default defineComponent({
         router.push('(/login')
       } else showEditorDialog.value = true
     }
-    return { editorDialog, showEditorDialog, newThread }
+    return { editorDialog, showEditorDialog, newThread, isAnonymous }
   }
 })
 </script>
@@ -56,10 +70,4 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-#addThreadFab
-  @include BoxShadow8()
-  position: fixed
-  left: 50%
-  transform: translateX(-50%)
-  bottom: 16px
 </style>

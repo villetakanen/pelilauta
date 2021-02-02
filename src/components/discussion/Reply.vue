@@ -178,9 +178,11 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
 @import @/styles/material-colors.sass
+@import @/styles/layout.sass
 
 .replyComment
   @include TypeBody2()
+  @include DontBreakOut()
   position: relative
   background-color: rgba($color-fill-primary-dark, 0.33)
   margin: 8px

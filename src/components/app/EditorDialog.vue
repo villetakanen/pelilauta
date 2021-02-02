@@ -42,11 +42,11 @@
             class="material-select"
           >
             <option
-              v-for="(t) in topics"
+              v-for="(t) in streams"
               :key="t.slug"
               :value="t.slug"
             >
-              {{ t.title }}
+              {{ t.name }}
             </option>
           </select>
         </div>
@@ -81,7 +81,7 @@
 import { defineComponent, ref, computed, PropType } from 'vue'
 import ImageUploadBar from './ImageUploadBar.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import { Thread, PostData, createThread, PostImage, updateThread } from '@/state/threads'
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
@@ -110,11 +110,11 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, context) {
-    const { topics } = useMeta()
+    const { streams } = useMeta()
     const { uid } = useAuthState()
     const router = useRouter()
 
-    const chosenTopic = ref('')
+    const chosenTopic = ref(props.topic)
     const content = ref('')
     const title = ref('')
     const images = ref(new Array<PostImage>())
@@ -166,7 +166,7 @@ export default defineComponent({
       images.value = props.thread.data.images || new Array<PostImage>()
     }
 
-    return { hide, topics, chosenTopic, images, publish, title, titleModel, content }
+    return { hide, streams, chosenTopic, images, publish, title, titleModel, content }
   }
 })
 </script>

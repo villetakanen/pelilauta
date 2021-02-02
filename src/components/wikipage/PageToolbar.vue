@@ -4,7 +4,10 @@
       <h1 class="subtitle">
         {{ site.name }}
       </h1>
-      <h1>{{ page.name }}</h1>
+      <h1 v-if="site.name && page.name">
+        {{ page.name }}
+      </h1>
+      <h1 v-else>...</h1>
     </div>
     <div class="spacer" />
     <MaterialMenu v-model="menu" />
@@ -51,7 +54,7 @@ export default defineComponent({
 
 .toolbar
   margin-bottom: 8px
-  padding: 8px
+  padding: 0
   h1
     @include TypeButton()
     font-size: 22px
@@ -67,9 +70,9 @@ export default defineComponent({
     margin-bottom: 0
     padding-bottom: 0
     h1.subtitle
-      padding: 8px
+      padding: 8px 0
       padding-bottom: 0
     h1
-      padding: 8px
+      padding: 8px 0
       padding-top: 0
 </style>

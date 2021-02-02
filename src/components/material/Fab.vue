@@ -115,6 +115,12 @@ export default defineComponent({
     filter: grayscale(1)
     opacity: 0.7
 
+div#ScreenBottomFloatRight
+  button.materialFab
+    @include BoxShadow8()
+  button.materialFab + button.materialFab
+    margin-left: 8px
+
 @include media('<tablet')
   .materialFab.text
     img

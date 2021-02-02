@@ -4,7 +4,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
-import { useSite } from '@/state/site'
+import { useSite, usePage } from '@/state/site'
 import { subscribeThread } from '@/state/threads/threads'
 
 const routes: Array<RouteRecordRaw> = [
@@ -84,11 +84,19 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
+    path: '/stream/view2/:threadid',
+    name: 'pelilauta.viewThread',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/ViewThread.vue'),
+    props: true
+  },
+  {
     path: '/editortest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
   },
   {
     path: '/admin',
+    name: 'global.admin',
     component: () => import(/* webpackChunkName: "admin" */ '../views/Administration.vue')
   },
   {
@@ -141,7 +149,9 @@ router.beforeEach((to, from, next) => {
     const id = Array.isArray(to.params.siteid) ? to.params.siteid[0] : to.params.siteid || ''
     console.log('routing to mekanismi', id)
     useSite(id)
-    // subscribeTo(id)
+    // If we have a page id we need to pull from FB, we pull it to state here
+    const pageid = Array.isArray(to.params.pageid) ? to.params.pageid[0] : to.params.pageid || ''
+    usePage(pageid)
   }
   // If we have a thread we need to pull from FB, we pull it to state here
   const threadid = Array.isArray(to.params.threadid) ? to.params.threadid[0] : to.params.threadid || ''
@@ -149,14 +159,5 @@ router.beforeEach((to, from, next) => {
   // next!
   next()
 })
-
-/* const { missingProfile } = useAuthz()
-
-router.beforeEach((to, from, next) => {
-  if (missingProfile.value && to.name !== 'Register') next({ name: 'Register' })
-  else next()
-})
-
-watch(missingProfile, (missing) => { if (missing) router.push('/register') }) */
 
 export default router

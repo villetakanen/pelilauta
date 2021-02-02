@@ -2,6 +2,73 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.19.0](https://github.com/villetakanen/pelilauta/compare/v6.18.0...v6.19.0) (2021-01-28)
+
+
+### Features
+
+* mobile button for attachments ([be034f6](https://github.com/villetakanen/pelilauta/commit/be034f66e9f784065f6b4d324e0d899e502ee28b))
+* removed wellcome card from app components ([f6495d0](https://github.com/villetakanen/pelilauta/commit/f6495d091673ec34f4963d1a6a68d09d7bffde96))
+
+
+### Bug Fixes
+
+* block-loader and attachment page ux ([17e283b](https://github.com/villetakanen/pelilauta/commit/17e283b73b69355114e48ac60fcef606d3380296))
+* locale structure update ([16a06b2](https://github.com/villetakanen/pelilauta/commit/16a06b2d93e471eae34f1db85f2675de7be577fd))
+* mekanismi-grid mobile view ([dcd8eb7](https://github.com/villetakanen/pelilauta/commit/dcd8eb794108edeb19161299e6aa77832ad9f3a5))
+* mobile attachment fab ([c82470e](https://github.com/villetakanen/pelilauta/commit/c82470e9699b7a0223969f4cbcb7a63e7f5247fd))
+* snack position above fabs ([936d88f](https://github.com/villetakanen/pelilauta/commit/936d88f025a52455acf369580b2e7e2d09c7c131))
+* staging ci ([95a7703](https://github.com/villetakanen/pelilauta/commit/95a7703ceeb4e6a5b9a916bc0dbaf0242eb0f56b))
+* style adjustment test ([a898b51](https://github.com/villetakanen/pelilauta/commit/a898b51161fcc1dff893459b8aa4016eca22d46c))
+* view attachments code quality ([134e8e8](https://github.com/villetakanen/pelilauta/commit/134e8e85dfc3ce6385c69de80cc602c35febb841))
+
+## [6.18.0](https://github.com/villetakanen/pelilauta/compare/v6.17.1...v6.18.0) (2021-01-27)
+
+
+### Features
+
+* delete attachment button authz-ux ([f840bf1](https://github.com/villetakanen/pelilauta/commit/f840bf1a1a4551c6b03fb64f3b4191a2a969d855))
+* file deletion works ([211a8ae](https://github.com/villetakanen/pelilauta/commit/211a8ae61f971d3647a88729224b1de877fa3825))
+
+
+### Bug Fixes
+
+* locales for delete button ([82c1ef4](https://github.com/villetakanen/pelilauta/commit/82c1ef45e3d9e059fe362b525ea09a3b0ae97bdc))
+
+### [6.17.1](https://github.com/villetakanen/pelilauta/compare/v6.17.0...v6.17.1) (2021-01-27)
+
+
+### Bug Fixes
+
+* attachment view ux ([1009583](https://github.com/villetakanen/pelilauta/commit/1009583292453fa970df2646a8f251dc23a01d87))
+
+## [6.17.0](https://github.com/villetakanen/pelilauta/compare/v6.16.0...v6.17.0) (2021-01-26)
+
+
+### Features
+
+* upload works ([53fcaa8](https://github.com/villetakanen/pelilauta/commit/53fcaa87d96760941ec4a5821f2525dff1aa119e))
+
+
+### Bug Fixes
+
+* mekanismi site editor saves flowtime ([08e6cdb](https://github.com/villetakanen/pelilauta/commit/08e6cdb60371f637baea421b22773eda17bf7934))
+
+## [6.16.0](https://github.com/villetakanen/pelilauta/compare/v6.15.1...v6.16.0) (2021-01-26)
+
+
+### Features
+
+* add a file button to site attachments view ([7d983a7](https://github.com/villetakanen/pelilauta/commit/7d983a7f5f026797be97782415e1867e2bf3052f))
+* dialog card ux grid ([e1fa7aa](https://github.com/villetakanen/pelilauta/commit/e1fa7aa59b3d929cbae5e5f3d9fa720fba6dd7e9))
+* disable add file button for nonowners ([d5df1b2](https://github.com/villetakanen/pelilauta/commit/d5df1b206e74010c8db453a574df9b312be6d717))
+
+
+### Bug Fixes
+
+* lints ([5708d2c](https://github.com/villetakanen/pelilauta/commit/5708d2c43e43de5103e1448a33d0a804c78ee3bc))
+* thread loading sequence updated ([73d733b](https://github.com/villetakanen/pelilauta/commit/73d733b2d39e1e4d4cc8b3e0627e30c4ac1f85f0))
+
 ### [6.15.1](https://github.com/villetakanen/pelilauta/compare/v6.15.0...v6.15.1) (2021-01-22)
 
 
