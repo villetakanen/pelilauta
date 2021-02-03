@@ -16,6 +16,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'dd-logo'"
+      src="@/assets/icons/dd-logo.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'forum' && color === 'dark'"
       src="@/assets/icons/dark/forum.svg"
       alt="add"

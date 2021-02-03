@@ -16,12 +16,14 @@ export interface Site {
   owners: string[]|null
   players: string[]|null
   splashURL: string
+  systemBadge: string
 }
 export interface SiteData {
   id: string,
   name?: string,
   description?: string,
-  splashURL?: string
+  splashURL?: string,
+  systemBadge?: string
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -44,7 +46,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
       name: data?.name || id,
       players: data?.players || null,
       owners: data?.owners || null,
-      splashURL: data?.splashURL || ''
+      splashURL: data?.splashURL || '',
+      systemBadge: data?.systemBadge || ''
     }
   }
   return {
@@ -55,7 +58,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
     name: '',
     players: null,
     owners: null,
-    splashURL: ''
+    splashURL: '',
+    systemBadge: ''
   }
 }
 
