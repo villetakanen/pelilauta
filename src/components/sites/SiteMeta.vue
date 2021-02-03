@@ -10,6 +10,12 @@
         v-model="siteDescription"
         :label="$t('mekanismi.site.description')"
       />
+      <MaterialSelect
+        v-model="badge"
+        :opts="badges"
+        name="systemBadge"
+        :label="$t('wiki.site.badge')"
+      />
     </div>
     <div class="toolbar">
       <div class="spacer" />
@@ -25,10 +31,11 @@ import { Site, SiteData, updateSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialCard from '../material/MaterialCard.vue'
+import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 
 export default defineComponent({
-  components: { MaterialCard, TextField, MaterialButton },
+  components: { MaterialCard, TextField, MaterialButton, MaterialSelect },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const localName = ref('')
@@ -47,7 +54,8 @@ export default defineComponent({
       if (localDescription.value) data.description = localDescription.value
       if (data.name || data.description) updateSite(data)
     }
-    return { site, siteName, siteDescription, update }
+    const badges = [{ key: 'dd', value: 'Dungeons and Dragons 5e' }]
+    return { site, siteName, siteDescription, update, badges }
   }
 })
 </script>
