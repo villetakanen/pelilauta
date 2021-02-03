@@ -3,6 +3,7 @@
   "action": {
     "addAttachment": "Add a file",
     "addThread": "New Thread",
+    "add": "Add",
     "admin": "Admin",
     "cancel": "Cancel",
     "create": "Create",
@@ -66,7 +67,10 @@
   },
   "wiki": {
     "title": "Mekanismi",
-    "createSite": "Add new"
+    "createSite": "Add new",
+    "createSiteTitle": "Create a new Game or Site",
+    "newSiteFieldLabel": "Name the site", 
+    "errorSiteSlug": "The URL slug is taken already!"
   },
   "about": {
     "title": "About Pelilauta",
