@@ -4,7 +4,7 @@
     :class="{ 'theme--dark': dark, active: active }"
     @click="clicked"
   >
-    <slot name="prepend" />
+    <span class="prepend"><slot name="prepend" /></span>
     <slot />
     <slot name="append" />
   </div>
@@ -51,24 +51,39 @@ export default defineComponent({
 
 .materialAction
   @include TypeButton()
-  height: 24px
+  height: 40px
   padding: 8px 14px
   margin: 4px
   line-height: 24px
   border-radius: 20px
   transition: background-color 300ms linear
+  display: inline-block
+  box-sizing: border-box
   div.icon
     margin: 0
     padding: 0
+    height: 26px
+    width: 26px
+    position: relative
     img
       height: 24px
       width: 24px
-      margin: 0
+      top: 0
+      left: 0
+      position: absolute
+  .prepend
+    div.icon
       margin-right: 4px
-      padding: 0
-      vertical-align: middle
+  .slot
+    line-height: 24px
+    display: inline-block
+  .prepend
+    line-height: 24px
+    display: inline-block
   &:hover
+    background-color: rgba($color-fill-dark,0.22)
   .active
+    background-color: rgba($color-fill-dark,0.11)
   &.theme--dark
     color: white
     &:hover, &.active:hover

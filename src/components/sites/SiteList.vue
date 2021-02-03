@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cardGrid">
     <!-- MaterialButton>{{ $t('action.createSite') }}</MaterialButton -->
     <MaterialCard
       v-for="site in sites"
@@ -31,9 +31,10 @@
             {{ site.name }}
           </router-link>
         </h3>
-        <p>{{ site.description }}</p>
+        <p class="description">
+          {{ site.description }}
+        </p>
       </div>
-      <!--p><a :href="'https://mekanismi.web.app/#/v/'+site.id">{{ 'mekanismi.web.app/#/v/'+site.id }}</a></p-->
     </MaterialCard>
   </div>
 </template>
@@ -91,9 +92,29 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
+div.cardGrid
+  display: flex
+  flex-wrap: wrap
+  grid-gap: 8px
+  justify-content: center
+  align-items: flex-start
+
+@include media('<tablet')
+  div.material-card.siteCard
+    width: calc(100vw - 56px)
+
+@include media('>=tablet')
+  div.material-card.siteCard
+    width: 348px
+
 div.material-card.siteCard
   overflow: hidden
   position: relative
+  flex-grow: 0
+  flex-shrink: 0
+  .description
+    max-height: 72px
+    overflow: hidden
   h3
     a
       color: rgba(0, 121, 107, 1)
@@ -107,15 +128,16 @@ div.material-card.siteCard
     background-size: cover
     box-shadow: 0px 0px 14px 0px rgba(0, 121, 107, 0.7)
   .splash
-    height: 240px
+    height: 320px
     width: 480px
     position: absolute
     top: -97px
     right: -16px
     background-size: cover
     pointer-events: none
-    opacity: 0.4
+    opacity: 0.22
   .siteCardThemePosterBlur
+    display: none
     height: 200px
     width: 480px
     position: absolute
