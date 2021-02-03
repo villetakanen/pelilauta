@@ -42,14 +42,22 @@ export default defineComponent({
 
 <style lang="sass">
 .swapper
-  height: 48px
-  width: 48px
+  height: 40px
+  width: 40px
   position: relative
+  margin: 4px
+  padding: 0
   .icon
+    background: rgba(255,255,255,0.22)
+    height: 40px
+    width: 40px
+    margin: 0
+    padding: 0
+    border-radius: 20px
     img
-      height: 40px
-      width: 40px
-      padding: 4px
+      height: 36px
+      width: 36px
+      padding: 2px
 .micropop-enter-active,
 .micropop-leave-active
   transition: all 0.3s
@@ -61,5 +69,7 @@ export default defineComponent({
 
 .absolute
   position: absolute
+  top: 0
+  left: 0
 
 </style>
