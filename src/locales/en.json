@@ -64,6 +64,10 @@
     "lessThanTwoHours": "Less than 2h ago",
     "lessThan24h": "Less than 24h ago"
   },
+  "wiki": {
+    "title": "Mekanismi",
+    "createSite": "Add new"
+  },
   "about": {
     "title": "About Pelilauta",
     "text": "What if we wanted more structured and slower conversation than discoes and some allows? Not instead, but in addition."

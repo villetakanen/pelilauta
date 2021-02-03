@@ -23,26 +23,7 @@
         {{ $t('action.admin') }}
       </template>
     </Action>
-    <MaterialAction
-      v-if="!mobileViewport && mekanismi"
-      to="/mekanismi"
-      :text="$t('mekanismi.index')"
-      style="margin: 2px"
-    />
-    <MaterialAction
-      v-if="!mobileViewport && !mekanismi"
-      icon="d6"
-      to="/mekanismi"
-      text="Mekanismi"
-      style="margin: 2px"
-    />
-    <MaterialAction
-      v-else-if="!mobileViewport && mekanismi"
-      icon="d12"
-      to="/"
-      text="pelilauta"
-      style="margin: 2px"
-    />
+    <AppModeSwitchAction />
   </div>
 </template>
 
@@ -50,22 +31,22 @@
 import { computed, defineComponent, inject } from 'vue'
 import SideNavAction from '@/components/app/SideNavAction.vue'
 import AppBarSearch from './AppBarSearch.vue'
-import MaterialAction from '../material/MaterialAction.vue'
 import { useAuthState } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
 import Action from '../material/Action.vue'
 import Icon from '../material/Icon.vue'
+import AppModeSwitchAction from './AppModeSwitchAction.vue'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
     AppBarSearch,
-    MaterialAction,
     AppAction,
     Action,
-    Icon
+    Icon,
+    AppModeSwitchAction
   },
   setup () {
     const { isAdmin } = useAuthState()

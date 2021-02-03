@@ -1,7 +1,7 @@
 <template>
   <Action
     dark
-    to="Home"
+    :to="mekanismi ? 'mekanismi' : 'Home'"
   >
     <span v-if="!mekanismi">Pelilauta</span>
     <span v-else>Mekanismi</span>
