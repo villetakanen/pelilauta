@@ -96,6 +96,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/admin',
+    name: 'global.admin',
     component: () => import(/* webpackChunkName: "admin" */ '../views/Administration.vue')
   },
   {
@@ -104,7 +105,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/mekanismi',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/WikiIndex.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/WikiIndex.vue'),
     name: 'mekanismi'
   },
   {
@@ -130,6 +131,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/SiteAttachments.vue'),
     props: true,
     name: 'mekanismi.attachments'
+  },
+  {
+    path: '/mekanismi/create',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/CreateSite.vue'),
+    props: true,
+    name: 'mekanismi.create.site'
   }
 ]
 

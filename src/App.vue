@@ -130,6 +130,7 @@ export default defineComponent({
     // *** end SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE *******************
 
     const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
+    provide('appMode', mekanismi)
 
     return { isAuthz, missingProfile, ...useI18n(), route, navModel, mekanismi }
   }

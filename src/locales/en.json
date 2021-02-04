@@ -3,6 +3,7 @@
   "action": {
     "addAttachment": "Add a file",
     "addThread": "New Thread",
+    "add": "Add",
     "admin": "Admin",
     "cancel": "Cancel",
     "create": "Create",
@@ -63,6 +64,13 @@
     "lessThanHalfh": "Less than 30 min ago",
     "lessThanTwoHours": "Less than 2h ago",
     "lessThan24h": "Less than 24h ago"
+  },
+  "wiki": {
+    "title": "Mekanismi",
+    "createSite": "Add new",
+    "createSiteTitle": "Create a new Game or Site",
+    "newSiteFieldLabel": "Name the site", 
+    "errorSiteSlug": "The URL slug is taken already!"
   },
   "about": {
     "title": "About Pelilauta",
