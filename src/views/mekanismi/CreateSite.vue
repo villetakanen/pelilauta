@@ -25,7 +25,10 @@
         >
           {{ $t('action.cancel') }}
         </MaterialButton>
-        <MaterialButton :disabled="v.siteName.$error || !v.siteName.$dirty">
+        <MaterialButton
+          :disabled="v.siteName.$error || !v.siteName.$dirty"
+          :async-action="createSiteAction"
+        >
           {{ $t('action.add') }}
         </MaterialButton>
       </div>
@@ -42,11 +45,15 @@ import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { useSites } from '@/state/sites'
 import { toMekanismiURI } from '@/utils/contentFormat'
+import { useAuthState } from '@/state/authz'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   components: { MaterialCard, TextField, MaterialButton },
   setup () {
-    const { allSites } = useSites()
+    const { allSites, createSite } = useSites()
+    const { uid } = useAuthState()
+    const router = useRouter()
     const siteName = ref('')
     const uri = computed(() => (toMekanismiURI(siteName.value)))
     const notUsed = (value?:any) => {
@@ -58,7 +65,14 @@ export default defineComponent({
       siteName: { notUsed, required }
     }
     const v = useVuelidate(rules, { siteName })
-    return { siteName, v, uri }
+
+    async function createSiteAction () {
+      return createSite(uri.value, uid.value, siteName.value).then(() => {
+        return router.push('/mekanismi/siteinfo/' + uri.value)
+      })
+    }
+
+    return { siteName, v, uri, createSiteAction }
   }
 })
 </script>

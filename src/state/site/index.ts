@@ -23,7 +23,9 @@ export interface SiteData {
   name?: string,
   description?: string,
   splashURL?: string,
-  systemBadge?: string
+  systemBadge?: string,
+  owners?: string[],
+  hidden?: boolean
 }
 
 const stateSite:Ref<Site> = ref(toSite())
