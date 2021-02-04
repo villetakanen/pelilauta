@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.23.0](https://github.com/villetakanen/pelilauta/compare/v6.22.1...v6.23.0) (2021-02-04)
+
+
+### Features
+
+* new site creation ux and vuelidate ([70f49f2](https://github.com/villetakanen/pelilauta/commit/70f49f2447e292ab623a1551fb1c19fccc289fb1))
+* new site creation works ([e714f24](https://github.com/villetakanen/pelilauta/commit/e714f24a2b217e46c6d29314864479afc99f800d))
+* refactored action link component ([5f2276c](https://github.com/villetakanen/pelilauta/commit/5f2276ce2c3819243972bf071ec4914428ed09ab))
+* site badge select views ([0188f8d](https://github.com/villetakanen/pelilauta/commit/0188f8d9954ca3e08f67f9c690afbf221ea41f88))
+* system badge persistence ([2d4945e](https://github.com/villetakanen/pelilauta/commit/2d4945ee3bca636dd112427c49cc4bdfc3bf0132))
+* top bar admin link ([a241412](https://github.com/villetakanen/pelilauta/commit/a241412d835bf38d9c625afa02258517e6341873))
+* wiki forum swapper ([ed343b1](https://github.com/villetakanen/pelilauta/commit/ed343b1f509b7d6042d8e5f548861098d158e5c6))
+
+
+### Bug Fixes
+
+* added lastupdate to site data ([24916af](https://github.com/villetakanen/pelilauta/commit/24916af618cff0e70f277f737a837ceadb0421cd))
+* appmode switcher polish ([11ae851](https://github.com/villetakanen/pelilauta/commit/11ae8515af01170a61a0b7604e83b362e6761d71))
+* dd logo added ([71a8fee](https://github.com/villetakanen/pelilauta/commit/71a8fee056d66def7d5880d7673af0083d45c194))
+* hotfix to servertimestamp typing ([cd334d6](https://github.com/villetakanen/pelilauta/commit/cd334d61423bf966548ac62a9f6a622ee2e6c78d))
+* views repository structure for mekanismi ([d1e4aaf](https://github.com/villetakanen/pelilauta/commit/d1e4aaf9051c8b0feba6fc05e0c96595b7166fb8))
+* vuelidate typing wonkiness ([1239f2c](https://github.com/villetakanen/pelilauta/commit/1239f2cee198ab08f6a63c25822dbf664aa8bafd))
+* wiki index ux polish and add site link ([510431b](https://github.com/villetakanen/pelilauta/commit/510431bd9725e5eaf467b373c38cdf08e030ad8f))
+
 ### [6.22.1](https://github.com/villetakanen/pelilauta/compare/v6.22.0...v6.22.1) (2021-02-02)
 
 
