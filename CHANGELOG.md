@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.25.0](https://github.com/villetakanen/pelilauta/compare/v6.24.1...v6.25.0) (2021-02-04)
+
+
+### Features
+
+* my projects view ([f1fae5d](https://github.com/villetakanen/pelilauta/commit/f1fae5d64862939b3000022afc31c69eeb3e8c7c))
+
+
+### Bug Fixes
+
+* my games ux polish ([7b981ea](https://github.com/villetakanen/pelilauta/commit/7b981ea0d308a9a48d0eb9ad3bebe8b9e0b2ef06))
+
 ### [6.24.1](https://github.com/villetakanen/pelilauta/compare/v6.24.0...v6.24.1) (2021-02-04)
 
 
