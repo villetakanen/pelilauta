@@ -108,6 +108,9 @@
       </div>
       <div class="section">
         <h1>Inputs</h1>
+        <Toggle v-model="toggle" /> <span color="red">{{ toggle }}</span>
+        <Toggle label="aaa"/>
+        <hr>
         <Pill>Chip</Pill>
         <Pill action-icon="add">
           Chip with Add Icon
@@ -130,7 +133,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import ViewHeader from '@/components/app/ViewHeader.vue'
@@ -141,6 +144,7 @@ import Pill from '@/components/material/Pill.vue'
 import { useSnack } from '@/composables/useSnack'
 import Fab from '@/components/material/Fab.vue'
 import Icon from '@/components/material/Icon.vue'
+import Toggle from '@/components/material/Toggle.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -153,7 +157,8 @@ export default defineComponent({
     TextField,
     Pill,
     Fab,
-    Icon
+    Icon,
+    Toggle
   },
   setup () {
     function sendSnack () {
@@ -163,7 +168,8 @@ export default defineComponent({
     async function asyncWaitDemo () {
       return new Promise((resolve) => { setTimeout(() => resolve('done'), 3000) })
     }
-    return { sendSnack, asyncWaitDemo }
+    const toggle = ref(true)
+    return { sendSnack, asyncWaitDemo, toggle }
   }
 })
 </script>

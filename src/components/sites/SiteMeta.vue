@@ -20,6 +20,12 @@
         :name="site.systemBadge+ '-logo'"
         class="inlineIcon"
       />
+      <div>
+        <Toggle
+          v-model="siteVisible"
+          :label="$t('wiki.site.visibleToggle')"
+        />
+      </div>
     </div>
     <div class="toolbar">
       <div class="spacer" />
@@ -32,15 +38,16 @@
 
 <script lang="ts">
 import { Site, SiteData, updateSite } from '@/state/site'
-import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
+import { computed, ComputedRef, defineComponent, inject, Ref, ref } from 'vue'
 import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialCard from '../material/MaterialCard.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
+import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
-  components: { MaterialCard, TextField, MaterialButton, MaterialSelect, Icon },
+  components: { MaterialCard, TextField, MaterialButton, MaterialSelect, Icon, Toggle },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const localName = ref('')
@@ -61,12 +68,18 @@ export default defineComponent({
       get: () => (localDescription.value || site.value.description || ''),
       set: (val) => { localDescription.value = val }
     })
+    const localSiteVisible:Ref<boolean|null> = ref(null)
+    const siteVisible = computed({
+      get: () => (localSiteVisible.value === null ? !site.value.hidden : localSiteVisible.value),
+      set: (val) => { localSiteVisible.value = val }
+    })
     async function update () {
       const data: SiteData = { id: site.value.id }
       if (localName.value) data.name = localName.value
       if (localBadge.value) data.systemBadge = localBadge.value
       if (localDescription.value) data.description = localDescription.value
-      if (data.name || data.description || localBadge.value !== site.value.systemBadge) updateSite(data)
+      if (localSiteVisible.value !== null) data.hidden = !siteVisible.value
+      if (data.name || data.description || localBadge.value !== site.value.systemBadge || localSiteVisible.value !== null) updateSite(data)
     }
     const badges = [
       { key: '-', value: '' },
@@ -74,7 +87,7 @@ export default defineComponent({
       { key: 'quick', value: 'The Quick' },
       { key: 'ptba', value: 'Powered by the Apocalypse' }
     ]
-    return { site, siteName, siteDescription, update, badges, badge }
+    return { site, siteName, siteDescription, update, badges, badge, siteVisible }
   }
 })
 </script>

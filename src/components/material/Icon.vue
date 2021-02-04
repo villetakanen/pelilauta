@@ -18,7 +18,12 @@
     <img
       v-else-if="name === 'dd-logo'"
       src="@/assets/icons/dd-logo.svg"
-      alt="add"
+      alt="Dungeons and Dragons logo"
+    >
+    <img
+      v-else-if="name === 'quick-logo'"
+      src="@/assets/icons/quick-logo.svg"
+      alt="The Quick logo"
     >
     <img
       v-else-if="name === 'forum' && color === 'dark'"
