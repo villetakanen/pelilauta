@@ -49,7 +49,7 @@ export default defineComponent({
     const { allSites } = useSites()
     const siteName = ref('')
     const uri = computed(() => (toMekanismiURI(siteName.value)))
-    const notUsed = (value?:string) => {
+    const notUsed = (value?:any) => {
       if (!value) return true
       return typeof allSites.value.find((a) => (a.id === toMekanismiURI(siteName.value))) === 'undefined'
     }
