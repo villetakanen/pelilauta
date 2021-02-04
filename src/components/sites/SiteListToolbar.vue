@@ -5,7 +5,7 @@
     <Action to="mekanismi.profile.sites">
       <span v-if="!mobile">{{ $t('wiki.mySites') }}</span>
       <template #prepend>
-        <Icon name="avatar" />
+        <Icon name="books" />
       </template>
     </Action>
     <Action to="mekanismi.create.site">

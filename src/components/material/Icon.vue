@@ -21,6 +21,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'books'"
+      src="@/assets/icons/books.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'dd-logo'"
       src="@/assets/icons/dd-logo.svg"
       alt="Dungeons and Dragons logo"
