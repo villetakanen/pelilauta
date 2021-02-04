@@ -35,6 +35,9 @@
           {{ site.description }}
         </p>
       </div>
+      <div v-if="site.systemBadge">
+        <Icon :name="site.systemBadge + '-logo'" class="systemBadge" />
+      </div>
     </MaterialCard>
   </div>
 </template>
@@ -48,12 +51,14 @@ import 'firebase/analytics'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { fireStoreURL, getSeconds } from '@/utils/firebaseTools'
 import { Site, toSite } from '@/state/site'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'SiteList',
   components: {
     // MaterialButton,
-    MaterialCard
+    MaterialCard,
+    Icon
   },
   setup () {
     const sites:Ref<Site[]> = ref([])
@@ -91,6 +96,10 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+
+.systemBadge
+  height: 24px
+  width: 24px
 
 div.cardGrid
   display: flex
