@@ -28,14 +28,13 @@ async function createSite (id: string, creatorUid: string, name: string, hidden 
     id: id,
     name: name,
     owners: [creatorUid],
-    hidden: hidden,
-    lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
+    hidden: hidden
   }
   const db = firebase.firestore()
   const siteRef = db.collection('sites').doc(siteData.id)
   return siteRef.get().then((siteDoc) => {
     if (siteDoc.exists) throw new Error('Site exists, create failed')
-    return siteRef.set(siteData).then(() => {
+    return siteRef.set({ ...siteData, lastUpdate: firebase.firestore.FieldValue.serverTimestamp() }).then(() => {
       const pageRef = siteRef.collection('pages').doc(siteData.id)
       return pageRef.set({
         name: siteData.id,
