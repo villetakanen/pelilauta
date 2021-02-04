@@ -43,7 +43,7 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
     return {
       id: id,
       description: data?.description || '',
-      hidden: data?.hidden || '',
+      hidden: data?.hidden || false,
       silent: data?.silent,
       lastUpdate: data?.lastUpdate || null,
       name: data?.name || id,
