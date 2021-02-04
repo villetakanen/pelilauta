@@ -82,7 +82,7 @@ export default defineComponent({
     display: inline-block
   &:hover
     background-color: rgba($color-fill-dark,0.22)
-  .active
+  &.active
     background-color: rgba($color-fill-dark,0.11)
   &.theme--dark
     color: white

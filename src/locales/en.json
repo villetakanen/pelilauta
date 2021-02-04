@@ -70,7 +70,8 @@
     "createSite": "Add new",
     "createSiteTitle": "Create a new Game or Site",
     "newSiteFieldLabel": "Name the site", 
-    "errorSiteSlug": "The URL slug is taken already!"
+    "errorSiteSlug": "The URL slug is taken already!",
+    "mySites": "My Games"
   },
   "about": {
     "title": "About Pelilauta",

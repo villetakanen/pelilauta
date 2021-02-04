@@ -16,6 +16,16 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'hidden'"
+      src="@/assets/icons/hidden.svg"
+      alt="add"
+    >
+    <img
+      v-else-if="name === 'books'"
+      src="@/assets/icons/books.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'dd-logo'"
       src="@/assets/icons/dd-logo.svg"
       alt="Dungeons and Dragons logo"
@@ -48,7 +58,12 @@
     <img
       v-else-if="name === 'avatar' && color === 'dark'"
       src="@/assets/icons/dark/avatar.svg"
-      alt="d6"
+      alt="avatar"
+    >
+    <img
+      v-else-if="name === 'avatar'"
+      src="@/assets/icons/avatar.svg"
+      alt="avatar"
     >
     <img
       v-else-if="name === 'd6' && color === 'dark'"
