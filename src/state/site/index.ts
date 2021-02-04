@@ -25,6 +25,7 @@ export interface SiteData {
   splashURL?: string,
   systemBadge?: string,
   owners?: string[],
+  lastUpdate?: firebase.firestore.Timestamp,
   hidden?: boolean
 }
 

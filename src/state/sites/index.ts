@@ -28,7 +28,8 @@ async function createSite (id: string, creatorUid: string, name: string, hidden 
     id: id,
     name: name,
     owners: [creatorUid],
-    hidden: hidden
+    hidden: hidden,
+    lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
   }
   const db = firebase.firestore()
   const siteRef = db.collection('sites').doc(siteData.id)
