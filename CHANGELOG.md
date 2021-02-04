@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.24.0](https://github.com/villetakanen/pelilauta/compare/v6.23.0...v6.24.0) (2021-02-04)
+
+
+### Features
+
+* checkboxes ([ef912de](https://github.com/villetakanen/pelilauta/commit/ef912de1b79be48aff10305ae02d5426e813fc01))
+* site badges functional in the listings ([92342b6](https://github.com/villetakanen/pelilauta/commit/92342b678e6347b3458d2a9c115b466722a63cb9))
+* wiki site hiding added ([4760827](https://github.com/villetakanen/pelilauta/commit/4760827af94d246bea489fb729af086ee93b4800))
+
 ## [6.23.0](https://github.com/villetakanen/pelilauta/compare/v6.22.1...v6.23.0) (2021-02-04)
 
 
