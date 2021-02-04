@@ -20,11 +20,6 @@
         :style="`background-image: url(${site.splashURL})`"
         class="poster"
       />
-      <div
-        v-else-if="site.posterURL"
-        :style="`background-image: url(${site.posterURL})`"
-        class="poster"
-      />
       <div style="z-index: 11; position: relative">
         <h3>
           <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
@@ -36,7 +31,10 @@
         </p>
       </div>
       <div v-if="site.systemBadge">
-        <Icon :name="site.systemBadge + '-logo'" class="systemBadge" />
+        <Icon
+          :name="site.systemBadge + '-logo'"
+          class="systemBadge"
+        />
       </div>
     </MaterialCard>
   </div>
