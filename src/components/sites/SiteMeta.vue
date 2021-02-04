@@ -85,6 +85,7 @@ export default defineComponent({
       { key: '-', value: '' },
       { key: 'dd', value: 'Dungeons and Dragons 5e' },
       { key: 'quick', value: 'The Quick' },
+      { key: 'homebrew', value: 'Homebrew' },
       { key: 'ptba', value: 'Powered by the Apocalypse' }
     ]
     return { site, siteName, siteDescription, update, badges, badge, siteVisible }

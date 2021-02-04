@@ -26,6 +26,11 @@
       alt="The Quick logo"
     >
     <img
+      v-else-if="name === 'homebrew-logo'"
+      src="@/assets/icons/homebrew-logo.svg"
+      alt="The Quick logo"
+    >
+    <img
       v-else-if="name === 'forum' && color === 'dark'"
       src="@/assets/icons/dark/forum.svg"
       alt="add"
