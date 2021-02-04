@@ -19,7 +19,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .viewFull
   padding: 0 16px
 </style>
