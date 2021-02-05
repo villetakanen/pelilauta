@@ -4,17 +4,29 @@
     :class="{ 'theme--dark': dark, active: active }"
     @click="clicked"
   >
-    <span class="prepend"><slot name="prepend" /></span>
-    <slot />
-    <slot name="append" />
+    <Icon
+      v-if="prepend"
+      :name="prepend"
+      :color="dark ? 'dark' : ''"
+      class="prepend"
+    />
+    <div class="label"><slot /></div>
+    <Icon
+      v-if="append"
+      :name="append"
+      :color="dark ? 'dark' : ''"
+      class="append"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import Icon from './Icon.vue'
 
 export default defineComponent({
+  components: { Icon },
   props: {
     to: {
       type: String,
@@ -24,6 +36,16 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    prepend: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    append: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   setup (props) {
@@ -71,6 +93,14 @@ export default defineComponent({
       top: 0
       left: 0
       position: absolute
+  div.label
+    display: inline-block
+  div.prepend+div.label
+    margin-left: 4px
+  div.label+div.append
+    margin-left: 4px
+  div.label:empty
+    display: none
   .slot
     line-height: 24px
     display: inline-block
