@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.26.0](https://github.com/villetakanen/pelilauta/compare/v6.25.0...v6.26.0) (2021-02-05)
+
+
+### Features
+
+* cache firebase images ([8c120bc](https://github.com/villetakanen/pelilauta/commit/8c120bc4802cde533c25b6165ae6af7a0d6ef9d9))
+
+
+### Bug Fixes
+
+* hide logged in actions from anonymous users ([e4330c8](https://github.com/villetakanen/pelilauta/commit/e4330c8ae542af95b3ce36a67fb97113b4fa1207))
+* mobile view actions ([9c8d52c](https://github.com/villetakanen/pelilauta/commit/9c8d52c7d2b1a6fdfad8603d6beec3adc79de608))
+* moved login fab to the bottom container ([ce5e693](https://github.com/villetakanen/pelilauta/commit/ce5e6932d392c7664d40f9157219ccd04cccb251))
+* removed double fetching of sitedata ([f49c998](https://github.com/villetakanen/pelilauta/commit/f49c99841bc6fd8adeec202425a9714bd070ec83))
+
 ## [6.25.0](https://github.com/villetakanen/pelilauta/compare/v6.24.1...v6.25.0) (2021-02-04)
 
 
