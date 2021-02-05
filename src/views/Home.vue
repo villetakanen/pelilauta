@@ -4,17 +4,6 @@
   </div>
   <teleport to="#ScreenBottomFloatRight">
     <Fab
-      v-if="isAnonymous"
-      to="/login"
-      :text="$t('action.login')"
-      color="tertiary"
-    >
-      <Icon
-        name="avatar"
-        color="dark"
-      />
-    </Fab>
-    <Fab
       v-if="!isAnonymous"
       id="addThreadFab"
       :action="newThread"
@@ -36,15 +25,13 @@ import Fab from '@/components/material/Fab.vue'
 import EditorDialog from '@/components/app/EditorDialog.vue'
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
-import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Stream,
     Fab,
-    EditorDialog,
-    Icon
+    EditorDialog
   },
   setup () {
     const { isAuthz, isAnonymous } = useAuthState()
