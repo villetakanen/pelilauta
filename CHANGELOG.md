@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.26.1](https://github.com/villetakanen/pelilauta/compare/v6.26.0...v6.26.1) (2021-02-05)
+
+
+### Bug Fixes
+
+* action css fixes ([a9ba4ae](https://github.com/villetakanen/pelilauta/commit/a9ba4ae7b25430cd250cf55123b09231114ce88c))
+* removed extraneous css ([bcca11d](https://github.com/villetakanen/pelilauta/commit/bcca11da502519541ae2ee2f594f3304018fa7bd))
+
 ## [6.26.0](https://github.com/villetakanen/pelilauta/compare/v6.25.0...v6.26.0) (2021-02-05)
 
 
