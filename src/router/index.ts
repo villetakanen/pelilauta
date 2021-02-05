@@ -142,6 +142,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/ProfileSites.vue'),
     props: true,
     name: 'mekanismi.profile.sites'
+  },
+  {
+    path: '/:catchAll(.*)',
+    component: () => import(/* webpackChunkName: "global" */ '../views/404.vue')
   }
 ]
 
