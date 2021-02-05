@@ -71,9 +71,8 @@ export default defineComponent({
       top: 0
       left: 0
       position: absolute
-  .prepend
-    div.icon
-      margin-right: 4px
+  .prepend+span
+      margin-left: 8px
   .slot
     line-height: 24px
     display: inline-block

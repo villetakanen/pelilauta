@@ -133,11 +133,9 @@ export default defineComponent({
   vertical-align: middle
 
 .material-action
-  .icon
-    margin-right: 8px
-    img
-      height: 32px
-      width: 32px
+  img
+    height: 32px
+    width: 32px
 
 .material-pill
   .icon-container

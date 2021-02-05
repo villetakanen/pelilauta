@@ -26,7 +26,7 @@ import Icon from '../material/Icon.vue'
 export default defineComponent({
   components: { Action, Icon, Toolbar },
   setup () {
-    const mobile = inject('mobileViewPort') as ComputedRef<boolean>
+    const mobile = inject('mobileViewport') as ComputedRef<boolean>
     return { mobile }
   }
 })
