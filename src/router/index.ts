@@ -41,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue')
+    component: () => import(/* webpackChunkName: "global" */ '../views/Profile.vue')
   },
   {
     path: '/register',
@@ -154,6 +154,7 @@ const router = createRouter({
   }
 })
 
+const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites']
 const ADMIN_ROUTES = ['global.admin', 'AdminTopicEditor']
 
 router.beforeEach((to, from, next) => {
@@ -170,8 +171,11 @@ router.beforeEach((to, from, next) => {
   const threadid = Array.isArray(to.params.threadid) ? to.params.threadid[0] : to.params.threadid || ''
   subscribeThread(threadid)
 
-  // Admin only routes!
-  const { isAdmin } = useAuthState()
+  // Logged in only routes!
+  const { isAnonymous, isAdmin, uid } = useAuthState()
+  if (AUTH_ROUTES.includes(to.name?.toString() || '') && (isAnonymous.value || !uid.value)) {
+    next({ name: 'Login' })
+  }
   if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !isAdmin.value) {
     next({ name: 'Login' })
   }

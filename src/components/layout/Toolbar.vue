@@ -27,6 +27,9 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 div.appToolbar
+  padding: 0
+  padding-left: 8px
+  padding-right: 4px
   display: flex
   .spacer
     flex-grow: 1

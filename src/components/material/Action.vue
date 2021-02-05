@@ -53,7 +53,6 @@ export default defineComponent({
     const router = useRouter()
 
     const active = computed(() => {
-      console.log(route.name, props.to)
       return (route.name === props.to)
     })
 
