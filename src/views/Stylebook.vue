@@ -72,6 +72,18 @@
             />
           </Fab>
         </teleport>
+
+        <h2>
+          Actions
+        </h2>
+        <Action prepend="d6">
+          And some text
+        </Action>
+        <Action>The second</Action>
+        <Action append="avatar">
+          And Third
+        </Action>
+        <Action prepend="dd-logo" />
       </div>
       <div class="section">
         <h1>Cards</h1>
@@ -109,7 +121,7 @@
       <div class="section">
         <h1>Inputs</h1>
         <Toggle v-model="toggle" /> <span color="red">{{ toggle }}</span>
-        <Toggle label="aaa"/>
+        <Toggle label="aaa" />
         <hr>
         <Pill>Chip</Pill>
         <Pill action-icon="add">
@@ -145,6 +157,7 @@ import { useSnack } from '@/composables/useSnack'
 import Fab from '@/components/material/Fab.vue'
 import Icon from '@/components/material/Icon.vue'
 import Toggle from '@/components/material/Toggle.vue'
+import Action from '@/components/material/Action.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -158,7 +171,8 @@ export default defineComponent({
     Pill,
     Fab,
     Icon,
-    Toggle
+    Toggle,
+    Action
   },
   setup () {
     function sendSnack () {
