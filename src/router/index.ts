@@ -6,6 +6,7 @@ import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
 import { subscribeThread } from '@/state/threads/threads'
+import { useAuthState } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,10 +33,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "global" */ '../views/Login.vue')
   },
   {
     path: '/profile',
@@ -101,6 +99,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/admin/topics',
+    name: 'AdminTopicEditor',
     component: () => import(/* webpackChunkName: "admin" */ '../views/admin/Topics.vue')
   },
   {
@@ -155,6 +154,8 @@ const router = createRouter({
   }
 })
 
+const ADMIN_ROUTES = ['global.admin', 'AdminTopicEditor']
+
 router.beforeEach((to, from, next) => {
   // console.log(to, from)
   if (to.name && to.name.toString().startsWith('mekanismi')) {
@@ -168,6 +169,12 @@ router.beforeEach((to, from, next) => {
   // If we have a thread we need to pull from FB, we pull it to state here
   const threadid = Array.isArray(to.params.threadid) ? to.params.threadid[0] : to.params.threadid || ''
   subscribeThread(threadid)
+
+  // Admin only routes!
+  const { isAdmin } = useAuthState()
+  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !isAdmin.value) {
+    next({ name: 'Login' })
+  }
   // next!
   next()
 })
