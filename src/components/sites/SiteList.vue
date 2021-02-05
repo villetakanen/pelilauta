@@ -1,8 +1,7 @@
 <template>
   <div class="cardGrid">
-    <!-- MaterialButton>{{ $t('action.createSite') }}</MaterialButton -->
     <MaterialCard
-      v-for="site in sites"
+      v-for="site in publicSites"
       :key="site.id"
       class="siteCard"
     >
@@ -41,51 +40,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref, Ref } from 'vue'
+import { defineComponent } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-// import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import { fireStoreURL, getSeconds } from '@/utils/firebaseTools'
-import { Site, toSite } from '@/state/site'
+import { fireStoreURL } from '@/utils/firebaseTools'
 import Icon from '../material/Icon.vue'
+import { useSites } from '@/state/sites'
 
 export default defineComponent({
   name: 'SiteList',
   components: {
-    // MaterialButton,
     MaterialCard,
     Icon
   },
   setup () {
-    const sites:Ref<Site[]> = ref([])
+    const { publicSites } = useSites()
 
-    let unsubscribe = () => {}
-
-    async function subscribeToSites () {
-      unsubscribe()
-      const db = firebase.firestore()
-      unsubscribe = db.collection('sites').where('hidden', '==', false).orderBy('lastUpdate', 'desc').onSnapshot((snap) => {
-        // console.log(snap.size)
-        snap.docChanges().forEach((change) => {
-          // console.log(change)
-          sites.value.push(toSite(change.doc.id, change.doc.data()))
-        })
-        sites.value.sort((a, b) => (getSeconds(b.lastUpdate) - getSeconds(a.lastUpdate)))
-      })
-    }
-
-    subscribeToSites()
-    onMounted(() => {
-      subscribeToSites()
-    })
-
-    onUnmounted(() => {
-      unsubscribe()
-    })
-
-    return { sites, fireStoreURL }
+    return { publicSites, fireStoreURL }
   }
 })
 </script>
