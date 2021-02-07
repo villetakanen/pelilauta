@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.27.0](https://github.com/villetakanen/pelilauta/compare/v6.26.1...v6.27.0) (2021-02-07)
+
+
+### Features
+
+* 404 page ([f3398a1](https://github.com/villetakanen/pelilauta/commit/f3398a10cfe79d1ce51a4004219746f5190c8239))
+* 404 page prototype ([f082995](https://github.com/villetakanen/pelilauta/commit/f0829953a04785f783539dd2b54abc12502fff45))
+* logged in route hiding for personal pages ([5dae77a](https://github.com/villetakanen/pelilauta/commit/5dae77a704be846a32d8bc0878583ff7e3b08c91))
+
+
+### Bug Fixes
+
+* removed pointer-events from bottomfloats ([5ec66ca](https://github.com/villetakanen/pelilauta/commit/5ec66caaac5052ce483cedbe866fa8aecc899d8b))
+* route guards for admin views ([6e9a8b2](https://github.com/villetakanen/pelilauta/commit/6e9a8b29d03f260a173c368cfb36ec2ad493a075))
+* ux top spacing fix ([878fbbb](https://github.com/villetakanen/pelilauta/commit/878fbbb184b23ccbdd3b4bff6e87257861a4f279))
+
 ### [6.26.1](https://github.com/villetakanen/pelilauta/compare/v6.26.0...v6.26.1) (2021-02-05)
 
 
