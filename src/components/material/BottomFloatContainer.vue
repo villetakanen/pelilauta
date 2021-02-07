@@ -51,6 +51,9 @@ div#ScreenBottomFloatContainer
   margin: 0
   padding: 16px
   z-index: 10000
+  pointer-events: none
+  div
+    pointer-events: all
   div#ScreenBottomFloatRight
     text-align: right
 
