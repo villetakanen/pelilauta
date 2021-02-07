@@ -140,10 +140,6 @@ export default defineComponent({
 <style lang="sass">
 @import styles/base.sass
 
-#mainContentWrapper
-  // margin-top: 56px // app-bar height
-  // background-color: rgba(0,0,0,0.04)
-
 .topLeftFab
   position: fixed
   top: 16px

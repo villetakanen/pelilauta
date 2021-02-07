@@ -1,7 +1,14 @@
 <template>
-  <h1 class="viewHeader">
-    {{ profile.nick }}
-  </h1>
+  <Toolbar>
+    <h3>{{ $t('profile.title') }}</h3>
+    <div class="spacer" />
+    <Action
+      to="mekanismi.profile.sites"
+      prepend="books"
+    >
+      <span v-if="!mobile">{{ $t('wiki.mySites') }}</span>
+    </Action>
+  </Toolbar>
   <div class="contentGrid">
     <ProfileCard />
     <MaterialCard>
@@ -33,6 +40,8 @@ import ProfileActions from '@/components/profile/ProfileActions.vue'
 import { useAuthz } from '@/lib/authz'
 import { useProfile } from '@/state/authz'
 import ProfileCard from '@/components/profile/ProfileCard.vue'
+import Toolbar from '@/components/layout/Toolbar.vue'
+import Action from '@/components/material/Action.vue'
 
 export default defineComponent({
   name: 'ProfileView',
@@ -42,7 +51,9 @@ export default defineComponent({
     ProfileActions,
     PrivateInfo,
     PublicProfile,
-    ProfileCard
+    ProfileCard,
+    Toolbar,
+    Action
   },
   setup () {
     const { switchLang } = useAuthz()
