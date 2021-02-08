@@ -24,7 +24,7 @@
   "admin": {
     "title": "Admin",
     "action": {
-      "editorTest": "editor sandbox",
+      "editorTest": "Editor sandbox",
       "topics": "Topics"
     }
   },
