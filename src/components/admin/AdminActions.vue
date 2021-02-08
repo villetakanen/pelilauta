@@ -5,14 +5,14 @@
     <Action
       v-if="isAdmin"
       to="global.admin.editorTest"
-      prepend="Edit"
+      prepend="edit"
     >
       {{ $t('admin.action.editorTest') }}
     </Action>
     <Action
       v-if="isAdmin"
       to="global.admin.topics"
-      prepend="Discussion"
+      prepend="books"
     >
       {{ $t('admin.action.topics') }}
     </Action>
