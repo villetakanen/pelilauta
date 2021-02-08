@@ -22,7 +22,11 @@
     "update": "Update"
   },
   "admin": {
-    "title": "Admin"
+    "title": "Admin",
+    "action": {
+      "editorTest": "editor sandbox",
+      "topics": "Topics"
+    }
   },
   "app": {
     "title": "Pelilauta",

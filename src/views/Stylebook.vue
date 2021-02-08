@@ -1,5 +1,5 @@
 <template>
-  <ViewHeader>STYLEBOOK</ViewHeader>
+  <AdminActions title="Styleguide"/>
   <div class="contentGrid">
     <div id="Stylebook">
       <div class="section">
@@ -148,7 +148,6 @@
 import { defineComponent, ref } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
 import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
 import TextField from '@/components/material/TextField.vue'
@@ -158,13 +157,13 @@ import Fab from '@/components/material/Fab.vue'
 import Icon from '@/components/material/Icon.vue'
 import Toggle from '@/components/material/Toggle.vue'
 import Action from '@/components/material/Action.vue'
+import AdminActions from '@/components/admin/AdminActions.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
     MaterialButton,
     Loader,
-    ViewHeader,
     Avatar,
     MaterialCard,
     TextField,
@@ -172,7 +171,8 @@ export default defineComponent({
     Fab,
     Icon,
     Toggle,
-    Action
+    Action,
+    AdminActions
   },
   setup () {
     function sendSnack () {

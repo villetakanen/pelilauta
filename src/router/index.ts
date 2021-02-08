@@ -90,6 +90,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/editortest',
+    name: 'global.admin.editorTest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
   },
   {
@@ -99,7 +100,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/admin/topics',
-    name: 'AdminTopicEditor',
+    name: 'global.admin.topics',
     component: () => import(/* webpackChunkName: "admin" */ '../views/admin/Topics.vue')
   },
   {
@@ -159,7 +160,11 @@ const router = createRouter({
 })
 
 const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites']
-const ADMIN_ROUTES = ['global.admin', 'AdminTopicEditor']
+const ADMIN_ROUTES = [
+  'global.admin',
+  'global.admin.topics',
+  'global.admin.editorTest'
+]
 
 router.beforeEach((to, from, next) => {
   // console.log(to, from)
