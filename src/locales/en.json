@@ -37,6 +37,10 @@
     "title": "Post",
     "titleFieldPlaceholder": "Thread title"
   },
+  "errorPage":{
+    "notFound": "Broken route",
+    "message": "It seems that the route you used to reach this site is broken. You might find what you were looking for with search, or from the front page?"
+  },
   "language": {
       "label": "UI Language"
   },
