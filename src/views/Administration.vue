@@ -1,7 +1,5 @@
 <template>
-  <ViewHeader>
-    {{ $t('admin.title') }}
-  </ViewHeader>
+  <AdminActions :title="$t('admin.title')" />
   <div class="contentGrid">
     <MaterialCard>
       <router-link to="/admin">
@@ -36,15 +34,15 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
 import UserList from '@/components/UserList.vue'
+import AdminActions from '@/components/admin/AdminActions.vue'
 
 export default defineComponent({
   name: 'Admin',
   components: {
     UserList,
     MaterialCard,
-    ViewHeader
+    AdminActions
   },
   setup () {
     const dialog = ref(false)

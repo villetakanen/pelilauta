@@ -1,5 +1,5 @@
 <template>
-  <AdminActions title="Styleguide"/>
+  <AdminActions title="Styleguide" />
   <div class="contentGrid">
     <div id="Stylebook">
       <div class="section">
