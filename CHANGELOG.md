@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.27.1](https://github.com/villetakanen/pelilauta/compare/v6.27.0...v6.27.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* bottom float container pointer in mobile ([6a7cdec](https://github.com/villetakanen/pelilauta/commit/6a7cdeca9f195dd556f90f486bf6dae798b5785e))
+
 ## [6.27.0](https://github.com/villetakanen/pelilauta/compare/v6.26.1...v6.27.0) (2021-02-07)
 
 
