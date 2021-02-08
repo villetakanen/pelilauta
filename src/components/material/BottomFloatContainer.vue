@@ -59,6 +59,8 @@ div#ScreenBottomFloatContainer
 
 @include media('<tablet')
   div#ScreenBottomFloatContainer
+    display: flex
+    flex-direction: column
     div#ScreenBottomFloatLeft
       padding-bottom: 16px
     div#ScreenBottomFloatRight
