@@ -51,11 +51,16 @@ div#ScreenBottomFloatContainer
   margin: 0
   padding: 16px
   z-index: 10000
+  pointer-events: none
+  div
+    pointer-events: all
   div#ScreenBottomFloatRight
     text-align: right
 
 @include media('<tablet')
   div#ScreenBottomFloatContainer
+    display: flex
+    flex-direction: column
     div#ScreenBottomFloatLeft
       padding-bottom: 16px
     div#ScreenBottomFloatRight

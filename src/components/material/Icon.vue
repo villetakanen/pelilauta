@@ -16,6 +16,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'admin'"
+      src="@/assets/icons/admin.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'hidden'"
       src="@/assets/icons/hidden.svg"
       alt="add"

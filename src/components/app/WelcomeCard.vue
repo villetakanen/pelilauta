@@ -11,9 +11,12 @@
       >
       <h1>{{ $t('welcome.header') }}</h1>
       <p>{{ $t('welcome.paragraph') }}</p>
-      <MaterialButton to="/login">
-        {{ $t('action.login') }}
-      </MaterialButton>
+      <Toolbar>
+        <div class="spacer" />
+        <MaterialButton to="/login">
+          {{ $t('action.login') }}
+        </MaterialButton>
+      </Toolbar>
     </MaterialCard>
   </transition>
 </template>
@@ -23,12 +26,14 @@ import { defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useAuthState } from '@/state/authz'
+import Toolbar from '../layout/Toolbar.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
     MaterialCard,
-    MaterialButton
+    MaterialButton,
+    Toolbar
   },
   setup () {
     const { isAnonymous } = useAuthState()

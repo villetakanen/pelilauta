@@ -22,7 +22,11 @@
     "update": "Update"
   },
   "admin": {
-    "title": "Admin"
+    "title": "Admin",
+    "action": {
+      "editorTest": "Editor sandbox",
+      "topics": "Topics"
+    }
   },
   "app": {
     "title": "Pelilauta",
@@ -32,6 +36,10 @@
   "editorDialog": {
     "title": "Post",
     "titleFieldPlaceholder": "Thread title"
+  },
+  "errorPage":{
+    "notFound": "Broken route",
+    "message": "It seems that the route you used to reach this site is broken. You might find what you were looking for with search, or from the front page?"
   },
   "language": {
       "label": "UI Language"
@@ -55,7 +63,8 @@
     "publicInfoHelper": "Your public profile data, visible to anyone browsing the site.",
     "ssoInfocardTitle": "Personal information",
     "ssoInfocardHelper": "Your personal profile data, visible to you and administration of the site.",
-    "tagline": "Tagline"
+    "tagline": "Tagline",
+    "title": "Profile"
   },
   "stream": {
     "title": "Pelilauta"

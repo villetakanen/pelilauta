@@ -9,16 +9,12 @@
     <AppBarSearch />
     <Action
       v-if="isAdmin"
+      prepend="admin"
       dark
       to="global.admin"
     >
-      <Icon
-        name="admin"
-        color="dark"
-      />
       <template
         v-if="!mobileViewport"
-        name="append"
       >
         {{ $t('action.admin') }}
       </template>
@@ -35,7 +31,6 @@ import { useAuthState } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
 import Action from '../material/Action.vue'
-import Icon from '../material/Icon.vue'
 import AppModeSwitchAction from './AppModeSwitchAction.vue'
 
 export default defineComponent({
@@ -45,7 +40,6 @@ export default defineComponent({
     AppBarSearch,
     AppAction,
     Action,
-    Icon,
     AppModeSwitchAction
   },
   setup () {
@@ -64,13 +58,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #AppBar
-  // box-shadow: 0px 7px 15px 0px rgba($color-fill-primary-dark, .37)
-  h1
-    @include TypeButton()
-    margin-left: 56px
-    line-height: 48px
-    a
-      color: $color-dark-font-high
   .absoluteRight
     position: absolute
     top: 0px
@@ -100,13 +87,20 @@ export default defineComponent({
 #AppBar
   @include BoxShadow8()
   position: relative
-  margin-bottom: 16px
   background-color: $color-fill-dark
   background: linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
   height: 56px
+  margin: 0
+  margin-bottom: 8px
   padding: 4px
   box-sizing: border-box
   display: flex
+  h1
+    @include TypeButton()
+    margin-left: 56px
+    line-height: 48px
+    a
+      color: $color-dark-font-high
 
 @include media('>phone')
 

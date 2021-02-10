@@ -6,6 +6,7 @@ import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
 import { subscribeThread } from '@/state/threads/threads'
+import { useAuthState } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,10 +33,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "global" */ '../views/Login.vue')
   },
   {
     path: '/profile',
@@ -43,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue')
+    component: () => import(/* webpackChunkName: "global" */ '../views/Profile.vue')
   },
   {
     path: '/register',
@@ -92,6 +90,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/editortest',
+    name: 'global.admin.editorTest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
   },
   {
@@ -101,6 +100,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/admin/topics',
+    name: 'global.admin.topics',
     component: () => import(/* webpackChunkName: "admin" */ '../views/admin/Topics.vue')
   },
   {
@@ -143,6 +143,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/ProfileSites.vue'),
     props: true,
     name: 'mekanismi.profile.sites'
+  },
+  {
+    path: '/:catchAll(.*)',
+    component: () => import(/* webpackChunkName: "global" */ '../views/404.vue')
   }
 ]
 
@@ -154,6 +158,13 @@ const router = createRouter({
     return { top: 0 }
   }
 })
+
+const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites']
+const ADMIN_ROUTES = [
+  'global.admin',
+  'global.admin.topics',
+  'global.admin.editorTest'
+]
 
 router.beforeEach((to, from, next) => {
   // console.log(to, from)
@@ -168,6 +179,15 @@ router.beforeEach((to, from, next) => {
   // If we have a thread we need to pull from FB, we pull it to state here
   const threadid = Array.isArray(to.params.threadid) ? to.params.threadid[0] : to.params.threadid || ''
   subscribeThread(threadid)
+
+  // Logged in only routes!
+  const { isAnonymous, isAdmin, uid } = useAuthState()
+  if (AUTH_ROUTES.includes(to.name?.toString() || '') && (isAnonymous.value || !uid.value)) {
+    next({ name: 'Login' })
+  }
+  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !isAdmin.value) {
+    next({ name: 'Login' })
+  }
   // next!
   next()
 })

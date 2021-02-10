@@ -1,5 +1,5 @@
 <template>
-  <ViewHeader>STYLEBOOK</ViewHeader>
+  <AdminActions title="Styleguide" />
   <div class="contentGrid">
     <div id="Stylebook">
       <div class="section">
@@ -72,6 +72,18 @@
             />
           </Fab>
         </teleport>
+
+        <h2>
+          Actions
+        </h2>
+        <Action prepend="d6">
+          And some text
+        </Action>
+        <Action>The second</Action>
+        <Action append="avatar">
+          And Third
+        </Action>
+        <Action prepend="dd-logo" />
       </div>
       <div class="section">
         <h1>Cards</h1>
@@ -109,7 +121,7 @@
       <div class="section">
         <h1>Inputs</h1>
         <Toggle v-model="toggle" /> <span color="red">{{ toggle }}</span>
-        <Toggle label="aaa"/>
+        <Toggle label="aaa" />
         <hr>
         <Pill>Chip</Pill>
         <Pill action-icon="add">
@@ -136,7 +148,6 @@
 import { defineComponent, ref } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
 import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
 import TextField from '@/components/material/TextField.vue'
@@ -145,20 +156,23 @@ import { useSnack } from '@/composables/useSnack'
 import Fab from '@/components/material/Fab.vue'
 import Icon from '@/components/material/Icon.vue'
 import Toggle from '@/components/material/Toggle.vue'
+import Action from '@/components/material/Action.vue'
+import AdminActions from '@/components/admin/AdminActions.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
     MaterialButton,
     Loader,
-    ViewHeader,
     Avatar,
     MaterialCard,
     TextField,
     Pill,
     Fab,
     Icon,
-    Toggle
+    Toggle,
+    Action,
+    AdminActions
   },
   setup () {
     function sendSnack () {
