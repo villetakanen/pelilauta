@@ -82,10 +82,8 @@ function fetchProfile (uid:string|null) {
 async function createProfile (): Promise<void> {
   const db = firebase.firestore()
   const fbProfileRef = db.collection('profiles').doc(firebase.auth().currentUser?.uid)
-  fbProfileRef.get().then((doc) => {
-    if (doc.exists) {
-      throw new Error('Trying to create a profile to Firebase, when a profile already exists')
-    } else {
+  return fbProfileRef.get().then((doc) => {
+    if (!doc.exists) {
       return fbProfileRef.set({
         nick: firebase.auth().currentUser?.displayName,
         pelilautaLang: navigator.languages ? navigator.languages[0] : navigator.language,
