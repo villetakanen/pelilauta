@@ -9,7 +9,7 @@
         {{ $t('login.emailLoginDataInfoLink') }}
       </router-link>
     </p>
-    <TextField v-model="emailAdress" />
+    <TextField v-model="emailAdress" :disabled="sending"/>
     <Toolbar>
       <div class="spacer" />
       <MaterialButton :async-action="sendLinkToEmail">
@@ -35,6 +35,7 @@ export default defineComponent({
     const emailAdress = ref('')
     const verify = firebase.auth().isSignInWithEmailLink(window.location.href)
     const router = useRouter()
+    const sending = ref(false)
     const { pushSnack } = useSnack()
 
     const singInWithEmail = () => {
@@ -52,7 +53,7 @@ export default defineComponent({
           // You can check if the user is new or existing:
           // result.additionalUserInfo.isNewUser
           console.log(result)
-          router.push('/')
+          router.push('/profile')
         })
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
@@ -77,6 +78,8 @@ export default defineComponent({
 
     const sendLinkToEmail = async () => {
       if (verify) singInWithEmail()
+      pushSnack({ topic: 'Email link sent!' })
+      sending.value = true
       return firebase.auth().sendSignInLinkToEmail(emailAdress.value, actionCodeSettings)
         .then(() => {
           // The link was successfully sent. Inform the user.
@@ -86,11 +89,12 @@ export default defineComponent({
         })
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
+          sending.value = false
           console.log(error)
         })
     }
 
-    return { emailAdress, sendLinkToEmail, verify }
+    return { emailAdress, sendLinkToEmail, verify, sending }
   }
 })
 </script>
