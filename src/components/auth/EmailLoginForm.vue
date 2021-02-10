@@ -3,10 +3,19 @@
     <p v-if="verify">
       Please verify your email address.
     </p>
+    <p v-else>
+      {{ $t('login.emailLoginMessage') }}
+      <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
+        {{ $t('login.emailLoginDataInfoLink') }}
+      </router-link>
+    </p>
     <TextField v-model="emailAdress" />
-    <MaterialButton :async-action="sendLinkToEmail">
-      {{ $t('login.withEmail') }}
-    </MaterialButton>
+    <Toolbar>
+      <div class="spacer" />
+      <MaterialButton :async-action="sendLinkToEmail">
+        {{ $t('login.withEmail') }}
+      </MaterialButton>
+    </Toolbar>
   </MaterialCard>
 </template>
 
@@ -18,9 +27,10 @@ import TextField from '../material/TextField.vue'
 import firebase from 'firebase/app'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
+import Toolbar from '../layout/Toolbar.vue'
 
 export default defineComponent({
-  components: { MaterialCard, TextField, MaterialButton },
+  components: { MaterialCard, TextField, MaterialButton, Toolbar },
   setup () {
     const emailAdress = ref('')
     const verify = firebase.auth().isSignInWithEmailLink(window.location.href)
@@ -80,7 +90,7 @@ export default defineComponent({
         })
     }
 
-    return { emailAdress, sendLinkToEmail }
+    return { emailAdress, sendLinkToEmail, verify }
   }
 })
 </script>
