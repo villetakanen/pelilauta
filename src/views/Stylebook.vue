@@ -117,6 +117,9 @@
         <MaterialButton :action="sendSnack">
           Push a snack to the stack
         </MaterialButton>
+        <MaterialButton :action="sendSnacks">
+          Push 3 snacks to the stack
+        </MaterialButton>
       </div>
       <div class="section">
         <h1>Inputs</h1>
@@ -179,11 +182,17 @@ export default defineComponent({
       const { pushSnack } = useSnack()
       pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') }, actionMessage: 'alert?' })
     }
+    function sendSnacks () {
+      const { pushSnack } = useSnack()
+      pushSnack({ topic: 'a snack pushed' })
+      pushSnack({ topic: 'a second snack pushed' })
+      pushSnack({ topic: 'and finally, a third snack pushed' })
+    }
     async function asyncWaitDemo () {
       return new Promise((resolve) => { setTimeout(() => resolve('done'), 3000) })
     }
     const toggle = ref(true)
-    return { sendSnack, asyncWaitDemo, toggle }
+    return { sendSnack, asyncWaitDemo, toggle, sendSnacks }
   }
 })
 </script>

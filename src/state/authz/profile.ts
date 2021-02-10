@@ -82,16 +82,19 @@ function fetchProfile (uid:string|null) {
 }
 
 async function createProfile (): Promise<void> {
+  console.log('Initializing a new profile for the user')
   const db = firebase.firestore()
   const fbProfileRef = db.collection('profiles').doc(firebase.auth().currentUser?.uid)
   return fbProfileRef.get().then((doc) => {
-    if (!doc.exists) {
-      return fbProfileRef.set({
-        nick: firebase.auth().currentUser?.displayName,
-        pelilautaLang: navigator.languages ? navigator.languages[0] : navigator.language,
-        photoURL: firebase.auth().currentUser?.photoURL
-      })
+    const nick = firebase.auth().currentUser?.displayName || firebase.auth().currentUser?.email?.split('@')[0]
+    let pelilautaLang = navigator.languages ? navigator.languages[0] : navigator.language
+    let photoURL = firebase.auth().currentUser?.photoURL
+    if (doc.exists && !doc.data()?.nick) {
+      pelilautaLang = doc.data()?.pelilautaLang || pelilautaLang
+      photoURL = doc.data()?.photoURL || photoURL
+      return fbProfileRef.update({ nick: nick, pelilautaLang: pelilautaLang, photoURL: photoURL })
     }
+    if (!doc.exists) return fbProfileRef.set({ nick: nick, pelilautaLang: pelilautaLang, photoURL: photoURL })
   })
 }
 
