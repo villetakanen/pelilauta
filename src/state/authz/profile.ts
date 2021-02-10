@@ -46,9 +46,11 @@ interface seenThread {
 
 function parseSeen (seenArray:Array<seenThread>) {
   const newMap = new Map<string, firebase.firestore.Timestamp>()
-  seenArray.forEach((seenThread) => {
-    newMap.set(seenThread.threadid, seenThread.timestamp)
-  })
+  if (seenArray) {
+    seenArray.forEach((seenThread) => {
+      newMap.set(seenThread.threadid, seenThread.timestamp)
+    })
+  }
   return newMap
 }
 
