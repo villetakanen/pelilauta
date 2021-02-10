@@ -62,6 +62,7 @@ function fetchProfile (uid:string|null) {
     const db = firebase.firestore()
     const fbProfileRef = db.collection('profiles').doc(uid)
     unsubscribe = fbProfileRef.onSnapshot((snap) => {
+      console.log('profile updated, fetching new data')
       if (!snap.exists) {
         profileRef.value = { nick: '', tagline: '' }
         return
