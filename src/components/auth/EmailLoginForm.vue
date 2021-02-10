@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialCard from '../material/MaterialCard.vue'
 import TextField from '../material/TextField.vue'
@@ -41,6 +41,11 @@ export default defineComponent({
     const router = useRouter()
     const sending = ref(false)
     const { pushSnack } = useSnack()
+
+    onMounted(() => {
+      const { isAnonymous } = useAuthState()
+      if (!isAnonymous.value) router.push('/profile')
+    })
 
     const singInWithEmail = () => {
       if (!emailAdress.value) {
@@ -91,7 +96,6 @@ export default defineComponent({
 
     const sendLinkToEmail = async () => {
       if (verify) singInWithEmail()
-      pushSnack({ topic: 'Email link sent!' })
       sending.value = true
       return firebase.auth().sendSignInLinkToEmail(emailAdress.value, actionCodeSettings)
         .then(() => {
@@ -99,6 +103,8 @@ export default defineComponent({
           // Save the email locally so you don't need to ask the user for it again
           // if they open the link on the same device.
           window.localStorage.setItem('emailForSignIn', emailAdress.value)
+          pushSnack({ topic: 'Email link sent!' })
+          router.push('/')
         })
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
