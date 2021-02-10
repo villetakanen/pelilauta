@@ -70,6 +70,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
+      console.log(profile.value)
       if (!profile.value || !profile.value.nick) {
         pushSnack({ topic: 'Initializing a profile' })
         createProfile().then(() => {
