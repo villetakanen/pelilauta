@@ -9,7 +9,10 @@
         {{ $t('login.emailLoginDataInfoLink') }}
       </router-link>
     </p>
-    <TextField v-model="emailAdress" :disabled="sending"/>
+    <TextField
+      v-model="emailAdress"
+      :disabled="sending"
+    />
     <Toolbar>
       <div class="spacer" />
       <MaterialButton :async-action="sendLinkToEmail">
@@ -28,6 +31,7 @@ import firebase from 'firebase/app'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
 import Toolbar from '../layout/Toolbar.vue'
+import { useAuthState, useProfile } from '@/state/authz'
 
 export default defineComponent({
   components: { MaterialCard, TextField, MaterialButton, Toolbar },
@@ -52,8 +56,17 @@ export default defineComponent({
           // result.additionalUserInfo.profile == null
           // You can check if the user is new or existing:
           // result.additionalUserInfo.isNewUser
-          console.log(result)
-          router.push('/profile')
+          const { createProfile, profile } = useProfile()
+          if (!profile.value.uid) {
+            createProfile().then(() => {
+              console.log(result)
+              router.push('/profile')
+            }).catch((error: Error) => {
+              pushSnack({ topic: error.message })
+              console.log(error)
+              firebase.auth().signOut()
+            })
+          }
         })
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
