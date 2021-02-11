@@ -16,11 +16,7 @@
         </router-link>
       </div>
       <div class="spacer" />
-      <LoveAction />
-      <MaterialMenu
-        v-model="menu"
-        small
-      />
+      <LoveAReplyAction />
     </div>
     <div :innerHTML="content" />
   </div>
@@ -28,11 +24,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import LoveAction from '../app/LoveAction.vue'
-import MaterialMenu from '../material/MaterialMenu.vue'
+import LoveAReplyAction from './LoveAReplyAction.vue'
 
 export default defineComponent({
-  components: { LoveAction, MaterialMenu },
+  components: { LoveAReplyAction },
   props: {
     content: {
       type: String,
@@ -52,6 +47,10 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    replyid: {
+      type: String,
+      required: true
     }
   }
 })
