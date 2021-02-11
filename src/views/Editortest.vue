@@ -1,5 +1,5 @@
 <template>
-  <ViewHeader>EDITOR PLAYGROUND</ViewHeader>
+  <AdminActions :title="$t('admin.action.editorTest')" />
   <div class="contentGrid">
     <div class="test-container">
       <div class="test-box">
@@ -44,19 +44,19 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
 import { PostImage } from '@/lib/stream'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import AdminActions from '@/components/admin/AdminActions.vue'
 
 export default defineComponent({
   name: 'EditorTest',
   components: {
     MaterialCard,
-    ViewHeader,
     QuillEditor,
-    MaterialButton
+    MaterialButton,
+    AdminActions
   },
   setup () {
     const content = ref('')

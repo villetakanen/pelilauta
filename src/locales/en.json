@@ -22,10 +22,14 @@
     "update": "Update"
   },
   "admin": {
-    "title": "Admin"
+    "title": "Admin",
+    "action": {
+      "editorTest": "Editor sandbox",
+      "topics": "Topics"
+    }
   },
   "app": {
-    "title": "Pelilauta",
+    "title": "Pelilauta (login RFC 3)",
     "footnote": "A Community SPA. All text content (c) by the author(s).",
     "updatesAvailable": "A new version of this App is available. Please click update below to reload the App."
   },
@@ -33,12 +37,19 @@
     "title": "Post",
     "titleFieldPlaceholder": "Thread title"
   },
+  "errorPage":{
+    "notFound": "Broken route",
+    "message": "It seems that the route you used to reach this site is broken. You might find what you were looking for with search, or from the front page?"
+  },
   "language": {
       "label": "UI Language"
   },
   "login": {
     "title": "Login or Register",
-    "message": "Please login or register using the buttons below",
+    "withEmail": "Send me the link",
+    "emailLoginMessage": "You can register, and login by using a link sent to you with email. Please note we use Google Firebase Authentication, and do store your account details in Google Public Cloud (EU sites, where possible)",
+    "emailLoginDataInfoLink": "More info at the Wiki",
+    "message": "Alternatively, you can use single sign on with the services below",
     "withGoogleButton": "Google",
     "withFacebookButton": "Facebook"
   },
@@ -124,8 +135,7 @@
     }
   },
   "siteInfo": {
-    "title": "Pelilauta 2",
-    "text": "An experimental Single Page App for (RPG) community sites."
+    "title": "Pelilauta 2"
   },
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {

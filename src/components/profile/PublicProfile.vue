@@ -87,7 +87,7 @@ export default defineComponent({
     }
 
     const { authors } = useAuthors()
-    const uniqueNick = (value:any) => (value.toLowerCase() === profile.value.nick.toLowerCase() || !authors.value.find((target) => (target.nick.toLowerCase() === value.toLowerCase())))
+    const uniqueNick = (value:any) => (value.toLowerCase() === profile.value.nick?.toLowerCase() || !authors.value.find((target) => (target.nick?.toLowerCase() === value.toLowerCase())))
     const minLength = (value:any) => (value.length > 3)
     const maxLength = (value:any) => (value.length < 221)
 

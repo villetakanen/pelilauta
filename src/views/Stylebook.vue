@@ -1,5 +1,5 @@
 <template>
-  <ViewHeader>STYLEBOOK</ViewHeader>
+  <AdminActions title="Styleguide" />
   <div class="contentGrid">
     <div id="Stylebook">
       <div class="section">
@@ -117,6 +117,9 @@
         <MaterialButton :action="sendSnack">
           Push a snack to the stack
         </MaterialButton>
+        <MaterialButton :action="sendSnacks">
+          Push 3 snacks to the stack
+        </MaterialButton>
       </div>
       <div class="section">
         <h1>Inputs</h1>
@@ -148,7 +151,6 @@
 import { defineComponent, ref } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
 import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
 import TextField from '@/components/material/TextField.vue'
@@ -158,13 +160,13 @@ import Fab from '@/components/material/Fab.vue'
 import Icon from '@/components/material/Icon.vue'
 import Toggle from '@/components/material/Toggle.vue'
 import Action from '@/components/material/Action.vue'
+import AdminActions from '@/components/admin/AdminActions.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
     MaterialButton,
     Loader,
-    ViewHeader,
     Avatar,
     MaterialCard,
     TextField,
@@ -172,18 +174,25 @@ export default defineComponent({
     Fab,
     Icon,
     Toggle,
-    Action
+    Action,
+    AdminActions
   },
   setup () {
     function sendSnack () {
       const { pushSnack } = useSnack()
       pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') }, actionMessage: 'alert?' })
     }
+    function sendSnacks () {
+      const { pushSnack } = useSnack()
+      pushSnack({ topic: 'a snack pushed' })
+      pushSnack({ topic: 'a second snack pushed' })
+      pushSnack({ topic: 'and finally, a third snack pushed' })
+    }
     async function asyncWaitDemo () {
       return new Promise((resolve) => { setTimeout(() => resolve('done'), 3000) })
     }
     const toggle = ref(true)
-    return { sendSnack, asyncWaitDemo, toggle }
+    return { sendSnack, asyncWaitDemo, toggle, sendSnacks }
   }
 })
 </script>

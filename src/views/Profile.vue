@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from 'vue'
+import { ComputedRef, defineComponent, inject, onMounted, provide } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PrivateInfo from '@/components/profile/PrivateInfo.vue'
 import PublicProfile from '@/components/profile/PublicProfile.vue'
@@ -42,6 +42,7 @@ import { useProfile } from '@/state/authz'
 import ProfileCard from '@/components/profile/ProfileCard.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import Action from '@/components/material/Action.vue'
+import { useSnack } from '@/composables/useSnack'
 
 export default defineComponent({
   name: 'ProfileView',
@@ -57,7 +58,9 @@ export default defineComponent({
   },
   setup () {
     const { switchLang } = useAuthz()
-    const { profile, profileMeta } = useProfile()
+    const { profile, profileMeta, createProfile } = useProfile()
+    const mobile = inject('mobileViewPort') as ComputedRef<boolean>
+    const { pushSnack } = useSnack()
 
     provide('profileMeta', profileMeta)
     provide('publicProfile', profile)
@@ -66,7 +69,19 @@ export default defineComponent({
       switchLang(lang)
     }
 
-    return { profile, setLang }
+    onMounted(() => {
+      console.log(profile.value)
+      if (!profile.value || !profile.value.nick) {
+        pushSnack({ topic: 'Initializing a profile' })
+        createProfile().then(() => {
+          pushSnack({ topic: 'Profile initialized' })
+        }).catch((error: Error) => {
+          pushSnack({ topic: error.message })
+        })
+      }
+    })
+
+    return { profile, setLang, mobile }
   }
 })
 </script>

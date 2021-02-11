@@ -1,51 +1,53 @@
 <template>
-  <MaterialCard>
-    <h1>Topic admin</h1>
-    <table
-      class="dataTable"
-      aria-label="Stream metadata"
-    >
-      <tr>
-        <th scope="col">
-          #
-        </th>
-        <th scope="col">
-          Slug
-        </th>
-        <th scope="col">
-          Topic
-        </th>
-        <th scope="col">
-          Description
-        </th>
-        <th scope="col">
-          Icon
-        </th>
-        <th scope="col">
-          Count
-        </th>
-      </tr>
-      <tr
-        v-for="(topic, key) in topics"
-        :key="key"
+  <div>
+    <AdminActions :title="$t('admin.action.topics')" />
+    <MaterialCard style="margin-left: 8px; margin-right: 8px">
+      <table
+        class="dataTable"
+        aria-label="Stream metadata"
       >
-        <td style="width: 3em">
-          <TextField v-model="topic.order" />
-        </td>
-        <td><TextField v-model="topic.slug" /></td>
-        <td><TextField v-model="topic.name" /></td>
-        <td><TextField v-model="topic.description" /></td>
-        <td>{{ topic.icon }}</td>
-        <td>{{ topic.count }}</td>
-      </tr>
-    </table>
-    <div class="toolbar">
-      <div class="spacer" />
-      <MaterialButton :action="updateTopics">
-        Update
-      </MaterialButton>
-    </div>
-  </MaterialCard>
+        <tr>
+          <th scope="col">
+            #
+          </th>
+          <th scope="col">
+            Slug
+          </th>
+          <th scope="col">
+            Topic
+          </th>
+          <th scope="col">
+            Description
+          </th>
+          <th scope="col">
+            Icon
+          </th>
+          <th scope="col">
+            Count
+          </th>
+        </tr>
+        <tr
+          v-for="(topic, key) in topics"
+          :key="key"
+        >
+          <td style="width: 3em">
+            <TextField v-model="topic.order" />
+          </td>
+          <td><TextField v-model="topic.slug" /></td>
+          <td><TextField v-model="topic.name" /></td>
+          <td><TextField v-model="topic.description" /></td>
+          <td>{{ topic.icon }}</td>
+          <td>{{ topic.count }}</td>
+        </tr>
+      </table>
+      <div class="toolbar">
+        <div class="spacer" />
+        <MaterialButton :action="updateTopics">
+          Update
+        </MaterialButton>
+      </div>
+    </MaterialCard>
+  </div>
 </template>
 
 <script lang="ts">
@@ -56,13 +58,15 @@ import 'firebase/firestore'
 import { Stream } from '@/state/threads/threads'
 import TextField from '@/components/material/TextField.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
+import AdminActions from '@/components/admin/AdminActions.vue'
 
 export default defineComponent({
   name: 'About',
   components: {
     MaterialCard,
     TextField,
-    MaterialButton
+    MaterialButton,
+    AdminActions
   },
   setup () {
     const topics = ref(new Array<Stream>())

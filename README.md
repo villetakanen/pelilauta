@@ -23,6 +23,9 @@ An Open Source vue3+firebase project for a community site.
 
 ## Breaking changes
 
+7.0.0.
+- Supports email-link auth. No longer supports multiple SSO providers for multiple acccounts with the same email.
+
 6.0.0
 - No longer compatible with skald 2.x site members model, requires a migration update for owners/members to firebase data structures
 
