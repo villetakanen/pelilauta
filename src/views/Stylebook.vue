@@ -100,8 +100,10 @@
       <!-- inputs -->
       <div class="section">
         <h1>Inputs</h1>
+        <p>These inputs override default browser ones, with material style theming</p>
         <TextField label="<TextField>" />
         <MaterialCard>
+          <p>The inputs are expexted to behave well within a Card</p>
           <TextField label="TextField inside a Card" />
         </MaterialCard>
       </div>
