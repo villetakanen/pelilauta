@@ -25,7 +25,8 @@
     "title": "Admin",
     "action": {
       "editorTest": "Editor sandbox",
-      "topics": "Topics"
+      "topics": "Topics",
+      "stylebook": "Stylebook"
     }
   },
   "app": {

@@ -1,5 +1,5 @@
 <template>
-  <AdminActions title="Styleguide" />
+  <AdminActions title="Stylebook" />
   <div class="contentGrid">
     <div id="Stylebook">
       <div class="section">
@@ -76,15 +76,36 @@
         <h2>
           Actions
         </h2>
-        <Action prepend="d6">
+        <Action
+          to="stylebook"
+          prepend="d6"
+        >
           And some text
         </Action>
-        <Action>The second</Action>
-        <Action append="avatar">
+        <Action to="stylebook">
+          The second
+        </Action>
+        <Action
+          append="avatar"
+          to="stylebook"
+        >
           And Third
         </Action>
-        <Action prepend="dd-logo" />
+        <Action
+          prepend="dd-logo"
+          to="stylebook"
+        />
       </div>
+
+      <!-- inputs -->
+      <div class="section">
+        <h1>Inputs</h1>
+        <TextField label="<TextField>" />
+        <MaterialCard>
+          <TextField label="TextField inside a Card" />
+        </MaterialCard>
+      </div>
+
       <div class="section">
         <h1>Cards</h1>
         <div style="display:flex">
