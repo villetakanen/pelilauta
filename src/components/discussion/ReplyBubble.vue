@@ -16,20 +16,28 @@
         </router-link>
       </div>
       <div class="spacer" />
-      <LoveAReplyAction />
-      <ReplyActions />
+      <LoveAReplyAction style="margin-right: 8px" />
+      <MaterialMenu
+        v-model="menu"
+        small
+      />
     </div>
     <div :innerHTML="content" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { useAuthors } from '@/lib/authors'
+import { useDiscussion } from '@/lib/discussion'
+import { MenuItem } from '@/lib/meta'
+import { useAuthState } from '@/state/authz'
+import { computed, defineComponent } from 'vue'
+import { useI18n } from 'vue-i18n'
+import MaterialMenu from '../material/MaterialMenu.vue'
 import LoveAReplyAction from './LoveAReplyAction.vue'
-import ReplyActions from './ReplyActions.vue'
 
 export default defineComponent({
-  components: { LoveAReplyAction, ReplyActions },
+  components: { LoveAReplyAction, MaterialMenu },
   props: {
     content: {
       type: String,
@@ -40,10 +48,10 @@ export default defineComponent({
       required: false,
       default: ''
     },
-    authorNick: {
+    threadid: {
       type: String,
       required: false,
-      default: '...'
+      default: ''
     },
     fromMe: {
       type: Boolean,
@@ -54,6 +62,38 @@ export default defineComponent({
       type: String,
       required: true
     }
+  },
+  emits: ['quote'],
+  setup (props, context) {
+    const { deleteComment } = useDiscussion(props.threadid)
+    const { uid, isAdmin } = useAuthState()
+
+    const quoteComment = () => {
+      context.emit('quote', { content: props.content, author: authorNick.value })
+    }
+
+    const dropComment = async () => {
+      return deleteComment(props.replyid)
+    }
+
+    const i18n = useI18n()
+
+    const menu = computed(() => {
+      const arr = new Array<MenuItem>()
+      arr.push({ action: quoteComment, text: i18n.t('action.quote') })
+      if (uid.value === props.authorid) {
+        arr.push({ action: dropComment, text: 'Delete!' })
+        // arr.push({ action: editComment, text: 'Edit' })
+      } else if (isAdmin.value) {
+        arr.push({ action: dropComment, text: 'Delete!', admin: true })
+      }
+      return arr
+    })
+
+    const { authors } = useAuthors()
+    const authorNick = computed(() => (authors.value.find((a) => (a.uid === props.authorid))?.nick || 'α'))
+
+    return { menu, authorNick }
   }
 })
 </script>

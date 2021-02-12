@@ -1,11 +1,11 @@
 <template>
   <div class="discussion">
-    <Reply
-      v-for="(comment) in discussion"
-      :key="comment.replyid"
-      :author="comment.author"
-      :content="comment.content"
-      :commentid="comment.replyid"
+    <ReplyBubble
+      v-for="(reply) in discussion"
+      :key="reply.replyid"
+      :authorid="reply.author"
+      :content="reply.content"
+      :commentid="reply.replyid"
       :threadid="thread.id"
       @quote="addQuote"
     />
@@ -20,15 +20,15 @@
 import { defineComponent, ref, PropType, Ref } from 'vue'
 import { useDiscussion } from '@/lib/discussion'
 import ReplyForm from './ReplyForm.vue'
-import Reply from './Reply.vue'
 import { Thread } from '@/state/threads'
 import { Quote } from '@/utils/contentFormat'
+import ReplyBubble from './ReplyBubble.vue'
 
 export default defineComponent({
   name: 'Discussion',
   components: {
     ReplyForm,
-    Reply
+    ReplyBubble
   },
   props: {
     thread: {
