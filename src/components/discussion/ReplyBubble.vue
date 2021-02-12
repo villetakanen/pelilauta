@@ -17,6 +17,7 @@
       </div>
       <div class="spacer" />
       <LoveAReplyAction />
+      <ReplyActions />
     </div>
     <div :innerHTML="content" />
   </div>
@@ -25,9 +26,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import LoveAReplyAction from './LoveAReplyAction.vue'
+import ReplyActions from './ReplyActions.vue'
 
 export default defineComponent({
-  components: { LoveAReplyAction },
+  components: { LoveAReplyAction, ReplyActions },
   props: {
     content: {
       type: String,

@@ -1,8 +1,16 @@
 <template>
-  <div class="icon">
+  <div
+    class="icon"
+    :class="{ xSmall: xSmall }"
+  >
     <img
       v-if="name === 'add' && color !== 'dark'"
       src="@/assets/icons/add.svg"
+      alt="add"
+    >
+    <img
+      v-else-if="name === 'chevron-left'"
+      src="@/assets/icons/chevron-left.svg"
       alt="add"
     >
     <img
@@ -123,6 +131,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    xSmall: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   }
 })
@@ -141,6 +154,15 @@ export default defineComponent({
   img
     height: 32px
     width: 32px
+
+.xSmall
+  height: 20px
+  width: 20px
+  padding: 0
+  margin: 2px // 2 * 2 + 20 = 24 = em
+  img
+    height: 20px
+    width: 20px
 
 .material-pill
   .icon-container
