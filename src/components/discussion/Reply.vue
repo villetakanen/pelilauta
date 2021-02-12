@@ -171,31 +171,33 @@ export default defineComponent({
   @include TypeBody2()
   @include DontBreakOut()
   position: relative
-  background-color: rgba($color-fill-primary-dark, 0.17)
-  margin: 8px
+  background-color: rgba($color-fill-primary-dark, 0.22)
+  margin: 8px 4px
   padding: 16px
-  border-radius: 0 6px 6px 6px
+  border-radius: 0 8px 8px 8px
   // for triangle
-  margin-left: 24px
-  color: $color-font-medium
+  margin-left: 16px
+  color: rgba($color-fill-tertiary, 0.83)
   &.fromMe
     margin-left: 8px
-    margin-right: 24px
+    margin-right: 16px
     background-color: rgba($color-fill-primary, 0.22)
     //border: solid 1px rgba($color-fill-primary, 0.22)
     border-radius: 8px 0px 8px 8px
+  .message
+    margin-top:8px
 
 .author
   color: $color-fill-primary-dark
   font-weight: bold
 .fromMe .author
-  color: $color-font-medium
+  color: rgba($color-fill-tertiary, 0.83)
 
 .replyComment:after
   content: ""
   position: absolute
   border-style: solid
-  border-color: transparent rgba($color-fill-primary-dark, 0.17)
+  border-color: transparent rgba($color-fill-primary-dark, 0.22)
 
 .replyComment:not(.fromMe):after
   top: 0px // controls vertical position
