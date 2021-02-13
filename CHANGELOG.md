@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/villetakanen/pelilauta/compare/v7.0.0...v7.1.0) (2021-02-13)
+
+
+### Features
+
+* iconography vol 1 for updated comment view ([19776ef](https://github.com/villetakanen/pelilauta/commit/19776efb29e3efcdce66783317d00b13820b6326))
+* restyle of discussion comments complete ([3cbbee4](https://github.com/villetakanen/pelilauta/commit/3cbbee4688b77a2dbdb422b3e16429bf46e7fbe1))
+* restyled reply bubble skeleton ([12f7849](https://github.com/villetakanen/pelilauta/commit/12f78497bf363389c9206b7c905570afccd018b6))
+
+
+### Bug Fixes
+
+* contrast for comments ([ab4482c](https://github.com/villetakanen/pelilauta/commit/ab4482cf8d507e945c31252cca90fd913c7b2868))
+* reply bubble kebab to actions pt 1 ([c6a0bca](https://github.com/villetakanen/pelilauta/commit/c6a0bca230229a47a903c89a55fb413cb4c1486f))
+* stylebook ux ([0aa0221](https://github.com/villetakanen/pelilauta/commit/0aa0221b814f177889c92000979d65d455e95333))
+* text-field widht fixed ([0c34452](https://github.com/villetakanen/pelilauta/commit/0c344524aa18b615198d4f9285cbb11caaf190c8))
+
 ## [7.0.0](https://github.com/villetakanen/pelilauta/compare/v6.27.1...v7.0.0) (2021-02-11)
 
 
