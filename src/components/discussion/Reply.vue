@@ -5,12 +5,19 @@
     class="replyComment"
   >
     <!-- Top toolbar for the reply-card -->
-    <div class="reply-header toolbar">
+    <div class="toolbar">
       <div class="author">
         {{ reply.nick }}
       </div>
 
       <div class="spacer" />
+
+      <LoveAReplyAction
+        :count="reply.lovesCount"
+        :loves="loves"
+        :authorid="author"
+        :action="toggleLove"
+      />
 
       <MaterialMenu
         v-model="menu"
@@ -26,26 +33,6 @@
       <div
         :innerHTML="content"
       />
-      <div
-        class="toolbar"
-      >
-        <LoveAction
-          v-if="author !== uid"
-          :loved="loves"
-          :action="toggleLove"
-        />
-        <img
-          v-else
-          src="@/assets/icons/action-love-hollow.svg"
-          style="height:24px; opacity:0.5"
-          alt="Loves"
-        >
-        <div v-if="reply && reply.lovesCount && reply.lovesCount > 0">
-          &nbsp;{{ reply.lovesCount }}
-        </div>
-        <span v-else>&nbsp;0</span>
-        <div class="spacer" />
-      </div>
     </div>
     <div
       v-if="editReply"
@@ -73,7 +60,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref, watch } from 'vue'
-import LoveAction from '@/components/app/LoveAction.vue'
 import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
@@ -83,13 +69,14 @@ import { useDiscussion } from '@/lib/discussion'
 import { loveReply, unloveReply, updateReplyContent } from '@/state/discussions'
 import Editor from '@/components/quill/QuillEditor.vue'
 import { useI18n } from 'vue-i18n'
+import LoveAReplyAction from './LoveAReplyAction.vue'
 
 export default defineComponent({
   components: {
     MaterialMenu,
-    LoveAction,
     Editor,
-    MaterialButton
+    MaterialButton,
+    LoveAReplyAction
   },
   props: {
     content: {
@@ -184,31 +171,33 @@ export default defineComponent({
   @include TypeBody2()
   @include DontBreakOut()
   position: relative
-  background-color: rgba($color-fill-primary-dark, 0.33)
-  margin: 8px
+  background-color: rgba($color-fill-primary-dark, 0.22)
+  margin: 8px 4px
   padding: 16px
-  border-radius: 0 6px 6px 6px
+  border-radius: 0 8px 8px 8px
   // for triangle
-  margin-left: 24px
-  color: $color-font-medium
+  margin-left: 16px
+  color: rgba($color-fill-tertiary, 0.83)
   &.fromMe
     margin-left: 8px
-    margin-right: 24px
+    margin-right: 16px
     background-color: rgba($color-fill-primary, 0.22)
     //border: solid 1px rgba($color-fill-primary, 0.22)
     border-radius: 8px 0px 8px 8px
+  .message
+    margin-top:8px
 
 .author
   color: $color-fill-primary-dark
   font-weight: bold
 .fromMe .author
-  color: $color-font-medium
+  color: rgba($color-fill-tertiary, 0.83)
 
 .replyComment:after
   content: ""
   position: absolute
   border-style: solid
-  border-color: transparent rgba($color-fill-primary-dark, 0.33)
+  border-color: transparent rgba($color-fill-primary-dark, 0.22)
 
 .replyComment:not(.fromMe):after
   top: 0px // controls vertical position

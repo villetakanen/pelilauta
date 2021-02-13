@@ -52,8 +52,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
   },
   {
-    path: '/styleguide',
-    name: 'Stylebook',
+    path: '/stylebook',
+    name: 'stylebook',
     component: Stylebook,
     props: true
   },

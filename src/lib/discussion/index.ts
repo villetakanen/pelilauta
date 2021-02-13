@@ -58,7 +58,7 @@ function deleteComment (commentid:string) {
   })
 }
 
-function init (threadid: string) {
+function init (threadid?: string) {
   if (threadid && threadid !== parentPostid) {
     parentPostid = threadid
     discussionState.value = new Array<Reply>()
@@ -75,11 +75,11 @@ function init (threadid: string) {
     })
   }
 }
-export function useDiscussion (threadid: string): {
+export function useDiscussion (threadid?: string): {
   discussion: ComputedRef<Reply[]>
   addComment: (author: string, nick: string, comment: string) => Promise<void>
   deleteComment: (commentid: string) => void
 } {
-  init(threadid)
+  if (threadid) init(threadid)
   return { discussion, addComment, deleteComment }
 }
