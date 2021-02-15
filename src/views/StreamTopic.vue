@@ -1,40 +1,42 @@
 <template>
-  <div class="toolbar">
-    <ViewHeader>
-      {{ pageTitle.title }}
-    </ViewHeader>
-    <div class="spacer" />
-    <Fab
-      style="margin: 4px"
-      :action="newThread"
-      :text="$t('action.addThread')"
-    >
-      <img
-        src="@/assets/icons/add.svg"
-        alt="new post"
-      >
-    </Fab>
+  <div>
+    <Toolbar>
+      <h3>
+        {{ pageTitle.title }}
+      </h3>
+      <div class="contentGrid">
+        <ThreadList :topic="routeTopic" />
+      </div>
+      <EditorDialog v-model="showEditorDialog" />
+      <teleport to="#ScreenBottomFloatRight">
+        <Fab
+          v-if="!isAnonymous"
+          :action="newThread"
+          :text="$t('action.addThread')"
+        >
+          <img
+            src="@/assets/icons/add.svg"
+            alt="new post"
+          >
+        </Fab>
+      </teleport>
+    </toolbar>
   </div>
-  <div class="contentGrid">
-    <ThreadList :topic="routeTopic" />
-  </div>
-  <EditorDialog v-model="showEditorDialog" />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
 import Fab from '@/components/material/Fab.vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
 import { useMeta } from '@/lib/meta'
 import { useRoute } from 'vue-router'
 import EditorDialog from '@/components/app/EditorDialog.vue'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
-    ViewHeader,
     Fab,
     EditorDialog
   },
@@ -44,7 +46,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup (props) {
+  setup () {
     const { topics, showStreamActions } = useMeta()
 
     const route = useRoute()
@@ -65,7 +67,9 @@ export default defineComponent({
       showEditorDialog.value = true
     }
 
-    return { pageTitle, showStreamActions, routeTopic, newThread, showEditorDialog }
+    const { isAnonymous } = useAuthState()
+
+    return { pageTitle, showStreamActions, routeTopic, newThread, showEditorDialog, isAnonymous }
   }
 })
 </script>

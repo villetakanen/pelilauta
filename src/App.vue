@@ -99,8 +99,7 @@ export default defineComponent({
       updated (registration: ServiceWorkerRegistration) {
         console.log('New content is available; please refresh.')
         pushSnack({
-          topic: i18n.t('app.title'),
-          message: i18n.t('app.updatesAvailable'),
+          topic: i18n.t('app.updatesAvailable'),
           action: acceptUpdate,
           actionMessage: i18n.t('action.update')
         })

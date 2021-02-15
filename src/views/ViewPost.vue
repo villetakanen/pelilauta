@@ -61,6 +61,8 @@ import LoveAction from '@/components/app/LoveAction.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import ThreadCardHeader from '@/components/stream/ThreadCardHeader.vue'
+import firebase from 'firebase/app'
+import 'firebase/analytics'
 
 export default defineComponent({
   components: {
@@ -105,10 +107,10 @@ export default defineComponent({
     const { showStreamActions } = useMeta()
 
     onMounted(() => {
-      document.title = 'Pelilauta ' + thread.value?.data.title
       watch(thread, (post) => {
         document.title = 'Pelilauta ' + post.data.title
-      })
+        firebase.analytics().logEvent('openThread', { name: post.data.title, id: post.id })
+      }, { immediate: true })
     })
 
     return { author, deletePost, showStreamActions, thread, toggleLove, loves }

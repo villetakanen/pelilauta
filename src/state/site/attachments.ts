@@ -29,7 +29,7 @@ export function refreshStorage (siteid: string): void {
   // Note, this only fetches files on the site storage root
   listRef.listAll().then((res) => {
     res.items.forEach((itemRef) => {
-      console.log('itemRef:', itemRef)
+      // console.log('itemRef:', itemRef)
       // All the items under listRef.
       itemRef.getDownloadURL().then((url) => {
         cachedFilelisting.value.push([itemRef.name, url])
