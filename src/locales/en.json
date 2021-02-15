@@ -30,9 +30,9 @@
     }
   },
   "app": {
-    "title": "Pelilauta (login RFC 3)",
+    "title": "Pelilauta",
     "footnote": "A Community SPA. All text content (c) by the author(s).",
-    "updatesAvailable": "A new version of this App is available. Please click update below to reload the App."
+    "updatesAvailable": "A new version is available, please refresh"
   },
   "editorDialog": {
     "title": "Post",
