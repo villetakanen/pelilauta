@@ -1,6 +1,10 @@
 {
     "name": "Pelilauta",
     "short_name": "Pelilauta",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#00796bx",
+    "description": "A Tabletop Gaming Community App",
     "icons": [
       {
         "src": "./icons/android-chrome-192x192.png",
@@ -13,8 +17,5 @@
         "type": "image/png"
       }
     ],
-    "start_url": "./",
-    "display": "standalone",
-    "background_color": "#004689",
-    "theme_color": "#0271ba"
+    "theme_color": "#00796b"
   }
