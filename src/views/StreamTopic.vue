@@ -4,23 +4,23 @@
       <h3>
         {{ pageTitle.title }}
       </h3>
-      <div class="contentGrid">
-        <ThreadList :topic="routeTopic" />
-      </div>
-      <EditorDialog v-model="showEditorDialog" />
-      <teleport to="#ScreenBottomFloatRight">
-        <Fab
-          v-if="!isAnonymous"
-          :action="newThread"
-          :text="$t('action.addThread')"
+    </Toolbar>
+    <div class="contentGrid">
+      <ThreadList :topic="routeTopic" />
+    </div>
+    <EditorDialog v-model="showEditorDialog" />
+    <teleport to="#ScreenBottomFloatRight">
+      <Fab
+        v-if="!isAnonymous"
+        :action="newThread"
+        :text="$t('action.addThread')"
+      >
+        <img
+          src="@/assets/icons/add.svg"
+          alt="new post"
         >
-          <img
-            src="@/assets/icons/add.svg"
-            alt="new post"
-          >
-        </Fab>
-      </teleport>
-    </toolbar>
+      </Fab>
+    </teleport>
   </div>
 </template>
 
@@ -32,13 +32,15 @@ import { useMeta } from '@/lib/meta'
 import { useRoute } from 'vue-router'
 import EditorDialog from '@/components/app/EditorDialog.vue'
 import { useAuthState } from '@/state/authz'
+import Toolbar from '@/components/layout/Toolbar.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
     Fab,
-    EditorDialog
+    EditorDialog,
+    Toolbar
   },
   props: {
     topic: {
