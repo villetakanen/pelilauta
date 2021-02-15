@@ -43,7 +43,10 @@ export default defineComponent({
       const options = {
         theme: props.toolbar ? 'snow' : undefined,
         scrollingContainer: '#editor',
-        modules: {
+        modules: {}
+      }
+      if (props.toolbar) {
+        options.modules = {
           toolbar: toolbarOptions,
           table: false, // disable table module
           'better-table': {
