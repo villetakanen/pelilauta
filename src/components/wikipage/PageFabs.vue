@@ -14,7 +14,7 @@
       <Fab
         v-if="canEdit"
         color="secondary"
-        :action="_addPageDialog"
+        :action="addPageDialog"
         :text="$t('action.create')"
       >
         <Icon
@@ -58,17 +58,16 @@ export default defineComponent({
   setup () {
     const page = inject('page') as ComputedRef<Page>
     const dialog = ref(false)
-    function _addPageDialog () {
+    function addPageDialog () {
       dialog.value = true
     }
     const canEdit = computed(() => {
       const { hasAdmin } = useSite()
       const { uid } = useAuthState()
-      console.log(uid.value, hasAdmin(uid.value))
       return hasAdmin(uid.value)
     })
 
-    return { page, dialog, _addPageDialog, canEdit }
+    return { page, dialog, addPageDialog, canEdit }
   }
 })
 </script>
