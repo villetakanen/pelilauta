@@ -55,7 +55,7 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .materialTextfield
-  width: 100%
+  width: calc(100% - 8px)
   border-bottom: solid 1px $color-fill-primary-dark
   background-color: rgba($color-fill-primary-dark, 0.11)
   padding-left: 4px

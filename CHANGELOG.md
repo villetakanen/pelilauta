@@ -2,6 +2,97 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/villetakanen/pelilauta/compare/v6.27.1...v7.0.0) (2021-02-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* email-link auth supported. No longer supports multi-account
+with a single email adress
+
+### Features
+
+* email login functionality ([496881f](https://github.com/villetakanen/pelilauta/commit/496881fd613b3a2fbe5e43f8599c76c0cb8bfb58))
+* fetch profile while signing in ([8a684fe](https://github.com/villetakanen/pelilauta/commit/8a684fe68caa971b3853949ad6dd2bfec3222e7e))
+* force redirect if logged in ([af2e297](https://github.com/villetakanen/pelilauta/commit/af2e297392366129b49d3614bcf4fff5d25f4773))
+* login form updates ([2ac21a4](https://github.com/villetakanen/pelilauta/commit/2ac21a446bf7ec427ffd69db64a4fbe4cc6dd831))
+* new toolbar added to stylebook ([b208b9e](https://github.com/villetakanen/pelilauta/commit/b208b9e2b1fb37a228e4ca881c58761e23a34f95))
+* new toolbar added to the admin page ([c2d3ea6](https://github.com/villetakanen/pelilauta/commit/c2d3ea6e36af8d717ac29b780cafb54d6b2aef95))
+* new toolbar for topics page ([7ecd117](https://github.com/villetakanen/pelilauta/commit/7ecd117f533a127ec0c79df257b825b9e1a61d7e))
+* new toolbar to editor testing ([78de56f](https://github.com/villetakanen/pelilauta/commit/78de56f10608cb431bac421688f39feb4ebd3172))
+* profile initialization ([5393d7e](https://github.com/villetakanen/pelilauta/commit/5393d7e40c0b8bd0698a3976cc36e4f91089b459))
+* sending profile ([0e17f5b](https://github.com/villetakanen/pelilauta/commit/0e17f5b66cd9623df400f61796c7e209d900e23f))
+* ui texts for the email link login ([ce805b5](https://github.com/villetakanen/pelilauta/commit/ce805b58973c34384c03d04e26fc02ced358f3c0))
+* updated readme for 7.0.0 ([a033c73](https://github.com/villetakanen/pelilauta/commit/a033c73bce5b32c2b87e1f4b4d474de2f32cd4bf))
+
+
+### Bug Fixes
+
+* 404 styles on mobile ([7e62d69](https://github.com/villetakanen/pelilauta/commit/7e62d69dad10a972e56706be0430fe77d208c8c7))
+* create profile fixes older invalid accounts ([7f2bb7b](https://github.com/villetakanen/pelilauta/commit/7f2bb7b547bb7e52c34df3c66a5b817787191713))
+* duplicate nick verification crashes on nulls ([37d274a](https://github.com/villetakanen/pelilauta/commit/37d274a42a53ef127aeef160cb966d990dc7fa6d))
+* no longer crashes on empty seenarray ([1b24e9c](https://github.com/villetakanen/pelilauta/commit/1b24e9c00cc5c3fcb23f5081cee3dc2a5f58e330))
+* profile creation state machine ([62cf3f5](https://github.com/villetakanen/pelilauta/commit/62cf3f5ef9974f96cb9ce5758ba28089fbad0ce2))
+* removed extraneous tools from admin ([099e4f9](https://github.com/villetakanen/pelilauta/commit/099e4f9aa121f9e6eebe294fb537edfdc5c57e47))
+
+### [6.27.1](https://github.com/villetakanen/pelilauta/compare/v6.27.0...v6.27.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* bottom float container pointer in mobile ([6a7cdec](https://github.com/villetakanen/pelilauta/commit/6a7cdeca9f195dd556f90f486bf6dae798b5785e))
+
+## [6.27.0](https://github.com/villetakanen/pelilauta/compare/v6.26.1...v6.27.0) (2021-02-07)
+
+
+### Features
+
+* 404 page ([f3398a1](https://github.com/villetakanen/pelilauta/commit/f3398a10cfe79d1ce51a4004219746f5190c8239))
+* 404 page prototype ([f082995](https://github.com/villetakanen/pelilauta/commit/f0829953a04785f783539dd2b54abc12502fff45))
+* logged in route hiding for personal pages ([5dae77a](https://github.com/villetakanen/pelilauta/commit/5dae77a704be846a32d8bc0878583ff7e3b08c91))
+
+
+### Bug Fixes
+
+* removed pointer-events from bottomfloats ([5ec66ca](https://github.com/villetakanen/pelilauta/commit/5ec66caaac5052ce483cedbe866fa8aecc899d8b))
+* route guards for admin views ([6e9a8b2](https://github.com/villetakanen/pelilauta/commit/6e9a8b29d03f260a173c368cfb36ec2ad493a075))
+* ux top spacing fix ([878fbbb](https://github.com/villetakanen/pelilauta/commit/878fbbb184b23ccbdd3b4bff6e87257861a4f279))
+
+### [6.26.1](https://github.com/villetakanen/pelilauta/compare/v6.26.0...v6.26.1) (2021-02-05)
+
+
+### Bug Fixes
+
+* action css fixes ([a9ba4ae](https://github.com/villetakanen/pelilauta/commit/a9ba4ae7b25430cd250cf55123b09231114ce88c))
+* removed extraneous css ([bcca11d](https://github.com/villetakanen/pelilauta/commit/bcca11da502519541ae2ee2f594f3304018fa7bd))
+
+## [6.26.0](https://github.com/villetakanen/pelilauta/compare/v6.25.0...v6.26.0) (2021-02-05)
+
+
+### Features
+
+* cache firebase images ([8c120bc](https://github.com/villetakanen/pelilauta/commit/8c120bc4802cde533c25b6165ae6af7a0d6ef9d9))
+
+
+### Bug Fixes
+
+* hide logged in actions from anonymous users ([e4330c8](https://github.com/villetakanen/pelilauta/commit/e4330c8ae542af95b3ce36a67fb97113b4fa1207))
+* mobile view actions ([9c8d52c](https://github.com/villetakanen/pelilauta/commit/9c8d52c7d2b1a6fdfad8603d6beec3adc79de608))
+* moved login fab to the bottom container ([ce5e693](https://github.com/villetakanen/pelilauta/commit/ce5e6932d392c7664d40f9157219ccd04cccb251))
+* removed double fetching of sitedata ([f49c998](https://github.com/villetakanen/pelilauta/commit/f49c99841bc6fd8adeec202425a9714bd070ec83))
+
+## [6.25.0](https://github.com/villetakanen/pelilauta/compare/v6.24.1...v6.25.0) (2021-02-04)
+
+
+### Features
+
+* my projects view ([f1fae5d](https://github.com/villetakanen/pelilauta/commit/f1fae5d64862939b3000022afc31c69eeb3e8c7c))
+
+
+### Bug Fixes
+
+* my games ux polish ([7b981ea](https://github.com/villetakanen/pelilauta/commit/7b981ea0d308a9a48d0eb9ad3bebe8b9e0b2ef06))
+
 ### [6.24.1](https://github.com/villetakanen/pelilauta/compare/v6.24.0...v6.24.1) (2021-02-04)
 
 

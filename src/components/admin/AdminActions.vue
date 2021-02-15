@@ -1,7 +1,13 @@
 <template>
   <Toolbar>
     <h3>{{ title }}</h3>
-    <div class="spacer" />
+    <div class="spacer" /><Action
+      v-if="isAdmin"
+      to="stylebook"
+      prepend="d20"
+    >
+      {{ $t('admin.action.stylebook') }}
+    </Action>
     <Action
       v-if="isAdmin"
       to="global.admin.editorTest"
