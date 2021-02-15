@@ -98,7 +98,7 @@ export default defineComponent({
       // allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
       allNavItems.push({ key: 'editorTest', to: '/editortest', admin: true, icon: 'admin' })
       allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'player' })
-      allNavItems.push({ key: 'about', to: '/about', icon: 'd12' })
+      allNavItems.push({ key: 'about', to: '/mekanismi/view/mekanismi/pelilauta-about', icon: 'd12' })
       return allNavItems.filter((val) => (
         isAdmin.value ||
         (isAuthz.value && val.authz) ||
