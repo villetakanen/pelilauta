@@ -9,6 +9,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, watch } from 'vue'
 import Quill from 'quill'
+import QuillBetterTable from 'quill-better-table'
 
 export default defineComponent({
   name: 'QuillEditor',
@@ -19,10 +20,49 @@ export default defineComponent({
   emits: ['update:modelValue', 'new-images'],
   setup (props, context) {
     onMounted(() => {
+      const toolbarOptions = {
+        container: [
+          { header: [1, 2, 3, 4, false] },
+          'bold', 'italic', 'underline', 'strike', // toggled buttons
+          'blockquote', 'code-block',
+          'link',
+          { list: 'ordered' },
+          { list: 'bullet' },
+          'align',
+          'table',
+          'image',
+          'clean'
+        ],
+        handlers: {
+          table: function () {
+            const tableModule = quill.getModule('better-table')
+            tableModule.insertTable(3, 3)
+          }
+        }
+      }
       const options = {
         theme: props.toolbar ? 'snow' : undefined,
-        scrollingContainer: '#editor'
+        scrollingContainer: '#editor',
+        modules: {
+          toolbar: toolbarOptions,
+          table: false, // disable table module
+          'better-table': {
+            operationMenu: {
+              items: {
+                unmergeCells: {
+                  text: 'Another unmerge cells name'
+                }
+              }
+            }
+          },
+          keyboard: {
+            bindings: QuillBetterTable.keyboardBindings
+          }
+        }
       }
+      Quill.register({
+        'modules/better-table': QuillBetterTable
+      }, true)
       const quill = new Quill('#editor', options)
       quill.on('text-change', () => {
         context.emit('update:modelValue', quill.root.innerHTML)
