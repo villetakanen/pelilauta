@@ -40,8 +40,8 @@
 import { defineComponent, ref, PropType, onMounted, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import Editor from '@/components/quill/QuillEditor.vue'
-import { useDiscussion } from '@/lib/discussion'
-import { useAuthState, useProfile } from '@/state/authz'
+import { addReply } from '@/state/discussion'
+import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 
 export default defineComponent({
@@ -66,10 +66,8 @@ export default defineComponent({
     const reply = ref('')
 
     const send = async () => {
-      const { addComment } = useDiscussion(props.threadid)
-      const { profile } = useProfile()
       const { formattedContent } = extractLinks(reply.value)
-      return addComment(uid.value, profile.value.nick, formattedContent).then(() => {
+      return addReply(props.threadid, uid.value, formattedContent).then(() => {
         console.log('got here?')
         reply.value = ''
       })
