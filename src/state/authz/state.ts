@@ -2,7 +2,7 @@ import { computed, ref, Ref, ComputedRef, WritableComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import { useAuthz } from '../../lib/authz'
 
 const anonymousSession = ref(false)
@@ -21,8 +21,8 @@ const isAdmin = computed(() => {
   if (isAnonymous.value) return false
   // Admins are listed on meta-data, lets see if our uid is in
   // the admin table
-  const { isAdmin: inAdmins } = useMeta()
-  return inAdmins(uid.value)
+  const { admins } = useMeta()
+  return admins.value.includes(uid.value)
 })
 
 const authUid = ref('')

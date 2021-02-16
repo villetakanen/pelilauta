@@ -2,7 +2,7 @@ import { computed, ComputedRef, Ref, ref, watch } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import { useAuthState } from './state'
 
 export interface PublicProfile {
@@ -21,8 +21,8 @@ export interface ProfileMeta {
 
 const isAdmin: ComputedRef<boolean> = computed(() => {
   const { uid } = useAuthState()
-  const { isAdmin } = useMeta()
-  return isAdmin(uid.value)
+  const { admins } = useMeta()
+  return admins.value.includes(uid.value)
 })
 
 const profileRef:Ref<PublicProfile> = ref({
