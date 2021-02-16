@@ -13,7 +13,7 @@ export interface PostData {
   images?: PostImage[];
 }
 
-export interface Post {
+/* export interface Post {
     // Identity
     threadid: string;
     author: string;
@@ -26,15 +26,15 @@ export interface Post {
     lovedCount: number;
     // Payload
     data: PostData
-}
+} */
 
-export interface Profile {
+/* export interface Profile {
   uid?: string;
   nick: string;
   photoURL: string;
-}
+} */
 
-export interface Reply {
+/* export interface Reply {
   content: string;
   replyid: string;
   nick: string;
@@ -43,7 +43,7 @@ export interface Reply {
   created: firebase.firestore.Timestamp;
   lovesCount?: number;
   lovers?: Array<string>;
-}
+} */
 
 export interface MenuItem {
   text: string;

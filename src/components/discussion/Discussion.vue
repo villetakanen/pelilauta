@@ -1,12 +1,10 @@
 <template>
   <div class="discussion">
     <Reply
-      v-for="(comment) in discussion"
-      :key="comment.replyid"
-      :author="comment.author"
-      :content="comment.content"
-      :commentid="comment.replyid"
+      v-for="(reply) in replies"
+      :key="reply[0]"
       :threadid="thread.id"
+      :reply="reply[1]"
       @quote="addQuote"
     />
     <ReplyForm
@@ -18,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, PropType, Ref } from 'vue'
-import { useDiscussion } from '@/lib/discussion'
+import { subscribeToReplies, useReplies } from '@/state/discussion'
 import ReplyForm from './ReplyForm.vue'
 import Reply from './Reply.vue'
 import { Thread } from '@/state/threads'
@@ -37,7 +35,9 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { discussion } = useDiscussion(props.thread.id)
+    subscribeToReplies(props.thread.id)
+    const { replies } = useReplies()
+    console.log(replies)
 
     const quote:Ref<Quote|null> = ref(null)
 
@@ -45,7 +45,7 @@ export default defineComponent({
       quote.value = q
     }
 
-    return { discussion, addQuote, quote }
+    return { replies, addQuote, quote }
   }
 })
 </script>

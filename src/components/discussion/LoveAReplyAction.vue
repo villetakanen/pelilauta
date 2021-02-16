@@ -12,7 +12,7 @@
     <img
       v-if="uid !== authorid && (loves || buttonClasses.submitting)"
       src="@/assets/icons/love/loveIcon.svg"
-      :class="{loved: loved}"
+      :class="{loved: loves}"
       class="loveImage"
     >
   </div>

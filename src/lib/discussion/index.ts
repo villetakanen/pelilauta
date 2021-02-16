@@ -1,5 +1,5 @@
 
-import { computed, ref, ComputedRef } from 'vue'
+/* import { computed, ref, ComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Reply } from '../stream'
@@ -28,7 +28,7 @@ function upsertComment (commentid: string, data: Reply) {
  * @param author uid of the autor
  * @param nick current nick for the author, @deprecated
  * @param comment the comment payload as HTML
- */
+ * /
 async function addComment (author: string, nick: string, comment: string): Promise<void> {
   firebase.analytics().logEvent('addComment', { author: author, comment: comment })
   const parentRef = firebase.firestore().collection('stream').doc(parentPostid)
@@ -82,4 +82,4 @@ export function useDiscussion (threadid?: string): {
 } {
   if (threadid) init(threadid)
   return { discussion, addComment, deleteComment }
-}
+} */

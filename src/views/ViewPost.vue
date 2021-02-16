@@ -32,9 +32,10 @@
           </transition>
         </div>
 
-        <PhotoBox :photos="thread.data.images" />
+        <PhotoBox :photos="thread.data.images || []" />
         <div style="display:flex">
           <LoveAction
+            :disabled="isAnonymous"
             :loved="loves"
             :action="toggleLove"
           />
@@ -56,7 +57,6 @@ import { loveThread, unloveThread, deleteThread, useThreads } from '@/state/thre
 import { useAuthors } from '@/lib/authors'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import { useRouter } from 'vue-router'
-import { useMeta } from '@/lib/meta'
 import LoveAction from '@/components/app/LoveAction.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthState, useProfile } from '@/state/authz'
@@ -81,7 +81,7 @@ export default defineComponent({
   setup (props) {
     const router = useRouter()
     const { profileMeta } = useProfile()
-    const { uid } = useAuthState()
+    const { uid, isAnonymous } = useAuthState()
 
     const { thread } = useThreads()
 
@@ -104,8 +104,6 @@ export default defineComponent({
       else return loveThread(uid.value, props.threadid)
     }
 
-    const { showStreamActions } = useMeta()
-
     onMounted(() => {
       watch(thread, (post) => {
         document.title = 'Pelilauta ' + post.data.title
@@ -113,7 +111,7 @@ export default defineComponent({
       }, { immediate: true })
     })
 
-    return { author, deletePost, showStreamActions, thread, toggleLove, loves }
+    return { author, deletePost, isAnonymous, thread, toggleLove, loves }
   }
 })
 </script>
