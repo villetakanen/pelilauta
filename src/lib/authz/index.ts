@@ -19,21 +19,6 @@ const missingProfile = computed(() => (state.value.missingProfile))
 const lang = computed(() => (state.value.lang))
 let unsubscribe = () => {}
 
-interface seenThread {
-  threadid: string,
-  timestamp: firebase.firestore.Timestamp
-}
-
-/*
-function parseSeen (seenArray:Array<seenThread>) {
-  const newMap = new Map<string, firebase.firestore.Timestamp>()
-  seenArray.forEach((seenThread) => {
-    newMap.set(seenThread.threadid, seenThread.timestamp)
-  })
-  profile.value.seenThreads = newMap
-}
-*/
-
 function subToProfile (uid: string): void {
   const db = firebase.firestore()
   const profileRef = db.collection('profiles').doc(uid)
@@ -74,16 +59,6 @@ function switchLang (lang: string) {
     pelilautaLang: lang
   })
 }
-
-/* function stampSeen (id: string, flowTime: firebase.firestore.Timestamp) {
-  const db = firebase.firestore()
-  const profileRef = db.collection('profiles').doc(uid.value)
-  profileRef.get().then((doc) => {
-    const arr = doc.data()?.seenThreads ? doc.data()?.seenThreads : new Array<seenThread>()
-    arr.push({ threadid: id, timestamp: flowTime })
-    profileRef.update({ seenThreads: arr })
-  })
-} */
 
 export function useAuthz () {
   return { onAuthStateChanged, isAuthz, uid, missingProfile, lang, switchLang }
