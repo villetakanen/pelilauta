@@ -18,7 +18,7 @@
 import { defineComponent, inject, computed, ComputedRef } from 'vue'
 import { Page, Site } from '@/state/site'
 import { copyUrl } from '@/utils/window'
-import { MenuItem } from '@/lib/meta'
+import { MenuItem } from '@/utils/uiInterfaces'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 
 export default defineComponent({

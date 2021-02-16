@@ -10,14 +10,6 @@ export interface Topic {
   icon?: string;
 }
 
-export interface MenuItem {
-  text: string;
-  to?: string;
-  action?: () => void
-  icon?: string;
-  admin?: boolean;
-}
-
 interface MetaState {
   admins: string[];
   topics: Topic[];
@@ -41,13 +33,6 @@ const isFrozen = (uid: string): boolean => {
   return state.value.frozen.includes(uid)
 }
 
-const showStreamActions = computed((): boolean => {
-  const { uid } = useAuthz()
-  return !isFrozen(uid.value)
-})
-
-const topics = computed((): Topic[] => (state.value.topics))
-
 let init = false
 function _init () {
   if (init) return
@@ -68,9 +53,7 @@ function _init () {
 export function useMeta (): {
   isAdmin: (uid: string) => boolean;
   isFrozen: (uid: string) => boolean;
-  topics: ComputedRef<Topic[]>;
-  showStreamActions: ComputedRef<boolean>;
   } {
   _init()
-  return { isAdmin, isFrozen, topics, showStreamActions }
+  return { isAdmin, isFrozen }
 }

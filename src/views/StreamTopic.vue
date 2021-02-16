@@ -1,8 +1,8 @@
 <template>
   <div>
     <Toolbar>
-      <h3>
-        {{ pageTitle.title }}
+      <h3 v-if="stream">
+        {{ stream.name }}
       </h3>
     </Toolbar>
     <div class="contentGrid">
@@ -28,7 +28,7 @@
 import { computed, defineComponent, ref } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
 import Fab from '@/components/material/Fab.vue'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import { useRoute } from 'vue-router'
 import EditorDialog from '@/components/app/EditorDialog.vue'
 import { useAuthState } from '@/state/authz'
@@ -49,18 +49,15 @@ export default defineComponent({
     }
   },
   setup () {
-    const { topics, showStreamActions } = useMeta()
+    const { streams } = useMeta()
 
     const route = useRoute()
     const routeTopic = computed(() => {
       return Array.isArray(route.params.topic) ? route.params.topic[0] : route.params.topic
     })
 
-    const pageTitle = computed(() => {
-      if (!topics.value || topics.value.length < 1) return { title: routeTopic.value }
-      const t = topics.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
-      if (t) return t
-      return { title: routeTopic.value }
+    const stream = computed(() => {
+      return streams.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
     })
 
     const showEditorDialog = ref(false)
@@ -71,7 +68,7 @@ export default defineComponent({
 
     const { isAnonymous } = useAuthState()
 
-    return { pageTitle, showStreamActions, routeTopic, newThread, showEditorDialog, isAnonymous }
+    return { stream, routeTopic, newThread, showEditorDialog, isAnonymous }
   }
 })
 </script>
