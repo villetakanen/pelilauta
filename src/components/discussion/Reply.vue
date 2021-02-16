@@ -63,7 +63,7 @@ import { defineComponent, computed, ref, PropType } from 'vue'
 import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import { MenuItem } from '@/lib/stream'
 import { loveReply, unloveReply, updateReplyContent, subscribeToReplies, deleteReply } from '@/state/discussion'
 import Editor from '@/components/quill/QuillEditor.vue'
@@ -71,6 +71,7 @@ import { useI18n } from 'vue-i18n'
 import LoveAReplyAction from './LoveAReplyAction.vue'
 import { Reply } from '@/utils/firestoreInterfaces'
 import { useAuthors } from '@/lib/authors'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   components: {
@@ -92,7 +93,7 @@ export default defineComponent({
   emits: ['quote'],
   setup (props, context) {
     const { uid, isAuthz } = useAuthz()
-    const { isAdmin } = useMeta()
+    const { isAdmin } = useAuthState()
     const { authors } = useAuthors()
 
     const nick = computed(() => (authors.value.find((a) => (a.uid === props.reply.author))?.nick))
@@ -138,7 +139,7 @@ export default defineComponent({
       if (uid.value === props.reply?.author) {
         arr.push({ action: dropComment, text: 'Delete!' })
         arr.push({ action: editComment, text: 'Edit' })
-      } else if (isAdmin(uid.value)) {
+      } else if (isAdmin.value) {
         arr.push({ action: dropComment, text: 'Delete!', admin: true })
       }
       return arr
