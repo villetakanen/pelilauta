@@ -1,7 +1,6 @@
-import { ref, computed, ComputedRef } from 'vue'
+import { ref } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { useAuthz } from '../authz'
 
 export interface Topic {
   slug: string;
@@ -52,8 +51,7 @@ function _init () {
 
 export function useMeta (): {
   isAdmin: (uid: string) => boolean;
-  isFrozen: (uid: string) => boolean;
   } {
   _init()
-  return { isAdmin, isFrozen }
+  return { isAdmin }
 }
