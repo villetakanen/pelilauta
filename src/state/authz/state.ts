@@ -5,12 +5,8 @@ import 'firebase/analytics'
 import { useMeta } from '@/state/meta'
 import { useAuthz } from '../../lib/authz'
 
-const anonymousSession = ref(false)
-
-const isAnonymous = computed(() => {
-  const { isAuthz } = useAuthz()
-  return isAuthz.value === false && anonymousSession.value
-})
+const anonymousSession = ref(true)
+const isAnonymous = computed(() => (anonymousSession.value))
 
 const isAuthz = computed(() => {
   const { isAuthz } = useAuthz()
@@ -42,7 +38,7 @@ function flushAuth () {
 }
 
 function loginAs (user: firebase.User) {
-  anonymousSession.value = false
+  anonymousSession.value = user.isAnonymous
   // ./profile.ts watches this change!
   authUid.value = user.uid
 }
