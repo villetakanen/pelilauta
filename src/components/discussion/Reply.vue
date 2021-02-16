@@ -7,7 +7,9 @@
     <!-- Top toolbar for the reply-card -->
     <div class="toolbar">
       <div class="author">
-        {{ nick }}
+        <router-link :to="{ name: 'profile.public', params: { uid: reply.author }}">
+          {{ nick }}
+        </router-link>
       </div>
 
       <div class="spacer" />
