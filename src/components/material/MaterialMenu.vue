@@ -34,7 +34,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { MenuItem } from '@/lib/stream'
+import { MenuItem } from '@/utils/uiInterfaces'
 
 export default defineComponent({
   props: {

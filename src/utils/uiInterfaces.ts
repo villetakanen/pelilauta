@@ -1,7 +1,11 @@
 export interface MenuItem {
-  text: string;
-  to?: string;
+  text: string
+  to?: string
   action?: () => void
-  icon?: string;
-  admin?: boolean;
+  icon?: string
+  admin?: boolean
+}
+
+export interface PostImage {
+  url: string
 }

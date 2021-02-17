@@ -34,11 +34,9 @@ import { Thread, deleteThread } from '@/state/threads'
 import { useMeta } from '@/state/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuthState } from '@/state/authz'
-// import { useEditorDialog } from '@/lib/editor'
 import EditorDialog from '../app/EditorDialog.vue'
-// import MaterialCard from '@/components/material/MaterialCard.vue'
 import { getSeconds } from '@/utils/firebaseTools'
-import { MenuItem } from '@/lib/stream'
+import { MenuItem } from '@/utils/uiInterfaces'
 
 export default defineComponent({
   name: 'ThreadCardHeader',
