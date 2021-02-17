@@ -15,7 +15,7 @@ workbox.precaching.precacheAndRoute(precache)
 self.addEventListener('message', (event) => {
     if (event.data && event.data === 'skipWaiting') {
       console.log(`Workbox is done with waiting 😬`)
-      self.skipWaiting()
+      return self.skipWaiting()
     }
   })
 
