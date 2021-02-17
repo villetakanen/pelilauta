@@ -53,14 +53,7 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useMeta } from '@/state/meta'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { useAuthz } from '@/lib/authz'
-
-interface UserListEntity {
-  uid: string;
-  nick: string;
-  isMe: boolean;
-  photoURL: string;
-}
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'EditPost',
@@ -84,7 +77,7 @@ export default defineComponent({
   },
   setup (props) {
     const { frozen, admins } = useMeta()
-    const { uid: activeUid } = useAuthz()
+    const { uid: activeUid } = useAuthState()
     const isMe = computed(() => (props.uid === activeUid.value))
     const isFrozen = computed(() => (frozen.value.includes(props.uid)))
     const isAdmin = computed(() => (admins.value.includes(props.uid)))

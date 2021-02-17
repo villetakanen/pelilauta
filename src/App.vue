@@ -15,9 +15,6 @@
       </main>
     </div>
   </div>
-  <teleport to="body">
-    <MaterialDialog :visible="missingProfile" />
-  </teleport>
   <BottomFloatContainer>
     <template #left>
       <SnackBar />
@@ -30,21 +27,19 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
-import MaterialDialog from './components/material/MaterialDialog.vue'
 import SideNav from '@/components/app/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
 import MainTailer from '@/components/app/MainTailer.vue'
-import { useAuthz } from './lib/authz'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
 import { register } from 'register-service-worker'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
+import { useAuthState, useProfile } from './state/authz'
 
 export default defineComponent({
   components: {
-    MaterialDialog,
     SideNav,
     AppBar,
     MainTailer,
@@ -53,12 +48,15 @@ export default defineComponent({
     // MekanismiBar
   },
   setup () {
-    const { missingProfile, lang, isAuthz } = useAuthz()
+    const { isAnonymous } = useAuthState()
+    const { profileMeta } = useProfile()
     const i18n = useI18n()
     const route = useRoute()
     onMounted(() => {
-      i18n.locale.value = lang.value
-      watch(lang, (l) => { i18n.locale.value = l })
+      watch(
+        profileMeta, (l) => { i18n.locale.value = l.pelilautaLang || 'en' },
+        { immediate: true }
+      )
     })
 
     const { pushSnack } = useSnack()
@@ -131,7 +129,7 @@ export default defineComponent({
     const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
     provide('appMode', mekanismi)
 
-    return { isAuthz, missingProfile, ...useI18n(), route, navModel, mekanismi }
+    return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta }
   }
 })
 </script>

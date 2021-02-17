@@ -62,7 +62,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref, PropType } from 'vue'
-import { useAuthz } from '@/lib/authz'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { MenuItem } from '@/utils/uiInterfaces'
@@ -71,7 +70,7 @@ import Editor from '@/components/quill/QuillEditor.vue'
 import { useI18n } from 'vue-i18n'
 import LoveAReplyAction from './LoveAReplyAction.vue'
 import { Reply } from '@/utils/firestoreInterfaces'
-import { useAuthors } from '@/lib/authors'
+import { useAuthors } from '@/state/authors'
 import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
@@ -93,7 +92,7 @@ export default defineComponent({
   },
   emits: ['quote'],
   setup (props, context) {
-    const { uid, isAuthz } = useAuthz()
+    const { uid, isAnonymous } = useAuthState()
     const { isAdmin } = useAuthState()
     const { authors } = useAuthors()
 
@@ -120,7 +119,7 @@ export default defineComponent({
     })
 
     async function toggleLove () {
-      if (!isAuthz) return
+      if (isAnonymous) return
       if (loves.value) return unloveReply(uid.value, props.threadid, props.reply.replyid)
       else return loveReply(uid.value, props.threadid, props.reply.replyid)
     }

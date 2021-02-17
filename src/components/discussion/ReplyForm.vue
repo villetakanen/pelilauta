@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-if="isAuthz"
+      v-if="!isAnonymous"
       class="reply-form"
     >
       <Editor
@@ -22,7 +22,7 @@
       </MaterialButton>
     </div>
     <div
-      v-if="!isAuthz"
+      v-if="isAnonymous"
       style="text-align: center;padding: 16px"
     >
       {{ $t('global.messages.pleaseLogin') }}
@@ -62,7 +62,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAuthz, uid } = useAuthState()
+    const { isAnonymous, uid } = useAuthState()
     const reply = ref('')
 
     const send = async () => {
@@ -80,7 +80,7 @@ export default defineComponent({
       })
     })
 
-    return { reply, send, isAuthz }
+    return { reply, send, isAnonymous }
   }
 })
 </script>

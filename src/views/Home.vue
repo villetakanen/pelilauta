@@ -34,7 +34,7 @@ export default defineComponent({
     EditorDialog
   },
   setup () {
-    const { isAuthz, isAnonymous } = useAuthState()
+    const { isAnonymous } = useAuthState()
     const router = useRouter()
     const editorDialog = ref(false)
     onMounted(() => {
@@ -43,7 +43,7 @@ export default defineComponent({
     const showEditorDialog = ref(false)
 
     const newThread = () => {
-      if (!isAuthz.value) {
+      if (isAnonymous.value) {
         router.push('(/login')
       } else showEditorDialog.value = true
     }

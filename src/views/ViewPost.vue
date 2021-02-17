@@ -54,7 +54,7 @@
 import { defineComponent, computed, watch, onMounted } from 'vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import { loveThread, unloveThread, deleteThread, useThreads } from '@/state/threads'
-import { useAuthors } from '@/lib/authors'
+import { useAuthors } from '@/state/authors'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import { useRouter } from 'vue-router'
 import LoveAction from '@/components/app/LoveAction.vue'

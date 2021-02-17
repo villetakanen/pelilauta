@@ -3,15 +3,9 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import { useMeta } from '@/state/meta'
-import { useAuthz } from '../../lib/authz'
 
 const anonymousSession = ref(true)
 const isAnonymous = computed(() => (anonymousSession.value))
-
-const isAuthz = computed(() => {
-  const { isAuthz } = useAuthz()
-  return isAuthz.value
-})
 
 const isAdmin = computed(() => {
   if (isAnonymous.value) return false
@@ -51,10 +45,9 @@ function onAuthStateChanged (user: firebase.User|null): void {
 export function useAuthState (): {
   anonymousSession: Ref<boolean>;
   isAnonymous: ComputedRef<boolean>;
-  isAuthz: ComputedRef<boolean>;
   uid: WritableComputedRef<string>;
   isAdmin: ComputedRef<boolean>;
   onAuthStateChanged: (user: firebase.User|null) => void;
   } {
-  return { anonymousSession, isAnonymous, uid, isAdmin, onAuthStateChanged, isAuthz }
+  return { anonymousSession, isAnonymous, uid, isAdmin, onAuthStateChanged }
 }

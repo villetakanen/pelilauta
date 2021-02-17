@@ -151,6 +151,15 @@ function init () {
   watch(uid, fetchProfile)
 }
 
+async function switchLang (lang: string): Promise<void> {
+  const { uid } = useAuthState()
+  const db = firebase.firestore()
+  const profileRef = db.collection('profiles').doc(uid.value)
+  return profileRef.update({
+    pelilautaLang: lang
+  })
+}
+
 export function useProfile (): {
     isAdmin: ComputedRef<boolean>
     profile: ComputedRef<PublicProfile>
@@ -160,7 +169,8 @@ export function useProfile (): {
     markAllThreadsRead: () => Promise<void>
     hasSeen: (threadid: string, flowTime?: firebase.firestore.Timestamp|null) => boolean
     stampSeen: (threadid:string, flowTime?:firebase.firestore.Timestamp|number) => Promise<void>
+    switchLang: (lang: string) => Promise<void>
     } {
   init()
-  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen }
+  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang }
 }
