@@ -4,7 +4,7 @@
       <input
         v-model="searchString"
         class="searchBar"
-        :disabled="!isAuthz"
+        :disabled="isAnonymous "
       >
     </form>
     <img
@@ -17,15 +17,15 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useAuthz } from '@/lib/authz'
 import { useSearch } from '@/composables/search'
 import { useRouter } from 'vue-router'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'AppBarSearch',
   setup () {
     // @TODO: isAuthz should be moved to authstate.ts
-    const { isAuthz } = useAuthz()
+    const { isAnonymous } = useAuthState()
     const { searchResults, search } = useSearch()
     const searchString = ref('')
     const router = useRouter()
@@ -33,7 +33,7 @@ export default defineComponent({
       search(searchString.value)
       router.push('/search/results')
     }
-    return { isAuthz, searchString, searchResults, toSearch }
+    return { isAnonymous, searchString, searchResults, toSearch }
   }
 })
 </script>

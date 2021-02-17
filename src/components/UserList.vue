@@ -32,7 +32,7 @@ import { defineComponent, ref, onMounted } from 'vue'
 import UserListRow from '@/components/UserListRow.vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { useAuthz } from '@/lib/authz'
+import { useAuthState } from '@/state/authz'
 
 interface UserListEntity {
   uid: string;
@@ -48,7 +48,7 @@ export default defineComponent({
   },
   setup () {
     const users = ref(new Array<UserListEntity>())
-    const { uid } = useAuthz()
+    const { uid } = useAuthState()
 
     onMounted(() => {
       const db = firebase.firestore()

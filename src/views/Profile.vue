@@ -37,7 +37,6 @@ import PrivateInfo from '@/components/profile/PrivateInfo.vue'
 import PublicProfile from '@/components/profile/PublicProfile.vue'
 import LovedThreads from '@/components/profile/LovedThreads.vue'
 import ProfileActions from '@/components/profile/ProfileActions.vue'
-import { useAuthz } from '@/lib/authz'
 import { useProfile } from '@/state/authz'
 import ProfileCard from '@/components/profile/ProfileCard.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
@@ -57,7 +56,7 @@ export default defineComponent({
     Action
   },
   setup () {
-    const { switchLang } = useAuthz()
+    const { switchLang } = useProfile()
     const { profile, profileMeta, createProfile } = useProfile()
     const mobile = inject('mobileViewPort') as ComputedRef<boolean>
     const { pushSnack } = useSnack()
