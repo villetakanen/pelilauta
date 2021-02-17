@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { PostImage } from '@/lib/stream'
+import { PostImage } from '@/utils/uiInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 export default defineComponent({
   name: 'MaterialImageBox',

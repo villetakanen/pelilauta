@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { PostImage } from '@/lib/stream'
+import { PostImage } from '@/utils/uiInterfaces'
 import { defineComponent, PropType, ref } from 'vue'
 export default defineComponent({
   name: 'PhotoBox',
