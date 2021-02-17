@@ -71,7 +71,7 @@ import Editor from '@/components/quill/QuillEditor.vue'
 import { useI18n } from 'vue-i18n'
 import LoveAReplyAction from './LoveAReplyAction.vue'
 import { Reply } from '@/utils/firestoreInterfaces'
-import { useAuthors } from '@/lib/authors'
+import { useAuthors } from '@/state/authors'
 import { useAuthState } from '@/state/authz'
 
 export default defineComponent({

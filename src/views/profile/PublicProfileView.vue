@@ -28,7 +28,7 @@
 <script lang="ts">
 import Toolbar from '@/components/layout/Toolbar.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import { useAuthors } from '@/lib/authors'
+import { useAuthors } from '@/state/authors'
 import { Thread, toThread } from '@/state/threads'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import firebase from 'firebase/app'
