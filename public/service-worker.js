@@ -16,10 +16,10 @@ if (!precache) precache = [{"revision":null,"url":"index.html"}]
 
 workbox.precaching.precacheAndRoute(precache)
 
-addEventListener('message', (event) => {
+self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     console.debug('sw.js: skipWaiting()')
-    skipWaiting();
+    workbox.skipWaiting();
   }
 })
 
