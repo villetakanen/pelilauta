@@ -110,11 +110,11 @@ export default defineComponent({
       })
 
       // WB debugs
-      workbox.addEventListener('message', (event) => { console.debug('WorkboxEvent', event.type) })
-      workbox.addEventListener('installed', (event) => { console.debug('WorkboxEvent', event.type) })
-      workbox.addEventListener('controlling', (event) => { console.debug('WorkboxEvent', event.type) })
-      workbox.addEventListener('activated', (event) => { console.debug('WorkboxEvent', event.type, event.isUpdate === true) })
-      workbox.addEventListener('redundant', (event) => { console.debug('WorkboxEvent', event.type) })
+      workbox.addEventListener('message', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('installed', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('controlling', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('activated', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('redundant', (event) => { console.debug('WorkboxEvent', event) })
     }
     // *** Workbox/Service worker setup ends ********************************
 
