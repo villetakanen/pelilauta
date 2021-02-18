@@ -92,7 +92,7 @@ export default defineComponent({
 
       workbox.addEventListener('waiting', (event) => {
         console.debug('WorkboxEvent', event.type)
-        pushSnack({ action: skipWaiting, topic: 'update available' })
+        pushSnack({ action: skipWaiting, topic: i18n.t('app.updatesAvailable'), actionMessage: i18n.t('action.update') })
       })
 
       // WB debugs
