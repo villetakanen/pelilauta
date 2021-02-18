@@ -10,7 +10,6 @@
       :class="{toggle: !navModel}"
     >
       <main>
-        <p>{{ updateAvailable }}</p>
         <router-view />
         <MainTailer />
       </main>
@@ -106,11 +105,17 @@ export default defineComponent({
         }
       }
       workbox.addEventListener('waiting', (event) => {
-        console.debug('Workbox event:', event)
+        console.debug('WorkboxEvent', event)
         pushSnack({ action: skipWaiting, topic: 'update available' })
       })
-    }
 
+      // WB debugs
+      workbox.addEventListener('message', (event) => { console.debug('WorkboxEvent', event.type) })
+      workbox.addEventListener('installed', (event) => { console.debug('WorkboxEvent', event.type) })
+      workbox.addEventListener('controlling', (event) => { console.debug('WorkboxEvent', event.type) })
+      workbox.addEventListener('activated', (event) => { console.debug('WorkboxEvent', event.type, event.isUpdate) })
+      workbox.addEventListener('redundant', (event) => { console.debug('WorkboxEvent', event.type) })
+    }
     // *** Workbox/Service worker setup ends ********************************
 
     return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta }
