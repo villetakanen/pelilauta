@@ -36,8 +36,7 @@ import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
 import { useAuthState, useProfile } from './state/authz'
-import { Workbox, messageSW } from 'workbox-window'
-import { WorkboxLifecycleEvent } from 'workbox-window/utils/WorkboxEvent'
+import { Workbox } from 'workbox-window'
 
 export default defineComponent({
   components: {
@@ -80,32 +79,15 @@ export default defineComponent({
 
     let skipWaiting: CallableFunction|undefined
     if ('serviceWorker' in navigator) {
-      console.debug('App.vue: starts installing the Workbox')
       const workbox = new Workbox('/service-worker.js')
-      let registration:ServiceWorkerRegistration|undefined
-      workbox.register().then((r) => {
-        registration = r
-      })
+
       skipWaiting = () => {
-        console.debug('skipwaiting called')
-        // The user accepted the update, set up a listener
-        // that will reload the page as soon as the previously waiting
-        // service worker has taken control.
-        workbox.addEventListener('controlling', (event) => {
-          console.debug('We are controlling the window, lets refresh', event.type)
-          window.location.reload()
-        })
-        if (registration && registration.waiting) {
-          console.debug('Sending the message to the worker')
-          // Send a message to the waiting service worker,
-          // instructing it to activate.
-          // Note: for this to work, you have to add a message
-          // listener in your service worker. See below.
-          messageSW(registration.waiting, { type: 'SKIP_WAITING' })
-        }
+        console.debug('App.js skipwaiting called')
+        workbox.messageSkipWaiting()
       }
+
       workbox.addEventListener('waiting', (event) => {
-        console.debug('WorkboxEvent', event)
+        console.debug('WorkboxEvent', event.type)
         pushSnack({ action: skipWaiting, topic: 'update available' })
       })
 
@@ -115,6 +97,8 @@ export default defineComponent({
       workbox.addEventListener('controlling', (event) => { console.debug('WorkboxEvent', event) })
       workbox.addEventListener('activated', (event) => { console.debug('WorkboxEvent', event) })
       workbox.addEventListener('redundant', (event) => { console.debug('WorkboxEvent', event) })
+
+      workbox.register()
     }
     // *** Workbox/Service worker setup ends ********************************
 

@@ -2,7 +2,7 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.0.2/workbox-sw.js')
 
 workbox.setConfig({
-  debug: false,
+  debug: false
 })
 
 if (workbox) {
@@ -16,10 +16,15 @@ if (!precache) precache = [{"revision":null,"url":"index.html"}]
 
 workbox.precaching.precacheAndRoute(precache)
 
+ 
+
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    console.debug('sw.js: skipWaiting()')
-    workbox.skipWaiting();
+  if (!event.data?.type) return
+  console.debug('sw.js, message:', event.data?.type)
+  if (event.data?.type === 'SKIP_WAITING') {
+    self.skipWaiting().then(() => {
+      console.debug('sw.js, skipWaiting finished')
+    })
   }
 })
 
