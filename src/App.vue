@@ -83,6 +83,10 @@ export default defineComponent({
 
       skipWaiting = () => {
         console.debug('App.js skipwaiting called')
+        workbox.addEventListener('controlling', (event) => {
+          console.debug('controlling', event)
+          window.location.reload()
+        })
         workbox.messageSkipWaiting()
       }
 

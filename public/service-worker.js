@@ -16,8 +16,6 @@ if (!precache) precache = [{"revision":null,"url":"index.html"}]
 
 workbox.precaching.precacheAndRoute(precache)
 
- 
-
 self.addEventListener('message', (event) => {
   if (!event.data?.type) return
   console.debug('sw.js, message:', event.data?.type)
@@ -27,4 +25,3 @@ self.addEventListener('message', (event) => {
     })
   }
 })
-
