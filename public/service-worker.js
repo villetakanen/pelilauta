@@ -1,5 +1,9 @@
 /* eslint-disable */
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js')
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.0.2/workbox-sw.js')
+
+workbox.setConfig({
+  debug: false,
+})
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`)
@@ -12,12 +16,12 @@ if (!precache) precache = [{"revision":null,"url":"index.html"}]
 
 workbox.precaching.precacheAndRoute(precache)
 
-self.addEventListener('message', (event) => {
-    if (event.data && event.data === 'skipWaiting') {
-      console.log(`Workbox is done with waiting 😬`)
-      return self.skipWaiting()
-    }
-  })
+addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.debug('sw.js: skipWaiting()')
+    skipWaiting();
+  }
+})
 
 let CACHE_NAME = 'pelilauta-images-cache'
 self.addEventListener("fetch", function(e) {
