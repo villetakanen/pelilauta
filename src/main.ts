@@ -3,7 +3,6 @@ import { createI18n, LocaleMessageDictionary, VueMessageType } from 'vue-i18n'
 import App from './App.vue'
 import router from './router'
 import { useFirebase } from './firebase'
-
 useFirebase()
 
 const app = createApp(App)
