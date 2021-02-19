@@ -53,11 +53,11 @@ export default defineComponent({
     const router = useRouter()
 
     const active = computed(() => {
-      return (route.name === props.to)
+      return (route.name === router.resolve(props.to).name)
     })
 
     const clicked = () => {
-      router.push({ name: props.to })
+      router.push(props.to)
     }
 
     return { active, clicked }

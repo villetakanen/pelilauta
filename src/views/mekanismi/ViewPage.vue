@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SiteToolbar />
     <div class="mekanismiGrid">
       <MaterialCard class="mainCard">
         <PageToolbar />
@@ -28,9 +29,6 @@
       </MaterialCard>
     </div>
     <PageFabs />
-    <teleport to="#AppBarSubmenu">
-      <MekanismiBar />
-    </teleport>
   </div>
 </template>
 
@@ -43,7 +41,7 @@ import { usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 // import { useRoute } from 'vue-router'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
-import MekanismiBar from '@/components/app/MekanismiBar.vue'
+import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -53,7 +51,7 @@ export default defineComponent({
     Loader,
     SideBar,
     PageFabs,
-    MekanismiBar
+    SiteToolbar
   },
   setup () {
     const { site } = useSite()

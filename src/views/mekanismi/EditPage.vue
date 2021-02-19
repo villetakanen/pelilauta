@@ -10,6 +10,7 @@
           <QuillEditor
             v-model="pageContent"
             :toolbar="true"
+            :storage="site.id"
           />
           <div class="toolbar cardActions">
             <div class="spacer" />
@@ -27,9 +28,6 @@
         <PageMeta class="sideCard" />
       </div>
     </transition>
-    <teleport to="#AppBarSubmenu">
-      <MekanismiBar />
-    </teleport>
   </div>
 </template>
 
@@ -47,7 +45,6 @@ import { useAuthState } from '@/state/authz'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageMeta from '@/components/wikipage/PageMeta.vue'
-import MekanismiBar from '@/components/app/MekanismiBar.vue'
 
 export default defineComponent({
   name: 'EditPage',
@@ -56,8 +53,7 @@ export default defineComponent({
     QuillEditor,
     MaterialButton,
     MaterialCard,
-    PageMeta,
-    MekanismiBar
+    PageMeta
   },
   setup () {
     const { site } = useSite()
