@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.2.0](https://github.com/villetakanen/pelilauta/compare/v7.1.0...v7.2.0) (2021-02-19)
+
+
+### Features
+
+* adds tables to the editor ([bc2f63c](https://github.com/villetakanen/pelilauta/commit/bc2f63cb804ad33796df18ac455bb0a2a10eec7b))
+* cleaned up service worker ([03d0d4a](https://github.com/villetakanen/pelilauta/commit/03d0d4a83cb0c7cd5362159c728c5e532c8dcb5e))
+* images cached with cache first stragtegy ([ed28001](https://github.com/villetakanen/pelilauta/commit/ed28001e8f666064550bbced152c958b10bad87a))
+* reroute to about moved to mekanismi about ([265235a](https://github.com/villetakanen/pelilauta/commit/265235acbb2ce9be26b7979bdb46fa87f1ee520a))
+* updates to workbox ([2ed55c2](https://github.com/villetakanen/pelilauta/commit/2ed55c2f7f1c3a8d1b84f5279b67e125d13cdef8))
+* user profile page ([a2c5cf2](https://github.com/villetakanen/pelilauta/commit/a2c5cf242bb9713528e8264bda234d226763edc5))
+* wiki table styling ([9270265](https://github.com/villetakanen/pelilauta/commit/9270265ecc327a565e0a98086868dd7e57284388))
+
+
+### Bug Fixes
+
+* deprecated rest of the lib as dead code ([fae2c55](https://github.com/villetakanen/pelilauta/commit/fae2c554644b35ce9a14e7fbd7fbe4dc5d6f7122))
+* fi translations ([2ff509c](https://github.com/villetakanen/pelilauta/commit/2ff509c6efa9d6e08140b8429a91a311d221c34b))
+* firebase to root and removed depr authz lib ([b9c2654](https://github.com/villetakanen/pelilauta/commit/b9c2654f59fb4f6cf0dd95b6bd7810b46070a0fc))
+* husky 5 ([2b99828](https://github.com/villetakanen/pelilauta/commit/2b99828d7cabcfa502158cdf59a48fb62b10834b))
+* login state from firebase directly ([c993d8e](https://github.com/villetakanen/pelilauta/commit/c993d8eaaebfdb6b27c11d3def2bef34dbdca252))
+* manifest color ([ab04e54](https://github.com/villetakanen/pelilauta/commit/ab04e54304f2f774bff9739d395ebb980740960a))
+* moved authors state to state ([e19ad8d](https://github.com/villetakanen/pelilauta/commit/e19ad8dc06cb87e91bd77bd82e31aaf8599c241e))
+* moved isadmin and isfrozen to state ([3cc623d](https://github.com/villetakanen/pelilauta/commit/3cc623d8d0c6e45f0ea9d88918fe2798c921fca4))
+* refactored helper interfaces to utils ([c0d3cb0](https://github.com/villetakanen/pelilauta/commit/c0d3cb0efe72593ec498dcf53ddb305c6a2c403e))
+* refactored replies from lib to state ([8a3a7a6](https://github.com/villetakanen/pelilauta/commit/8a3a7a606e108931e18eafa5811a8a35a2af9b5a))
+* refactors from meta lib to state ([e6209ed](https://github.com/villetakanen/pelilauta/commit/e6209edafcd9259f12447fba5f1be80f8f6ad606))
+* remove dead code ([6c3f95a](https://github.com/villetakanen/pelilauta/commit/6c3f95a12611659b8bf75ba62bc5bfad7dd2a978))
+* remove toolbar and tables, where not needed ([c93751d](https://github.com/villetakanen/pelilauta/commit/c93751d3bafc366766138af82ed5f32b6e099899))
+* removed a deprecated view ([1590ef2](https://github.com/villetakanen/pelilauta/commit/1590ef2507bee32d5dea71ff90b7c81b77281645))
+* removed dead code ([67a779b](https://github.com/villetakanen/pelilauta/commit/67a779bc7cfc760908a43106d551e4a428218ed4))
+* removed dead code ([0fc0a70](https://github.com/villetakanen/pelilauta/commit/0fc0a706a53e6f8ebe0e11d2d70f6cb3a6a11e87))
+* removed dead code from libs ([ffaff4b](https://github.com/villetakanen/pelilauta/commit/ffaff4b26860f31b48ee721ffb508602561360c1))
+* removed erroneuous firebase caching ([73abfd8](https://github.com/villetakanen/pelilauta/commit/73abfd8629cf2a80eac76448078dffc4c1572bee))
+* removed extraneous message bits ([7e881bb](https://github.com/villetakanen/pelilauta/commit/7e881bb386553520dc553b1d05cfdad8f4bae7dd))
+* removed invalid cache ([bb66062](https://github.com/villetakanen/pelilauta/commit/bb6606270b8f8a8283bd2f198abc1ba9d7d03e8e))
+* small adjustments to sw ([cc31d62](https://github.com/villetakanen/pelilauta/commit/cc31d6242ecadbcdeeaea72320dd96796c782507))
+* small quality fixes ([90e6637](https://github.com/villetakanen/pelilauta/commit/90e66375c655b7fc19d28b38b0430f3a4ebcc3f7))
+* stream topic view to use current layout comp ([714354f](https://github.com/villetakanen/pelilauta/commit/714354f61f3ad50c2978df5eb8991f7ac8763580))
+* sw skipwaiting update ([fdd4de8](https://github.com/villetakanen/pelilauta/commit/fdd4de83a2230ae5054bc1e23e1101710086e099))
+* theming ([f7e084f](https://github.com/villetakanen/pelilauta/commit/f7e084fa5fc0d8aefb63a586da2ac7b432fb92fd))
+* thread cards now use state meta ([c59d30d](https://github.com/villetakanen/pelilauta/commit/c59d30da119208af367a9e17b3e2de6ed1cba3cc))
+* toolbar imports for topic ([eab5b79](https://github.com/villetakanen/pelilauta/commit/eab5b7973aa3f034914916d21abe84d7ef1b3b23))
+
 ## [7.1.0](https://github.com/villetakanen/pelilauta/compare/v7.0.0...v7.1.0) (2021-02-13)
 
 
