@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.3.0](https://github.com/villetakanen/pelilauta/compare/v7.2.0...v7.3.0) (2021-02-19)
+
+
+### Features
+
+* image uploads for mekanismi pages ([0338776](https://github.com/villetakanen/pelilauta/commit/033877660ff33426219dadd47a53c0a878f68ede))
+* site-toolbar v2 added to site-info page ([f07f5ea](https://github.com/villetakanen/pelilauta/commit/f07f5eae5b0acabfe5f268a42805ae91921926fe))
+* updated mekanismi to use the toolbar comp ([943f306](https://github.com/villetakanen/pelilauta/commit/943f3060657440bf9087a62389c520b3768da47b))
+
 ## [7.2.0](https://github.com/villetakanen/pelilauta/compare/v7.1.0...v7.2.0) (2021-02-19)
 
 
