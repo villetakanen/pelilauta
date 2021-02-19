@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SiteToolbar />
     <transition name="fade">
       <div
         v-if="site && site.name"
@@ -60,6 +61,7 @@ import { useAuthState } from '@/state/authz'
 import SiteMeta from '@/components/sites/SiteMeta.vue'
 import MekanismiBar from '@/components/app/MekanismiBar.vue'
 import SiteIdentity from '@/components/sites/SiteIdentity.vue'
+import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -69,7 +71,8 @@ export default defineComponent({
     OwnerPill,
     SiteMeta,
     MekanismiBar,
-    SiteIdentity
+    SiteIdentity,
+    SiteToolbar
   },
   setup () {
     const { uid } = useAuthState()
