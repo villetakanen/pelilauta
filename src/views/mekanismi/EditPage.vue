@@ -10,6 +10,7 @@
           <QuillEditor
             v-model="pageContent"
             :toolbar="true"
+            :storage="site.id"
           />
           <div class="toolbar cardActions">
             <div class="spacer" />

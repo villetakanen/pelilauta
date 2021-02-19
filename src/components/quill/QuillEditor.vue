@@ -10,16 +10,56 @@
 import { defineComponent, onMounted, watch } from 'vue'
 import Quill from 'quill'
 import QuillBetterTable from 'quill-better-table'
+import firebase from 'firebase/app'
+import 'firebase/storage'
 
 export default defineComponent({
   name: 'QuillEditor',
   props: {
     modelValue: { type: String, required: false, default: '' },
-    toolbar: { type: Boolean, required: false, default: false }
+    toolbar: { type: Boolean, required: false, default: false },
+    storage: { type: String, required: false, default: '' }
   },
   emits: ['update:modelValue', 'new-images'],
   setup (props, context) {
     onMounted(() => {
+      const imageHandler = () => {
+        console.debug('imageHandler')
+        const input = document.createElement('input')
+
+        input.setAttribute('type', 'file')
+        input.setAttribute('accept', 'image/*')
+        input.click()
+
+        input.onchange = async () => {
+          console.debug('event triggered!')
+          const file = input.files ? input.files[0] : null
+          if (!file || !props.storage) return
+
+          // Save current cursor state
+          const range = quill.getSelection(true)
+
+          // Insert temporary loading placeholder image
+          quill.insertEmbed(range.index, 'image', `${window.location.origin}/src/loading-image.svg`)
+
+          // Move cursor to right side of image (easier to continue typing)
+          quill.setSelection(range.index + 1, 1)
+
+          const storageRef = firebase.storage().ref()
+          const fileRef = storageRef.child(`/${props.storage}/${file.name}`)
+
+          const snapshot = await fileRef.put(file)
+          console.debug('snapshot:', snapshot)
+          const url = await snapshot.ref.getDownloadURL()
+          console.debug('url:', url)
+
+          // Remove placeholder image
+          quill.deleteText(range.index, 1)
+
+          // Insert uploaded image
+          quill.insertEmbed(range.index, 'image', url)
+        }
+      }
       const toolbarOptions = {
         container: [
           { header: [1, 2, 3, 4, false] },
@@ -67,6 +107,8 @@ export default defineComponent({
         'modules/better-table': QuillBetterTable
       }, true)
       const quill = new Quill('#editor', options)
+      const toolbar = quill.getModule('toolbar')
+      toolbar.addHandler('image', imageHandler)
       quill.on('text-change', () => {
         context.emit('update:modelValue', quill.root.innerHTML)
       })
