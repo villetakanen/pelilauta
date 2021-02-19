@@ -57,7 +57,7 @@ export default defineComponent({
     })
 
     const clicked = () => {
-      router.push({ name: props.to })
+      router.push(props.to)
     }
 
     return { active, clicked }

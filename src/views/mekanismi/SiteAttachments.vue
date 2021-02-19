@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SiteToolbar />
     <transition name="fade">
       <div
         class="suspense mekanismiGrid"
@@ -32,9 +33,6 @@
         </MaterialCard>
       </div>
     </transition>
-    <teleport to="#AppBarSubmenu">
-      <MekanismiBar />
-    </teleport>
   </div>
 </template>
 
@@ -44,9 +42,9 @@ import { useSite, useFiles } from '@/state/site'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import Loader from '@/components/app/Loader.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
-import MekanismiBar from '@/components/app/MekanismiBar.vue'
 import AttachFileButton from '@/components/sites/AttachFileButton.vue'
 import AttachmentRow from '@/components/sites/AttachmentRow.vue'
+import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -54,9 +52,9 @@ export default defineComponent({
     MaterialCard,
     Loader,
     SideBar,
-    MekanismiBar,
     AttachFileButton,
-    AttachmentRow
+    AttachmentRow,
+    SiteToolbar
   },
   setup () {
     const { site } = useSite()

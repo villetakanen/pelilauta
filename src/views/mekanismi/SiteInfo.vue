@@ -44,9 +44,6 @@
         style="position:absolute"
       />
     </transition>
-    <teleport to="#AppBarSubmenu">
-      <MekanismiBar />
-    </teleport>
   </div>
 </template>
 
@@ -59,7 +56,6 @@ import OwnerPill from '@/components/sites/OwnerPill.vue'
 import { useAuthors } from '@/state/authors'
 import { useAuthState } from '@/state/authz'
 import SiteMeta from '@/components/sites/SiteMeta.vue'
-import MekanismiBar from '@/components/app/MekanismiBar.vue'
 import SiteIdentity from '@/components/sites/SiteIdentity.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 
@@ -70,7 +66,6 @@ export default defineComponent({
     Loader,
     OwnerPill,
     SiteMeta,
-    MekanismiBar,
     SiteIdentity,
     SiteToolbar
   },

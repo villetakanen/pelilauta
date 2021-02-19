@@ -7,6 +7,12 @@
     </h3>
     <div class="spacer" />
     <Action
+      prepend="attachments"
+      :to="`/mekanismi/attachments/${site.id}/`"
+    >
+      <span class="hideOnMobile">{{ $t('mekanismi.attachments.title') }}</span>
+    </Action>
+    <Action
       prepend="site-settings"
       :to="`/mekanismi/siteinfo/${site.id}`"
     >

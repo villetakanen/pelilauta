@@ -14,6 +14,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'attachments'"
+      src="@/assets/icons/attachments.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'chevron-left'"
       src="@/assets/icons/chevron-left.svg"
       alt="add"
