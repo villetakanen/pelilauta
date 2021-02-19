@@ -46,7 +46,7 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import ThreadCardHeader from './ThreadCardHeader.vue'
 import ThreadCardTailer from './ThreadCardTailer.vue'
 import ImageBox from '@/components/material/ImageBox.vue'
-import { useAuthors } from '@/lib/authors'
+import { useAuthors } from '@/state/authors'
 
 export default defineComponent({
   name: 'ThreadCard',

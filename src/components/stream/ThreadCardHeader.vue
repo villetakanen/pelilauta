@@ -9,7 +9,7 @@
       <p class="caption">
         <span v-if="since">{{ since }}</span>
         {{ $t('postHeader.postedInStream') }}
-        <span v-if="topicName"><a :href="`/stream/topic/${thread.data.topic}`">{{ topicName.title }}</a></span>
+        <span v-if="topicName"><a :href="`/stream/topic/${thread.data.topic}`">{{ topicName }}</a></span>
       </p>
     </div>
     <div class="spacer" />
@@ -31,13 +31,12 @@ import { useI18n } from 'vue-i18n'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Thread, deleteThread } from '@/state/threads'
-import { MenuItem, useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuthState } from '@/state/authz'
-// import { useEditorDialog } from '@/lib/editor'
 import EditorDialog from '../app/EditorDialog.vue'
-// import MaterialCard from '@/components/material/MaterialCard.vue'
 import { getSeconds } from '@/utils/firebaseTools'
+import { MenuItem } from '@/utils/uiInterfaces'
 
 export default defineComponent({
   name: 'ThreadCardHeader',
@@ -53,10 +52,9 @@ export default defineComponent({
   },
   setup (props) {
     const i18n = useI18n()
-    const { topics } = useMeta()
+    const { streams } = useMeta()
     const topicName = computed(() => {
-      if (!props.thread.data.topic) return ''
-      return topics.value.find((val) => (val.slug.toLowerCase() === props.thread.data.topic.toLowerCase()))
+      return streams.value.find((val) => (val.slug === props.thread.data.topic))?.name
     })
     // @todo: extract to /utils
     function toSince (timestamp: firebase.firestore.Timestamp|null) {
@@ -74,8 +72,7 @@ export default defineComponent({
       return s
     }
 
-    const { uid } = useAuthState()
-    const { isAdmin } = useMeta()
+    const { uid, isAdmin } = useAuthState()
 
     function drop () {
       deleteThread(uid.value, props.thread.id)
@@ -108,7 +105,7 @@ export default defineComponent({
       if (uid.value === props.thread.author) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit' })
         arr.push({ action: drop, text: 'Delete!' })
-      } else if (isAdmin(uid.value) || uid.value === props.thread.author) {
+      } else if (isAdmin.value || uid.value === props.thread.author) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit', admin: true })
         arr.push({ action: drop, text: 'Delete!', admin: true })
       }

@@ -144,17 +144,6 @@
         <MaterialButton :action="sendSnacks">
           Push 3 snacks to the stack
         </MaterialButton>
-
-        <h2>Discusssion replies</h2>
-        <ReplyBubble
-          content="Some comment text!"
-          author-nick="Alice through the looking glass"
-        />
-        <ReplyBubble
-          content="And a reply from me!"
-          :from-me="true"
-          author-nick="This is from me"
-        />
       </div>
       <div class="section">
         <h1>Inputs</h1>
@@ -196,7 +185,6 @@ import Icon from '@/components/material/Icon.vue'
 import Toggle from '@/components/material/Toggle.vue'
 import Action from '@/components/material/Action.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
-import ReplyBubble from '@/components/discussion/ReplyBubble.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -211,8 +199,7 @@ export default defineComponent({
     Icon,
     Toggle,
     Action,
-    AdminActions,
-    ReplyBubble
+    AdminActions
   },
   setup () {
     function sendSnack () {

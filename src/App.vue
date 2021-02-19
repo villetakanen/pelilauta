@@ -15,9 +15,6 @@
       </main>
     </div>
   </div>
-  <teleport to="body">
-    <MaterialDialog :visible="missingProfile" />
-  </teleport>
   <BottomFloatContainer>
     <template #left>
       <SnackBar />
@@ -29,22 +26,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
-import MaterialDialog from './components/material/MaterialDialog.vue'
+import { computed, defineComponent, inject, onMounted, provide, ref, watch } from 'vue'
 import SideNav from '@/components/app/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
 import MainTailer from '@/components/app/MainTailer.vue'
-import { useAuthz } from './lib/authz'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
-import { register } from 'register-service-worker'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
+import { useAuthState, useProfile } from './state/authz'
+import { Workbox } from 'workbox-window'
 
 export default defineComponent({
   components: {
-    MaterialDialog,
     SideNav,
     AppBar,
     MainTailer,
@@ -53,12 +48,15 @@ export default defineComponent({
     // MekanismiBar
   },
   setup () {
-    const { missingProfile, lang, isAuthz } = useAuthz()
+    const { isAnonymous } = useAuthState()
+    const { profileMeta } = useProfile()
     const i18n = useI18n()
     const route = useRoute()
     onMounted(() => {
-      i18n.locale.value = lang.value
-      watch(lang, (l) => { i18n.locale.value = l })
+      watch(
+        profileMeta, (l) => { i18n.locale.value = l.pelilautaLang || 'en' },
+        { immediate: true }
+      )
     })
 
     const { pushSnack } = useSnack()
@@ -74,65 +72,41 @@ export default defineComponent({
     provide('toggleNav', toggleNav)
     provide('mobileViewport', mobileView)
 
-    // ************************************************************************
-    // * SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE                         *
-    // ************************************************************************
-    let swr: ServiceWorkerRegistration|undefined
-
-    register('/service-worker.js', {
-      registrationOptions: { scope: './' },
-      ready (registration) {
-        console.log('Service worker is active.', registration)
-      },
-      registered (registration) {
-        console.log('Service worker has been registered.')
-        setInterval(() => {
-          registration.update()
-        }, 60 * 1000 * 5) // 1000 * 60) // minute checks for testing * 60) // e.g. hourly checks
-      },
-      cached (registration) {
-        console.log('Content has been cached for offline use.', registration)
-      },
-      updatefound (registration) {
-        console.log('New content is downloading.', registration)
-      },
-      updated (registration: ServiceWorkerRegistration) {
-        console.log('New content is available; please refresh.')
-        pushSnack({
-          topic: i18n.t('app.title'),
-          message: i18n.t('app.updatesAvailable'),
-          action: acceptUpdate,
-          actionMessage: i18n.t('action.update')
-        })
-        swr = registration
-      },
-      offline () {
-        console.log('No internet connection found. App is running in offline mode.')
-      },
-      error (error) {
-        console.error('Error during service worker registration:', error)
-      }
-    })
-
-    let refreshing = false
-    // Refresh all open app tabs when a new service worker is installed.
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (refreshing) return
-      refreshing = true
-      window.location.reload()
-    })
-
-    function acceptUpdate () {
-      if (!swr || !swr.waiting) { return }
-      swr.waiting.postMessage('skipWaiting')
-    }
-
-    // *** end SETUP WORKBOX/SPA AND THE UPDATE BUTTON HERE *******************
-
     const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
     provide('appMode', mekanismi)
 
-    return { isAuthz, missingProfile, ...useI18n(), route, navModel, mekanismi }
+    // *** Workbox/Service worker setup starts ******************************
+
+    let skipWaiting: CallableFunction|undefined
+    if ('serviceWorker' in navigator) {
+      const workbox = new Workbox('/service-worker.js')
+
+      skipWaiting = () => {
+        console.debug('App.js skipwaiting called')
+        workbox.addEventListener('controlling', (event) => {
+          console.debug('controlling', event)
+          window.location.reload()
+        })
+        workbox.messageSkipWaiting()
+      }
+
+      workbox.addEventListener('waiting', (event) => {
+        console.debug('WorkboxEvent', event.type)
+        pushSnack({ action: skipWaiting, topic: i18n.t('app.updatesAvailable'), actionMessage: i18n.t('action.update') })
+      })
+
+      // WB debugs
+      workbox.addEventListener('message', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('installed', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('controlling', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('activated', (event) => { console.debug('WorkboxEvent', event) })
+      workbox.addEventListener('redundant', (event) => { console.debug('WorkboxEvent', event) })
+
+      workbox.register()
+    }
+    // *** Workbox/Service worker setup ends ********************************
+
+    return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta }
   }
 })
 </script>
@@ -149,7 +123,6 @@ export default defineComponent({
 @include media('>=tablet')
   #mainContentWrapper
     transition: margin 0.4s ease-in-out
-    main
     &.toggle
       margin-left: 310px
 

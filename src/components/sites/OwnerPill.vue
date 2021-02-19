@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthors } from '@/lib/authors'
+import { useAuthors } from '@/state/authors'
 import { useAuthState } from '@/state/authz'
 import { useSite } from '@/state/site'
 import { computed, defineComponent } from 'vue'

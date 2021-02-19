@@ -7,7 +7,9 @@
     <!-- Top toolbar for the reply-card -->
     <div class="toolbar">
       <div class="author">
-        {{ reply.nick }}
+        <router-link :to="{ name: 'profile.public', params: { uid: reply.author }}">
+          {{ nick }}
+        </router-link>
       </div>
 
       <div class="spacer" />
@@ -15,7 +17,7 @@
       <LoveAReplyAction
         :count="reply.lovesCount"
         :loves="loves"
-        :authorid="author"
+        :authorid="reply.author"
         :action="toggleLove"
       />
 
@@ -31,7 +33,7 @@
       class="message"
     >
       <div
-        :innerHTML="content"
+        :innerHTML="reply.content"
       />
     </div>
     <div
@@ -59,17 +61,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch } from 'vue'
-import { useAuthz } from '@/lib/authz'
+import { defineComponent, computed, ref, PropType } from 'vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import { useMeta } from '@/lib/meta'
-import { MenuItem } from '@/lib/stream'
-import { useDiscussion } from '@/lib/discussion'
-import { loveReply, unloveReply, updateReplyContent } from '@/state/discussions'
+import { MenuItem } from '@/utils/uiInterfaces'
+import { loveReply, unloveReply, updateReplyContent, subscribeToReplies, deleteReply } from '@/state/discussion'
 import Editor from '@/components/quill/QuillEditor.vue'
 import { useI18n } from 'vue-i18n'
 import LoveAReplyAction from './LoveAReplyAction.vue'
+import { Reply } from '@/utils/firestoreInterfaces'
+import { useAuthors } from '@/state/authors'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   components: {
@@ -79,16 +81,8 @@ export default defineComponent({
     LoveAReplyAction
   },
   props: {
-    content: {
-      type: String,
-      required: true
-    },
-    author: {
-      type: String,
-      required: true
-    },
-    commentid: {
-      type: String,
+    reply: {
+      type: Object as PropType<Reply>,
       required: true
     },
     threadid: {
@@ -98,24 +92,22 @@ export default defineComponent({
   },
   emits: ['quote'],
   setup (props, context) {
-    const { uid, isAuthz } = useAuthz()
-    const { isAdmin } = useMeta()
-    const { deleteComment } = useDiscussion(props.threadid)
+    const { uid, isAnonymous } = useAuthState()
+    const { isAdmin } = useAuthState()
+    const { authors } = useAuthors()
+
+    const nick = computed(() => (authors.value.find((a) => (a.uid === props.reply.author))?.nick))
+
+    subscribeToReplies(props.threadid)
     const editReply = ref(false)
-    const replyContent = ref(props.content)
+    const replyContent = computed(() => (props.reply.content))
 
-    const { discussion } = useDiscussion(props.threadid)
-    const reply = computed(() => discussion.value.find((r) => (r.replyid === props.commentid)))
-
-    const replyClasses = ref({
-      fromMe: uid.value === props.author
-    })
-    watch(uid, (val) => {
-      replyClasses.value.fromMe = val === props.author
-    })
+    const replyClasses = computed(() => ({
+      fromMe: props.reply.author === uid.value
+    }))
 
     const dropComment = () => {
-      deleteComment(props.commentid)
+      deleteReply(props.threadid, props.reply.replyid)
     }
 
     const editComment = () => {
@@ -123,19 +115,20 @@ export default defineComponent({
     }
 
     const loves = computed(() => {
-      if (!reply.value) return false
-      if (!reply.value.lovers) return false
-      return reply.value.lovers.includes(uid.value)
+      return props.reply?.lovers?.includes(uid.value)
     })
 
     async function toggleLove () {
-      if (!isAuthz) return
-      if (loves.value) return unloveReply(uid.value, props.threadid, props.commentid)
-      else return loveReply(uid.value, props.threadid, props.commentid)
+      if (isAnonymous) return
+      if (loves.value) return unloveReply(uid.value, props.threadid, props.reply.replyid)
+      else return loveReply(uid.value, props.threadid, props.reply.replyid)
     }
 
     const quoteComment = () => {
-      if (reply.value) context.emit('quote', { content: props.content, author: reply.value.nick })
+      context.emit('quote', {
+        content: props.reply.content,
+        author: authors.value.find((a) => (a.uid === props.reply.author))?.nick
+      })
     }
 
     const i18n = useI18n()
@@ -143,10 +136,10 @@ export default defineComponent({
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       arr.push({ action: quoteComment, text: i18n.t('action.quote') })
-      if (uid.value === props.author) {
+      if (uid.value === props.reply?.author) {
         arr.push({ action: dropComment, text: 'Delete!' })
         arr.push({ action: editComment, text: 'Edit' })
-      } else if (isAdmin(uid.value)) {
+      } else if (isAdmin.value) {
         arr.push({ action: dropComment, text: 'Delete!', admin: true })
       }
       return arr
@@ -154,10 +147,10 @@ export default defineComponent({
 
     const updateReply = () => {
       editReply.value = false
-      updateReplyContent(uid.value, props.threadid, props.commentid, replyContent.value)
+      updateReplyContent(uid.value, props.threadid, props.reply.replyid, replyContent.value)
     }
 
-    return { menu, replyClasses, reply, uid, loves, toggleLove, editReply, replyContent, updateReply }
+    return { menu, replyClasses, uid, loves, toggleLove, editReply, replyContent, updateReply, nick }
   }
 })
 </script>

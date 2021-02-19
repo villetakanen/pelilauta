@@ -49,7 +49,7 @@ import { required } from '@vuelidate/validators'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useProfile } from '@/state/authz'
-import { useAuthors } from '@/lib/authors'
+import { useAuthors } from '@/state/authors'
 
 export default defineComponent({
   name: 'PublicProfileInfoCard',

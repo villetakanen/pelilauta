@@ -53,8 +53,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue'
-import { useAuthz } from '@/lib/authz'
-import { useProfile } from '@/state/authz'
+import { useAuthState, useProfile } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/state/meta'
 
@@ -72,7 +71,7 @@ interface NavItem {
 export default defineComponent({
   name: 'SideNavMenu',
   setup () {
-    const { isAuthz } = useAuthz()
+    const { isAnonymous } = useAuthState()
     const { isAdmin } = useProfile()
     const { streams } = useMeta()
     const sideNavItems = computed(() => {
@@ -98,10 +97,10 @@ export default defineComponent({
       // allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
       allNavItems.push({ key: 'editorTest', to: '/editortest', admin: true, icon: 'admin' })
       allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'player' })
-      allNavItems.push({ key: 'about', to: '/about', icon: 'd12' })
+      allNavItems.push({ key: 'about', to: '/mekanismi/view/mekanismi/pelilauta-about', icon: 'd12' })
       return allNavItems.filter((val) => (
         isAdmin.value ||
-        (isAuthz.value && val.authz) ||
+        (!isAnonymous && val.authz) ||
         !(val.authz || val.admin))
       )
     })
@@ -112,7 +111,7 @@ export default defineComponent({
       if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
-    return { isAuthz, sideNavItems, routeTo }
+    return { sideNavItems, routeTo }
   }
 })
 </script>

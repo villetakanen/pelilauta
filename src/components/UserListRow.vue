@@ -15,14 +15,14 @@
   </td>
   <td :class="rowClasses">
     <MaterialButton
-      v-if="!isMe && !isAdmin(uid) && !isFrozen(uid)"
+      v-if="!isMe && !isAdmin && !isFrozen"
       text
       :action="elevate"
     >
       Make admin
     </MaterialButton>
     <MaterialButton
-      v-if="!isMe && isAdmin(uid)"
+      v-if="!isMe && isAdmin"
       text
       class="alert"
       :action="revoke"
@@ -30,14 +30,14 @@
       Revoke Admin
     </MaterialButton>
     <MaterialButton
-      v-if="!isMe && !isAdmin(uid) && !isFrozen(uid)"
+      v-if="!isMe && !isAdmin && !isFrozen"
       text
       :action="freeze"
     >
       Freeze
     </MaterialButton>
     <MaterialButton
-      v-if="!isMe && !isAdmin(uid) && isFrozen(uid)"
+      v-if="!isMe && isFrozen"
       text
       :action="defrost"
       class="warn"
@@ -50,17 +50,10 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { useAuthz } from '@/lib/authz'
-
-interface UserListEntity {
-  uid: string;
-  nick: string;
-  isMe: boolean;
-  photoURL: string;
-}
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'EditPost',
@@ -83,9 +76,11 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAdmin, isFrozen } = useMeta()
-    const { uid: activeUid } = useAuthz()
+    const { frozen, admins } = useMeta()
+    const { uid: activeUid } = useAuthState()
     const isMe = computed(() => (props.uid === activeUid.value))
+    const isFrozen = computed(() => (frozen.value.includes(props.uid)))
+    const isAdmin = computed(() => (admins.value.includes(props.uid)))
 
     const revoke = () => {
       const db = firebase.firestore()
@@ -129,7 +124,7 @@ export default defineComponent({
     }
 
     const freeze = () => {
-      if (isAdmin(props.uid)) throw new Error('can not freeze an admin')
+      if (isAdmin.value) throw new Error('can not freeze an admin')
       const db = firebase.firestore()
       const metaRef = db.collection('meta').doc('pelilauta')
       metaRef.get().then((meta) => {
@@ -144,12 +139,10 @@ export default defineComponent({
       })
     }
 
-    const rowClasses = computed(() => {
-      const classes = new Array<string>()
-      if (isAdmin(props.uid)) classes.push('admin')
-      else if (isFrozen(props.uid)) classes.push('frozen')
-      return classes
-    })
+    const rowClasses = computed(() => ({
+      admin: isAdmin.value,
+      frozen: isFrozen.value
+    }))
 
     return { isMe, isAdmin, revoke, elevate, freeze, defrost, isFrozen, rowClasses }
   }

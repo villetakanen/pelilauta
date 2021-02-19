@@ -15,14 +15,6 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
     path: '/search/results',
     name: 'Search',
     // route level code-splitting
@@ -44,12 +36,21 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "global" */ '../views/Profile.vue')
   },
   {
+    path: '/u/:uid',
+    name: 'profile.public',
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "profile" */ '../views/profile/PublicProfileView.vue')
+  },
+  {
     path: '/register',
     name: 'Register',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
+    component: () => import(/* webpackChunkName: "global" */ '../views/Register.vue')
   },
   {
     path: '/stylebook',
@@ -64,17 +65,8 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/stream/index',
-    name: 'StreamIndex',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/StreamIndex.vue'),
-    props: true
-  },
-  {
     path: '/stream/view/:threadid',
-    name: 'StreamView',
+    name: 'stream.view',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

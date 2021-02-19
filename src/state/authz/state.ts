@@ -2,27 +2,17 @@ import { computed, ref, Ref, ComputedRef, WritableComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { useMeta } from '@/lib/meta'
-import { useAuthz } from '../../lib/authz'
+import { useMeta } from '@/state/meta'
 
-const anonymousSession = ref(false)
-
-const isAnonymous = computed(() => {
-  const { isAuthz } = useAuthz()
-  return isAuthz.value === false && anonymousSession.value
-})
-
-const isAuthz = computed(() => {
-  const { isAuthz } = useAuthz()
-  return isAuthz.value
-})
+const anonymousSession = ref(true)
+const isAnonymous = computed(() => (anonymousSession.value))
 
 const isAdmin = computed(() => {
   if (isAnonymous.value) return false
   // Admins are listed on meta-data, lets see if our uid is in
   // the admin table
-  const { isAdmin: inAdmins } = useMeta()
-  return inAdmins(uid.value)
+  const { admins } = useMeta()
+  return admins.value.includes(uid.value)
 })
 
 const authUid = ref('')
@@ -42,7 +32,7 @@ function flushAuth () {
 }
 
 function loginAs (user: firebase.User) {
-  anonymousSession.value = false
+  anonymousSession.value = user.isAnonymous
   // ./profile.ts watches this change!
   authUid.value = user.uid
 }
@@ -55,10 +45,9 @@ function onAuthStateChanged (user: firebase.User|null): void {
 export function useAuthState (): {
   anonymousSession: Ref<boolean>;
   isAnonymous: ComputedRef<boolean>;
-  isAuthz: ComputedRef<boolean>;
   uid: WritableComputedRef<string>;
   isAdmin: ComputedRef<boolean>;
   onAuthStateChanged: (user: firebase.User|null) => void;
   } {
-  return { anonymousSession, isAnonymous, uid, isAdmin, onAuthStateChanged, isAuthz }
+  return { anonymousSession, isAnonymous, uid, isAdmin, onAuthStateChanged }
 }

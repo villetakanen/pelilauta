@@ -6,7 +6,6 @@
         <MaterialCard>
           <Editor
             v-model="content"
-            @new-images="addImages"
           />
           <QuillEditor
             v-model="content"
@@ -45,7 +44,6 @@
 import { defineComponent, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import QuillEditor from '@/components/quill/QuillEditor.vue'
-import { PostImage } from '@/lib/stream'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
@@ -63,11 +61,6 @@ export default defineComponent({
 
     const images = ref('')
 
-    const addImages = (attrs: PostImage[]) => {
-      // eslint-disable-next-line
-      console.log(attrs)
-    }
-
     const simulateSave = () => {
       const { formattedContent: fc1, tags } = extractTags(content.value)
       const { formattedContent } = extractLinks(fc1)
@@ -75,7 +68,7 @@ export default defineComponent({
       console.log(tags)
     }
 
-    return { content, images, addImages, simulateSave }
+    return { content, images, simulateSave }
   }
 })
 </script>

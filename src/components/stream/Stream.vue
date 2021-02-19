@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useStream } from '@/lib/stream'
+import { toDisplayString } from '@/utils/firebaseTools'
 import { useThreads } from '@/state/threads'
 import ThreadCard from './ThreadCard.vue'
 
@@ -31,7 +31,6 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { toDisplayString } = useStream()
     const { stream } = useThreads()
 
     const posts = computed(() => {

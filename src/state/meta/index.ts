@@ -5,6 +5,10 @@ import { Stream } from '../threads/threads'
 
 const localStreams = ref(new Array<Stream>())
 const streams = computed(() => (localStreams.value))
+const frozenState = ref(new Array<string>())
+const frozen = computed(() => (frozenState.value))
+const adminsState = ref(new Array<string>())
+const admins = computed(() => (adminsState.value))
 
 let _init = false
 function init () {
@@ -30,10 +34,16 @@ function init () {
       if (a.order === b.order) return a.name > b.name ? 1 : -1
       return a.order > b.order ? 1 : -1
     })
+    frozenState.value = metaDoc.data()?.frozen || []
+    adminsState.value = metaDoc.data()?.admins || []
   })
 }
 
-export function useMeta (): { streams: ComputedRef<Array<Stream>> } {
+export function useMeta (): {
+    admins: ComputedRef<Array<string>>
+    frozen: ComputedRef<Array<string>>
+    streams: ComputedRef<Array<Stream>>
+    } {
   init()
-  return { streams }
+  return { admins, frozen, streams }
 }

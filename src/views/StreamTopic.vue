@@ -1,42 +1,46 @@
 <template>
-  <div class="toolbar">
-    <ViewHeader>
-      {{ pageTitle.title }}
-    </ViewHeader>
-    <div class="spacer" />
-    <Fab
-      style="margin: 4px"
-      :action="newThread"
-      :text="$t('action.addThread')"
-    >
-      <img
-        src="@/assets/icons/add.svg"
-        alt="new post"
+  <div>
+    <Toolbar>
+      <h3 v-if="stream">
+        {{ stream.name }}
+      </h3>
+    </Toolbar>
+    <div class="contentGrid">
+      <ThreadList :topic="routeTopic" />
+    </div>
+    <EditorDialog v-model="showEditorDialog" />
+    <teleport to="#ScreenBottomFloatRight">
+      <Fab
+        v-if="!isAnonymous"
+        :action="newThread"
+        :text="$t('action.addThread')"
       >
-    </Fab>
+        <img
+          src="@/assets/icons/add.svg"
+          alt="new post"
+        >
+      </Fab>
+    </teleport>
   </div>
-  <div class="contentGrid">
-    <ThreadList :topic="routeTopic" />
-  </div>
-  <EditorDialog v-model="showEditorDialog" />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
 import Fab from '@/components/material/Fab.vue'
-import ViewHeader from '@/components/app/ViewHeader.vue'
-import { useMeta } from '@/lib/meta'
+import { useMeta } from '@/state/meta'
 import { useRoute } from 'vue-router'
 import EditorDialog from '@/components/app/EditorDialog.vue'
+import { useAuthState } from '@/state/authz'
+import Toolbar from '@/components/layout/Toolbar.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
-    ViewHeader,
     Fab,
-    EditorDialog
+    EditorDialog,
+    Toolbar
   },
   props: {
     topic: {
@@ -44,19 +48,16 @@ export default defineComponent({
       required: true
     }
   },
-  setup (props) {
-    const { topics, showStreamActions } = useMeta()
+  setup () {
+    const { streams } = useMeta()
 
     const route = useRoute()
     const routeTopic = computed(() => {
       return Array.isArray(route.params.topic) ? route.params.topic[0] : route.params.topic
     })
 
-    const pageTitle = computed(() => {
-      if (!topics.value || topics.value.length < 1) return { title: routeTopic.value }
-      const t = topics.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
-      if (t) return t
-      return { title: routeTopic.value }
+    const stream = computed(() => {
+      return streams.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
     })
 
     const showEditorDialog = ref(false)
@@ -65,7 +66,9 @@ export default defineComponent({
       showEditorDialog.value = true
     }
 
-    return { pageTitle, showStreamActions, routeTopic, newThread, showEditorDialog }
+    const { isAnonymous } = useAuthState()
+
+    return { stream, routeTopic, newThread, showEditorDialog, isAnonymous }
   }
 })
 </script>
