@@ -57,7 +57,10 @@ export default defineComponent({
     })
 
     const clicked = () => {
-      router.push(props.to)
+      // route with a name
+      if (router.hasRoute(props.to)) router.push({ name: props.to })
+      // route with params
+      else router.push(props.to)
     }
 
     return { active, clicked }
