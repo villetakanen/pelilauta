@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.4.3](https://github.com/villetakanen/pelilauta/compare/v7.4.2...v7.4.3) (2021-02-20)
+
+
+### Bug Fixes
+
+* maskable icon fix ([33cbf18](https://github.com/villetakanen/pelilauta/commit/33cbf180c372e52fc3656a1306cb9f26e6ed76d0))
+
 ### [7.4.2](https://github.com/villetakanen/pelilauta/compare/v7.4.1...v7.4.2) (2021-02-20)
 
 
