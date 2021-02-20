@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.4.4](https://github.com/villetakanen/pelilauta/compare/v7.4.3...v7.4.4) (2021-02-20)
+
+
+### Bug Fixes
+
+* edit wikipage to use the new toolbar ([a98d52a](https://github.com/villetakanen/pelilauta/commit/a98d52ae6a1175700088014dc308ad34d6e33637))
+* mekanismi mobile toolbar icons ([745db63](https://github.com/villetakanen/pelilauta/commit/745db631535f9ad9637d1f8e124bdd1f1150fa03))
+* share wikipage ux ([e2f56a6](https://github.com/villetakanen/pelilauta/commit/e2f56a682b5996e7b5af8f955522fe9758f09989))
+* site meta locales ([0077261](https://github.com/villetakanen/pelilauta/commit/0077261be615a8a884410b57bb262ecc41ed9b45))
+* sources for icon mashable ([dad5851](https://github.com/villetakanen/pelilauta/commit/dad5851f7603ffdbcaccf573075280c1e93931d3))
+* wikipage toolbar ux update ([f3958f9](https://github.com/villetakanen/pelilauta/commit/f3958f90230e25bed379c9437a08fd160c4fe9c1))
+
 ### [7.4.3](https://github.com/villetakanen/pelilauta/compare/v7.4.2...v7.4.3) (2021-02-20)
 
 
