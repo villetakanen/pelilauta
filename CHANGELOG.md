@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.4.1](https://github.com/villetakanen/pelilauta/compare/v7.4.0...v7.4.1) (2021-02-20)
+
+
+### Bug Fixes
+
+* pwa icon maskable any ([a873d1c](https://github.com/villetakanen/pelilauta/commit/a873d1cede0f4553e95cb652cf4fb178890642e5))
+
 ## [7.4.0](https://github.com/villetakanen/pelilauta/compare/v7.3.0...v7.4.0) (2021-02-20)
 
 
