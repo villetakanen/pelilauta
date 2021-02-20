@@ -1,6 +1,7 @@
 <template>
   <Action
     dark
+    mobile
     :to="mekanismi ? 'mekanismi' : 'Home'"
   >
     <span v-if="!mekanismi">Pelilauta</span>

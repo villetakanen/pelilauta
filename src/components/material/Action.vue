@@ -1,6 +1,6 @@
 <template>
   <div
-    class="materialAction"
+    class="action"
     :class="{ 'theme--dark': dark, active: active }"
     @click="clicked"
   >
@@ -10,7 +10,9 @@
       :color="dark ? 'dark' : ''"
       class="prepend"
     />
-    <div class="label"><slot /></div>
+    <div :class="{label: !mobile, paddedLabel: mobile}">
+      <slot />
+    </div>
     <Icon
       v-if="append"
       :name="append"
@@ -47,6 +49,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    mobile: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -75,7 +82,7 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-.materialAction
+.action
   @include TypeButton()
   height: 40px
   padding: 8px 14px
@@ -121,5 +128,13 @@ export default defineComponent({
       background-color: rgba(255,255,255,0.22)
     &.active
       background-color: rgba(255,255,255,0.11)
+
+@include media('<tablet')
+  div.action
+    padding: 8px 7px
+    .label
+      display: none
+    .paddedLabel
+      padding: 0 8px
 
 </style>

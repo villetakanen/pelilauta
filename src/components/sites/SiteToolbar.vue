@@ -1,6 +1,6 @@
 <template>
   <Toolbar>
-    <h3>
+    <h3 class="clipWithEllipsis">
       <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
         {{ site.name }}
       </router-link>
