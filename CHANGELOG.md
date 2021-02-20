@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.4.0](https://github.com/villetakanen/pelilauta/compare/v7.3.0...v7.4.0) (2021-02-20)
+
+
+### Features
+
+* new icon ai ([3551998](https://github.com/villetakanen/pelilauta/commit/3551998cd6229c0fe18298ab2f030f4f34982f5e))
+
+
+### Bug Fixes
+
+* pwa logo colors to match current styles ([b3d8b6d](https://github.com/villetakanen/pelilauta/commit/b3d8b6d2375735c131b70be76db4885683377f0a))
+
 ## [7.3.0](https://github.com/villetakanen/pelilauta/compare/v7.2.0...v7.3.0) (2021-02-19)
 
 
