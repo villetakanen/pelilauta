@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;}
+</style>
+<g id="Layer_2">
+	
+		<radialGradient id="SVGID_1_" cx="256.0039" cy="259.3356" r="367.0061" fx="-35.1696" fy="35.9269" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.1621" style="stop-color:#00C853"/>
+		<stop  offset="0.8261" style="stop-color:#00796B"/>
+	</radialGradient>
+	<circle class="st0" cx="256.5" cy="243.7" r="240.7"/>
+</g>
+<g id="Layer_1">
+	<g>
+		<polygon class="st1" points="256,512 61.6,213 84.4,211.7 227.6,442.5 245.8,421.1 245.8,320.2 256.1,287.3 266.3,320.2 
+			266.3,421.1 287.9,433.9 423.2,211.7 450.4,213.4 		"/>
+		<polygon class="st1" points="84.4,211.7 188.9,196.2 237.4,265 190.1,113.9 165.2,118.9 124.2,0 61.6,213 		"/>
+		<polygon class="st1" points="427.6,211.7 323.1,204 274.6,265 321.9,113.9 346.9,118.9 387.8,0 450.4,213 		"/>
+		<polyline class="st1" points="255.7,280.5 334.8,28 272.1,166.6 256.1,100.9 239.1,179.3 176.5,28 		"/>
+		<ellipse class="st1" cx="181.5" cy="281.1" rx="16.5" ry="18.7"/>
+		<ellipse class="st1" cx="336.3" cy="280.5" rx="16.5" ry="18.7"/>
+	</g>
+</g>
+</svg>
