@@ -11,7 +11,7 @@
       v-if="isAdmin"
       prepend="admin"
       dark
-      to="global.admin"
+      to="/admin"
     >
       <template
         v-if="!mobileViewport"
