@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SiteToolbar />
     <transition name="fade">
       <div
         v-if="site.name && page.name"
@@ -45,6 +46,7 @@ import { useAuthState } from '@/state/authz'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageMeta from '@/components/wikipage/PageMeta.vue'
+import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 
 export default defineComponent({
   name: 'EditPage',
@@ -53,7 +55,8 @@ export default defineComponent({
     QuillEditor,
     MaterialButton,
     MaterialCard,
-    PageMeta
+    PageMeta,
+    SiteToolbar
   },
   setup () {
     const { site } = useSite()

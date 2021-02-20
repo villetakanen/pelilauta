@@ -14,6 +14,7 @@
     "logout": "Logout",
     "markAllRead": "Mark all threads read",
     "save": "Save",
+    "share": "Share",
     "toTopicList": "Topics",
     "nextPage": "Load more threads",
     "quote": "Quote",
@@ -84,7 +85,11 @@
     "createSiteTitle": "Create a new Game or Site",
     "newSiteFieldLabel": "Name the site", 
     "errorSiteSlug": "The URL slug is taken already!",
-    "mySites": "My Games"
+    "mySites": "My Games",
+    "site": {
+      "badge": "Game badge",
+      "visibleToggle": "Show in public lists"
+    }
   },
   "about": {
     "title": "About Pelilauta",
@@ -141,7 +146,8 @@
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {
     "messages": {
-      "pleaseLogin": "Please login to comment"
+      "pleaseLogin": "Please login to comment",
+      "linkShared": "Page link copied to clipboard"
     }
   }
 }

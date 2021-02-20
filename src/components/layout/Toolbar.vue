@@ -35,4 +35,15 @@ div.appToolbar
     flex-grow: 1
   h3
     line-height: 48px
+    height: 48px
+    overflow: hidden
+    text-overflow: ellipsis
+    max-height: 48px
+    word-break: break-all
+    a
+      height: 48px
+
+@include media('<tablet')
+  div.appToolbar
+    height: 56px
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="materialAction"
+    class="action"
     :class="{ 'theme--dark': dark, active: active }"
     @click="clicked"
   >
@@ -10,7 +10,9 @@
       :color="dark ? 'dark' : ''"
       class="prepend"
     />
-    <div class="label"><slot /></div>
+    <div :class="{label: !mobile, paddedLabel: mobile}">
+      <slot />
+    </div>
     <Icon
       v-if="append"
       :name="append"
@@ -30,7 +32,8 @@ export default defineComponent({
   props: {
     to: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     dark: {
       type: Boolean,
@@ -46,6 +49,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    mobile: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -53,10 +61,11 @@ export default defineComponent({
     const router = useRouter()
 
     const active = computed(() => {
-      return (route.name === router.resolve(props.to).name)
+      return (props.to && route.name === router.resolve(props.to).name)
     })
 
     const clicked = () => {
+      if (!props.to) return
       // route with a name
       if (router.hasRoute(props.to)) router.push({ name: props.to })
       // route with params
@@ -73,7 +82,7 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-.materialAction
+.action
   @include TypeButton()
   height: 40px
   padding: 8px 14px
@@ -119,5 +128,13 @@ export default defineComponent({
       background-color: rgba(255,255,255,0.22)
     &.active
       background-color: rgba(255,255,255,0.11)
+
+@include media('<tablet')
+  div.action
+    padding: 8px 7px
+    .label
+      display: none
+    .paddedLabel
+      padding: 0 8px
 
 </style>

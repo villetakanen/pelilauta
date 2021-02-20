@@ -33,6 +33,7 @@
     "logout": "Kirjaudu ulos",
     "markAllRead": "Merkitse kaikki aiheet luetuiksi",
     "save": "Tallenna",
+    "share": "Jaa",
     "toTopicList": "Aiheet",
     "update": "Päivitä",
     "nextPage": "Lataa lisää",
@@ -101,7 +102,11 @@
   "wiki": {
     "title": "Mekanismi",
     "mySites": "Omat sivustoni",
-    "createSite": "Luo uusi"
+    "createSite": "Luo uusi",
+    "site": {
+      "badge": "Pelibadge",
+      "visibleToggle": "Näytä julkisissa listauksissa"
+    }
   },
   "siteInfo": {
     "title": "Pelilauta 2",

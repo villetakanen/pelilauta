@@ -1,47 +1,27 @@
 <template>
   <div class="toolbar wikiPageToolbar">
     <div>
-      <h1 class="subtitle">
-        {{ site.name }}
-      </h1>
-      <h1 v-if="site.name && page.name">
+      <h1 v-if="page.name">
         {{ page.name }}
       </h1>
-      <h1 v-else>...</h1>
+      <h1 v-else>
+        {{ site.name }}
+      </h1>
     </div>
-    <div class="spacer" />
-    <MaterialMenu v-model="menu" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, computed, ComputedRef } from 'vue'
+import { defineComponent, inject, ComputedRef } from 'vue'
 import { Page, Site } from '@/state/site'
-import { copyUrl } from '@/utils/window'
-import { MenuItem } from '@/utils/uiInterfaces'
-import MaterialMenu from '@/components/material/MaterialMenu.vue'
 
 export default defineComponent({
   name: 'PageToolbar',
-  components: {
-    MaterialMenu
-  },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const page = inject('page') as ComputedRef<Page>
 
-    function _copyUrl () {
-      copyUrl('/mekanismi/view/' + site.value.id + '/' + page.value.id)
-    }
-
-    const menu = computed(() => {
-      const arr = new Array<MenuItem>()
-      arr.push({ action: _copyUrl, text: 'Copy link', icon: 'link' })
-      arr.push({ to: '/mekanismi/siteinfo/' + site.value.id, text: 'Site info', icon: 'site' })
-      return arr
-    })
-
-    return { site, page, menu }
+    return { site, page }
   }
 })
 </script>
@@ -60,10 +40,6 @@ export default defineComponent({
     font-size: 22px
     line-height: 32px
     color: $color-fill-primary-dark
-    &.subtitle
-      @include TypeButton()
-      font-size: 12px
-      line-height: 16px
 
 @include media('<tablet')
   .wikiPageToolbar
