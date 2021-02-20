@@ -7,6 +7,12 @@
     </h3>
     <div class="spacer" />
     <Action
+      prepend="share"
+      @click="copyLink"
+    >
+      <span class="hideOnMobile">{{ $t('action.share') }}</span>
+    </Action>
+    <Action
       prepend="attachments"
       :to="`/mekanismi/attachments/${site.id}/`"
     >
@@ -24,14 +30,23 @@
 <script lang="ts">
 import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
+import { copyUrl } from '@/utils/window'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
+import { useSnack } from '@/composables/useSnack'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   components: { Toolbar, Action },
   setup () {
     const { site } = useSite()
-    return { site }
+    const i18n = useI18n()
+    const { pushSnack } = useSnack()
+    const copyLink = () => {
+      copyUrl()
+      pushSnack({ topic: i18n.t('global.messages.linkShared') })
+    }
+    return { site, copyLink }
   }
 })
 </script>

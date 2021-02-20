@@ -30,7 +30,8 @@ export default defineComponent({
   props: {
     to: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     dark: {
       type: Boolean,
@@ -53,10 +54,11 @@ export default defineComponent({
     const router = useRouter()
 
     const active = computed(() => {
-      return (route.name === router.resolve(props.to).name)
+      return (props.to && route.name === router.resolve(props.to).name)
     })
 
     const clicked = () => {
+      if (!props.to) return
       // route with a name
       if (router.hasRoute(props.to)) router.push({ name: props.to })
       // route with params

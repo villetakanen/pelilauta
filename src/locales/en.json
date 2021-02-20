@@ -14,6 +14,7 @@
     "logout": "Logout",
     "markAllRead": "Mark all threads read",
     "save": "Save",
+    "share": "Share",
     "toTopicList": "Topics",
     "nextPage": "Load more threads",
     "quote": "Quote",
@@ -141,7 +142,8 @@
   "LovedThreads":{"title": "<3 Stream threads"},
   "global": {
     "messages": {
-      "pleaseLogin": "Please login to comment"
+      "pleaseLogin": "Please login to comment",
+      "linkShared": "Page link copied to clipboard"
     }
   }
 }

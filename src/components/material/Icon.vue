@@ -9,8 +9,8 @@
       alt="add"
     >
     <img
-      v-else-if="name === 'site-settings'"
-      src="@/assets/icons/site-settings.svg"
+      v-else-if="name === 'add' && color === 'dark'"
+      src="@/assets/icons/dark/add.svg"
       alt="add"
     >
     <img
@@ -24,8 +24,8 @@
       alt="add"
     >
     <img
-      v-else-if="name === 'add' && color === 'dark'"
-      src="@/assets/icons/dark/add.svg"
+      v-else-if="name === 'site-settings'"
+      src="@/assets/icons/site-settings.svg"
       alt="add"
     >
     <img
@@ -114,6 +114,12 @@
       src="@/assets/icons/edit.svg"
       alt="edit"
     >
+    <img
+      v-else-if="name === 'share'"
+      src="@/assets/icons/share.svg"
+      alt="share"
+    >
+    <!-- default icons -->
     <img
       v-else-if="color === 'dark'"
       src="@/assets/icons/dark/d12.svg"
