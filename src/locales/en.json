@@ -85,7 +85,11 @@
     "createSiteTitle": "Create a new Game or Site",
     "newSiteFieldLabel": "Name the site", 
     "errorSiteSlug": "The URL slug is taken already!",
-    "mySites": "My Games"
+    "mySites": "My Games",
+    "site": {
+      "badge": "Game badge",
+      "visibleToggle": "Show in public lists"
+    }
   },
   "about": {
     "title": "About Pelilauta",
