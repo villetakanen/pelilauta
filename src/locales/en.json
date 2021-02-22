@@ -96,7 +96,8 @@
     }
   },
   "threads": {
-    "sinceInTopic": "in"
+    "sinceInTopic": "in",
+    "discussion": "Comments"
   },
   "welcome": {
     "header": "Pelilauta",

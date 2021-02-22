@@ -60,7 +60,8 @@
     "tagline": "Allekirjoitus"
   },
   "threads": {
-    "sinceInTopic": "aiheessa"
+    "sinceInTopic": "aiheessa",
+    "discussion": "Keskustelu"
   },
   "welcome": {
     "header": "Pelilauta",

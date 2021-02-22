@@ -98,6 +98,7 @@ export default defineComponent({
   position: sticky
   position: -webkit-sticky
   top: 0px
+  z-index: 10
   margin-top: -8px
   padding-top: 8px
   padding-bottom: 7px

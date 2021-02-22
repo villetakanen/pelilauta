@@ -7,7 +7,9 @@
         :innerHTML="thread.data.content"
       />
       <PhotoBox :photos="thread.data.images || []" />
-      <h2>{{ $t('treads.discussion') }}</h2>
+      <h2 class="section">
+        {{ $t('threads.discussion') }}
+      </h2>
       <Discussion :thread="thread" />
     </ThreadBox>
   </div>
@@ -57,5 +59,13 @@ export default defineComponent({
   position: relative
   margin: 0 auto
   padding: 0
+  div.threadContent
+    @include TypeBody2()
+    color: var(--color-font-medium)
+  h2.section
+    @include TypeHeadline5()
+    border-top: solid 1px var(--color-fill-primary)
+    padding-top: 7px
+    padding-bottom: 8px
 
 </style>
