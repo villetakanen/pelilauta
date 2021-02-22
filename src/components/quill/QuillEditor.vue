@@ -108,7 +108,7 @@ export default defineComponent({
       }, true)
       const quill = new Quill('#editor', options)
       const toolbar = quill.getModule('toolbar')
-      toolbar.addHandler('image', imageHandler)
+      if (toolbar) toolbar.addHandler('image', imageHandler)
       quill.on('text-change', () => {
         context.emit('update:modelValue', quill.root.innerHTML)
       })
