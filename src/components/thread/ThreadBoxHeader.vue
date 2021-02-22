@@ -50,7 +50,7 @@ export default defineComponent({
     const { streams } = useMeta()
     const { uid, isAdmin } = useAuthState()
     const { pushSnack } = useSnack()
-    const { i18n } = useI18n()
+    const i18n = useI18n()
 
     // Computed props
     const topicName = computed(() => {
@@ -61,9 +61,9 @@ export default defineComponent({
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
 
-      if (i18n && canManageThread.value) {
-        arr.push({ to: `/thread/${props.thread.id}/edit`, icon: 'edit', text: i18n.t('action.edit'), admin: isAdmin.value })
-        arr.push({ action: drop, icon: 'delete', text: i18n.t('action.delete'), admin: isAdmin.value })
+      if (canManageThread.value) {
+        arr.push({ to: `/thread/${props.thread.id}/edit`, icon: 'edit', text: i18n.t('action.edit'), admin: uid.value !== props.thread.author })
+        arr.push({ action: drop, icon: 'delete', text: i18n.t('action.delete'), admin: uid.value !== props.thread.author })
       }
       return arr
     })
