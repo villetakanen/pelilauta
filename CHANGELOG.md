@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.4.6](https://github.com/villetakanen/pelilauta/compare/v7.4.5...v7.4.6) (2021-02-22)
+
+
+### Bug Fixes
+
+* hotfix for toolbar-less editors ([9665760](https://github.com/villetakanen/pelilauta/commit/9665760aa4dae506cfcabbeb63d2822e9aa45912))
+
 ### [7.4.5](https://github.com/villetakanen/pelilauta/compare/v7.4.4...v7.4.5) (2021-02-22)
 
 
