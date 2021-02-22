@@ -1,5 +1,5 @@
 <template>
-  <div class="viewThread">
+  <div class="viewThread contentGrid">
     <ThreadBox>
       <ThreadBoxHeader :thread="thread" />
       <div
@@ -52,5 +52,10 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+
+.viewThread
+  position: relative
+  margin: 0 auto
+  padding: 0
 
 </style>

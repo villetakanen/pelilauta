@@ -2,7 +2,7 @@
   <div class="toolbar">
     <div>
       <h1>
-        <router-link :to="'/stream/view/' + thread.id">
+        <router-link :to="`/thread/${thread.id}/view`">
           {{ thread.data.title }}
         </router-link>
       </h1>

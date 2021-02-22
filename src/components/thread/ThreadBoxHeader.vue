@@ -92,11 +92,18 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .threadBoxHeader
-  height: 48px
   margin: 0
+  height: 48px
+  // Sticky-position
+  position: sticky
+  position: -webkit-sticky
+  top: 0px
+  margin-top: -8px
+  padding-top: 8px
   padding-bottom: 7px
   border-bottom: solid 1px var(--color-fill-primary)
   margin-bottom: 8px
+  background-color: var(--color-fill-background)
   h1
     @include TypeHeadline5()
   p.caption
