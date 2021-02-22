@@ -1,5 +1,9 @@
 {
   "lang": "EN",
+  "about": {
+    "title": "About Pelilauta",
+    "text": "What if we wanted more structured and slower conversation than discoes and some allows? Not instead, but in addition."
+  },
   "action": {
     "addAttachment": "Add a file",
     "addThread": "New Thread",
@@ -91,9 +95,8 @@
       "visibleToggle": "Show in public lists"
     }
   },
-  "about": {
-    "title": "About Pelilauta",
-    "text": "What if we wanted more structured and slower conversation than discoes and some allows? Not instead, but in addition."
+  "threads": {
+    "sinceInTopic": "aiheessa"
   },
   "welcome": {
     "header": "Pelilauta",

@@ -1,5 +1,9 @@
 {
   "lang": "FI",
+  "about": {
+    "title": "Pelilaudasta",
+    "text": "Jos sittenkin olisi foorumi? Koska vaikka discot on kivoja, ja RPS on somen keskus... niin joskus haluaisi myös rakenteellisempaa tai hitaampaa keskustelua."
+  },
   "admin": {
     "title": "Admin"
   },
@@ -7,19 +11,6 @@
     "title": "Pelilauta 2",
     "footnote": "Beta- tasoinen PWA yhteisösivustoille",
     "updatesAvailable": "Sovelluksesta on saatavilla uusi versio. Klikkaa päivitä -nappulaa alta ladataksesi uuden version"
-  },
-  "editorDialog": {
-    "title": "Viesti",
-    "titleFieldPlaceholder": "Ketjun otsikko"
-  },
-  "language": {
-    "label": "Appiksen kieli"
-  },
-  "login": {
-    "title": "Kirjaudu tai rekisteröidy",
-    "message": "Voit kirjautua sovellukseen Googlen tai Facebookin avulla allaolevilla nappuloilla.",
-    "withGoogleButton": "Googlella",
-    "withFacebookButton": "Facebookila"
   },
   "action": {
     "addAttachment": "Lisää tiedosto",
@@ -40,6 +31,19 @@
     "quote": "Lainaa",
     "send": "Lähetä"
   },
+  "editorDialog": {
+    "title": "Viesti",
+    "titleFieldPlaceholder": "Ketjun otsikko"
+  },
+  "language": {
+    "label": "Appiksen kieli"
+  },
+  "login": {
+    "title": "Kirjaudu tai rekisteröidy",
+    "message": "Voit kirjautua sovellukseen Googlen tai Facebookin avulla allaolevilla nappuloilla.",
+    "withGoogleButton": "Googlella",
+    "withFacebookButton": "Facebookila"
+  },
   "postHeader": {
     "postedInStream": "aiheessa"
   },
@@ -55,9 +59,8 @@
     "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
     "tagline": "Allekirjoitus"
   },
-  "about": {
-    "title": "Pelilaudasta",
-    "text": "Jos sittenkin olisi foorumi? Koska vaikka discot on kivoja, ja RPS on somen keskus... niin joskus haluaisi myös rakenteellisempaa tai hitaampaa keskustelua."
+  "threads": {
+    "sinceInTopic": "aiheessa"
   },
   "welcome": {
     "header": "Pelilauta",
