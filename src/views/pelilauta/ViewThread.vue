@@ -2,19 +2,20 @@
   <div class="viewThread">
     <ThreadBox>
       <ThreadBoxHeader :thread="thread" />
-      <ThreadCardHeader :thread="thread" />
       <div
         class="threadContent"
         :innerHTML="thread.data.content"
       />
       <PhotoBox :photos="thread.data.images || []" />
+      <h2>{{ $t('treads.discussion') }}</h2>
+      <Discussion :thread="thread" />
     </ThreadBox>
   </div>
 </template>
 
 <script lang="ts">
+import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
-import ThreadCardHeader from '@/components/stream/ThreadCardHeader.vue'
 import ThreadBox from '@/components/thread/ThreadBox.vue'
 import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
 import { subscribeThread, useThreads } from '@/state/threads/threads'
@@ -30,7 +31,9 @@ import { defineComponent } from 'vue'
  */
 export default defineComponent({
   name: 'ViewThread',
-  components: { ThreadBox, ThreadCardHeader, PhotoBox, ThreadBoxHeader },
+  components: {
+    ThreadBox, PhotoBox, ThreadBoxHeader, Discussion
+  },
   props: {
     threadid: {
       type: String,
