@@ -28,7 +28,10 @@
       style="margin-top:8px"
     >
       <div class="spacer" />
-      <MaterialButton text>
+      <MaterialButton
+        text
+        :to="`/thread/${thread.id}/view`"
+      >
         Cancel
       </MaterialButton>
       <MaterialButton>Save</MaterialButton>
