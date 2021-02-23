@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { PostImage } from '@/utils/uiInterfaces'
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, computed } from 'vue'
 export default defineComponent({
   name: 'PhotoBox',
   props: {
@@ -22,7 +22,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const postImages = ref(props.photos as Array<PostImage>)
+    const postImages = computed(() => (props.photos as Array<PostImage>))
     return { postImages }
   }
 })
