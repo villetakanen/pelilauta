@@ -4,7 +4,7 @@ import 'firebase/analytics'
 
 import { computed, ComputedRef, ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
-import { useAuthState, useProfile } from '../authz'
+import { useProfile } from '../authz'
 
 export interface PostImage {
     url: string;
