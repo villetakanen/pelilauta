@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.6.0](https://github.com/villetakanen/pelilauta/compare/v7.5.3...v7.6.0) (2021-02-23)
+
+
+### Features
+
+* cancel editing works ([0771bfe](https://github.com/villetakanen/pelilauta/commit/0771bfe0d0b82445385d4773d248358b49522018))
+* create and edit thread route ([e11cadd](https://github.com/villetakanen/pelilauta/commit/e11cadd1e08cc2134a0299f1751941dccd282044))
+* initial edit components in place ([3a46735](https://github.com/villetakanen/pelilauta/commit/3a4673532c70cbe339a75ed5dd22a86a9432b975))
+* new thread editor all base fields in place ([0093556](https://github.com/villetakanen/pelilauta/commit/009355666048d2c4a43b54520bb8c6f487bc9d86))
+
+
+### Bug Fixes
+
+* locales and ui ([b60a9dc](https://github.com/villetakanen/pelilauta/commit/b60a9dc815a28836a3bb7555bd969f277031d019))
+* thread header no longer clamps ([268c283](https://github.com/villetakanen/pelilauta/commit/268c283e3eaf16b70c417837805b6ca09f938b0e))
+* thread updates are saved ([981eb41](https://github.com/villetakanen/pelilauta/commit/981eb4192ae1085b4e39cf2d094a27f84c722731))
+
 ### [7.5.3](https://github.com/villetakanen/pelilauta/compare/v7.5.2...v7.5.3) (2021-02-23)
 
 
