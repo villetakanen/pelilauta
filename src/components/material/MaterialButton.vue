@@ -138,6 +138,7 @@ export default defineComponent({
     margin-right: 4px
 
   &.material-button-icon
+    flex-shrink: 0
     height: 48px
     width: 48px
     padding: 6px

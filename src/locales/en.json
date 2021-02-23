@@ -97,7 +97,11 @@
   },
   "threads": {
     "sinceInTopic": "in",
-    "discussion": "Comments"
+    "discussion": "Comments",
+    "updateSuccess": "Thread updated",
+    "updateFailed": "Thread update failed",
+    "title": "Thread title",
+    "topic": "Topic"
   },
   "welcome": {
     "header": "Pelilauta",
