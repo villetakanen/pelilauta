@@ -22,7 +22,10 @@ $color-fill-dark: #002337
   --color-fill-primary-dark: #00796b
   --color-fill-secondary: #BB1187
   --color-fill-background: #FFFFFF
-  --color-font-medium: rgba(0, 0, 0, 0.67)
+
+@mixin TypeColor($code)
+  @if $code == 'inverse high'
+    color: rgba(255, 255, 255, 0.87)
 
 
 // --  
