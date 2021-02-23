@@ -33,6 +33,7 @@
       class="message"
     >
       <div
+        class="contentArea"
         :innerHTML="reply.content"
       />
     </div>
