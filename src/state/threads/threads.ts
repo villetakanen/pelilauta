@@ -136,8 +136,7 @@ export async function updateThread (actor: string, post:Thread): Promise<string>
   return postRef.update({
     editor: actor,
     ...post.data,
-    created: firebase.firestore.FieldValue.serverTimestamp(),
-    flowTime: firebase.firestore.FieldValue.serverTimestamp()
+    editTime: firebase.firestore.FieldValue.serverTimestamp()
   }).then(() => {
     return post.id
   })
