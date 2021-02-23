@@ -1,14 +1,19 @@
 <template>
   <div class="viewThread contentGrid">
     <ThreadBox>
-      ...
+      <ThreadEditor
+        :thread="thread"
+        :mode="mode"
+        :topic="topic"
+      />
     </ThreadBox>
   </div>
 </template>
 
 <script lang="ts">
 import ThreadBox from '@/components/thread/ThreadBox.vue'
-import { subscribeThread } from '@/state/threads/threads'
+import ThreadEditor from '@/components/thread/ThreadEditor.vue'
+import { subscribeThread, useThreads } from '@/state/threads/threads'
 import { defineComponent } from 'vue'
 
 /**
@@ -22,7 +27,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'ViewThread',
   components: {
-    ThreadBox
+    ThreadBox,
+    ThreadEditor
   },
   props: {
     threadid: {
@@ -33,10 +39,17 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    topic: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   setup (props) {
     subscribeThread(props.threadid)
+    const { thread } = useThreads()
+    return { thread }
   }
 })
 </script>
