@@ -4,13 +4,13 @@
       <TextField
         v-model="v.threadTitle.$model"
         header
-        :label="$t('thread.title')"
+        :label="$t('threads.title')"
         :error="v.threadTitle.$error"
       />
       <MaterialSelect
         v-model="v.threadTopic.$model"
         :opts="topicOpts"
-        :label="$t('thread.topic')"
+        :label="$t('threads.topic')"
       />
       <MaterialButton icon>
         <Icon name="toggle-open" />
@@ -34,12 +34,9 @@
       >
         Cancel
       </MaterialButton>
-      <MaterialButton :asyncAction="save">Save</MaterialButton>
-    </div>
-    threadEditor
-
-    <div class="debugBox contentArea">
-      <div>{{ thread }}</div>
+      <MaterialButton :async-action="save">
+        Save
+      </MaterialButton>
     </div>
   </div>
 </template>
@@ -140,8 +137,9 @@ export default defineComponent({
       updateThread(uid.value, updatedThread).then(() => {
         pushSnack(i18n.t('threads.updateSuccess'))
         router.push(`/thread/${props.thread.id}/view`)
-      }).catch(() => {
+      }).catch((error:Error) => {
         pushSnack(i18n.t('threads.updateFailed'))
+        console.debug(error)
       })
     }
 
