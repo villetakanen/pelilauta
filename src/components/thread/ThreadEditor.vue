@@ -2,10 +2,19 @@
   <div class="threadEditor">
     <div class="threadHeader toolbar">
       <TextField
-        size="headline"
+        v-model="v.threadTitle.$model"
+        header
         :label="$t('thread.title')"
+        :error="v.threadTitle.$error"
       />
-      <MaterialSelect />
+      <MaterialSelect
+        v-model="v.threadTopic.$model"
+        :opts="topicOpts"
+        :label="$t('thread.topic')"
+      />
+      <MaterialButton icon>
+        <Icon name="toggle-open" />
+      </MaterialButton>
     </div>
 
     <div class="editor">
@@ -14,37 +23,47 @@
         toolbar
       />
     </div>
+    <div
+      class="toolbar"
+      style="margin-top:8px"
+    >
+      <div class="spacer" />
+      <MaterialButton text>
+        Cancel
+      </MaterialButton>
+      <MaterialButton>Save</MaterialButton>
+    </div>
     threadEditor
 
     <div class="debugBox contentArea">
-      <p>mode: '{{ mode }}'</p>
-      <p>topic: '{{ topic }}'</p>
       <div>{{ thread }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { useMeta } from '@/state/meta'
 import { Thread } from '@/state/threads/threads'
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
+import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
+import MaterialButton from '../material/MaterialButton.vue'
+import Icon from '../material/Icon.vue'
 
 /**
- * A Router view for a Stream Thread in an edit mode.
- *
- * Loads all the required State entities, and initiates the required Firebase
- * subscriptions.
- * Does not contain any functionality aside from state management and component
- * import/layout
+ * An editor form for Thread data.
  */
 export default defineComponent({
-  name: 'ViewThread',
+  name: 'ThreadEditor',
   components: {
     TextField,
     MaterialSelect,
-    QuillEditor
+    QuillEditor,
+    MaterialButton,
+    Icon
   },
   props: {
     thread: {
@@ -63,8 +82,45 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const threadContent = computed(() => (props.thread.data.content))
-    return { threadContent }
+    // Thread name
+    const localTitle = ref('')
+    const threadTitle = computed({
+      get: () => (localTitle.value || props.thread.data.title),
+      set: (val:string) => {
+        if (val !== localTitle.value) {
+          localTitle.value = val
+        } else {
+          console.debug('Trying to set thread title to itself. This is likely a bug.')
+        }
+      }
+    })
+    // Thread content
+    const localContent = ref('')
+    const threadContent = computed({
+      get: () => (localContent.value || props.thread.data.content),
+      set: (val:string) => {
+        if (val !== localContent.value) {
+          localContent.value = val
+        } else {
+          console.debug('Trying to set thread content to itself. This is likely a bug.')
+        }
+      }
+    })
+    // Topics
+    const { streams } = useMeta()
+    const topicOpts = computed(() => (streams.value.filter((val) => (val.slug !== '-')).map((val) => ({ key: val.slug, value: val.name }))))
+    const threadTopic = ref(props.thread.data.topic)
+
+    const minLength = (value:any) => (value.length > 1)
+    const maxLength = (value:any) => (value.toString().trim().length < 36)
+
+    const rules = {
+      threadTitle: { required, minLength, maxLength },
+      threadTopic: { required }
+    }
+    const v = useVuelidate(rules, { threadTitle, threadTopic })
+
+    return { threadContent, threadTitle, topicOpts, threadTopic, v }
   }
 })
 </script>
@@ -75,6 +131,9 @@ export default defineComponent({
 .editor
   border: solid 1px var(--color-fill-primary)
 .threadHeader
+  margin-bottom: 8px
+  div
+    margin: 0
   div+div
-    margin-left: 8px
+    margin: 0 8px
 </style>

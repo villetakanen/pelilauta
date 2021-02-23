@@ -1,11 +1,12 @@
 <template>
   <div
     class="materialTextfield"
-    :class="{withLabel: true && label }"
+    :class="{withLabel: true && label, error: error }"
   >
     <input
       v-model="fieldValue"
       :name="name"
+      :class="{ header: header }"
       @input="onUpdate"
       @blur="onBlur"
     >
@@ -26,7 +27,9 @@ export default defineComponent({
     modelValue: { type: String, required: false, default: '' },
     name: { type: String, required: false, default: 'input-' + Math.floor(Math.random() * 100000) },
     label: { type: String, required: false, default: '' },
-    blur: { type: Boolean, required: false, default: false }
+    blur: { type: Boolean, required: false, default: false },
+    header: { type: Boolean, required: false, default: false },
+    error: { type: Boolean, required: false, default: false }
   },
   emits: ['update:modelValue'],
   setup (props, context) {
@@ -72,6 +75,9 @@ export default defineComponent({
     margin-top: 2px
     background: none
     width: 100%
+    &.header
+      @include TypeHeadline5()
+      padding-top: 16px
   label
     position: absolute
     left: 4px
