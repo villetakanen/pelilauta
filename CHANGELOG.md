@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.5.0](https://github.com/villetakanen/pelilauta/compare/v7.4.6...v7.5.0) (2021-02-23)
+
+
+### Features
+
+* new thread view page ([0fc6dd9](https://github.com/villetakanen/pelilauta/commit/0fc6dd9b78070d45ce790c8a5c839e66369411c6))
+* thread box header menu ([ca3ab69](https://github.com/villetakanen/pelilauta/commit/ca3ab699590bb3410f73d917b1e1f8fc167c75e0))
+* thread box header rewrite ([5b2cad8](https://github.com/villetakanen/pelilauta/commit/5b2cad84dbf78b571ab74e736c1314dff16c9aff))
+* thread editor v3 view skeleton ([ed954fe](https://github.com/villetakanen/pelilauta/commit/ed954fe3281ad6be8d3f673457ed1c8bd469d989))
+* threads link to new thread view ([48f0352](https://github.com/villetakanen/pelilauta/commit/48f0352a5643f2d0aa0838ff52318c9f3d52fc7d))
+
+
+### Bug Fixes
+
+* editing a post does not update flowtime ([ff26020](https://github.com/villetakanen/pelilauta/commit/ff26020a446ebbc415de1869bad761c275f21ed5))
+* editing a thread no longer updates flowtime ([1c73422](https://github.com/villetakanen/pelilauta/commit/1c73422ba9a355d7cd23191bfd081fe8b387e750))
+* i18n import fixed for thread card header ([c6c7907](https://github.com/villetakanen/pelilauta/commit/c6c7907676c63edf087cbfc6109b304da12ea92d))
+* small ux polish for thread view ([fb7b1a3](https://github.com/villetakanen/pelilauta/commit/fb7b1a381471563605be4d019ad327e8f3811868))
+* snacks with plain message added to comps ([6e3de41](https://github.com/villetakanen/pelilauta/commit/6e3de41ec3bda3dcf0a2a30b7f213a350126c93b))
+
 ### [7.4.6](https://github.com/villetakanen/pelilauta/compare/v7.4.5...v7.4.6) (2021-02-22)
 
 
