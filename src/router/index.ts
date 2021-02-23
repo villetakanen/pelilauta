@@ -81,6 +81,20 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
+    path: '/thread/:threadid/edit',
+    name: 'threads.edit',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
+    props: true
+  },
+  {
+    path: '/thread/:threadid/edit/new/:topic',
+    name: 'threads.create',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
+    props: true
+  },
+  {
     path: '/editortest',
     name: 'global.admin.editorTest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
