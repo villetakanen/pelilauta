@@ -34,7 +34,7 @@
       >
         Cancel
       </MaterialButton>
-      <MaterialButton>Save</MaterialButton>
+      <MaterialButton :asyncAction="save">Save</MaterialButton>
     </div>
     threadEditor
 
@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import { useMeta } from '@/state/meta'
-import { Thread } from '@/state/threads/threads'
+import { Thread, updateThread } from '@/state/threads/threads'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
@@ -55,6 +55,10 @@ import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import MaterialButton from '../material/MaterialButton.vue'
 import Icon from '../material/Icon.vue'
+import { useAuthState } from '@/state/authz'
+import { useSnack } from '@/composables/useSnack'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 
 /**
  * An editor form for Thread data.
@@ -123,7 +127,25 @@ export default defineComponent({
     }
     const v = useVuelidate(rules, { threadTitle, threadTopic })
 
-    return { threadContent, threadTitle, topicOpts, threadTopic, v }
+    const { uid } = useAuthState()
+    const { pushSnack } = useSnack()
+    const i18n = useI18n()
+    const router = useRouter()
+
+    const save = async () => {
+      const updatedThread:Thread = { ...props.thread }
+      if (localContent.value) updatedThread.data.content = localContent.value
+      if (localTitle.value) updatedThread.data.title = localTitle.value
+      if (threadTopic.value) updatedThread.data.topic = threadTopic.value
+      updateThread(uid.value, updatedThread).then(() => {
+        pushSnack(i18n.t('threads.updateSuccess'))
+        router.push(`/thread/${props.thread.id}/view`)
+      }).catch(() => {
+        pushSnack(i18n.t('threads.updateFailed'))
+      })
+    }
+
+    return { threadContent, threadTitle, topicOpts, threadTopic, v, save }
   }
 })
 </script>
