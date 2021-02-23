@@ -107,9 +107,12 @@ export default defineComponent({
   background-color: var(--color-fill-background)
   h1
     @include TypeHeadline5()
+    overflow: hidden
+    text-overflow: ellipsis
   p.caption
     @include TypeCaption()
 
 @include media('<tablet')
   .threadBoxHeader
+    height: auto
 </style>
