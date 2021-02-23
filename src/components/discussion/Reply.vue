@@ -119,7 +119,7 @@ export default defineComponent({
     })
 
     async function toggleLove () {
-      if (isAnonymous) return
+      if (isAnonymous.value) return
       if (loves.value) return unloveReply(uid.value, props.threadid, props.reply.replyid)
       else return loveReply(uid.value, props.threadid, props.reply.replyid)
     }
