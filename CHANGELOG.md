@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.5.3](https://github.com/villetakanen/pelilauta/compare/v7.5.2...v7.5.3) (2021-02-23)
+
+
+### Bug Fixes
+
+* copy paste to comments works ([2806bc5](https://github.com/villetakanen/pelilauta/commit/2806bc5ecd7a1430b92cdc3adae60e183f1868d9))
+
 ### [7.5.2](https://github.com/villetakanen/pelilauta/compare/v7.5.1...v7.5.2) (2021-02-23)
 
 
