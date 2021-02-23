@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.5.2](https://github.com/villetakanen/pelilauta/compare/v7.5.1...v7.5.2) (2021-02-23)
+
+
+### Bug Fixes
+
+* love buttons for comments work with new anon ([bd25111](https://github.com/villetakanen/pelilauta/commit/bd251117e5c65857bb67a52d71763536e9cbdac3))
+
 ### [7.5.1](https://github.com/villetakanen/pelilauta/compare/v7.5.0...v7.5.1) (2021-02-23)
 
 
