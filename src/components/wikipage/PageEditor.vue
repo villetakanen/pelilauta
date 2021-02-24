@@ -4,6 +4,7 @@
   </div>
   <div v-else>
     <div class="pageEditor">
+      <!-- Page info -->
       <div class="toolbar pageHeader">
         <TextField
           v-model="pageName"
@@ -15,6 +16,9 @@
           <Icon name="toggle-down" />
         </MaterialButton>
       </div>
+      <!-- Page meta, toggled with metaToggle -->
+      <!-- Page content -->
+      <!-- Editor actions -->
       <div
         class="toolbar"
         style="margin-top:8px"
