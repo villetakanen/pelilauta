@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.7.0](https://github.com/villetakanen/pelilauta/compare/v7.6.1...v7.7.0) (2021-02-24)
+
+
+### Features
+
+* category locales for en ([8a51e7f](https://github.com/villetakanen/pelilauta/commit/8a51e7fcce4577723277397ff09958802612ec7f))
+* page name validation ([3dd2251](https://github.com/villetakanen/pelilauta/commit/3dd22515c61b9583c676d4b4d8e5548a183d222f))
+* refactored wiki page editor to new view/comp ([e204386](https://github.com/villetakanen/pelilauta/commit/e20438663fb4001c6b672eaf6b40658677bcf028))
+* wikicontent editable with new editor ([6efdda4](https://github.com/villetakanen/pelilauta/commit/6efdda4f97528badf430e75614657465ca7c6fd6))
+* wikipage title edit for new editor ([48d8cd3](https://github.com/villetakanen/pelilauta/commit/48d8cd33af4aa97795fbbbd9fbe4f538b8ba432b))
+
+
+### Bug Fixes
+
+* code quality ([2ba0786](https://github.com/villetakanen/pelilauta/commit/2ba07869dc22d438371088579a8ce420ce94c27c))
+
 ### [7.6.1](https://github.com/villetakanen/pelilauta/compare/v7.6.0...v7.6.1) (2021-02-24)
 
 ## [7.6.0](https://github.com/villetakanen/pelilauta/compare/v7.5.3...v7.6.0) (2021-02-23)
