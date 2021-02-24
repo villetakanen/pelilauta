@@ -21,13 +21,20 @@ An Open Source vue3+firebase project for a community site.
 5. Ask Ville for access, and start helping with Firebase devops tasks o_O
 6. Use the App.
 
-## Breaking changes
+## Breaking, and other major changes
+
+7.7.0 - and above
+- The app now expects that https://github.com/villetakanen/pelilauta-functions/releases/tag/0.1.0 
+  or later is installed to firebase project. As the App will function just fine without the back-end
+  triggers in the functions project, this change is not marked as breaking.
 
 7.0.0.
-- Supports email-link auth. No longer supports multiple SSO providers for multiple acccounts with the same email.
+- Supports email-link auth. No longer supports multiple SSO providers for multiple acccounts with 
+  the same email.
 
 6.0.0
-- No longer compatible with skald 2.x site members model, requires a migration update for owners/members to firebase data structures
+- No longer compatible with skald 2.x site members model, requires a migration update for 
+  owners/members to firebase data structures
 
 ## Project setup
 
