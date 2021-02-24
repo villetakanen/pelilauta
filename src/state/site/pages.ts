@@ -36,7 +36,7 @@ function toPage (siteid?:string, id?:string, data?:firebase.firestore.DocumentDa
     return {
       siteid: '',
       id: '',
-      name: 'not found',
+      name: '',
       htmlContent: '',
       category: '',
       lastUpdate: null

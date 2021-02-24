@@ -93,6 +93,16 @@
     "site": {
       "badge": "Game badge",
       "visibleToggle": "Show in public lists"
+    },
+    "page": {
+      "category": "Category",
+      "name": "Title"
+    },
+    "category": {
+      "characters": "Characters",
+      "logs": "Logs",
+      "rules": "Rules",
+      "setting": "Setting"
     }
   },
   "threads": {

@@ -54,3 +54,6 @@ export function toMekanismiURI (s: string): string {
   }
   return r.toLowerCase()
 }
+
+export const minLength = (value:any) => (value.length > 1)
+export const maxLength = (value:any) => (value.toString().trim().length < 36)

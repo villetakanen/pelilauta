@@ -25,7 +25,7 @@ import { defineComponent } from 'vue'
  * import/layout
  */
 export default defineComponent({
-  name: 'ViewThread',
+  name: 'EditThread',
   components: {
     ThreadBox,
     ThreadEditor
