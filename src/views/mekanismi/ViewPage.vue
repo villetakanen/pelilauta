@@ -8,7 +8,7 @@
           <div v-if="site.name && page.name">
             <div
               class="wikipage"
-              :innerHTML="page.htmlContent"
+              :innerHTML="renderWikiLinks(site.id, page.htmlContent)"
             />
           </div>
           <Loader
@@ -42,6 +42,7 @@ import Loader from '@/components/app/Loader.vue'
 // import { useRoute } from 'vue-router'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import { renderWikiLinks } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -72,7 +73,7 @@ export default defineComponent({
       fetchPage(pid || id)
     }, { immediate: true }) */
 
-    return { page, site, mobileViewport }
+    return { page, site, mobileViewport, renderWikiLinks }
   }
 })
 </script>
