@@ -7,9 +7,10 @@
       <!-- Page info -->
       <div class="toolbar pageHeader">
         <TextField
-          v-model="pageName"
+          v-model="v.pageName.$model"
           header
           :label="$t('wiki.page.name')"
+          :error="v.pageName.$error"
         />
         <MaterialSelect />
         <MaterialButton icon>
@@ -45,8 +46,11 @@
 import { useSnack } from '@/composables/useSnack'
 import { useAuthState } from '@/state/authz'
 import { Page, PageFragment, Site, updatePage } from '@/state/site'
+import useVuelidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
+import { minLength, maxLength } from '@/utils/contentFormat'
 // import { extractLinks, extractTags } from '@/utils/contentFormat'
-import { defineComponent, PropType, ref, computed } from 'vue'
+import { defineComponent, PropType, ref, computed, Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import Loader from '../app/Loader.vue'
@@ -79,9 +83,9 @@ export default defineComponent({
   },
   setup (props) {
     // Thread name
-    const formName = ref('')
+    const formName:Ref<string|undefined> = ref(undefined)
     const pageName = computed({
-      get: () => (formName.value || props.page.name || props.page.id),
+      get: () => (typeof formName.value === 'string' ? formName.value : props.page.name || props.page.id),
       set: (val:string) => {
         if (val !== formName.value) {
           formName.value = val
@@ -90,6 +94,11 @@ export default defineComponent({
         }
       }
     })
+
+    const rules = {
+      pageName: { required, minLength, maxLength }
+    }
+    const v = useVuelidate(rules, { pageName })
 
     const { uid } = useAuthState()
     const router = useRouter()
@@ -113,7 +122,7 @@ export default defineComponent({
         console.debug(error)
       })
     }
-    return { save, pageName }
+    return { save, v }
   }
 })
 </script>
