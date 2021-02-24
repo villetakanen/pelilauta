@@ -12,13 +12,23 @@
           :label="$t('wiki.page.name')"
           :error="v.pageName.$error"
         />
-        <MaterialSelect />
+        <MaterialSelect
+          v-model="formCategory"
+          :opts="opts"
+          :label="$t('wiki.page.category')"
+        />
         <MaterialButton icon>
           <Icon name="toggle-down" />
         </MaterialButton>
       </div>
       <!-- Page meta, toggled with metaToggle -->
       <!-- Page content -->
+      <div class="editor">
+        <QuillEditor
+          v-model="pageContent"
+          toolbar
+        />
+      </div>
       <!-- Editor actions -->
       <div
         class="toolbar"
@@ -35,9 +45,6 @@
           Save
         </MaterialButton>
       </div>
-      <div>{{ site }}</div>
-      <hr>
-      <div>{{ page }}</div>
     </div>
   </div>
 </template>
@@ -48,8 +55,7 @@ import { useAuthState } from '@/state/authz'
 import { Page, PageFragment, Site, updatePage } from '@/state/site'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import { minLength, maxLength } from '@/utils/contentFormat'
-// import { extractLinks, extractTags } from '@/utils/contentFormat'
+import { minLength, maxLength, extractLinks, extractTags } from '@/utils/contentFormat'
 import { defineComponent, PropType, ref, computed, Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -58,6 +64,7 @@ import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
+import QuillEditor from '../quill/QuillEditor.vue'
 
 /**
  * An editor form for a Wiki Page.
@@ -69,7 +76,8 @@ export default defineComponent({
     MaterialButton,
     TextField,
     Icon,
-    Loader
+    Loader,
+    QuillEditor
   },
   props: {
     site: {
@@ -82,7 +90,8 @@ export default defineComponent({
     }
   },
   setup (props) {
-    // Thread name
+    const i18n = useI18n()
+    // Page name
     const formName:Ref<string|undefined> = ref(undefined)
     const pageName = computed({
       get: () => (typeof formName.value === 'string' ? formName.value : props.page.name || props.page.id),
@@ -95,6 +104,27 @@ export default defineComponent({
       }
     })
 
+    // Page content
+    const formContent:Ref<string|undefined> = ref(undefined)
+    const pageContent = computed({
+      get: () => (typeof formContent.value === 'string' ? formContent.value : props.page.htmlContent || '...'),
+      set: (val:string) => {
+        if (val !== formContent.value) {
+          formContent.value = val
+        } else {
+          console.debug('Trying to set thread title to itself. This is likely a bug.')
+        }
+      }
+    })
+
+    const opts = [
+      { key: 'characters', value: i18n.t('wiki.category.characters') },
+      { key: 'logs', value: i18n.t('wiki.category.logs') },
+      { key: 'rules', value: i18n.t('wiki.category.rules') },
+      { key: 'setting', value: i18n.t('wiki.category.setting') }
+    ]
+    const formCategory = ref(props.page.category)
+
     const rules = {
       pageName: { required, minLength, maxLength }
     }
@@ -103,17 +133,18 @@ export default defineComponent({
     const { uid } = useAuthState()
     const router = useRouter()
     const { pushSnack } = useSnack()
-    const i18n = useI18n()
 
     async function save () {
-      // const { formattedContent: pc } = extractLinks(pageContent.value)
-      // const { formattedContent, tags } = extractTags(pc)
+      const { formattedContent: pc } = extractLinks(pageContent.value)
+      const { formattedContent } = extractTags(pc)
       const pageData:PageFragment = {
         id: props.page.id,
         siteid: props.site.id,
-        author: uid.value
+        author: uid.value,
+        category: formCategory.value
       }
       if (formName.value) pageData.name = formName.value
+      if (formattedContent !== props.page.htmlContent) pageData.htmlContent = formattedContent
       return updatePage(pageData).then(() => {
         router.push(`/mekanismi/view/${props.site.id}/${props.page.id}`)
         pushSnack(i18n.t('wiki.page.updateSuccesfull'))
@@ -122,7 +153,7 @@ export default defineComponent({
         console.debug(error)
       })
     }
-    return { save, v }
+    return { save, v, opts, formCategory, pageContent }
   }
 })
 </script>
@@ -130,7 +161,8 @@ export default defineComponent({
 <style lang="sass" scoped>
 
 .editor
-  border: solid 1px var(--color-fill-primary)
+  border-top: solid 1px var(--color-fill-primary)
+  border-bottom: solid 1px var(--color-fill-primary)
 .pageHeader
   margin-bottom: 8px
   div
