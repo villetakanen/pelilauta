@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.8.0](https://github.com/villetakanen/pelilauta/compare/v7.7.0...v7.8.0) (2021-02-24)
+
+
+### Features
+
+* mekanismi2 style links are operational ([a2f943c](https://github.com/villetakanen/pelilauta/commit/a2f943ca68510a31270a7633dfa87c5a281fba9d))
+
 ## [7.7.0](https://github.com/villetakanen/pelilauta/compare/v7.6.1...v7.7.0) (2021-02-24)
 
 
