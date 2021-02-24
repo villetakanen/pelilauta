@@ -55,5 +55,32 @@ export function toMekanismiURI (s: string): string {
   return r.toLowerCase()
 }
 
+/**
+ * Exported from Skald 2.0
+ *
+ * @param siteid slug for the site
+ * @param htmlContent the payload to be rendered on screen
+ * @returns the htmlContent with [wiki:link] replaced with <a href="siteid/link">link</a>
+ * etc. See Skaldmd in Skald 2.x for reference
+ */
+export function renderWikiLinks (siteid:string, htmlContent:string): string {
+  /* console.log('rendWikiLinks', siteLinkStub, line) */
+  // eslint-disable-next-line
+  const re = new RegExp('([\\[(]wiki:)(.+?)([\\])])', 'gmu')
+  let siteslug = siteid
+  const content = htmlContent.replace(re, (match, p1, p2) => {
+    p2 = p2.trim()
+    const link = p2.includes('|') ? p2.substring(p2.indexOf('|') + 1).trim() : p2
+    let url = p2.split('|')[0]
+    if (url.includes('/')) {
+      siteslug = toMekanismiURI(url.split('/')[0].trim())
+      url = url.split('/')[1]
+    }
+    url = toMekanismiURI(url.trim())
+    return `<a href="/mekanismi/view/${siteslug}/${url}">${link}</a>`// '<a href' + p2 + '-'
+  })
+  return content
+}
+
 export const minLength = (value:any) => (value.length > 1)
 export const maxLength = (value:any) => (value.toString().trim().length < 36)
