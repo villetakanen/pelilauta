@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.8.1](https://github.com/villetakanen/pelilauta/compare/v7.8.0...v7.8.1) (2021-03-01)
+
+
+### Bug Fixes
+
+* wikipage update snacks added ([29a07bd](https://github.com/villetakanen/pelilauta/commit/29a07bd8e4de52417c7de527d9e80ffe51f3df98))
+
 ## [7.8.0](https://github.com/villetakanen/pelilauta/compare/v7.7.0...v7.8.0) (2021-02-24)
 
 
