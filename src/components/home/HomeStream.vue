@@ -10,7 +10,7 @@
       </div>
       <div v-else-if="entry.key === 'welcome'">
         <!-- @todo add new welcome card for front page -->
-        Welcome card
+        <WelcomeCard />
       </div>
       <div v-else-if="entry.key === 'wikiChanges'">
         <!-- @todo add new wikichanges card for front page -->
@@ -24,6 +24,7 @@
 import { useAuthState } from '@/state/authz'
 import { Thread, useThreads } from '@/state/threads'
 import { computed, defineComponent } from 'vue'
+import WelcomeCard from './WelcomeCard.vue'
 
 interface StreamEntry {
   key: string
@@ -35,6 +36,7 @@ interface StreamEntry {
  * them to relevant card-components for the purpose
  */
 export default defineComponent({
+  components: { WelcomeCard },
   name: 'HomeStream',
   setup () {
     const { isAnonymous } = useAuthState()
