@@ -6,6 +6,17 @@
       src="@/assets/icons/dark/mekanismi-icon.svg"
     >
     <h1>{{ $t('wiki.changesCard.title') }}</h1>
+    <ul>
+      <li
+        v-for="item in recent"
+        :key="item.changetime"
+      >
+        <span class="siteslug">{{ item.siteid }}</span>
+        <router-link :to="`/mekanismi/view/${item.siteid}/${item.pageid}`">
+          {{ item.name }}
+        </router-link>
+      </li>
+    </ul>
     <div
       class="toolbar"
       style="margin-bottom: -8px"
@@ -25,6 +36,7 @@
 
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
+import { usePagelog } from '@/state/pagelog'
 import { defineComponent } from 'vue'
 import Action from '../material/Action.vue'
 /**
@@ -35,7 +47,8 @@ export default defineComponent({
   components: { Action },
   setup () {
     const { isAnonymous } = useAuthState()
-    return { isAnonymous }
+    const { recent } = usePagelog()
+    return { isAnonymous, recent }
   }
 })
 </script>
@@ -62,9 +75,17 @@ export default defineComponent({
     @include TypeHeadline5()
     margin-left: 72px
     color: $color-dark-font-high
-  p
+  ul
+    margin-left: 0
+    padding-left: 18px
+  p, li
     @include TypeBody2()
     margin-left: 72px
     color: $color-dark-font-medium
+    a
+      color: $color-dark-font-medium
+    .siteslug
+      color: $color-dark-font-disabled
+      padding-right: 8px
 
 </style>

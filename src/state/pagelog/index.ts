@@ -4,15 +4,16 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 
 interface PageLogEntry {
+  name: string,
   siteid: string,
   pageid: string,
-  author: string,
-  flowtime: firebase.firestore.Timestamp,
+  creator: string,
+  changetime: firebase.firestore.Timestamp,
 }
 
 const localRecent = ref(new Array<PageLogEntry>())
 const recent = computed(() => (localRecent.value))
-const lastFlowtime = computed(() => (recent.value[0] ? recent.value[0].flowtime.seconds : 0))
+const lastFlowtime = computed(() => (recent.value.length > 0 ? recent.value[0]?.changetime?.seconds : 0))
 let unsubscribe = () => {}
 
 function addToRecent (entry: PageLogEntry) {
@@ -23,7 +24,7 @@ function subscribeToRecent () {
   unsubscribe()
   const db = firebase.firestore()
   const pageLogRef = db.collection('pagelog')
-  unsubscribe = pageLogRef.orderBy('timestamp').limit(3).onSnapshot((snapshot) => {
+  unsubscribe = pageLogRef.orderBy('changetime', 'asc').limit(3).onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
       addToRecent(change.doc.data() as PageLogEntry)
     })

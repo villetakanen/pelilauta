@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
+import { usePagelog } from '@/state/pagelog'
 import { Thread, useThreads } from '@/state/threads'
 import { computed, defineComponent } from 'vue'
 import ThreadCard from '../stream/ThreadCard.vue'
@@ -43,6 +44,7 @@ export default defineComponent({
   name: 'HomeStream',
   components: { WelcomeCard, ThreadCard, WikiChangesCard },
   setup () {
+    const { lastFlowtime } = usePagelog()
     const { isAnonymous } = useAuthState()
     const stream = computed(() => {
       const entries = new Array<StreamEntry>()
@@ -57,7 +59,8 @@ export default defineComponent({
         // inject latest wikichanges to relevant position
         // @TODO state handler for wiki latest changes, and
         // insert it here
-        if (!wikiChangesInStream && (t.flowTime === null || t.flowTime.seconds > 0)) {
+        console.log(t.flowTime?.seconds, lastFlowtime.value)
+        if (!wikiChangesInStream && (t.flowTime === null || t.flowTime.seconds < lastFlowtime.value)) {
           console.debug('wikiChanges?')
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
