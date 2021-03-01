@@ -1,6 +1,6 @@
 <template>
   <div class="contentGrid">
-    <Stream />
+    <HomeStream />
   </div>
   <teleport to="#ScreenBottomFloatRight">
     <Fab
@@ -20,18 +20,18 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import Stream from '@/components/stream/Stream.vue'
 import Fab from '@/components/material/Fab.vue'
 import EditorDialog from '@/components/app/EditorDialog.vue'
 import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
+import HomeStream from '@/components/home/HomeStream.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    Stream,
     Fab,
-    EditorDialog
+    EditorDialog,
+    HomeStream
   },
   setup () {
     const { isAnonymous } = useAuthState()

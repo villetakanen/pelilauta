@@ -37,7 +37,11 @@
   "app": {
     "title": "Pelilauta",
     "footnote": "A Community SPA. All text content (c) by the author(s).",
-    "updatesAvailable": "A new version is available, please refresh"
+    "updatesAvailable": "A new version is available, please refresh",
+    "welcome": {
+      "title": "Welcome to Pelilauta",
+      "message": "A Role playing games community App. You can login with email, google, or facebook to access full functionality of the site."
+    }
   },
   "editorDialog": {
     "title": "Post",

@@ -4,18 +4,20 @@
       v-for="(entry) in stream"
       :key="entry.key"
     >
-      <div v-if="entry.thread">
-        <!-- @todo add new thread card for front page -->
-        <ThreadCard :thread="entry.thread" />
-      </div>
-      <div v-else-if="entry.key === 'welcome'">
-        <!-- @todo add new welcome card for front page -->
-        <WelcomeCard />
-      </div>
-      <div v-else-if="entry.key === 'wikiChanges'">
-        <!-- @todo add new wikichanges card for front page -->
-        wikiChanges -card
-      </div>
+      <transition name="fade">
+        <div v-if="entry.thread">
+          <!-- @todo add new thread card for front page -->
+          <ThreadCard :thread="entry.thread" />
+        </div>
+        <div v-else-if="entry.key === 'welcome'">
+          <!-- @todo add new welcome card for front page -->
+          <WelcomeCard />
+        </div>
+        <div v-else-if="entry.key === 'wikiChanges'">
+          <!-- @todo add new wikichanges card for front page -->
+          wikiChanges -card
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -54,7 +56,7 @@ export default defineComponent({
         // inject latest wikichanges to relevant position
         // @TODO state handler for wiki latest changes, and
         // insert it here
-        if (!wikiChangesInStream && t.flowTime?.seconds < 0) {
+        if (!wikiChangesInStream && (t.flowTime === null || t.flowTime.seconds < 0)) {
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
         }

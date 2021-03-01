@@ -1,13 +1,23 @@
 <template>
   <div class="welcomeCard">
-    <h1>{{ $t(app.welcome.title ) }}</h1>
-    <p>{{ $t(app.welcome.message ) }}</p>
-    <Action
-      v-if="isAnonymous"
-      :to="login"
+    <img
+      class="logo"
+      :alt="$t('site.title')"
+      src="@/assets/fox.svg"
     >
-      Login
-    </Action>
+    <h1>{{ $t('app.welcome.title') }}</h1>
+    <p>{{ $t('app.welcome.message') }}</p>
+    <div class="toolbar" style="margin-bottom: -8px">
+      <div class="spacer" />
+      <Action
+        v-if="isAnonymous"
+        to="/login"
+        dark
+        mobile
+      >
+        Login
+      </Action>
+    </div>
   </div>
 </template>
 
@@ -27,3 +37,31 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+
+.welcomeCard
+  display: block
+  background: linear-gradient(-44deg, rgba($color-fill-primary-dark,1) 0%, rgba($color-fill-tertiary,1) 100%)
+  margin-bottom: 8px
+  padding: 16px
+  border-radius: 8px
+  position: relative
+  img.logo
+    position: absolute
+    top: 16px
+    left: 8px
+    height: 72px
+    width: 72px
+  h1
+    @include TypeHeadline5()
+    margin-left: 72px
+    color: $color-dark-font-high
+  p
+    @include TypeBody2()
+    margin-left: 72px
+    color: $color-dark-font-medium
+
+</style>
