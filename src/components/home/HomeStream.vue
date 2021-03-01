@@ -15,7 +15,7 @@
         </div>
         <div v-else-if="entry.key === 'wikiChanges'">
           <!-- @todo add new wikichanges card for front page -->
-          wikiChanges -card
+          <WikiChangesCard />
         </div>
       </transition>
     </div>
@@ -28,6 +28,7 @@ import { Thread, useThreads } from '@/state/threads'
 import { computed, defineComponent } from 'vue'
 import ThreadCard from '../stream/ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'
+import WikiChangesCard from './WikiChangesCard.vue'
 
 interface StreamEntry {
   key: string
@@ -40,7 +41,7 @@ interface StreamEntry {
  */
 export default defineComponent({
   name: 'HomeStream',
-  components: { WelcomeCard, ThreadCard },
+  components: { WelcomeCard, ThreadCard, WikiChangesCard },
   setup () {
     const { isAnonymous } = useAuthState()
     const stream = computed(() => {
@@ -56,7 +57,8 @@ export default defineComponent({
         // inject latest wikichanges to relevant position
         // @TODO state handler for wiki latest changes, and
         // insert it here
-        if (!wikiChangesInStream && (t.flowTime === null || t.flowTime.seconds < 0)) {
+        if (!wikiChangesInStream && (t.flowTime === null || t.flowTime.seconds > 0)) {
+          console.debug('wikiChanges?')
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
         }

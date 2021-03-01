@@ -109,6 +109,9 @@
       "logs": "Logs",
       "rules": "Rules",
       "setting": "Setting"
+    },
+    "changesCard": {
+      "title": "Mekanismi recent changes"
     }
   },
   "threads": {
