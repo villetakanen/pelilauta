@@ -6,7 +6,7 @@
     >
       <div v-if="entry.thread">
         <!-- @todo add new thread card for front page -->
-        {{ entry.thread }}
+        <ThreadCard :thread="entry.thread" />
       </div>
       <div v-else-if="entry.key === 'welcome'">
         <!-- @todo add new welcome card for front page -->
@@ -24,6 +24,7 @@
 import { useAuthState } from '@/state/authz'
 import { Thread, useThreads } from '@/state/threads'
 import { computed, defineComponent } from 'vue'
+import ThreadCard from '../stream/ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'
 
 interface StreamEntry {
@@ -36,8 +37,8 @@ interface StreamEntry {
  * them to relevant card-components for the purpose
  */
 export default defineComponent({
-  components: { WelcomeCard },
   name: 'HomeStream',
+  components: { WelcomeCard, ThreadCard },
   setup () {
     const { isAnonymous } = useAuthState()
     const stream = computed(() => {
