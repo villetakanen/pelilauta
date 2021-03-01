@@ -5,12 +5,15 @@
       :key="entry.key"
     >
       <div v-if="entry.thread">
+        <!-- @todo add new thread card for front page -->
         {{ entry.thread }}
       </div>
       <div v-else-if="entry.key === 'welcome'">
+        <!-- @todo add new welcome card for front page -->
         Welcome card
       </div>
       <div v-else-if="entry.key === 'wikiChanges'">
+        <!-- @todo add new wikichanges card for front page -->
         wikiChanges -card
       </div>
     </div>
@@ -38,10 +41,16 @@ export default defineComponent({
     const stream = computed(() => {
       const entries = new Array<StreamEntry>()
 
+      // Show latest 11 threads in order, and inject
+      // wikichanges card to a position where latest
+      // change timestamp > next thread flowtime (createtime or last comment time,
+      // wich ever is greater)
       let wikiChangesInStream: boolean
       const { stream: streamThreads } = useThreads()
       streamThreads.value.forEach((t) => {
         // inject latest wikichanges to relevant position
+        // @TODO state handler for wiki latest changes, and
+        // insert it here
         if (!wikiChangesInStream && t.flowTime?.seconds < 0) {
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
