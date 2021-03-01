@@ -110,6 +110,18 @@
     "site": {
       "badge": "Pelibadge",
       "visibleToggle": "Näytä julkisissa listauksissa"
+    },
+    "page": {
+      "category": "Kategoria",
+      "name": "Sivun nimi",
+      "updateSuccesfull": "Sivu päivitetty",
+      "updateFailed": "Sivun päivitys epäonnistui"
+    },
+    "category": {
+      "characters": "Characters",
+      "logs": "Logs",
+      "rules": "Rules",
+      "setting": "Setting"
     }
   },
   "siteInfo": {
