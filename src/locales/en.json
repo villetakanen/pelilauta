@@ -96,7 +96,9 @@
     },
     "page": {
       "category": "Category",
-      "name": "Title"
+      "name": "Title",
+      "updateSuccesfull": "Page updated",
+      "updateFailed": "Failed to update the page."
     },
     "category": {
       "characters": "Characters",
