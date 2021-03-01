@@ -19,11 +19,10 @@
     </ul>
     <div
       class="toolbar"
-      style="margin-bottom: -8px"
+      style="margin-bottom: -8px; margin-top: -16px"
     >
       <div class="spacer" />
       <Action
-        v-if="isAnonymous"
         to="/wiki/changes"
         dark
         mobile

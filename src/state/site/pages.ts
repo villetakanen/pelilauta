@@ -120,7 +120,7 @@ export async function updatePage (page: PageFragment): Promise<void> {
   console.log('update data: ', page.id, page)
   const db = firebase.firestore()
   const pageRef = db.collection('sites').doc(page.siteid).collection('pages').doc(page.id)
-  return pageRef.update(page).then(() => {
+  return pageRef.update({ ...page, lastUpdate: firebase.firestore.FieldValue.serverTimestamp() }).then(() => {
     const siteRef = db.collection('sites').doc(page.siteid)
     return siteRef.update({ lastUpdate: firebase.firestore.FieldValue.serverTimestamp() })
   })

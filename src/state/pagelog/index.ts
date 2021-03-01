@@ -24,7 +24,7 @@ function subscribeToRecent () {
   unsubscribe()
   const db = firebase.firestore()
   const pageLogRef = db.collection('pagelog')
-  unsubscribe = pageLogRef.orderBy('changetime', 'asc').limit(3).onSnapshot((snapshot) => {
+  unsubscribe = pageLogRef.orderBy('changetime', 'desc').limit(3).onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
       addToRecent(change.doc.data() as PageLogEntry)
     })
