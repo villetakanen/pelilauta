@@ -21,7 +21,11 @@
     </div>
     <div class="toolbar">
       <div class="caption">
-        <p class="caption">Aiheessa {{ topicName }}</p>
+        <p class="caption">
+          {{ $t('postHeader.postedInStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
+            {{ topicName }}
+          </router-link>
+        </p>
       </div>
       <div class="spacer" />
       <div>Love</div>
@@ -75,8 +79,11 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 .toolbar
+  align-items: center
   div
     height: 24px
+    p.caption
+      line-height: 24px
 .imageframe
   height: 72px
   width: 72px
