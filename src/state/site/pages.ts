@@ -126,7 +126,7 @@ export async function updatePage (page: PageFragment): Promise<void> {
     ...page,
     hidden: site.value.hidden,
     silent: site.value.silent,
-    lastUpdate: firebase.firestore.FieldValue.serverTimestamp() 
+    lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
   }).then(() => {
     const siteRef = db.collection('sites').doc(page.siteid)
     return siteRef.update({ lastUpdate: firebase.firestore.FieldValue.serverTimestamp() })
