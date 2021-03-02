@@ -41,9 +41,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { fireStoreURL } from '@/utils/firebaseTools'
 import Icon from '../material/Icon.vue'
