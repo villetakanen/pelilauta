@@ -27,7 +27,7 @@ import { useAuthState } from '@/state/authz'
 import { usePagelog } from '@/state/pagelog'
 import { Thread, useThreads } from '@/state/threads'
 import { computed, defineComponent } from 'vue'
-import ThreadCard from '../stream/ThreadCard.vue'
+import ThreadCard from './ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'
 import WikiChangesCard from './WikiChangesCard.vue'
 
@@ -81,3 +81,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+div.homeStream
+  max-width: 580px
+  margin: 0 auto
+</style>
