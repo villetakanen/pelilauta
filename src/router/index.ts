@@ -115,6 +115,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'mekanismi'
   },
   {
+    path: '/wiki/changes',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/RecentChanges.vue'),
+    name: 'wiki.changes'
+  },
+  {
     path: '/mekanismi/view/:siteid/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/ViewPage.vue'),
     props: true,
