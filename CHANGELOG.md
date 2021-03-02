@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.10.0](https://github.com/villetakanen/pelilauta/compare/v7.9.0...v7.10.0) (2021-03-02)
+
+
+### Features
+
+* changelog skeleton ([6da66e7](https://github.com/villetakanen/pelilauta/commit/6da66e732408c4af3452cf21f5f7be7543c7dbbb))
+
+
+### Bug Fixes
+
+* changelog ([bf0a6ed](https://github.com/villetakanen/pelilauta/commit/bf0a6eda605c4dad444fac04a83fabf9ddd9c0e0))
+* removed unneccessary imports ([12fc7af](https://github.com/villetakanen/pelilauta/commit/12fc7afb8978984a7b027860e23003270ccf306f))
+
 ## [7.9.0](https://github.com/villetakanen/pelilauta/compare/v7.8.1...v7.9.0) (2021-03-02)
 
 
