@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import { toMekanismiURI } from '@/utils/contentFormat'
+import { useSite } from '.'
 
 export interface Page {
   siteid: string,
@@ -117,10 +118,16 @@ export function subscribeTo (siteid:string|null|undefined): void {
 }
 
 export async function updatePage (page: PageFragment): Promise<void> {
-  console.log('update data: ', page.id, page)
+  console.debug('Page fragment for update', page.id, page)
+  const { site } = useSite()
   const db = firebase.firestore()
   const pageRef = db.collection('sites').doc(page.siteid).collection('pages').doc(page.id)
-  return pageRef.update(page).then(() => {
+  return pageRef.update({
+    ...page,
+    hidden: site.value.hidden || false,
+    silent: site.value.silent || false,
+    lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(() => {
     const siteRef = db.collection('sites').doc(page.siteid)
     return siteRef.update({ lastUpdate: firebase.firestore.FieldValue.serverTimestamp() })
   })
