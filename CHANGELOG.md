@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.9.0](https://github.com/villetakanen/pelilauta/compare/v7.8.1...v7.9.0) (2021-03-02)
+
+
+### Features
+
+* changetime to flowtime form home stream ([ccd3c5e](https://github.com/villetakanen/pelilauta/commit/ccd3c5e02abd886075a8ad04174f5ea1bae50b34))
+* old threadcards added to refac stream ([2ba8737](https://github.com/villetakanen/pelilauta/commit/2ba87375d35fa2dee4bde3f7ad6ba291601289d4))
+* pagelog state handling for recent changes ([30cd8f4](https://github.com/villetakanen/pelilauta/commit/30cd8f48963b405bb9eb061d20aeaff9dc66fdf9))
+* refactors for home stream comp ([33acfeb](https://github.com/villetakanen/pelilauta/commit/33acfeb9b51459ae7f7162d577f639dbfccbdc0e))
+* refactors for welcomecard ([1a73364](https://github.com/villetakanen/pelilauta/commit/1a733644a54ee1e24ee34ac0dc7623029d1596e7))
+* welcome card styling ([04e3b38](https://github.com/villetakanen/pelilauta/commit/04e3b3891d607f3a5fa1a9e6517e9a0a25a22896))
+
+
+### Bug Fixes
+
+* do not update pagelog for hidden sites ([8dbf3dd](https://github.com/villetakanen/pelilauta/commit/8dbf3dd05dce7b5c359749bccc0ffece117392b7))
+* docs ([3807d23](https://github.com/villetakanen/pelilauta/commit/3807d23bc30365487dc383ca17edf3f0ca0fa0f6))
+* error values added ([bb57a2b](https://github.com/villetakanen/pelilauta/commit/bb57a2b4129f823662f941f616656d361ab50c2d))
+* linter fixes ([5d5f13a](https://github.com/villetakanen/pelilauta/commit/5d5f13ae01262460ccb5a8dadd78843bdbefeac4))
+* wikipage change date persistency ([136ad35](https://github.com/villetakanen/pelilauta/commit/136ad35bd278e0f80eb50a0263a373e47155be2a))
+
 ### [7.8.1](https://github.com/villetakanen/pelilauta/compare/v7.8.0...v7.8.1) (2021-03-01)
 
 
