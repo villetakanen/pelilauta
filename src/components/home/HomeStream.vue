@@ -59,9 +59,9 @@ export default defineComponent({
         // inject latest wikichanges to relevant position
         // @TODO state handler for wiki latest changes, and
         // insert it here
-        console.log(t.flowTime?.seconds, lastFlowtime.value)
+        // console.log(t.flowTime?.seconds, lastFlowtime.value)
         if (!wikiChangesInStream && (t.flowTime === null || t.flowTime.seconds < lastFlowtime.value)) {
-          console.debug('wikiChanges?')
+          // console.debug('wikiChanges?')
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
         }

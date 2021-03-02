@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 
-interface PageLogEntry {
+export interface PageLogEntry {
   name: string,
   siteid: string,
   pageid: string,
@@ -17,19 +17,37 @@ const lastFlowtime = computed(() => (recent.value.length > 0 ? recent.value[0]?.
 let unsubscribe = () => {}
 
 function addToRecent (entry: PageLogEntry) {
-  localRecent.value.push(entry)
+  if (localRecent.value.length > 2) {
+    let found = false
+    localRecent.value.forEach((old, index) => {
+      if (old.pageid === entry.pageid && old.siteid === entry.siteid) {
+        localRecent.value[index] = entry
+        found = true
+      }
+    })
+    if (!found) {
+      localRecent.value.pop()
+      localRecent.value.reverse()
+      localRecent.value.push(entry)
+      localRecent.value.reverse()
+    }
+  } else {
+    localRecent.value.push(entry)
+  }
 }
 
-function fetchPagelog (): Array<PageLogEntry> {
+async function fetchPagelog (): Promise<Array<PageLogEntry>> {
   const log = new Array<PageLogEntry>()
 
   const db = firebase.firestore()
   const pageLogRef = db.collection('pagelog')
-  pageLogRef.orderBy('changetime', 'desc').where('silent', '==', false).limit(30).get().then((snapshot) => {
+  await pageLogRef.orderBy('changetime', 'desc').where('silent', '==', false).limit(30).get().then((snapshot) => {
     snapshot.forEach((doc) => {
+      console.debug('pushing change', doc.id)
       log.push(doc.data() as PageLogEntry)
     })
   })
+  console.debug('returning', log)
   return log
 }
 
@@ -50,7 +68,7 @@ export function usePagelog ():
   {
     recent: ComputedRef<Array<PageLogEntry>>
     lastFlowtime: ComputedRef<number>
-    fetchPagelog: () => Array<PageLogEntry>
+    fetchPagelog: () => Promise<Array<PageLogEntry>>
     } {
   if (!init) {
     subscribeToRecent()
