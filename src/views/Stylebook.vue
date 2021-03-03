@@ -134,6 +134,37 @@
         <h4>Headline 4</h4>
         <p>And some text</p>
       </Card>
+      <Card>
+        <h1>Buttons</h1>
+        <MaterialButton>Button</MaterialButton>
+        <MaterialButton text>
+          Text button
+        </MaterialButton>
+        <div style="background-color:var(--chroma-secondary-a);display: inline-block; margin: 0 4px; padding: 4px">
+          <MaterialButton dark>
+            Button on dark
+          </MaterialButton>
+          <MaterialButton
+            dark
+            text
+          >
+            Text button on dark
+          </MaterialButton>
+        </div>
+        <br>
+        Icon buttons
+        <MaterialButton icon>
+          <Icon name="send" />
+        </MaterialButton>
+        <div style="background-color:var(--chroma-secondary-a);display: inline-block; margin: 0 4px; padding: 4px">
+          <MaterialButton dark>
+            <Icon
+              color="dark"
+              name="send"
+            />
+          </MaterialButton>
+        </div>
+      </Card>
       <p class="materialButton">
         p class="materialButton"
       </p>
