@@ -138,25 +138,35 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
-.contentSnippet
-  @include TypeBody2()
-  margin-top: 8px
-  margin-bottom: 8px
-  color: $color-font-medium
-.toolbar
-  align-items: center
-  div
-    height: 24px
-    p.topic
-      @include TypeCaption()
-      line-height: 24px
-.imageframe
-  height: 72px
-  width: 72px
-  float: right
-  background-size: cover
-  border-radius: 6px
-  margin: 0px
-  margin-left: 8px
-  margin-bottom: 8px
+.welcomeCard
+  color: var(--chroma-secondary-c)
+  a
+    text-decoration: none
+    color: var(--chroma-primary-c)
+  h1
+    color: var(--chroma-secondary-e)
+  p.caption
+    color: var(--chroma-secondary-a)
+  .contentSnippet
+    @include TypeBody2()
+    margin-top: 8px
+    margin-bottom: 8px
+    color: var(--chroma-secondary-c)
+  .toolbar
+    align-items: center
+    div
+      height: 24px
+      p.topic
+        @include TypeCaption()
+        line-height: 24px
+        color: var(--chroma-secondary-a)
+  .imageframe
+    height: 72px
+    width: 72px
+    float: right
+    background-size: cover
+    border-radius: 6px
+    margin: 0px
+    margin-left: 8px
+    margin-bottom: 8px
 </style>

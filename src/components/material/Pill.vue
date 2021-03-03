@@ -83,7 +83,8 @@ export default defineComponent({
   line-height: 18px
   vertical-align: middle
   &.dark
-    background-color: $color-fill-primary-light
+    background: linear-gradient(140deg, var(--chroma-primary-i) 0%, var(--chroma-primary-h) 100%) // linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
+    //box-shadow: 1px 1px 7px 0.5 var(--chroma-secondary-f)
   &.small
     padding: 2px 10px
     height: 20px
