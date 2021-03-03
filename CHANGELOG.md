@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.11.0](https://github.com/villetakanen/pelilauta/compare/v7.10.0...v7.11.0) (2021-03-03)
+
+
+### Features
+
+* fully updated thread card for front page ([f2f6959](https://github.com/villetakanen/pelilauta/commit/f2f695942b0c9a63e1c213a9d53983982f4f269b))
+* updated thread card for the front page ([e146db7](https://github.com/villetakanen/pelilauta/commit/e146db7432f1d8897678d4c61c650e04f972513a))
+
+
+### Bug Fixes
+
+* css for toolbar ([05dbfa4](https://github.com/villetakanen/pelilauta/commit/05dbfa4aa27572d2eee5ab83e2536978cbc0d84b))
+* topic link ux for refact front page cards ([f72ed68](https://github.com/villetakanen/pelilauta/commit/f72ed68e089fcd9422121cf13f0b005e14863827))
+* ux more fiendly, if still pointy ([3086abf](https://github.com/villetakanen/pelilauta/commit/3086abf02b2643d1d2ec9bc79d88c44f910727e7))
+
 ## [7.10.0](https://github.com/villetakanen/pelilauta/compare/v7.9.0...v7.10.0) (2021-03-02)
 
 
