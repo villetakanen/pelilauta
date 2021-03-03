@@ -11,10 +11,6 @@
     :class="{ toggled: modelValue }"
   >
     <div class="menuContainer">
-      <LoginFab
-        v-if="isAnonymous"
-        style="margin-left: 16px"
-      />
       <SideNavMenu />
       <SiteInfo />
     </div>
@@ -26,14 +22,12 @@ import { defineComponent, inject } from 'vue'
 import SideNavMenu from '@/components/app/SideNavMenu.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 import { useAuthState } from '@/state/authz'
-import LoginFab from './LoginFab.vue'
 
 export default defineComponent({
   name: 'SideNav',
   components: {
     SiteInfo,
-    SideNavMenu,
-    LoginFab
+    SideNavMenu
   },
   props: {
     modelValue: {
