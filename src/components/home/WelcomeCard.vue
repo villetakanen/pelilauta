@@ -44,7 +44,7 @@ export default defineComponent({
 
 .welcomeCard
   display: block
-  background: linear-gradient(-44deg, rgba($color-fill-primary-dark,1) 0%, rgba($color-fill-tertiary,1) 100%)
+  background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-b) 100%)
   margin-bottom: 8px
   padding: 16px
   border-radius: 8px

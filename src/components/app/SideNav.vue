@@ -21,7 +21,6 @@
 import { defineComponent, inject } from 'vue'
 import SideNavMenu from '@/components/app/SideNavMenu.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
-import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'SideNav',
@@ -47,8 +46,6 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
-@import @/styles/material-typography.sass
 
 #sideNav
   position: absolute
@@ -63,6 +60,11 @@ export default defineComponent({
 
 @include media('>=tablet')
   #sideNav
+    position: fixed
+    top: 56px
+    z-index: -1
+    box-shadow: 0 0 24px 0 var(--chroma-secondary-h)
+    background-color: var(--chroma-clear)
     &.toggled
       transform: translateX(-400px)
     .back
@@ -71,8 +73,8 @@ export default defineComponent({
 @include media('<tablet')
   #sideNav
     position: fixed
-    @include BoxShadow24()
-    background-color: $color-base
+    box-shadow: 0 0 24px 0 var(--chroma-secondary-c)
+    background-color: var(--chroma-clear)
     width: 84vw
     z-index: 20000
     transform: translateX(0px)
@@ -86,7 +88,7 @@ export default defineComponent({
      left: 0
      height: 100vh
      width: 100vw
-     background-color: $color-fill-primary-dark
+     background-color: var(--chroma-primary-a)
      opacity: 0.37
      z-index: 999
      &.toggled
@@ -102,7 +104,7 @@ export default defineComponent({
   z-index: 2
   height: 100vh
   width: 100vw
-  background-color: $color-fill-primary-dark
+  background-color: var(--chroma-primary-a)
   opacity: 0
   cursor: default
   pointer-events: none
