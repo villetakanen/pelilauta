@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.13.1](https://github.com/villetakanen/pelilauta/compare/v7.13.0...v7.13.1) (2021-03-03)
+
+
+### Bug Fixes
+
+* button height ([9f554cb](https://github.com/villetakanen/pelilauta/commit/9f554cb9c3e08d7063ea0a8d0e38ec7d18d6ba14))
+* removed deprecated login fab from side menu ([3da397e](https://github.com/villetakanen/pelilauta/commit/3da397ec18f99029f245d23d208280448a194ebe))
+* sidenav code and ux polish ([dc70b43](https://github.com/villetakanen/pelilauta/commit/dc70b43a7edff1278d84c22da56577033acac98e))
+* sidenav removed deprecated code ([47125a2](https://github.com/villetakanen/pelilauta/commit/47125a2e9dcb73c9a1439e358a9a9297da27ac65))
+
 ## [7.13.0](https://github.com/villetakanen/pelilauta/compare/v7.12.0...v7.13.0) (2021-03-03)
 
 
