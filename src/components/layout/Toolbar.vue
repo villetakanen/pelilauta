@@ -40,6 +40,7 @@ div.appToolbar
     text-overflow: ellipsis
     max-height: 48px
     word-break: break-all
+    color: var(--chroma-secondary-b)
     a
       height: 48px
 
