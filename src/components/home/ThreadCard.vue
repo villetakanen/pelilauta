@@ -2,7 +2,7 @@
   <MaterialCard class="welcomeCard">
     <div class="content">
       <div
-        v-if="thread.data.images.length > 0"
+        v-if="thread.data.images && thread.data.images.length > 0"
         class="imageframe"
         :style="`background-image: url('${thread.data.images[0].url}')`"
       />
@@ -13,7 +13,9 @@
           <span
             v-if="author"
           >
-            {{ author.nick }}
+            <router-link :to="{ name: 'profile.public', params: { uid: thread.author }}">
+              {{ author.nick }}
+            </router-link>
           </span>
         </transition>
       </p>
@@ -22,6 +24,13 @@
       </p>
     </div>
     <div class="toolbar">
+      <LoveAThreadAction
+        :authorid="authoruid"
+        :loves="loves"
+        :action="toggleLove"
+        :count="thread.lovedCount"
+        style="margin-right: 8px"
+      />
       <div>
         <p class="topic">
           {{ $t('stream.inStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
@@ -30,8 +39,29 @@
         </p>
       </div>
       <div class="spacer" />
-      <div>Love</div>
-      <div>replies</div>
+      <div
+        class="replies"
+      >
+        <transition name="fade">
+          <Pill
+            v-if="newReplies"
+            small
+            prepend-icon="send"
+            dark
+          >
+            <router-link :to="`/thread/${thread.id}/view`">
+              {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
+            </router-link>
+          </Pill>
+          <div v-else style="margin-right: 10px">
+            <p class="topic">
+              <router-link :to="`/thread/${thread.id}/view`">
+                {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
+              </router-link>
+            </p>
+          </div>
+        </transition>
+      </div>
     </div>
   </MaterialCard>
 </template>
@@ -39,16 +69,19 @@
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
 import { useMeta } from '@/state/meta'
-import { Thread } from '@/state/threads'
+import { loveThread, Thread, unloveThread } from '@/state/threads'
 import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import MaterialCard from '../material/MaterialCard.vue'
+import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
+import { useAuthState, useProfile } from '@/state/authz'
+import Pill from '../material/Pill.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { MaterialCard },
+  components: { MaterialCard, LoveAThreadAction, Pill },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -72,7 +105,32 @@ export default defineComponent({
     })
     const { authors } = useAuthors()
     const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
-    return { snippet, topicName, author, toDisplayString }
+    const authoruid = computed(() => (author.value?.uid || ''))
+    const { isAnonymous, uid } = useAuthState()
+    const { hasSeen, profileMeta } = useProfile()
+    const newReplies = computed(() => (
+      !isAnonymous.value &&
+      !hasSeen(props.thread.id, props.thread.flowTime) &&
+      props.thread.replyCount > 0
+    ))
+    const loves = computed(() => {
+      if (typeof profileMeta.value.lovedThreads === 'undefined') return false
+      return profileMeta.value.lovedThreads.includes(props.thread.id)
+    })
+
+    async function toggleLove () {
+      // no-op if the author is trying to love their own posts
+      if (props.thread.author === uid.value) return
+      // love/unlove
+      if (loves.value) {
+        return unloveThread(uid.value, props.thread.id).then(() => {
+        })
+      } else {
+        return loveThread(uid.value, props.thread.id).then(() => {
+        })
+      }
+    }
+    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves }
   }
 })
 </script>
