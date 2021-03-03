@@ -142,6 +142,7 @@ export default defineComponent({
   @include TypeBody2()
   margin-top: 8px
   margin-bottom: 8px
+  color: $color-font-medium
 .toolbar
   align-items: center
   div
