@@ -2,7 +2,7 @@
   <AdminActions title="Stylebook" />
   <div class="contentGrid">
     <div id="Stylebook">
-      <MaterialCard>
+      <Card>
         <h1>Chroma</h1>
         Primary
         <div
@@ -123,13 +123,17 @@
         >
           !
         </div>
-      </MaterialCard>
-      <MaterialCard>
+      </Card>
+      <Card>
         <h1>Headline 1</h1>
+        <p>And some text</p>
         <h2>Headline 2</h2>
+        <p>And some text</p>
         <h3>Headline 3</h3>
+        <p>And some text</p>
         <h4>Headline 4</h4>
-      </MaterialCard>
+        <p>And some text</p>
+      </Card>
       <p class="materialButton">
         p class="materialButton"
       </p>
@@ -302,6 +306,7 @@ import Icon from '@/components/material/Icon.vue'
 import Toggle from '@/components/material/Toggle.vue'
 import Action from '@/components/material/Action.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
+import Card from '@/components/layout/Card.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -316,7 +321,8 @@ export default defineComponent({
     Icon,
     Toggle,
     Action,
-    AdminActions
+    AdminActions,
+    Card
   },
   setup () {
     function sendSnack () {

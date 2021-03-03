@@ -5,8 +5,6 @@
 @import layout.sass
 @import wikipage.sass
 
-h1
-  @include TypeHeadline3()
 h3
   @include TypeHeadline5()
 textarea
@@ -239,6 +237,20 @@ body
   min-width: 370px
   background-color: var(--chroma-secondary-i)
 
+h1
+  @include TypeHeadline3()
+  color: var(--chroma-secondary-e)
+h2
+  @include TypeHeadline4()
+  color: var(--chroma-secondary-e)
+h3
+  @include TypeHeadline5()
+  color: var(--chroma-secondary-a)
+h4
+  @include TypeHeadline6()
+  color: var(--chroma-secondary-a)
+
+
 p:last-child, ul:last-child, ol:last-child
   margin-bottom: 0
   padding-bottom: 0
@@ -246,6 +258,10 @@ p:last-child, ul:last-child, ol:last-child
 p:first-child, ul:first-child, ol:first-child
   margin-top: 0
   padding-top: 0
+
+p
+  @include TypeBody1()
+  color: var(--chroma-secondary-c)
 
 // Layout helpers
 .contentArea
