@@ -117,8 +117,9 @@ export default defineComponent({
 .material-button
   @include TypeButton()
   @include  BoxShadow3()
-  height: 36px
-  padding: 6px 16px
+  height: 32px
+  padding: 4px 16px
+  margin: 4px
   border: none
   position: relative
   overflow: hidden
@@ -148,7 +149,7 @@ export default defineComponent({
     color: var(--chroma-secondary-i)
     background-color: var(--chroma-secondary-c)
     &:hover
-      background-color: var(--chroma-secondary-a)
+      background-color: var(--chroma-secondary-d)
   // Dark Text
   &.material-button-text.theme--dark
     color: var(--chroma-primary-g)
