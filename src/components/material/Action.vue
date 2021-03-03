@@ -129,6 +129,8 @@ export default defineComponent({
       background-color: rgba(255,255,255,0.22)
     &.active
       background-color: rgba(255,255,255,0.11)
+    div.label
+      color: var(--chroma-secondary-i)
 
 @include media('<tablet')
   div.action
