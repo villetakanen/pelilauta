@@ -69,6 +69,21 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'forum'"
+      src="@/assets/icons/forum.svg"
+      alt="add"
+    >
+    <img
+      v-else-if="name === 'send' && color === 'dark'"
+      src="@/assets/icons/dark/send.svg"
+      alt="new"
+    >
+    <img
+      v-else-if="name === 'send'"
+      src="@/assets/icons/send.svg"
+      alt="new"
+    >
+    <img
       v-else-if="name === 'mekanismi' && color === 'dark'"
       src="@/assets/icons/dark/mekanismi-icon.svg"
       alt="add"
@@ -188,5 +203,12 @@ export default defineComponent({
         width: 28px
         padding: 2px
         vertical-align: middle
+  &.small
+    .icon-container
+      .icon
+        img
+          height: 22px
+          width: 22px
+          padding: 1px
 
 </style>

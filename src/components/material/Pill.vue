@@ -1,8 +1,17 @@
 <template>
   <div
     class="material-pill"
-    :class="{ secondary: color === 'secondary' }"
+    :class="{ secondary: color === 'secondary', small: small, dark: dark }"
   >
+    <div
+      v-if="prependIcon"
+      class="icon-container prepend"
+    >
+      <Icon
+        :name="prependIcon"
+        :color="dark ? '' : 'dark'"
+      />
+    </div>
     <slot />
     <div
       v-if="action || actionIcon"
@@ -38,6 +47,21 @@ export default defineComponent({
       type: String,
       required: false,
       default: ''
+    },
+    prependIcon: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    small: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    dark: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   }
 })
@@ -58,6 +82,18 @@ export default defineComponent({
   margin: 4px
   line-height: 18px
   vertical-align: middle
+  &.dark
+    background-color: $color-fill-primary-light
+  &.small
+    padding: 2px 10px
+    height: 20px
+    margin: 0
+    .icon-container
+      height: 24px
+      width: 24px
+      margin-top: -2px
+      margin-right: 4px
+      background: none
   .icon-container
     vertical-align: middle
     display: inline-block
@@ -69,6 +105,8 @@ export default defineComponent({
     margin-right: -12px
     margin-top: -7px
     overflow: hidden
+    &.prepend
+      margin-left: -8px
 
   &.secondary
     background-color: rgba($color-fill-secondary, 0.37)

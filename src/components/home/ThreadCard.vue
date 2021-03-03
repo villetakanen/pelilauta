@@ -1,0 +1,162 @@
+<template>
+  <MaterialCard class="welcomeCard">
+    <div class="content">
+      <div
+        v-if="thread.data.images && thread.data.images.length > 0"
+        class="imageframe"
+        :style="`background-image: url('${thread.data.images[0].url}')`"
+      />
+      <h1>{{ thread.data.title }}</h1>
+      <p class="caption">
+        {{ toDisplayString(thread.created) }} -
+        <transition name="fade">
+          <span
+            v-if="author"
+          >
+            <router-link :to="{ name: 'profile.public', params: { uid: thread.author }}">
+              {{ author.nick }}
+            </router-link>
+          </span>
+        </transition>
+      </p>
+      <p class="contentSnippet">
+        {{ snippet }}
+      </p>
+    </div>
+    <div class="toolbar">
+      <LoveAThreadAction
+        :authorid="authoruid"
+        :loves="loves"
+        :action="toggleLove"
+        :count="thread.lovedCount"
+        style="margin-right: 8px"
+      />
+      <div>
+        <p class="topic">
+          {{ $t('stream.inStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
+            {{ topicName }}
+          </router-link>
+        </p>
+      </div>
+      <div class="spacer" />
+      <div
+        class="replies"
+      >
+        <transition name="fade">
+          <Pill
+            v-if="newReplies"
+            small
+            prepend-icon="send"
+            dark
+          >
+            <router-link :to="`/thread/${thread.id}/view`">
+              {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
+            </router-link>
+          </Pill>
+          <div v-else style="margin-right: 10px">
+            <p class="topic">
+              <router-link :to="`/thread/${thread.id}/view`">
+                {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
+              </router-link>
+            </p>
+          </div>
+        </transition>
+      </div>
+    </div>
+  </MaterialCard>
+</template>
+
+<script lang="ts">
+import { useAuthors } from '@/state/authors'
+import { useMeta } from '@/state/meta'
+import { loveThread, Thread, unloveThread } from '@/state/threads'
+import { computed, defineComponent, PropType } from 'vue'
+import { toDisplayString } from '@/utils/firebaseTools'
+import MaterialCard from '../material/MaterialCard.vue'
+import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
+import { useAuthState, useProfile } from '@/state/authz'
+import Pill from '../material/Pill.vue'
+/**
+ * A simple welcome card for anonymous visitors
+ */
+export default defineComponent({
+  name: 'WelcomeCard',
+  components: { MaterialCard, LoveAThreadAction, Pill },
+  props: {
+    thread: {
+      type: Object as PropType<Thread>,
+      required: true
+    }
+  },
+  setup (props) {
+    const snippet = computed(() => {
+      const div = document.createElement('div')
+      div.innerHTML = props.thread.data.content
+      let snip = ''
+      if (div.firstChild) {
+        snip = div.firstChild.textContent || ''
+        if (snip.length > 72) snip = snip.substring(0, 72) + '...'
+      }
+      return snip
+    })
+    const { streams } = useMeta()
+    const topicName = computed(() => {
+      return streams.value.find((val) => (val.slug === props.thread.data.topic))?.name
+    })
+    const { authors } = useAuthors()
+    const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
+    const authoruid = computed(() => (author.value?.uid || ''))
+    const { isAnonymous, uid } = useAuthState()
+    const { hasSeen, profileMeta } = useProfile()
+    const newReplies = computed(() => (
+      !isAnonymous.value &&
+      !hasSeen(props.thread.id, props.thread.flowTime) &&
+      props.thread.replyCount > 0
+    ))
+    const loves = computed(() => {
+      if (typeof profileMeta.value.lovedThreads === 'undefined') return false
+      return profileMeta.value.lovedThreads.includes(props.thread.id)
+    })
+
+    async function toggleLove () {
+      // no-op if the author is trying to love their own posts
+      if (props.thread.author === uid.value) return
+      // love/unlove
+      if (loves.value) {
+        return unloveThread(uid.value, props.thread.id).then(() => {
+        })
+      } else {
+        return loveThread(uid.value, props.thread.id).then(() => {
+        })
+      }
+    }
+    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves }
+  }
+})
+</script>
+
+<style lang="sass" scoped>
+@import @/styles/material-colors.sass
+@import @/styles/material-typography.sass
+.contentSnippet
+  @include TypeBody2()
+  margin-top: 8px
+  margin-bottom: 8px
+  color: $color-font-medium
+.toolbar
+  align-items: center
+  div
+    height: 24px
+    p.topic
+      @include TypeCaption()
+      line-height: 24px
+.imageframe
+  height: 72px
+  width: 72px
+  float: right
+  background-size: cover
+  border-radius: 6px
+  margin: 0px
+  margin-left: 8px
+  margin-bottom: 8px
+</style>

@@ -80,7 +80,8 @@
     "title": "Profile"
   },
   "stream": {
-    "title": "Pelilauta"
+    "title": "Pelilauta",
+    "inStream": "In"
   },
   "since": {
     "lessThanHalfh": "Less than 30 min ago",
