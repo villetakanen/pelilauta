@@ -6,7 +6,11 @@
         class="imageframe"
         :style="`background-image: url('${thread.data.images[0].url}')`"
       />
-      <h1>{{ thread.data.title }}</h1>
+      <h1>
+        <router-link :to="`/thread/${thread.id}/view`">
+          {{ thread.data.title }}
+        </router-link>
+      </h1>
       <p class="caption">
         {{ toDisplayString(thread.created) }} -
         <transition name="fade">
@@ -53,7 +57,10 @@
               {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
             </router-link>
           </Pill>
-          <div v-else style="margin-right: 10px">
+          <div
+            v-else
+            style="margin-right: 10px"
+          >
             <p class="topic">
               <router-link :to="`/thread/${thread.id}/view`">
                 {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
@@ -145,6 +152,9 @@ export default defineComponent({
     color: var(--chroma-primary-c)
   h1
     color: var(--chroma-secondary-e)
+    margin-top: 0
+    a
+      color: var(--chroma-secondary-e)
   p.caption
     color: var(--chroma-secondary-a)
   .contentSnippet
