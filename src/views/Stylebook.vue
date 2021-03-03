@@ -2,17 +2,39 @@
   <AdminActions title="Stylebook" />
   <div class="contentGrid">
     <div id="Stylebook">
-      <div class="section">
-        <div class="colorbox color1" />
-        <div class="colorbox color2" />
-        <div class="colorbox color3" />
-        <div class="colorbox color4" />
-        <div class="colorbox color5" />
-      </div>
-      <h1>Headline 1</h1>
-      <h2>Headline 2</h2>
-      <h3>Headline 3</h3>
-      <h4>Headline 4</h4>
+      <MaterialCard>
+        <h1>Chroma</h1>
+        Primary
+        <div class="colorbox" style="background-color:var(--chroma-primary-a)">A</div>
+        <div class="colorbox" style="background-color:var(--chroma-primary-b)">B</div>
+        <div class="colorbox" style="background-color:var(--chroma-primary-c)">C</div>
+        <div class="colorbox" style="background-color:var(--chroma-primary-d)">D</div>
+        <div class="colorbox" style="background-color:var(--chroma-primary-e)">E</div>
+        <div class="colorbox" style="background-color:var(--chroma-primary-f)">F</div>
+        <div class="colorbox" style="background-color:var(--chroma-primary-g)">G</div>
+        <div class="colorbox light" style="background-color:var(--chroma-primary-h)">H</div>
+        <div class="colorbox light" style="background-color:var(--chroma-primary-i)">I</div>
+        <br>
+        Secondary
+        <div class="colorbox" style="background-color:var(--chroma-secondary-a)">A</div>
+        <div class="colorbox" style="background-color:var(--chroma-secondary-b)">B</div>
+        <div class="colorbox" style="background-color:var(--chroma-secondary-c)">C</div>
+        <div class="colorbox" style="background-color:var(--chroma-secondary-d)">D</div>
+        <div class="colorbox" style="background-color:var(--chroma-secondary-e)">E</div>
+        <div class="colorbox" style="background-color:var(--chroma-secondary-f)">F</div>
+        <div class="colorbox light" style="background-color:var(--chroma-secondary-g)">G</div>
+        <div class="colorbox light" style="background-color:var(--chroma-secondary-h)">H</div>
+        <div class="colorbox light" style="background-color:var(--chroma-secondary-i)">I</div>
+        <br>
+        Alert
+        <div class="colorbox" style="background-color:var(--chroma-alert)">!</div>
+      </MaterialCard>
+      <MaterialCard>
+        <h1>Headline 1</h1>
+        <h2>Headline 2</h2>
+        <h3>Headline 3</h3>
+        <h4>Headline 4</h4>
+      </MaterialCard>
       <p class="materialButton">
         p class="materialButton"
       </p>
@@ -230,13 +252,18 @@ export default defineComponent({
   border-top: solid 3px #12002337
 
 .colorbox
-  height: 72px
-  width: 72px
-  border-radius: 36px
+  height: 48px
+  width: 48px
+  border-radius: 24px
   margin: 8px
   display: inline-block
+  text-align: center
+  line-height: 48px
+  color: var(--chroma-clear)
+  &.light
+    color: var(--chroma-secondary-a)
 .colorbox+.colorbox
-  margin-left:-22px
+  margin-left:-16px
 .color1
   background-color: $color-fill-primary-dark
 .color2
