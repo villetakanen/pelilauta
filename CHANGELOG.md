@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.12.0](https://github.com/villetakanen/pelilauta/compare/v7.11.0...v7.12.0) (2021-03-03)
+
+
+### Features
+
+* chroma-colors ([a52e227](https://github.com/villetakanen/pelilauta/commit/a52e227a127fe4b949733b408bad79a34205ed76))
+* chroma-colors ([d936af7](https://github.com/villetakanen/pelilauta/commit/d936af74b7ea24c2813702f6921c903611e746d7))
+
 ## [7.11.0](https://github.com/villetakanen/pelilauta/compare/v7.10.0...v7.11.0) (2021-03-03)
 
 
