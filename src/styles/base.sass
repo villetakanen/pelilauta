@@ -5,8 +5,6 @@
 @import layout.sass
 @import wikipage.sass
 
-h1
-  @include TypeHeadline3()
 h3
   @include TypeHeadline5()
 textarea
@@ -208,10 +206,12 @@ div.contentGrid
   --chroma-primary-a:#006655
   --chroma-primary-b:#127a56
   --chroma-primary-c:#288f56
+  --chroma-primary-c-rgba: 40, 143, 86
   --chroma-primary-d:#3fa356
   --chroma-primary-e:#5ab754
   --chroma-primary-f:#79cb51
   --chroma-primary-g:#9bdd4d
+  --chroma-primary-g-rgba:155, 221, 77
   --chroma-primary-h:#c2ef48
   --chroma-primary-i:#eeff41
   // https://gka.github.io/palettes/#/9|s|002337,05e7fb,e7fbfb|ffffe0,ff005e,006c09|1|1
@@ -222,11 +222,12 @@ div.contentGrid
   --chroma-secondary-e:#388ea1
   --chroma-secondary-f:#53abbb
   --chroma-secondary-g:#76c8d5
+  --chroma-secondary-g-rgb:118, 200, 213
   --chroma-secondary-h:#a2e4ec
   --chroma-secondary-i:#e7fbfb
   // Other Colors
   --chroma-alert:#bb1187
-  --croma-clear: #ffffff
+  --chroma-clear: #ffffff
 
 // Base styles for the site
 body
@@ -237,6 +238,20 @@ body
   min-width: 370px
   background-color: var(--chroma-secondary-i)
 
+h1
+  @include TypeHeadline3()
+  color: var(--chroma-secondary-e)
+h2
+  @include TypeHeadline4()
+  color: var(--chroma-secondary-e)
+h3
+  @include TypeHeadline5()
+  color: var(--chroma-secondary-a)
+h4
+  @include TypeHeadline6()
+  color: var(--chroma-secondary-a)
+
+
 p:last-child, ul:last-child, ol:last-child
   margin-bottom: 0
   padding-bottom: 0
@@ -244,6 +259,10 @@ p:last-child, ul:last-child, ol:last-child
 p:first-child, ul:first-child, ol:first-child
   margin-top: 0
   padding-top: 0
+
+p
+  @include TypeBody1()
+  color: var(--chroma-secondary-c)
 
 // Layout helpers
 .contentArea

@@ -106,6 +106,14 @@ export default defineComponent({
 @import @/styles/layout.sass
 @import @/styles/include-media.scss
 
+@keyframes clickhover
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(0.9)
+  100%
+    transform: scale(1)
+
 .material-button
   @include TypeButton()
   @include  BoxShadow3()
@@ -116,16 +124,40 @@ export default defineComponent({
   overflow: hidden
   transition-property: box-shadow background
   transition-duration: 0.8s
-  background-color: $color-fill-primary-dark
+  background-color: var(--chroma-primary-e)
   color: $color-dark-font-high
+  &:hover
+    background-color: var(--chroma-primary-g)
+    &.theme--dark
+      background-color: $color-fill-primary-dark
+  &:active
+    animation: clickhover 300ms
   &.working
     opacity: 0.5
     pointer-events: none
-  &:hover
-    background-color: $color-fill-primary
-    &.theme--dark
-      background-color: $color-fill-primary-dark
-  &.material-button-text, &.material-button-icon
+  // Text
+  &.material-button-text
+    color: var(--chroma-primary-d)
+    background-color: rgba(0,0,0,0)
+    box-shadow: none
+    &:hover
+      color: var(--chroma-primary-a)
+      background-color: #{'rgba(var(--chroma-primary-g-rgba), 0.22)'}
+  // Dark
+  &.theme--dark
+    color: var(--chroma-secondary-i)
+    background-color: var(--chroma-secondary-c)
+    &:hover
+      background-color: var(--chroma-secondary-a)
+  // Dark Text
+  &.material-button-text.theme--dark
+    color: var(--chroma-primary-g)
+    background-color: rgba(0,0,0,0)
+    box-shadow: none
+    &:hover
+      color: var(--chroma-primary-h)
+      background-color: #{'rgba(var(--chroma-primary-g-rgba), 0.11)'}
+  &.material-button-icon
     color: $color-fill-primary-dark
     background-color: #00233711
     box-shadow: none
@@ -166,18 +198,6 @@ export default defineComponent({
 
 .material-button + .material-button
   margin-left: 8px
-
-.material-button.theme--dark
-  background-color: $color-fill-dark
-  color: $color-fill-light
-  &:hover
-    background-color: $color-fill-primary-dark
-  &.material-button-text
-    background: none
-    color: $color-fill-primary
-    box-shadow: unset
-    &:hover
-      background-color: rgba($color-fill-primary-light, 0.11)
 
 @include media('<tablet')
   .material-button.block-button

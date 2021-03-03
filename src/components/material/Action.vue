@@ -106,6 +106,7 @@ export default defineComponent({
       position: absolute
   div.label
     display: inline-block
+    color: var(--chroma-secondary-b)
   div.prepend+div.label
     margin-left: 4px
   div.label+div.append
@@ -119,15 +120,17 @@ export default defineComponent({
     line-height: 24px
     display: inline-block
   &:hover
-    background-color: rgba($color-fill-dark,0.22)
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
   &.active
-    background-color: rgba($color-fill-dark,0.11)
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
   &.theme--dark
     color: white
     &:hover, &.active:hover
       background-color: rgba(255,255,255,0.22)
     &.active
       background-color: rgba(255,255,255,0.11)
+    div.label
+      color: var(--chroma-secondary-i)
 
 @include media('<tablet')
   div.action
