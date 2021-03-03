@@ -17,12 +17,14 @@
           </span>
         </transition>
       </p>
-      <p>{{ snippet }}</p>
+      <p class="contentSnippet">
+        {{ snippet }}
+      </p>
     </div>
     <div class="toolbar">
-      <div class="caption">
-        <p class="caption">
-          {{ $t('postHeader.postedInStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
+      <div>
+        <p class="topic">
+          {{ $t('stream.inStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
             {{ topicName }}
           </router-link>
         </p>
@@ -60,7 +62,7 @@ export default defineComponent({
       let snip = ''
       if (div.firstChild) {
         snip = div.firstChild.textContent || ''
-        if (snip.length > 48) snip = snip.substring(0, 48) + '...'
+        if (snip.length > 72) snip = snip.substring(0, 72) + '...'
       }
       return snip
     })
@@ -78,11 +80,16 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+.contentSnippet
+  @include TypeBody2()
+  margin-top: 8px
+  margin-bottom: 8px
 .toolbar
   align-items: center
   div
     height: 24px
-    p.caption
+    p.topic
+      @include TypeCaption()
       line-height: 24px
 .imageframe
   height: 72px

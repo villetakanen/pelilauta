@@ -44,6 +44,10 @@
     "withGoogleButton": "Googlella",
     "withFacebookButton": "Facebookila"
   },
+  "stream": {
+    "title": "Pelilauta",
+    "inStream": "Aiheessa"
+  },
   "postHeader": {
     "postedInStream": "aiheessa"
   },
