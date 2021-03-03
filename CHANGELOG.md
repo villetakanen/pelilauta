@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.13.0](https://github.com/villetakanen/pelilauta/compare/v7.12.0...v7.13.0) (2021-03-03)
+
+
+### Features
+
+* chroma to stylebook ([d6f5426](https://github.com/villetakanen/pelilauta/commit/d6f5426cda4e19b40400af8c338f75752b6af36b))
+
+
+### Bug Fixes
+
+* chroma colors for buttons ([a795c66](https://github.com/villetakanen/pelilauta/commit/a795c6602042520cea3e6267dfd231d904f336f2))
+* code styles ([442f8cc](https://github.com/villetakanen/pelilauta/commit/442f8cc0cc1ebd4e2ef2221418d323720e698c5d))
+* front page card header links ([83d685f](https://github.com/villetakanen/pelilauta/commit/83d685f1a34054c9d905d5edced466cb7cbf261b))
+* header styles to match system ([8244d94](https://github.com/villetakanen/pelilauta/commit/8244d94bd02de24d430651d78e4d16397eaed91e))
+* theme--dark for actions ([e4d6712](https://github.com/villetakanen/pelilauta/commit/e4d6712111ec71759148af748dda79115e4751d7))
+* ux to chroma for apptoolbar ([c3e13f6](https://github.com/villetakanen/pelilauta/commit/c3e13f6c9a40bba05de2793e12fa749b68f47d35))
+
 ## [7.12.0](https://github.com/villetakanen/pelilauta/compare/v7.11.0...v7.12.0) (2021-03-03)
 
 
