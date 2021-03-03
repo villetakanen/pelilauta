@@ -88,7 +88,7 @@ export default defineComponent({
   @include BoxShadow8()
   position: relative
   background-color: $color-fill-dark
-  background: linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
+  background: linear-gradient(140deg, var(--chroma-primary-a) 0%, var(--chroma-primary-e) 100%) // linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
   height: 56px
   margin: 0
   margin-bottom: 8px

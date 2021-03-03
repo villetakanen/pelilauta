@@ -58,7 +58,7 @@ export default defineComponent({
 
 .wikiChangesCard
   display: block
-  background-color: $color-fill-tertiary
+  background: linear-gradient(-44deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-c) 100%)
   margin-bottom: 8px
   padding: 16px
   border-radius: 8px
