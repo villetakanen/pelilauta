@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.13.3](https://github.com/villetakanen/pelilauta/compare/v7.13.2...v7.13.3) (2021-03-04)
+
+
+### Bug Fixes
+
+* sidebar clickable on desktop ([f442ad5](https://github.com/villetakanen/pelilauta/commit/f442ad5678bc19e956f39d4d6285bbcaccb16c7a))
+
 ### [7.13.2](https://github.com/villetakanen/pelilauta/compare/v7.13.1...v7.13.2) (2021-03-04)
 
 
