@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.13.5](https://github.com/villetakanen/pelilauta/compare/v7.13.4...v7.13.5) (2021-03-04)
+
+
+### Bug Fixes
+
+* color scheme refactors ([482d602](https://github.com/villetakanen/pelilauta/commit/482d602d49a2fb67879a2ed91895df73a20eda64))
+* profile link visible to non admins ([52bff31](https://github.com/villetakanen/pelilauta/commit/52bff31f7da975f6a999841bb7724caf1e72dec4))
+* side bar chroma ([b3a2d69](https://github.com/villetakanen/pelilauta/commit/b3a2d69bbb3117593769f75279d4c0a8748fe93c))
+* sidenav styles to chroma ([b66250e](https://github.com/villetakanen/pelilauta/commit/b66250e0c45c3c6215272933b9e4ab5265f335fc))
+* top navi z-index ([747a3ba](https://github.com/villetakanen/pelilauta/commit/747a3ba4f9759c54acf16abe5a5a59abe60bbbe4))
+
 ### [7.13.4](https://github.com/villetakanen/pelilauta/compare/v7.13.3...v7.13.4) (2021-03-04)
 
 
