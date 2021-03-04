@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue'
-import SideNavAction from '@/components/app/SideNavAction.vue'
+import SideNavAction from '@/components/sidenav/SideNavAction.vue'
 import { useAuthState } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'

@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { ComputedRef, defineComponent, inject } from 'vue'
-import SideNavMenu from '@/components/app/SideNavMenu.vue'
+import SideNavMenu from '@/components/sidenav/SideNavMenu.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 
 export default defineComponent({

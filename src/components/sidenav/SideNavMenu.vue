@@ -162,7 +162,11 @@ export default defineComponent({
       vertical-align: middle
       margin-right: 8px
     &:hover
-      background-color: var(--chroma-secondary-h)
+      background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+      border-radius: 0 24px 24px 0
+      div.secondaryContent
+        background-color: var(--chroma-primary-e)
+        color: var(--chroma-clear)
     &.subtitle
       color: var(--chroma-secondary-g)
       border-bottom: solid 1px var(--chroma-secondary-f)
@@ -170,6 +174,7 @@ export default defineComponent({
       padding-left: 0
       &:hover
         background: none
+        border-radius: 0
 
 @include media('=<tablet')
   .sideNavMenu
