@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.14.1](https://github.com/villetakanen/pelilauta/compare/v7.14.0...v7.14.1) (2021-03-04)
+
+
+### Bug Fixes
+
+* button shadows to use chroma and rise ([8ca864f](https://github.com/villetakanen/pelilauta/commit/8ca864f416213d8ea5ec35bfd12a070e0efbb771))
+* fab float shadows ([a5388b3](https://github.com/villetakanen/pelilauta/commit/a5388b3505664275e8c6c8fd0b458d02ec76bd15))
+
 ## [7.14.0](https://github.com/villetakanen/pelilauta/compare/v7.13.5...v7.14.0) (2021-03-04)
 
 
