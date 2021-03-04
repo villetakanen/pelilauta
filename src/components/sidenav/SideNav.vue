@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
+import { ComputedRef, defineComponent, inject } from 'vue'
 import SideNavMenu from '@/components/app/SideNavMenu.vue'
 import SiteInfo from '@/components/app/SiteInfo.vue'
 
@@ -36,8 +36,9 @@ export default defineComponent({
   },
   setup () {
     const toggleNav: CallableFunction = inject('toggleNav') as CallableFunction
+    const mobile = inject('mobileViewport') as ComputedRef<boolean>
     const toggle = () => {
-      if (window.innerWidth < 768) toggleNav()
+      if (mobile.value) toggleNav()
     }
     return { toggle }
   }
