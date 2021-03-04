@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.13.2](https://github.com/villetakanen/pelilauta/compare/v7.13.1...v7.13.2) (2021-03-04)
+
+
+### Bug Fixes
+
+* inject window width to sidenav ([724db11](https://github.com/villetakanen/pelilauta/commit/724db1163b1b92daf51f3353705092913ac880d7))
+* repo structure polish ([a0a2984](https://github.com/villetakanen/pelilauta/commit/a0a298402db02e58e991c417fd918211d7e9a3ee))
+
 ### [7.13.1](https://github.com/villetakanen/pelilauta/compare/v7.13.0...v7.13.1) (2021-03-03)
 
 
