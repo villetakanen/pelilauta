@@ -123,6 +123,28 @@
         >
           !
         </div>
+        <br>
+        Rises
+        <div
+          class="colorbox rise1 light"
+        >
+          1
+        </div>
+        <div
+          class="colorbox rise2 light"
+        >
+          2
+        </div>
+        <div
+          class="colorbox rise3 light"
+        >
+          3
+        </div>
+        <div
+          class="colorbox rise4 light"
+        >
+          4
+        </div>
       </Card>
       <Card>
         <h1>Headline 1</h1>
@@ -136,7 +158,9 @@
       </Card>
       <Card>
         <h1>Buttons</h1>
-        <MaterialButton>Button</MaterialButton>
+        <MaterialButton :async-action="asyncWaitDemo">
+          Button
+        </MaterialButton>
         <MaterialButton text>
           Text button
         </MaterialButton>
@@ -164,67 +188,6 @@
             />
           </MaterialButton>
         </div>
-      </Card>
-      <p class="materialButton">
-        p class="materialButton"
-      </p>
-      <div class="section">
-        <h1>Actions</h1>
-        <MaterialButton :async-action="asyncWaitDemo">
-          Button: Async
-        </MaterialButton>
-        <MaterialButton text>
-          Button: text
-        </MaterialButton>
-        <MaterialButton dark>
-          Button: dark
-        </MaterialButton>
-        <MaterialButton
-          dark
-          text
-        >
-          Button: dark text
-        </MaterialButton>
-        <MaterialButton
-          icon
-          color="tertiary"
-        >
-          <img
-            src="@/assets/icons/share.svg"
-            alt="share icon"
-          >
-        </MaterialButton>
-        <MaterialButton
-          icon
-          color="tertiary"
-        >
-          <img
-            src="@/assets/icons/edit.svg"
-            alt="edit icon"
-          >
-        </MaterialButton>
-        <Fab>+</Fab>
-        <teleport to="#BottomFabsContainer">
-          <Fab>
-            <Icon
-              name="pelilauta"
-              color="dark"
-            />
-          </Fab>
-          <Fab color="secondary">
-            <Icon
-              name="mekanismi"
-              color="dark"
-            />
-          </Fab>
-          <Fab color="tertiary">
-            <Icon
-              name="d6"
-              color="dark"
-            />
-          </Fab>
-        </teleport>
-
         <h2>
           Actions
         </h2>
@@ -247,6 +210,54 @@
           prepend="dd-logo"
           to="stylebook"
         />
+        <h2>Fabs</h2>
+        <Fab text="Fab">
+          <Icon
+            name="forum"
+          />
+        </Fab>
+        &nbsp;
+        <Fab
+          text="Secondary"
+          color="secondary"
+        >
+          <Icon
+            color="dark"
+            name="send"
+          />
+        </Fab>
+        &nbsp;
+        <Fab
+          text="Tertiary"
+          color="tertiary"
+        >
+          <Icon
+            color="dark"
+            name="mekanismi"
+          />
+        </Fab>
+      </Card>
+      <div class="section">
+        <teleport to="#BottomFabsContainer">
+          <Fab>
+            <Icon
+              name="pelilauta"
+              color="dark"
+            />
+          </Fab>
+          <Fab color="secondary">
+            <Icon
+              name="mekanismi"
+              color="dark"
+            />
+          </Fab>
+          <Fab color="tertiary">
+            <Icon
+              name="d6"
+              color="dark"
+            />
+          </Fab>
+        </teleport>
       </div>
 
       <!-- inputs -->
@@ -377,6 +388,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
+@import @/styles/box-shadow.sass
 
 .section
   padding-top: 8px
@@ -396,14 +408,16 @@ export default defineComponent({
     color: var(--chroma-secondary-a)
 .colorbox+.colorbox
   margin-left:-16px
-.color1
-  background-color: $color-fill-primary-dark
-.color2
-  background-color: $color-fill-primary
-.color3
-  background-color: $color-fill-primary-light
-.color4
-  background-color: $color-fill-secondary
-.color5
-  background-color: $color-fill-tertiary
+.rise1
+  background-color: var(--chroma-clear)
+  @include Rise1()
+.rise2
+  background-color: var(--chroma-clear)
+  @include Rise2()
+.rise3
+  background-color: var(--chroma-clear)
+  @include Rise3()
+.rise4
+  background-color: var(--chroma-clear)
+  @include Rise4()
 </style>
