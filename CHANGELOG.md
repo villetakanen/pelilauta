@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.14.0](https://github.com/villetakanen/pelilauta/compare/v7.13.5...v7.14.0) (2021-03-04)
+
+
+### Features
+
+* fab shadows and colors to chroma ([99857d1](https://github.com/villetakanen/pelilauta/commit/99857d11823ac3c664a8a3937a701496fdf2f0a3))
+
+
+### Bug Fixes
+
+* chroma-rises ([096e34f](https://github.com/villetakanen/pelilauta/commit/096e34fb4894d2d9820bf51ee5d242771fa5c95e))
+* stylebook fab display ([80bda20](https://github.com/villetakanen/pelilauta/commit/80bda20c981f9f3de518b8b1509460f4f7b6ff3e))
+
 ### [7.13.5](https://github.com/villetakanen/pelilauta/compare/v7.13.4...v7.13.5) (2021-03-04)
 
 
