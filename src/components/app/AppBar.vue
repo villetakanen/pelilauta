@@ -6,12 +6,11 @@
     <SideNavAction />
     <AppAction style="margin-left: 56px" />
     <div class="spacer" />
-    <AppBarSearch />
     <Action
       v-if="isAdmin"
       prepend="admin"
-      dark
       to="/admin"
+      style="margin: 8px"
     >
       <template
         v-if="!mobileViewport"
@@ -26,7 +25,6 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue'
 import SideNavAction from '@/components/app/SideNavAction.vue'
-import AppBarSearch from './AppBarSearch.vue'
 import { useAuthState } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
@@ -37,7 +35,6 @@ export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
-    AppBarSearch,
     AppAction,
     Action,
     AppModeSwitchAction
@@ -85,10 +82,10 @@ export default defineComponent({
 // Cleared from this on
 
 #AppBar
-  @include BoxShadow8()
+  // box-shadow: 0 0 13px 0 var(--chroma-secondary-h)
   position: relative
   background-color: $color-fill-dark
-  background: linear-gradient(140deg, var(--chroma-primary-a) 0%, var(--chroma-primary-e) 100%) // linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
+  background: var(--chroma-clear) // linear-gradient(140deg, var(--chroma-primary-a) 0%, var(--chroma-primary-e) 100%) // linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
   height: 56px
   margin: 0
   margin-bottom: 8px

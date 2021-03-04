@@ -49,7 +49,7 @@ export default defineComponent({
     padding-right: 60px
 
 .icon
-  @include SpacingIcon2X()
+  @include SpacingIcon2()
   padding-left: 8px
   border-left: solid 1px $color-font-disabled
   position: absolute

@@ -41,40 +41,30 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+@import @/styles/layout.sass
+@import @/styles/box-shadow.sass
 
 .sideNavAction
-  height: 48px
-  width: 48px
+  @include SpacingIcon2()
+  @include Halo8()
+  margin: 0
   position: fixed
   top: 4px
   left: 4px
-  background-color: $color-fill-primary-dark
-  border-radius: 24px
+  background: linear-gradient(-45deg, var(--chroma-primary-g) 0%, var(--chroma-primary-a) 100%)
+  border-radius: 50%
   z-index: 10000
   .foxIcon, .closedIcon
+    @include SpacingIcon2()
     position: absolute
+    margin: 0
     top: 0
     left: 0
-    margin: 3px
-    border: solid 5px rgba($color-fill-light, 0.44)
-    border-radius: 50%
-    width: 42px
-    height: 42px
     box-sizing: border-box
-    padding: 2px
   img
-    height: 38px
-    width: 38px
-    margin-top: -5px
-    margin-left: -5px
-  .closedIcon
-    background: none
-    border: solid 5px rgba($color-fill-light, 0.44)
-    img
-      margin-top: -5px
-      margin-left: -5px
+    @include SpacingIcon2()
+    margin: 0
 
 .scaleToFull-enter-active,
 .scaleToFull-leave-active

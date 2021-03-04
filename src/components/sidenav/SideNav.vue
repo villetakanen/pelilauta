@@ -64,7 +64,7 @@ export default defineComponent({
     position: fixed
     top: 56px
     z-index: 0
-    box-shadow: 0 0 72px 0 var(--chroma-secondary-h)
+    // box-shadow: 0 0 72px 0 var(--chroma-secondary-h)
     background-color: var(--chroma-clear)
     &.toggled
       transform: translateX(-400px)
