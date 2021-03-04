@@ -75,7 +75,7 @@ export default defineComponent({
   border-radius: 28px
   border: none
   background-position: center
-  transition: background 0.8s
+  transition: 0.3s
   &.text
     width: auto
     .label
@@ -93,6 +93,7 @@ export default defineComponent({
     padding-bottom: 4px
   &:hover
     background: var(--chroma-primary-e) radial-gradient(circle, transparent 1%, var(--chroma-primary-e) 1%) center/15000%
+    @include Rise3()
   &:active
     background-color: var(--chroma-primary-a)
     background-size: 100%

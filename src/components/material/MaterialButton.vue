@@ -104,6 +104,7 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 @import @/styles/layout.sass
+@import @/styles/box-shadow.sass
 @import @/styles/include-media.scss
 
 @keyframes clickhover
@@ -116,7 +117,7 @@ export default defineComponent({
 
 .material-button
   @include TypeButton()
-  @include  BoxShadow3()
+  @include Rise2()
   height: 32px
   padding: 4px 16px
   margin: 4px
@@ -129,6 +130,7 @@ export default defineComponent({
   color: $color-dark-font-high
   &:hover
     background-color: var(--chroma-primary-g)
+    @include Rise3()
     &.theme--dark
       background-color: $color-fill-primary-dark
   &:active
