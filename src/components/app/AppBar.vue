@@ -95,6 +95,7 @@ export default defineComponent({
   padding: 4px
   box-sizing: border-box
   display: flex
+  z-index: 2
   h1
     @include TypeButton()
     margin-left: 56px
