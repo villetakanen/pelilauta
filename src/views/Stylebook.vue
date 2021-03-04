@@ -158,7 +158,7 @@
       </Card>
       <Card>
         <h1>Buttons</h1>
-        <MaterialButton>Button</MaterialButton>
+        <MaterialButton :async-action="asyncWaitDemo">Button</MaterialButton>
         <MaterialButton text>
           Text button
         </MaterialButton>
@@ -186,67 +186,6 @@
             />
           </MaterialButton>
         </div>
-      </Card>
-      <p class="materialButton">
-        p class="materialButton"
-      </p>
-      <div class="section">
-        <h1>Actions</h1>
-        <MaterialButton :async-action="asyncWaitDemo">
-          Button: Async
-        </MaterialButton>
-        <MaterialButton text>
-          Button: text
-        </MaterialButton>
-        <MaterialButton dark>
-          Button: dark
-        </MaterialButton>
-        <MaterialButton
-          dark
-          text
-        >
-          Button: dark text
-        </MaterialButton>
-        <MaterialButton
-          icon
-          color="tertiary"
-        >
-          <img
-            src="@/assets/icons/share.svg"
-            alt="share icon"
-          >
-        </MaterialButton>
-        <MaterialButton
-          icon
-          color="tertiary"
-        >
-          <img
-            src="@/assets/icons/edit.svg"
-            alt="edit icon"
-          >
-        </MaterialButton>
-        <Fab>+</Fab>
-        <teleport to="#BottomFabsContainer">
-          <Fab>
-            <Icon
-              name="pelilauta"
-              color="dark"
-            />
-          </Fab>
-          <Fab color="secondary">
-            <Icon
-              name="mekanismi"
-              color="dark"
-            />
-          </Fab>
-          <Fab color="tertiary">
-            <Icon
-              name="d6"
-              color="dark"
-            />
-          </Fab>
-        </teleport>
-
         <h2>
           Actions
         </h2>
@@ -269,6 +208,28 @@
           prepend="dd-logo"
           to="stylebook"
         />
+      </Card>
+      <div class="section">
+        <teleport to="#BottomFabsContainer">
+          <Fab>
+            <Icon
+              name="pelilauta"
+              color="dark"
+            />
+          </Fab>
+          <Fab color="secondary">
+            <Icon
+              name="mekanismi"
+              color="dark"
+            />
+          </Fab>
+          <Fab color="tertiary">
+            <Icon
+              name="d6"
+              color="dark"
+            />
+          </Fab>
+        </teleport>
       </div>
 
       <!-- inputs -->
