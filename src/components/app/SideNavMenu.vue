@@ -42,10 +42,13 @@
           src="@/assets/icons/player.svg"
           alt="player"
         >
-        {{ item.content || $t('sideNav.' + item.key) }} <span
+        {{ item.content || $t('sideNav.' + item.key) }}
+        <div
           v-if="item.secondaryContent"
           class="secondaryContent"
-        >{{ item.secondaryContent }}</span>
+        >
+          {{ item.secondaryContent }}
+        </div>
       </li>
     </ul>
   </div>
@@ -118,7 +121,6 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
 .sideNavMenu
@@ -136,16 +138,21 @@ export default defineComponent({
     padding: 0
     list-style: none
     display: block
-    // background-color: rgba(255,0,0,0.3)
     box-sizing: border-box
     height: 48px
     line-height: 48px
     padding-left: 16px
-    span.secondaryContent
-      color: $color-fill-primary-dark
-      background-color: rgba($color-fill-primary-dark, 0.22)
-      padding: 0 8px
+    position: relative
+    div.secondaryContent
+      color: var(--chroma-secondary-a)
+      background-color: var(--chroma-primary-h)
+      padding: 0 10px
       border-radius: 12px
+      position: absolute
+      right: 16px
+      top: 12px
+      height: 22px
+      line-height: 22px
     img
       height: 32px
       width: 32px
@@ -155,10 +162,10 @@ export default defineComponent({
       vertical-align: middle
       margin-right: 8px
     &:hover
-      background-color: lighten($color-fill-primary-light, 11%)
+      background-color: var(--chroma-secondary-h)
     &.subtitle
-      color: $color-font-medium
-      border-bottom: solid 1px $color-font-disabled
+      color: var(--chroma-secondary-g)
+      border-bottom: solid 1px var(--chroma-secondary-f)
       margin: 0 16px
       padding-left: 0
       &:hover
