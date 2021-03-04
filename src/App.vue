@@ -26,8 +26,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, onMounted, provide, ref, watch } from 'vue'
-import SideNav from '@/components/app/SideNav.vue'
+import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
+import SideNav from '@/components/sidenav/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
 import MainTailer from '@/components/app/MainTailer.vue'
 import { useI18n } from 'vue-i18n'
