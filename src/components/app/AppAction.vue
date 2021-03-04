@@ -1,8 +1,7 @@
 <template>
   <Action
-    dark
     mobile
-    :to="mekanismi ? 'mekanismi' : 'Home'"
+    :to="mekanismi ? '/mekanismi' : '/'"
   >
     <span v-if="!mekanismi">Pelilauta</span>
     <span v-else>Mekanismi</span>

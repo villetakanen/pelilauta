@@ -7,15 +7,15 @@
       <Icon
         v-if="!mekanismi"
         name="mekanismi"
-        color="dark"
         class="absolute"
+        color="dark"
       />
       <Icon
         v-else
         dark
         name="forum"
-        color="dark"
         class="absolute"
+        color="dark"
       />
     </transition>
   </div>
@@ -41,23 +41,26 @@ export default defineComponent({
 </script>
 
 <style lang="sass">
-.swapper
-  height: 40px
-  width: 40px
-  position: relative
+@import @/styles/layout.sass
+@import @/styles/box-shadow.sass
+
+div.swapper
+  @include SpacingIcon2()
+  border-radius: 50%
   margin: 4px
-  padding: 0
+  position: relative
   .icon
-    background: rgba(255,255,255,0.22)
-    height: 40px
-    width: 40px
+    background: var(--chroma-primary-g)
+    @include Halo8()
+    height: 48px
+    width: 48px
     margin: 0
     padding: 0
-    border-radius: 20px
+    border-radius: 24px
     img
-      height: 36px
-      width: 36px
-      padding: 2px
+      height: 40px
+      width: 40px
+      padding: 4px
 .micropop-enter-active,
 .micropop-leave-active
   transition: all 0.3s
