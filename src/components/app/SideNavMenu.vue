@@ -100,7 +100,7 @@ export default defineComponent({
       allNavItems.push({ key: 'about', to: '/mekanismi/view/mekanismi/pelilauta-about', icon: 'd12' })
       return allNavItems.filter((val) => (
         isAdmin.value ||
-        (!isAnonymous && val.authz) ||
+        (!isAnonymous.value && val.authz) ||
         !(val.authz || val.admin))
       )
     })
