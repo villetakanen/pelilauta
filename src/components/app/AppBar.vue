@@ -70,7 +70,7 @@ export default defineComponent({
   padding: 5px
   border-radius: 50%
   opacity: 50%
-  z-index: 100000
+  z-index: 10
 
 @include media('<=tablet')
   .searchBar
@@ -92,7 +92,7 @@ export default defineComponent({
   padding: 4px
   box-sizing: border-box
   display: flex
-  z-index: 2
+  z-index: 100
   h1
     @include TypeButton()
     margin-left: 56px

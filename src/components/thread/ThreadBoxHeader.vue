@@ -98,13 +98,13 @@ export default defineComponent({
   position: sticky
   position: -webkit-sticky
   top: 0px
-  z-index: 10
   margin-top: -8px
   padding-top: 8px
   padding-bottom: 7px
   border-bottom: solid 1px var(--color-fill-primary)
   margin-bottom: 8px
   background-color: var(--color-fill-background)
+  z-index: 5
   h1
     @include TypeHeadline5()
     overflow: hidden

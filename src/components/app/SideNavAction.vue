@@ -54,7 +54,7 @@ export default defineComponent({
   left: 4px
   background: linear-gradient(-45deg, var(--chroma-primary-g) 0%, var(--chroma-primary-a) 100%)
   border-radius: 50%
-  z-index: 10000
+  z-index: 1000
   .foxIcon, .closedIcon
     @include SpacingIcon2()
     position: absolute
@@ -62,6 +62,7 @@ export default defineComponent({
     top: 0
     left: 0
     box-sizing: border-box
+    z-index: 10001
   img
     @include SpacingIcon2()
     margin: 0

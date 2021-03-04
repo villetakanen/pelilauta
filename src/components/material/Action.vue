@@ -106,7 +106,8 @@ export default defineComponent({
       position: absolute
   div.label
     display: inline-block
-    color: var(--chroma-secondary-b)
+  div.paddedLabel, div.label
+    color: var(--chroma-secondary-c)
   div.prepend+div.label
     margin-left: 4px
   div.label+div.append
