@@ -158,7 +158,9 @@
       </Card>
       <Card>
         <h1>Buttons</h1>
-        <MaterialButton :async-action="asyncWaitDemo">Button</MaterialButton>
+        <MaterialButton :async-action="asyncWaitDemo">
+          Button
+        </MaterialButton>
         <MaterialButton text>
           Text button
         </MaterialButton>
@@ -208,6 +210,32 @@
           prepend="dd-logo"
           to="stylebook"
         />
+        <h2>Fabs</h2>
+        <Fab text="Fab">
+          <Icon
+            name="forum"
+          />
+        </Fab>
+        &nbsp;
+        <Fab
+          text="Secondary"
+          color="secondary"
+        >
+          <Icon
+            color="dark"
+            name="send"
+          />
+        </Fab>
+        &nbsp;
+        <Fab
+          text="Tertiary"
+          color="tertiary"
+        >
+          <Icon
+            color="dark"
+            name="mekanismi"
+          />
+        </Fab>
       </Card>
       <div class="section">
         <teleport to="#BottomFabsContainer">
