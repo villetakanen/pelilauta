@@ -5,9 +5,12 @@
 </template>
 
 <style lang="sass" scoped>
+@import @/styles/box-shadow.sass
+
 .card
+  @include Rise1()
   background-color: var(--chroma-clear)
   padding: 16px
   margin: 8px
-  box-shadow: 0 0 2px 0px var(--chroma-secondary-h)
+  border-radius: 8px
 </style>

@@ -123,6 +123,28 @@
         >
           !
         </div>
+        <br>
+        Rises
+        <div
+          class="colorbox rise1 light"
+        >
+          1
+        </div>
+        <div
+          class="colorbox rise2 light"
+        >
+          2
+        </div>
+        <div
+          class="colorbox rise3 light"
+        >
+          3
+        </div>
+        <div
+          class="colorbox rise4 light"
+        >
+          4
+        </div>
       </Card>
       <Card>
         <h1>Headline 1</h1>
@@ -377,6 +399,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
+@import @/styles/box-shadow.sass
 
 .section
   padding-top: 8px
@@ -396,14 +419,16 @@ export default defineComponent({
     color: var(--chroma-secondary-a)
 .colorbox+.colorbox
   margin-left:-16px
-.color1
-  background-color: $color-fill-primary-dark
-.color2
-  background-color: $color-fill-primary
-.color3
-  background-color: $color-fill-primary-light
-.color4
-  background-color: $color-fill-secondary
-.color5
-  background-color: $color-fill-tertiary
+.rise1
+  background-color: var(--chroma-clear)
+  @include Rise1()
+.rise2
+  background-color: var(--chroma-clear)
+  @include Rise2()
+.rise3
+  background-color: var(--chroma-clear)
+  @include Rise3()
+.rise4
+  background-color: var(--chroma-clear)
+  @include Rise4()
 </style>
