@@ -107,6 +107,7 @@ export default defineComponent({
   z-index: 5
   h1
     @include TypeHeadline5()
+    margin: 0
     overflow: hidden
     text-overflow: ellipsis
   p.caption
