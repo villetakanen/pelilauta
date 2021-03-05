@@ -101,12 +101,13 @@ export default defineComponent({
   margin-top: -8px
   padding-top: 8px
   padding-bottom: 7px
-  border-bottom: solid 1px var(--color-fill-primary)
+  border-bottom: solid 1px var(--chroma-primary-g)
   margin-bottom: 8px
   background-color: var(--color-fill-background)
   z-index: 5
   h1
     @include TypeHeadline5()
+    margin: 0
     overflow: hidden
     text-overflow: ellipsis
   p.caption

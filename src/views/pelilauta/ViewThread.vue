@@ -60,11 +60,11 @@ export default defineComponent({
   margin: 0 auto
   padding: 0
   div.threadContent
-    @include TypeBody2()
-    color: var(--color-font-medium)
+    p
+      @include TypeBody2()
   h2.section
     @include TypeHeadline5()
-    border-top: solid 1px var(--color-fill-primary)
+    border-top: solid 1px var(--chroma-primary-g)
     padding-top: 7px
     padding-bottom: 8px
 

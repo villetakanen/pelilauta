@@ -202,6 +202,7 @@ div.toolbar
   --chroma-secondary-a:#002337
   --chroma-secondary-b:#043c50
   --chroma-secondary-c:#10566b
+  --chroma-secondary-c-rgb: 16, 86, 107
   --chroma-secondary-d:#227286
   --chroma-secondary-e:#388ea1
   --chroma-secondary-f:#53abbb
@@ -259,6 +260,11 @@ p+p
   img
     max-width: 100%
 
+.comment
+  p
+    @include TypeBody2()
+    color: var(--chroma-secondary-a)
+    
 // Scaling helpers
 @include media('<tablet')
   .hideOnMobile

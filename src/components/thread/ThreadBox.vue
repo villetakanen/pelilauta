@@ -6,9 +6,11 @@
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
+@import @/styles/box-shadow.sass
 
 .threadBox
-  background-color: var(--color-fill-background)
+  @include Rise1()
+  background-color: var(--chroma-clear)
   margin: 0 8px
   padding: 16px
   max-width: 780px

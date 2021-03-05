@@ -9,17 +9,16 @@
         :lines="3"
         class="box"
       />
-      <MaterialButton
-        icon
+      <Fab
         class="button"
-        color="secondary"
         :async-action="send"
+        color="tertiary"
       >
-        <img
-          src="@/assets/send.svg"
-          alt="Send comment"
-        >
-      </MaterialButton>
+        <Icon
+          name="send"
+          color="dark"
+        />
+      </Fab>
     </div>
     <div
       v-if="isAnonymous"
@@ -43,12 +42,16 @@ import Editor from '@/components/quill/QuillEditor.vue'
 import { addReply } from '@/state/discussion'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
+import Fab from '../material/Fab.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'ReplyForm',
   components: {
     MaterialButton,
-    Editor
+    Editor,
+    Fab,
+    Icon
   },
   props: {
     threadid: {
@@ -88,21 +91,20 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+@import @/styles/box-shadow.sass
 
 .reply-form
-  @include BoxShadow1()
-  background-color: rgba($color-fill-primary-dark, 0.22)
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
   margin: 8px
-  padding: 7px
+  padding: 8px
   border-radius: 8px
-  border: solid 1px rgba($color-fill-tertiary, 0.11)
   position: relative
   .box
     flex-grow: 1
     flex-shrink: 0
     margin-right: 8px
     border-radius: 4px
-    background-color: $color-base-dark
+    background-color: rgba(white, 0.5)
     border: none
     padding: 4px
     min-height: 60px
@@ -110,15 +112,6 @@ export default defineComponent({
     line-height: 20px
     margin-right: 70px
     overflow: auto
-  .box:after
-    content: ""
-    position: absolute
-    border-style: solid
-    border-color: transparent $color-base-dark
-    top: 7px // controls vertical position
-    right: 64px // value = - border-left-width - border-right-width */
-    border-width: 0px 0px 16px 16px
-    bottom: auto
   .button
     @include BoxShadow8()
     position: absolute

@@ -75,6 +75,8 @@ div.cardGrid
   grid-gap: 8px
   justify-content: center
   align-items: flex-start
+  div.siteCard
+    margin: 0
 
 @include media('<tablet')
   div.siteCard
