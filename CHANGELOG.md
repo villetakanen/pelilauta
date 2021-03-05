@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.14.2](https://github.com/villetakanen/pelilauta/compare/v7.14.1...v7.14.2) (2021-03-05)
+
+
+### Bug Fixes
+
+* sitelist to use card component ([4e9da27](https://github.com/villetakanen/pelilauta/commit/4e9da27feb894297bac31477abc75b85423d3d55))
+* text fields to chroma ([53d36ae](https://github.com/villetakanen/pelilauta/commit/53d36aec0221628daaac63ea96b4b64541cdb107))
+* top bar no longer fixed ([e4e4a87](https://github.com/villetakanen/pelilauta/commit/e4e4a870a569f4fb6ff1fcf2a5969ea79a4a2bf0))
+
 ### [7.14.1](https://github.com/villetakanen/pelilauta/compare/v7.14.0...v7.14.1) (2021-03-04)
 
 
