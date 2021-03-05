@@ -10,7 +10,7 @@
       v-if="isAdmin"
       prepend="admin"
       to="/admin"
-      style="margin: 8px"
+      style="margin-right: 8px"
     >
       <template
         v-if="!mobileViewport"

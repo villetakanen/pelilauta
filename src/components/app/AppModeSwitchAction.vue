@@ -48,7 +48,7 @@ div.swapper
   position: relative
   width: 48px
   height: 48px
-  margin: 0
+  margin: 2px 0
   padding: 0
   .icon
     @include SpacingIcon2()

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="appToolbar"
+    class="appToolbar toolbar"
     :class="{ 'theme--dark': dark }"
   >
     <slot />
@@ -21,19 +21,22 @@ export default defineComponent({
 })
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
 div.appToolbar
   padding: 0
-  padding-left: 8px
-  padding-right: 4px
   display: flex
-  .spacer
-    flex-grow: 1
+  margin-bottom: 8px
+  div:last-child
+    margin-right: 0
+  h3:first-child
+    margin-left: 0
   h3
+    margin: 0
+    padding: 0
     line-height: 48px
     height: 48px
     overflow: hidden
@@ -46,5 +49,5 @@ div.appToolbar
 
 @include media('<tablet')
   div.appToolbar
-    height: 56px
+    height: 48px
 </style>
