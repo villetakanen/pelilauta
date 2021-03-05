@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.15.0](https://github.com/villetakanen/pelilauta/compare/v7.14.4...v7.15.0) (2021-03-05)
+
+
+### Features
+
+* thread view to chroma ([642fcee](https://github.com/villetakanen/pelilauta/commit/642fcee50d1dd1fd92c2195a89054dfaf9540dea))
+
+
+### Bug Fixes
+
+* chroma for thread page ([351c643](https://github.com/villetakanen/pelilauta/commit/351c6439808e1baac3700372cdfa0654ba23c108))
+* discusion to chroma ([ef35bc7](https://github.com/villetakanen/pelilauta/commit/ef35bc790d2bd550b9aa5a571536cc39c8ea3d57))
+* second level menu spacing ([6378d4e](https://github.com/villetakanen/pelilauta/commit/6378d4ec9787b7da2d28472191653d95a1afd020))
+
 ### [7.14.4](https://github.com/villetakanen/pelilauta/compare/v7.14.3...v7.14.4) (2021-03-05)
 
 
