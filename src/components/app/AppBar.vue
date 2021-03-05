@@ -4,7 +4,7 @@
     class="toolbar"
   >
     <SideNavAction />
-    <AppAction style="margin-left: 56px" />
+    <AppAction />
     <div class="spacer" />
     <Action
       v-if="isAdmin"
@@ -51,54 +51,19 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
-
-#AppBar
-  .absoluteRight
-    position: absolute
-    top: 0px
-    right: 0px
-
-.labelForSearch
-  height: 30px
-  width: 30px
-  position: absolute
-  top: 8px
-  right: 55px
-  background-color: $color-primary
-  padding: 5px
-  border-radius: 50%
-  opacity: 50%
-  z-index: 10
-
-@include media('<=tablet')
-  .searchBar
-    width: 102px
-    transition: width 0.3s ease
-    &:focus
-      width: 57vw
-
-// Cleared from this on
 
 #AppBar
   // box-shadow: 0 0 13px 0 var(--chroma-secondary-h)
   position: relative
-  background-color: $color-fill-dark
   background: var(--chroma-clear) // linear-gradient(140deg, var(--chroma-primary-a) 0%, var(--chroma-primary-e) 100%) // linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
-  height: 56px
+  height: 48px
   margin: 0
-  margin-bottom: 8px
+  margin-bottom: 7px
+  border-bottom: solid 1px var(--chroma-primary-e)
   padding: 4px
-  box-sizing: border-box
   display: flex
   z-index: 100
-  h1
-    @include TypeButton()
-    margin-left: 56px
-    line-height: 48px
-    a
-      color: $color-dark-font-high
 
 @include media('>phone')
 

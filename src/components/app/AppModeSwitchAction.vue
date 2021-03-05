@@ -45,22 +45,22 @@ export default defineComponent({
 @import @/styles/box-shadow.sass
 
 div.swapper
-  @include SpacingIcon2()
-  border-radius: 50%
-  margin: 4px
   position: relative
+  width: 48px
+  height: 48px
+  margin: 0
+  padding: 0
   .icon
+    @include SpacingIcon2()
     background: var(--chroma-primary-g)
     @include Halo8()
-    height: 48px
-    width: 48px
     margin: 0
     padding: 0
     border-radius: 24px
     img
       height: 40px
       width: 40px
-      padding: 4px
+      padding: 2px
 .micropop-enter-active,
 .micropop-leave-active
   transition: all 0.3s
