@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'MaterialFab',
@@ -45,16 +45,30 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    asyncAction: {
+      type: Object.getPrototypeOf(async function () {}).constructor,
+      required: false,
+      default: undefined
     }
   },
   setup (props) {
     const router = useRouter()
 
-    function clicked () {
-      if (props.to) router.push(props.to)
-      else if (props.action) props.action()
-    }
+    const buttonClasses = ref({
+      working: false
+    })
 
+    const clicked = () => {
+      if (props.action) {
+        props.action()
+      } else if (props.asyncAction) {
+        buttonClasses.value.working = true
+        props.asyncAction().then(() => {
+          buttonClasses.value.working = false
+        })
+      } else if (props.to) router.push(props.to)
+    }
     return { clicked }
   }
 })
@@ -76,6 +90,8 @@ export default defineComponent({
   border: none
   background-position: center
   transition: 0.3s
+  &.working
+    opacity: 0.3
   &.text
     width: auto
     .label

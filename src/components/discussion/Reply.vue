@@ -33,7 +33,7 @@
       class="message"
     >
       <div
-        class="contentArea"
+        class="contentArea comment"
         :innerHTML="reply.content"
       />
     </div>
@@ -165,33 +165,35 @@ export default defineComponent({
   @include TypeBody2()
   @include DontBreakOut()
   position: relative
-  background-color: rgba($color-fill-primary-dark, 0.22)
+  background-color: #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
   margin: 8px 4px
   padding: 16px
   border-radius: 0 8px 8px 8px
   // for triangle
   margin-left: 16px
-  color: rgba($color-fill-tertiary, 0.83)
+  color: var(--chroma-secondary-a)
   &.fromMe
     margin-left: 8px
     margin-right: 16px
-    background-color: rgba($color-fill-primary, 0.22)
-    //border: solid 1px rgba($color-fill-primary, 0.22)
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
     border-radius: 8px 0px 8px 8px
   .message
     margin-top:8px
 
 .author
-  color: $color-fill-primary-dark
   font-weight: bold
+  a
+    text-decoration: none
+    color: var(--chroma-secondary-d)
 .fromMe .author
-  color: rgba($color-fill-tertiary, 0.83)
+  a
+    color: var(--chroma-primary-d)
 
 .replyComment:after
   content: ""
   position: absolute
   border-style: solid
-  border-color: transparent rgba($color-fill-primary-dark, 0.22)
+  border-color: transparent #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
 
 .replyComment:not(.fromMe):after
   top: 0px // controls vertical position
@@ -204,7 +206,7 @@ export default defineComponent({
   right: -16px // value = - border-left-width - border-right-width */
   border-width: 0px 0px 16px 16px
   bottom: auto
-  border-color: transparent rgba($color-fill-primary, 0.22)
+  border-color: transparent #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
 
 .stream-reply
   @include TypeBody2()
