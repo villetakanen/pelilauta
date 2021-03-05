@@ -124,7 +124,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .sideNavMenu
-  margin: 8px 0
+  margin: 0
   padding: 0
   padding-top: 8px
   overflow: hidden
