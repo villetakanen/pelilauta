@@ -1,6 +1,6 @@
 <template>
   <div class="cardGrid">
-    <MaterialCard
+    <Card
       v-for="site in publicSites"
       :key="site.id"
       class="siteCard"
@@ -20,11 +20,11 @@
         class="poster"
       />
       <div style="z-index: 11; position: relative">
-        <h3>
+        <h1>
           <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
             {{ site.name }}
           </router-link>
-        </h3>
+        </h1>
         <p class="description">
           {{ site.description }}
         </p>
@@ -35,13 +35,13 @@
           class="systemBadge"
         />
       </div>
-    </MaterialCard>
+    </Card>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
+import Card from '@/components/layout/Card.vue'
 import { fireStoreURL } from '@/utils/firebaseTools'
 import Icon from '../material/Icon.vue'
 import { useSites } from '@/state/sites'
@@ -49,7 +49,7 @@ import { useSites } from '@/state/sites'
 export default defineComponent({
   name: 'SiteList',
   components: {
-    MaterialCard,
+    Card,
     Icon
   },
   setup () {
@@ -77,14 +77,14 @@ div.cardGrid
   align-items: flex-start
 
 @include media('<tablet')
-  div.material-card.siteCard
+  div.siteCard
     width: calc(100vw - 56px)
 
 @include media('>=tablet')
-  div.material-card.siteCard
+  div.siteCard
     width: 348px
 
-div.material-card.siteCard
+div.siteCard
   overflow: hidden
   position: relative
   flex-grow: 0
@@ -92,9 +92,14 @@ div.material-card.siteCard
   .description
     max-height: 72px
     overflow: hidden
-  h3
+    padding-top:8px
+    padding-bottom: 8px
+  h1
+    @include TypeHeadline5()
+    line-height: 24px
+    margin-top: 0
     a
-      color: rgba(0, 121, 107, 1)
+      color: var(--chroma-secondary-a)
   .poster
     height: 72px
     width: 72px

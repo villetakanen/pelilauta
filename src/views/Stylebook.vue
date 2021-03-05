@@ -237,7 +237,8 @@
           />
         </Fab>
       </Card>
-      <div class="section">
+
+      <div>
         <teleport to="#BottomFabsContainer">
           <Fab>
             <Icon
@@ -264,11 +265,15 @@
       <div class="section">
         <h1>Inputs</h1>
         <p>These inputs override default browser ones, with material style theming</p>
-        <TextField label="<TextField>" />
-        <MaterialCard>
-          <p>The inputs are expexted to behave well within a Card</p>
+        <TextField label="<TextField error>" error/>
+        <div class="toolbar">
+          <p>And they work in a toolbar</p>
+          <TextField label="TextField inside a toolbar" />
+        </div>
+        <Card>
+          <p>And are expected to behave well within a Card</p>
           <TextField label="TextField inside a Card" />
-        </MaterialCard>
+        </Card>
       </div>
 
       <div class="section">
@@ -393,7 +398,7 @@ export default defineComponent({
 .section
   padding-top: 8px
   margin-top: 7px
-  border-top: solid 3px #12002337
+  border-top: solid 1px var(--chroma-primary-d)
 
 .colorbox
   height: 48px

@@ -57,10 +57,10 @@ export default defineComponent({
 @import @/styles/layout.sass
 @import @/styles/include-media.scss
 
-.materialTextfield
+div.materialTextfield
   width: calc(100% - 8px)
-  border-bottom: solid 1px $color-fill-primary-dark
-  background-color: rgba($color-fill-primary-dark, 0.11)
+  border-bottom: solid 1px var(--chroma-secondary-f)
+  background-color: var(--chroma-secondary-i)
   padding-left: 4px
   padding-right: 4px
   position: relative
@@ -87,17 +87,21 @@ export default defineComponent({
     font-size: 14px
     pointer-events: none
     line-height: 14px
-    color: $color-fill-primary-dark
+    color: var(--chroma-secondary-e)
   &:hover
-    background-color: rgba($color-fill-primary-dark, 0.22)
+    background-color: var(--chroma-secondary-h)
+    border-bottom: solid 1px var(--chroma-secondary-b)
   &:focus
-    background-color: rgba($color-fill-primary-dark, 0.22)
+    background-color: var(--chroma-secondary-h)
+    border-bottom: solid 1px var(--chroma-secondary-b)
   .toSide, input:focus + label
       top: 4px
       left: 4px
       font-size: 10px
       line-height: 10px
   &.error
-    border-bottom: solid 1px $color-fill-secondary
-    background-color: rgba($color-fill-secondary, 0.33)
+    border-bottom: solid 1px var(--chroma-alert)
+    background-color: #{'rgba(var(--chroma-alert-rgb), 0.11)'}
+    input
+      color:var(--chroma-alert)
 </style>
