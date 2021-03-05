@@ -2,12 +2,12 @@
   <div>
     <SiteToolbar />
     <div class="mekanismiGrid">
-      <MaterialCard class="mainCard">
+      <Card class="mainCard">
         <PageToolbar />
         <transition name="fade">
           <div v-if="site.name && page.name">
             <div
-              class="wikipage"
+              class="wikipage contentArea"
               :innerHTML="renderWikiLinks(site.id, page.htmlContent)"
             />
           </div>
@@ -17,8 +17,8 @@
             style="margin-bottom: -80px"
           />
         </transition>
-      </MaterialCard>
-      <MaterialCard class="sideCard">
+      </Card>
+      <Card class="sideCard">
         <transition name="fade">
           <SideBar v-if="site.name" />
           <Loader
@@ -26,7 +26,7 @@
             poster
           />
         </transition>
-      </MaterialCard>
+      </Card>
     </div>
     <PageFabs />
   </div>
@@ -34,25 +34,24 @@
 
 <script lang="ts">
 import { ComputedRef, defineComponent, inject, provide } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
 import { usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-// import { useRoute } from 'vue-router'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { renderWikiLinks } from '@/utils/contentFormat'
+import Card from '@/components/layout/Card.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
     PageToolbar,
-    MaterialCard,
     Loader,
     SideBar,
     PageFabs,
-    SiteToolbar
+    SiteToolbar,
+    Card
   },
   setup () {
     const { site } = useSite()

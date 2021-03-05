@@ -1,19 +1,20 @@
 <template>
   <div
-    class="sidebar"
+    class="sidebar contentArea"
     style="position: relative"
   >
     <transition name="fade">
       <div v-if="site">
-        <h1>{{ site.name }}</h1>
+        <h3 style="margin: 0">{{ site.name }}</h3>
         <p><em>{{ site.description }}</em></p>
         <img
           v-if="site.splashURL"
           class="cardPoster"
           alt="Site splash image"
           :src="site.splashURL"
+          style="margin-top: 8px"
         >
-        <h2>{{ $t('mekanismi.sidebar.pagelist') }}</h2>
+        <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
         <ul>
           <li
             v-for="page in pages"
