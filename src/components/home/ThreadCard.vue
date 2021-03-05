@@ -1,5 +1,5 @@
 <template>
-  <MaterialCard class="welcomeCard">
+  <Card class="welcomeCard">
     <div class="content">
       <div
         v-if="thread.data.images && thread.data.images.length > 0"
@@ -11,8 +11,10 @@
           {{ thread.data.title }}
         </router-link>
       </h1>
-      <p class="caption">
-        {{ toDisplayString(thread.created) }} -
+      <p class="contentSnippet">
+        {{ snippet }}
+      </p>
+      <p class="meta">
         <transition name="fade">
           <span
             v-if="author"
@@ -22,9 +24,7 @@
             </router-link>
           </span>
         </transition>
-      </p>
-      <p class="contentSnippet">
-        {{ snippet }}
+        {{ toDisplayString(thread.created) }}
       </p>
     </div>
     <div class="toolbar">
@@ -70,7 +70,7 @@
         </transition>
       </div>
     </div>
-  </MaterialCard>
+  </Card>
 </template>
 
 <script lang="ts">
@@ -79,7 +79,7 @@ import { useMeta } from '@/state/meta'
 import { loveThread, Thread, unloveThread } from '@/state/threads'
 import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
-import MaterialCard from '../material/MaterialCard.vue'
+import Card from '../layout/Card.vue'
 import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import Pill from '../material/Pill.vue'
@@ -88,7 +88,7 @@ import Pill from '../material/Pill.vue'
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { MaterialCard, LoveAThreadAction, Pill },
+  components: { Card, LoveAThreadAction, Pill },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -145,21 +145,28 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
-.welcomeCard
+div.welcomeCard
   color: var(--chroma-secondary-c)
+  margin: 0
+  margin-bottom: 8px
   a
     text-decoration: none
     color: var(--chroma-primary-c)
   h1
+    @include TypeHeadline5()
     color: var(--chroma-secondary-e)
     margin-top: 0
+    padding-top: 0
     a
       color: var(--chroma-secondary-e)
-  p.caption
-    color: var(--chroma-secondary-a)
+  p.meta
+    // text-align: right
+    @include TypeCaption()
+    color: var(--chroma-secondary-b)
+    margin-bottom: 8px
   .contentSnippet
     @include TypeBody2()
-    margin-top: 8px
+    margin-top: 0px
     margin-bottom: 8px
     color: var(--chroma-secondary-c)
   .toolbar

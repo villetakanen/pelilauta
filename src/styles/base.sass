@@ -120,16 +120,6 @@ div.toolbar
     @include TypeCaption()
     text-align: right
 
-// Content Grid, usable on views
-div.contentGrid
-  padding: 0 8px
-
-@include media('>tablet')
-  div.contentGrid
-    max-width: 878px
-    margin: 0 auto
-    padding: 8px
-
 .dont-break-out
   /* These are technically the same, but use both */
   overflow-wrap: break-word
@@ -299,6 +289,16 @@ p+p
     background-color: rgba($color-fill-primary-dark, 0.22)
 
 // Page grid layout tweak classes
+// Content Grid, usable on views
+div.contentGrid
+  padding: 0 8px
+
+@include media('>tablet')
+  div.contentGrid
+    max-width: 878px
+    margin: 0 auto
+    padding: 0
+
 .viewFull
   padding: 0 16px
 
