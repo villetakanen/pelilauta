@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.14.3](https://github.com/villetakanen/pelilauta/compare/v7.14.2...v7.14.3) (2021-03-05)
+
+
+### Bug Fixes
+
+* front page threads to use cards ([93b2e86](https://github.com/villetakanen/pelilauta/commit/93b2e86f9c47588e355dbfa276ba7951a595e79f))
+
 ### [7.14.2](https://github.com/villetakanen/pelilauta/compare/v7.14.1...v7.14.2) (2021-03-05)
 
 
