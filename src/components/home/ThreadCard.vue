@@ -45,23 +45,27 @@
       <div class="spacer" />
       <div
         class="replies"
+        style="position: relative"
       >
         <transition name="fade">
-          <Pill
-            v-if="newReplies"
-            small
-            prepend-icon="send"
-            dark
-          >
-            <router-link :to="`/thread/${thread.id}/view`">
-              {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
-            </router-link>
-          </Pill>
           <div
-            v-else
-            style="margin-right: 10px"
+            style="width: 120px;position:relative; text-align: right"
           >
-            <p class="topic">
+            <Pill
+              v-if="newReplies"
+              small
+              prepend-icon="send"
+              dark
+            >
+              <router-link :to="`/thread/${thread.id}/view`">
+                {{ thread.replyCount ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
+              </router-link>
+            </Pill>
+            <p
+              v-else
+              class="topic"
+              style="position: absolute; top: 0; right : 10px"
+            >
               <router-link :to="`/thread/${thread.id}/view`">
                 {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
               </router-link>
