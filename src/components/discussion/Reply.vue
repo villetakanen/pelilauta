@@ -179,6 +179,11 @@ export default defineComponent({
     border-radius: 8px 0px 8px 8px
   .message
     margin-top:8px
+  .comment
+    hyphens: auto
+    word-break: break-word
+    a
+      word-break: break-all
 
 .author
   font-weight: bold

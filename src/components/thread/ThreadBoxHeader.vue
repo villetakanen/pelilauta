@@ -93,8 +93,7 @@ export default defineComponent({
 
 .threadBoxHeader
   margin: 0
-  height: 48px
-  // Sticky-position
+  max-height: 80px
   position: sticky
   position: -webkit-sticky
   top: 0px
@@ -105,6 +104,7 @@ export default defineComponent({
   margin-bottom: 8px
   background-color: var(--color-fill-background)
   z-index: 5
+  overflow: hidden
   h1
     @include TypeHeadline5()
     margin: 0
