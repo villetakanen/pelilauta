@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.15.1](https://github.com/villetakanen/pelilauta/compare/v7.15.0...v7.15.1) (2021-03-08)
+
+
+### Bug Fixes
+
+* thread-has-seen ux no longer skips ([9e08411](https://github.com/villetakanen/pelilauta/commit/9e08411d22d87b95715844fa4acb5b894c9824ed))
+
 ## [7.15.0](https://github.com/villetakanen/pelilauta/compare/v7.14.4...v7.15.0) (2021-03-05)
 
 
