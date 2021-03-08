@@ -7,6 +7,7 @@
       <ReplyEditor
         v-model:content="reply"
         class="box"
+        :disabled="sending"
       />
       <Fab
         class="button"
@@ -61,12 +62,16 @@ export default defineComponent({
   setup (props) {
     const { isAnonymous, uid } = useAuthState()
     const reply = ref('')
+    const sending = ref(false)
 
     const send = async () => {
       const { formattedContent } = extractLinks(reply.value)
+      sending.value = true
       return addReply(props.threadid, uid.value, formattedContent).then(() => {
         console.log('got here?')
         reply.value = ''
+      }).finally(() => {
+        sending.value = false
       })
     }
 
@@ -75,7 +80,7 @@ export default defineComponent({
     watch(quotedContent, (quote) => {
       console.debug('watch(() => quotedContent', quote)
     })
-    return { reply, send, isAnonymous, quotedContent }
+    return { reply, send, isAnonymous, quotedContent, sending }
   }
 })
 </script>

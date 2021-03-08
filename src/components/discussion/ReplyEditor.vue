@@ -13,7 +13,8 @@ import { Quote } from '@/utils/contentFormat'
  */
 export default defineComponent({
   props: {
-    content: { type: String, required: false, default: '' }
+    content: { type: String, required: false, default: '' },
+    disabled: { type: Boolean, required: false, default: false }
   },
   emits: [
     'update:content'
@@ -33,8 +34,8 @@ export default defineComponent({
         // init code to multiple places in the file: this way, it is all
         // in one place, and easily readable as a block.
         //
-        // Please note: we do not react to changes in this model from
-        // the parent component
+        // Please note: react to changes in this model from
+        // the parent component a bit later
         if (props.content) {
           editor.value.$el.innerHTML = props.content
         }
@@ -44,19 +45,29 @@ export default defineComponent({
         quill.on('text-change', () => {
           context.emit('update:content', quill?.root.innerHTML)
         })
+        // reset when sent:
+        watch(() => props.content, (value) => {
+          if (!value) quill?.setText('')
+        })
+        // reset when sent:
+        watch(() => props.disabled, (value) => {
+          quill?.enable(!value)
+        })
+
         // Start watching for incoming Quote events. This never happens
         // at the initial load, so we do not use { immediate: true } on
         // the watch code
         watch(quotedContent, (quote) => {
           console.debug('watch2(() => quotedContent', quote)
           if (quill !== null && quote.content) {
-            quill.clipboard.dangerouslyPasteHTML(
-              0, // always put the quote to the beginning of the Delta
-              `<div class="quote">${quote.content}<div class="author">${quote.author}</div>`,
-              'user'
-            )
+            // see https://github.com/quilljs/quill/issues/2124
+            quill.insertEmbed(0, 'blockquote', '', 'user')
+            quill.insertText(0, quote.content, 'user')
+            quill.insertText(0, quote.author + ': ', { bold: true }, 'user')
           }
         })
+
+        //
       }
     })
     return { editor }
