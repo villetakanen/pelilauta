@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.15.2](https://github.com/villetakanen/pelilauta/compare/v7.15.1...v7.15.2) (2021-03-08)
+
+
+### Bug Fixes
+
+* comment hyphens ([04af979](https://github.com/villetakanen/pelilauta/commit/04af9797a0a2bfcf023f066f658c08ac704e56e8))
+* mobile hide more than 2 lines of header ([a48df16](https://github.com/villetakanen/pelilauta/commit/a48df163f5d6a5ba96d3cf00a3dc5f4bafb3a9cd))
+* thread header two line headers ([2b78a53](https://github.com/villetakanen/pelilauta/commit/2b78a53c5af88709a668e5d6cd6c33c26bd9e461))
+
 ### [7.15.1](https://github.com/villetakanen/pelilauta/compare/v7.15.0...v7.15.1) (2021-03-08)
 
 
