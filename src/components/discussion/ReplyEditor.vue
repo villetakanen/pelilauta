@@ -41,7 +41,7 @@ export default defineComponent({
     // We want to inject the Quill Editor only after this element has been
     // mounted, to have all the DOM we use from Quill, available
     onMounted(() => {
-      console.log(editor.value)
+      // console.debug(editor.value)
       if (editor.value) {
         // If we have content at this point, inject it to editorfield
         // this could be done with v-once also, but that wound move the
