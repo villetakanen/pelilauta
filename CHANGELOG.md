@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.16.1](https://github.com/villetakanen/pelilauta/compare/v7.16.0...v7.16.1) (2021-03-09)
+
+
+### Bug Fixes
+
+* editing a reply works with new editor ([80434fc](https://github.com/villetakanen/pelilauta/commit/80434fcb3ba2b1afbf095b623772f1216598fb95))
+* reply editor styling to match chroma ([26d8082](https://github.com/villetakanen/pelilauta/commit/26d8082c76e1961e6e119b4275e976a4f0841d7f))
+
 ## [7.16.0](https://github.com/villetakanen/pelilauta/compare/v7.15.2...v7.16.0) (2021-03-09)
 
 
