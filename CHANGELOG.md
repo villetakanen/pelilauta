@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.16.2](https://github.com/villetakanen/pelilauta/compare/v7.16.1...v7.16.2) (2021-03-09)
+
+
+### Bug Fixes
+
+* code quality for replyEditor ([fd8f57c](https://github.com/villetakanen/pelilauta/commit/fd8f57c35a8acddae34430f8532d7c7af2e84bc5))
+
 ### [7.16.1](https://github.com/villetakanen/pelilauta/compare/v7.16.0...v7.16.1) (2021-03-09)
 
 
