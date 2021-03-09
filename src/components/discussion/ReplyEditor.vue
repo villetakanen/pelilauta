@@ -1,6 +1,6 @@
 <template>
   <div class="replyEditor">
-    <div ref="editor" />
+    <div ref="editor" @paste="onPaste"/>
   </div>
 </template>
 
@@ -23,6 +23,17 @@ export default defineComponent({
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
     const quotedContent = inject('quotedContent') as Ref<Quote>
+
+    const onPaste = (event: ClipboardEvent) => {
+      event.preventDefault()
+      event.stopPropagation()
+      if (quill) {
+        const pasted = event.clipboardData?.getData('text/plain')
+        // console.debug('paste', pasted)
+        // force the pasted content through quill ingest pipelines
+        quill.clipboard.dangerouslyPasteHTML(pasted || '')
+      }
+    }
 
     // We want to inject the Quill Editor only after this element has been
     // mounted, to have all the DOM we use from Quill, available
@@ -70,7 +81,7 @@ export default defineComponent({
         //
       }
     })
-    return { editor }
+    return { editor, onPaste }
   }
 })
 </script>
