@@ -69,12 +69,11 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
     data: {
       content: data.content,
       topic: data.topic,
-      title: data.title,
-      images: data.images
+      title: data.title
     }
   }
   if (!post.replyCount) post.replyCount = 0
-  if (typeof post.data.images === 'string') delete post.data.images
+  if (Array.isArray(data.images)) post.data.images = data.images
   return post
 }
 
@@ -133,6 +132,7 @@ export async function updateThread (actor: string, post:Thread): Promise<string>
   firebase.analytics().logEvent('updateThread', { author: actor })
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(post.id)
+  console.log('images', post.data.images)
   return postRef.update({
     editor: actor,
     ...post.data,
