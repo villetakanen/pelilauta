@@ -1,6 +1,9 @@
 <template>
   <div class="replyEditor">
-    <div ref="editor" @paste="onPaste"/>
+    <div
+      ref="editor"
+      @paste="onPaste"
+    />
   </div>
 </template>
 
@@ -48,7 +51,7 @@ export default defineComponent({
         // Please note: react to changes in this model from
         // the parent component a bit later
         if (props.content) {
-          editor.value.$el.innerHTML = props.content
+          editor.value.innerHTML = props.content
         }
         // Init the quill-editor to the editor field, and start emitting
         // changes as vue-model-changes
