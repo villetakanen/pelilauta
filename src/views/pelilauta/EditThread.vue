@@ -33,7 +33,8 @@ export default defineComponent({
   props: {
     threadid: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     mode: {
       type: String,

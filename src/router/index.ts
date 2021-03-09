@@ -65,15 +65,6 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/stream/view/:threadid',
-    name: 'stream.view',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ViewPost.vue'),
-    props: true
-  },
-  {
     path: '/thread/:threadid/view',
     name: 'threads.view',
     // route level code-splitting
@@ -88,11 +79,18 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/thread/:threadid/edit/new/:topic',
+    path: '/stream/post/',
     name: 'threads.create',
     // route level code-splitting
     component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
-    props: route => ({ threadid: route.params.threadid, mode: 'new', topic: route.params.topic || '' })
+    props: { mode: 'new', topic: '' }
+  },
+  {
+    path: '/stream/post/:topic',
+    name: 'threads.create',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
+    props: route => ({ mode: 'new', topic: route.params.topic || '' })
   },
   {
     path: '/editortest',
