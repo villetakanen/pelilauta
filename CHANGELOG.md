@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.16.0](https://github.com/villetakanen/pelilauta/compare/v7.15.2...v7.16.0) (2021-03-09)
+
+
+### Features
+
+* new replyeditor wrapper for the quilljs ([89099b4](https://github.com/villetakanen/pelilauta/commit/89099b48a92a00598a1a7ccccfede6491a517f5c))
+* quotes passed as inject to new replyeditor ([4b181ef](https://github.com/villetakanen/pelilauta/commit/4b181eff972e72377349fdc3d4f2e034c84b027d))
+* simplified replyeditor and replyform ([90ba71d](https://github.com/villetakanen/pelilauta/commit/90ba71dc13e8b90daa58b37e14858369e7dce73d))
+
+
+### Bug Fixes
+
+* temporarily disabled pasting of html for sec ([79aa725](https://github.com/villetakanen/pelilauta/commit/79aa72587fe8e8ea0063902905cc0e6916d0e805))
+
 ### [7.15.2](https://github.com/villetakanen/pelilauta/compare/v7.15.1...v7.15.2) (2021-03-08)
 
 
