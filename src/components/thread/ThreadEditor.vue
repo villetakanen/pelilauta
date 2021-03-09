@@ -86,6 +86,7 @@ export default defineComponent({
     }
   },
   setup (props) {
+    console.debug('thread', props.thread)
     // Thread name
     const localTitle = ref('')
     const threadTitle = computed({

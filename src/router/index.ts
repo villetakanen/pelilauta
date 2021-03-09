@@ -83,7 +83,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'threads.create',
     // route level code-splitting
     component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
-    props: route => ({ mode: 'new', topic: route.params.topic || '' })
+    props: route => ({ threadid: '', mode: 'new', topic: route.params.topic || '' })
   },
   {
     path: '/editortest',
