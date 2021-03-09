@@ -79,13 +79,6 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/stream/post/',
-    name: 'threads.create',
-    // route level code-splitting
-    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
-    props: { mode: 'new', topic: '' }
-  },
-  {
     path: '/stream/post/:topic',
     name: 'threads.create',
     // route level code-splitting

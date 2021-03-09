@@ -36,6 +36,7 @@ import { copyUrl } from '@/utils/window'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { MenuItem } from '@/utils/uiInterfaces'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'ThreadBoxHeader',
@@ -51,6 +52,7 @@ export default defineComponent({
     const { uid, isAdmin } = useAuthState()
     const { pushSnack } = useSnack()
     const i18n = useI18n()
+    const router = useRouter()
 
     // Computed props
     const topicName = computed(() => {
@@ -71,6 +73,7 @@ export default defineComponent({
     const drop = () => {
       deleteThread(uid.value, props.thread.id).then(() => {
         pushSnack(i18n.t('thread.deleteSuccesfull'))
+        router.push('/')
       }).catch(() => {
         pushSnack(i18n.t('thread.deleteFailed'))
       })
@@ -104,7 +107,6 @@ export default defineComponent({
   margin-bottom: 8px
   background-color: var(--color-fill-background)
   z-index: 5
-  overflow: hidden
   h1
     @include TypeHeadline5()
     margin: 0

@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { useMeta } from '@/state/meta'
-import { Thread, updateThread } from '@/state/threads/threads'
+import { createThread, Thread, updateThread } from '@/state/threads/threads'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
@@ -130,11 +130,24 @@ export default defineComponent({
     const router = useRouter()
 
     const save = async () => {
+      if (props.mode === 'new') {
+        return createThread(uid.value, {
+          content: localContent.value,
+          title: localTitle.value,
+          topic: threadTopic.value
+        }).then((threadid) => {
+          pushSnack(i18n.t('threads.updateSuccess'))
+          router.push(`/thread/${threadid}/view`)
+        }).catch((error:Error) => {
+          pushSnack(i18n.t('threads.updateFailed'))
+          console.debug(error)
+        })
+      }
       const updatedThread:Thread = { ...props.thread }
       if (localContent.value) updatedThread.data.content = localContent.value
       if (localTitle.value) updatedThread.data.title = localTitle.value
       if (threadTopic.value) updatedThread.data.topic = threadTopic.value
-      updateThread(uid.value, updatedThread).then(() => {
+      return updateThread(uid.value, updatedThread).then(() => {
         pushSnack(i18n.t('threads.updateSuccess'))
         router.push(`/thread/${props.thread.id}/view`)
       }).catch((error:Error) => {

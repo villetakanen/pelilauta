@@ -6,7 +6,7 @@
     <Fab
       v-if="!isAnonymous"
       id="addThreadFab"
-      :action="newThread"
+      to="/stream/post/new"
       :text="$t('action.addThread')"
     >
       <img
