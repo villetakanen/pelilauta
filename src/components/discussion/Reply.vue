@@ -41,22 +41,20 @@
       v-if="editReply"
       class="message"
     >
-      <Editor
-        v-model="replyContent"
-        :lines="3"
+      <ReplyEditor
+        v-model:content="replyContent"
         class="box"
       />
-      <MaterialButton
-        icon
+      <Fab
         class="button"
-        color="secondary"
-        :action="updateReply"
+        :async-action="updateReply"
+        color="tertiary"
       >
-        <img
-          src="@/assets/send.svg"
-          alt="send"
-        >
-      </MaterialButton>
+        <Icon
+          name="send"
+          color="dark"
+        />
+      </Fab>
     </div>
   </div>
 </template>
@@ -64,22 +62,24 @@
 <script lang="ts">
 import { defineComponent, computed, ref, PropType } from 'vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { loveReply, unloveReply, updateReplyContent, subscribeToReplies, deleteReply } from '@/state/discussion'
-import Editor from '@/components/quill/QuillEditor.vue'
 import { useI18n } from 'vue-i18n'
 import LoveAReplyAction from './LoveAReplyAction.vue'
 import { Reply } from '@/utils/firestoreInterfaces'
 import { useAuthors } from '@/state/authors'
 import { useAuthState } from '@/state/authz'
+import ReplyEditor from './ReplyEditor.vue'
+import Fab from '../material/Fab.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   components: {
     MaterialMenu,
-    Editor,
-    MaterialButton,
-    LoveAReplyAction
+    LoveAReplyAction,
+    ReplyEditor,
+    Fab,
+    Icon
   },
   props: {
     reply: {
@@ -101,7 +101,11 @@ export default defineComponent({
 
     subscribeToReplies(props.threadid)
     const editReply = ref(false)
-    const replyContent = computed(() => (props.reply.content))
+    const localReplyContent = ref('')
+    const replyContent = computed({
+      get: () => (localReplyContent.value || props.reply.content),
+      set: (val) => { localReplyContent.value = val }
+    })
 
     const replyClasses = computed(() => ({
       fromMe: props.reply.author === uid.value
@@ -148,9 +152,9 @@ export default defineComponent({
       return arr
     })
 
-    const updateReply = () => {
+    const updateReply = async () => {
       editReply.value = false
-      updateReplyContent(uid.value, props.threadid, props.reply.replyid, replyContent.value)
+      return updateReplyContent(uid.value, props.threadid, props.reply.replyid, replyContent.value)
     }
 
     return { menu, replyClasses, uid, loves, toggleLove, editReply, replyContent, updateReply, nick }

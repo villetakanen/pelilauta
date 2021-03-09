@@ -1,6 +1,9 @@
 <template>
   <div class="replyEditor">
-    <div ref="editor" @paste="onPaste"/>
+    <div
+      ref="editor"
+      @paste="onPaste"
+    />
   </div>
 </template>
 
@@ -38,7 +41,7 @@ export default defineComponent({
     // We want to inject the Quill Editor only after this element has been
     // mounted, to have all the DOM we use from Quill, available
     onMounted(() => {
-      console.log(editor.value)
+      // console.debug(editor.value)
       if (editor.value) {
         // If we have content at this point, inject it to editorfield
         // this could be done with v-once also, but that wound move the
@@ -48,7 +51,7 @@ export default defineComponent({
         // Please note: react to changes in this model from
         // the parent component a bit later
         if (props.content) {
-          editor.value.$el.innerHTML = props.content
+          editor.value.innerHTML = props.content
         }
         // Init the quill-editor to the editor field, and start emitting
         // changes as vue-model-changes
