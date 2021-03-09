@@ -4,10 +4,10 @@
       v-if="!isAnonymous"
       class="reply-form"
     >
-      <Editor
-        v-model="reply"
-        :lines="3"
+      <ReplyEditor
+        v-model:content="reply"
         class="box"
+        :disabled="sending"
       />
       <Fab
         class="button"
@@ -36,9 +36,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType, onMounted, watch } from 'vue'
+import { defineComponent, ref, inject, Ref, watch, provide } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import Editor from '@/components/quill/QuillEditor.vue'
+import ReplyEditor from './ReplyEditor.vue'
 import { addReply } from '@/state/discussion'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
@@ -49,7 +49,7 @@ export default defineComponent({
   name: 'ReplyForm',
   components: {
     MaterialButton,
-    Editor,
+    ReplyEditor,
     Fab,
     Icon
   },
@@ -57,33 +57,30 @@ export default defineComponent({
     threadid: {
       type: String,
       required: true
-    },
-    quoted: {
-      type: Object as PropType<Quote>,
-      required: false,
-      default: { content: '', author: '' }
     }
   },
   setup (props) {
     const { isAnonymous, uid } = useAuthState()
     const reply = ref('')
+    const sending = ref(false)
 
     const send = async () => {
       const { formattedContent } = extractLinks(reply.value)
+      sending.value = true
       return addReply(props.threadid, uid.value, formattedContent).then(() => {
         console.log('got here?')
         reply.value = ''
+      }).finally(() => {
+        sending.value = false
       })
     }
 
-    onMounted(() => {
-      watch(() => props.quoted, (val) => {
-        console.log('quote:', val)
-        reply.value = reply.value + '<div class="quoteReply"><div class="reply">' + val.content + '</div><div class="replyAuthor">' + val.author + '</div></div><div><br/></div>'
-      })
+    const quotedContent = inject('quotedContent') as Ref<Quote>
+    provide('quotedContent', quotedContent)
+    watch(quotedContent, (quote) => {
+      console.debug('watch(() => quotedContent', quote)
     })
-
-    return { reply, send, isAnonymous }
+    return { reply, send, isAnonymous, quotedContent, sending }
   }
 })
 </script>

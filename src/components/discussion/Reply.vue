@@ -126,8 +126,10 @@ export default defineComponent({
     }
 
     const quoteComment = () => {
+      const el = document.createElement('div')
+      el.innerHTML = props.reply.content
       context.emit('quote', {
-        content: props.reply.content,
+        content: el.textContent,
         author: authors.value.find((a) => (a.uid === props.reply.author))?.nick
       })
     }

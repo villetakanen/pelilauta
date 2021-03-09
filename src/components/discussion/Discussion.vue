@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType, Ref } from 'vue'
+import { defineComponent, ref, PropType, Ref, provide } from 'vue'
 import { subscribeToReplies, useReplies } from '@/state/discussion'
 import ReplyForm from './ReplyForm.vue'
 import Reply from './Reply.vue'
@@ -39,9 +39,11 @@ export default defineComponent({
     const { replies } = useReplies()
     console.log(replies)
 
-    const quote:Ref<Quote|null> = ref(null)
+    const quote:Ref<Quote> = ref({ content: '', author: '' })
+    provide('quotedContent', quote)
 
     function addQuote (q: Quote) {
+      console.debug('addQuote', q)
       quote.value = q
     }
 
