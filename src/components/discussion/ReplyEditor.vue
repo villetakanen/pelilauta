@@ -12,7 +12,7 @@ import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, 
 import Quill from 'quill'
 import { Quote } from '@/utils/contentFormat'
 /**
- * A Vue 3 Wrapper for thread reply editing field.
+ * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
  */
 export default defineComponent({
   props: {
@@ -48,8 +48,8 @@ export default defineComponent({
         // init code to multiple places in the file: this way, it is all
         // in one place, and easily readable as a block.
         //
-        // Please note: react to changes in this model from
-        // the parent component a bit later
+        // Please note: we react to v-model:content changes from
+        // the parent a bit later
         if (props.content) {
           editor.value.innerHTML = props.content
         }
@@ -59,11 +59,13 @@ export default defineComponent({
         quill.on('text-change', () => {
           context.emit('update:content', quill?.root.innerHTML)
         })
-        // reset when sent:
+        // Reset field, when model is reset. Do not inject other
+        // changes to the editor, to avoid contentEditable issues.
         watch(() => props.content, (value) => {
           if (!value) quill?.setText('')
         })
-        // reset when sent:
+        // we need to handle disable prop with
+        // quill.enable(boolean) instead of DOM attrs.
         watch(() => props.disabled, (value) => {
           quill?.enable(!value)
         })
