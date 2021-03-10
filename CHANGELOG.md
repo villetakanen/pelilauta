@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.17.1](https://github.com/villetakanen/pelilauta/compare/v7.17.0...v7.17.1) (2021-03-10)
+
+
+### Bug Fixes
+
+* service worker and caches disabled for cypres ([7e9208f](https://github.com/villetakanen/pelilauta/commit/7e9208fba74120e626e96366e99e5a3c59627e92))
+
 ## [7.17.0](https://github.com/villetakanen/pelilauta/compare/v7.16.2...v7.17.0) (2021-03-10)
 
 
