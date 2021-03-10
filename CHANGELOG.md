@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.17.0](https://github.com/villetakanen/pelilauta/compare/v7.16.2...v7.17.0) (2021-03-10)
+
+
+### Features
+
+* cypress e2e testing added to the project ([b282feb](https://github.com/villetakanen/pelilauta/commit/b282feb936b6d8ef6fbd6e2b0d8029a9aab73574))
+
+
+### Bug Fixes
+
+* thread menu no longer hidden ([fb2c5a9](https://github.com/villetakanen/pelilauta/commit/fb2c5a90016ecd4ffda52cd04712102d1a34fa75))
+
 ### [7.16.2](https://github.com/villetakanen/pelilauta/compare/v7.16.1...v7.16.2) (2021-03-09)
 
 
