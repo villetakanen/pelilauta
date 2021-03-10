@@ -265,7 +265,10 @@
       <div class="section">
         <h1>Inputs</h1>
         <p>These inputs override default browser ones, with material style theming</p>
-        <TextField label="<TextField error>" error/>
+        <TextField
+          label="<TextField error>"
+          error
+        />
         <div class="toolbar">
           <p>And they work in a toolbar</p>
           <TextField label="TextField inside a toolbar" />
