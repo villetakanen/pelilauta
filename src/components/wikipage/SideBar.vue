@@ -5,7 +5,9 @@
   >
     <transition name="fade">
       <div v-if="site">
-        <h3 style="margin: 0">{{ site.name }}</h3>
+        <h3 style="margin: 0">
+          {{ site.name }}
+        </h3>
         <p><em>{{ site.description }}</em></p>
         <img
           v-if="site.splashURL"

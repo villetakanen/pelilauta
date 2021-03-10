@@ -7,7 +7,10 @@
     >
     <h1>{{ $t('app.welcome.title') }}</h1>
     <p>{{ $t('app.welcome.message') }}</p>
-    <div class="toolbar" style="margin-bottom: -8px">
+    <div
+      class="toolbar"
+      style="margin-bottom: -8px"
+    >
       <div class="spacer" />
       <Action
         v-if="isAnonymous"
