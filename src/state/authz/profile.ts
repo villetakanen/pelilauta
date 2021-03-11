@@ -54,6 +54,44 @@ function parseSeen (seenArray:Array<seenThread>) {
   return newMap
 }
 
+/**
+ * Split from fetchProfile for private profile info handling
+ *
+ */
+async function updateMeta (uid: string) {
+  console.debug('updateMeta', uid)
+  const messaging = firebase.messaging()
+  let messagingToken = ''
+  await messaging.getToken({ vapidKey: process.env.VUE_APP_FIREBASE_PUSH_MESSAGE_KEY })
+    .then((token) => {
+      console.log('messaging token:', token)
+      messagingToken = token
+    })
+    .catch((error:Error) => {
+      console.debug(error)
+    })
+  const db = firebase.firestore()
+  const fbProfileMetaRef = db.collection('profiles').doc(uid).collection('meta').doc('props')
+  fbProfileMetaRef.get().then((profileMetaDoc) => {
+    if (!profileMetaDoc.exists) {
+      fbProfileMetaRef.set({
+        messagingToken: messagingToken,
+        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+      })
+    } else {
+      fbProfileMetaRef.update({
+        messagingToken: messagingToken,
+        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+      })
+    }
+  })
+}
+
+/**
+ * fetches a users profile, and logs in
+ *
+ * @param uid user UID from firebase auth
+ */
 function fetchProfile (uid:string|null) {
   unsubscribe()
   if (!uid) {
@@ -78,6 +116,7 @@ function fetchProfile (uid:string|null) {
         pelilautaLang: snap.data()?.pelilautaLang,
         allThreadsSeenSince: snap.data()?.allThreadsSeenSince
       }
+      updateMeta(uid)
     })
   }
 }

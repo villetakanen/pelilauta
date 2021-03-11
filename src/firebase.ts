@@ -25,15 +25,6 @@ function _init () {
   })
   firebase.firestore().enablePersistence()
   firebase.analytics()
-
-  const messaging = firebase.messaging()
-  messaging.getToken({ vapidKey: process.env.VUE_APP_FIREBASE_PUSH_MESSAGE_KEY })
-    .then((token) => {
-      console.log('messaging token:', token)
-    })
-    .catch((error:Error) => {
-      console.debug(error)
-    })
 }
 
 export function useFirebase (): void {
