@@ -7,6 +7,9 @@
         :innerHTML="thread.data.content"
       />
       <PhotoBox :photos="thread.data.images || []" />
+      <div style="text-align:right">
+        <AuthorLink :uid="thread.author" />
+      </div>
       <h2 class="section">
         {{ $t('threads.discussion') }}
       </h2>
@@ -16,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import AuthorLink from '@/components/author/AuthorLink.vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import ThreadBox from '@/components/thread/ThreadBox.vue'
@@ -34,7 +38,11 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'ViewThread',
   components: {
-    ThreadBox, PhotoBox, ThreadBoxHeader, Discussion
+    ThreadBox,
+    PhotoBox,
+    ThreadBoxHeader,
+    Discussion,
+    AuthorLink
   },
   props: {
     threadid: {
