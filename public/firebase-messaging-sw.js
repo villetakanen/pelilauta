@@ -38,10 +38,10 @@ function onBackgroundMessage () {
   // [START messaging_on_background_message]
   messaging.onBackgroundMessage((payload) => {
     // Customize notification here
-    const notificationTitle = payload.data.notification.title
+    const notificationTitle = payload?.data?.topic || 'Pelilauta!'
     const notificationOptions = {
-      body: payload.data.notification.body,
-      icon: '/icons/fox-icon-256.png'
+      body: payload?.data?.body || 'Push Message',
+      icon: payload?.data?.icon || ''
     }
 
     self.registration.showNotification(notificationTitle,
