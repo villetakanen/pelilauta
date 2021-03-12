@@ -56,35 +56,41 @@ function parseSeen (seenArray:Array<seenThread>) {
 
 /**
  * Split from fetchProfile for private profile info handling
- *
  */
 async function updateMeta (uid: string) {
-  console.debug('updateMeta', uid)
-  const messaging = firebase.messaging()
-  let messagingToken = ''
-  await messaging.getToken({ vapidKey: process.env.VUE_APP_FIREBASE_PUSH_MESSAGE_KEY })
-    .then((token) => {
-      console.log('messaging token:', token)
-      messagingToken = token
+  // Firebase uid is never an empty string, some sanity here
+  if (!uid) return
+  try {
+    console.debug('profile.updateMeta', uid)
+    // Enable firebase cloud messaging for push-messages
+    const messaging = firebase.messaging()
+
+    const messagingToken = await messaging.getToken({ vapidKey: process.env.VUE_APP_FIREBASE_PUSH_MESSAGE_KEY })
+    console.debug('Messaging token:', messagingToken)
+
+    messaging.onMessage((payload) => {
+      console.debug('Message received. ', payload)
     })
-    .catch((error:Error) => {
-      console.debug(error)
+
+    // Update token, and other login metadata to the DB
+    const db = firebase.firestore()
+    const fbProfileMetaRef = db.collection('profiles').doc(uid).collection('meta').doc('props')
+    fbProfileMetaRef.get().then((profileMetaDoc) => {
+      if (!profileMetaDoc.exists) {
+        fbProfileMetaRef.set({
+          messagingToken: messagingToken,
+          lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+        })
+      } else {
+        fbProfileMetaRef.update({
+          messagingToken: messagingToken,
+          lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+        })
+      }
     })
-  const db = firebase.firestore()
-  const fbProfileMetaRef = db.collection('profiles').doc(uid).collection('meta').doc('props')
-  fbProfileMetaRef.get().then((profileMetaDoc) => {
-    if (!profileMetaDoc.exists) {
-      fbProfileMetaRef.set({
-        messagingToken: messagingToken,
-        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-      })
-    } else {
-      fbProfileMetaRef.update({
-        messagingToken: messagingToken,
-        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-      })
-    }
-  })
+  } catch (error) {
+    console.debug('profile.updateMeta', error)
+  }
 }
 
 /**
@@ -97,6 +103,7 @@ function fetchProfile (uid:string|null) {
   if (!uid) {
     profileRef.value = { nick: '', tagline: '' }
   } else {
+    updateMeta(uid)
     const db = firebase.firestore()
     const fbProfileRef = db.collection('profiles').doc(uid)
     unsubscribe = fbProfileRef.onSnapshot((snap) => {
@@ -116,7 +123,6 @@ function fetchProfile (uid:string|null) {
         pelilautaLang: snap.data()?.pelilautaLang,
         allThreadsSeenSince: snap.data()?.allThreadsSeenSince
       }
-      updateMeta(uid)
     })
   }
 }
