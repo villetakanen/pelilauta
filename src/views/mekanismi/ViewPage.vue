@@ -1,6 +1,8 @@
 <template>
   <div>
-    <SiteToolbar />
+    <div style="margin: 0 8px">
+      <SiteToolbar />
+    </div>
     <div class="mekanismiGrid">
       <Card class="mainCard">
         <PageToolbar />

@@ -46,6 +46,7 @@ div.appToolbar
     color: var(--chroma-secondary-b)
     a
       height: 48px
+      color: var(--chroma-secondary-b)
 
 @include media('<tablet')
   div.appToolbar
