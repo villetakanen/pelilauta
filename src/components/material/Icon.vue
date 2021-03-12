@@ -44,6 +44,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'players'"
+      src="@/assets/icons/players.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'books'"
       src="@/assets/icons/books.svg"
       alt="add"

@@ -279,6 +279,11 @@
         </Card>
       </div>
 
+      <!-- icons -->
+      <div class="section">
+        <Icon name="players" />
+      </div>
+
       <div class="section">
         <h1>Cards</h1>
         <div style="display:flex">
