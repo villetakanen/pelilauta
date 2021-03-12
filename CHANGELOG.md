@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.18.0](https://github.com/villetakanen/pelilauta/compare/v7.17.4...v7.18.0) (2021-03-12)
+
+
+### Features
+
+* new players icon ([12cb1af](https://github.com/villetakanen/pelilauta/commit/12cb1af3c7dca03c8d6c8123d0516cb3a7adb84b))
+* players icon to stylebook ([fe1d1a2](https://github.com/villetakanen/pelilauta/commit/fe1d1a2a6e319dd39cc2a26007d4e8bce3b737cd))
+* players router view ([c59dd94](https://github.com/villetakanen/pelilauta/commit/c59dd94f010e9331efa6047ddbd59403be6ac20c))
+* route view for site players ([2dcc3b7](https://github.com/villetakanen/pelilauta/commit/2dcc3b75b03120a1167b52c0749de82fca31cba5))
+
 ### [7.17.4](https://github.com/villetakanen/pelilauta/compare/v7.17.3...v7.17.4) (2021-03-12)
 
 
