@@ -2,21 +2,19 @@
   <div class="wikiChangesCard">
     <img
       class="logo"
-      :alt="$t('site.title')"
+      :alt="$t('wiki.title')"
       src="@/assets/icons/dark/mekanismi-icon.svg"
     >
     <h1>{{ $t('wiki.changesCard.title') }}</h1>
-    <ul>
-      <li
-        v-for="item in recent"
-        :key="item.changetime"
-      >
-        <span class="siteslug">{{ item.siteid }}</span>
-        <router-link :to="`/mekanismi/view/${item.siteid}/${item.pageid}`">
-          {{ item.name }}
-        </router-link>
-      </li>
-    </ul>
+    <WikiChangesItem
+      v-for="item in recent"
+      :key="item.changetime"
+      style="margin-left: 76px"
+      :name="item.name"
+      :pageid="item.pageid"
+      :change="toDisplayString(item.changetime)"
+      :siteid="item.siteid"
+    />
     <div
       class="toolbar"
       style="margin-bottom: -8px; margin-top: -16px"
@@ -37,17 +35,19 @@
 import { useAuthState } from '@/state/authz'
 import { usePagelog } from '@/state/pagelog'
 import { defineComponent } from 'vue'
+import { toDisplayString } from '@/utils/firebaseTools'
 import Action from '../material/Action.vue'
+import WikiChangesItem from './WikiChangesItem.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WikiChangesCard',
-  components: { Action },
+  components: { Action, WikiChangesItem },
   setup () {
     const { isAnonymous } = useAuthState()
     const { recent } = usePagelog()
-    return { isAnonymous, recent }
+    return { isAnonymous, recent, toDisplayString }
   }
 })
 </script>
@@ -66,14 +66,16 @@ export default defineComponent({
   min-height: 72px
   img.logo
     position: absolute
-    top: 16px
+    top: 8px
     left: 8px
     height: 72px
     width: 72px
   h1
     @include TypeHeadline5()
-    margin-left: 72px
+    margin-left:76px
     color: $color-dark-font-high
+    margin-top: 0
+    margin-bottom: 8px
   ul
     margin-left: 0
     padding-left: 18px
