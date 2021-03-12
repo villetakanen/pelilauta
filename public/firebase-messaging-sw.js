@@ -37,11 +37,11 @@ function onBackgroundMessage () {
 
   // [START messaging_on_background_message]
   messaging.onBackgroundMessage((payload) => {
+    console.log('got payload:', payload)
     // Customize notification here
-    const notificationTitle = payload?.data?.topic || 'Pelilauta!'
+    const notificationTitle = payload?.notification?.title || 'Pelilauta'
     const notificationOptions = {
-      body: payload?.data?.body || 'Push Message',
-      icon: payload?.data?.icon || ''
+      body: payload?.notification?.title || 'New comment to a tread you started'
     }
 
     self.registration.showNotification(notificationTitle,
