@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.17.4](https://github.com/villetakanen/pelilauta/compare/v7.17.3...v7.17.4) (2021-03-12)
+
+
+### Bug Fixes
+
+* mekanismi css polish ([b0cd95e](https://github.com/villetakanen/pelilauta/commit/b0cd95ef245478704dae37802463c273a7bb3bab))
+
 ### [7.17.3](https://github.com/villetakanen/pelilauta/compare/v7.17.2...v7.17.3) (2021-03-12)
 
 
