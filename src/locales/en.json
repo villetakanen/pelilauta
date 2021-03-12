@@ -88,6 +88,11 @@
     "lessThanTwoHours": "Less than 2h ago",
     "lessThan24h": "Less than 24h ago"
   },
+  "sites": {
+    "players": {
+      "title": "Players"
+    }
+  },
   "wiki": {
     "title": "Mekanismi",
     "createSite": "Add new",

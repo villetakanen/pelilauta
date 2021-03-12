@@ -19,6 +19,12 @@
       <span class="hideOnMobile">{{ $t('mekanismi.attachments.title') }}</span>
     </Action>
     <Action
+      prepend="players"
+      :to="`/site/players/${site.id}/`"
+    >
+      <span class="hideOnMobile">{{ $t('sites.players.title') }}</span>
+    </Action>
+    <Action
       prepend="site-settings"
       :to="`/mekanismi/siteinfo/${site.id}`"
     >
