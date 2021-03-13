@@ -88,11 +88,11 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/stream/new/:topic',
+    path: '/stream/add/thread',
     name: 'threads.create',
     // route level code-splitting
     component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
-    props: route => ({ threadid: '', mode: 'new', topic: route.params.topic || '' })
+    props: { threadid: '', mode: 'new', topic: '' }
   },
   {
     path: '/editortest',
@@ -162,6 +162,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'mekanismi.profile.sites'
   },
   {
+    path: '/testing/login',
+    component: () => import(/* webpackChunkName: "testing" */ '../views/admin/TestLoginView.vue'),
+    props: false,
+    name: 'testing.login'
+  },
+  {
     path: '/:catchAll(.*)',
     component: () => import(/* webpackChunkName: "global" */ '../views/404.vue')
   }
@@ -176,7 +182,7 @@ const router = createRouter({
   }
 })
 
-const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites']
+const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites', 'threads.create']
 const ADMIN_ROUTES = [
   'global.admin',
   'global.admin.topics',
