@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.19.0](https://github.com/villetakanen/pelilauta/compare/v7.18.0...v7.19.0) (2021-03-13)
+
+
+### Features
+
+* backported thread create from tread-editor3 ([e8a944f](https://github.com/villetakanen/pelilauta/commit/e8a944f66b6339305cbd018544650b6c51ffccdc))
+* testing login view stub ([5c3469d](https://github.com/villetakanen/pelilauta/commit/5c3469dfb8401385ed2a2b3176cf113b04852693))
+
 ## [7.18.0](https://github.com/villetakanen/pelilauta/compare/v7.17.4...v7.18.0) (2021-03-12)
 
 
