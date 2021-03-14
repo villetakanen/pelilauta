@@ -17,4 +17,14 @@ describe('Thread editor functionality', () => {
     cy.visit('/stream/add/thread')
     cy.contains('p', 'Google Firebase Authentication')
   })
+  it('Sees v3 edit view after logging in', () => {
+    cy.visit('/testing/login')
+    cy.get('#usernameField').type(Cypress.env('TEST_USER_EMAIL'))
+    cy.get('#passwordField').type(Cypress.env('TEST_USER_PASSWORD'))
+    cy.get('#post').click()
+
+    cy.wait(300)
+
+    cy.contains('p', 'Test user 37')
+  })
 })

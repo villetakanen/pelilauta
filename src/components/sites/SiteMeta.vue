@@ -17,7 +17,7 @@
         :label="$t('wiki.site.badge')"
       />
       &nbsp;<Icon
-        :name="site.systemBadge+ '-logo'"
+        :name="badge+ '-logo'"
         class="inlineIcon"
       />
       <div>
@@ -82,11 +82,11 @@ export default defineComponent({
       if (data.name || data.description || localBadge.value !== site.value.systemBadge || localSiteVisible.value !== null) updateSite(data)
     }
     const badges = [
-      { key: '-', value: '' },
       { key: 'dd', value: 'Dungeons and Dragons 5e' },
       { key: 'quick', value: 'The Quick' },
       { key: 'homebrew', value: 'Homebrew' },
-      { key: 'ptba', value: 'Powered by the Apocalypse' }
+      { key: 'ptba', value: 'Powered by the Apocalypse' },
+      { key: 'pathfinder', value: 'Pathfinder' }
     ]
     return { site, siteName, siteDescription, update, badges, badge, siteVisible }
   }

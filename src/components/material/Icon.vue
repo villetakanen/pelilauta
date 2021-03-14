@@ -49,6 +49,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'pathfinder-logo'"
+      src="@/assets/icons/pathfinder-logo.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'books'"
       src="@/assets/icons/books.svg"
       alt="add"
