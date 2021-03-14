@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.20.0](https://github.com/villetakanen/pelilauta/compare/v7.19.0...v7.20.0) (2021-03-14)
+
+
+### Features
+
+* cypress env file for password and username ([7eceb8d](https://github.com/villetakanen/pelilauta/commit/7eceb8d218d9aa16b79526ce0801d6b2554f4783))
+* e2e test user login added ([4272f36](https://github.com/villetakanen/pelilauta/commit/4272f36787ce8cd5b14ba02205ffb4e001af986e))
+* pathfinder badge for site listings ([634ba25](https://github.com/villetakanen/pelilauta/commit/634ba25be6233e3bccc01352ec20054272aa499c))
+
+
+### Bug Fixes
+
+* list style type for ol to disc ([176b4c7](https://github.com/villetakanen/pelilauta/commit/176b4c71c9e801995bd919ee83c448c29a7789e9))
+
 ## [7.19.0](https://github.com/villetakanen/pelilauta/compare/v7.18.0...v7.19.0) (2021-03-13)
 
 
