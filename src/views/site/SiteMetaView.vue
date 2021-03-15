@@ -1,43 +1,39 @@
 <template>
-  <div>
-    <SiteToolbar />
+  <div class="siteMetaView">
+    <div class="viewFull">
+      <SiteToolbar />
+    </div>
     <transition name="fade">
       <div
         v-if="site && site.name"
-        class="mekanismiGrid2"
+        class="dashboardFlexSection"
       >
-        <div class="mrow">
-          <div class="mcol">
-            <SiteMeta />
-            <SiteIdentity />
+        <SiteMeta class="inDashboardBox" />
+        <SiteIdentity class="inDashboardBox" />
+        <Card class="inDashboardBox">
+          <h1>{{ $t('mekanismi.site.owners') }}</h1>
+          <OwnerPill
+            v-for="owner in site.owners || []"
+            :key="owner"
+            :uid="owner"
+          />
+          <div
+            v-if="actions"
+            style="border-top: solid 1px black"
+          >
+            <p>{{ $t('mekanismi.site.addOwner') }}</p>
+            <OwnerPill
+              v-for="author in nonOwners"
+              :key="author"
+              :uid="author"
+              :add="true"
+            />
           </div>
-          <div class="mcol">
-            <MaterialCard>
-              <h1>{{ $t('mekanismi.site.owners') }}</h1>
-              <OwnerPill
-                v-for="owner in site.owners || []"
-                :key="owner"
-                :uid="owner"
-              />
-              <div
-                v-if="actions"
-                style="border-top: solid 1px black"
-              >
-                <p>{{ $t('mekanismi.site.addOwner') }}</p>
-                <OwnerPill
-                  v-for="author in nonOwners"
-                  :key="author"
-                  :uid="author"
-                  :add="true"
-                />
-              </div>
-            </MaterialCard>
-          </div>
-        </div>
+        </Card>
 
-        <MaterialCard>
+        <Card v-if="isAdmin">
           {{ site }}
-        </MaterialCard>
+        </Card>
       </div>
       <Loader
         v-else
@@ -49,7 +45,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, provide } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import OwnerPill from '@/components/sites/OwnerPill.vue'
@@ -58,19 +53,20 @@ import { useAuthState } from '@/state/authz'
 import SiteMeta from '@/components/sites/SiteMeta.vue'
 import SiteIdentity from '@/components/sites/SiteIdentity.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import Card from '@/components/layout/Card.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
-    MaterialCard,
     Loader,
     OwnerPill,
     SiteMeta,
     SiteIdentity,
-    SiteToolbar
+    SiteToolbar,
+    Card
   },
   setup () {
-    const { uid } = useAuthState()
+    const { uid, isAdmin } = useAuthState()
     const { site, hasAdmin } = useSite()
     const { authors } = useAuthors()
     const nonOwners = computed(() => {
@@ -84,20 +80,25 @@ export default defineComponent({
 
     provide('site', site)
 
-    return { site, nonOwners, actions }
+    return { site, nonOwners, actions, isAdmin }
   }
 })
 </script>
 
 <style lang="sass" scoped>
-.mekanismiGrid2
-  .mrow
-    display: flex
-    justify-content: center
-    .mcol
-      flex-grow: 0
-      flex-shrink: 0
-      flex-basis: 496px
-      padding: 8px
-      padding-top: 0
+@import @/styles/include-media.scss
+
+.dashboardFlexSection
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  .inDashboardBox
+    min-width: 30vw
+
+@include media('>tablet')
+.dashboardFlexSection
+  .inDashboardBox
+    min-width: 520px
+    max-width: 520px
+    width:520px
 </style>

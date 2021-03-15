@@ -281,6 +281,7 @@
 
       <!-- icons -->
       <div class="section">
+        <Icon name="equalizer" />
         <Icon name="players" />
       </div>
 

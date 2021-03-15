@@ -24,6 +24,11 @@
       alt="add"
     >
     <img
+      v-else-if="name === 'equalizer'"
+      src="@/assets/icons/equalizer.svg"
+      alt="add"
+    >
+    <img
       v-else-if="name === 'site-settings'"
       src="@/assets/icons/site-settings.svg"
       alt="add"

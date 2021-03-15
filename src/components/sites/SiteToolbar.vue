@@ -25,8 +25,8 @@
       <span class="hideOnMobile">{{ $t('sites.players.title') }}</span>
     </Action>
     <Action
-      prepend="site-settings"
-      :to="`/mekanismi/siteinfo/${site.id}`"
+      prepend="equalizer"
+      :to="`/site/meta/${site.id}`"
     >
       <span class="hideOnMobile">{{ $t('mekanismi.siteinfo') }}</span>
     </Action>
