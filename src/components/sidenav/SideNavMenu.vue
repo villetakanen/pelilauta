@@ -3,6 +3,7 @@
     <ul>
       <li
         v-for="item in sideNavItems"
+        :id="'sideNavAction-'+item.key"
         :key="item.key"
         :class="{ subtitle: item.sub }"
         @click="routeTo(item.to)"

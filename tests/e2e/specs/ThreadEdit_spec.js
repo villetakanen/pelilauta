@@ -25,6 +25,9 @@ describe('Thread editor functionality', () => {
 
     cy.wait(300)
 
-    cy.contains('p', 'Test user 37')
+    cy.contains('h1', 'Test Subject 37')
+    cy.get('#sideNavAction-home').click()
+    cy.get('#addThreadFab').click()
+    cy.contains('label', 'Thread title')
   })
 })
