@@ -1,0 +1,68 @@
+<template>
+  <Card class="sitePlayersList contentArea">
+    <h2>{{ $t('site.players.title') }}</h2>
+    <p>{{ playerList }}</p>
+    <p>
+      <MaterialSelect
+        v-model="newPlayerUid"
+        :opts="availablePlayers"
+      /><MaterialButton :async-action="addToGame">
+        {{ $t('site.players.addAsNew') }}
+      </MaterialButton>
+    </p>
+  </Card>
+</template>
+
+<script lang="ts">
+import { useAuthors } from '@/state/authors'
+import { Site } from '@/state/site'
+import { computed, defineComponent, PropType, ref } from 'vue'
+import Card from '../layout/Card.vue'
+import MaterialButton from '../material/MaterialButton.vue'
+import MaterialSelect from '../material/MaterialSelect.vue'
+
+interface Player {
+  uid: string
+  nick: string
+}
+/**
+ * A Router view for a player management screen of a site
+ *
+ * Loads all the required State entities, and initiates the required Firebase
+ * subscriptions.
+ * Does not contain any functionality aside from state management and component
+ * import/layout
+ */
+export default defineComponent({
+  name: 'SitePlayersList',
+  components: { Card, MaterialSelect, MaterialButton },
+  props: {
+    site: {
+      type: Object as PropType<Site>,
+      required: true
+    }
+  },
+  setup (props) {
+    const { authors } = useAuthors()
+    const playerList = ref(props.site.players?.map((uid) => (
+      {
+        uid: uid,
+        nick: authors.value.find((a) => (a.uid === uid)) || 'anonymous'
+      }
+    )))
+    // const availablePlayers = computed(() => (authors.value.filter((a) => (!playerList.value?.find((p) => (p.uid !== a.uid))))).map((a) => ({
+    const availablePlayers = computed(() => (
+      authors.value.filter((af) => (!playerList.value?.find((p) => (p.uid === af.uid))))
+        .map((a) => (
+          {
+            value: a.nick,
+            key: a.uid
+          }
+        ))
+    ))
+    const newPlayerUid = ref('')
+    const addToGame = async () => {}
+    return { playerList, availablePlayers, newPlayerUid, addToGame }
+  }
+})
+</script>
