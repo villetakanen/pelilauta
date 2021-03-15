@@ -1,6 +1,6 @@
 <template>
-  <MaterialCard>
-    <h1>{{ $t('mekanismi.site.identity') }}</h1>
+  <Card class="siteIdentity contentArea">
+    <h2>{{ $t('mekanismi.site.identity') }}</h2>
     <div
       v-if="site.splashURL"
       style="position:relative"
@@ -25,17 +25,17 @@
     <div style="word-break: break-all; font-size:8pt; opacity: 0.5">
       {{ site }}
     </div>
-  </MaterialCard>
+  </Card>
 </template>
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, inject } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import { Site, SiteData, updateSite, useFiles } from '@/state/site'
 import MaterialSelect from '../material/MaterialSelect.vue'
+import Card from '../layout/Card.vue'
 
 export default defineComponent({
   name: 'SiteIdentityCard',
-  components: { MaterialCard, MaterialSelect },
+  components: { MaterialSelect, Card },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const selected = computed({

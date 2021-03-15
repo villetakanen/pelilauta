@@ -1,6 +1,6 @@
 <template>
-  <MaterialCard>
-    <h1>{{ $t('mekanismi.site.meta') }}</h1>
+  <Card>
+    <h2>{{ $t('mekanismi.site.meta') }}</h2>
     <div>
       <TextField
         v-model="siteName"
@@ -33,21 +33,21 @@
         {{ $t('action.save') }}
       </MaterialButton>
     </div>
-  </MaterialCard>
+  </Card>
 </template>
 
 <script lang="ts">
 import { Site, SiteData, updateSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, Ref, ref } from 'vue'
+import Card from '../layout/Card.vue'
 import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import MaterialCard from '../material/MaterialCard.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
-  components: { MaterialCard, TextField, MaterialButton, MaterialSelect, Icon, Toggle },
+  components: { TextField, MaterialButton, MaterialSelect, Icon, Toggle, Card },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const localName = ref('')
