@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.20.1](https://github.com/villetakanen/pelilauta/compare/v7.20.0...v7.20.1) (2021-03-15)
+
+
+### Bug Fixes
+
+* e2e test verify that the ne editor on home ([1fb8728](https://github.com/villetakanen/pelilauta/commit/1fb8728c8c5a7a04513b769d60dcc2a401861255))
+* thread editor front uses the new editor ([ce3b8b7](https://github.com/villetakanen/pelilauta/commit/ce3b8b7bb684609d3a6f7b1794962abfde410eef))
+
 ## [7.20.0](https://github.com/villetakanen/pelilauta/compare/v7.19.0...v7.20.0) (2021-03-14)
 
 
