@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.20.2](https://github.com/villetakanen/pelilauta/compare/v7.20.1...v7.20.2) (2021-03-15)
+
+
+### Bug Fixes
+
+* remobe deprecated comps from site meta view ([89cb6dc](https://github.com/villetakanen/pelilauta/commit/89cb6dcebc782c98b94a6a1ac1ba06b626ce12c6))
+
 ### [7.20.1](https://github.com/villetakanen/pelilauta/compare/v7.20.0...v7.20.1) (2021-03-15)
 
 
