@@ -44,6 +44,14 @@
     "withGoogleButton": "Googlella",
     "withFacebookButton": "Facebookila"
   },
+  "site": {
+    "players": {
+      "title": "Pelaajat"
+    },
+    "meta": {
+      "usePlayers": "Käytä pelaajat -toimintoa"
+    }
+  },
   "stream": {
     "title": "Pelilauta",
     "inStream": "Aiheessa"

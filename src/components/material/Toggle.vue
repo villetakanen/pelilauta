@@ -51,6 +51,7 @@ export default defineComponent({
     visibility: hidden
   .label
     margin-left: 8px
+    pointer-events: none
   .switcher
     display: inline-block
     border-radius: 100px

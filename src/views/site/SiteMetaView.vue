@@ -31,7 +31,7 @@
           </div>
         </Card>
 
-        <Card v-if="isAdmin">
+        <Card v-if="isAdmin" class="contentArea">
           {{ site }}
         </Card>
       </div>

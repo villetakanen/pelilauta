@@ -17,6 +17,7 @@ export interface Site {
   players: string[]|null
   splashURL: string
   systemBadge: string
+  usePlayers: boolean
 }
 export interface SiteData {
   id: string,
@@ -26,7 +27,8 @@ export interface SiteData {
   systemBadge?: string,
   owners?: string[],
   lastUpdate?: firebase.firestore.Timestamp,
-  hidden?: boolean
+  hidden?: boolean,
+  usePlayers?: boolean
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -50,7 +52,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
       players: data?.players || null,
       owners: data?.owners || null,
       splashURL: data?.splashURL || '',
-      systemBadge: data?.systemBadge || ''
+      systemBadge: data?.systemBadge || '',
+      usePlayers: data?.usePlayers || false
     }
   }
   return {
@@ -62,7 +65,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
     players: null,
     owners: null,
     splashURL: '',
-    systemBadge: ''
+    systemBadge: '',
+    usePlayers: true
   }
 }
 
@@ -98,6 +102,7 @@ function hasAdmin (uid: string): boolean {
 }
 
 async function updateSite (data: SiteData): Promise<void> {
+  console.debug('updateSite', stateSite.value.id, data)
   const db = firebase.firestore()
   const siteRef = db.collection('sites').doc(stateSite.value.id)
   return siteRef.update(data)

@@ -20,10 +20,16 @@
         :name="badge+ '-logo'"
         class="inlineIcon"
       />
-      <div>
+      <div style="line-height: 48px">
         <Toggle
           v-model="siteVisible"
           :label="$t('wiki.site.visibleToggle')"
+        />
+      </div>
+      <div style="line-height: 48px">
+        <Toggle
+          v-model="siteFeatures.players"
+          :label="$t('site.meta.usePlayers')"
         />
       </div>
     </div>
@@ -73,13 +79,15 @@ export default defineComponent({
       get: () => (localSiteVisible.value === null ? !site.value.hidden : localSiteVisible.value),
       set: (val) => { localSiteVisible.value = val }
     })
+    const siteFeatures = ref({ players: site.value.usePlayers })
     async function update () {
       const data: SiteData = { id: site.value.id }
       if (localName.value) data.name = localName.value
       if (localBadge.value) data.systemBadge = localBadge.value
       if (localDescription.value) data.description = localDescription.value
       if (localSiteVisible.value !== null) data.hidden = !siteVisible.value
-      if (data.name || data.description || localBadge.value !== site.value.systemBadge || localSiteVisible.value !== null) updateSite(data)
+      data.usePlayers = siteFeatures.value.players
+      updateSite(data)
     }
     const badges = [
       { key: 'dd', value: 'Dungeons and Dragons 5e' },
@@ -88,7 +96,7 @@ export default defineComponent({
       { key: 'ptba', value: 'Powered by the Apocalypse' },
       { key: 'pathfinder', value: 'Pathfinder' }
     ]
-    return { site, siteName, siteDescription, update, badges, badge, siteVisible }
+    return { site, siteName, siteDescription, update, badges, badge, siteVisible, siteFeatures }
   }
 })
 </script>

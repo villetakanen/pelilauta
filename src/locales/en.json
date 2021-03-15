@@ -88,9 +88,12 @@
     "lessThanTwoHours": "Less than 2h ago",
     "lessThan24h": "Less than 24h ago"
   },
-  "sites": {
+  "site": {
     "players": {
       "title": "Players"
+    },
+    "meta": {
+      "usePlayers": "Use Players -feature"
     }
   },
   "wiki": {
