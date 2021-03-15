@@ -149,8 +149,8 @@ export function subscribeThread (id?: string): void {
   console.log('subscribing thread:', id)
   if (subscribedPage.value.id === id) return
   unsubscribePage()
+  subscribedPage.value = toThread(id || '')
   if (!id) return
-  subscribedPage.value = toThread(id)
   const db = firebase.firestore()
   const threadRef = db.collection('stream').doc(id)
   unsubscribePage = threadRef.onSnapshot((doc) => {
