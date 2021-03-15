@@ -19,6 +19,7 @@
       <span class="hideOnMobile">{{ $t('mekanismi.attachments.title') }}</span>
     </Action>
     <Action
+      v-if="site.usePlayers"
       prepend="players"
       :to="`/site/players/${site.id}/`"
     >
