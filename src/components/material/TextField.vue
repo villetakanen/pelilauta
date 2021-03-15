@@ -103,5 +103,5 @@ div.materialTextfield
     border-bottom: solid 1px var(--chroma-alert)
     background-color: #{'rgba(var(--chroma-alert-rgb), 0.11)'}
     input
-      color:var(--chroma-alert)
+      color: var(--chroma-alert)
 </style>
