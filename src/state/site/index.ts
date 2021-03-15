@@ -29,6 +29,7 @@ export interface SiteData {
   lastUpdate?: firebase.firestore.Timestamp,
   hidden?: boolean,
   usePlayers?: boolean
+  players?: string[]
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -101,6 +102,13 @@ function hasAdmin (uid: string): boolean {
   return stateSite.value.owners.includes(uid)
 }
 
+async function addPlayer (uid:string) {
+  console.debug('addPlayer', stateSite.value.id, uid)
+  const playersArray = Array.isArray(stateSite.value.players) ? stateSite.value.players : new Array<string>()
+  if (!playersArray.includes(uid)) playersArray.push(uid)
+  return updateSite({ id: stateSite.value.id, players: playersArray })
+}
+
 async function updateSite (data: SiteData): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
   const db = firebase.firestore()
@@ -138,10 +146,11 @@ function useSite (id?: string):
     site: ComputedRef<Site>,
     hasAdmin: (uid: string) => boolean,
     revokeOwner: (uid: string) => Promise<void>
-    addOwner: (uid: string) => Promise<void>
+    addOwner: (uid: string) => Promise<void>,
+    addPlayer: (uid: string) => Promise<void>,
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner, addOwner }
+  return { hasAdmin, site, revokeOwner, addOwner, addPlayer }
 }
 
 export {

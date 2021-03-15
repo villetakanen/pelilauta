@@ -1,7 +1,10 @@
 <template>
   <Card class="sitePlayersList contentArea">
     <h2>{{ $t('site.players.title') }}</h2>
-    <p>{{ playerList }}</p>
+    <p v-for="player in playerList" :key="player.uid">
+      {{ player.nick }}
+    </p>
+    <p>{{ $t('site.players.editingRightsWarning') }}</p>
     <p>
       <MaterialSelect
         v-model="newPlayerUid"
@@ -15,8 +18,8 @@
 
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
-import { Site } from '@/state/site'
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { Site, useSite } from '@/state/site'
+import { computed, ComputedRef, defineComponent, PropType, ref } from 'vue'
 import Card from '../layout/Card.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
@@ -44,12 +47,14 @@ export default defineComponent({
   },
   setup (props) {
     const { authors } = useAuthors()
-    const playerList = ref(props.site.players?.map((uid) => (
-      {
-        uid: uid,
-        nick: authors.value.find((a) => (a.uid === uid)) || 'anonymous'
-      }
-    )))
+    const { addPlayer } = useSite()
+    const playerList:ComputedRef<Array<Player>> = computed(() => (
+      props.site.players?.map((uid) => (
+        {
+          uid: uid,
+          nick: authors.value.find((a) => (a.uid === uid))?.nick || 'anonymous'
+        }
+      )) || new Array<Player>()))
     // const availablePlayers = computed(() => (authors.value.filter((a) => (!playerList.value?.find((p) => (p.uid !== a.uid))))).map((a) => ({
     const availablePlayers = computed(() => (
       authors.value.filter((af) => (!playerList.value?.find((p) => (p.uid === af.uid))))
@@ -61,7 +66,9 @@ export default defineComponent({
         ))
     ))
     const newPlayerUid = ref('')
-    const addToGame = async () => {}
+    const addToGame = async () => {
+      return addPlayer(newPlayerUid.value)
+    }
     return { playerList, availablePlayers, newPlayerUid, addToGame }
   }
 })

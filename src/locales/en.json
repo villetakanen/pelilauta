@@ -90,7 +90,8 @@
   },
   "site": {
     "players": {
-      "title": "Players"
+      "title": "Players",
+      "editingRightsWarning": "Please note: all players have full editing access to the site pages."
     },
     "meta": {
       "usePlayers": "Use Players -feature"
