@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.21.1](https://github.com/villetakanen/pelilauta/compare/v7.21.0...v7.21.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* materialselect to use chroma-colors ([eddccea](https://github.com/villetakanen/pelilauta/commit/eddccea3589271af3288eac5fbf7fa50211d10cb))
+
 ## [7.21.0](https://github.com/villetakanen/pelilauta/compare/v7.20.2...v7.21.0) (2021-03-16)
 
 
