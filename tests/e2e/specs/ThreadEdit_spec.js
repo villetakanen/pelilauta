@@ -29,5 +29,7 @@ describe('Thread editor functionality', () => {
     cy.get('#sideNavAction-home').click()
     cy.get('#addThreadFab').click()
     cy.contains('label', 'Thread title')
+    cy.get('#threadEditorCancelButton').click()
+    cy.contains('h1', 'Mekanismi changes')
   })
 })

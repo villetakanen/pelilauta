@@ -3,12 +3,14 @@
     <div class="threadHeader toolbar">
       <TextField
         v-model="v.threadTitle.$model"
+        class="field"
         header
         :label="$t('threads.title')"
         :error="v.threadTitle.$error"
       />
       <MaterialSelect
         v-model="v.threadTopic.$model"
+        class="field"
         :opts="topicOpts"
         :label="$t('threads.topic')"
       />
@@ -29,13 +31,16 @@
     >
       <div class="spacer" />
       <MaterialButton
+        id="threadEditorCancelButton"
         text
-        :to="`/thread/${thread.id}/view`"
+        :to="thread.id ? `/thread/${thread.id}/view` : '/'"
       >
-        Cancel
+        {{ $t('action.cancel') }}
       </MaterialButton>
-      <MaterialButton :async-action="save">
-        Save
+      <MaterialButton
+        :async-action="save"
+      >
+        {{ $t('action.send') }}
       </MaterialButton>
     </div>
   </div>
@@ -158,6 +163,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 .editor
   border: solid 1px var(--color-fill-primary)
 .threadHeader
@@ -166,4 +172,13 @@ export default defineComponent({
     margin: 0
   div+div
     margin: 0 8px
+@include media('<tablet')
+  .threadEditor
+    .threadHeader
+      display: block
+      .field
+        margin-bottom: 8px
+        margin-left: 0
+        min-width: calc(100vw - 112px)
+
 </style>
