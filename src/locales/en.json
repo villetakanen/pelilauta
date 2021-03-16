@@ -91,7 +91,10 @@
   "site": {
     "players": {
       "title": "Players",
-      "editingRightsWarning": "Please note: all players have full editing access to the site pages."
+      "editingRightsWarning": "Please note: all players have full editing access to the site pages.",
+      "addAsNew": "Add to the game",
+      "dropThePlayer": "Remove",
+      "removed": "Player succesfully removed from the game."
     },
     "meta": {
       "usePlayers": "Use Players -feature"

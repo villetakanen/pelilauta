@@ -108,6 +108,13 @@ async function addPlayer (uid:string) {
   if (!playersArray.includes(uid)) playersArray.push(uid)
   return updateSite({ id: stateSite.value.id, players: playersArray })
 }
+async function removePlayer (uid:string) {
+  console.debug('removePlayer', stateSite.value.id, uid)
+  const playersArray = Array.isArray(stateSite.value.players)
+    ? stateSite.value.players.filter((p) => (p !== uid))
+    : new Array<string>()
+  return updateSite({ id: stateSite.value.id, players: playersArray })
+}
 
 async function updateSite (data: SiteData): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
@@ -148,9 +155,10 @@ function useSite (id?: string):
     revokeOwner: (uid: string) => Promise<void>
     addOwner: (uid: string) => Promise<void>,
     addPlayer: (uid: string) => Promise<void>,
+    removePlayer: (uid: string) => Promise<void>,
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner, addOwner, addPlayer }
+  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer }
 }
 
 export {
