@@ -71,6 +71,7 @@ export default defineComponent({
 .materialFormField
   border-bottom: solid 1px var(--chroma-secondary-f)
   background-color: var(--chroma-secondary-i)
+  min-width: 220px
   .materialSelect
     position: relative
     padding: 0

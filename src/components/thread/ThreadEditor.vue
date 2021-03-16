@@ -2,15 +2,15 @@
   <div class="threadEditor">
     <div class="threadHeader toolbar">
       <TextField
-        class="field"
         v-model="v.threadTitle.$model"
+        class="field"
         header
         :label="$t('threads.title')"
         :error="v.threadTitle.$error"
       />
       <MaterialSelect
-        class="field"
         v-model="v.threadTopic.$model"
+        class="field"
         :opts="topicOpts"
         :label="$t('threads.topic')"
       />
@@ -31,13 +31,16 @@
     >
       <div class="spacer" />
       <MaterialButton
+        id="threadEditorCancelButton"
         text
-        :to="`/thread/${thread.id}/view`"
+        :to="thread.id ? `/thread/${thread.id}/view` : '/'"
       >
-        Cancel
+        {{ $t('action.cancel') }}
       </MaterialButton>
-      <MaterialButton :async-action="save">
-        Save
+      <MaterialButton
+        :async-action="save"
+      >
+        {{ $t('action.send') }}
       </MaterialButton>
     </div>
   </div>
