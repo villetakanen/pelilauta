@@ -1,7 +1,6 @@
 <template>
   <div class="sitePlayersView viewFull">
     <SiteToolbar />
-    sitePlayersView: stub
     <SitePlayersList :site="site" />
   </div>
 </template>
