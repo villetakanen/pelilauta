@@ -280,6 +280,17 @@
         <h2>Toggle buttons</h2>
         <Toggle v-model="toggle" /> <span color="red">{{ toggle }}</span>
         <Toggle label="aaa" />
+        <h2>Select</h2>
+        <MaterialSelect
+          label="example label"
+          :opts="[{ key: 'a', value: 'b'}]"
+        />
+        <MaterialSelect
+          v-model="selected"
+          label="error example"
+          error
+          :opts="[{ key: 'a', value: 'this value is erroneous'}]"
+        />
       </div>
 
       <!-- icons -->
@@ -363,6 +374,7 @@ import Toggle from '@/components/material/Toggle.vue'
 import Action from '@/components/material/Action.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
 import Card from '@/components/layout/Card.vue'
+import MaterialSelect from '@/components/material/MaterialSelect.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -378,7 +390,8 @@ export default defineComponent({
     Toggle,
     Action,
     AdminActions,
-    Card
+    Card,
+    MaterialSelect
   },
   setup () {
     function sendSnack () {
@@ -395,7 +408,8 @@ export default defineComponent({
       return new Promise((resolve) => { setTimeout(() => resolve('done'), 3000) })
     }
     const toggle = ref(true)
-    return { sendSnack, asyncWaitDemo, toggle, sendSnacks }
+    const selected = ref('a')
+    return { sendSnack, asyncWaitDemo, toggle, sendSnacks, selected }
   }
 })
 </script>
