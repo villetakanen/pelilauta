@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.21.2](https://github.com/villetakanen/pelilauta/compare/v7.21.1...v7.21.2) (2021-03-16)
+
+
+### Bug Fixes
+
+* small mobile ux polish ([d6daec1](https://github.com/villetakanen/pelilauta/commit/d6daec149bfdc8be37bb1bb17db59ab101d31b33))
+* ux polish for mobile and cancel for newthread ([670b475](https://github.com/villetakanen/pelilauta/commit/670b475dc3152c3d050db39eabffe70feef76898))
+
 ### [7.21.1](https://github.com/villetakanen/pelilauta/compare/v7.21.0...v7.21.1) (2021-03-16)
 
 
