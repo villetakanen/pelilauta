@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.21.0](https://github.com/villetakanen/pelilauta/compare/v7.20.2...v7.21.0) (2021-03-16)
+
+
+### Features
+
+* add new player visuals ([e473b01](https://github.com/villetakanen/pelilauta/commit/e473b01af9dbf7ffadc9a467841e9fc50288b004))
+* hide players tool when not in use ([f269a7d](https://github.com/villetakanen/pelilauta/commit/f269a7dcd095a2a590e58d9c2a8de310b2834a64))
+* player removal works ([ee97860](https://github.com/villetakanen/pelilauta/commit/ee97860a8b2283a5536cd995ee459cb6ae5fa648))
+* playerlist row view components ([f91fd5c](https://github.com/villetakanen/pelilauta/commit/f91fd5cb6b3eb46982472acd8820286224a43dbd))
+* saving of new players to site ([91eefef](https://github.com/villetakanen/pelilauta/commit/91eefefdd68fc067db10d111353e7a49199f5543))
+* site players feature on off toggle ([27455ae](https://github.com/villetakanen/pelilauta/commit/27455ae817d2dea77bcd2e13d8b7d6610e05b01e))
+
+
+### Bug Fixes
+
+* fi polish ([f5717ca](https://github.com/villetakanen/pelilauta/commit/f5717caecad8b90f84c4982bc0892194a27de467))
+* missing whitespace in style attrib ([63386e8](https://github.com/villetakanen/pelilauta/commit/63386e8ef7a22e130032012fdc53ebcc72ce0afd))
+* small testing and linting polish ([189fec0](https://github.com/villetakanen/pelilauta/commit/189fec05bea1b8252f476d63e720cf50bc1dbdb9))
+* toggle button to chroma ([3be0a9d](https://github.com/villetakanen/pelilauta/commit/3be0a9d184abe170d44ddc2ad6d6019b93ff938a))
+
 ### [7.20.2](https://github.com/villetakanen/pelilauta/compare/v7.20.1...v7.20.2) (2021-03-15)
 
 
