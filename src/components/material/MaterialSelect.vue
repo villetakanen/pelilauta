@@ -78,7 +78,7 @@ export default defineComponent({
     select
       background: none
       border: none
-      min-width: 180px
+      min-width: 100%
     label
       position: absolute
       left: 4px
@@ -89,9 +89,6 @@ export default defineComponent({
       line-height: 10px
       pointer-events: none
       color: var(--chroma-secondary-c)
-    &.error
-      border-bottom: solid 1px $color-fill-secondary
-      background-color: rgba($color-fill-secondary, 0.33)
   &.error
     border-bottom: solid 1px var(--chroma-alert)
     background-color: #{'rgba(var(--chroma-alert-rgb), 0.11)'}

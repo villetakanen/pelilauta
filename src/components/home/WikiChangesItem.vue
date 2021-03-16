@@ -50,6 +50,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 
 div.site
   @include TypeBody2()
@@ -69,4 +70,9 @@ div.page
   a
     color: var(--chroma-clear )
     text-decoration: none
+
+@include media('<tablet')
+  div.site
+    div.time
+      display: none
 </style>

@@ -2,12 +2,14 @@
   <div class="threadEditor">
     <div class="threadHeader toolbar">
       <TextField
+        class="field"
         v-model="v.threadTitle.$model"
         header
         :label="$t('threads.title')"
         :error="v.threadTitle.$error"
       />
       <MaterialSelect
+        class="field"
         v-model="v.threadTopic.$model"
         :opts="topicOpts"
         :label="$t('threads.topic')"
@@ -158,6 +160,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 .editor
   border: solid 1px var(--color-fill-primary)
 .threadHeader
@@ -166,4 +169,13 @@ export default defineComponent({
     margin: 0
   div+div
     margin: 0 8px
+@include media('<tablet')
+  .threadEditor
+    .threadHeader
+      display: block
+      .field
+        margin-bottom: 8px
+        margin-left: 0
+        min-width: calc(100vw - 112px)
+
 </style>
