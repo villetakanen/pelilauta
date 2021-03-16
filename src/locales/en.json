@@ -88,9 +88,16 @@
     "lessThanTwoHours": "Less than 2h ago",
     "lessThan24h": "Less than 24h ago"
   },
-  "sites": {
+  "site": {
     "players": {
-      "title": "Players"
+      "title": "Players",
+      "editingRightsWarning": "Please note: all players have full editing access to the site pages.",
+      "addAsNew": "Add to the game",
+      "dropThePlayer": "Remove",
+      "removed": "Player succesfully removed from the game."
+    },
+    "meta": {
+      "usePlayers": "Use Players -feature"
     }
   },
   "wiki": {

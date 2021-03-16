@@ -51,12 +51,13 @@ export default defineComponent({
     visibility: hidden
   .label
     margin-left: 8px
+    pointer-events: none
   .switcher
     display: inline-block
     border-radius: 100px
     width: 35px
     height: 15px
-    background-color: rgba($color-fill-primary-dark, 0.22)
+    background-color: var(--chroma-secondary-h)
     position: relative
     -webkit-box-sizing: border-box
     -moz-box-sizing: border-box
@@ -68,8 +69,8 @@ export default defineComponent({
       display: block
       width: 20px
       height: 20px
-      background-color: #fff
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6)
+      background-color: var(--chroma-secondary-i)
+      box-shadow: 0 2px 6px var(--chroma-secondary-d)
       border-radius: 50%
       margin-top: -2.5px
       position: absolute
@@ -85,14 +86,14 @@ export default defineComponent({
       -o-transition: all 0.2s
       transition: all 0.2s
     &:active:before
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 0 10px rgba($color-fill-primary-dark, 0.3)
+      box-shadow: 0 1px 3px rgba(var(--chroma-primary-c-rgba), 0.6), 0 0 0 10px rgba(var(--chroma-primary-c-rgba), 0.3)
       transition: all, 0.1s
   input[type="checkbox"]:checked + .switcher
-    background-color: rgba($color-fill-primary-dark, 0.44)
+    background-color: var(--chroma-secondary-f)
     &:before
       left: 100%
       margin-left: -20px
-      background-color: $color-fill-primary-dark
+      background-color: var(--chroma-secondary-c)
 
   &[disabled]:not([disabled="false"]) + .switcher
     background: blue !important

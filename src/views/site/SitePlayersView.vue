@@ -1,11 +1,12 @@
 <template>
   <div class="sitePlayersView viewFull">
     <SiteToolbar />
-    sitePlayersView: stub
+    <SitePlayersList :site="site" />
   </div>
 </template>
 
 <script lang="ts">
+import SitePlayersList from '@/components/sites/SitePlayersList.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
@@ -20,7 +21,7 @@ import { defineComponent } from 'vue'
  */
 export default defineComponent({
   name: 'SitePlayersView',
-  components: { SiteToolbar },
+  components: { SiteToolbar, SitePlayersList },
   props: {
     siteid: {
       type: String,

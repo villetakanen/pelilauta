@@ -277,6 +277,9 @@
           <p>And are expected to behave well within a Card</p>
           <TextField label="TextField inside a Card" />
         </Card>
+        <h2>Toggle buttons</h2>
+        <Toggle v-model="toggle" /> <span color="red">{{ toggle }}</span>
+        <Toggle label="aaa" />
       </div>
 
       <!-- icons -->
@@ -324,9 +327,6 @@
       </div>
       <div class="section">
         <h1>Inputs</h1>
-        <Toggle v-model="toggle" /> <span color="red">{{ toggle }}</span>
-        <Toggle label="aaa" />
-        <hr>
         <Pill>Chip</Pill>
         <Pill action-icon="add">
           Chip with Add Icon

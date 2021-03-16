@@ -17,6 +17,7 @@ export interface Site {
   players: string[]|null
   splashURL: string
   systemBadge: string
+  usePlayers: boolean
 }
 export interface SiteData {
   id: string,
@@ -26,7 +27,9 @@ export interface SiteData {
   systemBadge?: string,
   owners?: string[],
   lastUpdate?: firebase.firestore.Timestamp,
-  hidden?: boolean
+  hidden?: boolean,
+  usePlayers?: boolean
+  players?: string[]
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -50,7 +53,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
       players: data?.players || null,
       owners: data?.owners || null,
       splashURL: data?.splashURL || '',
-      systemBadge: data?.systemBadge || ''
+      systemBadge: data?.systemBadge || '',
+      usePlayers: data?.usePlayers || false
     }
   }
   return {
@@ -62,7 +66,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
     players: null,
     owners: null,
     splashURL: '',
-    systemBadge: ''
+    systemBadge: '',
+    usePlayers: true
   }
 }
 
@@ -97,7 +102,22 @@ function hasAdmin (uid: string): boolean {
   return stateSite.value.owners.includes(uid)
 }
 
+async function addPlayer (uid:string) {
+  console.debug('addPlayer', stateSite.value.id, uid)
+  const playersArray = Array.isArray(stateSite.value.players) ? stateSite.value.players : new Array<string>()
+  if (!playersArray.includes(uid)) playersArray.push(uid)
+  return updateSite({ id: stateSite.value.id, players: playersArray })
+}
+async function removePlayer (uid:string) {
+  console.debug('removePlayer', stateSite.value.id, uid)
+  const playersArray = Array.isArray(stateSite.value.players)
+    ? stateSite.value.players.filter((p) => (p !== uid))
+    : new Array<string>()
+  return updateSite({ id: stateSite.value.id, players: playersArray })
+}
+
 async function updateSite (data: SiteData): Promise<void> {
+  console.debug('updateSite', stateSite.value.id, data)
   const db = firebase.firestore()
   const siteRef = db.collection('sites').doc(stateSite.value.id)
   return siteRef.update(data)
@@ -133,10 +153,12 @@ function useSite (id?: string):
     site: ComputedRef<Site>,
     hasAdmin: (uid: string) => boolean,
     revokeOwner: (uid: string) => Promise<void>
-    addOwner: (uid: string) => Promise<void>
+    addOwner: (uid: string) => Promise<void>,
+    addPlayer: (uid: string) => Promise<void>,
+    removePlayer: (uid: string) => Promise<void>,
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner, addOwner }
+  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer }
 }
 
 export {

@@ -9,3 +9,8 @@ export interface MenuItem {
 export interface PostImage {
   url: string
 }
+
+export interface Player {
+  uid: string
+  nick: string
+}
