@@ -1,9 +1,11 @@
 <template>
   <Card class="sitePlayersList contentArea">
     <h2>{{ $t('site.players.title') }}</h2>
-    <p v-for="player in playerList" :key="player.uid">
-      {{ player.nick }}
-    </p>
+    <PlayerRowItem
+      v-for="player in playerList"
+      :key="player.uid"
+      :player="player"
+    />
     <p>{{ $t('site.players.editingRightsWarning') }}</p>
     <p>
       <MaterialSelect
@@ -19,26 +21,16 @@
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
 import { Site, useSite } from '@/state/site'
+import { Player } from '@/utils/uiInterfaces'
 import { computed, ComputedRef, defineComponent, PropType, ref } from 'vue'
 import Card from '../layout/Card.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
+import PlayerRowItem from './players/PlayerRowItem.vue'
 
-interface Player {
-  uid: string
-  nick: string
-}
-/**
- * A Router view for a player management screen of a site
- *
- * Loads all the required State entities, and initiates the required Firebase
- * subscriptions.
- * Does not contain any functionality aside from state management and component
- * import/layout
- */
 export default defineComponent({
   name: 'SitePlayersList',
-  components: { Card, MaterialSelect, MaterialButton },
+  components: { Card, MaterialSelect, MaterialButton, PlayerRowItem },
   props: {
     site: {
       type: Object as PropType<Site>,
