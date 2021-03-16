@@ -1,5 +1,8 @@
 <template>
-  <div class="materialFormField">
+  <div
+    class="materialFormField"
+    :class="{ error: error }"
+  >
     <div
       class="materialSelect"
       :class="{ withLabel: true && label }"
@@ -38,7 +41,8 @@ export default defineComponent({
     modelValue: { type: String, required: false, default: '' },
     name: { type: String, required: false, default: 'input-' + Math.floor(Math.random() * 100000) },
     label: { type: String, required: false, default: '' },
-    opts: { type: Array as PropType<Array<Record<string, string>>>, required: false, default: [{ key: '-', value: '-' }] }
+    opts: { type: Array as PropType<Array<Record<string, string>>>, required: false, default: [{ key: '-', value: '-' }] },
+    error: { type: Boolean, required: false, default: false }
   },
   emits: ['update:modelValue'],
   setup (props, context) {
@@ -64,30 +68,33 @@ export default defineComponent({
 @import @/styles/layout.sass
 @import @/styles/include-media.scss
 
-.materialSelect
-  position: relative
-  padding: 0
-  margin: 0
-  select
-    background: none
-    border: none
-    min-width: 180px
-  label
-    position: absolute
-    left: 4px
-    top: 14px
-    width: 100%
-    transition: 0.2s
-    font-size: 14px
-    pointer-events: none
-    line-height: 14px
-    color: $color-fill-primary-dark
-  .toSide, input:focus + label
-      top: 0px
+.materialFormField
+  border-bottom: solid 1px var(--chroma-secondary-f)
+  background-color: var(--chroma-secondary-i)
+  .materialSelect
+    position: relative
+    padding: 0
+    margin: 0
+    select
+      background: none
+      border: none
+      min-width: 180px
+    label
+      position: absolute
       left: 4px
+      top: -2px
+      width: 100%
+      transition: 0.2s
       font-size: 10px
       line-height: 10px
+      pointer-events: none
+      color: var(--chroma-secondary-c)
+    &.error
+      border-bottom: solid 1px $color-fill-secondary
+      background-color: rgba($color-fill-secondary, 0.33)
   &.error
-    border-bottom: solid 1px $color-fill-secondary
-    background-color: rgba($color-fill-secondary, 0.33)
+    border-bottom: solid 1px var(--chroma-alert)
+    background-color: #{'rgba(var(--chroma-alert-rgb), 0.11)'}
+    input
+      color: var(--chroma-alert)
 </style>
