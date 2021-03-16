@@ -2,7 +2,6 @@
   <div class="replyEditor">
     <div
       ref="editor"
-      @paste="onPaste"
     />
   </div>
 </template>
@@ -10,7 +9,24 @@
 <script lang="ts">
 import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue'
 import Quill from 'quill'
+import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
+
+function textContentToDelta (el:HTMLElement): Delta {
+  return new Delta().insert(el.textContent || '')
+}
+
+function hoistClipboardConfig (quill:Quill) {
+  quill.clipboard.addMatcher('h1', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher('h2', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher('h3', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher('h4', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher('span', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher('p', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher('div', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher('li', (node, delta) => (textContentToDelta(node as HTMLElement)))
+}
+
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
  */
@@ -26,17 +42,6 @@ export default defineComponent({
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
     const quotedContent = inject('quotedContent') as Ref<Quote>
-
-    const onPaste = (event: ClipboardEvent) => {
-      event.preventDefault()
-      event.stopPropagation()
-      if (quill) {
-        const pasted = event.clipboardData?.getData('text/plain')
-        // console.debug('paste', pasted)
-        // force the pasted content through quill ingest pipelines
-        quill.clipboard.dangerouslyPasteHTML(pasted || '')
-      }
-    }
 
     // We want to inject the Quill Editor only after this element has been
     // mounted, to have all the DOM we use from Quill, available
@@ -59,6 +64,7 @@ export default defineComponent({
         quill.on('text-change', () => {
           context.emit('update:content', quill?.root.innerHTML)
         })
+        hoistClipboardConfig(quill)
         // Reset field, when model is reset. Do not inject other
         // changes to the editor, to avoid contentEditable issues.
         watch(() => props.content, (value) => {
@@ -86,7 +92,7 @@ export default defineComponent({
         //
       }
     })
-    return { editor, onPaste }
+    return { editor }
   }
 })
 </script>
