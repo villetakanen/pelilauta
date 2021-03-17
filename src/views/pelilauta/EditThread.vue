@@ -43,7 +43,7 @@ export default defineComponent({
     topic: {
       type: String,
       required: false,
-      default: 'yleinen'
+      default: 'Yleinen'
     }
   },
   setup (props) {

@@ -56,7 +56,7 @@ export default defineComponent({
   },
   setup (props) {
     // Subscibe/Fetch required threads to the state
-    useThreads(props.topic)
+    useThreads(props.topic.charAt(0).toUpperCase() + props.topic.slice(1))
 
     // @TODO please review the code below, it looks very sketchy
     const { streams } = useMeta()
