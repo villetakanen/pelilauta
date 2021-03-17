@@ -153,7 +153,7 @@ export default defineComponent({
     // Topics
     const { streams } = useMeta()
     const topicOpts = computed(() => (streams.value.filter((val) => (val.slug !== '-')).map((val) => ({ key: val.slug, value: val.name }))))
-    const threadTopic = ref(props.topic || props.thread.data.topic || 'Yleinen')
+    const threadTopic = ref(props.thread.data.topic || props.topic || 'Yleinen')
     console.debug('ThreadEditor.vue', threadTopic.value)
     const minLength = (value:any) => (value.length > 1)
     const maxLength = (value:any) => (value.toString().trim().length < 36)

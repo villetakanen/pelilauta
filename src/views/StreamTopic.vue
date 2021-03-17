@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
 import Fab from '@/components/material/Fab.vue'
 import { useMeta } from '@/state/meta'
@@ -56,7 +56,9 @@ export default defineComponent({
   },
   setup (props) {
     // Subscibe/Fetch required threads to the state
-    useThreads(props.topic)
+    watch(() => props.topic, (topicProp) => {
+      useThreads(topicProp.charAt(0).toUpperCase() + topicProp.slice(1))
+    }, { immediate: true })
 
     // @TODO please review the code below, it looks very sketchy
     const { streams } = useMeta()
