@@ -22,7 +22,7 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { Thread, toThread } from '@/state/threads'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import ThreadCard from './ThreadCard.vue'
+import ThreadCard from '@/components/home/ThreadCard.vue'
 
 export default defineComponent({
   name: 'Threadlist',
@@ -41,14 +41,14 @@ export default defineComponent({
     const atEnd = ref(false)
     let offset:undefined|firebase.firestore.QueryDocumentSnapshot
 
-    function fetchThreads (topic: string, count = 5) {
+    function fetchThreads (topic: string, count = 11) {
       const db = firebase.firestore()
       if (offset) {
         // const cursor = db.collection('stream').doc(offset.id)
         db.collection('stream').where('topic', '==', topic).orderBy('flowTime', 'desc').startAfter(offset).limit(count).get().then((snapshot) => {
           if (snapshot.size < count) atEnd.value = true
           snapshot.forEach((doc) => {
-            localThreads.value.push(toThread(doc.id, doc.data()))
+            if (!doc.data()?.sticky) localThreads.value.push(toThread(doc.id, doc.data()))
             offset = doc
           })
         })
@@ -56,7 +56,7 @@ export default defineComponent({
         db.collection('stream').where('topic', '==', topic).orderBy('flowTime', 'desc').limit(count).get().then((snapshot) => {
           if (snapshot.size < count) atEnd.value = true
           snapshot.forEach((doc) => {
-            localThreads.value.push(toThread(doc.id, doc.data()))
+            if (!doc.data()?.sticky) localThreads.value.push(toThread(doc.id, doc.data()))
             offset = doc
           })
         })
@@ -65,7 +65,7 @@ export default defineComponent({
 
     async function nextPage () {
       if (atEnd.value) return
-      fetchThreads(props.topic)
+      fetchThreads(props.topic, 5)
     }
 
     onMounted(() => {
