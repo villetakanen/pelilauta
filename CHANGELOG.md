@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.23.3](https://github.com/villetakanen/pelilauta/compare/v7.23.2...v7.23.3) (2021-03-17)
+
+
+### Bug Fixes
+
+* pinned cards orderby flowtime ([931290f](https://github.com/villetakanen/pelilauta/commit/931290f828d685b8440f775735dcd1583fe740a1))
+
 ### [7.23.2](https://github.com/villetakanen/pelilauta/compare/v7.23.1...v7.23.2) (2021-03-17)
 
 
