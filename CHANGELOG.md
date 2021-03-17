@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.22.0](https://github.com/villetakanen/pelilauta/compare/v7.21.2...v7.22.0) (2021-03-17)
+
+
+### Features
+
+* addtional post settings views ([124b526](https://github.com/villetakanen/pelilauta/commit/124b526f187be2204f835a56954305c695bda1db))
+* sticky state for threads ([c3fdd53](https://github.com/villetakanen/pelilauta/commit/c3fdd53f3a317062d046dcba7d56de60e7cbf312))
+
+
+### Bug Fixes
+
+* comment pasting no longer empties the input ([2c53303](https://github.com/villetakanen/pelilauta/commit/2c533035e2c57a65630f917703e2507ae5454837))
+* editortesting now 4 comment editor ([d35ee22](https://github.com/villetakanen/pelilauta/commit/d35ee227394aea44ce2740ee9c6a3991aa768ea4))
+* thread editor topics works and works in topic ([8773f1e](https://github.com/villetakanen/pelilauta/commit/8773f1ea067afa3b1e3c9cd91cd2f314afea35ef))
+
 ### [7.21.2](https://github.com/villetakanen/pelilauta/compare/v7.21.1...v7.21.2) (2021-03-16)
 
 
