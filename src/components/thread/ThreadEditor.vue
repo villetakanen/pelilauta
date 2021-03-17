@@ -27,10 +27,14 @@
         v-if="toggleSettings"
         class="additionalFields toolbar"
       >
-        <Toggle :label="$t('thread.stickyToggle')" /> &nbsp;
-        <Toggle :label="$t('thread.pushToStream')" /> &nbsp;
+        <Toggle
+          v-model="threadSticky"
+          :label="$t('thread.stickyToggle')"
+        />
+        <Toggle v-if="false" :label="$t('thread.pushToStream')" />
         <div class="spacer" />
         <MaterialSelect
+          v-if="false"
           class="field"
           :opts="topicOpts"
           label="Site / Game"
@@ -68,7 +72,7 @@
 <script lang="ts">
 import { useMeta } from '@/state/meta'
 import { createThread, Thread, updateThread } from '@/state/threads/threads'
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { computed, defineComponent, PropType, Ref, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
@@ -138,6 +142,14 @@ export default defineComponent({
         }
       }
     })
+    // Thread content
+    const localSticky:Ref<null|boolean> = ref(null)
+    const threadSticky = computed({
+      get: () => (localSticky.value === null ? props.thread.data.sticky || false : localSticky.value),
+      set: (val:boolean) => {
+        localSticky.value = val
+      }
+    })
     // Topics
     const { streams } = useMeta()
     const topicOpts = computed(() => (streams.value.filter((val) => (val.slug !== '-')).map((val) => ({ key: val.slug, value: val.name }))))
@@ -158,7 +170,8 @@ export default defineComponent({
         return createThread(uid.value, {
           content: localContent.value,
           title: localTitle.value,
-          topic: threadTopic.value
+          topic: threadTopic.value,
+          sticky: threadSticky.value
         }).then((threadid) => {
           pushSnack(i18n.t('threads.updateSuccess'))
           router.push(`/thread/${threadid}/view`)
@@ -171,6 +184,7 @@ export default defineComponent({
       if (localContent.value) updatedThread.data.content = localContent.value
       if (localTitle.value) updatedThread.data.title = localTitle.value
       if (threadTopic.value) updatedThread.data.topic = threadTopic.value
+      if (localSticky.value !== null) updatedThread.data.sticky = localSticky.value
       return updateThread(uid.value, updatedThread).then(() => {
         pushSnack(i18n.t('threads.updateSuccess'))
         router.push(`/thread/${props.thread.id}/view`)
@@ -179,7 +193,7 @@ export default defineComponent({
         console.debug(error)
       })
     }
-    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle }
+    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky }
   }
 })
 </script>

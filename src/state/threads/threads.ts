@@ -11,10 +11,11 @@ export interface PostImage {
 }
 
 export interface PostData {
-    content: string;
-    topic: string;
-    title: string;
-    images?: PostImage[];
+    content: string
+    topic: string
+    title: string
+    images?: PostImage[]
+    sticky?: boolean
 }
 
 export interface Thread {
@@ -70,7 +71,8 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
       content: data.content,
       topic: data.topic,
       title: data.title,
-      images: data.images
+      images: data.images,
+      sticky: data.sticky || false
     }
   }
   if (!post.replyCount) post.replyCount = 0
