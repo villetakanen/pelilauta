@@ -4,6 +4,7 @@
       v-for="thread in pinnedThreads"
       :key="thread.id"
       :thread="thread"
+      pinned
     />
   </div>
 </template>

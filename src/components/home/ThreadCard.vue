@@ -1,5 +1,8 @@
 <template>
-  <Card class="welcomeCard">
+  <Card
+    class="threadCard"
+    :class="{ pinned: pinned }"
+  >
     <div class="content">
       <div
         v-if="thread.data.images && thread.data.images.length > 0"
@@ -97,6 +100,11 @@ export default defineComponent({
     thread: {
       type: Object as PropType<Thread>,
       required: true
+    },
+    pinned: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -149,7 +157,7 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
-div.welcomeCard
+div.threadCard
   color: var(--chroma-secondary-c)
   margin: 0
   margin-bottom: 8px
@@ -190,4 +198,6 @@ div.welcomeCard
     margin: 0px
     margin-left: 8px
     margin-bottom: 8px
+.pinned
+  background-color: var(--chroma-secondary-i)
 </style>
