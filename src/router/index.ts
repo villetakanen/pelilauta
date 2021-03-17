@@ -95,6 +95,13 @@ const routes: Array<RouteRecordRaw> = [
     props: { threadid: '', mode: 'new', topic: '' }
   },
   {
+    path: '/stream/topic/:topic/post',
+    name: 'stream.topic.post',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
+    props: (route) => ({ threadid: '', mode: 'new', topic: route.params.topic })
+  },
+  {
     path: '/editortest',
     name: 'global.admin.editorTest',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
