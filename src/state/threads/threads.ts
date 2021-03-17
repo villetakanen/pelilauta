@@ -124,7 +124,7 @@ function init () {
  */
 async function fetchTopic (topic: string) {
   const db = firebase.firestore()
-  const stickyRef = db.collection('stream').where('topic', '==', topic).where('sticky', '==', true)
+  const stickyRef = db.collection('stream').where('topic', '==', topic).where('sticky', '==', true).orderBy('flowTime', 'desc')
   try {
     const stickyDocs = await stickyRef.get()
     console.debug('stickyDocs', stickyDocs, topic)
