@@ -7,8 +7,12 @@
         </h3>
       </Toolbar>
     </div>
-    <div class="contentGrid">
-      <ThreadList :topic="routeTopic" />
+    <div class="twoColFlexSection">
+      <PinnedStream class="col" />
+      <ThreadList
+        :topic="routeTopic"
+        class="col"
+      />
     </div>
     <teleport to="#ScreenBottomFloatRight">
       <Fab
@@ -33,13 +37,16 @@ import { useMeta } from '@/state/meta'
 import { useRoute } from 'vue-router'
 import { useAuthState } from '@/state/authz'
 import Toolbar from '@/components/layout/Toolbar.vue'
+import PinnedStream from '@/components/topic/PinnedStream.vue'
+import { useThreads } from '@/state/threads'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
     Fab,
-    Toolbar
+    Toolbar,
+    PinnedStream
   },
   props: {
     topic: {
@@ -47,7 +54,11 @@ export default defineComponent({
       required: true
     }
   },
-  setup () {
+  setup (props) {
+    // Subscibe/Fetch required threads to the state
+    useThreads(props.topic)
+
+    // @TODO please review the code below, it looks very sketchy
     const { streams } = useMeta()
 
     const route = useRoute()
@@ -71,3 +82,18 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/include-media.scss
+
+@include media('>tablet')
+  .twoColFlexSection
+    max-width: 1024px
+    margin: 0 auto
+    display: flex
+    flex-direction: row-reverse
+    .col
+      width: calc( 50% - 16px )
+      margin: 0 8px
+
+</style>
