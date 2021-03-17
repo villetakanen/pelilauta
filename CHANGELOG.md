@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.23.2](https://github.com/villetakanen/pelilauta/compare/v7.23.1...v7.23.2) (2021-03-17)
+
+
+### Bug Fixes
+
+* new ui comps to topic view and hide sticky ([3ad9fff](https://github.com/villetakanen/pelilauta/commit/3ad9fff352a235fe9044bfd792b295293bdd77c3))
+
 ### [7.23.1](https://github.com/villetakanen/pelilauta/compare/v7.23.0...v7.23.1) (2021-03-17)
 
 
