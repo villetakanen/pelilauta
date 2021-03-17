@@ -85,6 +85,9 @@ const stream = computed(() => {
   return subscribedThreads.value
 })
 
+const localPinnedThreads = ref(new Array<Thread>())
+const pinnedThreads = computed(() => (localPinnedThreads.value))
+
 /**
  * Patches a post to the Stream
  */
@@ -112,6 +115,26 @@ function init () {
       else subscribedThreads.value = subscribedThreads.value.filter((thread) => (thread.id !== change.doc.id))
     })
   })
+}
+
+/**
+ * fetches the sticky posts for a topic
+ *
+ * @param topic slug of a topic
+ */
+async function fetchTopic (topic: string) {
+  const db = firebase.firestore()
+  const stickyRef = db.collection('stream').where('topic', '==', topic.toLowerCase()).where('sticky', '==', true)
+  try {
+    const stickyDocs = await stickyRef.get()
+    console.debug('stickyDocs', stickyDocs, topic)
+    localPinnedThreads.value = new Array<Thread>()
+    stickyDocs.forEach((stickyThread) => {
+      localPinnedThreads.value.push(toThread(stickyThread.id, stickyThread.data()))
+    })
+  } catch (error) {
+    console.warn(error)
+  }
 }
 
 export async function createThread (actor: string, data:PostData): Promise<string> {
@@ -172,9 +195,11 @@ export async function deleteThread (actor: string, threadid: string): Promise<vo
   return postRef.delete()
 }
 
-export function useThreads (): {
+export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
+    pinnedThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread> } {
   init()
-  return { stream, thread }
+  if (topic) fetchTopic(topic)
+  return { stream, thread, pinnedThreads }
 }
