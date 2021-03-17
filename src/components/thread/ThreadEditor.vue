@@ -14,10 +14,29 @@
         :opts="topicOpts"
         :label="$t('threads.topic')"
       />
-      <MaterialButton icon>
-        <Icon name="toggle-open" />
+      <MaterialButton
+        icon
+        :action="toggle"
+      >
+        <Icon name="equalizer" />
       </MaterialButton>
     </div>
+
+    <transition name="rollin">
+      <div
+        v-if="toggleSettings"
+        class="additionalFields toolbar"
+      >
+        <Toggle :label="$t('thread.stickyToggle')" /> &nbsp;
+        <Toggle :label="$t('thread.pushToStream')" /> &nbsp;
+        <div class="spacer" />
+        <MaterialSelect
+          class="field"
+          :opts="topicOpts"
+          label="Site / Game"
+        />
+      </div>
+    </transition>
 
     <div class="editor">
       <QuillEditor
@@ -61,6 +80,7 @@ import { useAuthState } from '@/state/authz'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import Toggle from '../material/Toggle.vue'
 /**
  * An editor form for Thread data.
  */
@@ -71,7 +91,8 @@ export default defineComponent({
     MaterialSelect,
     QuillEditor,
     MaterialButton,
-    Icon
+    Icon,
+    Toggle
   },
   props: {
     thread: {
@@ -90,6 +111,8 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const toggleSettings = ref(false)
+    const toggle = () => { toggleSettings.value = !toggleSettings.value }
     console.debug('thread', props.thread)
     // Thread name
     const localTitle = ref('')
@@ -156,7 +179,7 @@ export default defineComponent({
         console.debug(error)
       })
     }
-    return { threadContent, threadTitle, topicOpts, threadTopic, v, save }
+    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle }
   }
 })
 </script>
@@ -180,5 +203,22 @@ export default defineComponent({
         margin-bottom: 8px
         margin-left: 0
         min-width: calc(100vw - 112px)
+
+.additionalFields
+  border: solid 2px var(--chroma-primary-g)
+  // background-color: var(--chroma-primary-h)
+  padding: 4px
+  margin-bottom: 4px
+  line-height: 40px
+
+.rollin-enter-active
+  transition: all .5s
+
+.rollin-leave-active
+  transition: all .5s
+
+.rollin-enter-from,
+.rollin-leave-to
+  opacity: 0
 
 </style>
