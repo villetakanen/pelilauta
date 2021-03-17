@@ -1,18 +1,19 @@
 <template>
   <div>
-    <Toolbar>
-      <h3 v-if="stream">
-        {{ stream.name }}
-      </h3>
-    </Toolbar>
+    <div style="margin: 0 8px">
+      <Toolbar>
+        <h3 v-if="stream">
+          {{ stream.name }}
+        </h3>
+      </Toolbar>
+    </div>
     <div class="contentGrid">
       <ThreadList :topic="routeTopic" />
     </div>
-    <EditorDialog v-model="showEditorDialog" />
     <teleport to="#ScreenBottomFloatRight">
       <Fab
-        v-if="!isAnonymous"
-        :action="newThread"
+        v-if="!isAnonymous && stream"
+        :to="`/stream/topic/${stream.slug}/post`"
         :text="$t('action.addThread')"
       >
         <img
@@ -30,7 +31,6 @@ import ThreadList from '@/components/stream/ThreadList.vue'
 import Fab from '@/components/material/Fab.vue'
 import { useMeta } from '@/state/meta'
 import { useRoute } from 'vue-router'
-import EditorDialog from '@/components/app/EditorDialog.vue'
 import { useAuthState } from '@/state/authz'
 import Toolbar from '@/components/layout/Toolbar.vue'
 
@@ -39,7 +39,6 @@ export default defineComponent({
   components: {
     ThreadList,
     Fab,
-    EditorDialog,
     Toolbar
   },
   props: {

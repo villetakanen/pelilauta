@@ -14,10 +14,33 @@
         :opts="topicOpts"
         :label="$t('threads.topic')"
       />
-      <MaterialButton icon>
-        <Icon name="toggle-open" />
+      <MaterialButton
+        icon
+        :action="toggle"
+      >
+        <Icon name="equalizer" />
       </MaterialButton>
     </div>
+
+    <transition name="rollin">
+      <div
+        v-if="toggleSettings"
+        class="additionalFields toolbar"
+      >
+        <Toggle
+          v-model="threadSticky"
+          :label="$t('thread.stickyToggle')"
+        />
+        <Toggle v-if="false" :label="$t('thread.pushToStream')" />
+        <div class="spacer" />
+        <MaterialSelect
+          v-if="false"
+          class="field"
+          :opts="topicOpts"
+          label="Site / Game"
+        />
+      </div>
+    </transition>
 
     <div class="editor">
       <QuillEditor
@@ -49,7 +72,7 @@
 <script lang="ts">
 import { useMeta } from '@/state/meta'
 import { createThread, Thread, updateThread } from '@/state/threads/threads'
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { computed, defineComponent, PropType, Ref, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
@@ -61,6 +84,7 @@ import { useAuthState } from '@/state/authz'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import Toggle from '../material/Toggle.vue'
 /**
  * An editor form for Thread data.
  */
@@ -71,7 +95,8 @@ export default defineComponent({
     MaterialSelect,
     QuillEditor,
     MaterialButton,
-    Icon
+    Icon,
+    Toggle
   },
   props: {
     thread: {
@@ -90,6 +115,8 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const toggleSettings = ref(false)
+    const toggle = () => { toggleSettings.value = !toggleSettings.value }
     console.debug('thread', props.thread)
     // Thread name
     const localTitle = ref('')
@@ -115,10 +142,19 @@ export default defineComponent({
         }
       }
     })
+    // Thread content
+    const localSticky:Ref<null|boolean> = ref(null)
+    const threadSticky = computed({
+      get: () => (localSticky.value === null ? props.thread.data.sticky || false : localSticky.value),
+      set: (val:boolean) => {
+        localSticky.value = val
+      }
+    })
     // Topics
     const { streams } = useMeta()
     const topicOpts = computed(() => (streams.value.filter((val) => (val.slug !== '-')).map((val) => ({ key: val.slug, value: val.name }))))
-    const threadTopic = ref(props.thread.data.topic)
+    const threadTopic = ref(props.topic || props.thread.data.topic || 'Yleinen')
+    console.debug('ThreadEditor.vue', threadTopic.value)
     const minLength = (value:any) => (value.length > 1)
     const maxLength = (value:any) => (value.toString().trim().length < 36)
     const rules = {
@@ -135,7 +171,8 @@ export default defineComponent({
         return createThread(uid.value, {
           content: localContent.value,
           title: localTitle.value,
-          topic: threadTopic.value
+          topic: threadTopic.value,
+          sticky: threadSticky.value
         }).then((threadid) => {
           pushSnack(i18n.t('threads.updateSuccess'))
           router.push(`/thread/${threadid}/view`)
@@ -148,6 +185,7 @@ export default defineComponent({
       if (localContent.value) updatedThread.data.content = localContent.value
       if (localTitle.value) updatedThread.data.title = localTitle.value
       if (threadTopic.value) updatedThread.data.topic = threadTopic.value
+      if (localSticky.value !== null) updatedThread.data.sticky = localSticky.value
       return updateThread(uid.value, updatedThread).then(() => {
         pushSnack(i18n.t('threads.updateSuccess'))
         router.push(`/thread/${props.thread.id}/view`)
@@ -156,7 +194,7 @@ export default defineComponent({
         console.debug(error)
       })
     }
-    return { threadContent, threadTitle, topicOpts, threadTopic, v, save }
+    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky }
   }
 })
 </script>
@@ -180,5 +218,22 @@ export default defineComponent({
         margin-bottom: 8px
         margin-left: 0
         min-width: calc(100vw - 112px)
+
+.additionalFields
+  border: solid 2px var(--chroma-primary-g)
+  // background-color: var(--chroma-primary-h)
+  padding: 4px
+  margin-bottom: 4px
+  line-height: 40px
+
+.rollin-enter-active
+  transition: all .5s
+
+.rollin-leave-active
+  transition: all .5s
+
+.rollin-enter-from,
+.rollin-leave-to
+  opacity: 0
 
 </style>

@@ -100,6 +100,10 @@
       "usePlayers": "Use Players -feature"
     }
   },
+  "thread": {
+    "stickyToggle": "Sticky",
+    "pushToStream": "Push to Stream"
+  },
   "wiki": {
     "title": "Mekanismi",
     "createSite": "Add new",

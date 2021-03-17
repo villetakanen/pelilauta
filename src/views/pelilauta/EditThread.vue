@@ -43,10 +43,11 @@ export default defineComponent({
     topic: {
       type: String,
       required: false,
-      default: ''
+      default: 'yleinen'
     }
   },
   setup (props) {
+    console.debug('EditTheadView.vue', props.threadid, props.mode, props.topic)
     subscribeThread(props.threadid)
     const { thread } = useThreads()
     return { thread }
