@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.23.1](https://github.com/villetakanen/pelilauta/compare/v7.23.0...v7.23.1) (2021-03-17)
+
+
+### Bug Fixes
+
+* route slug capitalization ([026ce06](https://github.com/villetakanen/pelilauta/commit/026ce066f1a6eed56053b11011438daaaed76370))
+* upper-lowercase error on topic slugs ([355d0d6](https://github.com/villetakanen/pelilauta/commit/355d0d6a9fd3ea7138f3f0bcfaa1bde162cf9da4))
+
 ## [7.23.0](https://github.com/villetakanen/pelilauta/compare/v7.22.0...v7.23.0) (2021-03-17)
 
 
