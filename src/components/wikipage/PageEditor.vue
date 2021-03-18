@@ -18,6 +18,7 @@
           :label="$t('wiki.page.category')"
         />
         <MaterialButton
+          id="pageEditorToggleEditorButton"
           icon
           :action="toggleEditor"
         >
@@ -30,6 +31,7 @@
         class="editorOptions"
       >
         <MaterialButton
+          id="pageEditorDeleteButton"
           text
           @click="toggleDelete"
         >
@@ -39,10 +41,14 @@
           <Card>
             <h3>{{ $t('action.delete') }}</h3>
             <p>{{ $t('wiki.page.deleteWarning') }}</p>
-            <TextField v-model="deleteConfirm" />
+            <TextField
+              id="pageEditorDeleteVerifyField"
+              v-model="deleteConfirm"
+            />
             <div class="toolbar">
               <div class="spacer" />
               <MaterialButton
+                id="pageEditorDeleteVerifyButton"
                 :disabled="deleteConfirm !== 'DELETE'"
                 @click="deletePage"
               >

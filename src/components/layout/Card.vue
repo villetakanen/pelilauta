@@ -13,4 +13,5 @@
   padding: 16px
   margin: 8px
   border-radius: 8px
+  min-width: 370px
 </style>

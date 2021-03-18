@@ -1,7 +1,8 @@
 <template>
-  <MaterialCard class="addPageCard">
+  <Card class="addPageCard">
     <h1>{{ $t('mekanismi.addPageCard.title') }}</h1>
     <TextField
+      id="addPageCardPageNameField"
       v-model="newPageTitle"
       :label="$t('mekanismi.addPageCard.newPageTitle')"
     />
@@ -17,18 +18,19 @@
         {{ $t('action.cancel') }}
       </MaterialButton>
       <MaterialButton
+        id="addPageCardCreateButton"
         :disabled="!newPageTitle"
         :action="createPage"
       >
         {{ $t('action.create') }}
       </MaterialButton>
     </div>
-  </MaterialCard>
+  </Card>
 </template>
 
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
+import Card from '@/components/layout/Card.vue'
 import TextField from '../material/TextField.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import { Site, addPage } from '@/state/site'
@@ -39,7 +41,7 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'AddPageCard',
   components: {
-    MaterialCard,
+    Card,
     TextField,
     MaterialButton
   },
