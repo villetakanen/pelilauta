@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.24.0](https://github.com/villetakanen/pelilauta/compare/v7.23.3...v7.24.0) (2021-03-18)
+
+
+### Features
+
+* wiki page create and delete e2e tests added ([42f8ddb](https://github.com/villetakanen/pelilauta/commit/42f8ddb2237dffc3c98c7b2582529b1fc44db198))
+* wiki page deletion works ([33d9426](https://github.com/villetakanen/pelilauta/commit/33d9426ae70d669c81392a8ad5389ad8e7ff822f))
+
+
+### Bug Fixes
+
+* contentBox to atomics ([62a42dc](https://github.com/villetakanen/pelilauta/commit/62a42dc08b4725dafd89abf4954b2173eb2e3fd4))
+
 ### [7.23.3](https://github.com/villetakanen/pelilauta/compare/v7.23.2...v7.23.3) (2021-03-17)
 
 
