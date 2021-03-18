@@ -127,7 +127,10 @@
       "category": "Kategoria",
       "name": "Sivun nimi",
       "updateSuccesfull": "Sivu päivitetty",
-      "updateFailed": "Sivun päivitys epäonnistui"
+      "updateFailed": "Sivun päivitys epäonnistui",
+      "deleteSuccess": "Sivu poistettu pysyvästi",
+      "deleteFail": "Sivun poistaminen epäonnistui",
+      "deleteWarning": "Poistettua sivua, tai siihen liittyviä tietoja ei voi palauttaa. Kirjoita DELETE allaolevaan kenttään jos todella haluat poistaa sivun."
     },
     "category": {
       "characters": "Characters",
