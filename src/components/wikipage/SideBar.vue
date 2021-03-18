@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sidebar contentArea"
+    class="sidebar contentBox"
     style="position: relative"
   >
     <transition name="fade">

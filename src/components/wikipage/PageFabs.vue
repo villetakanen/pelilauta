@@ -13,6 +13,7 @@
       </Fab>
       <Fab
         v-if="canEdit"
+        id="wikipageCreatePageFab"
         color="secondary"
         :action="addPageDialog"
         :text="$t('action.create')"
@@ -24,6 +25,7 @@
       </Fab>
       <Fab
         v-if="canEdit"
+        id="wikipageEditPageFab"
         :text="$t('action.edit')"
         :to="`/mekanismi/edit/${page.siteid}/${page.id}`"
       >

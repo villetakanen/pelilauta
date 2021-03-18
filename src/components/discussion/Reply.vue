@@ -33,7 +33,7 @@
       class="message"
     >
       <div
-        class="contentArea comment"
+        class="contentArea comment contentBox"
         :innerHTML="reply.content"
       />
     </div>

@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import { useMembers } from './members'
-import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment } from './pages'
+import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
 import { refreshStorage, useFiles } from './attachments'
 
 export interface Site {
@@ -174,5 +174,6 @@ export {
   useSite,
   subscribeTo,
   updatePage,
-  updateSite
+  updateSite,
+  deletePage
 }

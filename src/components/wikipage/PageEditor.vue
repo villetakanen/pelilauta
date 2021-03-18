@@ -17,11 +17,50 @@
           :opts="opts"
           :label="$t('wiki.page.category')"
         />
-        <MaterialButton icon>
-          <Icon name="toggle-down" />
+        <MaterialButton
+          id="pageEditorToggleEditorButton"
+          icon
+          :action="toggleEditor"
+        >
+          <Icon name="equalizer" />
         </MaterialButton>
       </div>
-      <!-- Page meta, toggled with metaToggle -->
+      <!-- Page meta, toggled with editorOptions/toggleEditor -->
+      <div
+        v-if="editorOptions"
+        class="editorOptions"
+      >
+        <MaterialButton
+          id="pageEditorDeleteButton"
+          text
+          @click="toggleDelete"
+        >
+          {{ $t('action.delete') }}
+        </MaterialButton>
+        <Dialog v-model="deleteDialog">
+          <Card>
+            <h3>{{ $t('action.delete') }}</h3>
+            <p>{{ $t('wiki.page.deleteWarning') }}</p>
+            <TextField
+              id="pageEditorDeleteVerifyField"
+              v-model="deleteConfirm"
+            />
+            <div class="toolbar">
+              <div class="spacer" />
+              <MaterialButton
+                id="pageEditorDeleteVerifyButton"
+                :disabled="deleteConfirm !== 'DELETE'"
+                @click="deletePage"
+              >
+                {{ $t('action.delete') }}
+              </MaterialButton>
+              <MaterialButton @click="toggleDelete">
+                {{ $t('action.cancel') }}
+              </MaterialButton>
+            </div>
+          </Card>
+        </Dialog>
+      </div>
       <!-- Page content -->
       <div class="editor">
         <QuillEditor
@@ -52,7 +91,7 @@
 <script lang="ts">
 import { useSnack } from '@/composables/useSnack'
 import { useAuthState } from '@/state/authz'
-import { Page, PageFragment, Site, updatePage } from '@/state/site'
+import { Page, PageFragment, Site, updatePage, deletePage as deletePageFromFirestore } from '@/state/site'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { minLength, maxLength, extractLinks, extractTags } from '@/utils/contentFormat'
@@ -65,6 +104,8 @@ import MaterialButton from '../material/MaterialButton.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
+import Dialog from '../material/Dialog.vue'
+import Card from '../layout/Card.vue'
 
 /**
  * An editor form for a Wiki Page.
@@ -77,7 +118,9 @@ export default defineComponent({
     TextField,
     Icon,
     Loader,
-    QuillEditor
+    QuillEditor,
+    Dialog,
+    Card
   },
   props: {
     site: {
@@ -91,6 +134,16 @@ export default defineComponent({
   },
   setup (props) {
     const i18n = useI18n()
+    const editorOptions = ref(false)
+    const toggleEditor = () => {
+      editorOptions.value = !editorOptions.value
+    }
+    const deleteDialog = ref(false)
+    const deleteConfirm = ref('')
+    const toggleDelete = () => {
+      deleteConfirm.value = ''
+      deleteDialog.value = !deleteDialog.value
+    }
     // Page name
     const formName:Ref<string|undefined> = ref(undefined)
     const pageName = computed({
@@ -153,7 +206,20 @@ export default defineComponent({
         console.debug(error)
       })
     }
-    return { save, v, opts, formCategory, pageContent }
+    async function deletePage () {
+      if (deleteConfirm.value !== 'DELETE') return
+      console.debug('deleting page')
+      try {
+        if (props.page.siteid === props.page.id) throw new Error('Can not delete site root page, without deleting the site')
+        await deletePageFromFirestore(props.page.siteid, props.page.id)
+        router.push(`/mekanismi/view/${props.site.id}/${props.site.id}`)
+        pushSnack(i18n.t('wiki.page.deleteSuccess'))
+      } catch (error) {
+        console.debug(error)
+        pushSnack(i18n.t('wiki.page.deleteFail'))
+      }
+    }
+    return { save, v, opts, formCategory, pageContent, toggleEditor, editorOptions, deleteDialog, toggleDelete, deleteConfirm, deletePage }
   }
 })
 </script>

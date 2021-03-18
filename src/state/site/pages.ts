@@ -117,6 +117,12 @@ export function subscribeTo (siteid:string|null|undefined): void {
   })
 }
 
+export async function deletePage (siteid: string, pageid:string): Promise<void> {
+  const db = firebase.firestore()
+  const pageRef = db.collection('sites').doc(siteid).collection('pages').doc(pageid)
+  return pageRef.delete()
+}
+
 export async function updatePage (page: PageFragment): Promise<void> {
   console.debug('Page fragment for update', page.id, page)
   const { site } = useSite()

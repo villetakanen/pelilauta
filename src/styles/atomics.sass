@@ -1,0 +1,33 @@
+/**
+ * This file contains atomic css helper classes and mixins used to buid the atomics.
+ * 
+ * Do not include this in SFC style blocks, any atomics are already available from base.css
+ */
+
+// See: https://css-tricks.com/almanac/properties/w/word-break/
+@mixin dontBreakOut()
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word
+  word-wrap: break-word
+
+  -ms-word-break: break-all
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all
+  /* Instead use this non-standard one: */
+  word-break: break-word
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto
+  -moz-hyphens: auto
+  -webkit-hyphens: auto
+  hyphens: auto
+    
+
+// This element contains long paragraphs of text, large images etc.
+.contentBox
+  @include dontBreakOut()
+  img
+    max-width: 100%
+
+  
+  

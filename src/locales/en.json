@@ -119,7 +119,10 @@
       "category": "Category",
       "name": "Title",
       "updateSuccesfull": "Page updated",
-      "updateFailed": "Failed to update the page."
+      "updateFailed": "Failed to update the page.",
+      "deleteSuccess": "Page deleted",
+      "deleteFail": "Page delete failed",
+      "deleteWarning": "Deleting a page will erase the page and any data related to the page permanently. Please type DELETE to the field below to verfy you want to do this."
     },
     "category": {
       "characters": "Characters",
