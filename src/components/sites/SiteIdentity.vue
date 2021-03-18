@@ -1,5 +1,5 @@
 <template>
-  <Card class="siteIdentity contentArea">
+  <Card class="siteIdentity contentArea contentBox">
     <h2>{{ $t('mekanismi.site.identity') }}</h2>
     <div
       v-if="site.splashURL"

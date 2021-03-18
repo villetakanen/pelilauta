@@ -1,5 +1,5 @@
 <template>
-  <Card class="sitePlayersList contentArea">
+  <Card class="sitePlayersList contentArea contentBox">
     <h2>{{ $t('site.players.title') }}</h2>
     <PlayerRowItem
       v-for="player in playerList"
