@@ -1,11 +1,8 @@
 <template>
   <div class="toolbar wikiPageToolbar">
     <div>
-      <h1 v-if="page.name">
+      <h1>
         {{ page.name }}
-      </h1>
-      <h1 v-else>
-        {{ site.name }}
       </h1>
     </div>
   </div>
@@ -39,7 +36,7 @@ export default defineComponent({
     @include TypeButton()
     font-size: 22px
     line-height: 32px
-    color: $color-fill-primary-dark
+    color: var(--chroma-secondary-b)
 
 @include media('<tablet')
   .wikiPageToolbar

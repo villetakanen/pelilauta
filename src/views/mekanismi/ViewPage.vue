@@ -4,12 +4,12 @@
       <SiteToolbar />
     </div>
     <div class="mekanismiGrid">
-      <Card class="mainCard">
+      <div class="mainCard">
         <PageToolbar />
         <transition name="fade">
           <div v-if="site.name && page.name">
             <div
-              class="wikipage contentBox"
+              class="contentBox"
               :innerHTML="renderWikiLinks(site.id, page.htmlContent)"
             />
           </div>
@@ -19,8 +19,11 @@
             style="margin-bottom: -80px"
           />
         </transition>
-      </Card>
-      <Card class="sideCard">
+      </div>
+      <Card
+        class="sideCard"
+        :rise="3"
+      >
         <transition name="fade">
           <SideBar v-if="site.name" />
           <Loader
