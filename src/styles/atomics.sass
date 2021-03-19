@@ -16,11 +16,31 @@
   /* Instead use this non-standard one: */
   word-break: break-word
 
-  /* Adds a hyphen where the word breaks, if supported (No Blink) */
-  -ms-hyphens: auto
-  -moz-hyphens: auto
+  // https://medium.com/clear-left-thinking/all-you-need-to-know-about-hyphenation-in-css-2baee2d89179
   -webkit-hyphens: auto
+  -webkit-hyphenate-limit-before: 3
+  -webkit-hyphenate-limit-after: 3
+  -webkit-hyphenate-limit-chars: 6 3 3
+  -webkit-hyphenate-limit-lines: 2
+  -webkit-hyphenate-limit-last: always
+  -webkit-hyphenate-limit-zone: 8%
+  
+  -moz-hyphens: auto
+  -moz-hyphenate-limit-chars: 6 3 3
+  -moz-hyphenate-limit-lines: 2
+  -moz-hyphenate-limit-last: always
+  -moz-hyphenate-limit-zone: 8%
+  -ms-hyphens: auto
+  -ms-hyphenate-limit-chars: 6 3 3
+  -ms-hyphenate-limit-lines: 2
+  -ms-hyphenate-limit-last: always
+  -ms-hyphenate-limit-zone: 8%
+  
   hyphens: auto
+  hyphenate-limit-chars: 6 3 3
+  hyphenate-limit-lines: 2
+  hyphenate-limit-last: always
+  hyphenate-limit-zone: 8%
     
 
 // This element contains long paragraphs of text, large images etc.
