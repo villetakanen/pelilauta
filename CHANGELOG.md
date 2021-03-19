@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.25.0](https://github.com/villetakanen/pelilauta/compare/v7.24.0...v7.25.0) (2021-03-19)
+
+
+### Features
+
+* thread deletion asks for verification ([24e6150](https://github.com/villetakanen/pelilauta/commit/24e615095c93e3cb012ac4b5c4de4422b9e49a58))
+
+
+### Bug Fixes
+
+* card layout fixes ([62f64b9](https://github.com/villetakanen/pelilauta/commit/62f64b935321bc34979ca4ab07eeb46b60edbeeb))
+
 ## [7.24.0](https://github.com/villetakanen/pelilauta/compare/v7.23.3...v7.24.0) (2021-03-18)
 
 
