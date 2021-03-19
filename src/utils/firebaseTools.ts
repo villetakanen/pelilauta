@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import { DateTime } from 'luxon'
 
 /**
  * Firestore URL fetching with cache
@@ -25,8 +26,18 @@ export const fireStoreURL = function (path: string): Promise<string> {
 }
 
 export const toDisplayString = (timestamp: firebase.firestore.Timestamp|null): string => {
-  const date = toUTCDate(timestamp)
-  return date.toISOString().substring(0, 10) + ', ' + date.toISOString().substring(11, 16)
+  if (timestamp === null) return '---'
+  const date = DateTime.fromSeconds(timestamp.seconds)
+  const duration = DateTime.now().diff(date)
+  if (duration.toMillis() < 30 * 60000) {
+    // less than 30 minutes ago
+    return '< 30 min'
+  }
+  if (duration.toMillis() < 4 * 60 * 60000) {
+    // less than 4 hours ago
+    return '< 4h'
+  }
+  return date.toFormat('dd.MM.yyyy – HH:mm')
 }
 
 export const toUTCDate = (timestamp: firebase.firestore.Timestamp|null): Date => {
