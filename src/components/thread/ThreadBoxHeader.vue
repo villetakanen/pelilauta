@@ -21,11 +21,34 @@
       v-if="canManageThread"
       v-model="menu"
     />
+    <Dialog v-model="toggleDelete">
+      <Card>
+        <h3>{{ $t('action.delete') }}</h3>
+        <p>{{ $t('stream.thread.deleteWarning') }}</p>
+        <TextField
+          id="threadBoxHeaderDeleteVerifyField"
+          v-model="deleteConfirm"
+        />
+        <div class="toolbar">
+          <div class="spacer" />
+          <MaterialButton
+            id="threadBoxHeaderDeleteVerifyButton"
+            :disabled="deleteConfirm !== 'DELETE'"
+            @click="deleteThreadFromFirestore"
+          >
+            {{ $t('action.delete') }}
+          </MaterialButton>
+          <MaterialButton @click="cancelDelete">
+            {{ $t('action.cancel') }}
+          </MaterialButton>
+        </div>
+      </Card>
+    </Dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 import { Thread, deleteThread } from '@/state/threads'
 import { useMeta } from '@/state/meta'
 import { toDisplayString } from '@/utils/firebaseTools'
@@ -37,10 +60,14 @@ import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { MenuItem } from '@/utils/uiInterfaces'
 import router from '@/router'
+import Card from '../layout/Card.vue'
+import TextField from '../material/TextField.vue'
+import MaterialButton from '../material/MaterialButton.vue'
+import Dialog from '../material/Dialog.vue'
 
 export default defineComponent({
   name: 'ThreadBoxHeader',
-  components: { Action, MaterialMenu },
+  components: { Action, MaterialMenu, Card, TextField, MaterialButton, Dialog },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -69,22 +96,36 @@ export default defineComponent({
       return arr
     })
 
-    const drop = () => {
-      deleteThread(uid.value, props.thread.id).then(() => {
-        pushSnack(i18n.t('thread.deleteSuccesfull'))
-        router.push('/')
-      }).catch(() => {
-        pushSnack(i18n.t('thread.deleteFailed'))
-      })
-    }
-
     // Functions
     const copyLink = () => {
       copyUrl()
       pushSnack({ topic: i18n.t('global.messages.linkShared') })
     }
 
-    return { topicName, toDisplayString, canManageThread, copyLink, menu }
+    // Deleting a thead.
+    // Note: as thread deletion deletes discussion too, we want to verify the deletion.
+    const toggleDelete = ref(false)
+    const deleteConfirm = ref('')
+    const drop = () => {
+      toggleDelete.value = true
+    }
+    const cancelDelete = () => {
+      toggleDelete.value = false
+    }
+    const deleteThreadFromFirestore = async () => {
+      if (deleteConfirm.value !== 'DELETE') return
+      console.debug('deleting thread')
+      try {
+        await deleteThread(uid.value, props.thread.id)
+        pushSnack(i18n.t('stream.thread.deleteSucces'))
+        router.push('/')
+      } catch (error) {
+        console.debug(error)
+        pushSnack(i18n.t('stream.thread.deleteFail'))
+      }
+    }
+
+    return { topicName, toDisplayString, canManageThread, copyLink, menu, deleteConfirm, deleteThreadFromFirestore, toggleDelete, cancelDelete }
   }
 })
 </script>
