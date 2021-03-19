@@ -6,7 +6,9 @@
     <transition name="fade">
       <div v-if="site">
         <h3 style="margin: 0">
-          {{ site.name }}
+          <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
+            {{ site.name }}
+          </router-link>
         </h3>
         <p><em>{{ site.description }}</em></p>
         <img
