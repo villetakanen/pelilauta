@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.25.2](https://github.com/villetakanen/pelilauta/compare/v7.25.1...v7.25.2) (2021-03-19)
+
+
+### Bug Fixes
+
+* date is now same as in the browser ([1647e62](https://github.com/villetakanen/pelilauta/commit/1647e6232f9e217ed6c8c9bb363eb776230e06fc))
+
 ### [7.25.1](https://github.com/villetakanen/pelilauta/compare/v7.25.0...v7.25.1) (2021-03-19)
 
 
