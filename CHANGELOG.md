@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.25.3](https://github.com/villetakanen/pelilauta/compare/v7.25.2...v7.25.3) (2021-03-19)
+
+
+### Bug Fixes
+
+* wikipage header to chroma ([3b57d84](https://github.com/villetakanen/pelilauta/commit/3b57d84893c43f9a30ad8271960eeaeb9749e549))
+
 ### [7.25.2](https://github.com/villetakanen/pelilauta/compare/v7.25.1...v7.25.2) (2021-03-19)
 
 
