@@ -81,7 +81,12 @@
   },
   "stream": {
     "title": "Pelilauta",
-    "inStream": "In"
+    "inStream": "In",
+    "thread": {
+      "deleteSuccess": "Thread erased permanently",
+      "deleteFail": "Uh, oh. It seems we are not able to delete the thread right now.",
+      "deleteWarning": "Deleting a thread will erase the discussion and any data related to the thread permanently. Please type DELETE to the field below to verfy you really want to do this."
+    }
   },
   "since": {
     "lessThanHalfh": "Less than 30 min ago",
