@@ -9,7 +9,7 @@
         <transition name="fade">
           <div v-if="site.name && page.name">
             <div
-              class="contentBox"
+              class="contentBox wikiPageContainer"
               :innerHTML="renderWikiLinks(site.id, page.htmlContent)"
             />
           </div>
@@ -86,6 +86,10 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+
+.wikiPageContainer
+  margin: 0 8px
+  margin-bottom: 24px
 
 .mainCard
   min-height: 152px
