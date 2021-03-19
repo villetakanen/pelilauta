@@ -87,12 +87,10 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-.wikiPageContainer
-  margin: 0 8px
-  margin-bottom: 24px
-
 .mainCard
   min-height: 152px
+  margin: 0 16px
+  margin-bottom: 24px
 .wikipage
   margin: 0
   padding: 0
