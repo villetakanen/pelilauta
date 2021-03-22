@@ -20,15 +20,16 @@ export interface PostData {
 
 export interface Thread {
     // Identity
-    id: string;
-    author: string;
+    id: string
+    author: string
     // Timestamps
-    created: firebase.firestore.Timestamp|null;
-    flowTime: firebase.firestore.Timestamp|null;
-    updated: firebase.firestore.Timestamp|null;
+    created: firebase.firestore.Timestamp|null
+    flowTime: firebase.firestore.Timestamp|null
+    updated: firebase.firestore.Timestamp|null
     // Meta
-    replyCount: number;
-    lovedCount: number;
+    replyCount: number
+    lovedCount: number
+    site?: string // this is a wikisite slug
     // Payload
     data: PostData
 }
