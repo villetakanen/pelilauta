@@ -31,6 +31,7 @@
             poster
           />
         </transition>
+        <SiteThreadList v-if="site.name" :siteid="site.id"/>
       </Card>
     </div>
     <PageFabs />
@@ -47,6 +48,7 @@ import PageFabs from '@/components/wikipage/PageFabs.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { renderWikiLinks } from '@/utils/contentFormat'
 import Card from '@/components/layout/Card.vue'
+import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -56,7 +58,8 @@ export default defineComponent({
     SideBar,
     PageFabs,
     SiteToolbar,
-    Card
+    Card,
+    SiteThreadList
   },
   setup () {
     const { site } = useSite()
@@ -68,14 +71,6 @@ export default defineComponent({
     provide('site', site)
     provide('page', page)
     provide('pages', pages)
-
-    /* watch(() => route.params, (r) => {
-      const id = Array.isArray(r.siteid) ? r.siteid[0] : r.siteid || ''
-      // subscribeTo(id)
-
-      const pid = Array.isArray(r.pageid) ? r.pageid[0] : r.pageid || ''
-      fetchPage(pid || id)
-    }, { immediate: true }) */
 
     return { page, site, mobileViewport, renderWikiLinks }
   }

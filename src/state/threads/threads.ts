@@ -138,6 +138,30 @@ async function fetchTopic (topic: string) {
   }
 }
 
+const localSiteThreads = ref(new Array<Thread>())
+const siteThreads = computed(() => (localSiteThreads.value))
+
+/**
+ * fetches the posts for a site
+ *
+ * @param siteid slug of a site
+ */
+export async function fetchSite (siteid: string): Promise<void> {
+  console.debug('fetchSite', siteid)
+  const db = firebase.firestore()
+  const siteRef = db.collection('stream').where('site', '==', siteid).orderBy('flowTime', 'desc')
+  try {
+    const siteDocs = await siteRef.get()
+    console.debug('fetchSite', siteDocs, siteid)
+    localSiteThreads.value = new Array<Thread>()
+    siteDocs.forEach((siteDocs) => {
+      localSiteThreads.value.push(toThread(siteDocs.id, siteDocs.data()))
+    })
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
 export async function createThread (actor: string, data:PostData): Promise<string> {
   firebase.analytics().logEvent('createThread', { author: actor })
   const db = firebase.firestore()
@@ -199,8 +223,9 @@ export async function deleteThread (actor: string, threadid: string): Promise<vo
 export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
     pinnedThreads: ComputedRef<Thread[]>
+    siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread> } {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads }
+  return { stream, thread, pinnedThreads, siteThreads }
 }

@@ -73,7 +73,12 @@
   },
   "threads": {
     "sinceInTopic": "aiheessa",
-    "discussion": "Keskustelu"
+    "discussion": "Keskustelu",
+    "title": "Otsikko",
+    "topic": "Aihe"
+  },
+  "thread": {
+    "stickyToggle": "Kiinnitä"
   },
   "welcome": {
     "header": "Pelilauta",
