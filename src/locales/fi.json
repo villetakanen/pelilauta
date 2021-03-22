@@ -50,6 +50,9 @@
     },
     "meta": {
       "usePlayers": "Käytä pelaajat -toimintoa"
+    },
+    "threads":{
+      "title": "Keskustelu"
     }
   },
   "stream": {

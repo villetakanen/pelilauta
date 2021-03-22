@@ -103,6 +103,9 @@
     },
     "meta": {
       "usePlayers": "Use Players -feature"
+    },
+    "threads":{
+      "title": "Discussions"
     }
   },
   "thread": {

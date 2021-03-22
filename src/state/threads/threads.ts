@@ -181,11 +181,17 @@ export async function createThread (actor: string, data:PostData): Promise<strin
 export async function updateThread (actor: string, post:Thread): Promise<string> {
   if (!post.id) throw new Error('can not update thread without an id')
   firebase.analytics().logEvent('updateThread', { author: actor })
+  console.debug('updateThread', post)
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(post.id)
   return postRef.update({
     editor: actor,
     ...post.data,
+    title: post.data.title || '',
+    images: post.data.images || null,
+    content: post.data.content || '',
+    sticky: post.data.sticky || false,
+    site: post.site || '',
     editTime: firebase.firestore.FieldValue.serverTimestamp()
   }).then(() => {
     return post.id

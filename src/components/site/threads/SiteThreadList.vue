@@ -1,11 +1,13 @@
 <template>
   <div class="siteThreadList">
-    ... Site Thread List ...
-    <ThreadListItem
-      v-for="thread in siteThreads"
-      :key="thread"
-      :thread="thread"
-    />
+    <h3>{{ $t('site.threads.title') }}</h3>
+    <ul>
+      <ThreadListItem
+        v-for="thread in siteThreads"
+        :key="thread"
+        :thread="thread"
+      />
+    </ul>
   </div>
 </template>
 
