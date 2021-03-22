@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.25.6](https://github.com/villetakanen/pelilauta/compare/v7.25.5...v7.25.6) (2021-03-22)
+
+
+### Bug Fixes
+
+* mekanismi-logo settable as icon for admins ([9ae0a4f](https://github.com/villetakanen/pelilauta/commit/9ae0a4f25286829df81b7b43cfa1d3ca3f5ba60c))
+
 ### [7.25.5](https://github.com/villetakanen/pelilauta/compare/v7.25.4...v7.25.5) (2021-03-19)
 
 
