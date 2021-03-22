@@ -68,6 +68,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
     replyCount: data.replyCount,
     lovedCount: data.lovedCount,
     updated: data.updated,
+    site: data.site || '',
     data: {
       content: data.content,
       topic: data.topic,
