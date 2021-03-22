@@ -8,13 +8,12 @@ const fullSiteList = ref(new Map<string, Site>())
 
 const allSites = computed(() => {
   const sites = Array.from(fullSiteList.value.values())
-  sites.sort((a, b) => (a.name < b.name ? 0 : 1))
   return sites
 })
 
 const publicSites = computed(() => {
   const sites = Array.from(fullSiteList.value.values()).filter((a) => (!a.hidden))
-  sites.sort((a, b) => (a.name < b.name ? 0 : 1))
+  sites.sort((a, b) => ((a.lastUpdate || 0) > (b.lastUpdate || 0) ? -1 : 1))
   return sites
 })
 
