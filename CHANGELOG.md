@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.25.7](https://github.com/villetakanen/pelilauta/compare/v7.25.6...v7.25.7) (2021-03-22)
+
+
+### Bug Fixes
+
+* cards no longer look silly in wiki index ([0e71a1d](https://github.com/villetakanen/pelilauta/commit/0e71a1d4c7f2bd319ef8f9616dbceb9684820a99))
+* site creation points to correct route ([9cef671](https://github.com/villetakanen/pelilauta/commit/9cef671c8f3bed9ca86d74c6c63098b26df31b70))
+
 ### [7.25.6](https://github.com/villetakanen/pelilauta/compare/v7.25.5...v7.25.6) (2021-03-22)
 
 
