@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.26.0](https://github.com/villetakanen/pelilauta/compare/v7.25.7...v7.26.0) (2021-03-22)
+
+
+### Features
+
+* editing a thread, lets you add a site tag ([0db1bb3](https://github.com/villetakanen/pelilauta/commit/0db1bb3575d487a1228ac8dcf380003a6e28a357))
+* threadlist for pageview ([1865e1c](https://github.com/villetakanen/pelilauta/commit/1865e1c155ab342ef28fd27ebfe43671ad224070))
+
+
+### Bug Fixes
+
+* thread saving saves images correctly ([d3ec369](https://github.com/villetakanen/pelilauta/commit/d3ec36929ca85e5dff8f6475fcd46bbc657d9f51))
+* thread site visible in home streams ([cfeaca8](https://github.com/villetakanen/pelilauta/commit/cfeaca810ae5731a5d948bade65bdab64e9491e7))
+
 ### [7.25.7](https://github.com/villetakanen/pelilauta/compare/v7.25.6...v7.25.7) (2021-03-22)
 
 
