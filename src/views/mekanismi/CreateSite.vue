@@ -68,7 +68,7 @@ export default defineComponent({
 
     async function createSiteAction () {
       return createSite(uri.value, uid.value, siteName.value).then(() => {
-        return router.push('/mekanismi/siteinfo/' + uri.value)
+        return router.push('/site/meta/' + uri.value)
       })
     }
 
