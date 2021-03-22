@@ -3,23 +3,19 @@
     <Card
       v-for="site in publicSites"
       :key="site.id"
+      :rise="2"
       class="siteCard"
     >
-      <div
-        v-if="site.splashURL"
-        :style="`background-image: url(${site.splashURL})`"
-        class="splash"
-      />
-      <div
-        v-if="site.splashURL"
-        class="siteCardThemePosterBlur"
-      />
-      <div
-        v-if="site.splashURL"
-        :style="`background-image: url(${site.splashURL})`"
-        class="poster"
-      />
       <div style="z-index: 11; position: relative">
+        <div
+          v-if="site.splashURL"
+          :style="`background-image: url(${site.splashURL})`"
+          class="poster"
+        />
+        <div
+          v-if="site.splashURL"
+          class="posterFade"
+        />
         <h1>
           <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
             {{ site.name }}
@@ -29,11 +25,20 @@
           {{ site.description }}
         </p>
       </div>
-      <div v-if="site.systemBadge">
+
+      <div
+        class="toolbar"
+        style="clear:both"
+      >
         <Icon
+          v-if="site.systemBadge"
           :name="site.systemBadge + '-logo'"
           class="systemBadge"
         />
+        <div class="spacer" />
+        <div class="caption">
+          {{ toDisplayString(site.lastUpdate || null) }}
+        </div>
       </div>
     </Card>
   </div>
@@ -42,7 +47,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Card from '@/components/layout/Card.vue'
-import { fireStoreURL } from '@/utils/firebaseTools'
+import { fireStoreURL, toDisplayString } from '@/utils/firebaseTools'
 import Icon from '../material/Icon.vue'
 import { useSites } from '@/state/sites'
 
@@ -55,7 +60,7 @@ export default defineComponent({
   setup () {
     const { publicSites } = useSites()
 
-    return { publicSites, fireStoreURL }
+    return { publicSites, fireStoreURL, toDisplayString }
   }
 })
 </script>
@@ -92,7 +97,6 @@ div.siteCard
   flex-grow: 0
   flex-shrink: 0
   .description
-    max-height: 72px
     overflow: hidden
     padding-top:8px
     padding-bottom: 8px
@@ -103,14 +107,19 @@ div.siteCard
     a
       color: var(--chroma-secondary-a)
   .poster
+    //height: 128px
+    // width: calc(100% + 32px)
+    // margin: -16px
+    // margin-bottom: -28px
+    // background-size: cover
+    background-position: center
     height: 72px
     width: 72px
-    position: absolute
-    top: 16px
-    right: 16px
+    float: right
     border-radius: 36px
     background-size: cover
     box-shadow: 0px 0px 14px 0px rgba(0, 121, 107, 0.7)
+    margin: 0
   .splash
     height: 320px
     width: 480px
