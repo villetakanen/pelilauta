@@ -101,7 +101,12 @@
     <img
       v-else-if="name === 'mekanismi' && color === 'dark'"
       src="@/assets/icons/dark/mekanismi-icon.svg"
-      alt="add"
+      alt="mekanismi icon"
+    >
+    <img
+      v-else-if="name === 'mekanismi' || name === 'mekanismi-logo'"
+      src="@/assets/icons/mekanismi-icon.svg"
+      alt="mekanismi icon"
     >
     <img
       v-else-if="name === 'site' && color === 'dark'"
