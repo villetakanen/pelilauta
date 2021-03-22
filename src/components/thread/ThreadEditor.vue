@@ -34,10 +34,10 @@
         <Toggle v-if="false" :label="$t('thread.pushToStream')" />
         <div class="spacer" />
         <MaterialSelect
-          v-if="false"
           class="field"
-          :opts="topicOpts"
+          :opts="siteList"
           label="Site / Game"
+          v-model="threadSite"
         />
       </div>
     </transition>
@@ -85,6 +85,7 @@ import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import Toggle from '../material/Toggle.vue'
+import { useSites } from '@/state/sites'
 /**
  * An editor form for Thread data.
  */
@@ -186,6 +187,7 @@ export default defineComponent({
       if (localTitle.value) updatedThread.data.title = localTitle.value
       if (threadTopic.value) updatedThread.data.topic = threadTopic.value
       if (localSticky.value !== null) updatedThread.data.sticky = localSticky.value
+      if (threadSite.value !== null) updatedThread.site = threadSite.value
       return updateThread(uid.value, updatedThread).then(() => {
         pushSnack(i18n.t('threads.updateSuccess'))
         router.push(`/thread/${props.thread.id}/view`)
@@ -194,7 +196,20 @@ export default defineComponent({
         console.debug(error)
       })
     }
-    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky }
+
+    const threadSite:Ref<string|null> = ref(null)
+    const { allSites } = useSites()
+    const mySites = computed(() => (allSites.value.filter((val) => (Array.isArray(val.owners)) && val.owners.includes(uid.value))))
+    const siteList = computed(() => {
+      const list = [{ key: '-', value: '-' }]
+      list.pop()
+      mySites.value.forEach((site) => {
+        list.push({ key: site.id, value: site.name })
+      })
+      return list
+    })
+
+    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky, siteList, threadSite }
   }
 })
 </script>

@@ -14,6 +14,14 @@
           {{ thread.data.title }}
         </router-link>
       </h1>
+      <p
+        v-if="site"
+        class="subtitle"
+      >
+        <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
+          {{ site.name }}
+        </router-link>
+      </p>
       <p class="contentSnippet">
         {{ snippet }}
       </p>
@@ -90,6 +98,7 @@ import Card from '../layout/Card.vue'
 import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import Pill from '../material/Pill.vue'
+import { useSites } from '@/state/sites'
 /**
  * A simple welcome card for anonymous visitors
  */
@@ -149,7 +158,14 @@ export default defineComponent({
         })
       }
     }
-    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves }
+
+    const { allSites } = useSites()
+    const site = computed(() => {
+      if (!props.thread.site) return undefined
+      return allSites.value.find((site) => (site.id === props.thread.site))
+    })
+
+    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves, site }
   }
 })
 </script>
@@ -161,6 +177,15 @@ div.threadCard
   color: var(--chroma-secondary-c)
   margin: 0
   margin-bottom: 8px
+  p.subtitle
+    @include TypeButton()
+    margin-bottom: 8px
+    background-color: var(--chroma-primary-i)
+    display: inline-block
+    padding: 0 10px
+    border-radius: 12px
+    a
+      color: var(--chroma-primary-c)
   a
     text-decoration: none
     color: var(--chroma-primary-c)

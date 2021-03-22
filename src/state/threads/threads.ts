@@ -20,15 +20,16 @@ export interface PostData {
 
 export interface Thread {
     // Identity
-    id: string;
-    author: string;
+    id: string
+    author: string
     // Timestamps
-    created: firebase.firestore.Timestamp|null;
-    flowTime: firebase.firestore.Timestamp|null;
-    updated: firebase.firestore.Timestamp|null;
+    created: firebase.firestore.Timestamp|null
+    flowTime: firebase.firestore.Timestamp|null
+    updated: firebase.firestore.Timestamp|null
     // Meta
-    replyCount: number;
-    lovedCount: number;
+    replyCount: number
+    lovedCount: number
+    site?: string // this is a wikisite slug
     // Payload
     data: PostData
 }
@@ -67,6 +68,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
     replyCount: data.replyCount,
     lovedCount: data.lovedCount,
     updated: data.updated,
+    site: data.site || '',
     data: {
       content: data.content,
       topic: data.topic,
@@ -137,6 +139,30 @@ async function fetchTopic (topic: string) {
   }
 }
 
+const localSiteThreads = ref(new Array<Thread>())
+const siteThreads = computed(() => (localSiteThreads.value))
+
+/**
+ * fetches the posts for a site
+ *
+ * @param siteid slug of a site
+ */
+export async function fetchSite (siteid: string): Promise<void> {
+  console.debug('fetchSite', siteid)
+  const db = firebase.firestore()
+  const siteRef = db.collection('stream').where('site', '==', siteid).orderBy('flowTime', 'desc')
+  try {
+    const siteDocs = await siteRef.get()
+    console.debug('fetchSite', siteDocs, siteid)
+    localSiteThreads.value = new Array<Thread>()
+    siteDocs.forEach((siteDocs) => {
+      localSiteThreads.value.push(toThread(siteDocs.id, siteDocs.data()))
+    })
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
 export async function createThread (actor: string, data:PostData): Promise<string> {
   firebase.analytics().logEvent('createThread', { author: actor })
   const db = firebase.firestore()
@@ -156,11 +182,17 @@ export async function createThread (actor: string, data:PostData): Promise<strin
 export async function updateThread (actor: string, post:Thread): Promise<string> {
   if (!post.id) throw new Error('can not update thread without an id')
   firebase.analytics().logEvent('updateThread', { author: actor })
+  console.debug('updateThread', post)
   const db = firebase.firestore()
   const postRef = db.collection('stream').doc(post.id)
   return postRef.update({
     editor: actor,
     ...post.data,
+    title: post.data.title || '',
+    images: post.data.images || null,
+    content: post.data.content || '',
+    sticky: post.data.sticky || false,
+    site: post.site || '',
     editTime: firebase.firestore.FieldValue.serverTimestamp()
   }).then(() => {
     return post.id
@@ -198,8 +230,9 @@ export async function deleteThread (actor: string, threadid: string): Promise<vo
 export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
     pinnedThreads: ComputedRef<Thread[]>
+    siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread> } {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads }
+  return { stream, thread, pinnedThreads, siteThreads }
 }
