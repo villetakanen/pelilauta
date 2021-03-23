@@ -4,177 +4,15 @@
     :class="{ xSmall: xSmall }"
   >
     <img
-      v-if="name === 'add' && color !== 'dark'"
-      src="@/assets/icons/add.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'add' && color === 'dark'"
-      src="@/assets/icons/dark/add.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'attachments'"
-      src="@/assets/icons/attachments.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'chevron-left'"
-      src="@/assets/icons/chevron-left.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'equalizer'"
-      src="@/assets/icons/equalizer.svg"
-      alt="settings"
-    >
-    <img
-      v-else-if="name === 'filter'"
-      src="@/assets/icons/filter.svg"
-      alt="filter"
-    >
-    <img
-      v-else-if="name === 'site-settings'"
-      src="@/assets/icons/site-settings.svg"
-      alt="site settings"
-    >
-    <img
-      v-else-if="name === 'admin' && color === 'dark'"
-      src="@/assets/icons/dark/admin.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'admin'"
-      src="@/assets/icons/admin.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'hidden'"
-      src="@/assets/icons/hidden.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'players'"
-      src="@/assets/icons/players.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'pathfinder-logo'"
-      src="@/assets/icons/pathfinder-logo.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'books'"
-      src="@/assets/icons/books.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'dd-logo'"
-      src="@/assets/icons/dd-logo.svg"
-      alt="Dungeons and Dragons logo"
-    >
-    <img
-      v-else-if="name === 'quick-logo'"
-      src="@/assets/icons/quick-logo.svg"
-      alt="The Quick logo"
-    >
-    <img
-      v-else-if="name === 'homebrew-logo'"
-      src="@/assets/icons/homebrew-logo.svg"
-      alt="The Quick logo"
-    >
-    <img
-      v-else-if="name === 'forum' && color === 'dark'"
-      src="@/assets/icons/dark/forum.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'forum'"
-      src="@/assets/icons/forum.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'send' && color === 'dark'"
-      src="@/assets/icons/dark/send.svg"
-      alt="new"
-    >
-    <img
-      v-else-if="name === 'send'"
-      src="@/assets/icons/send.svg"
-      alt="new"
-    >
-    <img
-      v-else-if="name === 'mekanismi' && color === 'dark'"
-      src="@/assets/icons/dark/mekanismi-icon.svg"
-      alt="mekanismi icon"
-    >
-    <img
-      v-else-if="name === 'mekanismi' || name === 'mekanismi-logo'"
-      src="@/assets/icons/mekanismi-icon.svg"
-      alt="mekanismi icon"
-    >
-    <img
-      v-else-if="name === 'site' && color === 'dark'"
-      src="@/assets/icons/dark/site.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'avatar' && color === 'dark'"
-      src="@/assets/icons/dark/avatar.svg"
-      alt="avatar"
-    >
-    <img
-      v-else-if="name === 'avatar'"
-      src="@/assets/icons/avatar.svg"
-      alt="avatar"
-    >
-    <img
-      v-else-if="name === 'd6' && color === 'dark'"
-      src="@/assets/icons/dark/d6.svg"
-      alt="d6"
-    >
-    <img
-      v-else-if="name === 'd6'"
-      src="@/assets/icons/d6.svg"
-      alt="d6"
-    >
-    <img
-      v-else-if="name === 'remove'"
-      src="@/assets/icons/add.svg"
-      style="transform: rotate(42deg)"
-      alt="remove"
-    >
-    <img
-      v-else-if="name === 'close' && color === 'dark'"
-      src="@/assets/icons/dark/close.svg"
-      alt="add"
-    >
-    <img
-      v-else-if="name === 'edit'"
-      src="@/assets/icons/edit.svg"
-      alt="edit"
-    >
-    <img
-      v-else-if="name === 'share'"
-      src="@/assets/icons/share.svg"
-      alt="share"
-    >
-    <!-- default icons -->
-    <img
-      v-else-if="color === 'dark'"
-      src="@/assets/icons/dark/d12.svg"
-      alt="d12"
-    >
-    <img
-      v-else
-      src="@/assets/icons/d12-black.svg"
-      alt="d12"
+      ref="icon"
+      :src="sourcePath"
+      :alt="name"
     >
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 
 export default defineComponent({
   props: {
@@ -192,7 +30,41 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    dark: {
+      type: Boolean,
+      required: false,
+      default: false
     }
+  },
+  setup (props) {
+    const icons = ref(new Map<string, Array<string>>())
+
+    icons.value.set('avatar', [
+      require('@/assets/icons/light/avatar.svg'),
+      require('@/assets/icons/dark/avatar.svg')
+    ])
+    icons.value.set('filter', [
+      require('@/assets/icons/light/filter.svg'),
+      require('@/assets/icons/dark/filter.svg')
+    ])
+    icons.value.set('forum', [
+      require('@/assets/icons/light/forum.svg'),
+      require('@/assets/icons/dark/forum.svg')
+    ])
+    icons.value.set('mekanismi', [
+      require('@/assets/icons/light/mekanismi.svg'),
+      require('@/assets/icons/dark/mekanismi.svg')
+    ])
+
+    const sourcePath = computed(() => {
+      const srcs = icons.value.get(props.name)
+      if (Array.isArray(srcs) && srcs.length === 2) return props.dark ? srcs[1] : srcs[0]
+      console.debug('Missing icon', props.name, props.dark ? 'dark' : 'light')
+      return require('@/assets/icons/light/d12.svg')
+    })
+
+    return { sourcePath }
   }
 })
 </script>

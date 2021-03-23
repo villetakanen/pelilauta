@@ -3,7 +3,7 @@
     <img
       class="logo"
       :alt="$t('wiki.title')"
-      src="@/assets/icons/dark/mekanismi-icon.svg"
+      src="@/assets/icons/dark/mekanismi.svg"
     >
     <h1>{{ $t('wiki.changesCard.title') }}</h1>
     <WikiChangesItem
