@@ -9,7 +9,7 @@
         <transition name="fade">
           <div v-if="site.name && page.name">
             <div
-              class="contentBox wikiPageContainer"
+              class="contentBox wikiPageContainer richText"
               :innerHTML="renderWikiLinks(site.id, page.htmlContent)"
             />
           </div>
