@@ -39,20 +39,29 @@ export default defineComponent({
   },
   setup (props) {
     const icons = ref(new Map<string, Array<string>>())
+    const slugs = [
+      'add',
+      'avatar',
+      'dd-logo',
+      'filter',
+      'forum',
+      'books',
+      'mekanismi',
+      'send'
+    ]
 
-    icons.value.set('avatar', [
-      require('@/assets/icons/light/avatar.svg'),
-      require('@/assets/icons/dark/avatar.svg')
-    ])
-    icons.value.set('filter', [
-      require('@/assets/icons/light/filter.svg'),
-      require('@/assets/icons/dark/filter.svg')
-    ])
-    icons.value.set('forum', [
-      require('@/assets/icons/light/forum.svg'),
-      require('@/assets/icons/dark/forum.svg')
-    ])
-    icons.value.set('mekanismi', [
+    function addIcon (slug: string) {
+      icons.value.set(slug, [
+        require('@/assets/icons/light/' + slug + '.svg'),
+        require('@/assets/icons/dark/' + slug + '.svg')
+      ])
+    }
+
+    // Direct requires
+    slugs.forEach((slug) => { addIcon(slug) })
+
+    // Redirects
+    icons.value.set('mekanismi-logo', [
       require('@/assets/icons/light/mekanismi.svg'),
       require('@/assets/icons/dark/mekanismi.svg')
     ])
