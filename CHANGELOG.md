@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.27.0](https://github.com/villetakanen/pelilauta/compare/v7.26.1...v7.27.0) (2021-03-23)
+
+
+### Features
+
+* chip component and chips to site filters ([de078a3](https://github.com/villetakanen/pelilauta/commit/de078a3a0c38eb10079e6bc1a09374aaf98a4cd1))
+* site list toolbar now has a filter toolbar ([7e5b855](https://github.com/villetakanen/pelilauta/commit/7e5b85501602a6c57e7f6bfa3e6e634ca5a6a089))
+
+
+### Bug Fixes
+
+* filter icon ([fe1861f](https://github.com/villetakanen/pelilauta/commit/fe1861fc952d2b7fc5ac82b95cfb7c73b9005ade))
+* mobile page editor top-fields ux polish ([45a619a](https://github.com/villetakanen/pelilauta/commit/45a619a931846d47d68eee8e275922c63181be03))
+* ux polish and v-model jumping for site filter ([39d76a6](https://github.com/villetakanen/pelilauta/commit/39d76a6c6992e62a34718bdac7b084068decca1b))
+
 ### [7.26.1](https://github.com/villetakanen/pelilauta/compare/v7.26.0...v7.26.1) (2021-03-23)
 
 
