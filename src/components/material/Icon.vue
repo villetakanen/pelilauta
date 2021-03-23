@@ -220,6 +220,12 @@ export default defineComponent({
     height: 20px
     width: 20px
 
+.chipIcon
+  img
+    height: 16px
+    width: 16px
+    margin: 2px
+
 .material-pill
   .icon-container
     .icon

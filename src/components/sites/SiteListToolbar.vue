@@ -24,12 +24,35 @@
         <span class="hideOnMobile">{{ $t('site.filterSites') }}</span>
       </Action>
     </Toolbar>
-    <Toolbar v-if="filterToggle">
-      <p>{{ $t('site.filterSites') }}</p>
-      <Pill
-        prepend-icon="dd-logo"
-        label="D&D"
-      />
+    <Toolbar v-if="filterToggle" style="height: auto">
+      <h4 class="hideOnMobile">{{ $t('site.filterSites') }}</h4>
+      <div class="spacer" />
+      <div>
+        <Chip
+          label="Pelilauta / Mekanismi"
+          icon="mekanismi"
+          :secondary="filterTag !== 'site'"
+          @click="filterTag = 'site'"
+        />
+        <Chip
+          label="Dungeons & Dragpons"
+          icon="dd-logo"
+          :secondary="filterTag !== 'dd'"
+          @click="filterTag = 'dd'"
+        />
+        <Chip
+          label="Pathfinder"
+          icon="pathfinder-logo"
+          :secondary="filterTag !== 'pathfinder'"
+          @click="filterTag = 'pathfinder'"
+        />
+        <Chip
+          label="Quick"
+          icon="quick-logo"
+          :secondary="filterTag !== 'quick'"
+          @click="filterTag = 'quick'"
+        />
+      </div>
     </Toolbar>
   </div>
 </template>
@@ -39,14 +62,14 @@ import { useAuthState } from '@/state/authz'
 import { ComputedRef, defineComponent, inject, ref, watch } from 'vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
-import Pill from '../material/Pill.vue'
+import Chip from '../material/Chip.vue'
 
 export default defineComponent({
-  components: { Action, Toolbar, Pill },
+  components: { Action, Toolbar, Chip },
   emits: ['update:filterTag'],
   setup (props, context) {
     const mobile = inject('mobileViewport') as ComputedRef<boolean>
-    const filterToggle = ref(false)
+    const filterToggle = ref(true)
     const filterTag = ref('')
     watch(() => filterTag, (val) => {
       context.emit('update:filterTag', val)
@@ -55,7 +78,7 @@ export default defineComponent({
       filterTag.value = f
     }
     const { isAnonymous } = useAuthState()
-    return { mobile, isAnonymous, filterToggle, setFilter }
+    return { mobile, isAnonymous, filterToggle, setFilter, filterTag }
   }
 })
 </script>

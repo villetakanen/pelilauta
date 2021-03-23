@@ -106,7 +106,8 @@
     },
     "threads":{
       "title": "Discussions"
-    }
+    },
+    "filterSites": "Filter"
   },
   "thread": {
     "stickyToggle": "Sticky",
