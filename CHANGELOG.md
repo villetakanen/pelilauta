@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.27.1](https://github.com/villetakanen/pelilauta/compare/v7.27.0...v7.27.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* removed flashy colors from stream cards ([7d2d23a](https://github.com/villetakanen/pelilauta/commit/7d2d23af3e0eeca7e9f5b42415311590874db9e7))
+
 ## [7.27.0](https://github.com/villetakanen/pelilauta/compare/v7.26.1...v7.27.0) (2021-03-23)
 
 
