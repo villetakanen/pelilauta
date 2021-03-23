@@ -178,14 +178,15 @@ div.threadCard
   margin: 0
   margin-bottom: 8px
   p.subtitle
-    @include TypeButton()
+    @include TypeBody1()
     margin-bottom: 8px
-    background-color: var(--chroma-primary-i)
+    background-color: var(--chroma-secondary-i)
     display: inline-block
-    padding: 0 10px
-    border-radius: 12px
+    margin-top: 0px
+    padding: 0 8px
+    // border-radius: 12px
     a
-      color: var(--chroma-primary-c)
+      color: var(--chroma-secondary-b)
   a
     text-decoration: none
     color: var(--chroma-primary-c)
