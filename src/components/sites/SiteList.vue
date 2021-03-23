@@ -45,11 +45,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, ComputedRef, defineComponent } from 'vue'
 import Card from '@/components/layout/Card.vue'
 import { fireStoreURL, toDisplayString } from '@/utils/firebaseTools'
 import Icon from '../material/Icon.vue'
 import { useSites } from '@/state/sites'
+import { Site } from '@/state/site'
 
 export default defineComponent({
   name: 'SiteList',
@@ -57,8 +58,22 @@ export default defineComponent({
     Card,
     Icon
   },
-  setup () {
-    const { publicSites } = useSites()
+  props: {
+    filter: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
+  setup (props) {
+    const { publicSites: unfilteredSites } = useSites()
+
+    const publicSites:ComputedRef<Array<Site>> = computed(() => {
+      if (props.filter) {
+        return unfilteredSites.value.filter((site) => (site.systemBadge === props.filter)) || new Array<Site>()
+      }
+      return unfilteredSites.value
+    })
 
     return { publicSites, fireStoreURL, toDisplayString }
   }

@@ -26,12 +26,17 @@
     <img
       v-else-if="name === 'equalizer'"
       src="@/assets/icons/equalizer.svg"
-      alt="add"
+      alt="settings"
+    >
+    <img
+      v-else-if="name === 'filter'"
+      src="@/assets/icons/filter.svg"
+      alt="filter"
     >
     <img
       v-else-if="name === 'site-settings'"
       src="@/assets/icons/site-settings.svg"
-      alt="add"
+      alt="site settings"
     >
     <img
       v-else-if="name === 'admin' && color === 'dark'"
@@ -214,6 +219,12 @@ export default defineComponent({
   img
     height: 20px
     width: 20px
+
+.chipIcon
+  img
+    height: 16px
+    width: 16px
+    margin: 2px
 
 .material-pill
   .icon-container

@@ -53,7 +53,8 @@
     },
     "threads":{
       "title": "Keskustelu"
-    }
+    },
+    "filterSites": "Suodata"
   },
   "stream": {
     "title": "Pelilauta",

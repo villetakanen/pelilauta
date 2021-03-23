@@ -2,18 +2,15 @@
   <div class="editPage">
     <SiteToolbar />
     <div class="contentGrid">
-      <MaterialCard>
-        <PageEditor
-          :page="page"
-          :site="site"
-        />
-      </MaterialCard>
+      <PageEditor
+        :page="page"
+        :site="site"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import PageEditor from '@/components/wikipage/PageEditor.vue'
 import { usePages, useSite } from '@/state/site'
@@ -31,7 +28,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'EditPage',
   components: {
-    MaterialCard,
     PageEditor,
     SiteToolbar
   },

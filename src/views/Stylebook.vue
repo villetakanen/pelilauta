@@ -291,12 +291,25 @@
           error
           :opts="[{ key: 'a', value: 'this value is erroneous'}]"
         />
+
+        <h2>Chips</h2>
+        <Chip label="A Chip!" />
+        <Chip
+          icon="dd-logo"
+          label="With an icon!"
+        />
+        <Chip
+          icon="quick-logo"
+          label="Secondary colors"
+          secondary
+        />
       </div>
 
       <!-- icons -->
       <div class="section">
         <Icon name="equalizer" />
         <Icon name="players" />
+        <Icon name="filter" />
       </div>
 
       <div class="section">
@@ -375,6 +388,7 @@ import Action from '@/components/material/Action.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
 import Card from '@/components/layout/Card.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
+import Chip from '@/components/material/Chip.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -391,7 +405,8 @@ export default defineComponent({
     Action,
     AdminActions,
     Card,
-    MaterialSelect
+    MaterialSelect,
+    Chip
   },
   setup () {
     function sendSnack () {
