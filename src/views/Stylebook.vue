@@ -297,6 +297,7 @@
       <div class="section">
         <Icon name="equalizer" />
         <Icon name="players" />
+        <Icon name="filter" />
       </div>
 
       <div class="section">
