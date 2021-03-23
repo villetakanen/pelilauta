@@ -11,11 +11,13 @@
           header
           :label="$t('wiki.page.name')"
           :error="v.pageName.$error"
+          class="pageName"
         />
         <MaterialSelect
           v-model="formCategory"
           :opts="opts"
           :label="$t('wiki.page.category')"
+          class="pageCategory"
         />
         <MaterialButton
           id="pageEditorToggleEditorButton"
@@ -66,6 +68,7 @@
         <QuillEditor
           v-model="pageContent"
           toolbar
+          class="pageContent"
         />
       </div>
       <!-- Editor actions -->
@@ -225,6 +228,7 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/include-media.scss
 
 .editor
   border-top: solid 1px var(--color-fill-primary)
@@ -235,4 +239,18 @@ export default defineComponent({
     margin: 0
   div+div
     margin: 0 8px
+
+@include media('<tablet')
+  .pageHeader
+    flex-direction: row
+    flex-wrap: wrap
+    align-items: flex-start
+    .pageName
+      width: calc(100vw - 16px)
+      margin-bottom: 8px
+    .pageCategory
+      margin: 0
+    margin-bottom: 0
+  .pageContent
+    min-height: 128px
 </style>
