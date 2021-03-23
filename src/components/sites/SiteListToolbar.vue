@@ -31,26 +31,32 @@
         <Chip
           label="Pelilauta / Mekanismi"
           icon="mekanismi"
-          :secondary="filterTag !== 'site'"
-          @click="filterTag = 'site'"
+          :secondary="filterTag !== 'mekanismi'"
+          @click="setFilter('mekanismi')"
         />
         <Chip
           label="Dungeons & Dragpons"
           icon="dd-logo"
           :secondary="filterTag !== 'dd'"
-          @click="filterTag = 'dd'"
+          @click="setFilter('dd')"
         />
         <Chip
           label="Pathfinder"
           icon="pathfinder-logo"
           :secondary="filterTag !== 'pathfinder'"
-          @click="filterTag = 'pathfinder'"
+          @click="setFilter('pathfinder')"
         />
         <Chip
           label="Quick"
           icon="quick-logo"
           :secondary="filterTag !== 'quick'"
-          @click="filterTag = 'quick'"
+          @click="setFilter('quick')"
+        />
+        <Chip
+          label="Homebrew"
+          icon="homebrew-logo"
+          :secondary="filterTag !== 'homebrew'"
+          @click="setFilter('homebrew')"
         />
       </div>
     </Toolbar>
@@ -59,23 +65,30 @@
 
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
-import { ComputedRef, defineComponent, inject, ref, watch } from 'vue'
+import { ComputedRef, defineComponent, inject, ref } from 'vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
 import Chip from '../material/Chip.vue'
 
 export default defineComponent({
   components: { Action, Toolbar, Chip },
+  props: {
+    filter: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
   emits: ['update:filterTag'],
   setup (props, context) {
     const mobile = inject('mobileViewport') as ComputedRef<boolean>
-    const filterToggle = ref(true)
-    const filterTag = ref('')
-    watch(() => filterTag, (val) => {
-      context.emit('update:filterTag', val)
-    })
+    const filterToggle = ref(false)
+    const filterTag = ref(props.filter)
+
     const setFilter = (f:string) => {
-      filterTag.value = f
+      if (filterTag.value === f) filterTag.value = ''
+      else filterTag.value = f
+      context.emit('update:filterTag', filterTag.value)
     }
     const { isAnonymous } = useAuthState()
     return { mobile, isAnonymous, filterToggle, setFilter, filterTag }
