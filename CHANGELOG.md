@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.26.1](https://github.com/villetakanen/pelilauta/compare/v7.26.0...v7.26.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* wikipages and editor now use rich text sass ([48ea7cc](https://github.com/villetakanen/pelilauta/commit/48ea7cc4bf91c96800f5fb2f5cae83d6d626171b))
+
 ## [7.26.0](https://github.com/villetakanen/pelilauta/compare/v7.25.7...v7.26.0) (2021-03-22)
 
 
