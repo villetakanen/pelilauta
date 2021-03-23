@@ -1,0 +1,36 @@
+// ***
+//  This file contains styles for any components containing ritch text from, or in the
+//  ritch text editor.
+//
+//  The file is included by base.sass - and should not be included by the components themselves.
+// ***
+@import include-media.scss
+@import material-typography.sass
+// note: 1rem === 24px from the typography PoV
+
+// Base styles, Mobile First. Overwritten with include-media where needed
+.richText, .richText .ql-editor
+  h1
+    @include TypeHeadline3()
+    color: var(--chroma-secondary-e)
+  h2
+    @include TypeHeadline4()
+    color: var(--chroma-secondary-d)
+  h3
+    @include TypeHeadline5()
+    color: var(--chroma-secondary-a)
+  h4
+    @include TypeHeadline6()
+    color: var(--chroma-secondary-a)
+  h1, h2, h3, h4, p, li, ul, ol
+    margin: 0
+    padding: 0
+  ol, ul
+    margin-left: 32px
+    margin-top: 12px
+    margin-bottom: 12px
+  h1+p, h2+p, h3+p, h4+p, p+p,
+  p+h2, p+h3, p+h4
+    margin-top: 24px
+
+  

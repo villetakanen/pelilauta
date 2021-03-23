@@ -2,6 +2,7 @@
   <div
     v-once
     id="editor"
+    class="richText"
     :innerHTML="modelValue"
   />
 </template>
@@ -129,11 +130,5 @@ export default defineComponent({
   overflow: scroll
   .ql-editor
     padding: 8px
-    h1, h2, h3, h4
-     font-size: 24px
-    p
-      @include TypeBody2()
-    p, h1, h2, h3, h4
-      margin-bottom: 12px
 
 </style>
