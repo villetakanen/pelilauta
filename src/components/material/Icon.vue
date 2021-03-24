@@ -41,17 +41,24 @@ export default defineComponent({
     const icons = ref(new Map<string, Array<string>>())
     const slugs = [
       'add',
+      'admin',
       'attachments',
       'avatar',
+      'books',
+      'd6',
+      'd12',
+      'd20',
       'dd-logo',
+      'edit',
       'equalizer',
       'filter',
       'forum',
-      'books',
+      'hidden',
       'homebrew-logo',
       'mekanismi',
       'pathfinder-logo',
       'players',
+      'remove',
       'send',
       'share',
       'quick-logo'
@@ -71,6 +78,10 @@ export default defineComponent({
     icons.value.set('mekanismi-logo', [
       require('@/assets/icons/light/mekanismi.svg'),
       require('@/assets/icons/dark/mekanismi.svg')
+    ])
+    icons.value.set('pelilauta', [
+      require('@/assets/icons/light/fox.svg'),
+      require('@/assets/icons/dark/fox.svg')
     ])
 
     const sourcePath = computed(() => {
