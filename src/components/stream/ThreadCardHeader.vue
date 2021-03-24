@@ -16,12 +16,6 @@
     <div>
       <MaterialMenu v-model="menu" />
     </div>
-    <template v-if="editorVisible">
-      <EditorDialog
-        v-model="editorVisible"
-        :thread="thread"
-      />
-    </template>
   </div>
 </template>
 
@@ -34,15 +28,13 @@ import { Thread, deleteThread } from '@/state/threads'
 import { useMeta } from '@/state/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuthState } from '@/state/authz'
-import EditorDialog from '../app/EditorDialog.vue'
 import { getSeconds } from '@/utils/firebaseTools'
 import { MenuItem } from '@/utils/uiInterfaces'
 
 export default defineComponent({
   name: 'ThreadCardHeader',
   components: {
-    MaterialMenu,
-    EditorDialog
+    MaterialMenu
   },
   props: {
     thread: {
@@ -80,10 +72,9 @@ export default defineComponent({
 
     const editorVisible = ref(false)
 
+    // @TODO: add new route
     function edit () {
-      editorVisible.value = true
-      // const { showEditor } = useEditorDialog()
-      // showEditor(props.thread)
+      console.warn('this action is missing reroute to new component')
     }
 
     const copyUrl = () => {
