@@ -1,7 +1,7 @@
 <template>
   <div
     class="icon"
-    :class="{ xSmall: xSmall }"
+    :class="{ xSmall: xSmall, inline: inline, medium: medium }"
   >
     <img
       ref="icon"
@@ -35,11 +35,22 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    medium: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
     const icons = ref(new Map<string, Array<string>>())
     const slugs = [
+      'about',
       'add',
       'addAnImage',
       'admin',
@@ -49,6 +60,7 @@ export default defineComponent({
       'd6',
       'd12',
       'd20',
+      'discussion',
       'dd-logo',
       'edit',
       'equalizer',
@@ -56,10 +68,13 @@ export default defineComponent({
       'forum',
       'hidden',
       'homebrew-logo',
+      'idea',
       'mekanismi',
+      'monsters',
       'pathfinder-logo',
       'players',
       'remove',
+      'report',
       'send',
       'share',
       'quick-logo'
@@ -119,6 +134,32 @@ export default defineComponent({
   img
     height: 20px
     width: 20px
+
+.inline.icon
+  display: inline-block
+  height: 20px
+  width: 20px
+  padding: 2px
+  margin: 0 4px
+  vertical-align: middle
+  img
+    height: 20px
+    width: 20px
+    vertical-align: top
+.inline.icon + .inline.icon
+  margin-left: 0px
+
+.medium
+  display: inline-block
+  height: 36px
+  width: 36px
+  padding: 2px
+  margin: 4px
+  vertical-align: middle
+  img
+    height: 36px
+    width: 36px
+    vertical-align: top
 
 .chipIcon
   img

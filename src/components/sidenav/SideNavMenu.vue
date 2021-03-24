@@ -8,31 +8,12 @@
         :class="{ subtitle: item.sub }"
         @click="routeTo(item.to)"
       >
-        <img
-          v-if="item.icon === 'd12'"
-          src="@/assets/icons/d12-black.svg"
-          alt="d12"
-        >
-        <img
-          v-if="item.icon === 'mekanismi'"
-          src="@/assets/icons/d6-black.svg"
-          alt="mekanismi"
-        >
-        <img
-          v-if="item.icon === 'discussion'"
-          src="@/assets/icons/discussion.svg"
-          alt="discussion"
-        >
-        <img
-          v-if="item.icon === 'monsters'"
-          src="@/assets/themes/monsters.svg"
-          alt="monsters"
-        >
-        <img
-          v-if="item.icon === 'player'"
-          src="@/assets/icons/player.svg"
-          alt="player"
-        >
+        <Icon
+          v-if="item.icon"
+          :name="item.icon"
+          medium
+          class="navItemIcon"
+        />
         {{ item.content || $t('sideNav.' + item.key) }}
         <div
           v-if="item.secondaryContent"
@@ -50,6 +31,7 @@ import { computed, defineComponent, inject } from 'vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/state/meta'
+import Icon from '../material/Icon.vue'
 
 interface NavItem {
   key: string;
@@ -64,6 +46,7 @@ interface NavItem {
 
 export default defineComponent({
   name: 'SideNavMenu',
+  components: { Icon },
   setup () {
     const { isAnonymous } = useAuthState()
     const { isAdmin } = useProfile()
@@ -89,9 +72,9 @@ export default defineComponent({
       // Meta items start
       allNavItems.push({ key: 'meta', sub: true })
       // allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
-      allNavItems.push({ key: 'editorTest', to: '/editortest', admin: true, icon: 'admin' })
-      allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'player' })
-      allNavItems.push({ key: 'about', to: '/mekanismi/view/mekanismi/pelilauta-about', icon: 'd12' })
+      allNavItems.push({ key: 'admin', to: '/admin', admin: true, icon: 'admin' })
+      allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'avatar' })
+      allNavItems.push({ key: 'about', to: '/mekanismi/view/mekanismi/pelilauta-about', icon: 'about' })
       return allNavItems.filter((val) => (
         isAdmin.value ||
         (!isAnonymous.value && val.authz) ||
@@ -114,6 +97,12 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 
+.navItemIcon
+  position: relative
+  background-color: var(--chroma-clear)
+  border-radius: 50%
+  margin-right: 12px
+
 .sideNavMenu
   margin: 0
   padding: 0
@@ -132,7 +121,7 @@ export default defineComponent({
     box-sizing: border-box
     height: 48px
     line-height: 48px
-    padding-left: 16px
+    padding-left: 6px
     position: relative
     div.secondaryContent
       color: var(--chroma-secondary-a)
@@ -144,14 +133,6 @@ export default defineComponent({
       top: 12px
       height: 22px
       line-height: 22px
-    img
-      height: 32px
-      width: 32px
-      padding: 2px
-      background-color: white
-      border-radius: 18px
-      vertical-align: middle
-      margin-right: 8px
     &:hover
       background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
       border-radius: 0 24px 24px 0
@@ -162,7 +143,7 @@ export default defineComponent({
       color: var(--chroma-secondary-g)
       border-bottom: solid 1px var(--chroma-secondary-f)
       margin: 0 16px
-      padding-left: 0
+      padding-left: 8px
       &:hover
         background: none
         border-radius: 0
