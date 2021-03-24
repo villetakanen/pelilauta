@@ -41,13 +41,20 @@ export default defineComponent({
     const icons = ref(new Map<string, Array<string>>())
     const slugs = [
       'add',
+      'attachments',
       'avatar',
       'dd-logo',
+      'equalizer',
       'filter',
       'forum',
       'books',
+      'homebrew-logo',
       'mekanismi',
-      'send'
+      'pathfinder-logo',
+      'players',
+      'send',
+      'share',
+      'quick-logo'
     ]
 
     function addIcon (slug: string) {
