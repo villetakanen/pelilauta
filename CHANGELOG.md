@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.28.2](https://github.com/villetakanen/pelilauta/compare/v7.28.1...v7.28.2) (2021-03-24)
+
+
+### Bug Fixes
+
+* chip visual polish ([f8f7303](https://github.com/villetakanen/pelilauta/commit/f8f7303f284d5977cc53fbe645af0c17254aeb5d))
+* chip visuals ([e36ae2f](https://github.com/villetakanen/pelilauta/commit/e36ae2fc08ba36a790fbeca8f65f7026a44c5cd4))
+
 ### [7.28.1](https://github.com/villetakanen/pelilauta/compare/v7.28.0...v7.28.1) (2021-03-24)
 
 
