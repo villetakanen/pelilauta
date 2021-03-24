@@ -126,6 +126,11 @@ export default defineComponent({
     height: 32px
     width: 32px
 
+.material-button-icon
+  img
+    height: 32px
+    width: 32px
+
 .xSmall
   height: 20px
   width: 20px

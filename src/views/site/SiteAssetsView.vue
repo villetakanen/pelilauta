@@ -19,7 +19,7 @@
               <AttachmentRow
                 v-for="attachment, key in attachments"
                 :key="key"
-                :attachment="attachment[1]"
+                :asset="attachment[1]"
               />
             </div>
           </div>
@@ -37,13 +37,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from 'vue'
+import { defineComponent } from 'vue'
 import { useSite, useFiles } from '@/state/site'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import Loader from '@/components/app/Loader.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
 import AttachFileButton from '@/components/sites/AttachFileButton.vue'
-import AttachmentRow from '@/components/sites/AttachmentRow.vue'
+import AttachmentRow from '@/components/site/assets/AssetListItem.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 
 /**
