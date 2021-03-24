@@ -24,11 +24,6 @@
           alt="mekanismi"
         >
         <img
-          v-if="item.icon === 'd20'"
-          src="@/assets/icons/d20-black.svg"
-          alt="d20"
-        >
-        <img
           v-if="item.icon === 'discussion'"
           src="@/assets/icons/discussion.svg"
           alt="discussion"

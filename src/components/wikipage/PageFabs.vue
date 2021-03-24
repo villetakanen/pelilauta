@@ -8,7 +8,7 @@
       >
         <Icon
           name="mekanismi"
-          color="dark"
+          dark
         />
       </Fab>
       <Fab
@@ -20,7 +20,7 @@
       >
         <Icon
           name="add"
-          color="dark"
+          dark
         />
       </Fab>
       <Fab

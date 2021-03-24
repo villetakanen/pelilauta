@@ -8,14 +8,13 @@
         v-if="!mekanismi"
         name="mekanismi"
         class="absolute"
-        color="dark"
+        dark
       />
       <Icon
         v-else
         dark
         name="forum"
         class="absolute"
-        color="dark"
       />
     </transition>
   </div>
