@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.28.0](https://github.com/villetakanen/pelilauta/compare/v7.27.1...v7.28.0) (2021-03-24)
+
+
+### Features
+
+* refactored icon wrapper. might break icons ([648dbd6](https://github.com/villetakanen/pelilauta/commit/648dbd60cb301d0f8c2d9f36438bc41c53d79978))
+
+
+### Bug Fixes
+
+* added more icons, and code polish ([254c58f](https://github.com/villetakanen/pelilauta/commit/254c58f5bffb3575567b3f954aeac22b2196d981))
+* rest of the icons updated ([b3129ae](https://github.com/villetakanen/pelilauta/commit/b3129ae7d5abafe0f7f1ee9c8df9d4f9cd0e8a6c))
+* wiki page icons ([d2ce776](https://github.com/villetakanen/pelilauta/commit/d2ce776e30b1524685bee4e53a872128c8138aab))
+
 ### [7.27.1](https://github.com/villetakanen/pelilauta/compare/v7.27.0...v7.27.1) (2021-03-23)
 
 
