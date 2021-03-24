@@ -40,27 +40,31 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
 .chip
-  @include TypeCaption()
-  background-color: var(--chroma-primary-h)
-  height: 22px
-  margin: 1px
-  line-height: 16px
+  @include TypeBody2()
+  background-color: var(--chroma-primary-i)
+  color: var(--chroma-primary-b)
+  height: 32px
+  margin: 8px 0px
+  line-height: 28px
   display: inline-block
   box-sizing: border-box
   padding: 2px 11px
-  border-radius: 11px
+  border-radius: 16px
   position: relative
   .chipIcon
     display: inline-block
     margin: 0
     padding: 0
-    background-color: var(--chroma-secondary-h)
-    border-radius: 11px
+    background-color: var(--chroma-primary-h)
+    border-radius: 16px
     margin-top: -2px
-    margin-left: -11px
+    margin-left: -9px
     margin-right: 4px
   &.secondaryColors
-    background-color: var(--chroma-secondary-i)
+    background-color: var(--chroma-secondary-h)
+    color: var(--chroma-secondary-c)
     .chipIcon
-      background-color: var(--chroma-secondary-h)
+      background-color: var(--chroma-secondary-i)
+.chip+.chip
+  margin-left: 8px
 </style>
