@@ -57,7 +57,7 @@ export default defineComponent({
     padding: 0
     background-color: var(--chroma-primary-h)
     border-radius: 16px
-    margin-top: -1px
+    margin-top: -2px
     margin-left: -9px
     margin-right: 4px
   &.secondaryColors
