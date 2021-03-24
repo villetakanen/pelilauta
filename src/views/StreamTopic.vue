@@ -72,15 +72,9 @@ export default defineComponent({
       return streams.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
     })
 
-    const showEditorDialog = ref(false)
-
-    const newThread = () => {
-      showEditorDialog.value = true
-    }
-
     const { isAnonymous } = useAuthState()
 
-    return { stream, routeTopic, newThread, showEditorDialog, isAnonymous }
+    return { stream, routeTopic, isAnonymous }
   }
 })
 </script>
