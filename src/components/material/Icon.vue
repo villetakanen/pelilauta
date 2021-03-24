@@ -162,10 +162,13 @@ export default defineComponent({
     vertical-align: top
 
 .chipIcon
+  height: 28px
+  width: 28px
+  margin: 2px
   img
-    height: 16px
-    width: 16px
-    margin: 2px
+    height: 28px
+    width: 28px
+    margin: 0px
 
 .material-pill
   .icon-container
