@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.28.1](https://github.com/villetakanen/pelilauta/compare/v7.28.0...v7.28.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* added missing storage imports ([c972891](https://github.com/villetakanen/pelilauta/commit/c972891aae6ad0112e7870139926353dd4f08aa9))
+* removed deprecated iconography ([548c7d1](https://github.com/villetakanen/pelilauta/commit/548c7d1ab7655f46c0492f0139ffc98a60db3d24))
+* removed the deprecated editordialog ([5192c15](https://github.com/villetakanen/pelilauta/commit/5192c1556b137b1b88086497766142a9dd9442be))
+* sidenav icons cleared ([3c3ec10](https://github.com/villetakanen/pelilauta/commit/3c3ec102bf2e84e84d244fbdbd5e60750c32a559))
+
 ## [7.28.0](https://github.com/villetakanen/pelilauta/compare/v7.27.1...v7.28.0) (2021-03-24)
 
 
