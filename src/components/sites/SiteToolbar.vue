@@ -14,7 +14,7 @@
     </Action>
     <Action
       prepend="attachments"
-      :to="`/mekanismi/attachments/${site.id}/`"
+      :to="`/site/attachments/${site.id}/`"
     >
       <span class="hideOnMobile">{{ $t('mekanismi.attachments.title') }}</span>
     </Action>
