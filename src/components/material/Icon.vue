@@ -41,6 +41,7 @@ export default defineComponent({
     const icons = ref(new Map<string, Array<string>>())
     const slugs = [
       'add',
+      'addAnImage',
       'admin',
       'attachments',
       'avatar',

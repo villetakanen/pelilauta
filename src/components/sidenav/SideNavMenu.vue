@@ -9,11 +9,6 @@
         @click="routeTo(item.to)"
       >
         <img
-          v-if="item.icon === 'admin'"
-          src="@/assets/icons/action-admin.svg"
-          alt="admin"
-        >
-        <img
           v-if="item.icon === 'd12'"
           src="@/assets/icons/d12-black.svg"
           alt="d12"
