@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="siteAssetsView viewFull">
     <SiteToolbar />
     <transition name="fade">
       <div
@@ -46,8 +46,16 @@ import AttachFileButton from '@/components/sites/AttachFileButton.vue'
 import AttachmentRow from '@/components/sites/AttachmentRow.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 
+/**
+ * A Router view for a asset management screen of a site
+ *
+ * Loads all the required State entities, and initiates the required Firebase
+ * subscriptions.
+ * @TODO Does not contain any functionality aside from state management and component
+ * import/layout
+ */
 export default defineComponent({
-  name: 'WikiIndex',
+  name: 'SiteAssetsView',
   components: {
     MaterialCard,
     Loader,
@@ -56,18 +64,16 @@ export default defineComponent({
     AttachmentRow,
     SiteToolbar
   },
-  setup () {
-    const { site } = useSite()
+  props: {
+    siteid: {
+      type: String,
+      required: true
+    }
+  },
+  setup (props) {
+    const { site } = useSite(props.siteid)
     const { attachments } = useFiles()
-    provide('site', site)
     return { site, attachments }
   }
 })
 </script>
-
-<style lang="sass" scoped>
-@import @/styles/include-media.scss
-@import @/styles/material-colors.sass
-@import @/styles/material-typography.sass
-
-</style>

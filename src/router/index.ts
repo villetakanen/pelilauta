@@ -152,7 +152,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/site/attachments/:siteid',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/SiteAttachmentsView.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/SiteAssetsView.vue'),
     props: true,
     name: 'mekanismi.attachments'
   },
