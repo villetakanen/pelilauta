@@ -31,7 +31,7 @@
       <Fab
         v-if="crudActions"
         id="addAssetFab"
-        to="/site/add/asset"
+        :to="'/site/add/asset/' + siteid"
         :text="$t('action.add')"
         color="tertiary"
       >
