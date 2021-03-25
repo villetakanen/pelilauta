@@ -7,6 +7,17 @@
     <AppAction />
     <div class="spacer" />
     <Action
+      v-if="!isAnonymous"
+      prepend="avatar"
+      to="/profile"
+    >
+      <span
+        class="hideOnMobile"
+      >
+        {{ $t('sideNav.profile') }}
+      </span>
+    </Action>
+    <Action
       v-if="isAdmin"
       prepend="admin"
       to="/admin"
@@ -40,11 +51,11 @@ export default defineComponent({
     AppModeSwitchAction
   },
   setup () {
-    const { isAdmin } = useAuthState()
+    const { isAdmin, isAnonymous } = useAuthState()
     const mobileViewport = inject('mobileViewport')
     const route = useRoute()
     const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
-    return { isAdmin, mobileViewport, mekanismi }
+    return { isAdmin, mobileViewport, mekanismi, isAnonymous }
   }
 })
 </script>
