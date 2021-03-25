@@ -53,6 +53,7 @@ export default defineComponent({
       'about',
       'add',
       'addAnImage',
+      'addDiscussion',
       'admin',
       'attachments',
       'avatar',
