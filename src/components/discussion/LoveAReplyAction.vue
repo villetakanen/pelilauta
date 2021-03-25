@@ -8,12 +8,14 @@
     <img
       src="@/assets/icons/love/loveIconBase.svg"
       class="baseImage"
+      alt="love"
     >
     <img
       v-if="uid !== authorid && (loves || buttonClasses.submitting)"
       src="@/assets/icons/love/loveIcon.svg"
       :class="{loved: loves}"
       class="loveImage"
+      alt="love"
     >
   </div>
 </template>

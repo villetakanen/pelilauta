@@ -21,10 +21,11 @@
         :class="{ adminAction: item.admin }"
         @click="item.action"
       >
-        <img
+        <Icon
           v-if="item.admin"
-          src="@/assets/admin-black.svg"
-        >
+          name="admin"
+          inline
+        />
         {{ item.text }}
       </li>
     </ul>
@@ -35,8 +36,10 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { MenuItem } from '@/utils/uiInterfaces'
+import Icon from './Icon.vue'
 
 export default defineComponent({
+  components: { Icon },
   props: {
     modelValue: {
       type: Array,

@@ -5,6 +5,7 @@ import 'firebase/analytics'
 import { useMembers } from './members'
 import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
 import { refreshStorage, useFiles } from './attachments'
+import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 
 export interface Site {
   id: string,
@@ -85,6 +86,7 @@ function subscribeTo (id: string): void {
   }
   refreshStorage(id)
   subscribeToPages(id)
+  subscribeToAssets(id)
 
   firebase.analytics().logEvent('Subscribing Site', { id: id })
 
@@ -164,6 +166,7 @@ function useSite (id?: string):
 export {
   // createSite,
   addPage,
+  deletePage,
   fetchPage,
   Page,
   PageFragment,
@@ -175,5 +178,5 @@ export {
   subscribeTo,
   updatePage,
   updateSite,
-  deletePage
+  useAssets
 }

@@ -53,6 +53,7 @@ export default defineComponent({
       'about',
       'add',
       'addAnImage',
+      'addDiscussion',
       'admin',
       'attachments',
       'avatar',
@@ -122,6 +123,11 @@ export default defineComponent({
   vertical-align: middle
 
 .material-action
+  img
+    height: 32px
+    width: 32px
+
+.material-button-icon
   img
     height: 32px
     width: 32px
