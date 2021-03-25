@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.29.1](https://github.com/villetakanen/pelilauta/compare/v7.29.0...v7.29.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* kick ci ([5e94f74](https://github.com/villetakanen/pelilauta/commit/5e94f74a8e5dbc268fb46d4990a596f8b50c8b81))
+
 ## [7.29.0](https://github.com/villetakanen/pelilauta/compare/v7.28.2...v7.29.0) (2021-03-25)
 
 
