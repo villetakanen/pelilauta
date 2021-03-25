@@ -28,7 +28,8 @@
       v-if="toggleInfo"
       class="filedata contentBox"
     >
-      <p>{{ asset.fullPath }}</p>
+      <p>{{ asset.creator }}</p>
+      <p>{{ toDisplayString(asset.lastUpdate) }}</p>
       <p>{{ asset.url }}</p>
     </div>
   </div>
@@ -37,10 +38,11 @@
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
 import { useSite } from '@/state/site'
-import { Attachment } from '@/state/site/attachments'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import MaterialButton from '../../material/MaterialButton.vue'
 import Icon from '@/components/material/Icon.vue'
+import { Asset } from '@/state/site/assets'
+import { toDisplayString } from '@/utils/firebaseTools'
 
 export default defineComponent({
   name: 'AttachmentRow',
@@ -50,7 +52,7 @@ export default defineComponent({
   },
   props: {
     asset: {
-      type: Object as PropType<Attachment>,
+      type: Object as PropType<Asset>,
       required: true
     }
   },
@@ -84,7 +86,7 @@ export default defineComponent({
       })
     } */
 
-    return { crudActions, toggleInfo }
+    return { crudActions, toggleInfo, toDisplayString }
   }
 })
 </script>

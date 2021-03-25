@@ -17,9 +17,9 @@
             </div>
             <div class="attachments">
               <AttachmentRow
-                v-for="attachment, key in attachments"
+                v-for="asset, key in assets"
                 :key="key"
-                :asset="attachment[1]"
+                :asset="asset[1]"
               />
             </div>
           </div>
@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useSite, useFiles } from '@/state/site'
+import { useSite, useAssets } from '@/state/site'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import Loader from '@/components/app/Loader.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
@@ -72,8 +72,8 @@ export default defineComponent({
   },
   setup (props) {
     const { site } = useSite(props.siteid)
-    const { attachments } = useFiles()
-    return { site, attachments }
+    const { assets } = useAssets()
+    return { site, assets }
   }
 })
 </script>
