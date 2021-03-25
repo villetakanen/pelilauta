@@ -28,18 +28,7 @@
       </Card>
     </div>
     <teleport to="#ScreenBottomFloatRight">
-      <Fab
-        v-if="crudActions"
-        id="addAssetFab"
-        :to="'/site/add/asset/' + siteid"
-        :text="$t('action.add')"
-        color="tertiary"
-      >
-        <Icon
-          dark
-          name="addAnImage"
-        />
-      </Fab>
+      <AddAssetFab v-if="crudActions" />
     </teleport>
   </div>
 </template>
@@ -52,9 +41,8 @@ import SideBar from '@/components/wikipage/SideBar.vue'
 import AttachmentRow from '@/components/site/assets/AssetListItem.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import Card from '@/components/layout/Card.vue'
-import Fab from '@/components/material/Fab.vue'
 import { useAuthState } from '@/state/authz'
-import Icon from '@/components/material/Icon.vue'
+import AddAssetFab from '@/components/assets/AddAssetFab.vue'
 
 /**
  * A Router view for a asset management screen of a site
@@ -72,8 +60,7 @@ export default defineComponent({
     AttachmentRow,
     SiteToolbar,
     Card,
-    Fab,
-    Icon
+    AddAssetFab
   },
   props: {
     siteid: {

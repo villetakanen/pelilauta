@@ -54,7 +54,7 @@ async function patchAsset (storageAsset: firebase.storage.Reference): Promise<vo
   })
 }
 
-export async function upload (file:File, uid: string): Promise<void> {
+export async function uploadAsset (file:File, uid: string): Promise<void> {
   const storageRef = firebase.storage().ref()
   const fileRef = storageRef.child(siteid + '/' + file.name)
   const snapshot = fileRef.put(file)
