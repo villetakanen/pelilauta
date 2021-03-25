@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.29.2](https://github.com/villetakanen/pelilauta/compare/v7.29.1...v7.29.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* icon and navbar polish ([106d01e](https://github.com/villetakanen/pelilauta/commit/106d01eaba0a682e4e2fd077f95a4c60d4e544ac))
+
 ### [7.29.1](https://github.com/villetakanen/pelilauta/compare/v7.29.0...v7.29.1) (2021-03-25)
 
 
