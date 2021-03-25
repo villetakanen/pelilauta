@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.29.0](https://github.com/villetakanen/pelilauta/compare/v7.28.2...v7.29.0) (2021-03-25)
+
+
+### Features
+
+* add asset button ([8424cdb](https://github.com/villetakanen/pelilauta/commit/8424cdb743458534af320558c8c9390235ac6f97))
+* add asset fab ([8e31f19](https://github.com/villetakanen/pelilauta/commit/8e31f1929040202f4bffd0580e89b73a6e5d3b74))
+* adding an asset updates state and db ([971efdf](https://github.com/villetakanen/pelilauta/commit/971efdf13ebff16f23b3dc781e5402406b800bca))
+* assets view uses new asset state composable ([e60cb2e](https://github.com/villetakanen/pelilauta/commit/e60cb2ed8384eea3b200fe667c67b0bf343bc212))
+* delete works with new components ([724549d](https://github.com/villetakanen/pelilauta/commit/724549d52f5a984af26b3917b928ab3f701962f0))
+
+
+### Bug Fixes
+
+* add-discussion icon ([ee8c555](https://github.com/villetakanen/pelilauta/commit/ee8c5550902a8b364e85e7b5aa803a88826d4be7))
+* addAssetView for adding assets through upload ([8636814](https://github.com/villetakanen/pelilauta/commit/8636814c615234eeeae67de5784c1cb8b49f86c9))
+* alts to love ([cc1fd2c](https://github.com/villetakanen/pelilauta/commit/cc1fd2c7155b15e574b9d4bd460893187fdd3989))
+* asset cleanups ([2917e4a](https://github.com/villetakanen/pelilauta/commit/2917e4ad6228f4424f7f55d4112f2acdcfea50bd))
+* attachmentlist polish ([b708638](https://github.com/villetakanen/pelilauta/commit/b708638b6241d73d7cd87ea198ed393ece20fca2))
+* refactoring menu icons to use icons ([7058929](https://github.com/villetakanen/pelilauta/commit/70589292e26e72b32c1c39f27a8336fd7fddfa1a))
+* route and filename polish ([9d73713](https://github.com/villetakanen/pelilauta/commit/9d73713b0e2cefc49f1d1f8c607b136dc8ce66b0))
+* view naming fix ([ba3de4c](https://github.com/villetakanen/pelilauta/commit/ba3de4c4f98a7491b604732edf25204e51026340))
+
 ### [7.28.2](https://github.com/villetakanen/pelilauta/compare/v7.28.1...v7.28.2) (2021-03-24)
 
 
