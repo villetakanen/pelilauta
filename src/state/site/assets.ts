@@ -72,6 +72,19 @@ export async function uploadAsset (file:File, uid: string): Promise<void> {
   return patchAsset(storageAsset)
 }
 
+export async function deleteAsset (name: string): Promise<void> {
+  const storageRef = firebase.storage().ref()
+  const fileRef = storageRef.child(siteid + '/' + name)
+  await fileRef.delete()
+
+  const database = firebase.firestore()
+  const firestoreAssetRef = database.collection('sites').doc(siteid).collection('assetMeta').doc(name)
+
+  await firestoreAssetRef.delete()
+
+  siteAssets.value.delete(name)
+}
+
 export async function subscribeTo (id: string): Promise<void> {
   if (siteid === id) return
   siteid = id

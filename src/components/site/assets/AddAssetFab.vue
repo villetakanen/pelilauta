@@ -25,8 +25,8 @@ import { useSnack } from '@/composables/useSnack'
 import { useAuthState } from '@/state/authz'
 import { uploadAsset } from '@/state/site/assets'
 import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
-import Fab from '../material/Fab.vue'
-import Icon from '../material/Icon.vue'
+import Fab from '../../material/Fab.vue'
+import Icon from '../../material/Icon.vue'
 
 export default defineComponent({
   name: 'AddAssetView',

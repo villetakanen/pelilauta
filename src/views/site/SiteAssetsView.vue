@@ -42,7 +42,7 @@ import AttachmentRow from '@/components/site/assets/AssetListItem.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import Card from '@/components/layout/Card.vue'
 import { useAuthState } from '@/state/authz'
-import AddAssetFab from '@/components/assets/AddAssetFab.vue'
+import AddAssetFab from '@/components/site/assets/AddAssetFab.vue'
 
 /**
  * A Router view for a asset management screen of a site

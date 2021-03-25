@@ -1,34 +1,39 @@
 <template>
   <div class="assetListItem">
-    <!-- thumbnail preview of the asset -->
-    <div class="preview">
-      <a :href="asset.url">
-        <img
-          :src="asset.url"
-          alt="click to preview"
+    <div class="assetData">
+      <!-- thumbnail preview of the asset -->
+      <div class="preview">
+        <a :href="asset.url">
+          <img
+            :src="asset.url"
+            alt="click to preview"
+          >
+        </a>
+      </div>
+      <div class="name contentBox">
+        <p>{{ asset.name }}</p>
+      </div>
+      <div class="actions">
+        <MaterialButton
+          icon
+          @click="toggleInfo = !toggleInfo"
         >
-      </a>
-    </div>
-    <div class="name">
-      <h4>{{ asset.name }}</h4>
-    </div>
-    <div class="spacer" />
-    <div class="actions">
-      <MaterialButton icon @click="toggleInfo = !toggleInfo">
-        <Icon name="about" />
-      </MaterialButton>
-      <MaterialButton
-        icon
-        :disabled="!crudActions"
-      >
-        <Icon name="remove" />
-      </MaterialButton>
+          <Icon name="about" />
+        </MaterialButton>
+        <MaterialButton
+          icon
+          :disabled="!crudActions"
+          @click="drop"
+        >
+          <Icon name="remove" />
+        </MaterialButton>
+      </div>
     </div>
     <div
       v-if="toggleInfo"
       class="filedata contentBox"
     >
-      <p>{{ asset.creator }}</p>
+      <p>{{ author }}</p>
       <p>{{ toDisplayString(asset.lastUpdate) }}</p>
       <p>{{ asset.url }}</p>
     </div>
@@ -41,8 +46,10 @@ import { useSite } from '@/state/site'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import MaterialButton from '../../material/MaterialButton.vue'
 import Icon from '@/components/material/Icon.vue'
-import { Asset } from '@/state/site/assets'
+import { Asset, deleteAsset } from '@/state/site/assets'
 import { toDisplayString } from '@/utils/firebaseTools'
+import { useSnack } from '@/composables/useSnack'
+import { useAuthors } from '@/state/authors'
 
 export default defineComponent({
   name: 'AttachmentRow',
@@ -56,8 +63,11 @@ export default defineComponent({
       required: true
     }
   },
-  setup () {
+  setup (props) {
     const toggleInfo = ref(false)
+    const { pushSnack } = useSnack()
+    const { authors } = useAuthors()
+    const author = computed(() => authors.value.find((a) => (a.uid === props.asset.creator))?.nick || '-')
 
     const crudActions = computed(() => {
       const { hasAdmin } = useSite()
@@ -66,27 +76,17 @@ export default defineComponent({
       return hasAdmin(uid.value)
     })
 
-    /* function deleteAttachment () {
-      const storage = firebase.storage()
-      // Create a reference to the file to delete
-      const desertRef = storage.ref().child(props.asset.fullPath)
-
-      // Delete the file
-      desertRef.delete().then(() => {
-        // File deleted successfully
-        const { pushSnack } = useSnack()
-        pushSnack({ topic: 'File deleted', message: 'This can not be undone' })
-        const site = inject('site') as ComputedRef<Site>
-        refreshStorage(site.value.id)
-      }).catch((error: firebase.storage.FirebaseStorageError) => {
-        // Uh-oh, an error occurred!
-        const { pushSnack } = useSnack()
+    async function drop () {
+      try {
+        await deleteAsset(props.asset.name)
+        pushSnack('asset deleted')
+      } catch (error) {
         console.error(error)
-        pushSnack({ topic: 'Error', message: 'This can not be undone', code: error.code })
-      })
-    } */
+        pushSnack('asset deletion failed')
+      }
+    }
 
-    return { crudActions, toggleInfo, toDisplayString }
+    return { crudActions, toggleInfo, toDisplayString, drop, author }
   }
 })
 </script>
@@ -95,24 +95,29 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 
-.assetListItem
+.assetData
   display: flex
-  flex-wrap: wrap
-  .spacer
+  flex-wrap: no-wrap
+  .actions
+    width: 144px
+    flex-shrink: 0
+  .name
     flex-grow: 1
   &:hover
     background-color: var(--chroma-secondary-i)
   .preview
+    flex-shrink: 0
     width: 128px
     margin-right: 8px
     img
       max-width: 128px
-      max-height: 72px
-  .filedata
-    width: 100%
-    margin-bottom: 16px
-    p
-      @include TypeCaption()
-      line-height: 24px
+      max-height: 64px
+      padding: 4px 0
+.filedata
+  width: 100%
+  margin-bottom: 16px
+  p
+    @include TypeCaption()
+    line-height: 24px
 
 </style>
