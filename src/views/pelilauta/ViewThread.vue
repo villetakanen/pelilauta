@@ -15,12 +15,16 @@
       </h2>
       <Discussion :thread="thread" />
     </ThreadBox>
+    <teleport to="#ScreenBottomFloatRight">
+      <FloatingReplyActions />
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
 import AuthorLink from '@/components/author/AuthorLink.vue'
 import Discussion from '@/components/discussion/Discussion.vue'
+import FloatingReplyActions from '@/components/discussion/FloatingReplyActions.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import ThreadBox from '@/components/thread/ThreadBox.vue'
 import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
@@ -42,7 +46,8 @@ export default defineComponent({
     PhotoBox,
     ThreadBoxHeader,
     Discussion,
-    AuthorLink
+    AuthorLink,
+    FloatingReplyActions
   },
   props: {
     threadid: {
