@@ -121,16 +121,34 @@ export default defineComponent({
 .icon
   display: inline-block
   vertical-align: middle
+  height: 96px
+  width: 96px
+  img
+    height: 96px
+    width: 96px
 
 .material-action
+  height: 32px
+  width: 32px
   img
     height: 32px
     width: 32px
 
 .material-button-icon
-  img
+  .icon
     height: 32px
     width: 32px
+    img
+      height: 32px
+      width: 32px
+
+.materialFab
+  .icon
+    height: 56px
+    width: 56px
+    img
+      height: 56px
+      width: 56px
 
 .xSmall
   height: 20px

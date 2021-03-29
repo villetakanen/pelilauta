@@ -1,19 +1,12 @@
 <template>
-  <div>
+  <div class="replyForm">
+    <!-- Show the form only for non-frozen logged in users -->
     <div
       v-if="!isAnonymous"
       class="reply-form"
     >
-      <MaterialButton
-        v-if="!reply"
-        class="addAnImage"
-        icon
-      >
-        <Icon
-          name="addAnImage"
-          dark
-        />
-      </MaterialButton>
+      <AddImageReplyAction class="addAnImage" />
+
       <ReplyEditor
         v-model:content="reply"
         class="box"
@@ -52,6 +45,7 @@ import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 import Fab from '../material/Fab.vue'
 import Icon from '@/components/material/Icon.vue'
+import AddImageReplyAction from './AddImageReplyAction.vue'
 
 export default defineComponent({
   name: 'ReplyForm',
@@ -59,7 +53,8 @@ export default defineComponent({
     MaterialButton,
     ReplyEditor,
     Fab,
-    Icon
+    Icon,
+    AddImageReplyAction
   },
   props: {
     threadid: {
@@ -71,6 +66,7 @@ export default defineComponent({
     const { isAnonymous, uid } = useAuthState()
     const reply = ref('')
     const sending = ref(false)
+    const addImageDialog = ref(true)
 
     const send = async () => {
       const { formattedContent } = extractLinks(reply.value)
@@ -88,7 +84,7 @@ export default defineComponent({
     watch(quotedContent, (quote) => {
       console.debug('watch(() => quotedContent', quote)
     })
-    return { reply, send, isAnonymous, quotedContent, sending }
+    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog }
   }
 })
 </script>
