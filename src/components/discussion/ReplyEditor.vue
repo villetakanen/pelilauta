@@ -96,3 +96,8 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass">
+.replyEditor p
+  color: var(--chroma-clear)
+</style>

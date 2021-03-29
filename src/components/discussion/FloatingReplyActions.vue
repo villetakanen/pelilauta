@@ -13,6 +13,7 @@
       </div>
       <Fab class="sendAction">
         <Icon
+          dark
           name="send"
         />
       </Fab>
@@ -39,22 +40,24 @@ export default defineComponent({
   @include Rise4()
   width: 100vw
   height: 56px
-  background-color: var(--chroma-secondary-h)
+  background-color: var(--chroma-secondary-a)
   display: flex
   box-sizing: border-box
   padding: 8px
   transition: 0.3s
   .sendAction
-    margin-top: -16px
-    @include Rise4()
+    position: absolute
+    bottom: 8px
+    right: 8px
+    @include Halo8()
   .editorContainer
-    background-color: var(--chroma-secondary-f)
-    border: solid 1px var(--chroma-secondary-d)
+    background-color: var(--chroma-secondary-c)
+    border: solid 1px var(--chroma-secondary-f)
     border-radius: 20px
     position: relative
     flex-grow: 1
     transition: 0.3s
-    margin-right: 8px
+    margin-right: 64px
 #floatingReplyActions:focus-within
   height: calc(3 * 24px + 16px + 16px)
   .placeholder, .editorAction
@@ -68,7 +71,7 @@ export default defineComponent({
   .placeholder
     display: block
     font-style: italic
-    color: var(--chroma-primary-h)
+    color: var(--chroma-secondary-f)
     position: absolute
     top: 8px
     left: 16px
@@ -76,7 +79,7 @@ export default defineComponent({
 .editorAction
   opacity: 75%
   position: absolute
-  top: 4px
-  right: 8px
+  top: -4px
+  right: 4px
 
 </style>
