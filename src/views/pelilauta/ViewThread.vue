@@ -15,9 +15,7 @@
       </h2>
       <Discussion :thread="thread" />
     </ThreadBox>
-    <teleport to="#ScreenBottomFloatRight">
-      <FloatingReplyActions />
-    </teleport>
+    <FloatingReplyActions />
   </div>
 </template>
 

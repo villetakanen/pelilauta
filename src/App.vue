@@ -15,6 +15,7 @@
       </main>
     </div>
   </div>
+  <ReplyActionsContainer />
   <BottomFloatContainer>
     <template #left>
       <SnackBar />
@@ -37,6 +38,7 @@ import SnackBar from './components/app/SnackBar.vue'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
 import { useAuthState, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
+import ReplyActionsContainer from './components/layout/ReplyActionsContainer.vue'
 
 export default defineComponent({
   components: {
@@ -44,7 +46,8 @@ export default defineComponent({
     AppBar,
     MainTailer,
     SnackBar,
-    BottomFloatContainer// ,
+    BottomFloatContainer,
+    ReplyActionsContainer// ,
     // MekanismiBar
   },
   setup () {

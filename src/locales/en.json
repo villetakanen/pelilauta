@@ -79,6 +79,9 @@
     "tagline": "Tagline",
     "title": "Profile"
   },
+  "replyEditor": {
+    "placeholderText": "Add a reply..."
+  },
   "stream": {
     "title": "Pelilauta",
     "inStream": "In",
