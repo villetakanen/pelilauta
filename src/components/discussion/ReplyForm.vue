@@ -5,7 +5,7 @@
       v-if="!isAnonymous"
       class="reply-form"
     >
-      <AddImageReplyAction class="addAnImage" />
+      <AddImageReplyAction class="addAnImage" v-on:uploaded="addImageToEditor($event)"/>
 
       <ReplyEditor
         v-model:content="reply"
@@ -79,12 +79,20 @@ export default defineComponent({
       })
     }
 
+    const addImageToEditor = (a: any) => {
+      console.log('addImageToEditor', a)
+      imageToEditor.value = a
+    }
+
+    const imageToEditor = ref('')
+    provide('imageToEditor', imageToEditor)
+
     const quotedContent = inject('quotedContent') as Ref<Quote>
     provide('quotedContent', quotedContent)
     watch(quotedContent, (quote) => {
       console.debug('watch(() => quotedContent', quote)
     })
-    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog }
+    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog, addImageToEditor }
   }
 })
 </script>

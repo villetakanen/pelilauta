@@ -1,9 +1,12 @@
 <template>
-  <MaterialButton icon>
+  <MaterialButton
+    icon
+    :disabled="uploading"
+  >
     <input
+      id="fileUpload"
       ref="uploader"
       type="file"
-      :disabled="uploading"
       @change="addAsset"
     >
     <label
@@ -24,7 +27,7 @@ import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   components: { Icon, MaterialButton },
-  emits: ['imageUploaded'],
+  emits: ['uploaded'],
   setup (props, context) {
     const uploader = ref<ComponentPublicInstance<HTMLInputElement>>()
     const uploading = ref(false)
@@ -37,7 +40,7 @@ export default defineComponent({
       uploading.value = true
       try {
         const url = await uploadAsset(el.files[0])
-        context.emit('imageUploaded', url)
+        context.emit('uploaded', url)
         pushSnack('upload ok')
       } catch (error) {
         console.error(error)
