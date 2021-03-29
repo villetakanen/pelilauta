@@ -4,6 +4,16 @@
       v-if="!isAnonymous"
       class="reply-form"
     >
+      <MaterialButton
+        v-if="!reply"
+        class="addAnImage"
+        icon
+      >
+        <Icon
+          name="addAnImage"
+          dark
+        />
+      </MaterialButton>
       <ReplyEditor
         v-model:content="reply"
         class="box"
@@ -12,11 +22,9 @@
       <Fab
         class="button"
         :async-action="send"
-        color="tertiary"
       >
         <Icon
           name="send"
-          color="dark"
         />
       </Fab>
     </div>
@@ -43,7 +51,7 @@ import { addReply } from '@/state/discussion'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 import Fab from '../material/Fab.vue'
-import Icon from '../material/Icon.vue'
+import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
   name: 'ReplyForm',
@@ -90,8 +98,13 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 @import @/styles/box-shadow.sass
 
+.addAnImage
+  position: absolute
+  z-index: +100
+  right: 80px
+
 .reply-form
-  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
+  background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.4)'}
   margin: 8px
   padding: 8px
   border-radius: 8px
@@ -103,7 +116,7 @@ export default defineComponent({
     border-radius: 4px
     background-color: rgba(white, 0.5)
     border: none
-    padding: 4px
+    padding: 0px
     min-height: 60px
     max-height: 220px
     line-height: 20px
