@@ -58,9 +58,14 @@ export default defineComponent({
         if (props.content) {
           editor.value.innerHTML = props.content
         }
+        // Init options
+        const options = {
+          scrollingContainer: editor.value
+        }
+
         // Init the quill-editor to the editor field, and start emitting
         // changes as vue-model-changes
-        quill = new Quill(editor.value)
+        quill = new Quill(editor.value, options)
         quill.on('text-change', () => {
           context.emit('update:content', quill?.root.innerHTML)
         })
@@ -98,6 +103,11 @@ export default defineComponent({
 </script>
 
 <style lang="sass">
+.replyEditor
+  overflow: scroll
+  max-height: 96px
 .replyEditor p
   color: var(--chroma-clear)
+  margin: 0
+  padding: 0
 </style>

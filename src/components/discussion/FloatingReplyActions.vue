@@ -1,9 +1,17 @@
 <template>
   <teleport to="#replyActionsContainer">
-    <div id="floatingReplyActions">
+    <div
+      v-if="!isAnonymous"
+      id="floatingReplyActions"
+      :class="{active: replyContent.length > 0, passive: replyContent.length === 0}"
+    >
       <div class="editorContainer">
         <span class="placeholder">{{ $t('replyEditor.placeholderText') }}</span>
-        <ReplyEditor class="replyEditor contentBox" />
+        <ReplyEditor
+          v-model:content="replyContent"
+          class="replyEditor contentBox"
+          :disabled="sending"
+        />
         <Icon
           class="editorAction"
           medium
@@ -11,7 +19,10 @@
           dark
         />
       </div>
-      <Fab class="sendAction">
+      <Fab
+        class="sendAction"
+        :async-action="send"
+      >
         <Icon
           dark
           name="send"
@@ -22,14 +33,42 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import Icon from '../material/Icon.vue'
 import Fab from '../material/Fab.vue'
 import ReplyEditor from './ReplyEditor.vue'
+import { addReply } from '@/state/discussion'
+import { extractLinks } from '@/utils/contentFormat'
+import { Thread } from '@/state/threads'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   name: 'FloatingReplyAction',
-  components: { Icon, Fab, ReplyEditor }
+  components: { Icon, Fab, ReplyEditor },
+  props: {
+    thread: {
+      type: Object as PropType<Thread>,
+      required: true
+    }
+  },
+  setup (props) {
+    const replyContent = ref('')
+    const sending = ref(false)
+    const { isAnonymous, uid } = useAuthState()
+
+    const send = async () => {
+      const { formattedContent } = extractLinks(replyContent.value)
+      sending.value = true
+      return addReply(props.thread.id, uid.value, formattedContent).then(() => {
+        console.log('got here?')
+        replyContent.value = ''
+      }).finally(() => {
+        sending.value = false
+      })
+    }
+
+    return { isAnonymous, sending, replyContent, send }
+  }
 })
 </script>
 
@@ -44,11 +83,13 @@ export default defineComponent({
   display: flex
   box-sizing: border-box
   padding: 8px
+  padding-left: max(8px, calc((100vw - 820px)/2))
+  padding-right: max(8px, calc((100vw - 820px)/2 + 56px))
   transition: 0.3s
   .sendAction
     position: absolute
     bottom: 8px
-    right: 8px
+    right: max(8px, calc((100vw - 820px)/2 + 56px))
     @include Halo8()
   .editorContainer
     background-color: var(--chroma-secondary-c)
@@ -58,14 +99,15 @@ export default defineComponent({
     flex-grow: 1
     transition: 0.3s
     margin-right: 64px
-#floatingReplyActions:focus-within
+#floatingReplyActions:focus-within,
+#floatingReplyActions.active
   height: calc(3 * 24px + 16px + 16px)
   .placeholder, .editorAction
     display: none
   .editorContainer
     height: calc(3 * 24px + 16px)
     border-radius: 16px
-#floatingReplyActions:not(:focus-within)
+#floatingReplyActions.passive:not(:focus-within)
   .editorContainer
     height: 40px
   .placeholder

@@ -7,17 +7,12 @@
       :reply="reply[1]"
       @quote="addQuote"
     />
-    <ReplyForm
-      :threadid="thread.id"
-      :quoted="quote"
-    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, PropType, Ref, provide } from 'vue'
 import { subscribeToReplies, useReplies } from '@/state/discussion'
-import ReplyForm from './ReplyForm.vue'
 import Reply from './Reply.vue'
 import { Thread } from '@/state/threads'
 import { Quote } from '@/utils/contentFormat'
@@ -25,7 +20,6 @@ import { Quote } from '@/utils/contentFormat'
 export default defineComponent({
   name: 'Discussion',
   components: {
-    ReplyForm,
     Reply
   },
   props: {

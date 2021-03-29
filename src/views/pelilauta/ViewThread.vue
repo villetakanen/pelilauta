@@ -15,7 +15,7 @@
       </h2>
       <Discussion :thread="thread" />
     </ThreadBox>
-    <FloatingReplyActions />
+    <FloatingReplyActions :thread="thread"/>
   </div>
 </template>
 
