@@ -9,7 +9,7 @@
 
       <ReplyEditor
         v-model:content="reply"
-        class="box"
+        class="box contentBox"
         :disabled="sending"
       />
       <Fab
