@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.30.0](https://github.com/villetakanen/pelilauta/compare/v7.29.2...v7.30.0) (2021-03-30)
+
+
+### Features
+
+* add an image button for reply ([dc3ab5b](https://github.com/villetakanen/pelilauta/commit/dc3ab5b7346761e858ea514907d7f81d1beea473))
+* image uploading to comments work ([70c9733](https://github.com/villetakanen/pelilauta/commit/70c97332fca2f037a9372235993086d61c406607))
+* upload images to profile ([8da6fb4](https://github.com/villetakanen/pelilauta/commit/8da6fb42d6a0e39efe2446c3fcf04d1242aefb6b))
+* uploader visuals as an action ([309dbb3](https://github.com/villetakanen/pelilauta/commit/309dbb3f60240eceeb05057181c41739a9e83265))
+
+
+### Bug Fixes
+
+* code style ([15da657](https://github.com/villetakanen/pelilauta/commit/15da6575fc56362f82a624f06387fe7ff6fab335))
+* icon sizes quickfix ([4fcbb5c](https://github.com/villetakanen/pelilauta/commit/4fcbb5c9f5b9d5e932ae8c9802bb29cce1cc7b07))
+* images no longer explode the box ([0ea247c](https://github.com/villetakanen/pelilauta/commit/0ea247cc298ffd191e879de8dbd5cf5c023c2fd6))
+
 ### [7.29.2](https://github.com/villetakanen/pelilauta/compare/v7.29.1...v7.29.2) (2021-03-25)
 
 
