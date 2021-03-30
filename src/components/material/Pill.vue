@@ -10,6 +10,7 @@
       <Icon
         :name="prependIcon"
         :color="dark ? '' : 'dark'"
+        x-small
       />
     </div>
     <slot />

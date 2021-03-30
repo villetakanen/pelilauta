@@ -1,22 +1,23 @@
 <template>
-  <div>
+  <div class="replyForm">
+    <!-- Show the form only for non-frozen logged in users -->
     <div
       v-if="!isAnonymous"
       class="reply-form"
     >
+      <AddImageReplyAction class="addAnImage" v-on:uploaded="addImageToEditor($event)"/>
+
       <ReplyEditor
         v-model:content="reply"
-        class="box"
+        class="box contentBox"
         :disabled="sending"
       />
       <Fab
         class="button"
         :async-action="send"
-        color="tertiary"
       >
         <Icon
           name="send"
-          color="dark"
         />
       </Fab>
     </div>
@@ -43,7 +44,8 @@ import { addReply } from '@/state/discussion'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 import Fab from '../material/Fab.vue'
-import Icon from '../material/Icon.vue'
+import Icon from '@/components/material/Icon.vue'
+import AddImageReplyAction from './AddImageReplyAction.vue'
 
 export default defineComponent({
   name: 'ReplyForm',
@@ -51,7 +53,8 @@ export default defineComponent({
     MaterialButton,
     ReplyEditor,
     Fab,
-    Icon
+    Icon,
+    AddImageReplyAction
   },
   props: {
     threadid: {
@@ -63,6 +66,7 @@ export default defineComponent({
     const { isAnonymous, uid } = useAuthState()
     const reply = ref('')
     const sending = ref(false)
+    const addImageDialog = ref(true)
 
     const send = async () => {
       const { formattedContent } = extractLinks(reply.value)
@@ -75,12 +79,20 @@ export default defineComponent({
       })
     }
 
+    const addImageToEditor = (a: any) => {
+      console.log('addImageToEditor', a)
+      imageToEditor.value = a
+    }
+
+    const imageToEditor = ref('')
+    provide('imageToEditor', imageToEditor)
+
     const quotedContent = inject('quotedContent') as Ref<Quote>
     provide('quotedContent', quotedContent)
     watch(quotedContent, (quote) => {
       console.debug('watch(() => quotedContent', quote)
     })
-    return { reply, send, isAnonymous, quotedContent, sending }
+    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog, addImageToEditor }
   }
 })
 </script>
@@ -90,8 +102,13 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 @import @/styles/box-shadow.sass
 
+.addAnImage
+  position: absolute
+  z-index: +100
+  right: 80px
+
 .reply-form
-  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
+  background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.4)'}
   margin: 8px
   padding: 8px
   border-radius: 8px
@@ -103,7 +120,7 @@ export default defineComponent({
     border-radius: 4px
     background-color: rgba(white, 0.5)
     border: none
-    padding: 4px
+    padding: 0px
     min-height: 60px
     max-height: 220px
     line-height: 20px

@@ -121,16 +121,34 @@ export default defineComponent({
 .icon
   display: inline-block
   vertical-align: middle
+  height: 96px
+  width: 96px
+  img
+    height: 96px
+    width: 96px
 
 .material-action
+  height: 32px
+  width: 32px
   img
     height: 32px
     width: 32px
 
 .material-button-icon
-  img
+  .icon
     height: 32px
     width: 32px
+    img
+      height: 32px
+      width: 32px
+
+.materialFab
+  .icon
+    height: 56px
+    width: 56px
+    img
+      height: 56px
+      width: 56px
 
 .xSmall
   height: 20px
@@ -175,6 +193,13 @@ export default defineComponent({
     height: 28px
     width: 28px
     margin: 0px
+
+.systemBadge
+  height: 24px
+  width: 24px
+  img
+    height: 24px
+    width: 24px
 
 .material-pill
   .icon-container

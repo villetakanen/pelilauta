@@ -42,6 +42,7 @@ export default defineComponent({
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
     const quotedContent = inject('quotedContent') as Ref<Quote>
+    const imageToEditor = inject('imageToEditor') as Ref<string>
 
     // We want to inject the Quill Editor only after this element has been
     // mounted, to have all the DOM we use from Quill, available
@@ -89,7 +90,16 @@ export default defineComponent({
           }
         })
 
-        //
+        // Start watching for incoming Image events. This never happens
+        // at the initial load, so we do not use { immediate: true } on
+        // the watch code
+        watch(imageToEditor, (url) => {
+          console.debug('watch(imageToEditor...', url)
+          if (quill !== null && url) {
+            // https://quilljs.com/docs/api/#content
+            quill.insertEmbed(0, 'image', url)
+          }
+        })
       }
     })
     return { editor }

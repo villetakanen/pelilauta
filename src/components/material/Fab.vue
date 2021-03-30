@@ -82,7 +82,7 @@ export default defineComponent({
 
 .materialFab
   @include Rise2()
-  background-color: var(--chroma-primary-f)
+  background-color: var(--chroma-primary-h)
   height: 56px// 3*24=72, 72-2*8=56
   width: 56px
   padding: 0

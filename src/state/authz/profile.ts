@@ -160,6 +160,18 @@ async function switchLang (lang: string): Promise<void> {
   })
 }
 
+async function uploadAsset (file:File): Promise<string> {
+  const { uid } = useAuthState()
+  const storageRef = firebase.storage().ref()
+  const fileRef = storageRef.child('authors/' + uid.value + '/' + file.name)
+  const snapshot = fileRef.put(file)
+
+  const storageAsset = (await snapshot).ref
+  const url = await storageAsset.getDownloadURL()
+
+  return url
+}
+
 export function useProfile (): {
     isAdmin: ComputedRef<boolean>
     profile: ComputedRef<PublicProfile>
@@ -170,7 +182,8 @@ export function useProfile (): {
     hasSeen: (threadid: string, flowTime?: firebase.firestore.Timestamp|null) => boolean
     stampSeen: (threadid:string, flowTime?:firebase.firestore.Timestamp|number) => Promise<void>
     switchLang: (lang: string) => Promise<void>
+    uploadAsset: (file:File) => Promise<string>
     } {
   init()
-  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang }
+  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset }
 }
