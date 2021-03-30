@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.31.0](https://github.com/villetakanen/pelilauta/compare/v7.30.0...v7.31.0) (2021-03-30)
+
+
+### Features
+
+* delete profile assets ([1b20e6c](https://github.com/villetakanen/pelilauta/commit/1b20e6c812cb05135189112c0f202753c4c5d537))
+* profile media view ([690c97c](https://github.com/villetakanen/pelilauta/commit/690c97cf648aedf8d20863bde08557137e710019))
+* user assets are listed in the app. ([fa5d32f](https://github.com/villetakanen/pelilauta/commit/fa5d32f4f2b9d246c3f534a365dffc5b9c47362b))
+
+
+### Bug Fixes
+
+* layout classes polish ([e62dd1a](https://github.com/villetakanen/pelilauta/commit/e62dd1a746e509e79cc497999ee24c1e4740ccbf))
+* refactored asset interface ([0068d5d](https://github.com/villetakanen/pelilauta/commit/0068d5da9a32370c565b7cefa325cb582d492ad7))
+* refactored asset interface to utils ([fb23d40](https://github.com/villetakanen/pelilauta/commit/fb23d405ee4179b01ce04a4a0aba870d06f18985))
+* refactored profile view to use toolbar comp ([5fdaa60](https://github.com/villetakanen/pelilauta/commit/5fdaa60b1abe87b56ec76f2ebed375c40315af12))
+
 ## [7.30.0](https://github.com/villetakanen/pelilauta/compare/v7.29.2...v7.30.0) (2021-03-30)
 
 
