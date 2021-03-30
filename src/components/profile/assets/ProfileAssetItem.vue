@@ -42,7 +42,6 @@
 import { defineComponent, PropType, ref } from 'vue'
 import MaterialButton from '../../material/MaterialButton.vue'
 import Icon from '@/components/material/Icon.vue'
-import { deleteAsset } from '@/state/site/assets'
 import { toDisplayString } from '@/utils/firebaseTools'
 import { useSnack } from '@/composables/useSnack'
 import { Asset } from '@/utils/firestoreInterfaces'
@@ -63,14 +62,16 @@ export default defineComponent({
     const toggleInfo = ref(false)
     const { pushSnack } = useSnack()
 
+    console.debug('asset', props.asset)
+
     async function drop () {
-      try {
+      /* try {
         await deleteAsset(props.asset.name)
         pushSnack('asset deleted')
       } catch (error) {
         console.error(error)
         pushSnack('asset deletion failed')
-      }
+      } */
     }
 
     return { toggleInfo, toDisplayString, drop }

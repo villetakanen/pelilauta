@@ -4,6 +4,7 @@ import 'firebase/firestore'
 import 'firebase/analytics'
 import { useMeta } from '@/state/meta'
 import { useAuthState } from './state'
+import { fetchAssets, useAssets } from './assets'
 
 export interface PublicProfile {
   uid?: string
@@ -79,6 +80,8 @@ function fetchProfile (uid:string|null) {
         allThreadsSeenSince: snap.data()?.allThreadsSeenSince
       }
     })
+
+    fetchAssets(uid)
   }
 }
 
@@ -160,18 +163,6 @@ async function switchLang (lang: string): Promise<void> {
   })
 }
 
-async function uploadAsset (file:File): Promise<string> {
-  const { uid } = useAuthState()
-  const storageRef = firebase.storage().ref()
-  const fileRef = storageRef.child('authors/' + uid.value + '/' + file.name)
-  const snapshot = fileRef.put(file)
-
-  const storageAsset = (await snapshot).ref
-  const url = await storageAsset.getDownloadURL()
-
-  return url
-}
-
 export function useProfile (): {
     isAdmin: ComputedRef<boolean>
     profile: ComputedRef<PublicProfile>
@@ -185,5 +176,6 @@ export function useProfile (): {
     uploadAsset: (file:File) => Promise<string>
     } {
   init()
+  const { uploadAsset } = useAssets()
   return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset }
 }

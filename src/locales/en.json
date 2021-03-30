@@ -78,7 +78,12 @@
     "ssoInfocardHelper": "Your personal profile data, visible to you and administration of the site.",
     "tagline": "Tagline",
     "title": "Profile",
-    "assets": "Media"
+    "assets": "Media",
+    "asset": {
+      "list": {
+        "title": "My uploads"
+      }
+    }
   },
   "stream": {
     "title": "Pelilauta",
