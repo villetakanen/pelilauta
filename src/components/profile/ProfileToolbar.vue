@@ -7,6 +7,12 @@
     </h3>
     <div class="spacer" />
     <Action
+      to="profile.media"
+      prepend="images"
+    >
+      <span class="hideOnMobile">{{ $t('profile.assets') }}</span>
+    </Action>
+    <Action
       to="mekanismi.profile.sites"
       prepend="books"
     >

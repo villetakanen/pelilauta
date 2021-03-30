@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "global" */ '../views/profile/ProfileView.vue')
   },
   {
+    path: '/profile/media',
+    name: 'profile.media',
+    component: () => import(/* webpackChunkName: "global" */ '../views/profile/ProfileMediaView.vue')
+  },
+  {
     path: '/u/:uid',
     name: 'profile.public',
     props: true,
