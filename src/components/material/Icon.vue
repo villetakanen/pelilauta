@@ -194,6 +194,13 @@ export default defineComponent({
     width: 28px
     margin: 0px
 
+.systemBadge
+  height: 24px
+  width: 24px
+  img
+    height: 24px
+    width: 24px
+
 .material-pill
   .icon-container
     .icon
