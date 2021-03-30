@@ -1,32 +1,27 @@
 <template>
-  <Toolbar>
-    <h3>{{ $t('profile.title') }}</h3>
-    <div class="spacer" />
-    <Action
-      to="mekanismi.profile.sites"
-      prepend="books"
-    >
-      <span v-if="!mobile">{{ $t('wiki.mySites') }}</span>
-    </Action>
-  </Toolbar>
-  <div class="contentGrid">
-    <ProfileCard />
-    <MaterialCard>
-      <img
-        v-if="profile.photoURL"
-        class="avatar"
-        :src="profile.photoURL"
-        :alt="profile.nick"
-      >
-      <div>
-        {{ $t('language.label') }} <a @click="setLang('en')">EN</a> / <a @click="setLang('fi')">FI</a>
-      </div>
-      <div style="clear:both" />
-    </MaterialCard>
-    <PublicProfile />
-    <PrivateInfo v-if="false" />
-    <LovedThreads />
-    <ProfileActions />
+  <div class="profileView">
+    <div style="margin: 0 8px">
+      <ProfileToolbar />
+    </div>
+    <div class="contentGrid">
+      <ProfileCard />
+      <MaterialCard>
+        <img
+          v-if="profile.photoURL"
+          class="avatar"
+          :src="profile.photoURL"
+          :alt="profile.nick"
+        >
+        <div>
+          {{ $t('language.label') }} <a @click="setLang('en')">EN</a> / <a @click="setLang('fi')">FI</a>
+        </div>
+        <div style="clear:both" />
+      </MaterialCard>
+      <PublicProfile />
+      <PrivateInfo v-if="false" />
+      <LovedThreads />
+      <ProfileActions />
+    </div>
   </div>
 </template>
 
@@ -39,9 +34,8 @@ import LovedThreads from '@/components/profile/LovedThreads.vue'
 import ProfileActions from '@/components/profile/ProfileActions.vue'
 import { useProfile } from '@/state/authz'
 import ProfileCard from '@/components/profile/ProfileCard.vue'
-import Toolbar from '@/components/layout/Toolbar.vue'
-import Action from '@/components/material/Action.vue'
 import { useSnack } from '@/composables/useSnack'
+import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 
 export default defineComponent({
   name: 'ProfileView',
@@ -52,8 +46,7 @@ export default defineComponent({
     PrivateInfo,
     PublicProfile,
     ProfileCard,
-    Toolbar,
-    Action
+    ProfileToolbar
   },
   setup () {
     const { switchLang } = useProfile()

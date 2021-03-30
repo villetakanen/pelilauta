@@ -22,7 +22,6 @@
         </MaterialButton>
         <MaterialButton
           icon
-          :disabled="!crudActions"
           @click="drop"
         >
           <Icon name="remove" />
@@ -33,7 +32,6 @@
       v-if="toggleInfo"
       class="filedata contentBox"
     >
-      <p>{{ author }}</p>
       <p>{{ toDisplayString(asset.lastUpdate) }}</p>
       <p>{{ asset.url }}</p>
     </div>
@@ -41,16 +39,13 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
-import { useSite } from '@/state/site'
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import MaterialButton from '../../material/MaterialButton.vue'
 import Icon from '@/components/material/Icon.vue'
-import { deleteAsset } from '@/state/site/assets'
 import { toDisplayString } from '@/utils/firebaseTools'
 import { useSnack } from '@/composables/useSnack'
-import { useAuthors } from '@/state/authors'
 import { Asset } from '@/utils/firestoreInterfaces'
+import { deleteAsset } from '@/state/authz/assets'
 
 export default defineComponent({
   name: 'AttachmentRow',
@@ -67,15 +62,8 @@ export default defineComponent({
   setup (props) {
     const toggleInfo = ref(false)
     const { pushSnack } = useSnack()
-    const { authors } = useAuthors()
-    const author = computed(() => authors.value.find((a) => (a.uid === props.asset.creator))?.nick || '-')
 
-    const crudActions = computed(() => {
-      const { hasAdmin } = useSite()
-      const { uid } = useAuthState()
-      console.log(uid.value, hasAdmin(uid.value))
-      return hasAdmin(uid.value)
-    })
+    console.debug('asset', props.asset)
 
     async function drop () {
       try {
@@ -87,7 +75,7 @@ export default defineComponent({
       }
     }
 
-    return { crudActions, toggleInfo, toDisplayString, drop, author }
+    return { toggleInfo, toDisplayString, drop }
   }
 })
 </script>

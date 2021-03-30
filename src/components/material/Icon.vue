@@ -70,6 +70,7 @@ export default defineComponent({
       'hidden',
       'homebrew-logo',
       'idea',
+      'images',
       'mekanismi',
       'monsters',
       'pathfinder-logo',

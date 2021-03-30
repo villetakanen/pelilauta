@@ -9,3 +9,11 @@ export interface Reply {
   lovesCount?: number;
   lovers?: Array<string>;
 }
+
+export interface Asset {
+  name: string
+  url: string
+  lastUpdate: firebase.firestore.Timestamp|null
+  creator: string
+  fullPath: string
+}
