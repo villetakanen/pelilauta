@@ -46,10 +46,11 @@ import { useSite } from '@/state/site'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import MaterialButton from '../../material/MaterialButton.vue'
 import Icon from '@/components/material/Icon.vue'
-import { Asset, deleteAsset } from '@/state/site/assets'
+import { deleteAsset } from '@/state/site/assets'
 import { toDisplayString } from '@/utils/firebaseTools'
 import { useSnack } from '@/composables/useSnack'
 import { useAuthors } from '@/state/authors'
+import { Asset } from '@/utils/firestoreInterfaces'
 
 export default defineComponent({
   name: 'AttachmentRow',

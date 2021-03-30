@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import 'firebase/storage'
+import { Asset } from '../../utils/firestoreInterfaces'
 
 /*
  * This module handles site's assets and asset management.
@@ -13,13 +14,6 @@ import 'firebase/storage'
  */
 
 let siteid = ''
-
-export interface Asset {
-  name: string,
-  url: string,
-  lastUpdate: firebase.firestore.Timestamp|null,
-  creator: string
-}
 
 const siteAssets = ref(new Map<string, Asset>())
 const assets = computed(() => siteAssets.value)
@@ -50,7 +44,8 @@ async function patchAsset (storageAsset: firebase.storage.Reference): Promise<vo
     name: storageAsset.name,
     url: url,
     creator: databaseAssetDoc.data()?.creator || '',
-    lastUpdate: databaseAssetDoc.data()?.lastUpdate || null
+    lastUpdate: databaseAssetDoc.data()?.lastUpdate || null,
+    fullPath: storageAsset.fullPath
   })
 }
 
