@@ -45,6 +45,7 @@ import Icon from '@/components/material/Icon.vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import { useSnack } from '@/composables/useSnack'
 import { Asset } from '@/utils/firestoreInterfaces'
+import { deleteAsset } from '@/state/authz/assets'
 
 export default defineComponent({
   name: 'AttachmentRow',
@@ -65,13 +66,13 @@ export default defineComponent({
     console.debug('asset', props.asset)
 
     async function drop () {
-      /* try {
+      try {
         await deleteAsset(props.asset.name)
         pushSnack('asset deleted')
       } catch (error) {
         console.error(error)
         pushSnack('asset deletion failed')
-      } */
+      }
     }
 
     return { toggleInfo, toDisplayString, drop }

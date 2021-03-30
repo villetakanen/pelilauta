@@ -18,7 +18,23 @@ async function uploadAsset (file:File): Promise<string> {
   const storageAsset = (await snapshot).ref
   const url = await storageAsset.getDownloadURL()
 
+  siteAssets.value.set(storageAsset.name, {
+    name: storageAsset.name,
+    url: url,
+    creator: uid.value,
+    lastUpdate: null,
+    fullPath: storageAsset.fullPath
+  })
+
   return url
+}
+
+export async function deleteAsset (name: string): Promise<void> {
+  const { uid } = useAuthState()
+  const storageRef = firebase.storage().ref()
+  const fileRef = storageRef.child('authors/' + uid.value + '/' + name)
+  await fileRef.delete()
+  siteAssets.value.delete(name)
 }
 
 async function patchAsset (storageAsset: firebase.storage.Reference, uid:string): Promise<void> {
