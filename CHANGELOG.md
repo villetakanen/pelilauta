@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.33.2](https://github.com/villetakanen/pelilauta/compare/v7.33.1...v7.33.2) (2021-03-31)
+
+
+### Bug Fixes
+
+* bottomfloat aligns ([adc4339](https://github.com/villetakanen/pelilauta/commit/adc4339b5a3b7d3cd6d8b4603ff56ad385dd33e4))
+
 ### [7.33.1](https://github.com/villetakanen/pelilauta/compare/v7.33.0...v7.33.1) (2021-03-31)
 
 
