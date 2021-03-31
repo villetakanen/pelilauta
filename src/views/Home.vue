@@ -2,7 +2,7 @@
   <div class="contentGrid">
     <HomeStream />
   </div>
-  <teleport to="#ScreenBottomFloatRight">
+  <teleport to="#BottomFabsContainer">
     <Fab
       v-if="!isAnonymous"
       id="addThreadFab"

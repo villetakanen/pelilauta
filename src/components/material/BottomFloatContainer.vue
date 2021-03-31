@@ -56,6 +56,7 @@ div#ScreenBottomFloatContainer
     pointer-events: all
   div#ScreenBottomFloatRight
     text-align: right
+    display: flex
 
 @include media('<tablet')
   div#ScreenBottomFloatContainer

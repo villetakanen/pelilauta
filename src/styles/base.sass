@@ -333,3 +333,10 @@ table.quill-better-table
       color: var(--chroma-secondary-c)
 .ql-disabled
   opacity: 0.22
+
+// Vue transitions: move to transitions.sass or something like it
+.pop-enter-active, .pop-leave-active
+  transform: scale(1)
+
+.pop-enter-from, .pop-leave-to
+  transform: scale(0)
