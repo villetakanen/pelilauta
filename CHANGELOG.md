@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.33.0](https://github.com/villetakanen/pelilauta/compare/v7.31.0...v7.33.0) (2021-03-31)
+
+
+### Features
+
+* to top fab ([ba3fa99](https://github.com/villetakanen/pelilauta/commit/ba3fa99ac30533827084eaafa953923d01255f5b))
+
+
+### Bug Fixes
+
+* isolated totopfab to component ([d3648dd](https://github.com/villetakanen/pelilauta/commit/d3648dd9dc1d6111f1b52e1fd3329d5cb3ba766c))
+* kick ci ([78a91ed](https://github.com/villetakanen/pelilauta/commit/78a91ed3f4ad30b751c3d89ca0a258989ab058fc))
+
 ## [7.32.0](https://github.com/villetakanen/pelilauta/compare/v7.31.0...v7.32.0) (2021-03-31)
 
 
