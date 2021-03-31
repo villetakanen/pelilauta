@@ -1,9 +1,7 @@
 <template>
   <div class="profileView">
-    <div style="margin: 0 8px">
-      <ProfileToolbar />
-    </div>
-    <div class="contentGrid">
+    <ProfileToolbar />
+    <div class="singleColumnLayout">
       <ProfileCard />
       <MaterialCard>
         <img
