@@ -211,53 +211,41 @@
           to="stylebook"
         />
         <h2>Fabs</h2>
-        <Fab text="Fab">
-          <Icon
-            name="forum"
-          />
-        </Fab>
-        &nbsp;
+        <Fab
+          text="Fab"
+          icon="forum"
+        />
         <Fab
           text="Secondary"
-          color="secondary"
-        >
-          <Icon
-            color="dark"
-            name="send"
-          />
-        </Fab>
-        &nbsp;
+          secondary
+          icon="send"
+        />
         <Fab
           text="Tertiary"
-          color="tertiary"
-        >
-          <Icon
-            color="dark"
-            name="mekanismi"
-          />
-        </Fab>
+          tertiary
+          icon="up"
+        />
+        <Fab
+          text="Dark"
+          dark
+          icon="avatar"
+        />
       </Card>
 
       <div>
         <teleport to="#BottomFabsContainer">
-          <Fab>
-            <Icon
-              name="pelilauta"
-              color="dark"
-            />
-          </Fab>
-          <Fab color="secondary">
-            <Icon
-              name="mekanismi"
-              color="dark"
-            />
-          </Fab>
-          <Fab color="tertiary">
-            <Icon
-              name="d6"
-              color="dark"
-            />
-          </Fab>
+          <Fab
+            text="Pelilauta"
+            dark
+            icon="pelilauta"
+          />
+          <Fab
+            secondary
+            icon="d6"
+          />
+          <Fab
+            icon="edit"
+          />
         </teleport>
       </div>
 

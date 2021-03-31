@@ -1,7 +1,9 @@
 <template>
-  <div class="viewFull">
+  <div class="wikiIndex">
     <SiteListToolbar v-model:filterTag="filter" />
-    <SiteList :filter="filter" />
+    <div class="emptyLayout">
+      <SiteList :filter="filter" />
+    </div>
   </div>
 </template>
 
@@ -26,8 +28,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass">
-.viewFull
-  padding: 0 16px
-</style>

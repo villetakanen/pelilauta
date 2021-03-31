@@ -15,11 +15,9 @@
       <Fab
         class="button"
         :async-action="send"
-      >
-        <Icon
-          name="send"
-        />
-      </Fab>
+        icon="send"
+        dark
+      />
     </div>
     <div
       v-if="isAnonymous"
@@ -44,7 +42,6 @@ import { addReply } from '@/state/discussion'
 import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 import Fab from '../material/Fab.vue'
-import Icon from '@/components/material/Icon.vue'
 import AddImageReplyAction from './AddImageReplyAction.vue'
 
 export default defineComponent({
@@ -53,7 +50,6 @@ export default defineComponent({
     MaterialButton,
     ReplyEditor,
     Fab,
-    Icon,
     AddImageReplyAction
   },
   props: {

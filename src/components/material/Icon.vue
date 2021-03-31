@@ -144,13 +144,11 @@ export default defineComponent({
       height: 32px
       width: 32px
 
-.materialFab
+.fab
   .icon
-    height: 56px
-    width: 56px
     img
-      height: 56px
-      width: 56px
+      height: 100%
+      width: 100%
 
 .xSmall
   height: 20px

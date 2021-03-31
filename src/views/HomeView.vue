@@ -1,5 +1,5 @@
 <template>
-  <div class="contentGrid">
+  <div class="homeView">
     <HomeStream />
   </div>
   <teleport to="#ScreenBottomFloatRight">
@@ -9,12 +9,8 @@
       id="addThreadFab"
       to="/stream/add/thread"
       :text="$t('action.addThread')"
-    >
-      <img
-        src="@/assets/icons/add.svg"
-        alt="new post"
-      >
-    </Fab>
+      icon="send"
+    />
   </teleport>
 </template>
 
@@ -26,7 +22,7 @@ import HomeStream from '@/components/home/HomeStream.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'HomeView',
   components: {
     Fab,
     HomeStream,
@@ -43,10 +39,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass">
-@import @/styles/include-media.scss
-@import @/styles/material-colors.sass
-@import @/styles/material-typography.sass
-
-</style>
