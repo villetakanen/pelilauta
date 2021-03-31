@@ -1,12 +1,10 @@
 <template>
   <div>
-    <div style="margin: 0 8px">
-      <Toolbar>
-        <h3 v-if="stream">
-          {{ stream.name }}
-        </h3>
-      </Toolbar>
-    </div>
+    <Toolbar>
+      <h3 v-if="stream">
+        {{ stream.name }}
+      </h3>
+    </Toolbar>
     <div class="twoColFlexSection">
       <PinnedStream class="col" />
       <ThreadList
@@ -26,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, watch } from 'vue'
 import ThreadList from '@/components/stream/ThreadList.vue'
 import Fab from '@/components/material/Fab.vue'
 import { useMeta } from '@/state/meta'
