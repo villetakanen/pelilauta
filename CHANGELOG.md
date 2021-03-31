@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.33.3](https://github.com/villetakanen/pelilauta/compare/v7.33.2...v7.33.3) (2021-03-31)
+
+
+### Bug Fixes
+
+* profile sites quick ux fixes ([4f6314d](https://github.com/villetakanen/pelilauta/commit/4f6314da25c0b94bcbaba5377a81d08075c9f556))
+
 ### [7.33.2](https://github.com/villetakanen/pelilauta/compare/v7.33.1...v7.33.2) (2021-03-31)
 
 
