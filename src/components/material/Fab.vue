@@ -126,7 +126,7 @@ export default defineComponent({
     margin-left: 16px
 .fab+.fab
   margin-left: 12px
-@include media('>phone')
+@include media('>tablet')
   .fab
     &.hasLabel
       width: auto
@@ -174,62 +174,4 @@ export default defineComponent({
     background-size: 100%
     transition: background 0s
 
-.materialFab
-  height: 56px// 3*24=72, 72-2*8=56
-  width: 56px
-  padding: 0
-  &.working
-    opacity: 0.3
-  &.text
-    width: auto
-    .label
-      display: inline-block
-      margin: 4px
-      padding-left: 16px
-      line-height: 48px
-  &:hover
-    background: var(--chroma-primary-e) radial-gradient(circle, transparent 1%, var(--chroma-primary-e) 1%) center/15000%
-    @include Rise3()
-  &.dark
-    background-color: var(--chroma-secondary-b)
-    color: white
-    &:hover
-      background: lighten($color-fill-primary-dark, 2%) radial-gradient(circle, transparent 1%, $color-fill-primary-dark 1%) center/15000%
-  &.secondary
-    background-color: var(--chroma-alert)
-    color: white
-    &:hover
-      background: var(--chroma-alert) radial-gradient(circle, transparent 1%, var(--chroma-secondary-d) 1%) center/15000%
-    &:active
-      background-color: var(--chroma-alert)
-      background-size: 100%
-      transition: background 0s
-  &.tertiary
-    background-color: var(--chroma-secondary-c)
-    color: white
-    &:hover
-      background: var(--chroma-secondary-d) radial-gradient(circle, transparent 1%, var(--chroma-secondary-a) 1%) center/15000%
-    &:active
-      background-color: var(--chroma-secondary-d)
-      background-size: 100%
-      transition: background 0s
-  &:disabled
-    filter: grayscale(1)
-    opacity: 0.7
-
-div#ScreenBottomFloatRight
-  button.materialFab + button.materialFab
-    margin-left: 8px
-
-.materialFab+.materialFab
-  margin-left: 8px
-
-@include media('<tablet')
-  .materialFab.text
-    img
-      margin-top: 4px
-      margin-left: 4px
-      margin-right: 4px
-    .label
-      display: none
 </style>

@@ -57,10 +57,13 @@ div#ScreenBottomFloatContainer
   div#ScreenBottomFloatContainer
     display: flex
     flex-direction: column
+    align-items: flex-end
     div#ScreenBottomFloatLeft
       padding-bottom: 16px
     div#ScreenBottomFloatRight
       text-align: center
+      align-items: center
+      display: flex
 
 @include media('>=tablet')
   div#ScreenBottomFloatContainer
