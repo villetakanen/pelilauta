@@ -1,7 +1,7 @@
 // import { useAuthz } from '@/lib/authz'
 // import { watch } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@/views/Home.vue'
+import Home from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
