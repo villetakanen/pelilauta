@@ -1,5 +1,5 @@
 <template>
-  <div class="homeView">
+  <div class="homeView emptyLayout">
     <HomeStream />
   </div>
   <teleport to="#ScreenBottomFloatRight">
