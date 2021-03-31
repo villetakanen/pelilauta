@@ -20,16 +20,7 @@
       <SnackBar />
     </template>
     <template #right>
-      <div id="BottomFabsContainer">
-        <transition name="pop">
-          <Fab
-            v-if="toTopVisibleToggle"
-            @click="toTopAction"
-          >
-            <Icon name="up" />
-          </Fab>
-        </transition>
-      </div>
+      <div id="BottomFabsContainer" />
     </template>
   </BottomFloatContainer>
 </template>
@@ -46,8 +37,6 @@ import SnackBar from './components/app/SnackBar.vue'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
 import { useAuthState, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
-import Icon from './components/material/Icon.vue'
-import Fab from './components/material/Fab.vue'
 
 export default defineComponent({
   components: {
@@ -55,10 +44,7 @@ export default defineComponent({
     AppBar,
     MainTailer,
     SnackBar,
-    BottomFloatContainer,
-    Icon,
-    Fab// ,
-    // MekanismiBar
+    BottomFloatContainer
   },
   setup () {
     const { isAnonymous } = useAuthState()
@@ -119,23 +105,7 @@ export default defineComponent({
     }
     // *** Workbox/Service worker setup ends ********************************
 
-    // *** On Scroll, show to top FAB ***************************************
-
-    const toTopVisibleToggle = ref(false)
-    document.addEventListener('scroll', (e: Event) => {
-      const top = window.pageYOffset || (e.target as HTMLElement).scrollTop || 0
-      toTopVisibleToggle.value = top > 112
-    })
-
-    const toTopAction = () => {
-      const rootElement = document.documentElement
-      rootElement.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-    }
-
-    return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta, toTopVisibleToggle, toTopAction }
+    return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta }
   }
 })
 </script>

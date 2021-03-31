@@ -15,10 +15,14 @@
       </h2>
       <Discussion :thread="thread" />
     </ThreadBox>
+    <teleport to="#ScreenBottomFloatRight">
+      <ToTopFab />
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
+import ToTopFab from '@/components/app/ToTopFab.vue'
 import AuthorLink from '@/components/author/AuthorLink.vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
@@ -42,7 +46,8 @@ export default defineComponent({
     PhotoBox,
     ThreadBoxHeader,
     Discussion,
-    AuthorLink
+    AuthorLink,
+    ToTopFab
   },
   props: {
     threadid: {

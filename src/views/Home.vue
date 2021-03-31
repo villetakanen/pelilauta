@@ -2,7 +2,8 @@
   <div class="contentGrid">
     <HomeStream />
   </div>
-  <teleport to="#BottomFabsContainer">
+  <teleport to="#ScreenBottomFloatRight">
+    <ToTopFab style="margin-right:8px" />
     <Fab
       v-if="!isAnonymous"
       id="addThreadFab"
@@ -22,12 +23,14 @@ import { defineComponent, ref, onMounted } from 'vue'
 import Fab from '@/components/material/Fab.vue'
 import { useAuthState } from '@/state/authz'
 import HomeStream from '@/components/home/HomeStream.vue'
+import ToTopFab from '@/components/app/ToTopFab.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     Fab,
-    HomeStream
+    HomeStream,
+    ToTopFab
   },
   setup () {
     const { isAnonymous } = useAuthState()
