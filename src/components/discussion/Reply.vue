@@ -49,12 +49,9 @@
         class="button"
         :async-action="updateReply"
         color="tertiary"
-      >
-        <Icon
-          name="send"
-          color="dark"
-        />
-      </Fab>
+        icon="send"
+        dark
+      />
     </div>
   </div>
 </template>
@@ -71,15 +68,13 @@ import { useAuthors } from '@/state/authors'
 import { useAuthState } from '@/state/authz'
 import ReplyEditor from './ReplyEditor.vue'
 import Fab from '../material/Fab.vue'
-import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   components: {
     MaterialMenu,
     LoveAReplyAction,
     ReplyEditor,
-    Fab,
-    Icon
+    Fab
   },
   props: {
     reply: {

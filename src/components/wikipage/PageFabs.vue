@@ -3,36 +3,19 @@
     <div class="pageFabs">
       <Fab
         v-if="canEdit"
-        color="tertiary"
-        :to="`/mekanismi/attachments/${page.siteid}`"
-      >
-        <Icon
-          name="mekanismi"
-          dark
-        />
-      </Fab>
-      <Fab
-        v-if="canEdit"
         id="wikipageCreatePageFab"
-        color="secondary"
+        secondary
         :action="addPageDialog"
         :text="$t('action.create')"
-      >
-        <Icon
-          name="add"
-          dark
-        />
-      </Fab>
+        icon="add"
+      />
       <Fab
         v-if="canEdit"
         id="wikipageEditPageFab"
         :text="$t('action.edit')"
         :to="`/mekanismi/edit/${page.siteid}/${page.id}`"
-      >
-        <Icon
-          name="edit"
-        />
-      </Fab>
+        icon="edit"
+      />
       <Dialog v-model="dialog">
         <AddPageCard />
       </Dialog>
@@ -46,14 +29,12 @@ import { Page, useSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import Dialog from '../material/Dialog.vue'
 import Fab from '../material/Fab.vue'
-import Icon from '../material/Icon.vue'
 import AddPageCard from './AddPageCard.vue'
 
 export default defineComponent({
   name: 'PageFabs',
   components: {
     Fab,
-    Icon,
     Dialog,
     AddPageCard
   },

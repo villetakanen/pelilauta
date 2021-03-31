@@ -1,8 +1,6 @@
 <template>
-  <Fab
-    class="addAssetFab"
-    color="tertiary"
-    :disabled="uploading"
+  <div
+    class="addAssetFab fab"
   >
     <input
       id="addAssetInput"
@@ -13,11 +11,12 @@
     >
     <label for="addAssetInput">
       <Icon
+        class="fabIcon"
         name="addAnImage"
         dark
       />
     </label>
-  </Fab>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,12 +24,11 @@ import { useSnack } from '@/composables/useSnack'
 import { useAuthState } from '@/state/authz'
 import { uploadAsset } from '@/state/site/assets'
 import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
-import Fab from '../../material/Fab.vue'
 import Icon from '../../material/Icon.vue'
 
 export default defineComponent({
   name: 'AddAssetView',
-  components: { Fab, Icon },
+  components: { Icon },
   setup () {
     const uploader = ref<ComponentPublicInstance<HTMLInputElement>>()
     const uploading = ref(false)
@@ -61,6 +59,8 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/box-shadow.sass
+
 [type="file"]
   border: 0
   clip: rect(0, 0, 0, 0)
@@ -71,5 +71,21 @@ export default defineComponent({
   white-space: nowrap
   width: 1px
   + label
+.fabIcon
+  height: 48px
+  width: 48px
+
+.fab
+  @include Rise2()
+  background-color: var(--chroma-secondary-d)
+  height: 56px
+  width: 56px
+  margin: 0
+  padding: 0
+  border-radius: 28px
+  border: none
+  background-position: center
+  transition: 0.3s
+  line-height: 48px
 
 </style>

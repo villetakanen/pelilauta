@@ -9,12 +9,8 @@
       id="addThreadFab"
       to="/stream/add/thread"
       :text="$t('action.addThread')"
-    >
-      <img
-        src="@/assets/icons/add.svg"
-        alt="new post"
-      >
-    </Fab>
+      icon="send"
+    />
   </teleport>
 </template>
 

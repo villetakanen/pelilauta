@@ -19,12 +19,8 @@
         v-if="!isAnonymous && stream"
         :to="`/stream/topic/${stream.slug}/post`"
         :text="$t('action.addThread')"
-      >
-        <img
-          src="@/assets/icons/add.svg"
-          alt="new post"
-        >
-      </Fab>
+        icon="send"
+      />
     </teleport>
   </div>
 </template>

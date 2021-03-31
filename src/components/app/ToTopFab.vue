@@ -4,13 +4,9 @@
       <Fab
         v-if="toTopVisibleToggle"
         tertiary
+        icon="up"
         @click="toTopAction"
-      >
-        <Icon
-          name="up"
-          dark
-        />
-      </Fab>
+      />
     </transition>
   </div>
 </template>
@@ -18,11 +14,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import Fab from '../material/Fab.vue'
-import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'ToTopFab',
-  components: { Fab, Icon },
+  components: { Fab },
   setup () {
     // *** On Scroll, show to top FAB ***************************************
 
