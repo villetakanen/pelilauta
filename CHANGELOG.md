@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.33.1](https://github.com/villetakanen/pelilauta/compare/v7.33.0...v7.33.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* click-actions polish ([ac3c38f](https://github.com/villetakanen/pelilauta/commit/ac3c38fbef8c63a173792ab437917e40a151be70))
+* fab color schemes simplified ([2cafbb1](https://github.com/villetakanen/pelilauta/commit/2cafbb11c1585abd8381104ff77efe9e05c01989))
+* HomeView to use view sass and code style ([4a737f6](https://github.com/villetakanen/pelilauta/commit/4a737f6c5cbefd391935615777b4362c7dd53218))
+* profileview to use  view sass toolbar ([fc4ed33](https://github.com/villetakanen/pelilauta/commit/fc4ed33129c56ab891d6aec6815c3ed6def2201a))
+* topic listing to use layout sass for toolbar ([4d0e714](https://github.com/villetakanen/pelilauta/commit/4d0e71463e8188af5b91199a14bdbade2ec943ec))
+* wiki-index and toolbar to use layout sass ([6c3fa56](https://github.com/villetakanen/pelilauta/commit/6c3fa563e09509688da3a66ce0ef7e6f3dfc7e23))
+
 ## [7.33.0](https://github.com/villetakanen/pelilauta/compare/v7.31.0...v7.33.0) (2021-03-31)
 
 
