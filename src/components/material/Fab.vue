@@ -103,7 +103,6 @@ export default defineComponent({
 
 .fab
   @include Rise2()
-  background-color: var(--chroma-primary-h)
   height: 56px
   width: 56px
   margin: 0
@@ -126,7 +125,7 @@ export default defineComponent({
     padding: 0
     margin-left: 16px
 .fab+.fab
-  margin-left: 8px
+  margin-left: 12px
 @include media('>phone')
   .fab
     &.hasLabel
@@ -136,16 +135,44 @@ export default defineComponent({
       display: inline-block
 
 // Color schemes
+.fab
+  background-color: var(--chroma-primary-h)
+  &:hover
+    background: var(--chroma-primary-g) radial-gradient(circle, transparent 1%, var(--chroma-primary-g) 1%) center/15000%
+    @include Rise3()
+  &:active
+    background-color: var(--chroma-primary-i)
+    background-size: 100%
+    transition: background 0s
+
 .fab.secondary
   background-color: var(--chroma-primary-f)
+  &:hover
+    background: var(--chroma-primary-e) radial-gradient(circle, transparent 1%, var(--chroma-primary-e) 1%) center/15000%
+  &:active
+    background-color: var(--chroma-primary-g)
+    background-size: 100%
+    transition: background 0s
 
 .fab.tertiary
   color: var(--chroma-secondary-i)
   background-color: var(--chroma-primary-d)
+  &:hover
+    background: var(--chroma-primary-c) radial-gradient(circle, transparent 1%, var(--chroma-primary-c) 1%) center/15000%
+  &:active
+    background-color: var(--chroma-primary-e)
+    background-size: 100%
+    transition: background 0s
 
 .fab.dark
   color: var(--chroma-secondary-i)
-  background-color: var(--chroma-secondary-b)
+  background-color: var(--chroma-secondary-c)
+  &:hover
+    background: var(--chroma-secondary-e) radial-gradient(circle, transparent 1%, var(--chroma-secondary-e) 1%) center/15000%
+  &:active
+    background-color: var(--chroma-secondary-b)
+    background-size: 100%
+    transition: background 0s
 
 .materialFab
   height: 56px// 3*24=72, 72-2*8=56
@@ -163,10 +190,6 @@ export default defineComponent({
   &:hover
     background: var(--chroma-primary-e) radial-gradient(circle, transparent 1%, var(--chroma-primary-e) 1%) center/15000%
     @include Rise3()
-  &:active
-    background-color: var(--chroma-primary-a)
-    background-size: 100%
-    transition: background 0s
   &.dark
     background-color: var(--chroma-secondary-b)
     color: white
