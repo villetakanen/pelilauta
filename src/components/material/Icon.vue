@@ -79,7 +79,8 @@ export default defineComponent({
       'report',
       'send',
       'share',
-      'quick-logo'
+      'quick-logo',
+      'up'
     ]
 
     function addIcon (slug: string) {

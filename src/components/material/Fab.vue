@@ -145,6 +145,9 @@ div#ScreenBottomFloatRight
   button.materialFab + button.materialFab
     margin-left: 8px
 
+.materialFab+.materialFab
+  margin-left: 8px
+
 @include media('<tablet')
   .materialFab.text
     img

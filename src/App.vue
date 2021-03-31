@@ -44,8 +44,7 @@ export default defineComponent({
     AppBar,
     MainTailer,
     SnackBar,
-    BottomFloatContainer// ,
-    // MekanismiBar
+    BottomFloatContainer
   },
   setup () {
     const { isAnonymous } = useAuthState()
