@@ -123,7 +123,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/mekanismi',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/WikiIndex.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/WikiIndex.vue'),
     name: 'mekanismi'
   },
   {

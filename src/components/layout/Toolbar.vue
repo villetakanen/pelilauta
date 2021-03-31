@@ -27,7 +27,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 div.appToolbar
-  padding: 0
+  padding: 0 8px
   display: flex
   margin-bottom: 8px
   div:last-child
