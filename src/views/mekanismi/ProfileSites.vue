@@ -1,7 +1,7 @@
 <template>
-  <div class="viewFull">
-    <SiteListToolbar />
-    <MaterialCard>
+  <div class="profileSites">
+    <ProfileToolbar />
+    <div class="singleColumnLayout">
       <div class="siteGrid">
         <template
           v-for="site in mySites"
@@ -21,10 +21,12 @@
               v-if="site.hidden"
               name="hidden"
               style="opacity: 0.22"
+              x-small
             />
             <Icon
               v-else
               :name="site.systemBadge + '-logo'"
+              x-small
             />
           </div>
           <div
@@ -32,30 +34,29 @@
             :class="{hidden: site.hidden}"
           >
             {{ site.description }}
-          </div>
-          <div
-            class="siteCell"
-            :class="{hidden: site.hidden}"
-          >
-            {{ toDisplayString(site.lastUpdate) }}
+            <br>
+            <span class="caption">{{ toDisplayString(site.lastUpdate) }}</span>
           </div>
         </template>
       </div>
-    </MaterialCard>
+    </div>
+    <teleport to="#ScreenBottomFloatRight">
+      <ToTopFab />
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
-import MaterialCard from '@/components/material/MaterialCard.vue'
-import SiteListToolbar from '@/components/sites/SiteListToolbar.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Icon from '@/components/material/Icon.vue'
+import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
+import ToTopFab from '@/components/app/ToTopFab.vue'
 
 export default defineComponent({
-  components: { MaterialCard, SiteListToolbar, Icon },
+  components: { Icon, ProfileToolbar, ToTopFab },
   setup () {
     const { uid } = useAuthState()
     const { profile } = useProfile()
@@ -73,13 +74,15 @@ export default defineComponent({
 
 .siteGrid
   display: grid
-  grid-template-columns: auto auto 1fr auto
+  grid-template-columns: auto auto 1fr
   grid-gap: 8px
-  div.icon
-    height: 24px
-    width: 24px
+  margin-bottom: 16px
+  a
+    text-decoration: none
   div.hidden
     opacity: 0.44
     a
       color: $color-fill-tertiary
+  .caption
+    @include TypeCaption()
 </style>
