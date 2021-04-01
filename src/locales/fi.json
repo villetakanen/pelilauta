@@ -42,6 +42,10 @@
     "title": "Viesti",
     "titleFieldPlaceholder": "Ketjun otsikko"
   },
+  "errorPage":{
+    "notFound": "Väärä osoite",
+    "message": "Vaikuttaa siltä, että tätä reittiä pitkin ei pääse mihinkään. Palaa takaisin lähtöruutuun alta."
+  },
   "home": {
     "changesCard": {
       "title": "Mekanismi",
@@ -86,7 +90,8 @@
     "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
     "ssoInfocardTitle": "Omat tietoni",
     "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
-    "tagline": "Allekirjoitus"
+    "tagline": "Allekirjoitus",
+    "assets": "Media"
   },
   "threads": {
     "sinceInTopic": "aiheessa",
