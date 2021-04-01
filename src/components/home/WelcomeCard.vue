@@ -60,15 +60,15 @@ export default defineComponent({
     width: 72px
   h1
     @include TypeHeadline5()
-    color: $color-dark-font-high
-    line-height: 24px
+    color: var(--chroma-secondary-i)
+    line-height: 25px
     margin: 0
     padding: 0
     margin-left: 72px
-    margin-bottom: 12px
+    margin-bottom: 11px
   p
     @include TypeBody2()
     margin-left: 72px
-    color: $color-dark-font-medium
+    color: var(--chroma-secondary-h)
 
 </style>

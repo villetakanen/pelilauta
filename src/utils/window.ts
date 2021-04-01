@@ -8,7 +8,7 @@ export function copyUrl (slug?: string):void {
   document.body.removeChild(dummy)
 }
 
-export function getNavigatorLocale () {
+export function getNavigatorLocale (): string {
   const navigatorLocale =
     navigator.languages !== undefined
       ? navigator.languages[0]
