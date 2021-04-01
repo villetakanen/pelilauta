@@ -18,7 +18,7 @@
         dark
         mobile
       >
-        Login
+        {{ $t('action.login') }}
       </Action>
     </div>
   </div>
@@ -60,8 +60,12 @@ export default defineComponent({
     width: 72px
   h1
     @include TypeHeadline5()
-    margin-left: 72px
     color: $color-dark-font-high
+    line-height: 24px
+    margin: 0
+    padding: 0
+    margin-left: 72px
+    margin-bottom: 12px
   p
     @include TypeBody2()
     margin-left: 72px

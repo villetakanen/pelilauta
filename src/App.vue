@@ -37,6 +37,7 @@ import SnackBar from './components/app/SnackBar.vue'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
 import { useAuthState, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
+import { getNavigatorLocale } from './utils/window'
 
 export default defineComponent({
   components: {
@@ -53,7 +54,7 @@ export default defineComponent({
     const route = useRoute()
     onMounted(() => {
       watch(
-        profileMeta, (l) => { i18n.locale.value = l.pelilautaLang || 'en' },
+        profileMeta, (l) => { i18n.locale.value = l.pelilautaLang || getNavigatorLocale() },
         { immediate: true }
       )
     })
