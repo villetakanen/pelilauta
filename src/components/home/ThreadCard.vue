@@ -9,7 +9,7 @@
         class="imageframe"
         :style="`background-image: url('${thread.data.images[0].url}')`"
       />
-      <h1>
+      <h1 class="contentBox">
         <router-link :to="`/thread/${thread.id}/view`">
           {{ thread.data.title }}
         </router-link>
@@ -191,12 +191,12 @@ div.threadCard
     text-decoration: none
     color: var(--chroma-primary-c)
   h1
-    @include TypeHeadline5()
-    color: var(--chroma-secondary-e)
+    @include TypeCardHeadline()
+    // color: var(--chroma-secondary-e)
     margin-top: 0
     padding-top: 0
     a
-      color: var(--chroma-secondary-e)
+      color: var(--chroma-secondary-b)
   p.meta
     // text-align: right
     @include TypeCaption()

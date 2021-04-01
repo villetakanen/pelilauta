@@ -5,7 +5,7 @@
       :alt="$t('wiki.title')"
       src="@/assets/icons/dark/mekanismi.svg"
     >
-    <h1>{{ $t('wiki.changesCard.title') }}</h1>
+    <h1>{{ $t('home.changesCard.title') }}</h1>
     <WikiChangesItem
       v-for="item in recent"
       :key="item.changetime"
@@ -25,7 +25,7 @@
         dark
         mobile
       >
-        ...See more
+        {{ $t('home.changesCard.seeMore') }}
       </Action>
     </div>
   </div>
@@ -71,11 +71,9 @@ export default defineComponent({
     height: 72px
     width: 72px
   h1
-    @include TypeHeadline5()
+    @include TypeCardHeadline()
     margin-left:76px
-    color: $color-dark-font-high
-    margin-top: 0
-    margin-bottom: 8px
+    color: var(--chroma-secondary-i)
   ul
     margin-left: 0
     padding-left: 18px

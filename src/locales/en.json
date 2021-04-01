@@ -63,6 +63,12 @@
     "withGoogleButton": "Google",
     "withFacebookButton": "Facebook"
   },
+  "home": {
+    "changesCard": {
+      "title": "Mekanismi",
+      "seeMore": "... See more"
+    }
+  },
   "postHeader": {
     "postedInStream": "in"
   },

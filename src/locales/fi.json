@@ -40,6 +40,12 @@
     "title": "Viesti",
     "titleFieldPlaceholder": "Ketjun otsikko"
   },
+  "home": {
+    "changesCard": {
+      "title": "Mekanismi",
+      "seeMore": "... Näytä lisää"
+    }
+  },
   "language": {
     "label": "Appiksen kieli"
   },
