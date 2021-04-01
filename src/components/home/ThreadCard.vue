@@ -18,6 +18,7 @@
         v-if="site"
         class="subtitle"
       >
+        <Icon :name="site.systemBadge+'-logo'" x-small style="opacity:0.44"/>
         <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
           {{ site.name }}
         </router-link>
@@ -99,12 +100,13 @@ import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import Pill from '../material/Pill.vue'
 import { useSites } from '@/state/sites'
+import Icon from '../material/Icon.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Card, LoveAThreadAction, Pill },
+  components: { Card, LoveAThreadAction, Pill, Icon },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -178,15 +180,16 @@ div.threadCard
   margin: 0
   margin-bottom: 8px
   p.subtitle
-    @include TypeBody1()
-    margin-bottom: 8px
-    background-color: var(--chroma-secondary-i)
-    display: inline-block
-    margin-top: 0px
-    padding: 0 8px
-    // border-radius: 12px
+    @include TypeHeadline6()
+    display: block
+    line-height: 24px
+    margin-top: -7px
+    padding-top: 4px
+    border-top: solid 1px var(--chroma-secondary-h)
+    margin-bottom: 12px
+    font-weight: 100
     a
-      color: var(--chroma-secondary-b)
+      color: var(--chroma-secondary-f)
   a
     text-decoration: none
     color: var(--chroma-primary-c)

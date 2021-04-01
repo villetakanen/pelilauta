@@ -151,10 +151,8 @@ export default defineComponent({
       width: 100%
 
 .xSmall
-  height: 20px
-  width: 20px
-  padding: 0
-  margin: 2px // 2 * 2 + 20 = 24 = em
+  height: 24px
+  width: 24px
   img
     height: 20px
     width: 20px
