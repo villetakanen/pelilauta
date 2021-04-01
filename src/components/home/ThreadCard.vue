@@ -9,7 +9,7 @@
         class="imageframe"
         :style="`background-image: url('${thread.data.images[0].url}')`"
       />
-      <h1>
+      <h1 class="contentBox">
         <router-link :to="`/thread/${thread.id}/view`">
           {{ thread.data.title }}
         </router-link>
@@ -18,6 +18,7 @@
         v-if="site"
         class="subtitle"
       >
+        <Icon :name="site.systemBadge+'-logo'" x-small style="opacity:0.7"/>
         <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
           {{ site.name }}
         </router-link>
@@ -99,12 +100,13 @@ import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import Pill from '../material/Pill.vue'
 import { useSites } from '@/state/sites'
+import Icon from '../material/Icon.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Card, LoveAThreadAction, Pill },
+  components: { Card, LoveAThreadAction, Pill, Icon },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -174,25 +176,28 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 div.threadCard
-  color: var(--chroma-secondary-c)
+  color: var(--chroma-secondary-a)
   margin: 0
   margin-bottom: 8px
   p.subtitle
-    @include TypeBody1()
-    margin-bottom: 8px
+    @include TypeBody2()
+    display: block
+    line-height: 16px
+    margin-top: -7px
+    padding-top: 4px
+    padding-left: 4px
+    border-top: solid 1px var(--chroma-secondary-h)
+    margin-bottom: 12px
+    font-weight: 100
     background-color: var(--chroma-secondary-i)
-    display: inline-block
-    margin-top: 0px
-    padding: 0 8px
-    // border-radius: 12px
     a
       color: var(--chroma-secondary-b)
   a
     text-decoration: none
     color: var(--chroma-primary-c)
   h1
-    @include TypeHeadline5()
-    color: var(--chroma-secondary-e)
+    @include TypeCardHeadline()
+    // color: var(--chroma-secondary-e)
     margin-top: 0
     padding-top: 0
     a

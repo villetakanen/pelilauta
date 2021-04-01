@@ -1,5 +1,5 @@
 @mixin TypeHeadline3()
-  font-family: 'Roboto Condensed', sans-serif
+  font-family: 'Overpass', sans-serif
   font-size: 48px
   font-weight: normal
   letter-spacing: 0px
@@ -8,7 +8,7 @@
   padding: 0
 
 @mixin TypeHeadline4()
-  font-family: 'Roboto Condensed', sans-serif
+  font-family: 'Overpass', sans-serif
   font-size: 34px
   font-weight: normal
   letter-spacing: 0.25px
@@ -17,8 +17,8 @@
   padding: 0
 
 @mixin TypeHeadline5()
-  font-family: 'Roboto Condensed', sans-serif
-  font-size: 24px
+  font-family: 'Overpass', sans-serif
+  font-size: 25px
   font-weight: normal
   letter-spacing: 0px
   line-height: 32px
@@ -27,7 +27,7 @@
   padding: 0
 
 @mixin TypeHeadline6()
-  font-family: 'Roboto Condensed', sans-serif
+  font-family: 'Overpass', sans-serif
   font-size: 20px
   font-weight: normal
   letter-spacing: 0.15px
@@ -74,12 +74,19 @@
   padding: 0
 
 @mixin TypeDisplay1()
-  font-family: 'Roboto Condensed', sans-serif
+  font-family: 'Overpass', sans-serif
   font-size: 96px
   font-weight: lighter
   letter-spacing: -1.5px
   line-height: 112px
   margin: 0
   padding: 0
-  
+
+@mixin TypeCardHeadline()
+  @include TypeHeadline5()
+  line-height: 25px
+  margin: 0
+  padding: 0
+  margin-bottom: 11px
+
   

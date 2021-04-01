@@ -3,6 +3,7 @@ import { createI18n, LocaleMessageDictionary, VueMessageType } from 'vue-i18n'
 import App from './App.vue'
 import router from './router'
 import { useFirebase } from './firebase'
+import { getNavigatorLocale } from './utils/window'
 useFirebase()
 
 const app = createApp(App)
@@ -21,18 +22,9 @@ function loadLocaleMessages () {
   return messages
 }
 
-function getNavigatorLocale () {
-  const navigatorLocale =
-    navigator.languages !== undefined
-      ? navigator.languages[0]
-      : navigator.language
-  if (!navigatorLocale) return 'en'
-  return navigatorLocale.trim().split(/-|_/)[0]
-}
-
 const i18n = createI18n({
   locale: getNavigatorLocale(),
-  fallbackLocale: 'en',
+  fallbackLocale: 'fi',
   messages: loadLocaleMessages()
 })
 

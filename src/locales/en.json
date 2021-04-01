@@ -1,9 +1,4 @@
 {
-  "lang": "EN",
-  "about": {
-    "title": "About Pelilauta",
-    "text": "What if we wanted more structured and slower conversation than discoes and some allows? Not instead, but in addition."
-  },
   "action": {
     "addAttachment": "Add a file",
     "addThread": "New Thread",
@@ -22,19 +17,19 @@
     "toTopicList": "Topics",
     "nextPage": "Load more threads",
     "quote": "Quote",
-    "readMore": "Read more...",
     "send": "Send",
     "update": "Update"
   },
   "admin": {
     "title": "Admin",
     "action": {
-      "editorTest": "Editor sandbox",
+      "editorTest": "RTE Sandbox",
       "topics": "Topics",
       "stylebook": "Stylebook"
     }
   },
   "app": {
+    "lang": "EN",
     "title": "Pelilauta",
     "footnote": "A Community SPA. All text content (c) by the author(s).",
     "updatesAvailable": "A new version is available, please refresh",
@@ -51,9 +46,6 @@
     "notFound": "Broken route",
     "message": "It seems that the route you used to reach this site is broken. You might find what you were looking for with search, or from the front page?"
   },
-  "language": {
-      "label": "UI Language"
-  },
   "login": {
     "title": "Login or Register",
     "withEmail": "Send me the link",
@@ -62,6 +54,12 @@
     "message": "Alternatively, you can use single sign on with the services below",
     "withGoogleButton": "Google",
     "withFacebookButton": "Facebook"
+  },
+  "home": {
+    "changesCard": {
+      "title": "Mekanismi",
+      "seeMore": "... See more"
+    }
   },
   "postHeader": {
     "postedInStream": "in"

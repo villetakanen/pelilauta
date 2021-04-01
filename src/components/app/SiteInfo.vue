@@ -11,7 +11,7 @@
       </h3>
       <h3>
         {{ version }} /
-        {{ $t('lang') }}
+        {{ $t('app.lang') }}
       </h3>
     </div>
   </div>

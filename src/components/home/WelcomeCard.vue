@@ -18,7 +18,7 @@
         dark
         mobile
       >
-        Login
+        {{ $t('action.login') }}
       </Action>
     </div>
   </div>
@@ -59,12 +59,12 @@ export default defineComponent({
     height: 72px
     width: 72px
   h1
-    @include TypeHeadline5()
+    @include TypeCardHeadline()
+    color: var(--chroma-secondary-i)
     margin-left: 72px
-    color: $color-dark-font-high
   p
     @include TypeBody2()
     margin-left: 72px
-    color: $color-dark-font-medium
+    color: var(--chroma-secondary-h)
 
 </style>
