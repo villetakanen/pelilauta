@@ -18,7 +18,7 @@
         v-if="site"
         class="subtitle"
       >
-        <Icon :name="site.systemBadge+'-logo'" x-small style="opacity:0.44"/>
+        <Icon :name="site.systemBadge+'-logo'" x-small style="opacity:0.7"/>
         <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
           {{ site.name }}
         </router-link>
@@ -176,20 +176,22 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 div.threadCard
-  color: var(--chroma-secondary-c)
+  color: var(--chroma-secondary-a)
   margin: 0
   margin-bottom: 8px
   p.subtitle
-    @include TypeHeadline6()
+    @include TypeBody2()
     display: block
-    line-height: 24px
+    line-height: 16px
     margin-top: -7px
     padding-top: 4px
+    padding-left: 4px
     border-top: solid 1px var(--chroma-secondary-h)
     margin-bottom: 12px
     font-weight: 100
+    background-color: var(--chroma-secondary-i)
     a
-      color: var(--chroma-secondary-f)
+      color: var(--chroma-secondary-b)
   a
     text-decoration: none
     color: var(--chroma-primary-c)
@@ -199,7 +201,7 @@ div.threadCard
     margin-top: 0
     padding-top: 0
     a
-      color: var(--chroma-secondary-b)
+      color: var(--chroma-secondary-e)
   p.meta
     // text-align: right
     @include TypeCaption()
