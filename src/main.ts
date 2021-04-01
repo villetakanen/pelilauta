@@ -26,13 +26,13 @@ function getNavigatorLocale () {
     navigator.languages !== undefined
       ? navigator.languages[0]
       : navigator.language
-  if (!navigatorLocale) return 'en'
+  if (!navigatorLocale) return 'fi'
   return navigatorLocale.trim().split(/-|_/)[0]
 }
 
 const i18n = createI18n({
   locale: getNavigatorLocale(),
-  fallbackLocale: 'en',
+  fallbackLocale: 'fi',
   messages: loadLocaleMessages()
 })
 
