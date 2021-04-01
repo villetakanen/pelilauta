@@ -7,7 +7,7 @@
       class="shadowLogo"
       alt="Pelilauta Logo"
     >
-    <span style="line-height: 56px;opacity:0.37; font-size:12px">{{ version }} {{ $t('lang') }}</span>
+    <span style="line-height: 56px;opacity:0.37; font-size:12px">{{ version }} </span>
     <div style="text-align: center; padding:16px; line-height: 12px;opacity:0.37; font-size:12px">
       <router-link to="/about">
         {{ $t('app.footnote') }}
