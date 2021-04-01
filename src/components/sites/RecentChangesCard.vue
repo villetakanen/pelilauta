@@ -1,27 +1,25 @@
 <template>
-  <MaterialCard class="recentChangesCard">
-    <h1>{{ $t('wiki.changesCard.title') }}</h1>
-    <ul>
+  <div class="recentChangesCard">
+    <ul class="wikiChanges">
       <li
         v-for="item in recent"
         :key="item.changetime"
       >
-        <span class="siteslug">{{ item.siteid }}</span>
+        <span class="siteslug">{{ item.siteid }}</span>–
         <router-link :to="`/mekanismi/view/${item.siteid}/${item.pageid}`">
           {{ item.name }}
         </router-link>
       </li>
     </ul>
-  </MaterialCard>
+  </div>
 </template>
 
 <script lang="ts">
 import { PageLogEntry, usePagelog } from '@/state/pagelog'
 import { defineComponent, ref } from 'vue'
-import MaterialCard from '../material/MaterialCard.vue'
 
 export default defineComponent({
-  components: { MaterialCard },
+  components: { },
   setup () {
     const { fetchPagelog } = usePagelog()
     const recent = ref(new Array<PageLogEntry>())
@@ -40,5 +38,11 @@ export default defineComponent({
 .siteslug
   color: $color-font-disabled
   padding-right: 8px
+.wikiChanges
+  list-style-type: none
+  margin-left: 0
+  padding-left: 0
+  li
+    margin-bottom: 12px
 
 </style>
