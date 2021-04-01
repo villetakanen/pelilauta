@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.34.0](https://github.com/villetakanen/pelilauta/compare/v7.33.3...v7.34.0) (2021-04-01)
+
+
+### Features
+
+* default language to fi ([c712e83](https://github.com/villetakanen/pelilauta/commit/c712e834a7b683ad98e69aa3c322683903c0c05b))
+* overpass font initial inject ([77238ef](https://github.com/villetakanen/pelilauta/commit/77238ef9ce8251360352e2c5877de3e7693f261d))
+
+
+### Bug Fixes
+
+* added missing locale strings ([401eefc](https://github.com/villetakanen/pelilauta/commit/401eefca9470db055f524db5dca042bedb7465c3))
+* default language to fi ([f856143](https://github.com/villetakanen/pelilauta/commit/f856143483de760a07b133b3670c93f14eb3299c))
+* front page ux after font upgrade ([4f95669](https://github.com/villetakanen/pelilauta/commit/4f956699b8d5350e1eff339a807f43c22b21803d))
+* language polish ([532ac27](https://github.com/villetakanen/pelilauta/commit/532ac2711b5ed590ecbb8e29b6729bd65edca576))
+* more locale strings ([159027f](https://github.com/villetakanen/pelilauta/commit/159027fa134e9ac38d437c37f2a4f6cb2ced209e))
+* site subtitle more visible ([5320088](https://github.com/villetakanen/pelilauta/commit/53200881615fa62184249d2631aca2178fc1ae45))
+* small ux corrections ([592126a](https://github.com/villetakanen/pelilauta/commit/592126a10cee424e97e3d2f7872712011a856bbd))
+* wiki changes view ux ([4bfd68b](https://github.com/villetakanen/pelilauta/commit/4bfd68b33bb37f7b3c5bc3fd3722335871e2e41f))
+
 ### [7.33.3](https://github.com/villetakanen/pelilauta/compare/v7.33.2...v7.33.3) (2021-03-31)
 
 
