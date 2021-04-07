@@ -73,6 +73,10 @@
     },
     "filterSites": "Suodata"
   },
+  "snacks": {
+    "invalidEmail": "Sähköpostiosoitteessa oli jotain vikaa, yritä uuudestaan?",
+    "emailSent": "Kirjautumislinkki lähetetty."
+  },
   "stream": {
     "title": "Pelilauta",
     "inStream": "Aiheessa"

@@ -92,6 +92,10 @@
       "deleteWarning": "Deleting a thread will erase the discussion and any data related to the thread permanently. Please type DELETE to the field below to verfy you really want to do this."
     }
   },
+  "snacks": {
+    "invalidEmail": "Error handling email, please try again.",
+    "emailSent": "Login link sent succesfully."
+  },
   "since": {
     "lessThanHalfh": "Less than 30 min ago",
     "lessThanTwoHours": "Less than 2h ago",
