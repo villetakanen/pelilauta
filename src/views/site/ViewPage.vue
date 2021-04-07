@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div style="margin: 0 8px">
-      <SiteToolbar :page="page" />
-    </div>
+  <div class="viewPage">
+    <SiteToolbar :page="page" />
     <div class="mekanismiGrid">
       <div class="mainCard">
         <transition name="fade">

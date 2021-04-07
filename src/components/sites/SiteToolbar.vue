@@ -11,9 +11,14 @@
         <router-link
           :to="`/mekanismi/view/${site.id}/${site.id}`"
         >
-          <Icon :name="site.systemBadge + '-logo'" inline/>
-          <span class="hideOnMobile">{{ site.name }} / </span>
+          <Icon
+            :name="site.systemBadge + '-logo'"
+            headline
+            style="margin-left: 0; padding-left: 0"
+          />
+          <span class="hideOnMobile">{{ site.name }}</span>
         </router-link>
+        <span class="hideOnMobile"> – </span>
         <router-link
           :to="`/mekanismi/view/${site.id}/${page.id}`"
         >

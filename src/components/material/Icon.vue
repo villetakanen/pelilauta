@@ -1,7 +1,7 @@
 <template>
   <div
     class="icon"
-    :class="{ xSmall: xSmall, inline: inline, medium: medium }"
+    :class="{ xSmall: xSmall, inline: inline, medium: medium, headline: headline }"
   >
     <img
       ref="icon"
@@ -42,6 +42,11 @@ export default defineComponent({
       default: false
     },
     medium: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    headline: {
       type: Boolean,
       required: false,
       default: false
@@ -169,6 +174,20 @@ export default defineComponent({
     width: 20px
     vertical-align: top
 .inline.icon + .inline.icon
+  margin-left: 0px
+
+.headline.icon
+  display: inline-block
+  height: 44px
+  width: 44px
+  padding: 2px
+  margin: 0 4px
+  vertical-align: middle
+  img
+    height: 44px
+    width: 44px
+    vertical-align: top
+.headline.icon + .headline.icon
   margin-left: 0px
 
 .medium
