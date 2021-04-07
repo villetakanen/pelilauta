@@ -32,6 +32,7 @@ import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
 import Toolbar from '../layout/Toolbar.vue'
 import { useAuthState, useProfile } from '@/state/authz'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   components: { MaterialCard, TextField, MaterialButton, Toolbar },
@@ -41,6 +42,7 @@ export default defineComponent({
     const router = useRouter()
     const sending = ref(false)
     const { pushSnack } = useSnack()
+    const i18n = useI18n()
 
     onMounted(() => {
       const { isAnonymous } = useAuthState()
@@ -50,7 +52,7 @@ export default defineComponent({
     const singInWithEmail = () => {
       if (!emailAdress.value) {
         console.log('missing email adress value')
-        pushSnack({ topic: 'trying to sign in without an email' })
+        pushSnack({ topic: i18n.t('snacks.invalidEmail') })
       }
       firebase.auth().signInWithEmailLink(emailAdress.value, window.location.href)
         .then((result) => {
@@ -103,7 +105,7 @@ export default defineComponent({
           // Save the email locally so you don't need to ask the user for it again
           // if they open the link on the same device.
           window.localStorage.setItem('emailForSignIn', emailAdress.value)
-          pushSnack({ topic: 'Email link sent!' })
+          pushSnack({ topic: i18n.t('snacks.emailSent') })
           router.push('/')
         })
         .catch((error: Error) => {

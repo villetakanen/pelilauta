@@ -139,10 +139,10 @@ export default defineComponent({
       const arr = new Array<MenuItem>()
       arr.push({ action: quoteComment, text: i18n.t('action.quote') })
       if (uid.value === props.reply?.author) {
-        arr.push({ action: dropComment, text: 'Delete!' })
-        arr.push({ action: editComment, text: 'Edit' })
+        arr.push({ action: dropComment, text: i18n.t('action.delete') })
+        arr.push({ action: editComment, text: i18n.t('action.edit') })
       } else if (isAdmin.value) {
-        arr.push({ action: dropComment, text: 'Delete!', admin: true })
+        arr.push({ action: dropComment, text: i18n.t('action.delete'), admin: true })
       }
       return arr
     })
@@ -159,7 +159,6 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
-@import @/styles/material-colors.sass
 @import @/styles/layout.sass
 
 .replyComment
@@ -229,14 +228,14 @@ export default defineComponent({
       margin-right: 8px
       padding:4px 0
       line-height: 16px
-      color: $color-fill-primary-light
+      color: var(--chroma-primary-d)
       flex-grow: 0
 .box
   position: relative
   margin-right: 8px
   border-radius: 4px
-  background-color: $color-base
-  border: solid 1px $color-base
+  background-color: var(--chroma-clear)
+  border: solid 1px var(--chroma-clear)
   padding: 4px
   min-height: 60px
   max-height: 220px
