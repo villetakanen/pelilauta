@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <div style="margin: 0 8px">
-      <SiteToolbar />
-    </div>
+  <div class="viewPage">
+    <SiteToolbar :page="page" />
     <div class="mekanismiGrid">
       <div class="mainCard">
-        <PageToolbar />
         <transition name="fade">
           <div v-if="site.name && page.name">
             <div
@@ -31,7 +28,10 @@
             poster
           />
         </transition>
-        <SiteThreadList v-if="site.name" :siteid="site.id"/>
+        <SiteThreadList
+          v-if="site.name"
+          :siteid="site.id"
+        />
       </Card>
     </div>
     <PageFabs />
@@ -40,7 +40,6 @@
 
 <script lang="ts">
 import { ComputedRef, defineComponent, inject, provide } from 'vue'
-import PageToolbar from '@/components/wikipage/PageToolbar.vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
 import { usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
@@ -53,7 +52,6 @@ import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
 export default defineComponent({
   name: 'WikiIndex',
   components: {
-    PageToolbar,
     Loader,
     SideBar,
     PageFabs,
