@@ -136,12 +136,11 @@ export default defineComponent({
 
 .threadBoxHeader
   margin: 0
-  max-height: 80px
   position: sticky
   position: -webkit-sticky
-  top: 0px
-  margin-top: -8px
-  padding-top: 8px
+  top: 24px
+  margin-top: -16px
+  padding-top: 12px
   padding-bottom: 7px
   border-bottom: solid 1px var(--chroma-primary-g)
   margin-bottom: 8px
