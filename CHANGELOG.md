@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.34.1](https://github.com/villetakanen/pelilauta/compare/v7.34.0...v7.34.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* email login form snacks ([ad6dcbb](https://github.com/villetakanen/pelilauta/commit/ad6dcbbd3090d975e36432064e7da4f655d4d058))
+* reply locales and chroma updates ([3839af7](https://github.com/villetakanen/pelilauta/commit/3839af7d5980f24e49c429d35c16378ccb37e4e0))
+* thread long header on mobile ([2a6b624](https://github.com/villetakanen/pelilauta/commit/2a6b6247389ca32cd41cb3b8772f41ccf07712c9))
+* wiki page headers on mobile ([c39f04a](https://github.com/villetakanen/pelilauta/commit/c39f04adaf2a8cd9a9fb79d2ed60331a1a600be6))
+* wiki toolbars mobile fix part 1 ([d2e38a2](https://github.com/villetakanen/pelilauta/commit/d2e38a28b38cc08a487e27c512cc990685105632))
+
 ## [7.34.0](https://github.com/villetakanen/pelilauta/compare/v7.33.3...v7.34.0) (2021-04-01)
 
 
