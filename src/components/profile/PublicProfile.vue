@@ -21,7 +21,7 @@
           <MaterialButton
             :async-action="save"
             text
-            :disabled="v.$errors.length > 0 || !v.$dirty"
+            :disabled="v.$errors.length > 0 || (!v.tagline.$dirty && !v.nickname.$dirty)"
           >
             {{ $t('action.save') }}
           </MaterialButton>
@@ -82,8 +82,12 @@ export default defineComponent({
     const { pushSnack } = useSnack()
     const i18n = useI18n()
     const save = async () => {
-      await updateProfile({ nick: '' + localNick.value, tagline: '' + localTagline.value })
-      pushSnack(i18n.t('snacks.updateSuccess'))
+      try {
+        await updateProfile({ nick: '' + localNick.value, tagline: '' + localTagline.value })
+        pushSnack(i18n.t('snacks.updateSuccess'))
+      } catch {
+        pushSnack(i18n.t('snacks.updateFailed'))
+      }
     }
 
     return { profile, nickname, tagline, v, save }
