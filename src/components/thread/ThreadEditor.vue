@@ -175,10 +175,10 @@ export default defineComponent({
           topic: threadTopic.value,
           sticky: threadSticky.value
         }).then((threadid) => {
-          pushSnack(i18n.t('threads.updateSuccess'))
+          pushSnack(i18n.t('snacks.updateSuccess'))
           router.push(`/thread/${threadid}/view`)
         }).catch((error:Error) => {
-          pushSnack(i18n.t('threads.updateFailed'))
+          pushSnack(i18n.t('snacks.updateFailed'))
           console.debug(error)
         })
       }
@@ -189,10 +189,10 @@ export default defineComponent({
       if (localSticky.value !== null) updatedThread.data.sticky = localSticky.value
       if (threadSite.value !== null) updatedThread.site = threadSite.value
       return updateThread(uid.value, updatedThread).then(() => {
-        pushSnack(i18n.t('threads.updateSuccess'))
+        pushSnack(i18n.t('snacks.updateSuccess'))
         router.push(`/thread/${props.thread.id}/view`)
       }).catch((error:Error) => {
-        pushSnack(i18n.t('threads.updateFailed'))
+        pushSnack(i18n.t('snacks.updateFailed'))
         console.debug(error)
       })
     }
