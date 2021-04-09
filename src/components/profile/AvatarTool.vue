@@ -1,13 +1,19 @@
 <template>
   <div class="avatarTool">
-    <img :src="profile.photoURL" class="avatarPreview">
+    <img
+      :src="profile.photoURL"
+      class="avatarPreview"
+      alt="Avatar Image"
+    >
     <img
       class="avatarFrame"
       src="@/assets/avatar-border.svg"
+      alt=""
     >
     <img
       class="hoverImage"
       src="@/assets/icons/dark/addAnImage.svg"
+      alt=""
     >
   </div>
 </template>
