@@ -3,7 +3,7 @@
     <ProfileToolbar />
     <div class="singleColumnLayout">
       <PublicProfile />
-      <ProfileCard />
+      <ProfileActions />
       <MaterialCard>
         <img
           v-if="profile.photoURL"
@@ -18,7 +18,6 @@
       </MaterialCard>
       <PrivateInfo v-if="false" />
       <LovedThreads />
-      <ProfileActions />
     </div>
   </div>
 </template>
@@ -31,7 +30,6 @@ import PublicProfile from '@/components/profile/PublicProfile.vue'
 import LovedThreads from '@/components/profile/LovedThreads.vue'
 import ProfileActions from '@/components/profile/ProfileActions.vue'
 import { useProfile } from '@/state/authz'
-import ProfileCard from '@/components/profile/ProfileCard.vue'
 import { useSnack } from '@/composables/useSnack'
 import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 
@@ -43,7 +41,6 @@ export default defineComponent({
     ProfileActions,
     PrivateInfo,
     PublicProfile,
-    ProfileCard,
     ProfileToolbar
   },
   setup () {
