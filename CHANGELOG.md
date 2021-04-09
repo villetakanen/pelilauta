@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.35.2](https://github.com/villetakanen/pelilauta/compare/v7.35.1...v7.35.2) (2021-04-09)
+
+
+### Bug Fixes
+
+* removed redundant card from profile view ([7a25480](https://github.com/villetakanen/pelilauta/commit/7a25480468ea8c97fa12237954d2c676a2b2833d))
+
 ### [7.35.1](https://github.com/villetakanen/pelilauta/compare/v7.35.0...v7.35.1) (2021-04-09)
 
 
