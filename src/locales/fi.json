@@ -75,7 +75,9 @@
   },
   "snacks": {
     "invalidEmail": "Sähköpostiosoitteessa oli jotain vikaa, yritä uuudestaan?",
-    "emailSent": "Kirjautumislinkki lähetetty."
+    "emailSent": "Kirjautumislinkki lähetetty.",
+    "updateSuccess": "Päivitetty",
+    "updateFailed": "Päivitys epäonnistui"
   },
   "stream": {
     "title": "Pelilauta",

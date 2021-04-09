@@ -2,6 +2,7 @@
   <div class="profileView">
     <ProfileToolbar />
     <div class="singleColumnLayout">
+      <PublicProfile />
       <ProfileCard />
       <MaterialCard>
         <img
@@ -15,7 +16,6 @@
         </div>
         <div style="clear:both" />
       </MaterialCard>
-      <PublicProfile />
       <PrivateInfo v-if="false" />
       <LovedThreads />
       <ProfileActions />

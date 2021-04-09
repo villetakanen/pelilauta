@@ -94,7 +94,9 @@
   },
   "snacks": {
     "invalidEmail": "Error handling email, please try again.",
-    "emailSent": "Login link sent succesfully."
+    "emailSent": "Login link sent succesfully.",
+    "updateSuccess": "Updated",
+    "updateFailed": "Update failed"
   },
   "since": {
     "lessThanHalfh": "Less than 30 min ago",
