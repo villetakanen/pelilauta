@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.35.1](https://github.com/villetakanen/pelilauta/compare/v7.35.0...v7.35.1) (2021-04-09)
+
+
+### Bug Fixes
+
+* accessibility bugs fixed ([ec2d77b](https://github.com/villetakanen/pelilauta/commit/ec2d77bec26d9097453480bb7ce502ee7c77e5dc))
+
 ## [7.35.0](https://github.com/villetakanen/pelilauta/compare/v7.34.1...v7.35.0) (2021-04-09)
 
 
