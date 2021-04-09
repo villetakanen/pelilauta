@@ -97,7 +97,11 @@
     "ssoInfocardTitle": "Omat tietoni",
     "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
     "tagline": "Allekirjoitus",
-    "assets": "Media"
+    "assets": "Media",
+    "actions": {
+      "title": "Asetukset ja toiminnot",
+      "helper": "Erilaisia nappuloita ja säätöjä"
+    }
   },
   "threads": {
     "sinceInTopic": "aiheessa",
