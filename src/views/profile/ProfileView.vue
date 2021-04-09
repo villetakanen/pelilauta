@@ -4,18 +4,6 @@
     <div class="singleColumnLayout">
       <PublicProfile />
       <ProfileActions />
-      <MaterialCard>
-        <img
-          v-if="profile.photoURL"
-          class="avatar"
-          :src="profile.photoURL"
-          :alt="profile.nick"
-        >
-        <div>
-          {{ $t('language.label') }} <a @click="setLang('en')">EN</a> / <a @click="setLang('fi')">FI</a>
-        </div>
-        <div style="clear:both" />
-      </MaterialCard>
       <PrivateInfo v-if="false" />
       <LovedThreads />
     </div>
@@ -24,7 +12,6 @@
 
 <script lang="ts">
 import { ComputedRef, defineComponent, inject, onMounted, provide } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import PrivateInfo from '@/components/profile/PrivateInfo.vue'
 import PublicProfile from '@/components/profile/PublicProfile.vue'
 import LovedThreads from '@/components/profile/LovedThreads.vue'
@@ -36,7 +23,6 @@ import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 export default defineComponent({
   name: 'ProfileView',
   components: {
-    MaterialCard,
     LovedThreads,
     ProfileActions,
     PrivateInfo,

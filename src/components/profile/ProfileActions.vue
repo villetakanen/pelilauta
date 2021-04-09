@@ -2,6 +2,13 @@
   <div class="profileActions">
     <h3>{{ $t('profile.actions.title') }}</h3>
     <p>{{ $t('profile.actions.helper') }}</p>
+    <div>
+      {{ $t('profile.actions.selectLang') }}
+      <MaterialSelect
+        v-model="selectedLang"
+        :opts="langs"
+      />
+    </div>
     <MaterialButton
       :action="stampAllSeen"
     >
@@ -20,19 +27,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { useProfile } from '@/state/authz'
+import MaterialSelect from '../material/MaterialSelect.vue'
+import { useI18n } from 'vue-i18n'
+import { useSnack } from '@/composables/useSnack'
 
 export default defineComponent({
   name: 'ProfileActions',
   components: {
-    MaterialButton
+    MaterialButton,
+    MaterialSelect
   },
   setup () {
+    const i18n = useI18n()
     const router = useRouter()
 
     const logout = () => {
@@ -46,7 +58,23 @@ export default defineComponent({
       markAllThreadsRead()
     }
 
-    return { logout, stampAllSeen }
+    const langs = [
+      { key: 'fi', value: i18n.t('language.fi') },
+      { key: 'en', value: i18n.t('language.en') }
+    ]
+
+    const { profileMeta, switchLang } = useProfile()
+    const selectedLang = ref(profileMeta.value.pelilautaLang || 'fi')
+    const { pushSnack } = useSnack()
+
+    watch(selectedLang, (currentValue) => {
+      console.debug('changing lang', currentValue)
+      switchLang(currentValue).then(() => {
+        pushSnack(i18n.t('snacks.languageUpdate') + ' ' + i18n.t('language.' + currentValue))
+      })
+    })
+
+    return { logout, stampAllSeen, langs, selectedLang }
   }
 })
 </script>
