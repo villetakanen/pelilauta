@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.35.0](https://github.com/villetakanen/pelilauta/compare/v7.34.1...v7.35.0) (2021-04-09)
+
+
+### Features
+
+* avatar tool base ui available ([a61273a](https://github.com/villetakanen/pelilauta/commit/a61273a61d0dc4db0a7e1c2d5e0fa7c680340e0e))
+
+
+### Bug Fixes
+
+* non-dirty model disabling works ([49d93cb](https://github.com/villetakanen/pelilauta/commit/49d93cbafe581ed6781fd266034fb6bf076cea65))
+* refactored profile field editor ui ([b016cfd](https://github.com/villetakanen/pelilauta/commit/b016cfd8a1b1dac321f10ea924c31380bbfb1ca6))
+* thread update messages ([55668cf](https://github.com/villetakanen/pelilauta/commit/55668cfe556f206a83327d1f0ada0291600e3651))
+
 ### [7.34.1](https://github.com/villetakanen/pelilauta/compare/v7.34.0...v7.34.1) (2021-04-07)
 
 
