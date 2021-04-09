@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.35.3](https://github.com/villetakanen/pelilauta/compare/v7.35.2...v7.35.3) (2021-04-09)
+
+
+### Bug Fixes
+
+* removed rest of deprecated profile view items ([904cece](https://github.com/villetakanen/pelilauta/commit/904cecedf7ec09c7d0a2e1df440df5c49e3d4b8f))
+
 ### [7.35.2](https://github.com/villetakanen/pelilauta/compare/v7.35.1...v7.35.2) (2021-04-09)
 
 
