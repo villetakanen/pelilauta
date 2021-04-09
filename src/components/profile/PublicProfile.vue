@@ -4,7 +4,7 @@
     <p>{{ $t('profile.publicInfoHelper') }}</p>
     <div class="profileForm">
       <div class="avatarTool">
-        ...
+        <AvatarTool />
       </div>
       <div class="profileFields">
         <TextField
@@ -41,12 +41,14 @@ import { useAuthors } from '@/state/authors'
 import TextField from '../material/TextField.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
+import AvatarTool from './AvatarTool.vue'
 
 export default defineComponent({
   name: 'PublicProfileInfoCard',
   components: {
     MaterialButton,
-    TextField
+    TextField,
+    AvatarTool
   },
   setup () {
     const { profile, updateProfile } = useProfile()
@@ -82,8 +84,9 @@ export default defineComponent({
     const { pushSnack } = useSnack()
     const i18n = useI18n()
     const save = async () => {
+      if (v.value.nickname.$error || v.value.tagline.$error) return
       try {
-        await updateProfile({ nick: '' + localNick.value, tagline: '' + localTagline.value })
+        await updateProfile({ nick: '' + nickname.value, tagline: '' + tagline.value })
         pushSnack(i18n.t('snacks.updateSuccess'))
       } catch {
         pushSnack(i18n.t('snacks.updateFailed'))
@@ -102,9 +105,6 @@ export default defineComponent({
 .publicProfile
   .profileForm
     display: flex
-    .avatarTool
-      height: 72px
-      width: 72px
     .profileFields
       flex-grow: 1
 
