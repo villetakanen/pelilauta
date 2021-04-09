@@ -53,7 +53,8 @@
     }
   },
   "language": {
-    "label": "Appiksen kieli"
+    "fi": "Suomi",
+    "en": "Englati"
   },
   "login": {
     "title": "Kirjaudu tai rekisteröidy",
@@ -100,7 +101,8 @@
     "assets": "Media",
     "actions": {
       "title": "Asetukset ja toiminnot",
-      "helper": "Erilaisia nappuloita ja säätöjä"
+      "helper": "Erilaisia nappuloita ja säätöjä",
+      "selectLang": "Sovelluksen kieli"
     }
   },
   "threads": {
