@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.36.0](https://github.com/villetakanen/pelilauta/compare/v7.35.3...v7.36.0) (2021-04-10)
+
+
+### Features
+
+* profile action to see public profile ([a4e340c](https://github.com/villetakanen/pelilauta/commit/a4e340c545e07140af590031aa57371c4744ba66))
+
 ### [7.35.3](https://github.com/villetakanen/pelilauta/compare/v7.35.2...v7.35.3) (2021-04-09)
 
 
