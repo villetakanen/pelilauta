@@ -82,6 +82,7 @@ export default defineComponent({
       'players',
       'remove',
       'report',
+      'stats',
       'send',
       'share',
       'quick-logo',

@@ -7,6 +7,12 @@
     </h3>
     <div class="spacer" />
     <Action
+      :to="'/u/' + uid"
+      prepend="stats"
+    >
+      <span class="hideOnMobile">{{ $t('profile.stats') }}</span>
+    </Action>
+    <Action
       to="profile.media"
       prepend="images"
     >
@@ -25,13 +31,14 @@
 import { defineComponent } from 'vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
-import { useProfile } from '@/state/authz'
+import { useAuthState, useProfile } from '@/state/authz'
 
 export default defineComponent({
   components: { Toolbar, Action },
   setup () {
+    const { uid } = useAuthState()
     const { profile, profileMeta } = useProfile()
-    return { profile, profileMeta }
+    return { uid, profile, profileMeta }
   }
 })
 </script>
