@@ -1,11 +1,27 @@
 <template>
-  <Action
-    mobile
-    :to="mekanismi ? '/mekanismi' : '/'"
-  >
-    <span v-if="!mekanismi">Pelilauta</span>
-    <span v-else>Mekanismi</span>
-  </Action>
+  <div>
+    <h3 class="hideOnMobile siteIdentity">
+      <router-link to="/">
+        <img
+          alt=""
+          src="@/assets/fox-green.svg"
+        >
+        {{ $t('app.title') }}
+      </router-link>
+      <span
+        v-if="mekanismi"
+        class="subtitle"
+      > / <router-link to="/mekanismi">Mekanismi</router-link></span>
+    </h3>
+    <Action
+      mobile
+      class="onlyForMobile"
+      :to="mekanismi ? '/mekanismi' : '/'"
+    >
+      <span v-if="!mekanismi">Pelilauta</span>
+      <span v-else>Mekanismi</span>
+    </Action>
+  </div>
 </template>
 
 <script lang="ts">
@@ -20,3 +36,17 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.siteIdentity
+  margin-left: 0px
+  h3
+  .subtitle, .subtitle a
+    color: var(--chroma-primary-b)
+  img
+    height: 40px
+    width: 40px
+    vertical-align: middle
+    margin-top: -4px
+    margin-bottom: -4px
+</style>

@@ -122,8 +122,6 @@ export default defineComponent({
 
 @include media('>=tablet')
   #mainContentWrapper
-    transition: margin 0.4s ease-in-out
-    &.toggle
-      margin-left: 310px
+    margin-left: 310px
 
 </style>
