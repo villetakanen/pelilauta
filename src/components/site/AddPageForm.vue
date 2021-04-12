@@ -19,6 +19,7 @@
       <MaterialButton
         id="addPageCardCreateButton"
         :disabled="v.pageName.$error || !v.pageName.$dirty"
+        :async-action="add"
       >
         {{ $t('action.add') }}
       </MaterialButton>

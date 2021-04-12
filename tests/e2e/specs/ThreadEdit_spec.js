@@ -25,11 +25,11 @@ describe('Thread editor functionality', () => {
 
     cy.wait(300)
 
-    cy.contains('h1', 'Test Subject 37')
+    cy.contains('h3', 'Test Subject 37')
     cy.get('#sideNavAction-home').click()
     cy.get('#addThreadFab').click()
     cy.contains('label', 'Thread title')
     cy.get('#threadEditorCancelButton').click()
-    cy.contains('h1', 'Mekanismi changes')
+    cy.contains('h1', 'Mekanismi')
   })
 })
