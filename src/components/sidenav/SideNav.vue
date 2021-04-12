@@ -1,18 +1,20 @@
 <template>
-  <transition name="fadeFast">
+  <div class="sideNav">
+    <transition name="fadeFast">
+      <div
+        v-if="!modelValue"
+        class="overlay"
+        @click="toggle"
+      />
+    </transition>
     <div
-      v-if="!modelValue"
-      class="overlay"
-      @click="toggle"
-    />
-  </transition>
-  <div
-    id="sideNav"
-    :class="{ toggled: modelValue }"
-  >
-    <div class="menuContainer">
-      <SideNavMenu />
-      <SiteInfo />
+      id="sideNav"
+      :class="{ toggled: modelValue }"
+    >
+      <div class="menuContainer">
+        <SideNavMenu />
+        <SiteInfo />
+      </div>
     </div>
   </div>
 </template>
@@ -56,18 +58,10 @@ export default defineComponent({
   width: 310px
   height: 100vh
   transition: transform 0.3s ease-in-out
-  overflow: hidden
-  overflow-y: scroll
 
 @include media('>=tablet')
   #sideNav
-    position: fixed
-    top: 56px
-    z-index: 0
-    // box-shadow: 0 0 72px 0 var(--chroma-secondary-h)
     background-color: var(--chroma-clear)
-    &.toggled
-      transform: translateX(-400px)
     .back
       display: none
 
@@ -79,6 +73,8 @@ export default defineComponent({
     width: 84vw
     z-index: 20000
     transform: translateX(0px)
+    overflow: hidden
+    overflow-y: scroll
     .menuContainer
       margin-top: 0px
     &.toggled

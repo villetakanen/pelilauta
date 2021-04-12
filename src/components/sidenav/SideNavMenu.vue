@@ -107,8 +107,6 @@ export default defineComponent({
   margin: 0
   padding: 0
   padding-top: 8px
-  overflow: hidden
-  overflow-y: scroll
   ul
     margin: 0
     padding: 0
@@ -148,8 +146,10 @@ export default defineComponent({
         background: none
         border-radius: 0
 
-@include media('=<tablet')
+@include media('<tablet')
   .sideNavMenu
     margin: 8px 0
+    overflow: hidden
+    overflow-y: scroll
 
 </style>
