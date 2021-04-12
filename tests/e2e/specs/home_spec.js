@@ -24,6 +24,6 @@ describe('Home page functionality', () => {
   })
   it('Loads the Mekanismi card', () => {
     cy.visit('/')
-    cy.contains('h1', 'Mekanismi changes')
+    cy.contains('h1', 'Mekanismi')
   })
 })

@@ -5,7 +5,7 @@
         v-if="canEdit"
         id="wikipageCreatePageFab"
         secondary
-        :action="addPageDialog"
+        :to="`/site/addpage/${page.siteid}`"
         :text="$t('action.create')"
         icon="add"
       />
@@ -16,9 +16,6 @@
         :to="`/mekanismi/edit/${page.siteid}/${page.id}`"
         icon="edit"
       />
-      <Dialog v-model="dialog">
-        <AddPageCard />
-      </Dialog>
     </div>
   </teleport>
 </template>
@@ -27,16 +24,12 @@
 import { useAuthState } from '@/state/authz'
 import { Page, useSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
-import Dialog from '../material/Dialog.vue'
 import Fab from '../material/Fab.vue'
-import AddPageCard from './AddPageCard.vue'
 
 export default defineComponent({
   name: 'PageFabs',
   components: {
-    Fab,
-    Dialog,
-    AddPageCard
+    Fab
   },
   setup () {
     const page = inject('page') as ComputedRef<Page>

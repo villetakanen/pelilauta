@@ -72,7 +72,10 @@
     "threads":{
       "title": "Keskustelu"
     },
-    "filterSites": "Suodata"
+    "filterSites": "Suodata",
+    "actions": {
+      "addPage": "Uusi sivu"
+    }
   },
   "snacks": {
     "invalidEmail": "Sähköpostiosoitteessa oli jotain vikaa, yritä uuudestaan?",

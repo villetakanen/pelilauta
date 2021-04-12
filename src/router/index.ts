@@ -144,6 +144,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.players'
   },
   {
+    path: '/site/addpage/:siteid',
+    component: () => import(/* webpackChunkName: "sites" */ '../views/site/AddPageView.vue'),
+    props: true,
+    name: 'site.page.new'
+  },
+  {
     path: '/mekanismi/edit/:siteid/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue'),
     props: true,
