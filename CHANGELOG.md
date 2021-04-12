@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.37.1](https://github.com/villetakanen/pelilauta/compare/v7.37.0...v7.37.1) (2021-04-12)
+
+
+### Bug Fixes
+
+* remove unnecessary scrolling from dt ([3513f4a](https://github.com/villetakanen/pelilauta/commit/3513f4a6d6f8f4bf3cc4e1eed9f6e5c79cf0433b))
+* removed dead code ([94be345](https://github.com/villetakanen/pelilauta/commit/94be345b129b91a5f2865866adcc34cca2cb975f))
+
 ## [7.37.0](https://github.com/villetakanen/pelilauta/compare/v7.36.0...v7.37.0) (2021-04-12)
 
 
