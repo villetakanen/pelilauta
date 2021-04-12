@@ -49,5 +49,13 @@
   img
     max-width: 100%
 
-  
+ 
+// Scaling helpers
+@include media('<tablet')
+  .hideOnMobile
+    display: none
+
+@include media('>=tablet')
+  .onlyForMobile
+    display: none
   

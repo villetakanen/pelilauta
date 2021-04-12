@@ -3,7 +3,7 @@
     id="AppBar"
     class="toolbar"
   >
-    <SideNavAction />
+    <SideNavAction class="onlyForMobile" />
     <AppAction />
     <div class="spacer" />
     <Action
