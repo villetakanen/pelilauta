@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.37.0](https://github.com/villetakanen/pelilauta/compare/v7.36.0...v7.37.0) (2021-04-12)
+
+
+### Features
+
+* add page form ([8aaac47](https://github.com/villetakanen/pelilauta/commit/8aaac47aab4cbf945cb540c27b43c59b2f2f6d15))
+* add page redirects to route, not dialog ([2d4641a](https://github.com/villetakanen/pelilauta/commit/2d4641a177716207c173833ba524f54b5a118951))
+* saving page with new form works ([e05235a](https://github.com/villetakanen/pelilauta/commit/e05235ae8707f920d42f11f7581030ee0e96906b))
+
+
+### Bug Fixes
+
+* end to end test fixes ([3390fcd](https://github.com/villetakanen/pelilauta/commit/3390fcd2ea67b484ad7cddd60acfae34b6f40ad8))
+
 ## [7.36.0](https://github.com/villetakanen/pelilauta/compare/v7.35.3...v7.36.0) (2021-04-10)
 
 
