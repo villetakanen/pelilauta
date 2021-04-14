@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.37.2](https://github.com/villetakanen/pelilauta/compare/v7.37.1...v7.37.2) (2021-04-14)
+
+
+### Bug Fixes
+
+* some initial appbar ux fixing ([f7db725](https://github.com/villetakanen/pelilauta/commit/f7db725900c176c0fe40a2e1c1570b28191d5366))
+
 ### [7.37.1](https://github.com/villetakanen/pelilauta/compare/v7.37.0...v7.37.1) (2021-04-12)
 
 
