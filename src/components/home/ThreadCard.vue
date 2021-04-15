@@ -69,7 +69,7 @@
               prepend-icon="send"
               dark
             >
-              <router-link :to="`/thread/${thread.id}/view`">
+              <router-link :to="`/thread/${thread.id}/view/from/${seen}`">
                 {{ thread.replyCount ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
               </router-link>
             </Pill>
@@ -78,7 +78,7 @@
               class="topic"
               style="position: absolute; top: 0; right : 10px"
             >
-              <router-link :to="`/thread/${thread.id}/view`">
+              <router-link :to="`/thread/${thread.id}/view/from/${seen}`">
                 {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
               </router-link>
             </p>
@@ -137,12 +137,13 @@ export default defineComponent({
     const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
     const authoruid = computed(() => (author.value?.uid || ''))
     const { isAnonymous, uid } = useAuthState()
-    const { hasSeen, profileMeta } = useProfile()
+    const { hasSeen, profileMeta, seenFrom } = useProfile()
     const newReplies = computed(() => (
       !isAnonymous.value &&
       !hasSeen(props.thread.id, props.thread.flowTime) &&
       props.thread.replyCount > 0
     ))
+    const seen = computed(() => (seenFrom(props.thread.id)))
     const loves = computed(() => {
       if (typeof profileMeta.value.lovedThreads === 'undefined') return false
       return profileMeta.value.lovedThreads.includes(props.thread.id)
@@ -167,7 +168,7 @@ export default defineComponent({
       return allSites.value.find((site) => (site.id === props.thread.site))
     })
 
-    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves, site }
+    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves, site, seen }
   }
 })
 </script>

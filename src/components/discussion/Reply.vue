@@ -4,6 +4,10 @@
     :class="replyClasses"
     class="replyComment"
   >
+    <div
+      ref="replyRef"
+      class="scrollAnchor"
+    />
     <!-- Top toolbar for the reply-card -->
     <div class="toolbar">
       <div class="author">
@@ -57,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, PropType } from 'vue'
+import { defineComponent, computed, ref, PropType, onMounted, ComponentPublicInstance } from 'vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { loveReply, unloveReply, updateReplyContent, subscribeToReplies, deleteReply } from '@/state/discussion'
@@ -84,10 +88,15 @@ export default defineComponent({
     threadid: {
       type: String,
       required: true
+    },
+    focus: {
+      type: Boolean,
+      required: false
     }
   },
   emits: ['quote'],
   setup (props, context) {
+    const replyRef = ref<ComponentPublicInstance<HTMLInputElement>>()
     const { uid, isAnonymous } = useAuthState()
     const { isAdmin } = useAuthState()
     const { authors } = useAuthors()
@@ -152,7 +161,12 @@ export default defineComponent({
       return updateReplyContent(uid.value, props.threadid, props.reply.replyid, replyContent.value)
     }
 
-    return { menu, replyClasses, uid, loves, toggleLove, editReply, replyContent, updateReply, nick }
+    onMounted(() => {
+      console.debug('focus:', props.focus)
+      if (props.focus) replyRef.value?.scrollIntoView(true)
+    })
+
+    return { menu, replyClasses, uid, loves, toggleLove, editReply, replyContent, updateReply, nick, replyRef }
   }
 })
 </script>
@@ -184,6 +198,13 @@ export default defineComponent({
     word-break: break-word
     a
       word-break: break-all
+  .scrollAnchor
+    position: absolute
+    height: 1px
+    width: 1px
+    pointer-events: none
+    top: -112px
+    left: 0px
 
 .author
   font-weight: bold

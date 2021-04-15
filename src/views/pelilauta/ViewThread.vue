@@ -13,7 +13,10 @@
       <h2 class="section">
         {{ $t('threads.discussion') }}
       </h2>
-      <Discussion :thread="thread" />
+      <Discussion
+        :thread="thread"
+        :focus-to="since"
+      />
     </ThreadBox>
     <teleport to="#ScreenBottomFloatRight">
       <ToTopFab />
@@ -53,6 +56,11 @@ export default defineComponent({
     threadid: {
       type: String,
       required: true
+    },
+    since: {
+      type: String,
+      required: false,
+      default: '0'
     }
   },
   setup (props) {

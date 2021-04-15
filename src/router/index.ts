@@ -80,10 +80,17 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/thread/:threadid/view',
-    name: 'threads.view',
-    // route level code-splitting
     component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/ViewThread.vue'),
-    props: true
+    props: true,
+    name: 'threads.view',
+    children: [
+      {
+        path: 'from/:since',
+        component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/ViewThread.vue'),
+        props: true,
+        name: 'threads.view.from'
+      }
+    ]
   },
   {
     path: '/thread/:threadid/edit',

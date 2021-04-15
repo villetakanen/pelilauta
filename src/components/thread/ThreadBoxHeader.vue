@@ -138,7 +138,7 @@ export default defineComponent({
   margin: 0
   position: sticky
   position: -webkit-sticky
-  top: 24px
+  top: 0px
   margin-top: -16px
   padding-top: 12px
   padding-bottom: 7px

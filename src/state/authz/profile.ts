@@ -124,6 +124,13 @@ function hasSeen (threadid: string, flowTime?: firebase.firestore.Timestamp|null
   return false
 }
 
+function seenFrom (threadid: string): number {
+  return (
+    profileMeta.value.seenThreads.get(threadid)?.seconds ||
+    profileMeta.value.allThreadsSeenSince?.seconds ||
+    new Date().getTime() / 1000)
+}
+
 async function markAllThreadsRead (): Promise<void> {
   console.log('markAllThreadRead')
   const db = firebase.firestore()
@@ -172,10 +179,11 @@ export function useProfile (): {
     markAllThreadsRead: () => Promise<void>
     hasSeen: (threadid: string, flowTime?: firebase.firestore.Timestamp|null) => boolean
     stampSeen: (threadid:string, flowTime?:firebase.firestore.Timestamp|number) => Promise<void>
+    seenFrom: (threadid: string) => number
     switchLang: (lang: string) => Promise<void>
     uploadAsset: (file:File) => Promise<string>
     } {
   init()
   const { uploadAsset } = useAssets()
-  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset }
+  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset, seenFrom }
 }

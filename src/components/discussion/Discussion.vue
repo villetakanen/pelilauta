@@ -5,6 +5,7 @@
       :key="reply[0]"
       :threadid="thread.id"
       :reply="reply[1]"
+      :focus="hasFocus(reply[1])"
       @quote="addQuote"
     />
     <ReplyForm
@@ -21,6 +22,7 @@ import ReplyForm from './ReplyForm.vue'
 import Reply from './Reply.vue'
 import { Thread } from '@/state/threads'
 import { Quote } from '@/utils/contentFormat'
+import { Reply as ReplyType } from '@/utils/firestoreInterfaces'
 
 export default defineComponent({
   name: 'Discussion',
@@ -32,6 +34,10 @@ export default defineComponent({
     thread: {
       type: Object as PropType<Thread>,
       required: true
+    },
+    focusTo: {
+      type: String,
+      default: '0'
     }
   },
   setup (props) {
@@ -47,7 +53,18 @@ export default defineComponent({
       quote.value = q
     }
 
-    return { replies, addQuote, quote }
+    let focused = false
+    function hasFocus (r: ReplyType) {
+      const focusTo = parseInt(props.focusTo)
+      console.debug('hasFocus', r.created?.seconds, focusTo, typeof props.focusTo)
+      if (!props.focusTo || focused) return false
+      if ((r.created?.seconds || 1) > focusTo) focused = true
+      if (r.replyid === Array.from(replies.value?.values())?.pop()?.replyid) focused = true
+      console.debug('returns', focused)
+      return focused
+    }
+
+    return { replies, addQuote, quote, hasFocus }
   }
 })
 </script>
