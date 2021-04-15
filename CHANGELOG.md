@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.38.1](https://github.com/villetakanen/pelilauta/compare/v7.38.0...v7.38.1) (2021-04-15)
+
+
+### Bug Fixes
+
+* hasfocus 0 ([5b0ca3e](https://github.com/villetakanen/pelilauta/commit/5b0ca3e022d06431380caa6df757d19249ed4a28))
+
 ## [7.38.0](https://github.com/villetakanen/pelilauta/compare/v7.37.3...v7.38.0) (2021-04-15)
 
 
