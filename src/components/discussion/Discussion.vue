@@ -57,7 +57,7 @@ export default defineComponent({
     function hasFocus (r: ReplyType) {
       const focusTo = parseInt(props.focusTo)
       console.debug('hasFocus', r.created?.seconds, focusTo, typeof props.focusTo)
-      if (!props.focusTo || focused) return false
+      if (!focusTo || focused) return false
       if ((r.created?.seconds || 1) > focusTo) focused = true
       if (r.replyid === Array.from(replies.value?.values())?.pop()?.replyid) focused = true
       console.debug('returns', focused)
