@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="hideOnMobile siteIdentity">
+    <h4 class="hideOnMobile siteIdentity">
       <router-link to="/">
         <img
           alt=""
@@ -12,7 +12,7 @@
         v-if="mekanismi"
         class="subtitle"
       > / <router-link to="/mekanismi">Mekanismi</router-link></span>
-    </h3>
+    </h4>
     <Action
       mobile
       class="onlyForMobile"
@@ -40,7 +40,8 @@ export default defineComponent({
 <style lang="sass" scoped>
 .siteIdentity
   margin-left: 0px
-  h3
+  h4
+    line-height: 40px
   .subtitle, .subtitle a
     color: var(--chroma-primary-b)
   img
