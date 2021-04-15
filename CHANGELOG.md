@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.37.3](https://github.com/villetakanen/pelilauta/compare/v7.37.2...v7.37.3) (2021-04-15)
+
+
+### Bug Fixes
+
+* title bar font size ([23c9216](https://github.com/villetakanen/pelilauta/commit/23c92164d7320dd721b5b5396138471ce4dcf5bf))
+
 ### [7.37.2](https://github.com/villetakanen/pelilauta/compare/v7.37.1...v7.37.2) (2021-04-14)
 
 
