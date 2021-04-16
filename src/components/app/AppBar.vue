@@ -7,6 +7,16 @@
     <AppAction />
     <div class="spacer" />
     <Action
+      prepend="mekanismi"
+      to="/mekanismi"
+    >
+      <span
+        class="hideOnMobile"
+      >
+        Mekanismi
+      </span>
+    </Action>
+    <Action
       v-if="!isAnonymous"
       prepend="avatar"
       to="/profile"
@@ -29,7 +39,6 @@
         {{ $t('action.admin') }}
       </template>
     </Action>
-    <AppModeSwitchAction />
   </div>
 </template>
 
@@ -40,15 +49,13 @@ import { useAuthState } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
 import Action from '../material/Action.vue'
-import AppModeSwitchAction from './AppModeSwitchAction.vue'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
     AppAction,
-    Action,
-    AppModeSwitchAction
+    Action
   },
   setup () {
     const { isAdmin, isAnonymous } = useAuthState()
