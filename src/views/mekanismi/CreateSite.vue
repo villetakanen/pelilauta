@@ -56,6 +56,7 @@ export default defineComponent({
     const router = useRouter()
     const siteName = ref('')
     const uri = computed(() => (toMekanismiURI(siteName.value)))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const notUsed = (value?:any) => {
       if (!value) return true
       return typeof allSites.value.find((a) => (a.id === toMekanismiURI(siteName.value))) === 'undefined'

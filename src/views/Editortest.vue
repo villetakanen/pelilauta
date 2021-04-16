@@ -2,9 +2,15 @@
   <AdminActions :title="$t('admin.action.editorTest')" />
   <div class="contentGrid">
     <h3>Discussion/comment/reply Quill</h3>
-    <ReplyEditor v-model:content="replyContent" style="border: solid 1px green; height: 96px;border-radius: 6px" />
+    <ReplyEditor
+      v-model:content="replyContent"
+      style="border: solid 1px green; height: 96px;border-radius: 6px"
+    />
     <p>The content is auto-processed to the field below</p>
-    <Reply :reply="exampleReply" threadid="none"/>
+    <Reply
+      :reply="exampleReply"
+      threadid="none"
+    />
     <div class="test-container">
       <div class="test-box">
         <MaterialCard>
