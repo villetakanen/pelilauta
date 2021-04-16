@@ -43,7 +43,6 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
 import Toolbar from '@/components/layout/Toolbar.vue'
-import TextField from '@/components/material/TextField.vue'
 import EmailLoginForm from '@/components/auth/EmailLoginForm.vue'
 
 export default defineComponent({
