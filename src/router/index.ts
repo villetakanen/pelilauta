@@ -1,7 +1,5 @@
-// import { useAuthz } from '@/lib/authz'
-// import { watch } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@/views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
@@ -11,8 +9,8 @@ import { useAuthState } from '@/state/authz'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    component: HomeView
   },
   {
     path: '/search/results',
@@ -67,15 +65,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/stream/topic/:topic',
     name: 'StreamTopic',
     component: StreamTopic,
-    props: true
-  },
-  {
-    path: '/stream/view/:threadid',
-    name: 'stream.view',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ViewPost.vue'),
     props: true
   },
   {
