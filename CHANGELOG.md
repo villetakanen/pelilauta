@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.38.2](https://github.com/villetakanen/pelilauta/compare/v7.38.1...v7.38.2) (2021-04-16)
+
+
+### Bug Fixes
+
+* analytics and removed deprecated code ([f7befb3](https://github.com/villetakanen/pelilauta/commit/f7befb3104689134773949c173840668c339a611))
+* app-bar adjustmets for profileaction updates ([b8c7383](https://github.com/villetakanen/pelilauta/commit/b8c7383b69784b5cee651e19e06b7676056cf528))
+* moar analytics and code polish ([e495991](https://github.com/villetakanen/pelilauta/commit/e495991bb8def4ed66218252427710ed2d3af14d))
+
 ### [7.38.1](https://github.com/villetakanen/pelilauta/compare/v7.38.0...v7.38.1) (2021-04-15)
 
 
