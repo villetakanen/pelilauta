@@ -30,6 +30,7 @@ import { computed, defineComponent } from 'vue'
 import ThreadCard from './ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'
 import WikiChangesCard from './WikiChangesCard.vue'
+import { fetchLoki } from '@/state/feeds'
 
 interface StreamEntry {
   key: string
@@ -46,6 +47,9 @@ export default defineComponent({
   setup () {
     const { lastFlowtime } = usePagelog()
     const { isAnonymous } = useAuthState()
+
+    fetchLoki()
+
     const stream = computed(() => {
       const entries = new Array<StreamEntry>()
 
