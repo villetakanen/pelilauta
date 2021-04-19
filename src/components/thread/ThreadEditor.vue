@@ -31,13 +31,16 @@
           v-model="threadSticky"
           :label="$t('thread.stickyToggle')"
         />
-        <Toggle v-if="false" :label="$t('thread.pushToStream')" />
+        <Toggle
+          v-if="false"
+          :label="$t('thread.pushToStream')"
+        />
         <div class="spacer" />
         <MaterialSelect
+          v-model="threadSite"
           class="field"
           :opts="siteList"
           label="Site / Game"
-          v-model="threadSite"
         />
       </div>
     </transition>

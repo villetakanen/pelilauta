@@ -5,7 +5,10 @@
       v-if="!isAnonymous"
       class="reply-form"
     >
-      <AddImageReplyAction class="addAnImage" v-on:uploaded="addImageToEditor($event)"/>
+      <AddImageReplyAction
+        class="addAnImage"
+        @uploaded="addImageToEditor($event)"
+      />
 
       <ReplyEditor
         v-model:content="reply"

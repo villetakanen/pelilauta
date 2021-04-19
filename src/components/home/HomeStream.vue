@@ -11,7 +11,7 @@
         </div>
         <div v-else-if="entry.feedPost">
           <!-- @todo add new thread card for front page -->
-          <WPCard :feedPost="entry.feedPost" />
+          <WPCard :feed-post="entry.feedPost" />
         </div>
         <div v-else-if="entry.key === 'welcome'">
           <!-- @todo add new welcome card for front page -->

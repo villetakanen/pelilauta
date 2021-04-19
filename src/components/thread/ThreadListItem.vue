@@ -1,6 +1,8 @@
 <template>
   <li class="threadListItem">
-    <router-link :to="`/thread/${thread.id}/view`">{{ thread.data.title }}</router-link> <br>
+    <router-link :to="`/thread/${thread.id}/view`">
+      {{ thread.data.title }}
+    </router-link> <br>
     {{ toDisplayString(thread.flowTime) }}
   </li>
 </template>
