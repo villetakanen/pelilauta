@@ -1,3 +1,3 @@
-import { fetchLoki } from './loki'
+import { useLoki } from './loki'
 
-export { fetchLoki }
+export { useLoki }
