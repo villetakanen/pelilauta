@@ -8,7 +8,7 @@
     <h1>
       <a
         :href="feedPost.URL"
-        target="new"
+        target="_blank"
       >{{ feedPost.title }}</a>
     </h1>
     <p class="excrept">
@@ -17,7 +17,18 @@
         target="new"
       >{{ excerpt }}</a>
     </p>
-    <p>{{ toDisplayString(feedPost.date) }}</p>
+    <div class="toolbar">
+      <p class="info">
+        {{ toDisplayString(feedPost.date) }}
+      </p>
+      <div class="spacer" />
+      <p class="info">
+        <a
+          :href="feedPost.URL"
+          target="_blank"
+        >{{ $t('home.wpcard.openLink') }} <strong>Loki</strong></a>
+      </p>
+    </div>
   </Card>
 </template>
 
@@ -48,7 +59,7 @@ export default defineComponent({
       let snip = ''
       if (div.firstChild) {
         snip = div.firstChild.textContent || ''
-        if (snip.length > 72) snip = snip.substring(0, 72) + '...'
+        if (snip.length > 220) snip = snip.substring(0, 220) + '...'
       }
       return snip
     })
@@ -71,11 +82,16 @@ div.wpCard
     padding-top: 0
     a
       color: var(--chroma-secondary-a)
-  .excrept
+  .excrept, .info
     @include TypeBody2()
     color: var(--chroma-secondary-c)
     a
       text-decoration: none
+  .excrept
+    a
+      color: var(--chroma-secondary-c)
+  .toolbar
+    margin-top:8px
   .logo
     height: 72px
     width: 72px

@@ -50,6 +50,9 @@
     "changesCard": {
       "title": "Mekanismi",
       "seeMore": "... Näytä lisää"
+    },
+    "wpcard": {
+      "openLink": "Avaa"
     }
   },
   "language": {
