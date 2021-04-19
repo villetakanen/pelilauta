@@ -26,9 +26,9 @@ export const fireStoreURL = function (path: string): Promise<string> {
   })
 }
 
-export const toDisplayString = (timestamp: firebase.firestore.Timestamp|null): string => {
+export const toDisplayString = (timestamp: firebase.firestore.Timestamp|string|null): string => {
   if (timestamp === null) return '---'
-  const date = DateTime.fromSeconds(timestamp.seconds)
+  const date = (typeof timestamp === 'string') ? DateTime.fromISO(timestamp) : DateTime.fromSeconds(timestamp.seconds)
   const duration = DateTime.now().diff(date)
   if (duration.toMillis() < 30 * 60000) {
     // less than 30 minutes ago

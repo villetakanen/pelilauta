@@ -18,7 +18,11 @@
         v-if="site"
         class="subtitle"
       >
-        <Icon :name="site.systemBadge+'-logo'" x-small style="opacity:0.7"/>
+        <Icon
+          :name="site.systemBadge+'-logo'"
+          x-small
+          style="opacity:0.7"
+        />
         <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
           {{ site.name }}
         </router-link>

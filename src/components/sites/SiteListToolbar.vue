@@ -24,8 +24,13 @@
         <span class="hideOnMobile">{{ $t('site.filterSites') }}</span>
       </Action>
     </Toolbar>
-    <Toolbar v-if="filterToggle" style="height: auto">
-      <h4 class="hideOnMobile">{{ $t('site.filterSites') }}</h4>
+    <Toolbar
+      v-if="filterToggle"
+      style="height: auto"
+    >
+      <h4 class="hideOnMobile">
+        {{ $t('site.filterSites') }}
+      </h4>
       <div class="spacer" />
       <div>
         <Chip

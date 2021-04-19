@@ -9,6 +9,10 @@
           <!-- @todo add new thread card for front page -->
           <ThreadCard :thread="entry.thread" />
         </div>
+        <div v-else-if="entry.feedPost">
+          <!-- @todo add new thread card for front page -->
+          <WPCard :feed-post="entry.feedPost" />
+        </div>
         <div v-else-if="entry.key === 'welcome'">
           <!-- @todo add new welcome card for front page -->
           <WelcomeCard />
@@ -30,10 +34,24 @@ import { computed, defineComponent } from 'vue'
 import ThreadCard from './ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'
 import WikiChangesCard from './WikiChangesCard.vue'
+import { useLoki } from '@/state/feeds'
+import { FeedPost } from '@/state/feeds/loki'
+import { DateTime } from 'luxon'
+import WPCard from './WPCard.vue'
 
 interface StreamEntry {
   key: string
-  thread?: Thread
+  thread?: Thread,
+  feedPost?: FeedPost
+}
+
+function merge (first:Array<Thread|FeedPost>, second:Array<Thread|FeedPost>): Array<Thread|FeedPost> {
+  const merged = [...first, ...second].sort((a, b) => {
+    const as = 'date' in a ? DateTime.fromISO(a.date).toMillis() / 1000 : a.flowTime?.seconds
+    const bs = 'date' in b ? DateTime.fromISO(b.date).toMillis() / 1000 : b.flowTime?.seconds
+    return (bs || 0) - (as || 0)
+  })
+  return merged
 }
 
 /**
@@ -42,10 +60,11 @@ interface StreamEntry {
  */
 export default defineComponent({
   name: 'HomeStream',
-  components: { WelcomeCard, ThreadCard, WikiChangesCard },
+  components: { WelcomeCard, ThreadCard, WikiChangesCard, WPCard },
   setup () {
     const { lastFlowtime } = usePagelog()
     const { isAnonymous } = useAuthState()
+
     const stream = computed(() => {
       const entries = new Array<StreamEntry>()
 
@@ -55,17 +74,21 @@ export default defineComponent({
       // wich ever is greater)
       let wikiChangesInStream: boolean
       const { stream: streamThreads } = useThreads()
-      streamThreads.value.forEach((t) => {
+      const { feedPosts } = useLoki()
+      const clipped = Array.from(feedPosts.value.values())
+      if (clipped.length > 5) clipped.length = 5
+      const streamItems = merge(clipped, Array.from(streamThreads.value))
+      streamItems.forEach((t) => {
         // inject latest wikichanges to relevant position
         // @TODO state handler for wiki latest changes, and
         // insert it here
         // console.log(t.flowTime?.seconds, lastFlowtime.value)
-        if (!wikiChangesInStream && (t.flowTime === null || t.flowTime.seconds < lastFlowtime.value)) {
+        if (!wikiChangesInStream && ('flowTime' in t && (t.flowTime?.seconds || 0) < lastFlowtime.value)) {
           // console.debug('wikiChanges?')
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
-        }
-        entries.push({ key: t.id, thread: t })
+        } else if ('id' in t) entries.push({ key: t.id, thread: t })
+        else if ('ID' in t) entries.push({ key: '' + t.ID, feedPost: t })
       })
 
       // push to the top of array, if needed
