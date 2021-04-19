@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.39.0](https://github.com/villetakanen/pelilauta/compare/v7.38.2...v7.39.0) (2021-04-19)
+
+
+### Features
+
+* axios pulling of loki data ([6607aa2](https://github.com/villetakanen/pelilauta/commit/6607aa24af63dd6660acd596fd24bed81a84580f))
+* loki cards ([369f173](https://github.com/villetakanen/pelilauta/commit/369f173f0eddc6b643a102dc05908a37099ba67c))
+
+
+### Bug Fixes
+
+* linters ([cf1bc6f](https://github.com/villetakanen/pelilauta/commit/cf1bc6f575c2a0d4e09f01265e03533707c143bb))
+* ux and e2e testing polish ([9477f17](https://github.com/villetakanen/pelilauta/commit/9477f178e8e54a2ee8e230b8d771f3af9efe7c67))
+
 ### [7.38.2](https://github.com/villetakanen/pelilauta/compare/v7.38.1...v7.38.2) (2021-04-16)
 
 
