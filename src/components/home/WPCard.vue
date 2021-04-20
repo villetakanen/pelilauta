@@ -9,7 +9,8 @@
       <a
         :href="feedPost.URL"
         target="_blank"
-      >{{ feedPost.title }}</a>
+        :innerHTML="feedPost.title"
+      />
     </h1>
     <p class="excrept">
       <a
