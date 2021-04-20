@@ -32,6 +32,8 @@ export interface Thread {
     site?: string // this is a wikisite slug
     // Payload
     data: PostData
+    youTubeSlug?: string
+    hidden: boolean
 }
 
 export interface Stream {
@@ -53,6 +55,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
       updated: null,
       replyCount: 0,
       lovedCount: 0,
+      hidden: false,
       data: {
         content: '',
         topic: '',
@@ -69,6 +72,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
     lovedCount: data.lovedCount,
     updated: data.updated,
     site: data.site || '',
+    hidden: data.hidden || false,
     data: {
       content: data.content,
       topic: data.topic,
@@ -79,6 +83,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
   }
   if (!post.replyCount) post.replyCount = 0
   if (typeof post.data.images === 'string') delete post.data.images
+  if ('youTubeSlug' in data) post.youTubeSlug = data.youTubeSlug
   return post
 }
 
