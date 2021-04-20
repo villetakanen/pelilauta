@@ -96,7 +96,8 @@
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
 import { useMeta } from '@/state/meta'
-import { loveThread, Thread, unloveThread } from '@/state/threads'
+import { loveThread, unloveThread } from '@/state/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Card from '../layout/Card.vue'

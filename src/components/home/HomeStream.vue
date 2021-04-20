@@ -29,7 +29,8 @@
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
 import { usePagelog } from '@/state/pagelog'
-import { Thread, useThreads } from '@/state/threads'
+import { useThreads } from '@/state/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent } from 'vue'
 import ThreadCard from './ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'

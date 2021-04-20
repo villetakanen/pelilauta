@@ -74,7 +74,8 @@
 
 <script lang="ts">
 import { useMeta } from '@/state/meta'
-import { createThread, Thread, updateThread } from '@/state/threads/threads'
+import { createThread, updateThread } from '@/state/threads/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType, Ref, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'

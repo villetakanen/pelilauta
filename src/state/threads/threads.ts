@@ -5,36 +5,7 @@ import 'firebase/analytics'
 import { computed, ComputedRef, ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
 import { useProfile } from '../authz'
-
-export interface PostImage {
-    url: string;
-}
-
-export interface PostData {
-    content: string
-    topic: string
-    title: string
-    images?: PostImage[]
-    sticky?: boolean
-}
-
-export interface Thread {
-    // Identity
-    id: string
-    author: string
-    // Timestamps
-    created: firebase.firestore.Timestamp|null
-    flowTime: firebase.firestore.Timestamp|null
-    updated: firebase.firestore.Timestamp|null
-    // Meta
-    replyCount: number
-    lovedCount: number
-    site?: string // this is a wikisite slug
-    // Payload
-    data: PostData
-    youTubeSlug?: string
-    hidden: boolean
-}
+import { Thread, PostData } from '@/utils/firestoreInterfaces'
 
 export interface Stream {
   slug: string
