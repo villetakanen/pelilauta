@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.39.1](https://github.com/villetakanen/pelilauta/compare/v7.39.0...v7.39.1) (2021-04-20)
+
+
+### Bug Fixes
+
+* html titles for loki articles ([54a5384](https://github.com/villetakanen/pelilauta/commit/54a5384ed603704b013be79d8bc56eec5170a25c))
+
 ## [7.39.0](https://github.com/villetakanen/pelilauta/compare/v7.38.2...v7.39.0) (2021-04-19)
 
 
