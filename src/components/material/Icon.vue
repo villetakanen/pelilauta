@@ -86,7 +86,8 @@ export default defineComponent({
       'send',
       'share',
       'quick-logo',
-      'up'
+      'up',
+      'youtube'
     ]
 
     function addIcon (slug: string) {
