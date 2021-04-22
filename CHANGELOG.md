@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.39.2](https://github.com/villetakanen/pelilauta/compare/v7.39.1...v7.39.2) (2021-04-22)
+
+
+### Bug Fixes
+
+* hotfix to stream logic ([2920946](https://github.com/villetakanen/pelilauta/commit/2920946b95756aa6ab723399d3d5aa4b92144ab4))
+
 ### [7.39.1](https://github.com/villetakanen/pelilauta/compare/v7.39.0...v7.39.1) (2021-04-20)
 
 
