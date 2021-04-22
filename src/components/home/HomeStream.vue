@@ -87,7 +87,8 @@ export default defineComponent({
           // console.debug('wikiChanges?')
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
-        } else if ('id' in t) entries.push({ key: t.id, thread: t })
+        }
+        if ('id' in t) entries.push({ key: t.id, thread: t })
         else if ('ID' in t) entries.push({ key: '' + t.ID, feedPost: t })
       })
 
