@@ -27,9 +27,21 @@
           {{ site.name }}
         </router-link>
       </p>
-      <p class="contentSnippet">
+      <p
+        v-if="!thread.data.youTubeSlug"
+        class="contentSnippet"
+      >
         {{ snippet }}
       </p>
+      <div v-if="thread.data.youTubeSlug">
+        <iframe
+          class="youtubePreview"
+          width="200"
+          height="170"
+          :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
+          frameborder="0"
+        />
+      </div>
       <p class="meta">
         <transition name="fade">
           <span
@@ -207,7 +219,7 @@ div.threadCard
     margin-top: 0
     padding-top: 0
     a
-      color: var(--chroma-secondary-e)
+      color: var(--chroma-secondary-b)
   p.meta
     // text-align: right
     @include TypeCaption()
@@ -237,4 +249,6 @@ div.threadCard
     margin-bottom: 8px
 .pinned
   background-color: var(--chroma-secondary-i)
+.youtubePreview
+  width: 100%
 </style>

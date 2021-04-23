@@ -27,7 +27,8 @@ export interface PostData {
   topic: string
   title: string
   images?: PostImage[]
-  sticky?: boolean
+  sticky?: boolean,
+  youTubeSlug?: string
 }
 
 export interface Thread {
@@ -44,6 +45,5 @@ export interface Thread {
   site?: string // this is a wikisite slug
   // Payload
   data: PostData
-  youTubeSlug?: string
   hidden: boolean
 }

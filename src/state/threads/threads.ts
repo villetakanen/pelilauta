@@ -54,7 +54,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
   }
   if (!post.replyCount) post.replyCount = 0
   if (typeof post.data.images === 'string') delete post.data.images
-  if ('youTubeSlug' in data) post.youTubeSlug = data.youTubeSlug
+  if ('youTubeSlug' in data) post.data.youTubeSlug = data.youTubeSlug
   return post
 }
 

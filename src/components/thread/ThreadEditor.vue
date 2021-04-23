@@ -32,7 +32,7 @@
       <div
         v-if="toggleMedia"
       >
-        <MediaTool />
+        <MediaTool :thread="thread" />
       </div>
     </transition>
 
