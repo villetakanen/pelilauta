@@ -3,6 +3,16 @@
     <ThreadBox>
       <ThreadBoxHeader :thread="thread" />
       <div
+        v-if="thread.data.youTubeSlug"
+        class="youtubePreviewFrame"
+      >
+        <iframe
+          class="youtubePreview"
+          :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
+          frameborder="0"
+        />
+      </div>
+      <div
         class="threadContent"
         :innerHTML="thread.data.content"
       />
@@ -91,5 +101,16 @@ export default defineComponent({
     border-top: solid 1px var(--chroma-primary-g)
     padding-top: 7px
     padding-bottom: 8px
+  .youtubePreviewFrame
+    width: 100%
+    text-align: center
+    padding: 8px
+    background-color: rgba(var(--chroma-primary-c-rgba), 0.22)
+    line-height: 0
+    .youtubePreview
+      margin: 0 auto
+      padding: 0
+      height: 186px
+      width: 320px
 
 </style>
