@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/villetakanen/pelilauta/compare/v7.39.2...v8.0.0) (2021-04-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* The model for Thread data is no longer expected to
+conform to the model of pre 8.0.0 releases and
+releases from this commit on might require migration steps to update
+older thread data
+
+### Features
+
+* support for youtube and hiding in threads ([bb61de6](https://github.com/villetakanen/pelilauta/commit/bb61de63bbc60aa92bd100b65458c957e2267c33))
+* thread page shows the video ([82ffa2a](https://github.com/villetakanen/pelilauta/commit/82ffa2a45b3fbafad0ba96577b141d30cf2e55dd))
+* youtube injects for stream ([affed05](https://github.com/villetakanen/pelilauta/commit/affed05ad3c33b6c9ccc8983a84ec36b91e74891))
+* youtube linker visuals ([9137e34](https://github.com/villetakanen/pelilauta/commit/9137e3458ca87b40ea24bfb5744249fa372ffa34))
+
+
+### Bug Fixes
+
+* aria bugs fixed ([846d32f](https://github.com/villetakanen/pelilauta/commit/846d32f2fe365fd5e1ab565d4d7b6f13632c347e))
+* code quality ([2a0dc18](https://github.com/villetakanen/pelilauta/commit/2a0dc1812d8671227047d498e1ce87f56eabbb90))
+* refactored thread interfaces away from state ([34fbd6d](https://github.com/villetakanen/pelilauta/commit/34fbd6d540db8d120bf3c4e5bbbe19ab7bf6ac0b))
+* topic page video sizing ([f543bd5](https://github.com/villetakanen/pelilauta/commit/f543bd52e6372b6b283d195470db64fd8c5a638e))
+* youtube preview sizing ([22d5c58](https://github.com/villetakanen/pelilauta/commit/22d5c58d0a3c9da74c5eb68dddc7d34d86186e9b))
+
 ### [7.39.2](https://github.com/villetakanen/pelilauta/compare/v7.39.1...v7.39.2) (2021-04-22)
 
 
