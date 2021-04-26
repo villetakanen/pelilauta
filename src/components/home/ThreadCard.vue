@@ -191,7 +191,7 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
+@import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 div.threadCard
   color: var(--chroma-secondary-a)
@@ -250,5 +250,11 @@ div.threadCard
 .pinned
   background-color: var(--chroma-secondary-i)
 .youtubePreview
-  width: 100%
+  width: 548px
+  height: calc(548px / 16 * 9)
+@include media('<tablet')
+  div.threadCard
+    .youtubePreview
+      width: calc(100vw - 48px)
+      height: calc((100vw - 48px) / 16 *9 )
 </style>
