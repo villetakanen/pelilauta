@@ -1,7 +1,7 @@
 <template>
   <Card
     class="threadCard"
-    :class="{ pinned: pinned }"
+    :class="{ pinned: pinned, small: small }"
   >
     <div class="content">
       <div
@@ -131,6 +131,11 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    small: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -250,6 +255,13 @@ div.threadCard
 .youtubePreview
   width: 548px
   height: calc(548px / 16 * 9)
+
+@include media('>=tablet')
+  div.threadCard.small
+    .youtubePreview
+      width: 464px
+      height: calc(464px / 16 * 9)
+
 @include media('<tablet')
   div.threadCard
     .youtubePreview

@@ -4,6 +4,7 @@
       v-for="thread in localThreads"
       :key="thread.id"
       :thread="thread"
+      small
     />
     <MaterialButton
       text
