@@ -36,8 +36,6 @@
       <div v-if="thread.data.youTubeSlug">
         <iframe
           class="youtubePreview"
-          width="200"
-          height="170"
           :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
           frameborder="0"
         />
