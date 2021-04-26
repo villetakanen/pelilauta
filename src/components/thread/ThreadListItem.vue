@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { Thread } from '@/state/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 

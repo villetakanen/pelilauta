@@ -1,7 +1,7 @@
 <template>
   <Card
     class="threadCard"
-    :class="{ pinned: pinned }"
+    :class="{ pinned: pinned, small: small }"
   >
     <div class="content">
       <div
@@ -27,9 +27,20 @@
           {{ site.name }}
         </router-link>
       </p>
-      <p class="contentSnippet">
+      <p
+        v-if="!thread.data.youTubeSlug"
+        class="contentSnippet"
+      >
         {{ snippet }}
       </p>
+      <div v-if="thread.data.youTubeSlug">
+        <iframe
+          title="Youtube Preview"
+          class="youtubePreview"
+          :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
+          frameborder="0"
+        />
+      </div>
       <p class="meta">
         <transition name="fade">
           <span
@@ -96,7 +107,8 @@
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
 import { useMeta } from '@/state/meta'
-import { loveThread, Thread, unloveThread } from '@/state/threads'
+import { loveThread, unloveThread } from '@/state/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Card from '../layout/Card.vue'
@@ -117,6 +129,11 @@ export default defineComponent({
       required: true
     },
     pinned: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    small: {
       type: Boolean,
       required: false,
       default: false
@@ -178,7 +195,7 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
+@import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 div.threadCard
   color: var(--chroma-secondary-a)
@@ -206,7 +223,7 @@ div.threadCard
     margin-top: 0
     padding-top: 0
     a
-      color: var(--chroma-secondary-e)
+      color: var(--chroma-secondary-b)
   p.meta
     // text-align: right
     @include TypeCaption()
@@ -236,4 +253,19 @@ div.threadCard
     margin-bottom: 8px
 .pinned
   background-color: var(--chroma-secondary-i)
+.youtubePreview
+  width: 548px
+  height: calc(548px / 16 * 9)
+
+@include media('>=tablet')
+  div.threadCard.small
+    .youtubePreview
+      width: 464px
+      height: calc(464px / 16 * 9)
+
+@include media('<tablet')
+  div.threadCard
+    .youtubePreview
+      width: calc(100vw - 48px)
+      height: calc((100vw - 48px) / 16 *9 )
 </style>

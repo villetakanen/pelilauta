@@ -17,3 +17,33 @@ export interface Asset {
   creator: string
   fullPath: string
 }
+
+export interface PostImage {
+  url: string;
+}
+
+export interface PostData {
+  content: string
+  topic: string
+  title: string
+  images?: PostImage[]
+  sticky?: boolean,
+  youTubeSlug?: string
+}
+
+export interface Thread {
+  // Identity
+  id: string
+  author: string
+  // Timestamps
+  created: firebase.firestore.Timestamp|null
+  flowTime: firebase.firestore.Timestamp|null
+  updated: firebase.firestore.Timestamp|null
+  // Meta
+  replyCount: number
+  lovedCount: number
+  site?: string // this is a wikisite slug
+  // Payload
+  data: PostData
+  hidden: boolean
+}

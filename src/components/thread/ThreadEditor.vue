@@ -16,11 +16,25 @@
       />
       <MaterialButton
         icon
+        :action="toggleInjectMedia"
+      >
+        <Icon name="youtube" />
+      </MaterialButton>
+      <MaterialButton
+        icon
         :action="toggle"
       >
         <Icon name="equalizer" />
       </MaterialButton>
     </div>
+
+    <transition name="rollin">
+      <div
+        v-if="toggleMedia"
+      >
+        <MediaTool :thread="thread" />
+      </div>
+    </transition>
 
     <transition name="rollin">
       <div
@@ -74,7 +88,8 @@
 
 <script lang="ts">
 import { useMeta } from '@/state/meta'
-import { createThread, Thread, updateThread } from '@/state/threads/threads'
+import { createThread, updateThread } from '@/state/threads/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType, Ref, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
@@ -89,6 +104,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import Toggle from '../material/Toggle.vue'
 import { useSites } from '@/state/sites'
+import MediaTool from './MediaTool.vue'
 /**
  * An editor form for Thread data.
  */
@@ -100,7 +116,8 @@ export default defineComponent({
     QuillEditor,
     MaterialButton,
     Icon,
-    Toggle
+    Toggle,
+    MediaTool
   },
   props: {
     thread: {
@@ -121,6 +138,8 @@ export default defineComponent({
   setup (props) {
     const toggleSettings = ref(false)
     const toggle = () => { toggleSettings.value = !toggleSettings.value }
+    const toggleMedia = ref(false)
+    const toggleInjectMedia = () => { toggleMedia.value = !toggleMedia.value }
     console.debug('thread', props.thread)
     // Thread name
     const localTitle = ref('')
@@ -212,7 +231,7 @@ export default defineComponent({
       return list
     })
 
-    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky, siteList, threadSite }
+    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky, siteList, threadSite, toggleInjectMedia, toggleMedia }
   }
 })
 </script>

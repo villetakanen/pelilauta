@@ -8,7 +8,7 @@
         id="addThreadFab"
         to="/stream/add/thread"
         :text="$t('action.addThread')"
-        icon="send"
+        icon="addDiscussion"
       />
     </teleport>
   </div>

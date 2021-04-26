@@ -49,7 +49,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from 'vue'
-import { Thread, deleteThread } from '@/state/threads'
+import { deleteThread } from '@/state/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import { useMeta } from '@/state/meta'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Action from '../material/Action.vue'

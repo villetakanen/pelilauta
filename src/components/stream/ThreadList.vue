@@ -4,6 +4,7 @@
       v-for="thread in localThreads"
       :key="thread.id"
       :thread="thread"
+      small
     />
     <MaterialButton
       text
@@ -20,7 +21,8 @@ import { defineComponent, onMounted, ref, watch } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { Thread, toThread } from '@/state/threads'
+import { toThread } from '@/state/threads'
+import { Thread } from '@/utils/firestoreInterfaces'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import ThreadCard from '@/components/home/ThreadCard.vue'
 

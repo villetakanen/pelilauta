@@ -5,34 +5,7 @@ import 'firebase/analytics'
 import { computed, ComputedRef, ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
 import { useProfile } from '../authz'
-
-export interface PostImage {
-    url: string;
-}
-
-export interface PostData {
-    content: string
-    topic: string
-    title: string
-    images?: PostImage[]
-    sticky?: boolean
-}
-
-export interface Thread {
-    // Identity
-    id: string
-    author: string
-    // Timestamps
-    created: firebase.firestore.Timestamp|null
-    flowTime: firebase.firestore.Timestamp|null
-    updated: firebase.firestore.Timestamp|null
-    // Meta
-    replyCount: number
-    lovedCount: number
-    site?: string // this is a wikisite slug
-    // Payload
-    data: PostData
-}
+import { Thread, PostData } from '@/utils/firestoreInterfaces'
 
 export interface Stream {
   slug: string
@@ -53,6 +26,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
       updated: null,
       replyCount: 0,
       lovedCount: 0,
+      hidden: false,
       data: {
         content: '',
         topic: '',
@@ -69,6 +43,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
     lovedCount: data.lovedCount,
     updated: data.updated,
     site: data.site || '',
+    hidden: data.hidden || false,
     data: {
       content: data.content,
       topic: data.topic,
@@ -79,6 +54,7 @@ export function toThread (id: string, data?:firebase.firestore.DocumentData): Th
   }
   if (!post.replyCount) post.replyCount = 0
   if (typeof post.data.images === 'string') delete post.data.images
+  if ('youTubeSlug' in data) post.data.youTubeSlug = data.youTubeSlug
   return post
 }
 
