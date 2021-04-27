@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.1](https://github.com/villetakanen/pelilauta/compare/v8.0.0...v8.0.1) (2021-04-27)
+
+
+### Bug Fixes
+
+* e2e routes ([f055edb](https://github.com/villetakanen/pelilauta/commit/f055edb83a045feffe64a8df17089769d5b3d1af))
+* refactored side menu to support both sites ([ea02a02](https://github.com/villetakanen/pelilauta/commit/ea02a02cd7b4b59332f69e88e6bb7a2664160691))
+* refactored sidenav menu item template ([1090ac0](https://github.com/villetakanen/pelilauta/commit/1090ac0db5f9d325be5f525f3bd225ec7e0781ad))
+
 ## [8.0.0](https://github.com/villetakanen/pelilauta/compare/v7.39.2...v8.0.0) (2021-04-26)
 
 
