@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="sideNavAction-home">
     <h4 class="hideOnMobile siteIdentity">
       <router-link to="/">
         <img
