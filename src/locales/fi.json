@@ -80,6 +80,20 @@
       "addPage": "Uusi sivu"
     }
   },
+  "sideNav": {
+    "toForumLink": "Keskustelu",
+    "toSitesLink": "Hakemisto",
+    "toMySitesLink": "Omat pelini",
+    "home": "Pelilauta",
+    "admin": "Admin",
+    "sections": "Aiheet",
+    "meta": "Meta",
+    "about": "Tietoja Pelilaudasta",
+    "profile": "Oma profiilini",
+    "stylebook": "Stylebook",
+    "mekanismi": "Mekanismi",
+    "editorTest": "Editor testing"
+  },
   "snacks": {
     "invalidEmail": "Sähköpostiosoitteessa oli jotain vikaa, yritä uuudestaan?",
     "emailSent": "Kirjautumislinkki lähetetty.",
@@ -124,17 +138,6 @@
   "welcome": {
     "header": "Pelilauta",
     "paragraph": "Kirjaudu sovellukseen osallistuaksesi keskusteluun."
-  },
-  "sideNav": {
-    "home": "Pelilauta",
-    "admin": "Admin",
-    "sections": "Aiheet",
-    "meta": "Meta",
-    "about": "Tietoja Pelilaudasta",
-    "profile": "Oma profiilini",
-    "stylebook": "Stylebook",
-    "mekanismi": "Mekanismi",
-    "editorTest": "Editor testing"
   },
   "mekanismi": {
     "index": "Sivustot",

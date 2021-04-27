@@ -4,7 +4,9 @@
     :class="propClasses"
   >
     <Icon
+      medium
       :name="icon"
+      class="icon"
     />
     <router-link :to="to">
       <slot />
@@ -49,3 +51,25 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/include-media.scss
+@import @/styles/material-typography.sass
+
+.sideNavMenuItem
+  @include TypeButton()
+  a
+    color: var(--chroma-secondary-b)
+    text-decoration: none
+    padding-left: 8px
+  &:hover
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
+    border-radius: 0 24px 24px 0
+    .icon
+      background-color: var(--chroma-clear)
+      border-radius: 50%
+
+@include media('>=tablet')
+  .sideNavMenuItem.mobile
+    display: none
+</style>

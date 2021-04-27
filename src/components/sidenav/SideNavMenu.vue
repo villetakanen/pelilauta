@@ -1,86 +1,109 @@
 <template>
   <div class="sideNavMenu">
     <ul>
-      <li
-        v-for="item in sideNavItems"
-        :id="'sideNavAction-'+item.key"
-        :key="item.key"
-        :class="{ subtitle: item.sub }"
-        @click="routeTo(item.to)"
+      <SideNavMenuItem
+        icon="pelilauta"
+        to="/"
+        mobile-only
+        @click="toggleNav"
       >
-        <Icon
-          v-if="item.icon"
-          :name="item.icon"
-          medium
-          class="navItemIcon"
-        />
-        {{ item.content || $t('sideNav.' + item.key) }}
-        <div
-          v-if="item.secondaryContent"
-          class="secondaryContent"
-        >
-          {{ item.secondaryContent }}
-        </div>
+        Pelilauta
+      </SideNavMenuItem>
+      <SideNavMenuItem
+        icon="mekanismi"
+        to="/mekanismi"
+        mobile-only
+        @click="toggleNav"
+      >
+        Mekanismi
+      </SideNavMenuItem>
+      <!-- Forum topics start here! *************************************** -->
+      <li class="subtitle">
+        {{ $t('sideNav.toForumLink') }}
       </li>
+      <SideNavMenuItem
+        v-for="stream in streamItems"
+        :key="stream.key"
+        :to="stream.to"
+        :icon="stream.icon"
+        @click="toggleNav"
+      >
+        <div class="streamLink">
+          {{ stream.content }}
+          <div class="count">
+            {{ stream.count }}
+          </div>
+        </div>
+      </SideNavMenuItem>
+
+      <!-- Site listing starts here! ************************************** -->
+      <li class="subtitle">
+        Mekanismi
+      </li>
+      <SideNavMenuItem
+        icon="mekanismi"
+        to="/mekanismi"
+        @click="toggleNav"
+      >
+        {{ $t('sideNav.toSitesLink') }}
+      </SideNavMenuItem>
+      <SideNavMenuItem
+        icon="homebrew-logo"
+        to="/mekanismi/view/arkku/arkku"
+        @click="toggleNav"
+      >
+        Arkku
+      </SideNavMenuItem>
+      <SideNavMenuItem
+        v-if="!isAnonymous"
+        icon="books"
+        to="/mekanismi/sites/profile"
+        @click="toggleNav"
+      >
+        {{ $t('sideNav.toMySitesLink') }}
+      </SideNavMenuItem>
+
+      <li class="subtitle">
+        Meta
+      </li>
+      <SideNavMenuItem
+        icon="about"
+        to="/mekanismi/view/mekanismi/pelilauta-about"
+        @click="toggleNav"
+      >
+        {{ $t('sideNav.about') }}
+      </SideNavMenuItem>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue'
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuthState } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/state/meta'
-import Icon from '../material/Icon.vue'
-
-interface NavItem {
-  key: string;
-  to?: string;
-  icon?: string;
-  admin?: boolean,
-  sub?: boolean,
-  authz?: boolean
-  content?: string
-  secondaryContent?: string
-}
+import SideNavMenuItem from './SideNavMenuItem.vue'
 
 export default defineComponent({
   name: 'SideNavMenu',
-  components: { Icon },
+  components: { SideNavMenuItem },
   setup () {
     const { isAnonymous } = useAuthState()
-    const { isAdmin } = useProfile()
     const { streams } = useMeta()
-    const sideNavItems = computed(() => {
-      const allNavItems: NavItem[] = [
-        { key: 'home', to: '/', icon: 'd12' }
-      ]
-      allNavItems.push({ key: 'mekanismi', to: '/mekanismi', icon: 'mekanismi' })
-      // allNavItems.push({ key: 'admin', admin: true, to: '/admin', icon: 'admin' })
-      allNavItems.push({ key: 'sections', sub: true })
-      streams.value.forEach((topic) => {
-        if (topic.slug !== '-') {
-          allNavItems.push({
-            key: topic.slug,
-            content: topic.name,
-            to: '/stream/topic/' + topic.slug,
-            icon: topic.icon || 'd20',
-            secondaryContent: topic.count.toString()
-          })
+
+    const streamItems = computed(() => {
+      if (!streams.value) return []
+      return streams.value.filter((stream) => (stream.slug !== '-')).map((stream) => {
+        return {
+          key: stream.slug,
+          content: stream.name,
+          to: '/stream/topic/' + stream.slug,
+          count: stream.count.toString(),
+          icon: stream.icon
         }
       })
-      // Meta items start
-      allNavItems.push({ key: 'meta', sub: true })
-      // allNavItems.push({ key: 'stylebook', admin: true, to: '/styleguide', icon: 'admin' })
-      allNavItems.push({ key: 'admin', to: '/admin', admin: true, icon: 'admin' })
-      allNavItems.push({ key: 'profile', authz: true, to: '/profile', icon: 'avatar' })
-      allNavItems.push({ key: 'about', to: '/mekanismi/view/mekanismi/pelilauta-about', icon: 'about' })
-      return allNavItems.filter((val) => (
-        isAdmin.value ||
-        (!isAnonymous.value && val.authz) ||
-        !(val.authz || val.admin))
-      )
     })
+
     const router = useRouter()
     const toggleNav: CallableFunction = inject('toggleNav') as CallableFunction
     const routeTo = (to: string|undefined) => {
@@ -88,7 +111,7 @@ export default defineComponent({
       if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
-    return { sideNavItems, routeTo }
+    return { routeTo, streamItems, isAnonymous, toggleNav }
   }
 })
 </script>
@@ -96,6 +119,23 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
+
+.streamLink
+  margin: 0
+  padding: 0
+  display: inline-block
+  position: relative
+  width: calc(100% - 60px)
+  .count
+    position: absolute
+    color: var(--chroma-secondary-a)
+    background-color: var(--chroma-primary-h)
+    padding: 0 10px
+    border-radius: 12px
+    right: 16px
+    top: 12px
+    height: 22px
+    line-height: 22px
 
 .navItemIcon
   position: relative
@@ -132,7 +172,6 @@ export default defineComponent({
       height: 22px
       line-height: 22px
     &:hover
-      background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
       border-radius: 0 24px 24px 0
       div.secondaryContent
         background-color: var(--chroma-primary-e)
