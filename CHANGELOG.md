@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.2](https://github.com/villetakanen/pelilauta/compare/v8.0.1...v8.0.2) (2021-04-29)
+
+
+### Bug Fixes
+
+* sass for authorinfo ux fix ([b1303ab](https://github.com/villetakanen/pelilauta/commit/b1303ab7b64e8a989c95686e7f2326fd9040ff1a))
+* thread author info component ux ([2dc64af](https://github.com/villetakanen/pelilauta/commit/2dc64af265b60e83dc9c37b65cb1093cf23d78fb))
+
 ### [8.0.1](https://github.com/villetakanen/pelilauta/compare/v8.0.0...v8.0.1) (2021-04-27)
 
 
