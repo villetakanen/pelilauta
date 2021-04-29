@@ -18,9 +18,7 @@
         :innerHTML="thread.data.content"
       />
       <PhotoBox :photos="thread.data.images || []" />
-      <div style="text-align:right">
-        <AuthorLink :uid="thread.author" />
-      </div>
+      <AuthorInfo :authorid="thread.author" />
       <h2 class="section">
         {{ $t('threads.discussion') }}
       </h2>
@@ -38,7 +36,6 @@
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
-import AuthorLink from '@/components/author/AuthorLink.vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import ThreadBox from '@/components/thread/ThreadBox.vue'
@@ -46,6 +43,7 @@ import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
 import { subscribeThread, useThreads } from '@/state/threads/threads'
 import firebase from 'firebase/app'
 import 'firebase/analytics'
+import AuthorInfo from '@/components/author/AuthorInfo.vue'
 
 /**
  * A Router view for a Stream Thread.
@@ -62,8 +60,8 @@ export default defineComponent({
     PhotoBox,
     ThreadBoxHeader,
     Discussion,
-    AuthorLink,
-    ToTopFab
+    ToTopFab,
+    AuthorInfo
   },
   props: {
     threadid: {
