@@ -1,7 +1,7 @@
 <template>
   <div class="authorInfo">
     <router-link
-      v-if="nick"
+      v-if="author.nick"
       :to="{ name: 'profile.public', params: { uid: authoruid }}"
     >
       <img
@@ -14,6 +14,9 @@
       <Icon
         v-else
         name="avatar"
+        class="avatarButton"
+        medium
+        style="top: 12px; left: 12px"
       />
       <h4>{{ author.nick }}</h4>
       <p>{{ author.tagline }}</p>
@@ -46,3 +49,21 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.authorInfo
+  border-top: solid 1px var(--chroma-primary-g)
+  position: relative
+  height: 72px
+  a
+    text-decoration: none
+  h4, p
+    margin-left: 80px
+  .avatarButton
+    position: absolute
+    top: 4px
+    left: 4px
+    height: 64px
+    width: 64px
+    border-radius: 50%
+</style>

@@ -18,9 +18,7 @@
         :innerHTML="thread.data.content"
       />
       <PhotoBox :photos="thread.data.images || []" />
-      <div style="text-align:right">
-        <AuthorInfo :authoruid="thread.author" />
-      </div>
+      <AuthorInfo :authorid="thread.author" />
       <h2 class="section">
         {{ $t('threads.discussion') }}
       </h2>
@@ -45,7 +43,7 @@ import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
 import { subscribeThread, useThreads } from '@/state/threads/threads'
 import firebase from 'firebase/app'
 import 'firebase/analytics'
-import AuthorInfo from '@/components/app/AuthorInfo.vue'
+import AuthorInfo from '@/components/author/AuthorInfo.vue'
 
 /**
  * A Router view for a Stream Thread.
