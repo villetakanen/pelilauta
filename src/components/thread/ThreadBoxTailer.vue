@@ -2,7 +2,7 @@
   <div class="threadBoxTailer">
     <div class="toolbar toright">
       <LoveAThreadAction
-        :authorid="authorid"
+        :authorid="thread.author"
         :loves="loves"
         :action="toggleLove"
         :count="thread.lovedCount"
