@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.3](https://github.com/villetakanen/pelilauta/compare/v8.0.2...v8.0.3) (2021-05-03)
+
+
+### Bug Fixes
+
+* correct params for tailer comps ([4745fe8](https://github.com/villetakanen/pelilauta/commit/4745fe82f7c31e9724aff19de9e1006ca6c34c94))
+* home stream no longer hides second post ([93bef76](https://github.com/villetakanen/pelilauta/commit/93bef76eeb7f4231b386985fce57df7b7816c6c7))
+* missing love action on thread page restored ([9202e3b](https://github.com/villetakanen/pelilauta/commit/9202e3b70fc8c49e9f21ff6ab4542a184daa8b4e))
+
 ### [8.0.2](https://github.com/villetakanen/pelilauta/compare/v8.0.1...v8.0.2) (2021-04-29)
 
 
