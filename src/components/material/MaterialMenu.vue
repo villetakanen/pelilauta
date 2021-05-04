@@ -10,6 +10,7 @@
     <img
       class="menu-button"
       src="@/assets/menu-default.svg"
+      alt="menu"
     >
     <ul
       class="dropdown"
@@ -25,6 +26,7 @@
           v-if="item.admin"
           name="admin"
           inline
+          class="before"
         />
         {{ item.text }}
       </li>
@@ -119,6 +121,7 @@ export default defineComponent({
       padding: 8px 18px
       cursor: pointer
       white-space: nowrap
+      position: relative
       &:hover
         background-color: $color-base-dark
       img
@@ -148,7 +151,12 @@ export default defineComponent({
 .disabled
   opacity: 0.2
 
-.adminAction
-  background-color: $color-secondary-light
+.material-menu
+  .dropdown
+    .adminAction
+      background-color: var(--chroma-primary-i)
+      margin-left: -16px
+      &:hover
+        background-color: var(--chroma-primary-h)
 
 </style>
