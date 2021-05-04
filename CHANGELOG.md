@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.4](https://github.com/villetakanen/pelilauta/compare/v8.0.3...v8.0.4) (2021-05-04)
+
+
+### Bug Fixes
+
+* removed refactored code. ([8b1edc5](https://github.com/villetakanen/pelilauta/commit/8b1edc51c6b83fa1d440bc7cb3783aefa235b7d5))
+
 ### [8.0.3](https://github.com/villetakanen/pelilauta/compare/v8.0.2...v8.0.3) (2021-05-03)
 
 
