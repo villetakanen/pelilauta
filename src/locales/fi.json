@@ -172,6 +172,9 @@
       "badge": "Pelibadge",
       "visibleToggle": "Näytä julkisissa listauksissa"
     },
+    "meta": {
+      "identity": "Ulkoasu"
+    },
     "page": {
       "category": "Kategoria",
       "name": "Sivun nimi",

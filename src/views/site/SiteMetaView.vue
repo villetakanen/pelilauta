@@ -1,8 +1,6 @@
 <template>
   <div class="siteMetaView">
-    <div class="viewFull">
-      <SiteToolbar />
-    </div>
+    <SiteToolbar />
     <transition name="fade">
       <div
         v-if="site && site.name"
@@ -95,6 +93,7 @@ export default defineComponent({
   display: flex
   flex-direction: row
   flex-wrap: wrap
+  align-items: flex-start
   .inDashboardBox
     min-width: 30vw
 

@@ -1,6 +1,6 @@
 <template>
   <Card class="siteIdentity contentArea contentBox">
-    <h2>{{ $t('mekanismi.site.identity') }}</h2>
+    <h2>{{ $t('wiki.meta.identity') }}</h2>
     <div
       v-if="site.splashURL"
       style="position:relative"
@@ -22,14 +22,11 @@
       :label="$t('mekanismi.splashImage')"
       :opts="opts"
     />
-    <div style="word-break: break-all; font-size:8pt; opacity: 0.5">
-      {{ site }}
-    </div>
   </Card>
 </template>
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, inject } from 'vue'
-import { Site, SiteData, updateSite, useFiles } from '@/state/site'
+import { Site, SiteData, updateSite, useAssets } from '@/state/site'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import Card from '../layout/Card.vue'
 
@@ -46,8 +43,8 @@ export default defineComponent({
         updateSite(siteFragment)
       }
     })
-    const { files } = useFiles()
-    const opts = computed(() => (files.value.map((val) => ({ key: val[1], value: val[0] }))))
+    const { assets } = useAssets()
+    const opts = computed(() => Array.from(assets.value, ([key, value]) => ({ key: value.url, value: key })))
     return { site, selected, opts }
   }
 })
@@ -60,7 +57,7 @@ export default defineComponent({
 
 .previewAvatar
   position: absolute
-  right: 0px
+  right: 16px
   top: 16px
   height: 72px
   width: 72px

@@ -5,6 +5,11 @@
         v-if="!page"
         :to="`/mekanismi/view/${site.id}/${site.id}`"
       >
+        <Icon
+          :name="site.systemBadge + '-logo'"
+          headline
+          style="margin-left: 0; padding-left: 0"
+        />
         {{ site.name }}
       </router-link>
       <template v-else>
