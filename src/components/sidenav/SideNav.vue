@@ -53,7 +53,7 @@ export default defineComponent({
 #sideNav
   position: absolute
   z-index: 900
-  top: 0
+  top: 72px
   left: 0
   width: 310px
   height: 100vh
@@ -71,6 +71,7 @@ export default defineComponent({
     box-shadow: 0 0 24px 0 var(--chroma-secondary-c)
     background-color: var(--chroma-clear)
     width: 84vw
+    top: 0px
     z-index: 20000
     transform: translateX(0px)
     overflow: hidden

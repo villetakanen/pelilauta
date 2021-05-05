@@ -77,7 +77,7 @@ export default defineComponent({
   background: var(--chroma-clear) // linear-gradient(140deg, var(--chroma-primary-a) 0%, var(--chroma-primary-e) 100%) // linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
   height: 48px
   margin: 0
-  margin-bottom: 8px
+  margin-bottom: 0px
   // border-bottom: solid 1px var(--chroma-primary-e)
   padding: 4px
   display: flex
