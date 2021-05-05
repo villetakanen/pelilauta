@@ -59,6 +59,9 @@
     "changesCard": {
       "title": "Mekanismi",
       "seeMore": "... See more"
+    },
+    "wpcard": {
+      "openLink": "Open in"
     }
   },
   "postHeader": {
@@ -98,12 +101,27 @@
     "updateSuccess": "Updated",
     "updateFailed": "Update failed"
   },
+  "sideNav": {
+      "toForumLink": "Discussions",
+      "toSitesLink": "Mekanismi",
+      "home": "Pelilauta",
+      "admin": "Admin",
+      "sections": "Sections",
+      "meta": "Meta",
+      "about": "About",
+      "profile": "My Profile",
+      "stylebook": "Stylebook",
+      "mekanismi": "Mekanismi",
+      "editorTest": "Editor testing",
+      "toMySitesLink": "My games"
+    },
   "since": {
     "lessThanHalfh": "Less than 30 min ago",
     "lessThanTwoHours": "Less than 2h ago",
     "lessThan24h": "Less than 24h ago"
   },
   "site": {
+    "title": "Pelilauta",
     "players": {
       "title": "Players",
       "editingRightsWarning": "Please note: all players have full editing access to the site pages.",
@@ -167,17 +185,6 @@
   "welcome": {
     "header": "Pelilauta",
     "paragraph": "The Elven Wizard casts a level 20 resurrection. Please login to continue."
-  },
-  "sideNav": {
-    "home": "Pelilauta",
-    "admin": "Admin",
-    "sections": "Sections",
-    "meta": "Meta",
-    "about": "About",
-    "profile": "My Profile",
-    "stylebook": "Stylebook",
-    "mekanismi": "Mekanismi",
-    "editorTest": "Editor testing"
   },
   "mekanismi": {
     "title": "Mekanismi",
