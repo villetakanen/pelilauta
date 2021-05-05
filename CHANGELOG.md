@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.6](https://github.com/villetakanen/pelilauta/compare/v8.0.5...v8.0.6) (2021-05-05)
+
+
+### Bug Fixes
+
+* second level menu ([50fada9](https://github.com/villetakanen/pelilauta/commit/50fada9093f9143628e8f9d9400453d4ab2c0d85))
+
 ### [8.0.5](https://github.com/villetakanen/pelilauta/compare/v8.0.4...v8.0.5) (2021-05-05)
 
 
