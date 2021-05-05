@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.5](https://github.com/villetakanen/pelilauta/compare/v8.0.4...v8.0.5) (2021-05-05)
+
+
+### Bug Fixes
+
+* mekanismi settings ux fixes ([416fdb1](https://github.com/villetakanen/pelilauta/commit/416fdb1ba722548384e0343306386d067551089a))
+* menu quality fixes ([4c5678e](https://github.com/villetakanen/pelilauta/commit/4c5678e33071058eefc75620aba948172ab782c9))
+
 ### [8.0.4](https://github.com/villetakanen/pelilauta/compare/v8.0.3...v8.0.4) (2021-05-04)
 
 
