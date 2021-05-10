@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.7](https://github.com/villetakanen/pelilauta/compare/v8.0.6...v8.0.7) (2021-05-10)
+
+
+### Bug Fixes
+
+* i18n an code fixes ([c9b183e](https://github.com/villetakanen/pelilauta/commit/c9b183ebc0bde94594538994d0cad91ff08acae6))
+* image upload works for wikipage ([59f3df6](https://github.com/villetakanen/pelilauta/commit/59f3df623bc6fb8f9694d740804f371883d13fa8))
+
 ### [8.0.6](https://github.com/villetakanen/pelilauta/compare/v8.0.5...v8.0.6) (2021-05-05)
 
 
