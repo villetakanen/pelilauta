@@ -69,6 +69,7 @@
           v-model="pageContent"
           toolbar
           class="pageContent"
+          :storage="site.id"
         />
       </div>
       <!-- Editor actions -->

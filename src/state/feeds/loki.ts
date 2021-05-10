@@ -23,7 +23,7 @@ export async function fetchLoki (): Promise<void> {
         cachedPosts.value.set('' + post.ID, post)
       })
     }
-    console.debug('fetchLoki', feedPosts.value)
+    // console.debug('fetchLoki', feedPosts.value)
   } catch (e) {
     console.error(e)
   }

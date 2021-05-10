@@ -124,12 +124,12 @@ const siteThreads = computed(() => (localSiteThreads.value))
  * @param siteid slug of a site
  */
 export async function fetchSite (siteid: string): Promise<void> {
-  console.debug('fetchSite', siteid)
+  // console.debug('fetchSite', siteid)
   const db = firebase.firestore()
   const siteRef = db.collection('stream').where('site', '==', siteid).orderBy('flowTime', 'desc')
   try {
     const siteDocs = await siteRef.get()
-    console.debug('fetchSite', siteDocs, siteid)
+    // console.debug('fetchSite', siteDocs, siteid)
     localSiteThreads.value = new Array<Thread>()
     siteDocs.forEach((siteDocs) => {
       localSiteThreads.value.push(toThread(siteDocs.id, siteDocs.data()))

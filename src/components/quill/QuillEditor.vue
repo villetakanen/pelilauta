@@ -24,6 +24,7 @@ export default defineComponent({
   emits: ['update:modelValue', 'new-images'],
   setup (props, context) {
     onMounted(() => {
+      console.debug('Quill editor injected, starting to add Quill', props.toolbar)
       const imageHandler = () => {
         console.debug('imageHandler')
         const input = document.createElement('input')
@@ -35,7 +36,9 @@ export default defineComponent({
         input.onchange = async () => {
           console.debug('event triggered!')
           const file = input.files ? input.files[0] : null
-          if (!file || !props.storage) return
+          if (!file || !props.storage) {
+            throw Error('Missing file or storage path')
+          }
 
           // Save current cursor state
           const range = quill.getSelection(true)
@@ -109,7 +112,7 @@ export default defineComponent({
       }, true)
       const quill = new Quill('#editor', options)
       const toolbar = quill.getModule('toolbar')
-      if (toolbar) toolbar.addHandler('image', imageHandler)
+      toolbar.addHandler('image', imageHandler)
       quill.on('text-change', () => {
         context.emit('update:modelValue', quill.root.innerHTML)
       })
