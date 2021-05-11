@@ -84,10 +84,8 @@ export default defineComponent({
   min-height: 152px
   margin: 0 16px
   margin-bottom: 24px
-.wikipage
+.wikiPageContainer
   margin: 0
   padding: 0
-  p
-    margin-top: 0
-    margin-block-start: 0
+  padding-top:16px
 </style>
