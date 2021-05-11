@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.8](https://github.com/villetakanen/pelilauta/compare/v8.0.7...v8.0.8) (2021-05-11)
+
+
+### Bug Fixes
+
+* wikipage top margin ([0bfb98e](https://github.com/villetakanen/pelilauta/commit/0bfb98ea750ad016e9ad74407f3f31c57c58b30f))
+
 ### [8.0.7](https://github.com/villetakanen/pelilauta/compare/v8.0.6...v8.0.7) (2021-05-10)
 
 
