@@ -1,5 +1,5 @@
 <template>
-  <Toolbar>
+  <Toolbar class="siteToolbar">
     <div class="pageIdentity clipWithEllipsis">
       <router-link
         :to="`/mekanismi/view/${site.id}/${site.id}`"
@@ -57,12 +57,14 @@
       <span class="onlyForDesktop">{{ $t('site.players.title') }}</span>
     </Action>
     <Action
+      v-if="owns"
       prepend="equalizer"
       :to="`/site/meta/${site.id}`"
     >
       <span class="onlyForDesktop">{{ $t('mekanismi.siteinfo') }}</span>
     </Action>
     <Action
+      v-if="owns"
       prepend="settings"
       :to="`/site/settings/${site.id}`"
     >
@@ -73,13 +75,14 @@
 
 <script lang="ts">
 import { Page, useSite } from '@/state/site'
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { copyUrl } from '@/utils/window'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import Icon from '../material/Icon.vue'
+import { useAuthState } from '@/state/authz'
 
 export default defineComponent({
   components: { Toolbar, Action, Icon },
@@ -92,27 +95,38 @@ export default defineComponent({
   },
   setup () {
     const { site } = useSite()
+    const { uid } = useAuthState()
+
     const i18n = useI18n()
     const { pushSnack } = useSnack()
     const copyLink = () => {
       copyUrl()
       pushSnack({ topic: i18n.t('global.messages.linkShared') })
     }
-    return { site, copyLink }
+    const owns = computed(() => (site.value.owners && site.value.owners.includes(uid.value)))
+    return { site, copyLink, owns }
   }
 })
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/include-media.scss
 @import @/styles/material-typography.sass
+
+div.appToolbar.siteToolbar
+  margin-left: 8px
+  padding-left: 0
+  margin-bottom: 0
 
 .pageIdentity
   position: relative
-  padding-left: 56px
+  padding-left: 52px
   .systemBadge
     position: absolute
     top: 0
     left: 0
+    margin: 0
+    padding: 0
   .subject
     @include TypeBody2()
     line-height: 16px
@@ -129,4 +143,16 @@ export default defineComponent({
     margin: 0
     a
       text-decoration: none
+
+@include media('<tablet')
+  div.appToolbar.siteToolbar
+    flex-wrap: wrap
+    height: auto
+    max-height: auto
+    margin-bottom: 0
+    .pageIdentity
+      width: 100%
+      .subject, .pagetitle
+        white-space: normal
+
 </style>
