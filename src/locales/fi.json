@@ -67,7 +67,9 @@
   },
   "site": {
     "players": {
-      "title": "Pelaajat"
+      "title": "Pelaajat",
+      "addAsNew": "Lisää pelaajaksi",
+      "dropThePlayer": "Poista pelistä"
     },
     "meta": {
       "usePlayers": "Käytä pelaajat -toimintoa"

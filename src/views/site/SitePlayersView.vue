@@ -1,7 +1,9 @@
 <template>
-  <div class="sitePlayersView viewFull">
+  <div class="sitePlayersView">
     <SiteToolbar />
-    <SitePlayersList :site="site" />
+    <div class="singleColumnLayout">
+      <SitePlayersList :site="site" />
+    </div>
   </div>
 </template>
 

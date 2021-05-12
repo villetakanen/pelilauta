@@ -1,12 +1,14 @@
 <template>
   <Card class="sitePlayersList contentArea contentBox">
-    <h2>{{ $t('site.players.title') }}</h2>
+    <h1 class="title">{{ $t('site.players.title') }}</h1>
     <PlayerRowItem
       v-for="player in playerList"
       :key="player.uid"
       :player="player"
     />
-    <p>{{ $t('site.players.editingRightsWarning') }}</p>
+    <p class="tooltip">
+      {{ $t('site.settings.access.playerTooltip') }}
+    </p>
     <p>
       <MaterialSelect
         v-model="newPlayerUid"
