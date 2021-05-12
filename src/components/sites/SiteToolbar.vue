@@ -36,32 +36,32 @@
       prepend="share"
       @click="copyLink"
     >
-      <span class="hideOnMobile">{{ $t('action.share') }}</span>
+      <span class="onlyForDesktop">{{ $t('action.share') }}</span>
     </Action>
     <Action
       prepend="attachments"
       :to="`/site/attachments/${site.id}/`"
     >
-      <span class="hideOnMobile">{{ $t('mekanismi.attachments.title') }}</span>
+      <span class="onlyForDesktop">{{ $t('mekanismi.attachments.title') }}</span>
     </Action>
     <Action
       v-if="site.usePlayers"
       prepend="players"
       :to="`/site/players/${site.id}/`"
     >
-      <span class="hideOnMobile">{{ $t('site.players.title') }}</span>
+      <span class="onlyForDesktop">{{ $t('site.players.title') }}</span>
     </Action>
     <Action
       prepend="equalizer"
       :to="`/site/meta/${site.id}`"
     >
-      <span class="hideOnMobile">{{ $t('mekanismi.siteinfo') }}</span>
+      <span class="onlyForDesktop">{{ $t('mekanismi.siteinfo') }}</span>
     </Action>
     <Action
       prepend="settings"
       :to="`/site/settings/${site.id}`"
     >
-      <span class="hideOnMobile">{{ $t('site.settings.title') }}</span>
+      <span class="onlyForDesktop">{{ $t('site.settings.title') }}</span>
     </Action>
   </Toolbar>
 </template>
