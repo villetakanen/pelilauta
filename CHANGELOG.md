@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/villetakanen/pelilauta/compare/v8.0.8...v8.1.0) (2021-05-12)
+
+
+### Features
+
+* access card skeleton for the site settings ([cd7ef9b](https://github.com/villetakanen/pelilauta/commit/cd7ef9b13157500d7006ac2e552a28c2d523ee7f))
+* no players is now clearly shown in settngs ([e5f34f4](https://github.com/villetakanen/pelilauta/commit/e5f34f49d046cfa6da0c66199391ffcf12bb6f9b))
+* players available at settings ([4a0c3a7](https://github.com/villetakanen/pelilauta/commit/4a0c3a75c439f9fb6f62f236d8df91c4f4ac26e1))
+* site settings view ([b46b27c](https://github.com/villetakanen/pelilauta/commit/b46b27cc2bd6ba8f45195ce86f3ae2c25471a9d8))
+
+
+### Bug Fixes
+
+* css order of title atomic ([31d9d5e](https://github.com/villetakanen/pelilauta/commit/31d9d5e3e49b5debc7d85059cf0ff7a95fa3b464))
+* hiding non implemented feature title ([b80f1f8](https://github.com/villetakanen/pelilauta/commit/b80f1f8617dd44bfe8a7c6052e3163d8cbb01ac8))
+* site players tool ux polish ([0d6bc64](https://github.com/villetakanen/pelilauta/commit/0d6bc64da5ced791bebda111deac4a1b0e04e417))
+
 ### [8.0.8](https://github.com/villetakanen/pelilauta/compare/v8.0.7...v8.0.8) (2021-05-11)
 
 
