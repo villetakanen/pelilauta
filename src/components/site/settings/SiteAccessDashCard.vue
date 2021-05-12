@@ -1,8 +1,8 @@
 <template>
   <Card>
-    <h1 class="title">
+    <!--h1 class="title">
       {{ $t('site.settings.access.title') }}
-    </h1>
+    </h1-->
     <SitePlayerAccess :site="site" />
   </Card>
 </template>
