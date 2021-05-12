@@ -80,7 +80,10 @@
       "addPage": "Uusi sivu"
     },
     "settings": {
-      "title": "Asetukset"
+      "title": "Asetukset",
+      "access": {
+        "title": "Näkyvyys"
+      }
     }
   },
   "sideNav": {

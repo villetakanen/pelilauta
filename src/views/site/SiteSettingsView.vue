@@ -2,12 +2,13 @@
   <div class="siteSettings">
     <SiteToolbar />
     <div class="dashBoardLayout">
-      ...
+      <SiteAccessDashCard :site="site" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import SiteAccessDashCard from '@/components/site/settings/SiteAccessDashCard.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
@@ -22,7 +23,7 @@ import { defineComponent } from 'vue'
  */
 export default defineComponent({
   name: 'SiteSettingsView',
-  components: { SiteToolbar },
+  components: { SiteToolbar, SiteAccessDashCard },
   props: {
     siteid: {
       type: String,
