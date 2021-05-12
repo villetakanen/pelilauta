@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.2](https://github.com/villetakanen/pelilauta/compare/v8.1.1...v8.1.2) (2021-05-12)
+
+
+### Bug Fixes
+
+* mobile wikipage header ux ([7381c95](https://github.com/villetakanen/pelilauta/commit/7381c95659e177f62d1d1887b83348bcadd5db07))
+
 ### [8.1.1](https://github.com/villetakanen/pelilauta/compare/v8.1.0...v8.1.1) (2021-05-12)
 
 
