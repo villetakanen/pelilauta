@@ -78,6 +78,9 @@
     "filterSites": "Suodata",
     "actions": {
       "addPage": "Uusi sivu"
+    },
+    "settings": {
+      "title": "Asetukset"
     }
   },
   "sideNav": {

@@ -84,6 +84,7 @@ export default defineComponent({
       'report',
       'stats',
       'send',
+      'settings',
       'share',
       'quick-logo',
       'up',

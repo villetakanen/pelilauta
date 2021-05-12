@@ -138,7 +138,10 @@
     "threads":{
       "title": "Discussions"
     },
-    "filterSites": "Filter"
+    "filterSites": "Filter",
+    "settings": {
+      "title": "Asetukset"
+    }
   },
   "thread": {
     "stickyToggle": "Sticky",

@@ -1,3 +1,4 @@
+@import include-media.scss
 // Different view layouts are defined here
 //
 // Do not include in any components, as these are already imported by base.sass
@@ -10,3 +11,18 @@
 .emptyLayout
   padding: 0 8px
   margin: 8px auto
+
+.dashBoardLayout
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  align-items: flex-start
+  .dashboardCard
+    min-width: 30vw
+
+@include media('>tablet')
+  .dashBoardLayout
+    .dashboardCard
+      min-width: 520px
+      max-width: 520px
+      width:520px

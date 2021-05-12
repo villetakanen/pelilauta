@@ -57,6 +57,12 @@
     >
       <span class="hideOnMobile">{{ $t('mekanismi.siteinfo') }}</span>
     </Action>
+    <Action
+      prepend="settings"
+      :to="`/site/settings/${site.id}`"
+    >
+      <span class="hideOnMobile">{{ $t('site.settings.title') }}</span>
+    </Action>
   </Toolbar>
 </template>
 
