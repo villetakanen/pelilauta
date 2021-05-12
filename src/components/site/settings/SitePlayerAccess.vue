@@ -12,6 +12,9 @@
         :key="p.uid"
         :label="p.nick"
       />
+      <p v-if="!players || players.length < 1">
+        {{ $t('site.settings.access.noPlayers') }}
+      </p>
     </div>
     <p style="text-align: right">
       <router-link :to="`/site/players/${site.id}`">

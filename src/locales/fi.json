@@ -83,7 +83,8 @@
       "title": "Asetukset",
       "access": {
         "title": "Näkyvyys",
-        "playerTooltip": "Kaikki pelaajat näkevät toistaiseksi koko sivuston sisällön."
+        "playerTooltip": "Kaikki pelaajat näkevät toistaiseksi koko sivuston sisällön.",
+        "noPlayers": "Ei pelaajia"
       }
     }
   },
