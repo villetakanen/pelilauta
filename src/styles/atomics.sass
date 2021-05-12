@@ -1,3 +1,4 @@
+@import material-typography.sass
 /**
  * This file contains atomic css helper classes and mixins used to buid the atomics.
  * 
@@ -49,8 +50,22 @@
   img
     max-width: 100%
 
- 
+// text-helpers
+h1.title
+  @include TypeHeadline5()
+  margin: 0
+  padding: 0
+  color: var(--chroma-primary-a)  
+.tooltip
+  @include TypeBody2()
+  color: var(--chroma-primary-d)
+  font-style: italic
+
 // Scaling helpers
+@include media('<desktop')
+  .onlyForDesktop
+    display: none
+
 @include media('<tablet')
   .hideOnMobile
     display: none
@@ -58,4 +73,4 @@
 @include media('>=tablet')
   .onlyForMobile
     display: none
-  
+

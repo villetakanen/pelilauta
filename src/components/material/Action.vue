@@ -83,6 +83,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .action
+  white-space: nowrap
   @include TypeButton()
   height: 40px
   padding: 8px 14px

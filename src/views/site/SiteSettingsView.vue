@@ -1,14 +1,14 @@
 <template>
-  <div class="sitePlayersView">
+  <div class="siteSettings">
     <SiteToolbar />
-    <div class="singleColumnLayout">
-      <SitePlayersList :site="site" />
+    <div class="dashBoardLayout">
+      <SiteAccessDashCard :site="site" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import SitePlayersList from '@/components/sites/SitePlayersList.vue'
+import SiteAccessDashCard from '@/components/site/settings/SiteAccessDashCard.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
@@ -22,8 +22,8 @@ import { defineComponent } from 'vue'
  * import/layout
  */
 export default defineComponent({
-  name: 'SitePlayersView',
-  components: { SiteToolbar, SitePlayersList },
+  name: 'SiteSettingsView',
+  components: { SiteToolbar, SiteAccessDashCard },
   props: {
     siteid: {
       type: String,

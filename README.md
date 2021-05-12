@@ -23,6 +23,10 @@ An Open Source vue3+firebase project for a community site.
 
 ## Breaking, and other major changes
 
+8.0.0 
+- Support for multiple stream post types. Breaks compatibility with "thread-only" post type model of pre 8.0.
+- No migration needed, as we simply add new stream post types to database.
+
 7.7.0 - and above
 - The app now expects that https://github.com/villetakanen/pelilauta-functions/releases/tag/0.1.0 
   or later is installed to firebase project. As the App will function just fine without the back-end

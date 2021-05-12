@@ -67,7 +67,9 @@
   },
   "site": {
     "players": {
-      "title": "Pelaajat"
+      "title": "Pelaajat",
+      "addAsNew": "Lisää pelaajaksi",
+      "dropThePlayer": "Poista pelistä"
     },
     "meta": {
       "usePlayers": "Käytä pelaajat -toimintoa"
@@ -78,6 +80,14 @@
     "filterSites": "Suodata",
     "actions": {
       "addPage": "Uusi sivu"
+    },
+    "settings": {
+      "title": "Asetukset",
+      "access": {
+        "title": "Näkyvyys",
+        "playerTooltip": "Kaikki pelaajat näkevät toistaiseksi koko sivuston sisällön.",
+        "noPlayers": "Ei pelaajia"
+      }
     }
   },
   "sideNav": {
