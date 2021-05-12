@@ -1,36 +1,41 @@
 <template>
   <Toolbar>
-    <h3 class="clipWithEllipsis">
+    <div class="pageIdentity clipWithEllipsis">
       <router-link
-        v-if="!page"
         :to="`/mekanismi/view/${site.id}/${site.id}`"
       >
         <Icon
           :name="site.systemBadge + '-logo'"
           headline
-          style="margin-left: 0; padding-left: 0"
+          class="systemBadge"
         />
-        {{ site.name }}
       </router-link>
-      <template v-else>
-        <router-link
-          :to="`/mekanismi/view/${site.id}/${site.id}`"
-        >
-          <Icon
-            :name="site.systemBadge + '-logo'"
-            headline
-            style="margin-left: 0; padding-left: 0"
-          />
-          <span class="hideOnMobile">{{ site.name }}</span>
-        </router-link>
-        <span class="hideOnMobile"> – </span>
-        <router-link
-          :to="`/mekanismi/view/${site.id}/${page.id}`"
-        >
-          {{ page.name }}
-        </router-link>
+      <template v-if="page">
+        <p class="subject">
+          <router-link
+            :to="`/mekanismi/view/${site.id}/${site.id}`"
+          >
+            {{ site.name }}
+          </router-link>
+        </p>
+        <p class="pagetitle">
+          <router-link
+            :to="`/mekanismi/view/${site.id}/${page.id}`"
+          >
+            {{ page.name }}
+          </router-link>
+        </p>
       </template>
-    </h3>
+      <template v-else>
+        <h3 class="sitetitle">
+          <router-link
+            :to="`/mekanismi/view/${site.id}/${site.id}`"
+          >
+            {{ site.name }}
+          </router-link>
+        </h3>
+      </template>
+    </div>
     <div class="spacer" />
     <Action
       prepend="share"
@@ -97,3 +102,31 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
+.pageIdentity
+  position: relative
+  padding-left: 56px
+  .systemBadge
+    position: absolute
+    top: 0
+    left: 0
+  .subject
+    @include TypeBody2()
+    line-height: 16px
+    a
+      color: var(--chroma-secondary-f)
+  .pagetitle
+    @include TypeHeadline5()
+    line-height: 32px
+    a
+      color: var(--chroma-secondary-a)
+  .subject, .pagetitle
+    white-space: nowrap
+    padding: 0
+    margin: 0
+    a
+      text-decoration: none
+</style>
