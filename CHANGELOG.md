@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.1](https://github.com/villetakanen/pelilauta/compare/v8.3.0...v8.3.1) (2021-05-17)
+
+
+### Bug Fixes
+
+* correct way to check for frozen status ([442e9bc](https://github.com/villetakanen/pelilauta/commit/442e9bca51c175ac8fcf5d1290005342a591f635))
+* hide site tools from non-members ([5dfc072](https://github.com/villetakanen/pelilauta/commit/5dfc072dd6e06e318fed0496a850f0897205bea2))
+* image styles within wikipage container ([17145b7](https://github.com/villetakanen/pelilauta/commit/17145b7f0a7cc1565e860b3ca7d7d161493e0656))
+* removed extra frozen field ([f6618b2](https://github.com/villetakanen/pelilauta/commit/f6618b2aac6af19d54cf9a280e2528ddeb4de245))
+* wiki to sidenav ([bc53c29](https://github.com/villetakanen/pelilauta/commit/bc53c29588b6e81bc6b854cd22eec0d701b96971))
+
 ## [8.3.0](https://github.com/villetakanen/pelilauta/compare/v8.2.0...v8.3.0) (2021-05-17)
 
 
