@@ -3,6 +3,7 @@
     :label="nick"
     :delete-function="deleteFunction"
     :disabled="activeUserUid === uid"
+    secondary
   />
 </template>
 
