@@ -39,7 +39,7 @@ export async function deleteAsset (name: string): Promise<void> {
 
 async function patchAsset (storageAsset: firebase.storage.Reference, uid:string): Promise<void> {
   const url = await storageAsset.getDownloadURL()
-  console.debug('patching:', url)
+  // console.debug('patching:', url)
   siteAssets.value.set(storageAsset.name, {
     name: storageAsset.name,
     url: url,
