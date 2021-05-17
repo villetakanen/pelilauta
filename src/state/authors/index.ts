@@ -3,10 +3,14 @@ import { ref, computed, ComputedRef } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { PublicProfile } from '@/state/authz'
+import { useMeta } from '../meta'
 
 const authorsState = ref(new Array<PublicProfile>())
 const authors = computed(() => authorsState.value)
-const nonFrozenAuthors = computed(() => (authorsState.value.filter((a) => (a.frozen === false))))
+const nonFrozenAuthors = computed(() => {
+  const { frozen } = useMeta()
+  return authorsState.value.filter((a) => (!frozen.value.includes(a.uid || '')))
+})
 
 let init = false
 function _init () {
@@ -24,8 +28,7 @@ function _init () {
           uid: doc.id,
           nick: doc.data()?.nick,
           photoURL: doc.data()?.photoURL,
-          tagline: doc.data()?.tagline,
-          frozen: doc.data()?.frozen || false
+          tagline: doc.data()?.tagline
         }
         authors.value.push(author)
       }
