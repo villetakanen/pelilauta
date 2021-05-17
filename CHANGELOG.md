@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.3.0](https://github.com/villetakanen/pelilauta/compare/v8.2.0...v8.3.0) (2021-05-17)
+
+
+### Features
+
+* adding and removing owners via site settings ([5eb3da1](https://github.com/villetakanen/pelilauta/commit/5eb3da1c3d05a653b9f2c3ef9e2786b7ac82878d))
+
+
+### Bug Fixes
+
+* deprecated old owner tool ([fc123a0](https://github.com/villetakanen/pelilauta/commit/fc123a0b416b257e54f910f1f12cef7b91ad3d8d))
+* secondary colors for owner chips ([2796eda](https://github.com/villetakanen/pelilauta/commit/2796edaf9510bcadcde2cb9d51c965ca43b880f8))
+* self removal no longer possible from owners ([d6d1ba9](https://github.com/villetakanen/pelilauta/commit/d6d1ba9d1ae103f57937bbfa38bc63c54201fbd3))
+
 ## [8.2.0](https://github.com/villetakanen/pelilauta/compare/v8.1.2...v8.2.0) (2021-05-17)
 
 
