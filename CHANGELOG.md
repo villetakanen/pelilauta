@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.2.0](https://github.com/villetakanen/pelilauta/compare/v8.1.2...v8.2.0) (2021-05-17)
+
+
+### Features
+
+* site owners visible in settings ([984d1a9](https://github.com/villetakanen/pelilauta/commit/984d1a9ef4889775d64e22cbff5f93680382c860))
+
+
+### Bug Fixes
+
+* removed extraneous debug logs ([11e4519](https://github.com/villetakanen/pelilauta/commit/11e45197bb2de4b2c4e9db94cb27b1899bab4902))
+* thred box margin fixed ([3ac6f43](https://github.com/villetakanen/pelilauta/commit/3ac6f43cbc11d2022493ab3303acd993a00696ca))
+
 ### [8.1.2](https://github.com/villetakanen/pelilauta/compare/v8.1.1...v8.1.2) (2021-05-12)
 
 
