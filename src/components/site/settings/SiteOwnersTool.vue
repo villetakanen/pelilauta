@@ -32,7 +32,7 @@
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import { useAuthors } from '@/state/authors'
-import { Site, addOwner, useSite } from '@/state/site'
+import { Site, useSite } from '@/state/site'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import OwnerChip from './OwnerChip.vue'
 
@@ -52,7 +52,7 @@ export default defineComponent({
     const availableAuthors = computed(() => (nonFrozenAuthors.value.map((a) => ({
       key: a.uid || '',
       value: a.nick || ''
-    }))).filter((a) => (!props.site.owners?.includes(a.key))))
+    }))).filter((a) => (!props.site.owners?.includes(a.key))).sort((a, b) => (a.value < b.value ? -1 : 1)))
 
     const setOwner = async () => {
       return addOwner(added.value)
