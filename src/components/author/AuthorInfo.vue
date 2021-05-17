@@ -43,7 +43,7 @@ export default defineComponent({
     const { authors } = useAuthors()
     const author:ComputedRef<PublicProfile> = computed(() => {
       const a = authors.value.find((v) => (v.uid === props.authorid))
-      return a?.uid ? a : { nick: '' }
+      return a?.uid ? a : { nick: '', frozen: false }
     })
     return { author }
   }

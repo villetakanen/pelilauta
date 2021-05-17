@@ -4,6 +4,7 @@
       {{ $t('site.settings.access.title') }}
     </h1-->
     <SiteOwnersTool :site="site" />
+    <hr>
     <SitePlayerAccess :site="site" />
   </Card>
 </template>

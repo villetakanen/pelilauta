@@ -13,23 +13,31 @@
         :uid="o"
       />
     </div>
+    <div>
+      <MaterialSelect
+        v-model="added"
+        :opts="availableAuthors"
+      />
+      <MaterialButton
+        :disabled="!added"
+        :async-action="setOwner"
+      >
+        {{ $t('action.add') }}
+      </MaterialButton>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import MaterialButton from '@/components/material/MaterialButton.vue'
+import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import { useAuthors } from '@/state/authors'
-import { Site } from '@/state/site'
-import { Player } from '@/utils/uiInterfaces'
-import { computed, ComputedRef, defineComponent, PropType } from 'vue'
+import { Site, useSite } from '@/state/site'
+import { computed, defineComponent, PropType, ref } from 'vue'
 import OwnerChip from './OwnerChip.vue'
 
-interface Owner {
-  uid: string
-  nick: string
-}
-
 export default defineComponent({
-  components: { OwnerChip },
+  components: { OwnerChip, MaterialSelect, MaterialButton },
   props: {
     site: {
       type: Object as PropType<Site>,
@@ -38,15 +46,19 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { authors } = useAuthors()
-    const owners:ComputedRef<Array<Owner>> = computed(() => (
-      props.site.owners?.map((uid) => (
-        {
-          uid: uid,
-          nick: authors.value.find((a) => (a.uid === uid))?.nick || 'anonymous'
-        }
-      )) || new Array<Player>()))
-    return { owners }
+    const { nonFrozenAuthors } = useAuthors()
+    const { addOwner } = useSite()
+    const added = ref('')
+    const availableAuthors = computed(() => (nonFrozenAuthors.value.map((a) => ({
+      key: a.uid || '',
+      value: a.nick || ''
+    }))).filter((a) => (!props.site.owners?.includes(a.key))).sort((a, b) => (a.value < b.value ? -1 : 1)))
+
+    const setOwner = async () => {
+      return addOwner(added.value)
+    }
+
+    return { added, availableAuthors, setOwner }
   }
 })
 </script>

@@ -11,6 +11,7 @@ export interface PublicProfile {
   nick: string
   tagline?: string
   photoURL?: string
+  frozen: boolean
 }
 
 export interface ProfileMeta {
@@ -28,7 +29,8 @@ const isAdmin: ComputedRef<boolean> = computed(() => {
 
 const profileRef:Ref<PublicProfile> = ref({
   nick: '',
-  tagline: ''
+  tagline: '',
+  frozen: false
 })
 const profile = computed(() => profileRef.value)
 
@@ -58,20 +60,21 @@ function parseSeen (seenArray:Array<seenThread>) {
 function fetchProfile (uid:string|null) {
   unsubscribe()
   if (!uid) {
-    profileRef.value = { nick: '', tagline: '' }
+    profileRef.value = { nick: '', tagline: '', frozen: false }
   } else {
     const db = firebase.firestore()
     const fbProfileRef = db.collection('profiles').doc(uid)
     unsubscribe = fbProfileRef.onSnapshot((snap) => {
       console.log('profile updated, fetching new data')
       if (!snap.exists) {
-        profileRef.value = { nick: '', tagline: '' }
+        profileRef.value = { nick: '', tagline: '', frozen: false }
         return
       }
       profileRef.value = {
         nick: snap.data()?.nick || '',
         tagline: snap.data()?.tagline || '',
-        photoURL: snap.data()?.photoURL || ''
+        photoURL: snap.data()?.photoURL || '',
+        frozen: snap.data()?.frozen || false
       }
       profileMetaRef.value = {
         lovedThreads: snap.data()?.lovedThreads,
