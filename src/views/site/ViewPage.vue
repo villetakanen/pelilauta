@@ -79,6 +79,7 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+@import @/styles/box-shadow.sass
 
 .mainCard
   min-height: 152px
@@ -88,4 +89,5 @@ export default defineComponent({
   margin: 0
   padding: 0
   padding-top:16px
+
 </style>

@@ -6,6 +6,8 @@ import { useMembers } from './members'
 import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
 import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
+import { useAuthors } from '../authors'
+import { PublicProfile } from '../authz'
 
 export interface Site {
   id: string,
@@ -150,9 +152,25 @@ async function addOwner (uid: string) {
   })
 }
 
+const members = computed(() => {
+  const { authors } = useAuthors()
+  const m = new Array<PublicProfile>()
+
+  let uids = site.value.owners ? [...site.value.owners] : new Array<string>()
+  if (site.value.players) uids = [...uids, ...site.value.players]
+
+  uids?.forEach((uid) => {
+    const a = authors.value.find((f) => (f.uid === uid))
+    if (a && a.nick) m.push(a)
+  })
+
+  return m
+})
+
 function useSite (id?: string):
   {
     site: ComputedRef<Site>,
+    members: ComputedRef<Array<PublicProfile>>,
     hasAdmin: (uid: string) => boolean,
     revokeOwner: (uid: string) => Promise<void>
     addOwner: (uid: string) => Promise<void>,
@@ -160,7 +178,7 @@ function useSite (id?: string):
     removePlayer: (uid: string) => Promise<void>,
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer }
+  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members }
 }
 
 export {

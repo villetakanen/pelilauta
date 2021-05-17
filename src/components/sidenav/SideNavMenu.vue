@@ -48,6 +48,13 @@
         {{ $t('sideNav.toSitesLink') }}
       </SideNavMenuItem>
       <SideNavMenuItem
+        icon="d20"
+        to="/mekanismi/view/mekanismi/mekanismi"
+        @click="toggleNav"
+      >
+        Wiki
+      </SideNavMenuItem>
+      <SideNavMenuItem
         icon="homebrew-logo"
         to="/mekanismi/view/arkku/arkku"
         @click="toggleNav"

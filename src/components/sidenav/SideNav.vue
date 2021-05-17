@@ -13,7 +13,6 @@
     >
       <div class="menuContainer">
         <SideNavMenu />
-        <SiteInfo />
       </div>
     </div>
   </div>
@@ -22,12 +21,10 @@
 <script lang="ts">
 import { ComputedRef, defineComponent, inject } from 'vue'
 import SideNavMenu from '@/components/sidenav/SideNavMenu.vue'
-import SiteInfo from '@/components/app/SiteInfo.vue'
 
 export default defineComponent({
   name: 'SideNav',
   components: {
-    SiteInfo,
     SideNavMenu
   },
   props: {

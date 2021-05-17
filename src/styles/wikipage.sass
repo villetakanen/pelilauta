@@ -1,6 +1,17 @@
 @import material-colors.sass
 @import material-typography.sass
+@import box-shadow.sass
 
 div.material-card div.wikipage, div.wikipage 
   word-break: initial
   hyphens: auto
+.wikiPageContainer
+  position: relative
+  img
+    @include Rise1()
+    width: calc(100% - 32px)
+    height: auto
+    display: block
+    margin: 8px
+    margin-top: 0
+    margin-bottom: 24px

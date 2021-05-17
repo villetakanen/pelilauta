@@ -44,13 +44,14 @@
       <span class="onlyForDesktop">{{ $t('action.share') }}</span>
     </Action>
     <Action
+      v-if="memberOf"
       prepend="attachments"
       :to="`/site/attachments/${site.id}/`"
     >
       <span class="onlyForDesktop">{{ $t('mekanismi.attachments.title') }}</span>
     </Action>
     <Action
-      v-if="site.usePlayers"
+      v-if="site.usePlayers && memberOf"
       prepend="players"
       :to="`/site/players/${site.id}/`"
     >
@@ -94,7 +95,7 @@ export default defineComponent({
     }
   },
   setup () {
-    const { site } = useSite()
+    const { site, members } = useSite()
     const { uid } = useAuthState()
 
     const i18n = useI18n()
@@ -104,7 +105,8 @@ export default defineComponent({
       pushSnack({ topic: i18n.t('global.messages.linkShared') })
     }
     const owns = computed(() => (site.value.owners && site.value.owners.includes(uid.value)))
-    return { site, copyLink, owns }
+    const memberOf = computed(() => (members.value.findIndex((a) => (a.uid === uid.value)) > -1))
+    return { site, copyLink, owns, memberOf }
   }
 })
 </script>
