@@ -11,7 +11,6 @@ export interface PublicProfile {
   nick: string
   tagline?: string
   photoURL?: string
-  frozen: boolean
 }
 
 export interface ProfileMeta {
@@ -60,21 +59,20 @@ function parseSeen (seenArray:Array<seenThread>) {
 function fetchProfile (uid:string|null) {
   unsubscribe()
   if (!uid) {
-    profileRef.value = { nick: '', tagline: '', frozen: false }
+    profileRef.value = { nick: '', tagline: '' }
   } else {
     const db = firebase.firestore()
     const fbProfileRef = db.collection('profiles').doc(uid)
     unsubscribe = fbProfileRef.onSnapshot((snap) => {
       console.log('profile updated, fetching new data')
       if (!snap.exists) {
-        profileRef.value = { nick: '', tagline: '', frozen: false }
+        profileRef.value = { nick: '', tagline: '' }
         return
       }
       profileRef.value = {
         nick: snap.data()?.nick || '',
         tagline: snap.data()?.tagline || '',
-        photoURL: snap.data()?.photoURL || '',
-        frozen: snap.data()?.frozen || false
+        photoURL: snap.data()?.photoURL || ''
       }
       profileMetaRef.value = {
         lovedThreads: snap.data()?.lovedThreads,

@@ -42,8 +42,7 @@ function getAuthor (uid: string): PublicProfile {
   return {
     uid: 'anonymous',
     nick: 'anonymous',
-    photoURL: '',
-    frozen: false
+    photoURL: ''
   }
 }
 
