@@ -11,7 +11,7 @@
 .threadBox
   @include Rise1()
   background-color: var(--chroma-clear)
-  margin: 0 8px
+  margin: 8px 8px
   padding: 16px
   max-width: 780px
 

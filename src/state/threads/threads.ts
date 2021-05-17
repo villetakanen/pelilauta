@@ -188,7 +188,6 @@ export function subscribeThread (id?: string): void {
   const threadRef = db.collection('stream').doc(id)
   unsubscribePage = threadRef.onSnapshot((doc) => {
     if (doc.exists) {
-      console.log('patching thread contents')
       subscribedPage.value = toThread(id, doc.data())
       const { stampSeen } = useProfile()
       stampSeen(id, doc.data()?.flowTime)

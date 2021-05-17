@@ -68,6 +68,7 @@ export default defineComponent({
       'd20',
       'discussion',
       'dd-logo',
+      'delete',
       'edit',
       'equalizer',
       'filter',

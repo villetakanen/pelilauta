@@ -9,6 +9,12 @@
       class="chipIcon"
     />
     <span class="label">{{ label }}</span>
+    <Icon
+      v-if="deleteFunction"
+      name="delete"
+      class="chipIcon post"
+      @click="deleteFunction"
+    />
   </div>
 </template>
 
@@ -32,6 +38,11 @@ export default defineComponent({
     label: {
       type: String,
       required: true
+    },
+    deleteFunction: {
+      type: Object.getPrototypeOf(async function () {}).constructor,
+      required: false,
+      default: undefined
     }
   }
 })
@@ -60,6 +71,9 @@ export default defineComponent({
     margin-top: -2px
     margin-left: -9px
     margin-right: 4px
+  .chipIcon.post
+    margin-left: 2px
+    margin-right: -9px
   &.secondaryColors
     background-color: var(--chroma-secondary-h)
     color: var(--chroma-secondary-c)
