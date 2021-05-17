@@ -1,38 +1,35 @@
 <template>
-  <div class="sitePlayerAccess">
+  <div class="siteOwnersTool">
     <h1 class="title">
-      {{ $t('site.players.title') }}
+      {{ $t('site.settings.access.ownersToolTitle') }}
     </h1>
     <p class="tooltip">
-      {{ $t('site.settings.access.playerTooltip') }}
+      {{ $t('site.settings.access.ownersTooltip') }}
     </p>
-    <div class="playerChips">
-      <Chip
-        v-for="p in players"
-        :key="p.uid"
-        :label="p.nick"
+    <div class="ownerChips">
+      <OwnerChip
+        v-for="o in site.owners"
+        :key="o"
+        :uid="o"
       />
-      <p v-if="!players || players.length < 1">
-        {{ $t('site.settings.access.noPlayers') }}
-      </p>
     </div>
-    <p style="text-align: right">
-      <router-link :to="`/site/players/${site.id}`">
-        {{ $t('site.players.title') }}
-      </router-link>
-    </p>
   </div>
 </template>
 
 <script lang="ts">
-import Chip from '@/components/material/Chip.vue'
 import { useAuthors } from '@/state/authors'
 import { Site } from '@/state/site'
 import { Player } from '@/utils/uiInterfaces'
 import { computed, ComputedRef, defineComponent, PropType } from 'vue'
+import OwnerChip from './OwnerChip.vue'
+
+interface Owner {
+  uid: string
+  nick: string
+}
 
 export default defineComponent({
-  components: { Chip },
+  components: { OwnerChip },
   props: {
     site: {
       type: Object as PropType<Site>,
@@ -42,14 +39,14 @@ export default defineComponent({
   },
   setup (props) {
     const { authors } = useAuthors()
-    const players:ComputedRef<Array<Player>> = computed(() => (
-      props.site.players?.map((uid) => (
+    const owners:ComputedRef<Array<Owner>> = computed(() => (
+      props.site.owners?.map((uid) => (
         {
           uid: uid,
           nick: authors.value.find((a) => (a.uid === uid))?.nick || 'anonymous'
         }
       )) || new Array<Player>()))
-    return { players }
+    return { owners }
   }
 })
 </script>

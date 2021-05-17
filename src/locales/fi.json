@@ -85,8 +85,10 @@
       "title": "Asetukset",
       "access": {
         "title": "Näkyvyys",
-        "playerTooltip": "Kaikki pelaajat näkevät toistaiseksi koko sivuston sisällön.",
-        "noPlayers": "Ei pelaajia"
+        "playerTooltip": "Kaikki pelaajat näkevät toistaiseksi koko sivuston sisällön. Pelaajien hallinta onnistuu alle linkatun pelaajatoiminnon kautta.",
+        "noPlayers": "Ei pelaajia",
+        "ownersToolTitle": "Omistajat",
+        "ownersTooltip": "Täysi hallintaoikeus koko sivustolle"
       }
     }
   },
