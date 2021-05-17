@@ -1,7 +1,7 @@
 <template>
   <div
     class="chip"
-    :class="{secondaryColors: secondary}"
+    :class="{secondaryColors: secondary, disabled: disabled}"
   >
     <Icon
       v-if="icon"
@@ -13,7 +13,7 @@
       v-if="deleteFunction"
       name="delete"
       class="chipIcon post"
-      @click="deleteFunction"
+      @click="postFunction"
     />
   </div>
 </template>
@@ -43,7 +43,19 @@ export default defineComponent({
       type: Object.getPrototypeOf(async function () {}).constructor,
       required: false,
       default: undefined
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
     }
+  },
+  setup (props) {
+    const postFunction = () => {
+      if (props.disabled) return
+      props.deleteFunction()
+    }
+    return { postFunction }
   }
 })
 </script>
@@ -79,6 +91,13 @@ export default defineComponent({
     color: var(--chroma-secondary-c)
     .chipIcon
       background-color: var(--chroma-secondary-i)
+  &.disabled
+    background-color: var(--chroma-secondary-i)
+    color: var(--chroma-secondary-f)
+    .chipIcon
+      background-color: var(--chroma-secondary-f)
+    .post
+      opacity: 0.33
 .chip+.chip
   margin-left: 8px
 </style>
