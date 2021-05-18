@@ -10,6 +10,17 @@ export class PageCategory {
   }
 }
 
+export function unmarshallCategories (cats: Array<PageCategory>): {
+  slug: string;
+  name: string;
+}[] {
+  return cats.map((cat) => ({ slug: cat.slug, name: cat.name }))
+}
+
+export function marshallCategories (cats: { slug: string; name: string; }[]): Array<PageCategory> {
+  return cats.map((cat) => (new PageCategory(cat.name, cat.slug)))
+}
+
 export function defaultCategories (): Array<PageCategory> {
   return [
     new PageCategory('Characters'),

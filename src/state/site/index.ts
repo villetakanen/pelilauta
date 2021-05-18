@@ -7,7 +7,7 @@ import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
 import { PublicProfile } from '../authz'
-import { PageCategory, defaultCategories } from './pagecategory'
+import { PageCategory, defaultCategories, unmarshallCategories, marshallCategories } from './pagecategory'
 
 export interface Site {
   id: string,
@@ -60,7 +60,7 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
       splashURL: data?.splashURL || '',
       systemBadge: data?.systemBadge || '',
       usePlayers: data?.usePlayers || false,
-      categories: data?.categories || defaultCategories()
+      categories: data?.categories ? marshallCategories(data?.categories) : defaultCategories()
     }
   }
   return {
@@ -126,9 +126,13 @@ async function removePlayer (uid:string) {
 
 async function updateSite (data: SiteData): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
+
+  const update = { ...data }
+  if (data.categories) update.categories = unmarshallCategories(data.categories)
+
   const db = firebase.firestore()
   const siteRef = db.collection('sites').doc(stateSite.value.id)
-  return siteRef.update(data)
+  return siteRef.update(update)
 }
 
 async function revokeOwner (uid: string) {

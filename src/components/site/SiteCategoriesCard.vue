@@ -7,7 +7,12 @@
       v-for="cat in site.categories"
       :key="cat.slug"
     >
-      {{ cat.name }}
+      {{ cat.name }} <MaterialButton
+        icon
+        @click="dropCategory(cat.slug)"
+      >
+        <Icon name="delete" />
+      </MaterialButton>
     </div>
     <div class="toolbar">
       <div style="flex-grow:1">
@@ -17,7 +22,10 @@
         />
         <span class="caption">{{ newCatSlug }}</span>
       </div>
-      <MaterialButton icon>
+      <MaterialButton
+        icon
+        :async-action="addCategory"
+      >
         <Icon name="add" />
       </MaterialButton>
     </div>
@@ -25,7 +33,8 @@
 </template>
 
 <script lang="ts">
-import { useSite } from '@/state/site'
+import { useSite, updateSite } from '@/state/site'
+import { PageCategory } from '@/state/site/pagecategory'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { computed, defineComponent, ref } from 'vue'
 import Card from '../layout/Card.vue'
@@ -39,7 +48,22 @@ export default defineComponent({
     const newCatName = ref('')
     const newCatSlug = computed(() => (toMekanismiURI(newCatName.value)))
     const { site } = useSite()
-    return { site, newCatName, newCatSlug }
+
+    const dropCategory = async (slug: string) => {
+      updateSite({
+        id: site.value.id,
+        categories: site.value.categories.filter((c) => (c.slug !== slug))
+      })
+    }
+
+    const addCategory = async () => {
+      updateSite({
+        id: site.value.id,
+        categories: [...site.value.categories, new PageCategory(newCatName.value)]
+      })
+    }
+
+    return { addCategory, site, newCatName, newCatSlug, dropCategory }
   }
 })
 </script>

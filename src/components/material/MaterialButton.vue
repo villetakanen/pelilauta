@@ -162,10 +162,10 @@ export default defineComponent({
       background-color: #{'rgba(var(--chroma-primary-g-rgba), 0.11)'}
   &.material-button-icon
     color: $color-fill-primary-dark
-    background-color: #00233711
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
     box-shadow: none
     &:hover
-      background-color: #00233737
+      background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
   img
     max-height: 22px
     vertical-align: middle
