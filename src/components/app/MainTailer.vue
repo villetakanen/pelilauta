@@ -32,10 +32,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/include-media.scss
-@import @/styles/material-colors.sass
-@import @/styles/material-typography.sass
-
 .footnote
   text-align: center
   padding:16px
@@ -43,5 +39,5 @@ export default defineComponent({
     text-decoration: none
 
 .shadowLogo
-  filter: drop-shadow( 0px 0px 12px rgba($color-fill-primary-dark, 1))
+  filter: drop-shadow( 0px 0px 12px var(--chroma-primary-c))
 </style>

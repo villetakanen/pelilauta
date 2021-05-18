@@ -55,14 +55,12 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
 .action
   height: 24px
   width: 24px
   position: relative
-  // background-color: $color-primary
   img
     position: absolute
     height: 24px

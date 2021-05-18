@@ -38,11 +38,10 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
 div.avatar
-  background-color: $color-fill-primary-dark
+  background-color: var(--chroma-primary-a)
   margin: 0
   padding: 2px
   height: 44px

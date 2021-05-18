@@ -150,8 +150,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
-
 .userlist
   table
     width: 100%
@@ -166,13 +164,12 @@ export default defineComponent({
   margin: 0px 8px
   margin-top: 4px
 .admin
-  background-color: $color-secondary-light
-  color: $color-fill-primary-dark
+  color: var(--chroma-primary-a)
 .frozen
-  background-color: lighten($color-fill-primary-light, 32%)
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
   color: #666
 .myself
-  color: $color-primary
+  color: var(--chroma-primary-d)
 .material-button.alert
   color: rgb(255, 110, 69)
 .material-button.warn
