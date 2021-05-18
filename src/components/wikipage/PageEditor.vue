@@ -174,12 +174,7 @@ export default defineComponent({
       }
     })
 
-    const opts = [
-      { key: 'characters', value: i18n.t('wiki.category.characters') },
-      { key: 'logs', value: i18n.t('wiki.category.logs') },
-      { key: 'rules', value: i18n.t('wiki.category.rules') },
-      { key: 'setting', value: i18n.t('wiki.category.setting') }
-    ]
+    const opts = computed(() => (props.site.categories.map((c) => ({ key: c.slug, value: c.name }))))
     const formCategory = ref(props.page.category)
 
     const rules = {

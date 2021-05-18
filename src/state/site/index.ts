@@ -2,12 +2,12 @@ import { computed, ComputedRef, Ref, ref } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { useMembers } from './members'
 import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
 import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
 import { PublicProfile } from '../authz'
+import { PageCategory, defaultCategories, unmarshallCategories, marshallCategories } from './pagecategory'
 
 export interface Site {
   id: string,
@@ -21,6 +21,8 @@ export interface Site {
   splashURL: string
   systemBadge: string
   usePlayers: boolean
+  categories: PageCategory[],
+  hasCategories?: boolean
 }
 export interface SiteData {
   id: string,
@@ -32,7 +34,8 @@ export interface SiteData {
   lastUpdate?: firebase.firestore.Timestamp,
   hidden?: boolean,
   usePlayers?: boolean
-  players?: string[]
+  players?: string[],
+  categories?: PageCategory[]
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -57,7 +60,9 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
       owners: data?.owners || null,
       splashURL: data?.splashURL || '',
       systemBadge: data?.systemBadge || '',
-      usePlayers: data?.usePlayers || false
+      usePlayers: data?.usePlayers || false,
+      categories: data?.categories ? marshallCategories(data?.categories) : defaultCategories(),
+      hasCategories: Array.isArray(data?.categories)
     }
   }
   return {
@@ -70,7 +75,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
     owners: null,
     splashURL: '',
     systemBadge: '',
-    usePlayers: true
+    usePlayers: true,
+    categories: defaultCategories()
   }
 }
 
@@ -122,9 +128,13 @@ async function removePlayer (uid:string) {
 
 async function updateSite (data: SiteData): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
+
+  const update = { ...data }
+  if (data.categories) update.categories = unmarshallCategories(data.categories)
+
   const db = firebase.firestore()
   const siteRef = db.collection('sites').doc(stateSite.value.id)
-  return siteRef.update(data)
+  return siteRef.update(update)
 }
 
 async function revokeOwner (uid: string) {
@@ -189,7 +199,6 @@ export {
   Page,
   PageFragment,
   useFiles,
-  useMembers,
   usePage,
   usePages,
   useSite,

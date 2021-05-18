@@ -72,7 +72,12 @@
       "dropThePlayer": "Poista pelistä"
     },
     "meta": {
-      "usePlayers": "Käytä pelaajat -toimintoa"
+      "usePlayers": "Käytä pelaajat -toimintoa",
+      "splashImage": "Sivuston tunnuskuva",
+      "categories": {
+        "title": "Aiheet",
+        "newCategoryField": "Lisää aihe"
+      }
     },
     "threads":{
       "title": "Keskustelu"

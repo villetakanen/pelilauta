@@ -8,6 +8,7 @@
       >
         <SiteMeta class="inDashboardBox" />
         <SiteIdentity class="inDashboardBox" />
+        <SiteCategoriesCard class="inDashboardBox" />
       </div>
       <Loader
         v-else
@@ -24,8 +25,9 @@ import Loader from '@/components/app/Loader.vue'
 import { useAuthors } from '@/state/authors'
 import { useAuthState } from '@/state/authz'
 import SiteMeta from '@/components/sites/SiteMeta.vue'
-import SiteIdentity from '@/components/sites/SiteIdentity.vue'
+import SiteIdentity from '@/components/site/SiteIdentity.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import SiteCategoriesCard from '@/components/site/SiteCategoriesCard.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -33,7 +35,8 @@ export default defineComponent({
     Loader,
     SiteMeta,
     SiteIdentity,
-    SiteToolbar
+    SiteToolbar,
+    SiteCategoriesCard
   },
   setup () {
     const { uid, isAdmin } = useAuthState()
@@ -63,13 +66,18 @@ export default defineComponent({
   flex-direction: row
   flex-wrap: wrap
   align-items: flex-start
-  .inDashboardBox
-    min-width: 30vw
 
-@include media('>tablet')
-.dashboardFlexSection
-  .inDashboardBox
-    min-width: 520px
-    max-width: 520px
-    width:520px
+@include media('<desktop')
+  .dashboardFlexSection
+    .inDashboardBox
+      min-width: none
+      max-width: none
+      width: calc(100vw - 90px)
+
+@include media('>=desktop')
+  .dashboardFlexSection
+    .inDashboardBox
+      min-width: none
+      max-width: none
+      width: calc(30vw - 96px)
 </style>

@@ -17,24 +17,56 @@
           :src="site.splashURL"
           style="margin-top: 8px"
         >
-        <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
-        <ul class="index">
-          <li
-            v-for="page in pages"
-            :key="page.id"
+        <template v-if="!site.hasCategories">
+          <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
+          <ul class="index">
+            <li
+              v-for="page in pages"
+              :key="page.id"
+            >
+              <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
+                {{ page.name }}
+              </router-link>
+            </li>
+          </ul>
+        </template>
+        <template v-if="site.hasCategories">
+          <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
+          <ul class="index">
+            <li
+              v-for="page in noCategory"
+              :key="page.id"
+            >
+              <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
+                {{ page.name }}
+              </router-link>
+            </li>
+          </ul>
+          <div
+            v-for="cat in site.categories"
+            :key="cat.slug"
+            class="category"
           >
-            <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
-              {{ page.name }}
-            </router-link>
-          </li>
-        </ul>
+            {{ cat.name }}
+            <ul class="index">
+              <li
+                v-for="page in inTopic(cat)"
+                :key="page.id"
+              >
+                <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
+                  {{ page.name }}
+                </router-link>
+              </li>
+            </ul>
+          </div>
+        </template>
       </div>
     </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { usePages, useSite } from '@/state/site'
 
 export default defineComponent({
@@ -51,11 +83,19 @@ export default defineComponent({
     const { site } = useSite()
     const { pages } = usePages()
     const open = ref(props.modelValue)
+
     function toggle () {
       open.value = !open.value
       context.emit('update:modelValue', open.value)
     }
-    return { toggle, open, site, pages }
+
+    function inTopic (topic: { slug: string, name: string}) {
+      return pages.value.filter((a) => (a.category === topic.slug))
+    }
+
+    const noCategory = computed(() => (pages.value.filter((a) => (!site.value.categories.find((c) => (c.slug === a.category))))))
+
+    return { toggle, open, site, pages, inTopic, noCategory }
   }
 })
 </script>
