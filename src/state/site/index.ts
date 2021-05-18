@@ -7,6 +7,7 @@ import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
 import { PublicProfile } from '../authz'
+import { PageCategory, defaultCategories } from './pagecategory'
 
 export interface Site {
   id: string,
@@ -20,6 +21,7 @@ export interface Site {
   splashURL: string
   systemBadge: string
   usePlayers: boolean
+  categories: PageCategory[]
 }
 export interface SiteData {
   id: string,
@@ -31,7 +33,8 @@ export interface SiteData {
   lastUpdate?: firebase.firestore.Timestamp,
   hidden?: boolean,
   usePlayers?: boolean
-  players?: string[]
+  players?: string[],
+  categories?: PageCategory[]
 }
 
 const stateSite:Ref<Site> = ref(toSite())
@@ -56,7 +59,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
       owners: data?.owners || null,
       splashURL: data?.splashURL || '',
       systemBadge: data?.systemBadge || '',
-      usePlayers: data?.usePlayers || false
+      usePlayers: data?.usePlayers || false,
+      categories: data?.categories || defaultCategories()
     }
   }
   return {
@@ -69,7 +73,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
     owners: null,
     splashURL: '',
     systemBadge: '',
-    usePlayers: true
+    usePlayers: true,
+    categories: defaultCategories()
   }
 }
 
