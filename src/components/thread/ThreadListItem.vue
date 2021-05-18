@@ -3,14 +3,19 @@
     <router-link :to="`/thread/${thread.id}/view`">
       {{ thread.data.title }}
     </router-link>
-    <p class="threadInfo">{{ toDisplayString(thread.flowTime) }}</p>
+    <p class="threadInfo">
+      {{ toDisplayString(thread.flowTime) }} – {{ author }}
+      <span v-if="topic">– <router-link :to="`/stream/topic/${topic.slug}`">{{ topic.name }}</router-link></span>
+    </p>
   </li>
 </template>
 
 <script lang="ts">
 import { Thread } from '@/utils/firestoreInterfaces'
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
+import { useAuthors } from '@/state/authors'
+import { useMeta } from '@/state/meta'
 
 export default defineComponent({
   name: 'ThreadListItem',
@@ -22,8 +27,12 @@ export default defineComponent({
       required: true
     }
   },
-  setup () {
-    return { toDisplayString }
+  setup (props) {
+    const { authors } = useAuthors()
+    const author = computed(() => (authors.value.find((a) => (a.uid === props.thread.author))?.nick))
+    const { streams } = useMeta()
+    const topic = computed(() => (streams.value.find((t) => (t.slug === props.thread.data.topic))))
+    return { author, topic, toDisplayString }
   }
 })
 </script>
