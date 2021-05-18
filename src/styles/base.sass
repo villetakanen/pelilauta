@@ -144,7 +144,7 @@ div.toolbar
 .mekanismiGrid
     position: relative
 
-@include media('>tablet')
+@include media('>=desktop')
   .mekanismiGrid
     justify-content: center
     display: flex
@@ -159,7 +159,7 @@ div.toolbar
       top: 0px
       right: 0
 
-@include media('<tablet')
+@include media('<desktop')
   .mekanismiGrid
     display: block
     position: relative
