@@ -2,7 +2,6 @@ import { computed, ComputedRef, Ref, ref } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
-import { useMembers } from './members'
 import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
 import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
@@ -189,7 +188,6 @@ export {
   Page,
   PageFragment,
   useFiles,
-  useMembers,
   usePage,
   usePages,
   useSite,
