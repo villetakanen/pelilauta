@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.4.0](https://github.com/villetakanen/pelilauta/compare/v8.3.2...v8.4.0) (2021-05-18)
+
+
+### Features
+
+* category crud ([d72ee04](https://github.com/villetakanen/pelilauta/commit/d72ee04aa4b8033cfd3ad24657b32287488d10fb))
+* inputs for new category name ([95060d5](https://github.com/villetakanen/pelilauta/commit/95060d566c0c57c39f110389f15d6c8b879c8b8f))
+* site state supports categories ([188b9de](https://github.com/villetakanen/pelilauta/commit/188b9de89935f7b6d1f1187ed89417c1219d87b8))
+* sitecategories card added to meta ([69b4a9b](https://github.com/villetakanen/pelilauta/commit/69b4a9b5a0e9b269bd9b28f84ff1962eac8844cb))
+
+
+### Bug Fixes
+
+* i18n and sidebar polish ([2da4142](https://github.com/villetakanen/pelilauta/commit/2da4142792fadc60c0eea1dc0ec9e275ae166c17))
+* i18n polish ([e95f487](https://github.com/villetakanen/pelilauta/commit/e95f487e8e2f34a1d4f44ecddbe561de0de64a89))
+* removed deprecated component ([5990529](https://github.com/villetakanen/pelilauta/commit/59905291a92c8e85a92b4bb9cbbbf4871f6e8442))
+
 ### [8.3.2](https://github.com/villetakanen/pelilauta/compare/v8.3.1...v8.3.2) (2021-05-18)
 
 
