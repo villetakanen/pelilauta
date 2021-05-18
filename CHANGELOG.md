@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.2](https://github.com/villetakanen/pelilauta/compare/v8.3.1...v8.3.2) (2021-05-18)
+
+
+### Bug Fixes
+
+* sidebar index and thread list styling ([37de888](https://github.com/villetakanen/pelilauta/commit/37de8883cb642737805f100ece3757578e353779))
+* site thread list styles ([4a4e442](https://github.com/villetakanen/pelilauta/commit/4a4e442e3e86fd9d09ea64f02f956d9590d47656))
+* tablet format wikipage layout ([eeee933](https://github.com/villetakanen/pelilauta/commit/eeee933c5253373806eab4c404e6f1e80952f07a))
+* wikipage sidebar link decoration ([5043eb7](https://github.com/villetakanen/pelilauta/commit/5043eb7410e1226ec3191593522524b6a4d83f9f))
+
 ### [8.3.1](https://github.com/villetakanen/pelilauta/compare/v8.3.0...v8.3.1) (2021-05-17)
 
 
