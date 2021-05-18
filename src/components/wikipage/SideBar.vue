@@ -1,7 +1,6 @@
 <template>
   <div
     class="sidebar contentBox"
-    style="position: relative"
   >
     <transition name="fade">
       <div v-if="site">
@@ -19,7 +18,7 @@
           style="margin-top: 8px"
         >
         <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
-        <ul>
+        <ul class="index">
           <li
             v-for="page in pages"
             :key="page.id"
@@ -60,3 +59,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.sidebar
+  position: relative
+  .index
+    a
+      text-decoration: none
+
+</style>
