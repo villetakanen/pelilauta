@@ -66,5 +66,6 @@ export default defineComponent({
   .index
     a
       text-decoration: none
+      color: var(--chroma-secondary-c)
 
 </style>
