@@ -21,7 +21,8 @@ export interface Site {
   splashURL: string
   systemBadge: string
   usePlayers: boolean
-  categories: PageCategory[]
+  categories: PageCategory[],
+  hasCategories?: boolean
 }
 export interface SiteData {
   id: string,
@@ -60,7 +61,8 @@ export function toSite (id?: string, data?:firebase.firestore.DocumentData): Sit
       splashURL: data?.splashURL || '',
       systemBadge: data?.systemBadge || '',
       usePlayers: data?.usePlayers || false,
-      categories: data?.categories ? marshallCategories(data?.categories) : defaultCategories()
+      categories: data?.categories ? marshallCategories(data?.categories) : defaultCategories(),
+      hasCategories: Array.isArray(data?.categories)
     }
   }
   return {

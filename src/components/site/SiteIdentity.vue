@@ -19,7 +19,7 @@
     </div>
     <MaterialSelect
       v-model="selected"
-      :label="$t('mekanismi.splashImage')"
+      :label="$t('site.meta.splashImage')"
       :opts="opts"
     />
   </Card>

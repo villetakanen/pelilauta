@@ -213,7 +213,7 @@ router.beforeEach((to, from, next) => {
   // console.log(to, from)
   if (to.name && to.name.toString().startsWith('mekanismi')) {
     const id = Array.isArray(to.params.siteid) ? to.params.siteid[0] : to.params.siteid || ''
-    console.log('routing to mekanismi', id)
+    // console.log('routing to mekanismi', id)
     useSite(id)
     // If we have a page id we need to pull from FB, we pull it to state here
     const pageid = Array.isArray(to.params.pageid) ? to.params.pageid[0] : to.params.pageid || ''
