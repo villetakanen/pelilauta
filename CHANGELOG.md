@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.5.0](https://github.com/villetakanen/pelilauta/compare/v8.4.2...v8.5.0) (2021-05-19)
+
+
+### Features
+
+* quick search component ([6f60b10](https://github.com/villetakanen/pelilauta/commit/6f60b107b8e90036f1770b296c82210429be0560))
+
+
+### Bug Fixes
+
+* quicksearch hiding ([aa8edb0](https://github.com/villetakanen/pelilauta/commit/aa8edb04e568d55b32f6cbbb95faffd2796f6793))
+
 ### [8.4.2](https://github.com/villetakanen/pelilauta/compare/v8.4.1...v8.4.2) (2021-05-19)
 
 
