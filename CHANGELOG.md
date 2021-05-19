@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.4.2](https://github.com/villetakanen/pelilauta/compare/v8.4.1...v8.4.2) (2021-05-19)
+
+
+### Bug Fixes
+
+* cleaned up search results page ([68d03e8](https://github.com/villetakanen/pelilauta/commit/68d03e80ab91f26a8c976cfe253eff449777edef))
+* searchAction restored to topbar for logged in ([42803b2](https://github.com/villetakanen/pelilauta/commit/42803b21a303478ae2b0b1c45ac8a4e2cee5c133))
+
 ### [8.4.1](https://github.com/villetakanen/pelilauta/compare/v8.4.0...v8.4.1) (2021-05-19)
 
 
