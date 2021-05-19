@@ -23,7 +23,7 @@ function search (s: string) {
   index.search(s).then(({ hits }) => {
     console.log(hits)
     const arr: Array<SearchResult> = hits.map((val) => ((val as unknown) as SearchResult))
-    searchResults.value = arr
+    searchResults.value = arr.reverse()
   })
 }
 
