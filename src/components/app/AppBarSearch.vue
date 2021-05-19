@@ -19,19 +19,25 @@
         dark
       />
     </div>
+    <QuickSearchResultsPanel
+      v-if="searchString"
+      :query="searchString"
+      class="quickSearch"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { useSearch } from '@/composables/search'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthState } from '@/state/authz'
 import Icon from '../material/Icon.vue'
+import QuickSearchResultsPanel from '../search/QuickSearchResultsPanel.vue'
 
 export default defineComponent({
   name: 'AppBarSearch',
-  components: { Icon },
+  components: { Icon, QuickSearchResultsPanel },
   setup () {
     const { isAnonymous } = useAuthState()
     const { searchResults, search } = useSearch()
@@ -43,6 +49,9 @@ export default defineComponent({
       router.push('/search/results')
     }
 
+    const route = useRoute()
+    watch(route, () => { searchString.value = '' })
+
     return { isAnonymous, searchString, searchResults, toSearch }
   }
 })
@@ -53,6 +62,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #appBarSearch
+  position: relative
   .inputContainer
     background-color: var(--chroma-secondary-e) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
     height: 40px
@@ -75,4 +85,8 @@ export default defineComponent({
       top: 2px
       padding: 0
       margin: 0
+    .quickSearch
+      position: absolute
+      top: 44px
+      left: -200px
 </style>
