@@ -68,8 +68,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
 .siteGrid
@@ -82,7 +80,7 @@ export default defineComponent({
   div.hidden
     opacity: 0.44
     a
-      color: $color-fill-tertiary
+      opacity: 0.5
   .caption
     @include TypeCaption()
 </style>

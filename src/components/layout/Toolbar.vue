@@ -23,7 +23,6 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
 div.appToolbar

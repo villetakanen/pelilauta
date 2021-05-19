@@ -69,8 +69,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
-
 .discussion
   padding-bottom: 1px
 

@@ -70,7 +70,6 @@ export default defineComponent({
   position: absolute !important
   white-space: nowrap
   width: 1px
-  + label
 .fabIcon
   height: 48px
   width: 48px
