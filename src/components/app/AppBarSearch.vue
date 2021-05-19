@@ -28,9 +28,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { useSearch } from '@/composables/search'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthState } from '@/state/authz'
 import Icon from '../material/Icon.vue'
 import QuickSearchResultsPanel from '../search/QuickSearchResultsPanel.vue'
@@ -48,6 +48,9 @@ export default defineComponent({
       search(searchString.value)
       router.push('/search/results')
     }
+
+    const route = useRoute()
+    watch(route, () => { searchString.value = '' })
 
     return { isAnonymous, searchString, searchResults, toSearch }
   }

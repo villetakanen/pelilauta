@@ -65,6 +65,13 @@
     "withGoogleButton": "Googlella",
     "withFacebookButton": "Facebookila"
   },
+  "search": {
+    "results": {
+      "title": "Haku"
+    },
+    "placeholderText": "Hae...",
+    "noQuickResultsHelper": "Ei pikahakutuloksia, paina enter nähdäksesi koko haun"
+  },
   "site": {
     "players": {
       "title": "Pelaajat",
@@ -119,7 +126,11 @@
   },
   "stream": {
     "title": "Pelilauta",
-    "inStream": "Aiheessa"
+    "inStream": "Aiheessa",
+    "thread": {
+      "deleteWarning": "Ketjun poistamista ei voi peruuttaa. Kirjoita DELETE allaolevaan kenttään jos todella haluat poistaa ketjun vastauksineen.",
+      "deleteSucces": "Ketju poistettu vastauksineen"
+    }
   },
   "postHeader": {
     "postedInStream": "aiheessa"
