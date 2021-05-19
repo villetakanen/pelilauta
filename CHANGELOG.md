@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.4.1](https://github.com/villetakanen/pelilauta/compare/v8.4.0...v8.4.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* deprecated color scheme removals ([fa77b19](https://github.com/villetakanen/pelilauta/commit/fa77b199719546fa30f99d6e99f7fd93fc16fece))
+* removed deprecated color codes and components ([35aeefb](https://github.com/villetakanen/pelilauta/commit/35aeefb9da3db90556d687cbe1836f2ba92816bd))
+
 ## [8.4.0](https://github.com/villetakanen/pelilauta/compare/v8.3.2...v8.4.0) (2021-05-18)
 
 
