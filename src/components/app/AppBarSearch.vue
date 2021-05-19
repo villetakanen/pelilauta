@@ -1,17 +1,24 @@
 <template>
-  <div id="AppBarSearch">
-    <form @submit.prevent="toSearch">
-      <input
-        v-model="searchString"
-        class="searchBar"
-        :disabled="isAnonymous "
-      >
-    </form>
-    <img
-      id="labelForSearch"
-      src="@/assets/icons/search.svg"
-      alt=""
-    >
+  <div
+    id="appBarSearch"
+    class="onlyForDesktop"
+  >
+    <div class="inputContainer">
+      <form @submit.prevent="toSearch">
+        <input
+          v-model="searchString"
+          class="searchField"
+          :disabled="isAnonymous "
+          :placeholder="$t('search.placeholderText')"
+        >
+      </form>
+      <Icon
+        name="search"
+        medium
+        class="searchIcon"
+        dark
+      />
+    </div>
   </div>
 </template>
 
@@ -20,19 +27,22 @@ import { defineComponent, ref } from 'vue'
 import { useSearch } from '@/composables/search'
 import { useRouter } from 'vue-router'
 import { useAuthState } from '@/state/authz'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'AppBarSearch',
+  components: { Icon },
   setup () {
-    // @TODO: isAuthz should be moved to authstate.ts
     const { isAnonymous } = useAuthState()
     const { searchResults, search } = useSearch()
     const searchString = ref('')
     const router = useRouter()
+
     function toSearch () {
       search(searchString.value)
       router.push('/search/results')
     }
+
     return { isAnonymous, searchString, searchResults, toSearch }
   }
 })
@@ -40,39 +50,29 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-#AppBarSearch
-  position: relative
-  padding: 8px
-  margin: 0 8px
-  input
-    box-sizing: border-box
-    background-color: rgba($color-fill-light, 0.11)
-    border: none
-    border-bottom: solid 1px rgba($color-fill-light, 0.44)
-    margin: 0
-    padding: 4px 8px
-    line-height: 24px
-    min-width: 200px
-    color: $color-dark-font-medium
-    transition: min-width 0.3s ease
-    &:focus
-      min-width: 57vw
-  #labelForSearch
-    position: absolute
-    background-color: rgba($color-fill-light, 0.22)
-    height: 20px
-    width: 20px
-    padding: 2px
-    top: 12px
-    right: 12px
-
-@include media('<=tablet')
-  #AppBarSearch
-    input
-      width: 70px
-      min-width: 70px
-
+#appBarSearch
+  .inputContainer
+    background-color: var(--chroma-secondary-e) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+    height: 40px
+    position: relative
+    border-radius: 20px
+    padding: 0
+    padding-right: 36px
+    margin: 4px
+    .searchField
+      border: none
+      height: 32px
+      border-radius: 16px
+      padding: 0 12px
+      margin: 4px
+      width: 200px
+      color: var(--chroma-primary-d)
+    .searchIcon
+      position: absolute
+      right: 2px
+      top: 2px
+      padding: 0
+      margin: 0
 </style>

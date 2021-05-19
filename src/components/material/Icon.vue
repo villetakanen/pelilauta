@@ -84,6 +84,7 @@ export default defineComponent({
       'remove',
       'report',
       'stats',
+      'search',
       'send',
       'settings',
       'share',
