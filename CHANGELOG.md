@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.2](https://github.com/villetakanen/pelilauta/compare/v8.5.1...v8.5.2) (2021-05-20)
+
+
+### Bug Fixes
+
+* refactored appbarsearch to locate watch error ([bf7d500](https://github.com/villetakanen/pelilauta/commit/bf7d50027faa516c12f5fe512339cd0f433eeaf3))
+
 ### [8.5.1](https://github.com/villetakanen/pelilauta/compare/v8.5.0...v8.5.1) (2021-05-20)
 
 ## [8.5.0](https://github.com/villetakanen/pelilauta/compare/v8.4.2...v8.5.0) (2021-05-19)
