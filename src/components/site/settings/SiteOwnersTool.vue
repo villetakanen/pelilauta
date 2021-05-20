@@ -41,8 +41,7 @@ export default defineComponent({
   props: {
     site: {
       type: Object as PropType<Site>,
-      required: false,
-      default: 1
+      required: true
     }
   },
   setup (props) {
