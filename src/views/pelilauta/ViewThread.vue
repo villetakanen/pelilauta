@@ -14,7 +14,7 @@
         />
       </div>
       <div
-        class="threadContent"
+        class="threadContent richText"
         :innerHTML="thread.data.content"
       />
       <PhotoBox :photos="thread.data.images || []" />
