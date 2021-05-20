@@ -6,7 +6,7 @@
     <SideNavAction class="onlyForMobile" />
     <AppAction />
     <div class="spacer" />
-    <AppBarSearch v-if="!isAnonymous" />
+    <!--AppBarSearch v-if="!isAnonymous" /-->
     <Action
       prepend="mekanismi"
       to="/mekanismi"
@@ -50,15 +50,15 @@ import { useAuthState } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
 import Action from '../material/Action.vue'
-import AppBarSearch from './AppBarSearch.vue'
+// import AppBarSearch from './AppBarSearch.vue'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
     SideNavAction,
     AppAction,
-    Action,
-    AppBarSearch
+    Action// ,
+    // AppBarSearch
   },
   setup () {
     const { isAdmin, isAnonymous } = useAuthState()
