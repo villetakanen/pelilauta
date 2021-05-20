@@ -66,7 +66,7 @@ export default defineComponent({
         pages.value.forEach((page) => {
           if (page.id.toLowerCase().includes(query) || page.name.toLowerCase().includes(query)) {
             results.push({
-              icon: 'add',
+              icon: 'pages',
               title: page.name,
               route: '/mekanismi/view/' + page.siteid + '/' + page.id
             })
