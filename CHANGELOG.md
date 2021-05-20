@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.3](https://github.com/villetakanen/pelilauta/compare/v8.5.2...v8.5.3) (2021-05-20)
+
+
+### Bug Fixes
+
+* security and ts updates ([5b6609d](https://github.com/villetakanen/pelilauta/commit/5b6609dc67f9d6c25b1503239072be0312e2b1e4))
+* updated packages pt1 ([5596284](https://github.com/villetakanen/pelilauta/commit/55962848100d1dbc84c387b99ed12dea318dba59))
+* valid prop defaults added to site tools ([fc64fb6](https://github.com/villetakanen/pelilauta/commit/fc64fb67b382ae38bdb7dca168d9b1b28a8eb9b3))
+
 ### [8.5.2](https://github.com/villetakanen/pelilauta/compare/v8.5.1...v8.5.2) (2021-05-20)
 
 
