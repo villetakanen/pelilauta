@@ -1,14 +1,11 @@
 <template>
-  <div
-    id="appBarSearch"
-    class="onlyForDesktop"
-  >
+  <div class="appBarSearch onlyForDesktop">
     <div class="inputContainer">
       <form @submit.prevent="toSearch">
         <input
           v-model="searchString"
           class="searchField"
-          :disabled="isAnonymous "
+          :disabled="isAnonymous"
           :placeholder="$t('search.placeholderText')"
         >
       </form>
@@ -29,30 +26,42 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
+import Icon from '@/components/material/Icon.vue'
+import { useAuthState } from '@/state/authz'
 import { useSearch } from '@/composables/search'
 import { useRoute, useRouter } from 'vue-router'
-import { useAuthState } from '@/state/authz'
-import Icon from '../material/Icon.vue'
 import QuickSearchResultsPanel from '../search/QuickSearchResultsPanel.vue'
 
 export default defineComponent({
   name: 'AppBarSearch',
-  components: { Icon, QuickSearchResultsPanel },
+  components: {
+    Icon,
+    QuickSearchResultsPanel
+  },
   setup () {
     const { isAnonymous } = useAuthState()
-    const { searchResults, search } = useSearch()
-    const searchString = ref('')
+    const { search } = useSearch()
     const router = useRouter()
+    const route = useRoute()
 
-    function toSearch () {
+    const searchString = ref('')
+
+    const toSearch = () => {
+      // No empty searches!
+      if (!searchString.value) return
+
       search(searchString.value)
       router.push('/search/results')
     }
 
-    const route = useRoute()
-    watch(route, () => { searchString.value = '' })
+    watch(() => route.path, (p) => {
+      // No empty searches!
+      if (!searchString.value) return
 
-    return { isAnonymous, searchString, searchResults, toSearch }
+      searchString.value = ''
+      console.debug('search reroutes to', p)
+    })
+    return { isAnonymous, searchString, toSearch }
   }
 })
 </script>
@@ -61,7 +70,7 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 
-#appBarSearch
+.appBarSearch
   position: relative
   .inputContainer
     background-color: var(--chroma-secondary-e) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
