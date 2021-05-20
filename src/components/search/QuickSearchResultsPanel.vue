@@ -20,9 +20,10 @@
 </template>
 
 <script lang="ts">
+import { usePages } from '@/state/site'
 import { useSites } from '@/state/sites'
 import { useThreads } from '@/state/threads'
-import { computed, defineComponent } from 'vue'
+import { computed, ComputedRef, defineComponent, inject } from 'vue'
 import Icon from '../material/Icon.vue'
 
 interface Result {
@@ -43,11 +44,15 @@ export default defineComponent({
   setup (props) {
     const { publicSites } = useSites()
     const { stream } = useThreads()
+    const mekanismi = inject('appMode') as ComputedRef<boolean>
+
     const searchResults = computed(() => {
       const results = new Array<Result>()
 
+      const query = props.query.toLowerCase()
+
       publicSites.value.forEach((s) => {
-        if (s.id.includes(props.query) || s.name.includes(props.query)) {
+        if (s.id.toLowerCase().includes(query) || s.name.toLowerCase().includes(query)) {
           results.push({
             icon: 'mekanismi',
             title: s.name,
@@ -56,8 +61,21 @@ export default defineComponent({
         }
       })
 
+      if (mekanismi.value) {
+        const { pages } = usePages()
+        pages.value.forEach((page) => {
+          if (page.id.toLowerCase().includes(query) || page.name.toLowerCase().includes(query)) {
+            results.push({
+              icon: 'add',
+              title: page.name,
+              route: '/mekanismi/view/' + page.siteid + '/' + page.id
+            })
+          }
+        })
+      }
+
       stream.value.forEach((t) => {
-        if (t.author.includes(props.query) || t.data.title.includes(props.query)) {
+        if (t.author.toLowerCase().includes(query) || t.data.title.toLowerCase().includes(query)) {
           results.push({
             icon: 'discussion',
             title: t.data.title,
