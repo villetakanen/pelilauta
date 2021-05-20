@@ -79,6 +79,7 @@ export default defineComponent({
       'images',
       'mekanismi',
       'monsters',
+      'pages',
       'pathfinder-logo',
       'players',
       'remove',
