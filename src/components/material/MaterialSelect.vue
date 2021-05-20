@@ -41,7 +41,7 @@ export default defineComponent({
     modelValue: { type: String, required: false, default: '' },
     name: { type: String, required: false, default: 'input-' + Math.floor(Math.random() * 100000) },
     label: { type: String, required: false, default: '' },
-    opts: { type: Array as PropType<Array<Record<string, string>>>, required: false, default: [{ key: '-', value: '-' }] },
+    opts: { type: Array as PropType<Array<Record<string, string>>>, required: false, default: () => [{ key: '-', value: '-' }] },
     error: { type: Boolean, required: false, default: false }
   },
   emits: ['update:modelValue'],
