@@ -1,9 +1,10 @@
 <template>
-  <div class="welcomeCard">
+  <Card class="welcomeCard">
     <img
       class="logo"
       :alt="$t('site.title')"
       src="@/assets/fox.svg"
+      :rise="2"
     >
     <h1>{{ $t('app.welcome.title') }}</h1>
     <p>{{ $t('app.welcome.message') }}</p>
@@ -21,19 +22,20 @@
         {{ $t('action.login') }}
       </Action>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
 import { defineComponent } from 'vue'
+import Card from '../layout/Card.vue'
 import Action from '../material/Action.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Action },
+  components: { Action, Card },
   setup () {
     const { isAnonymous } = useAuthState()
     return { isAnonymous }
@@ -48,9 +50,6 @@ export default defineComponent({
 .welcomeCard
   display: block
   background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-b) 100%)
-  margin-bottom: 8px
-  padding: 16px
-  border-radius: 8px
   position: relative
   img.logo
     position: absolute

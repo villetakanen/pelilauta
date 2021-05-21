@@ -2,6 +2,7 @@
   <Card
     class="threadCard"
     :class="{ pinned: pinned, small: small }"
+    :rise="2"
   >
     <div class="content">
       <div
@@ -199,8 +200,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 div.threadCard
   color: var(--chroma-secondary-a)
-  margin: 0
-  margin-bottom: 8px
   p.subtitle
     @include TypeBody2()
     display: block

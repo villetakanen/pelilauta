@@ -42,4 +42,13 @@ export default defineComponent({
   .card
     min-width: 220px
     max-width: 570px
+
+// Material You inspired larger roundings to match
+// the mobile screen round corners
+@include media('<tablet')
+  .card
+    padding: 16px
+    margin: 0 8px
+    border-radius: 12px
+    margin-bottom: 16px
 </style>

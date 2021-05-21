@@ -1,5 +1,8 @@
 <template>
-  <div class="wikiChangesCard">
+  <Card
+    class="wikiChangesCard"
+    :rise="1"
+  >
     <img
       class="logo"
       :alt="$t('wiki.title')"
@@ -28,7 +31,7 @@
         {{ $t('home.changesCard.seeMore') }}
       </Action>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts">
@@ -38,12 +41,13 @@ import { defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Action from '../material/Action.vue'
 import WikiChangesItem from './WikiChangesItem.vue'
+import Card from '../layout/Card.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WikiChangesCard',
-  components: { Action, WikiChangesItem },
+  components: { Action, WikiChangesItem, Card },
   setup () {
     const { isAnonymous } = useAuthState()
     const { recent } = usePagelog()
@@ -59,9 +63,6 @@ export default defineComponent({
 .wikiChangesCard
   display: block
   background: linear-gradient(-44deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-c) 100%)
-  margin-bottom: 8px
-  padding: 16px
-  border-radius: 8px
   position: relative
   min-height: 72px
   img.logo

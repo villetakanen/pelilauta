@@ -1,5 +1,8 @@
 <template>
-  <Card class="wpCard">
+  <Card
+    class="wpCard"
+    :rise="2"
+  >
     <img
       class="logo"
       src="@/assets/icons/loki-logo.svg"
@@ -73,8 +76,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 div.wpCard
   color: var(--chroma-secondary-a)
-  margin: 0
-  margin-bottom: 8px
   min-height: 72px
   h1
     @include TypeCardHeadline()

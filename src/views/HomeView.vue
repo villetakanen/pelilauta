@@ -1,5 +1,5 @@
 <template>
-  <div class="homeView emptyLayout">
+  <div class="homeView singleColumnLayout">
     <HomeStream />
     <teleport to="#ScreenBottomFloatRight">
       <ToTopFab style="margin-right:8px" />
@@ -42,3 +42,8 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.homeView
+  padding-top: 8px
+</style>
