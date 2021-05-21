@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.6](https://github.com/villetakanen/pelilauta/compare/v8.5.5...v8.5.6) (2021-05-21)
+
+
+### Bug Fixes
+
+* mobile card padding ([6df3ba9](https://github.com/villetakanen/pelilauta/commit/6df3ba9614853602287ddc7c988c5538da615a8a))
+
 ### [8.5.5](https://github.com/villetakanen/pelilauta/compare/v8.5.4...v8.5.5) (2021-05-20)
 
 
