@@ -76,6 +76,9 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
 
+.twoColFlexSection
+  padding: 0 8px
+
 @include media('>tablet')
   .twoColFlexSection
     max-width: 1024px
@@ -83,7 +86,7 @@ export default defineComponent({
     display: flex
     flex-direction: row-reverse
     .col
-      width: calc( 50% - 16px )
-      margin: 0 8px
+      width: 50%
+      margin: 0
 
 </style>
