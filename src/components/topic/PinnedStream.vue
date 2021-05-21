@@ -1,10 +1,9 @@
 <template>
   <div class="pinnedStream">
-    <ThreadCard
+    <PinnedThreadCard
       v-for="thread in pinnedThreads"
       :key="thread.id"
       :thread="thread"
-      pinned
     />
   </div>
 </template>
@@ -12,11 +11,11 @@
 <script lang="ts">
 import { useThreads } from '@/state/threads'
 import { defineComponent } from 'vue'
-import ThreadCard from '../home/ThreadCard.vue'
+import PinnedThreadCard from './PinnedThreadCard.vue'
 
 export default defineComponent({
   components: {
-    ThreadCard
+    PinnedThreadCard
   },
   setup () {
     const { pinnedThreads } = useThreads()

@@ -1,7 +1,7 @@
 <template>
   <div
     class="card"
-    :class="{ riseTwo: rise === 2, riseThree: rise === 3 , riseFour: rise === 4 }"
+    :class="{ riseTwo: rise === 2, riseThree: rise === 3 , riseFour: rise === 4, riseZero: rise === 0, secondary: secondary }"
   >
     <slot />
   </div>
@@ -16,6 +16,11 @@ export default defineComponent({
       type: Number,
       required: false,
       default: 1
+    },
+    secondary: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   }
 })
@@ -37,6 +42,10 @@ export default defineComponent({
     @include Rise3()
   &.riseFour
     @include Rise4()
+  &.riseZero
+    box-shadow: none
+  &.secondary
+    background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-c) 100%)
 
 @include media('>phone')
   .card
