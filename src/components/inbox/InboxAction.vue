@@ -1,7 +1,8 @@
 <template>
   <div
+    v-if="!isAnonymous"
     class="inboxAction"
-    @click="clicks=clicks+1"
+    @click="reroute"
   >
     <Icon
       name="send"
@@ -19,15 +20,22 @@
 </template>
 
 <script lang="ts">
+import { useAuthState } from '@/state/authz'
 import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'InboxAction',
   components: { Icon },
   setup () {
+    const { isAnonymous } = useAuthState()
     const clicks = ref(0)
-    return { clicks }
+    const router = useRouter()
+    const reroute = () => {
+      router.push('/profile/inbox')
+    }
+    return { clicks, isAnonymous, reroute }
   }
 })
 </script>
@@ -39,7 +47,7 @@ export default defineComponent({
 .inboxAction
   position: relative
   .inactive
-    opacity: 0.7
+    opacity: 0.3
   .inboxLenght
     @include TypeCaption()
     background-color: var(--chroma-primary-i)
