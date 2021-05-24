@@ -8,27 +8,6 @@
     <div class="spacer" />
     <AppBarSearch v-if="!isAnonymous" />
     <Action
-      prepend="mekanismi"
-      to="/mekanismi"
-    >
-      <span
-        class="hideOnMobile"
-      >
-        Mekanismi
-      </span>
-    </Action>
-    <Action
-      v-if="!isAnonymous"
-      prepend="avatar"
-      to="/profile"
-    >
-      <span
-        class="hideOnMobile"
-      >
-        {{ $t('sideNav.profile') }}
-      </span>
-    </Action>
-    <Action
       v-if="isAdmin"
       prepend="admin"
       to="/admin"
@@ -39,6 +18,28 @@
       >
         {{ $t('action.admin') }}
       </template>
+    </Action>
+    <Action
+      prepend="mekanismi"
+      to="/mekanismi"
+    >
+      <span
+        class="hideOnMobile"
+      >
+        Mekanismi
+      </span>
+    </Action>
+    <InboxAction />
+    <Action
+      v-if="!isAnonymous"
+      prepend="avatar"
+      to="/profile"
+    >
+      <span
+        class="hideOnMobile"
+      >
+        {{ $t('sideNav.profile') }}
+      </span>
     </Action>
   </div>
 </template>
@@ -51,6 +52,7 @@ import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
 import Action from '../material/Action.vue'
 import AppBarSearch from './AppBarSearch.vue'
+import InboxAction from '../inbox/InboxAction.vue'
 
 export default defineComponent({
   name: 'AppBar',
@@ -58,7 +60,8 @@ export default defineComponent({
     SideNavAction,
     AppAction,
     Action,
-    AppBarSearch
+    AppBarSearch,
+    InboxAction
   },
   setup () {
     const { isAdmin, isAnonymous } = useAuthState()
