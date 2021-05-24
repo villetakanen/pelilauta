@@ -13,11 +13,12 @@
       />
     </div>
     <teleport to="#ScreenBottomFloatRight">
+      <ToTopFab style="margin-right:8px" />
       <Fab
         v-if="!isAnonymous && stream"
         :to="`/stream/topic/${stream.slug}/post`"
         :text="$t('action.addThread')"
-        icon="send"
+        icon="addDiscussion"
       />
     </teleport>
   </div>
@@ -33,6 +34,7 @@ import { useAuthState } from '@/state/authz'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import PinnedStream from '@/components/topic/PinnedStream.vue'
 import { useThreads } from '@/state/threads'
+import ToTopFab from '@/components/app/ToTopFab.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
@@ -40,7 +42,8 @@ export default defineComponent({
     ThreadList,
     Fab,
     Toolbar,
-    PinnedStream
+    PinnedStream,
+    ToTopFab
   },
   props: {
     topic: {

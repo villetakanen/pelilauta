@@ -73,6 +73,7 @@ export default defineComponent({
 .loveAReplyAction
   position: relative
   padding-right: 24px
+  cursor: default
   .baseImage
     opacity: 0.4
   .loveImage
