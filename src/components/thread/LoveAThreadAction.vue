@@ -8,12 +8,14 @@
     <img
       src="@/assets/icons/love/loveIconBase.svg"
       class="baseImage"
+      alt="love"
     >
     <img
       v-if="uid !== authorid && (loves || buttonClasses.submitting)"
       src="@/assets/icons/love/loveIcon.svg"
       :class="{loved: loves}"
       class="loveImage"
+      alt="love"
     >
   </div>
 </template>
@@ -70,7 +72,11 @@ export default defineComponent({
 
 .loveAThreadAction
   position: relative
-  padding-right: 24px
+  padding: 0 12px
+  padding-right: 28px
+  cursor: default
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
+  border-radius: 12px
   .baseImage
     opacity: 0.4
   .loveImage
@@ -81,7 +87,7 @@ export default defineComponent({
     padding: 2px
     vertical-align: middle
     position: absolute
-    right: 0
+    right: 4px
 .loveAThreadAction.fromMe
   .baseImage
     opacity: 0.8
