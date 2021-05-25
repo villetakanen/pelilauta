@@ -23,6 +23,9 @@ An Open Source vue3+firebase project for a community site.
 
 ## Breaking, and other major changes
 
+9.0.0
+- Requires Pelilauta-functions 0.2.0 for inbox functionality. Breaks authz structure for 8.x and below.
+
 8.0.0 
 - Support for multiple stream post types. Breaks compatibility with "thread-only" post type model of pre 8.0.
 - No migration needed, as we simply add new stream post types to database.
