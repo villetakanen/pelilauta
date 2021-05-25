@@ -17,7 +17,7 @@ An Open Source vue3+firebase project for a community site.
 1. Use the App
 2. Read the code
 3. Log issues to the github tracker of this repo
-4. Ask Ville for access, and start peer reviewing or writin code :P
+4. Ask Ville for access, and start peer reviewing or writing code :P
 5. Ask Ville for access, and start helping with Firebase devops tasks o_O
 6. Use the App.
 
