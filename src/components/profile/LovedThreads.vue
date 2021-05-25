@@ -6,7 +6,7 @@
       :key="post.id"
     >
       <p>
-        <router-link :to="`/stream/view/${post.id}`">
+        <router-link :to="`/thread/${post.id}/view`">
           {{ post.data.title }}
         </router-link>
       </p>
