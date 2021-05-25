@@ -65,6 +65,9 @@
     "withGoogleButton": "Googlella",
     "withFacebookButton": "Facebookila"
   },
+  "notification": {
+    "newThreadReply": "kirjoitti ketjussa"
+  },
   "search": {
     "results": {
       "title": "Haku"
