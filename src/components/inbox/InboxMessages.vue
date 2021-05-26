@@ -4,6 +4,7 @@
       v-for="n, i in inboxMessages"
       :key="i"
       :notification="n"
+      :index="i"
     />
   </Card>
 </template>

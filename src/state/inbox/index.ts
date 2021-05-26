@@ -17,6 +17,14 @@ const unreadCount = computed(() => {
   return count
 })
 
+function markRedByIndex (index: number): void {
+  cachedMessages.value[index].meta.new = false
+  const db = firebase.firestore()
+  const { uid } = useAuthState()
+  const inboxRef = db.collection('inbox').doc(uid.value)
+  inboxRef.update({ notifications: cachedMessages.value })
+}
+
 let unsubscribe = () => {}
 
 function subscribeToInbox () {
@@ -51,8 +59,9 @@ function subscribeToInbox () {
 let _uid = ''
 export function useInbox (): {
     inboxMessages: ComputedRef<NotificationMessage[]>,
-    unreadCount: ComputedRef<number>
+    unreadCount: ComputedRef<number>,
+    markRedByIndex: CallableFunction
     } {
   subscribeToInbox()
-  return { inboxMessages, unreadCount }
+  return { inboxMessages, unreadCount, markRedByIndex }
 }
