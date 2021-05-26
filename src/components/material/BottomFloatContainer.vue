@@ -4,6 +4,8 @@
       <slot name="left" />
     </div>
     <div id="ScreenBottomFloatRight">
+      <div id="ScreenBottomFabsContainer" />
+      <slot name="right" />
       <Fab
         v-if="isAnonymous"
         to="/login"
@@ -11,7 +13,6 @@
         dark
         icon="avatar"
       />
-      <slot name="right" />
     </div>
   </div>
 </template>
@@ -52,6 +53,9 @@ div#ScreenBottomFloatContainer
   div#ScreenBottomFloatRight
     text-align: right
     display: flex
+    div#ScreenBottomFabsContainer
+      text-align: right
+      display: flex
 
 @include media('<tablet')
   div#ScreenBottomFloatContainer
