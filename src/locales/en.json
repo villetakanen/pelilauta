@@ -64,6 +64,9 @@
       "openLink": "Open in"
     }
   },
+  "notification": {
+    "newThreadReply": "replied in a Thread."
+  },
   "postHeader": {
     "postedInStream": "in"
   },

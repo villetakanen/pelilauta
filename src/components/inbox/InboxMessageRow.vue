@@ -2,22 +2,24 @@
   <div
     class="inboxMessageRow toolbar"
     :class="{ unred: notification.meta.new }"
+    @click="markRed"
   >
-    <MaterialButton
-      icon
-      @click="markRed"
-    >
-      <Icon name="delete" />
-    </MaterialButton>
     <div class="spacer">
       <router-link :to="`/thread/${notification.source.id}/view`">
         {{ notification.source.title }}
       </router-link>
 
-      <div v-if="notification.source.type === 'thread.reply'">
-        <AuthorLink :uid="notification.meta.author" /> {{ $t(notification.source.message || '...') }}
+      <div
+        v-if="notification.source.type === 'thread.reply'"
+        class="caption"
+      >
+        <AuthorLink :uid="notification.meta.author || ''" /> {{ $t(notification.source.message || '...') }}
       </div>
     </div>
+    <Icon
+      name="lightbulb"
+      headline
+    />
   </div>
 </template>
 
@@ -27,10 +29,9 @@ import { NotificationMessage } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType } from 'vue'
 import AuthorLink from '../author/AuthorLink.vue'
 import Icon from '../material/Icon.vue'
-import MaterialButton from '../material/MaterialButton.vue'
 
 export default defineComponent({
-  components: { AuthorLink, MaterialButton, Icon },
+  components: { AuthorLink, Icon },
   props: {
     notification: {
       type: Object as PropType<NotificationMessage>,
@@ -43,8 +44,10 @@ export default defineComponent({
   },
   setup (props) {
     const { markRedByIndex } = useInbox()
+    // const router = useRouter()
     const markRed = () => {
-      markRedByIndex(props.index)
+      if (props.notification.meta.new) markRedByIndex(props.index)
+      // router.push(`/thread/${props.notification.source.id}/view`)
     }
     return { markRed }
   }
@@ -52,6 +55,20 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
+.inboxMessageRow
+  padding: 4px 8px
+  border-radius: 8px
+  margin-bottom: 4px
+  transition: all 0.3s
+  a
+    text-decoration: none
+  &:hover
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
+  .caption
+    @include TypeCaption()
+    color: var(--chroma-secondary-e)
 .unred
-  background-color: var(--chroma-secondary-h)
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
 </style>
