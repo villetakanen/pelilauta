@@ -16,21 +16,10 @@
     </p>
     <transition name="fade">
       <div>
-        <Pill
-          v-if="newReplies"
-          small
-          prepend-icon="send"
-          dark
-        >
-          <router-link :to="`/thread/${thread.id}/view/from/${seen}`">
-            {{ thread.replyCount ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
-          </router-link>
-        </Pill>
         <p
-          v-else
           class="topic"
         >
-          <router-link :to="`/thread/${thread.id}/view/from/${seen}`">
+          <router-link :to="`/thread/${thread.id}/view`">
             {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
           </router-link>
         </p>
