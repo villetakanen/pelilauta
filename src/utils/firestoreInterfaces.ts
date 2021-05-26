@@ -48,7 +48,7 @@ export interface Thread {
   hidden: boolean
 }
 
-export interface Notification {
+export interface NotificationMessage {
   source: {
     type: string
     id: string

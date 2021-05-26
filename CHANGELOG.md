@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.9](https://github.com/villetakanen/pelilauta/compare/v8.5.8...v8.5.9) (2021-05-25)
+
+
+### Bug Fixes
+
+* profile liked threads link route fixed ([a222382](https://github.com/villetakanen/pelilauta/commit/a222382d6427758120343f7bf6a5420c8fb8b08b))
+
+### [8.5.8](https://github.com/villetakanen/pelilauta/compare/v8.5.7...v8.5.8) (2021-05-24)
+
+
+### Bug Fixes
+
+* love action cursor fixed ([9e5b234](https://github.com/villetakanen/pelilauta/commit/9e5b23424f07416b93fca28c11b5d5e436f16fd8))
+* topic page buttons ux now matches home ([a7ab4e3](https://github.com/villetakanen/pelilauta/commit/a7ab4e3877606345d3b6c23a58f7e4b9cfef4789))
+
+### [8.5.7](https://github.com/villetakanen/pelilauta/compare/v8.5.6...v8.5.7) (2021-05-21)
+
+
+### Bug Fixes
+
+* pinned topic zipped for mobile ([de749e2](https://github.com/villetakanen/pelilauta/commit/de749e2730c339e2daa1a5de43a8ae303fbceb91))
+
+### [8.5.6](https://github.com/villetakanen/pelilauta/compare/v8.5.5...v8.5.6) (2021-05-21)
+
+
+### Bug Fixes
+
+* mobile card padding ([6df3ba9](https://github.com/villetakanen/pelilauta/commit/6df3ba9614853602287ddc7c988c5538da615a8a))
+
 ### [8.5.5](https://github.com/villetakanen/pelilauta/compare/v8.5.4...v8.5.5) (2021-05-20)
 
 

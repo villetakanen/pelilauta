@@ -17,11 +17,14 @@ An Open Source vue3+firebase project for a community site.
 1. Use the App
 2. Read the code
 3. Log issues to the github tracker of this repo
-4. Ask Ville for access, and start peer reviewing or writin code :P
+4. Ask Ville for access, and start peer reviewing or writing code :P
 5. Ask Ville for access, and start helping with Firebase devops tasks o_O
 6. Use the App.
 
 ## Breaking, and other major changes
+
+9.0.0
+- Requires Pelilauta-functions 0.2.0 for inbox functionality. Breaks authz structure for 8.x and below.
 
 8.0.0 
 - Support for multiple stream post types. Breaks compatibility with "thread-only" post type model of pre 8.0.

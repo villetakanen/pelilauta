@@ -8,18 +8,6 @@
     <div class="spacer" />
     <AppBarSearch v-if="!isAnonymous" />
     <Action
-      v-if="isAdmin"
-      prepend="admin"
-      to="/admin"
-      style="margin-right: 8px"
-    >
-      <template
-        v-if="!mobileViewport"
-      >
-        {{ $t('action.admin') }}
-      </template>
-    </Action>
-    <Action
       prepend="mekanismi"
       to="/mekanismi"
     >
