@@ -11,17 +11,18 @@
       :class="{inactive: clicks < 1}"
     />
     <div
-      v-if="clicks"
+      v-if="unreadCount"
       class="inboxLenght"
     >
-      {{ clicks }}
+      {{ unreadCount }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { useAuthState } from '@/state/authz'
-import { defineComponent, ref } from 'vue'
+import { useInbox } from '@/state/inbox'
+import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import Icon from '../material/Icon.vue'
 
@@ -30,12 +31,12 @@ export default defineComponent({
   components: { Icon },
   setup () {
     const { isAnonymous } = useAuthState()
-    const clicks = ref(0)
     const router = useRouter()
+    const { unreadCount } = useInbox()
     const reroute = () => {
       router.push('/profile/inbox')
     }
-    return { clicks, isAnonymous, reroute }
+    return { unreadCount, isAnonymous, reroute }
   }
 })
 </script>
