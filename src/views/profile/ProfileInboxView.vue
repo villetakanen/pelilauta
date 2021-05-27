@@ -2,9 +2,6 @@
   <div class="profileMediaView">
     <ProfileToolbar />
     <div class="singleColumnLayout">
-      <h1 class="title">
-        {{ $t('profile.inbox.title') }}
-      </h1>
       <InboxMessages />
     </div>
   </div>
