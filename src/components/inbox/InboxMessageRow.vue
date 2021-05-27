@@ -17,6 +17,7 @@
       </div>
     </div>
     <Icon
+      v-if="notification.meta.new"
       name="lightbulb"
       headline
     />
