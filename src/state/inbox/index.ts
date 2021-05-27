@@ -51,6 +51,11 @@ function subscribeToInbox () {
           console.debug('pushing', row)
           cachedMessages.value.push(row as NotificationMessage)
         })
+        cachedMessages.value.sort((a, b) => {
+          if (a.meta.new && !b.meta.new) return -1
+          if (!a.meta.new && b.meta.new) return 1
+          return 0
+        })
       }
     }
   })

@@ -1,5 +1,8 @@
 <template>
   <Card>
+    <h1 class="title">
+      {{ $t('profile.inbox.title') }}
+    </h1>
     <InboxMessageRow
       v-for="n, i in inboxMessages"
       :key="i"
@@ -16,6 +19,7 @@ import { useInbox } from '@/state/inbox'
 import InboxMessageRow from './InboxMessageRow.vue'
 
 export default defineComponent({
+  name: 'InboxMessages',
   components: { Card, InboxMessageRow },
   setup () {
     const { inboxMessages } = useInbox()
