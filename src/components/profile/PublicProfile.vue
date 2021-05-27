@@ -72,8 +72,11 @@ export default defineComponent({
     })
 
     const { authors } = useAuthors()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const uniqueNick = (value:any) => (value.toLowerCase() === profile.value.nick?.toLowerCase() || !authors.value.find((target) => (target.nick?.toLowerCase() === value.toLowerCase())))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const minLength = (value:any) => (value.length > 3)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const maxLength = (value:any) => (value.length < 221)
 
     const rules = {

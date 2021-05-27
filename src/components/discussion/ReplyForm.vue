@@ -78,6 +78,7 @@ export default defineComponent({
       })
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const addImageToEditor = (a: any) => {
       console.log('addImageToEditor', a)
       imageToEditor.value = a
