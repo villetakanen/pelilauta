@@ -17,6 +17,7 @@
         Mekanismi
       </span>
     </Action>
+    <InboxAction />
     <Action
       v-if="!isAnonymous"
       prepend="avatar"
@@ -27,18 +28,6 @@
       >
         {{ $t('sideNav.profile') }}
       </span>
-    </Action>
-    <Action
-      v-if="isAdmin"
-      prepend="admin"
-      to="/admin"
-      style="margin-right: 8px"
-    >
-      <template
-        v-if="!mobileViewport"
-      >
-        {{ $t('action.admin') }}
-      </template>
     </Action>
   </div>
 </template>
@@ -51,6 +40,7 @@ import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
 import Action from '../material/Action.vue'
 import AppBarSearch from './AppBarSearch.vue'
+import InboxAction from '../inbox/InboxAction.vue'
 
 export default defineComponent({
   name: 'AppBar',
@@ -58,7 +48,8 @@ export default defineComponent({
     SideNavAction,
     AppAction,
     Action,
-    AppBarSearch
+    AppBarSearch,
+    InboxAction
   },
   setup () {
     const { isAdmin, isAnonymous } = useAuthState()

@@ -35,7 +35,7 @@
     "updatesAvailable": "Sovelluksesta on saatavilla uusi versio. Klikkaa päivitä -nappulaa alta ladataksesi uuden version",
     "welcome": {
       "title": "Tervetuloa Pelilaudalle",
-      "message": "Pelilauta on Pelilauta.fi ja Mekanismi.sange.fi sivustojen pohjalta rakennettu yhteisösovellus. Viestien kirjoittaminen ja pelisivustojen muokkaus vaativat kirjautumisen sähköpostia tai googlea käyttäen. "
+      "message": "Pelilauta.fi ja Mekanismi.sange.fi sivustojen inspiroima yhteisösovellus. Kirjautumalla Facebookilla, Googlella tai sähköpostilla – saat käyttöösi enemmän toimintoja."
     }
   },
   "editorDialog": {
@@ -64,6 +64,9 @@
     "message": "Voit kirjautua sovellukseen Googlen tai Facebookin avulla allaolevilla nappuloilla.",
     "withGoogleButton": "Googlella",
     "withFacebookButton": "Facebookila"
+  },
+  "notification": {
+    "newThreadReply": "vastasi ketjuun."
   },
   "search": {
     "results": {
@@ -152,6 +155,9 @@
       "title": "Asetukset ja toiminnot",
       "helper": "Erilaisia nappuloita ja säätöjä",
       "selectLang": "Sovelluksen kieli"
+    },
+    "inbox": {
+      "title": "Nostot"
     }
   },
   "threads": {

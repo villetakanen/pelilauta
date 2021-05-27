@@ -49,7 +49,8 @@ export default defineComponent({
 
 .welcomeCard
   display: block
-  background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-b) 100%)
+  // background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-b) 100%)
+  background: linear-gradient(-42deg, var(--chroma-primary-a) 0%, var(--chroma-primary-d) 100%)
   position: relative
   img.logo
     position: absolute
@@ -59,11 +60,12 @@ export default defineComponent({
     width: 72px
   h1
     @include TypeCardHeadline()
-    color: var(--chroma-secondary-i)
+    color: var(--chroma-clear)
     margin-left: 72px
   p
     @include TypeBody2()
     margin-left: 72px
-    color: var(--chroma-secondary-h)
+    color: var(--chroma-clear)
+    opacity: 0.72
 
 </style>

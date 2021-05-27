@@ -5,6 +5,7 @@ import 'firebase/analytics'
 import { useMeta } from '@/state/meta'
 import { useAuthState } from './state'
 import { fetchAssets, useAssets } from './assets'
+import { useInbox } from '@/state/inbox'
 
 export interface PublicProfile {
   uid?: string
@@ -83,6 +84,9 @@ function fetchProfile (uid:string|null) {
     })
 
     fetchAssets(uid)
+
+    // Load the user notification inbox after the user has changed
+    useInbox()
   }
 }
 

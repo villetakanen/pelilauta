@@ -27,11 +27,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import Loader from '../app/Loader.vue'
-import { SnackMessage, useSnack } from '@/composables/useSnack/useSnack'
+import { useSnack } from '@/composables/useSnack/useSnack'
 
 export default defineComponent({
   name: 'ImageUploader',

@@ -1,7 +1,7 @@
 <template>
   <div class="homeView singleColumnLayout">
     <HomeStream />
-    <teleport to="#ScreenBottomFloatRight">
+    <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
       <Fab
         v-if="!isAnonymous"

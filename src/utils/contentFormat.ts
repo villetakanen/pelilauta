@@ -82,5 +82,7 @@ export function renderWikiLinks (siteid:string, htmlContent:string): string {
   return content
 }
 
-export const minLength = (value:any) => (value.length > 1)
-export const maxLength = (value:any) => (value.toString().trim().length < 36)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const minLength = (value:any): boolean => (value.length > 1)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const maxLength = (value:any): boolean => (value.toString().trim().length < 36)

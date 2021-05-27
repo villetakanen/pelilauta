@@ -47,3 +47,16 @@ export interface Thread {
   data: PostData
   hidden: boolean
 }
+
+export interface NotificationMessage {
+  source: {
+    type: string
+    id: string
+    title: string
+    message?: string
+  }
+  meta: {
+    new?: boolean
+    author?: string
+  }
+}

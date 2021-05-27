@@ -1,6 +1,8 @@
 <template>
   <Card class="sitePlayersList contentArea contentBox">
-    <h1 class="title">{{ $t('site.players.title') }}</h1>
+    <h1 class="title">
+      {{ $t('site.players.title') }}
+    </h1>
     <PlayerRowItem
       v-for="player in playerList"
       :key="player.uid"

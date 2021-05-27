@@ -152,6 +152,7 @@ export default defineComponent({
     margin: 0
     overflow: hidden
     text-overflow: ellipsis
+    color: var(--chroma-secondary-b)
   p.caption
     @include TypeCaption()
 

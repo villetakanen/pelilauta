@@ -74,6 +74,14 @@
         Meta
       </li>
       <SideNavMenuItem
+        v-if="isAdmin"
+        icon="admin"
+        to="/admin"
+        @click="toggleNav"
+      >
+        {{ $t('admin.title') }}
+      </SideNavMenuItem>
+      <SideNavMenuItem
         icon="about"
         to="/mekanismi/view/mekanismi/pelilauta-about"
         @click="toggleNav"
@@ -95,7 +103,7 @@ export default defineComponent({
   name: 'SideNavMenu',
   components: { SideNavMenuItem },
   setup () {
-    const { isAnonymous } = useAuthState()
+    const { isAnonymous, isAdmin } = useAuthState()
     const { streams } = useMeta()
 
     const streamItems = computed(() => {
@@ -118,7 +126,7 @@ export default defineComponent({
       if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
-    return { routeTo, streamItems, isAnonymous, toggleNav }
+    return { routeTo, streamItems, isAnonymous, toggleNav, isAdmin }
   }
 })
 </script>

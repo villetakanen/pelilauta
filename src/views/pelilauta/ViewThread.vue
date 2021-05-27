@@ -29,7 +29,7 @@
         :focus-to="since"
       />
     </ThreadBox>
-    <teleport to="#ScreenBottomFloatRight">
+    <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab />
     </teleport>
   </div>

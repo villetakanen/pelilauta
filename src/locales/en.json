@@ -35,7 +35,7 @@
     "updatesAvailable": "A new version is available, please refresh",
     "welcome": {
       "title": "Welcome to Pelilauta",
-      "message": "A Role playing games community App. You can login with email, google, or facebook to access full functionality of the site."
+      "message": "Please login with Facebook, Google or email to access the full functionality of the App."
     }
   },
   "editorDialog": {
@@ -63,6 +63,9 @@
     "wpcard": {
       "openLink": "Open in"
     }
+  },
+  "notification": {
+    "newThreadReply": "replied in a Thread."
   },
   "postHeader": {
     "postedInStream": "in"
