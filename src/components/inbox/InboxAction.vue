@@ -1,7 +1,8 @@
 <template>
   <div
     v-if="!isAnonymous"
-    class="inboxAction chromaFocus"
+    id="inboxAction"
+    class="chromaFocus"
     :class="{ active: active }"
     @click="reroute"
   >
@@ -46,7 +47,7 @@ export default defineComponent({
 @import @/styles/box-shadow.sass
 @import @/styles/material-typography.sass
 
-.inboxAction
+#inboxAction
   position: relative
   height: 40px
   width: 40px
