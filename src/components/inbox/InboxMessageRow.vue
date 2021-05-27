@@ -65,10 +65,12 @@ export default defineComponent({
   a
     text-decoration: none
   &:hover
-    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
   .caption
     @include TypeCaption()
     color: var(--chroma-secondary-e)
 .unred
-  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
+  &:hover
+    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
 </style>

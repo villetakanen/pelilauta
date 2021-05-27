@@ -7,15 +7,7 @@ import 'firebase/analytics'
 import { NotificationMessage } from '@/utils/firestoreInterfaces'
 
 const cachedMessages = ref(new Array<NotificationMessage>())
-const inboxMessages = computed(() => {
-  const n = [...cachedMessages.value]
-  n.sort((a, b) => {
-    if (a.meta.new && !b.meta.new) return -1
-    if (!a.meta.new && b.meta.new) return 1
-    return 0
-  })
-  return n
-})
+const inboxMessages = computed(() => (cachedMessages.value))
 
 const unreadCount = computed(() => {
   let count = 0
@@ -58,6 +50,11 @@ function subscribeToInbox () {
         notifications.forEach((row) => {
           console.debug('pushing', row)
           cachedMessages.value.push(row as NotificationMessage)
+        })
+        cachedMessages.value.sort((a, b) => {
+          if (a.meta.new && !b.meta.new) return -1
+          if (!a.meta.new && b.meta.new) return 1
+          return 0
         })
       }
     }
