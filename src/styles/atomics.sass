@@ -42,7 +42,16 @@
   hyphenate-limit-lines: 2
   hyphenate-limit-last: always
   hyphenate-limit-zone: 8%
-    
+
+// *** Visual helpers *********************************************************
+
+// Actions and buttons that can be "active" and need hover on focus
+.chromaFocus
+  transition: background 0.6s
+.chromaFocus:hover
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
+.chromaFocus.active
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'} 
 
 // This element contains long paragraphs of text, large images etc.
 .contentBox

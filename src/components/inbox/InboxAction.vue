@@ -1,14 +1,15 @@
 <template>
   <div
     v-if="!isAnonymous"
-    class="inboxAction"
+    class="inboxAction chromaFocus"
+    :class="{ active: active }"
     @click="reroute"
   >
     <Icon
       name="send"
       class="actionIcon"
       medium
-      :class="{inactive: clicks < 1}"
+      :class="{inactive: unreadCount < 1}"
     />
     <div
       v-if="unreadCount"
@@ -47,8 +48,18 @@ export default defineComponent({
 
 .inboxAction
   position: relative
+  height: 40px
+  width: 40px
+  border-radius: 20px
+  margin: 4px
+  .actionIcon
+    margin: 0
   .inactive
     opacity: 0.3
+    transition: opacity 0.3s
+  &:hover
+    .inactive
+      opacity: 1
   .inboxLenght
     @include TypeCaption()
     background-color: var(--chroma-primary-i)
