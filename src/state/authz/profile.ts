@@ -5,7 +5,7 @@ import 'firebase/analytics'
 import { useMeta } from '@/state/meta'
 import { useAuthState } from './state'
 import { fetchAssets, useAssets } from './assets'
-import { useInbox } from '@/state/inbox'
+import { setSeen, useInbox } from '@/state/inbox'
 
 export interface PublicProfile {
   uid?: string
@@ -145,6 +145,9 @@ async function markAllThreadsRead (): Promise<void> {
 }
 
 async function stampSeen (threadid:string, flowTime?:firebase.firestore.Timestamp|number): Promise<void> {
+  // Stamp the same thread seen from notifications
+  setSeen(threadid)
+
   const { uid } = useAuthState()
   const db = firebase.firestore()
   const profileRef = db.collection('profiles').doc(uid.value)

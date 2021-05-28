@@ -1,7 +1,10 @@
 <template>
   <AdminActions title="Stylebook" />
-  <div class="contentGrid">
-    <div id="Stylebook">
+  <div>
+    <div
+      id="Stylebook"
+      class="dashBoardLayout"
+    >
       <Card>
         <h1>Chroma</h1>
         Primary
@@ -211,24 +214,186 @@
           to="stylebook"
         />
         <h2>Fabs</h2>
-        <Fab
-          text="Fab"
-          icon="forum"
+        <div style="display: flex; flex-wrap: wrap; flex-direction: row-reverse">
+          <Fab
+            text="Fab"
+            icon="forum"
+          />
+          <Fab
+            text="Secondary"
+            secondary
+            icon="send"
+          />
+          <Fab
+            text="Tertiary"
+            tertiary
+            icon="up"
+          />
+        </div>
+        <div style="display: flex; flex-wrap: wrap; flex-direction: row-reverse; padding-top:8px">
+          <Fab
+            text="Dark"
+            dark
+            icon="avatar"
+          />
+        </div>
+      </Card>
+
+      <Card>
+        <h1 class="title">
+          Icons
+        </h1>
+        <Icon
+          name="about"
+          headline
         />
-        <Fab
-          text="Secondary"
-          secondary
-          icon="send"
+        <Icon
+          name="add"
+          headline
         />
-        <Fab
-          text="Tertiary"
-          tertiary
-          icon="up"
+        <Icon
+          name="addAnImage"
+          headline
         />
-        <Fab
-          text="Dark"
-          dark
-          icon="avatar"
+        <Icon
+          name="addDiscussion"
+          headline
+        />
+        <Icon
+          name="admin"
+          headline
+        />
+        <Icon
+          name="attachments"
+          headline
+        />
+        <Icon
+          name="avatar"
+          headline
+        />
+        <Icon
+          name="books"
+          headline
+        />
+        <Icon
+          name="d6"
+          headline
+        />
+        <Icon
+          name="d12"
+          headline
+        />
+        <Icon
+          name="d20"
+          headline
+        />
+        <Icon
+          name="discussion"
+          headline
+        />
+        <Icon
+          name="dd-logo"
+          headline
+        />
+        <Icon
+          name="delete"
+          headline
+        />
+        <Icon
+          name="edit"
+          headline
+        />
+        <Icon
+          name="equalizer"
+          headline
+        />
+        <Icon
+          name="filter"
+          headline
+        />
+        <Icon
+          name="forum"
+          headline
+        />
+        <Icon
+          name="hidden"
+          headline
+        />
+        <Icon
+          name="homebrew-logo"
+          headline
+        />
+        <Icon
+          name="idea"
+          headline
+        />
+        <Icon
+          name="images"
+          headline
+        />
+        <Icon
+          name="lightbulb"
+          headline
+        />
+        <Icon
+          name="mekanismi"
+          headline
+        />
+        <Icon
+          name="monsters"
+          headline
+        />
+        <Icon
+          name="pages"
+          headline
+        />
+        <Icon
+          name="pathfinder-logo"
+          headline
+        />
+        <Icon
+          name="players"
+          headline
+        />
+        <Icon
+          name="remove"
+          headline
+        />
+        <Icon
+          name="report"
+          headline
+        />
+        <Icon
+          name="stats"
+          headline
+        />
+        <Icon
+          name="search"
+          headline
+        />
+        <Icon
+          name="send"
+          headline
+        />
+        <Icon
+          name="settings"
+          headline
+        />
+        <Icon
+          name="share"
+          headline
+        />
+        <Icon
+          name="quick-logo"
+          headline
+        />
+        <Icon
+          name="up"
+          headline
+        />
+        <Icon
+          name="youtube"
+          headline
         />
       </Card>
 
@@ -337,25 +502,6 @@
           Push 3 snacks to the stack
         </MaterialButton>
       </div>
-      <div class="section">
-        <h1>Inputs</h1>
-        <Pill>Chip</Pill>
-        <Pill action-icon="add">
-          Chip with Add Icon
-        </Pill>
-        <Pill action-icon="remove">
-          Chip with Remove Icon
-        </Pill>
-        <Pill
-          color="secondary"
-          action-icon="remove"
-        >
-          Secondary chip with Remove Icon
-        </Pill>
-        <hr>
-        <TextField />
-        <TextField label="label" />
-      </div>
     </div>
   </div>
 </template>
@@ -367,7 +513,6 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import Avatar from '@/components/app/Avatar.vue'
 import Loader from '@/components/app/Loader.vue'
 import TextField from '@/components/material/TextField.vue'
-import Pill from '@/components/material/Pill.vue'
 import { useSnack } from '@/composables/useSnack'
 import Fab from '@/components/material/Fab.vue'
 import Icon from '@/components/material/Icon.vue'
@@ -386,7 +531,6 @@ export default defineComponent({
     Avatar,
     MaterialCard,
     TextField,
-    Pill,
     Fab,
     Icon,
     Toggle,

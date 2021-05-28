@@ -124,8 +124,10 @@ export default defineComponent({
     margin-top: 1px //annoying bug somewhere
     padding: 0
     margin-left: 16px
-.fab+.fab
-  margin-left: 12px
+.fab:not(:last-child)
+  margin-left: 6px
+.fab:not(:first-child)
+  margin-right: 6px
 @include media('>tablet')
   .fab
     &.hasLabel
