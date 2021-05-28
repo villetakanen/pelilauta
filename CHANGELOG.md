@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.1](https://github.com/villetakanen/pelilauta/compare/v9.0.0...v9.0.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* profile stats page bugs fixed ([355e2b5](https://github.com/villetakanen/pelilauta/commit/355e2b5dbf3c88dfcca87fe03697f2f1acba33ad))
+* sets a thread seen in inbox ([dbba8b8](https://github.com/villetakanen/pelilauta/commit/dbba8b8c2db04a99f966060730cce45b17e40f36))
+* stylebook updates ([2b8018d](https://github.com/villetakanen/pelilauta/commit/2b8018deb0b93609f3222185c9be1d81958281bf))
+
 ## [9.0.0](https://github.com/villetakanen/pelilauta/compare/v8.5.9...v9.0.0) (2021-05-27)
 
 
