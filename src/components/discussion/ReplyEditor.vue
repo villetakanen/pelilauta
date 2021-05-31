@@ -17,10 +17,7 @@ function hoistClipboardConfig (quill:Quill) {
       return delta.compose(new Delta().retain(delta.length(),
         {
           color: false,
-          background: false,
-          bold: false,
-          strike: false,
-          underline: false
+          background: false
         }))
     }
   )
