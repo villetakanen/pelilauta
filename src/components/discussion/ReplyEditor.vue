@@ -11,19 +11,19 @@ import Quill from 'quill'
 import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
 
-function textContentToDelta (el:HTMLElement): Delta {
-  return new Delta().insert(el.textContent || '')
-}
-
 function hoistClipboardConfig (quill:Quill) {
-  quill.clipboard.addMatcher('h1', (node, delta) => (textContentToDelta(node as HTMLElement)))
-  quill.clipboard.addMatcher('h2', (node, delta) => (textContentToDelta(node as HTMLElement)))
-  quill.clipboard.addMatcher('h3', (node, delta) => (textContentToDelta(node as HTMLElement)))
-  quill.clipboard.addMatcher('h4', (node, delta) => (textContentToDelta(node as HTMLElement)))
-  quill.clipboard.addMatcher('span', (node, delta) => (textContentToDelta(node as HTMLElement)))
-  quill.clipboard.addMatcher('p', (node, delta) => (textContentToDelta(node as HTMLElement)))
-  quill.clipboard.addMatcher('div', (node, delta) => (textContentToDelta(node as HTMLElement)))
-  quill.clipboard.addMatcher('li', (node, delta) => (textContentToDelta(node as HTMLElement)))
+  quill.clipboard.addMatcher(Node.ELEMENT_NODE,
+    function (node, delta) {
+      return delta.compose(new Delta().retain(delta.length(),
+        {
+          color: false,
+          background: false,
+          bold: false,
+          strike: false,
+          underline: false
+        }))
+    }
+  )
 }
 
 /**
@@ -45,6 +45,15 @@ export default defineComponent({
     const quotedContent = inject('quotedContent') as Ref<Quote>
     const imageToEditor = inject('imageToEditor') as Ref<string>
 
+    const config = {
+      formats: [
+        'bold',
+        'strike',
+        'underline',
+        'italic'
+      ]
+    }
+
     onMounted(() => {
       // We want to inject the Quill Editor only after this element has been
       // mounted, to have all the DOM we use from Quill, available
@@ -57,7 +66,7 @@ export default defineComponent({
       if (!editor.value) return
 
       // Init the quill-editor to the editor field
-      quill = new Quill(editor.value)
+      quill = new Quill(editor.value, config)
 
       // If we have content at this point, inject it to editorfield
       // this could be done with v-once also, but that wound move the
