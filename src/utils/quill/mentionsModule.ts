@@ -49,7 +49,7 @@ export function mentionsModule (quill:Quill): void {
 
     // emit event for vue editor component
     const event = new CustomEvent('quill.mention', { detail: author.uid })
-    quill.root.dispatchEvent(event)
+    document.dispatchEvent(event)
   }
 
   console.debug('Quill Mentions module registered')

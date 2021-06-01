@@ -36,7 +36,8 @@ export default defineComponent({
     waiting: { type: Boolean, required: false, default: false }
   },
   emits: [
-    'update:content'
+    'update:content',
+    'mention'
   ],
   setup (props, context) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
@@ -141,6 +142,13 @@ export default defineComponent({
           // https://quilljs.com/docs/api/#content
           quill.insertEmbed(0, 'image', url)
         }
+      })
+
+      document.addEventListener('quill.mention', function (e: Event) {
+        e.preventDefault()
+        const ce = e as CustomEvent
+        console.debug('quill.mention event', ce.detail)
+        context.emit('mention', ce.detail)
       })
     }
 
