@@ -10,6 +10,7 @@ import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, 
 import Quill from 'quill'
 import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
+import { mentionsModule } from '@/utils/quill/mentionsModule'
 import { useAuthors } from '@/state/authors'
 
 function hoistClipboardConfig (quill:Quill) {
@@ -57,7 +58,7 @@ export default defineComponent({
 
     const { nonFrozenAuthors } = useAuthors()
 
-    function mentionsModule (quill:Quill) {
+    /* function mentionsModule (quill:Quill) {
       quill.on('text-change', function (d, e) {
         if (d.ops[0]?.insert === '@' || d.ops[1]?.insert === '@') {
           console.debug('! add mention!', d, e)
@@ -69,7 +70,7 @@ export default defineComponent({
           }))
         }
       })
-    }
+    } */
 
     // Implement and register module
     Quill.register('modules/mention', mentionsModule)

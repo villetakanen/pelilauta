@@ -106,3 +106,8 @@ To run the tests
 ```bash
 npm run test:e2e
 ```
+
+## License etc
+
+MIT 2.0 -> See LICENSE file
+
