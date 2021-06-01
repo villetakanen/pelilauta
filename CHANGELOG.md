@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://github.com/villetakanen/pelilauta/compare/v8.5.9...v9.0.0) (2021-05-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* – Requires pelilauta-functions 0.2.0
+
+### Features
+
+* inbox loaded at login ([c4f5d8a](https://github.com/villetakanen/pelilauta/commit/c4f5d8a0527fcd53122d5973a4dc773010381302))
+* inbox message row ([b41237b](https://github.com/villetakanen/pelilauta/commit/b41237b9b6100d6d1fcccee9559901c6a5fd06c3))
+* inbox-action component ([3b461d0](https://github.com/villetakanen/pelilauta/commit/3b461d00b20544a3f4f1897511a3a0d37401cf4a))
+* messages can be marked red ([d960a26](https://github.com/villetakanen/pelilauta/commit/d960a26fc3d34a6e073a032892578dce4ad51570))
+* notification ux ([a06b79b](https://github.com/villetakanen/pelilauta/commit/a06b79bd187ca9a1fefcb99d091e4b7075c9c670))
+* notifications can be shown from the state/db ([8f010ea](https://github.com/villetakanen/pelilauta/commit/8f010ea395740201081565f09aa17da96213aae8))
+* route to inbox and action routes to inbox ([2c1db2f](https://github.com/villetakanen/pelilauta/commit/2c1db2fa691ef4a17251c1311b76d8102e153d11))
+* state management skeleton for inbox ([fd8e9f3](https://github.com/villetakanen/pelilauta/commit/fd8e9f30b103678090752358237683519e095931))
+* thread notification UX implemented ([fec95c7](https://github.com/villetakanen/pelilauta/commit/fec95c7ecd57ba4aef828711cf84e11426909845))
+
+
+### Bug Fixes
+
+* admin route in sidebar ([a19f44d](https://github.com/villetakanen/pelilauta/commit/a19f44d8f44eceace97abd35b046d777a00e41fc))
+* asset cleanup ([e38b412](https://github.com/villetakanen/pelilauta/commit/e38b41204f73732059f733211773bcc699027584))
+* e2e tests for inbox ([5e2e4f9](https://github.com/villetakanen/pelilauta/commit/5e2e4f982e821144735771194df1483540431888))
+* front page fab ordering ([40aedb9](https://github.com/villetakanen/pelilauta/commit/40aedb9f85782c3debbab9901a0b93e0f7605900))
+* hover styles for inboxaction ([4d49285](https://github.com/villetakanen/pelilauta/commit/4d49285465c463f3bd2a4c6e06a0f08d328d14e1))
+* light bulb hidden if the notification is !new ([2b9dbfa](https://github.com/villetakanen/pelilauta/commit/2b9dbfa8ce02fd0f4b8cde9e729f2bb7add3c946))
+* linter fixes ([04dc542](https://github.com/villetakanen/pelilauta/commit/04dc54236801053fbdb944f2137f78d94b7a8a58))
+* new messages of inbox are at the top ([c50128e](https://github.com/villetakanen/pelilauta/commit/c50128eebebfb55a8bfdd7d304e890525c401885))
+* ordering of inbox ([5f97b8e](https://github.com/villetakanen/pelilauta/commit/5f97b8eeff8b23e502c4a79bc3ea9a92e764049c))
+* readme updated for breaking change ([7b89378](https://github.com/villetakanen/pelilauta/commit/7b89378c25b22281bd2f621c153d9d9b073c9135))
+* refactors to notification message ([7fe0e5a](https://github.com/villetakanen/pelilauta/commit/7fe0e5a5bcc8f5a618858afd0f0b119900c5d4a2))
+* removed extraneous code from pinnedthreadcard ([7706c3e](https://github.com/villetakanen/pelilauta/commit/7706c3ec978b2e252c8992eb784ad71b18b844da))
+* ritch text layout breaks on links ([6f00c72](https://github.com/villetakanen/pelilauta/commit/6f00c728561b4816f44b9e1e79b4c36f9b181745))
+* thread page title color ([e45e32c](https://github.com/villetakanen/pelilauta/commit/e45e32c81a12b9a638265790bcf02dd2c1d8a4b6))
+* topic view fab positions ([30426b5](https://github.com/villetakanen/pelilauta/commit/30426b5f7b3f9c2df4ec7dbae7517e4761068b1c))
+* viewthread ux improvements ([dbedf48](https://github.com/villetakanen/pelilauta/commit/dbedf48949807bbff570f88845ab8af8d1a00e23))
+* welcome card color and text ([5ecc06c](https://github.com/villetakanen/pelilauta/commit/5ecc06c04628badbc2c4dc43a749aee93346c946))
+
 ### [8.5.9](https://github.com/villetakanen/pelilauta/compare/v8.5.8...v8.5.9) (2021-05-25)
 
 

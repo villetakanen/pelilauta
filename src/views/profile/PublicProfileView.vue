@@ -5,29 +5,46 @@
         {{ publicProfile.nick }}
       </h3>
     </Toolbar>
-    <MaterialCard>
+    <div class="singleColumnLayout">
       <div class="linkGrid">
-        <div><strong>Loves</strong></div>
-        <div><strong>Topic</strong></div>
+        <div>
+          <Icon
+            name="discussion"
+            headline
+          />
+        </div>
+        <div>
+          <Icon
+            name="lightbulb"
+            headline
+          />
+        </div>
+        <div>
+          <h1 class="title">
+            {{ $t('threads.topic') }}
+          </h1>
+        </div>
         <template
           v-for="thread in threads"
-          :key="thread[0]"
+          :key="thread.id"
         >
           <div style="text-align: center">
-            {{ thread[1].lovedCount || 0 }}
+            {{ thread.replyCount || 0 }}
           </div>
-          <router-link :to="{ name: 'stream.view', params: { threadid: thread[1].id }}">
-            {{ thread[1].data.title }}
+          <div style="text-align: center">
+            {{ thread.lovedCount || 0 }}
+          </div>
+          <router-link :to="{ name: 'threads.view', params: { threadid: thread.id }}">
+            {{ thread.data.title }}
           </router-link>
         </template>
       </div>
-    </MaterialCard>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Toolbar from '@/components/layout/Toolbar.vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useAuthors } from '@/state/authors'
 import { toThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
@@ -35,9 +52,10 @@ import { computed, defineComponent, onMounted, ref } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
+import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
-  components: { Toolbar, MaterialCard },
+  components: { Toolbar, Icon },
   props: {
     uid: {
       type: String,
@@ -49,7 +67,7 @@ export default defineComponent({
     console.log(authors, props.uid)
     const publicProfile = computed(() => (authors.value.find((val) => (val.uid === props.uid))))
 
-    const threads = ref(new Map<string, Thread>())
+    const threads = ref(new Array<Thread>())
 
     onMounted(() => {
       const db = firebase.firestore()
@@ -57,8 +75,9 @@ export default defineComponent({
       streamRef.where('author', '==', props.uid).get().then((streamDocs) => {
         console.log('got stream. threads: ', streamDocs.size)
         streamDocs.forEach((streamDoc) => {
-          threads.value.set(streamDoc.id, toThread(streamDoc.id, streamDoc.data()))
+          threads.value.push(toThread(streamDoc.id, streamDoc.data()))
         })
+        threads.value.sort((a, b) => (a.replyCount > b.replyCount ? -1 : a.lovedCount > b.lovedCount ? -1 : 0))
       })
     })
 
@@ -74,7 +93,7 @@ export default defineComponent({
 
 .linkGrid
   display: grid
-  grid-template-columns: auto 1fr
+  grid-template-columns: auto auto 1fr
   column-gap: 8px
   row-gap: 8px
 

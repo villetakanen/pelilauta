@@ -25,6 +25,11 @@ function markRedByIndex (index: number): void {
   inboxRef.update({ notifications: cachedMessages.value })
 }
 
+export async function setSeen (notificationSourceID: string): Promise<void> {
+  const messageIndex = cachedMessages.value.findIndex((nm) => (nm.source.id === notificationSourceID))
+  markRedByIndex(messageIndex)
+}
+
 let unsubscribe = () => {}
 
 function subscribeToInbox () {
