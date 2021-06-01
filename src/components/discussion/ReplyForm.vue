@@ -14,6 +14,7 @@
         v-model:content="reply"
         class="box contentBox"
         :disabled="sending"
+        @mention="mention($event)"
       />
       <Fab
         class="button"
@@ -66,13 +67,16 @@ export default defineComponent({
     const reply = ref('')
     const sending = ref(false)
     const addImageDialog = ref(true)
+    const mentions = ref(new Set<string>())
 
     const send = async () => {
       const { formattedContent } = extractLinks(reply.value)
       sending.value = true
-      return addReply(props.threadid, uid.value, formattedContent).then(() => {
+      const m = [...mentions.value]
+      return addReply(props.threadid, uid.value, formattedContent, m).then(() => {
         console.log('got here?')
         reply.value = ''
+        mentions.value.clear()
       }).finally(() => {
         sending.value = false
       })
@@ -84,6 +88,11 @@ export default defineComponent({
       imageToEditor.value = a
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mention = (a: string) => {
+      mentions.value.add(a)
+    }
+
     const imageToEditor = ref('')
     provide('imageToEditor', imageToEditor)
 
@@ -92,7 +101,8 @@ export default defineComponent({
     watch(quotedContent, (quote) => {
       console.debug('watch(() => quotedContent', quote)
     })
-    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog, addImageToEditor }
+
+    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
   }
 })
 </script>

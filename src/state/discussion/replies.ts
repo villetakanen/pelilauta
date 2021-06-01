@@ -46,14 +46,16 @@ export function useReplies (): { replies: ComputedRef<Map<string, Reply>> } {
  * @param author uid of the author
  * @param comment the comment payload as HTML
  */
-export async function addReply (threadid: string, author: string, comment: string): Promise<void> {
+export async function addReply (threadid: string, author: string, comment: string, mentions: string[]): Promise<void> {
   firebase.analytics().logEvent('addComment', { author: author, comment: comment })
   const parentRef = firebase.firestore().collection('stream').doc(threadid)
   const commentRef = parentRef.collection('comments')
+  console.warn(addReply, mentions)
   return commentRef.add({
     author: author,
     content: comment,
-    created: firebase.firestore.FieldValue.serverTimestamp() || { seconds: 0 }
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+    mentions: mentions
   }).then(() => {
     return parentRef.update({
       lastCommentAt: firebase.firestore.FieldValue.serverTimestamp(),

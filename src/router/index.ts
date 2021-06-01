@@ -210,8 +210,7 @@ const router = createRouter({
 const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites', 'threads.create']
 const ADMIN_ROUTES = [
   'global.admin',
-  'global.admin.topics',
-  'global.admin.editorTest'
+  'global.admin.topics'
 ]
 
 router.beforeEach((to, from, next) => {
