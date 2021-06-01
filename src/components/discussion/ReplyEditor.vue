@@ -10,6 +10,7 @@ import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, 
 import Quill from 'quill'
 import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
+import { useAuthors } from '@/state/authors'
 
 function hoistClipboardConfig (quill:Quill) {
   quill.clipboard.addMatcher(Node.ELEMENT_NODE,
@@ -48,8 +49,30 @@ export default defineComponent({
         'strike',
         'underline',
         'italic'
-      ]
+      ],
+      modules: {
+        mention: true
+      }
     }
+
+    const { nonFrozenAuthors } = useAuthors()
+
+    function mentionsModule (quill:Quill) {
+      quill.on('text-change', function (d, e) {
+        if (d.ops[0]?.insert === '@' || d.ops[1]?.insert === '@') {
+          console.debug('! add mention!', d, e)
+          quill.updateContents(new Delta({
+            ops: [
+              d.ops[0],
+              { insert: nonFrozenAuthors.value[0].nick }
+            ]
+          }))
+        }
+      })
+    }
+
+    // Implement and register module
+    Quill.register('modules/mention', mentionsModule)
 
     onMounted(() => {
       // We want to inject the Quill Editor only after this element has been
