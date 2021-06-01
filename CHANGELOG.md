@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.0](https://github.com/villetakanen/pelilauta/compare/v9.0.1...v9.1.0) (2021-06-01)
+
+
+### Features
+
+* mentions are added to quill ([e4d2fad](https://github.com/villetakanen/pelilauta/commit/e4d2fadd1b572b033fce849f2f84923cce23cdbb))
+* mentions-module is testable ([cabbe78](https://github.com/villetakanen/pelilauta/commit/cabbe78d7f749dcd0e03fef1209aff771bee7707))
+* very early alpha of mentions working ([35d8e20](https://github.com/villetakanen/pelilauta/commit/35d8e202cdffa5bad09f1d799e76c64c1c7f05f0))
+
+
+### Bug Fixes
+
+* code quality fixes ([17de8a9](https://github.com/villetakanen/pelilauta/commit/17de8a95ffde15680541c60854069be66619ac5c))
+* keep bold on paste ([543a3c4](https://github.com/villetakanen/pelilauta/commit/543a3c45826737864730ec222acc85eb860e3add))
+* locales and inbox messages ([834f0e2](https://github.com/villetakanen/pelilauta/commit/834f0e26d5a8b2e881b7b1b596bad882577ef0a7))
+* removed a deprecated component ([1cdf8fe](https://github.com/villetakanen/pelilauta/commit/1cdf8fec851ff74512d57deb293a13a9af1371fb))
+* styles restored to comments ([2884fd2](https://github.com/villetakanen/pelilauta/commit/2884fd27b512895e68e8215113dc29df255e4175))
+
 ### [9.0.1](https://github.com/villetakanen/pelilauta/compare/v9.0.0...v9.0.1) (2021-05-28)
 
 
