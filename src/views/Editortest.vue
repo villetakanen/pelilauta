@@ -14,9 +14,6 @@
     <div class="test-container">
       <div class="test-box">
         <MaterialCard>
-          <Editor
-            v-model="content"
-          />
           <QuillEditor
             v-model="content"
             :toolbar="true"
