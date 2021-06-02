@@ -47,7 +47,6 @@ export default defineComponent({
     }
   },
   setup (props) {
-    console.debug('EditTheadView.vue', props.threadid, props.mode, props.topic)
     subscribeThread(props.threadid)
     const { thread } = useThreads()
     return { thread }

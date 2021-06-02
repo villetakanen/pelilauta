@@ -96,9 +96,6 @@ export default defineComponent({
 
     const quotedContent = inject('quotedContent') as Ref<Quote>
     provide('quotedContent', quotedContent)
-    watch(quotedContent, (quote) => {
-      console.debug('watch(() => quotedContent', quote)
-    })
 
     return { reply, send, isAnonymous, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
   }

@@ -47,18 +47,15 @@ export default defineComponent({
     provide('quotedContent', quote)
 
     function addQuote (q: Quote) {
-      console.debug('addQuote', q)
       quote.value = q
     }
 
     let focused = false
     function hasFocus (r: ReplyType) {
       const focusTo = parseInt(props.focusTo)
-      console.debug('hasFocus', r.created?.seconds, focusTo, typeof props.focusTo)
       if (!focusTo || focused) return false
       if ((r.created?.seconds || 1) > focusTo) focused = true
       if (r.replyid === Array.from(replies.value?.values())?.pop()?.replyid) focused = true
-      console.debug('returns', focused)
       return focused
     }
 

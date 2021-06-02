@@ -68,7 +68,6 @@ export default defineComponent({
     const { pushSnack } = useSnack()
 
     watch(selectedLang, (currentValue) => {
-      console.debug('changing lang', currentValue)
       switchLang(currentValue).then(() => {
         pushSnack(i18n.t('snacks.languageUpdate') + ' ' + i18n.t('language.' + currentValue))
       })

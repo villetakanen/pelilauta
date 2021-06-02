@@ -43,11 +43,9 @@ async function fetchPagelog (): Promise<Array<PageLogEntry>> {
   const pageLogRef = db.collection('pagelog')
   await pageLogRef.orderBy('changetime', 'desc').where('silent', '==', false).limit(30).get().then((snapshot) => {
     snapshot.forEach((doc) => {
-      console.debug('pushing change', doc.id)
       log.push(doc.data() as PageLogEntry)
     })
   })
-  console.debug('returning', log)
   return log
 }
 
@@ -57,7 +55,6 @@ function subscribeToRecent () {
   const pageLogRef = db.collection('pagelog')
   unsubscribe = pageLogRef.orderBy('changetime', 'desc').where('silent', '==', false).limit(3).onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
-      console.debug('got change', change.doc.id)
       addToRecent(change.doc.data() as PageLogEntry)
     })
   })

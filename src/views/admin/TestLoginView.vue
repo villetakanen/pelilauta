@@ -33,7 +33,7 @@ export default defineComponent({
       firebase.auth().signInWithEmailAndPassword(username.value, password.value).then(() => {
         router.push('/profile')
       }).catch((error) => {
-        console.debug(error)
+        console.error(error)
         router.push('/login')
       })
     }

@@ -115,13 +115,11 @@ export default defineComponent({
     }
     const deleteThreadFromFirestore = async () => {
       if (deleteConfirm.value !== 'DELETE') return
-      console.debug('deleting thread')
       try {
         await deleteThread(uid.value, props.thread.id)
         pushSnack(i18n.t('stream.thread.deleteSucces'))
         router.push('/')
       } catch (error) {
-        console.debug(error)
         pushSnack(i18n.t('stream.thread.deleteFail'))
       }
     }

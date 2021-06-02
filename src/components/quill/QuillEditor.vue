@@ -24,9 +24,7 @@ export default defineComponent({
   emits: ['update:modelValue', 'new-images'],
   setup (props, context) {
     onMounted(() => {
-      console.debug('Quill editor injected, starting to add Quill', props.toolbar)
       const imageHandler = () => {
-        console.debug('imageHandler')
         const input = document.createElement('input')
 
         input.setAttribute('type', 'file')
@@ -34,7 +32,6 @@ export default defineComponent({
         input.click()
 
         input.onchange = async () => {
-          console.debug('event triggered!')
           const file = input.files ? input.files[0] : null
           if (!file || !props.storage) {
             throw Error('Missing file or storage path')
@@ -53,9 +50,7 @@ export default defineComponent({
           const fileRef = storageRef.child(`/${props.storage}/${file.name}`)
 
           const snapshot = await fileRef.put(file)
-          console.debug('snapshot:', snapshot)
           const url = await snapshot.ref.getDownloadURL()
-          console.debug('url:', url)
 
           // Remove placeholder image
           quill.deleteText(range.index, 1)
