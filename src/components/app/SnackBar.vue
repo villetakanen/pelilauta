@@ -65,7 +65,6 @@ export default defineComponent({
 
     function snackAction () {
       if (message.value && message.value.action) {
-        console.log(message.value.action)
         message.value.action()
         dismiss()
       }

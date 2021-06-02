@@ -162,7 +162,6 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      console.debug('focus:', props.focus)
       if (props.focus) replyRef.value?.scrollIntoView(true)
     })
 

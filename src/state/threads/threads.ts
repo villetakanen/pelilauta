@@ -179,7 +179,6 @@ const thread = computed(() => (subscribedPage.value))
 let unsubscribePage = () => {}
 
 export function subscribeThread (id?: string): void {
-  console.log('subscribing thread:', id)
   if (subscribedPage.value.id === id) return
   unsubscribePage()
   subscribedPage.value = toThread(id || '')

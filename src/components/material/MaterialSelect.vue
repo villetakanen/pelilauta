@@ -53,7 +53,6 @@ export default defineComponent({
     })
 
     function onChange () {
-      console.log('update:modelValue', fieldValue.value)
       context.emit('update:modelValue', fieldValue.value)
     }
 

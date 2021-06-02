@@ -3,7 +3,6 @@
     v-if="!isAnonymous"
     id="inboxAction"
     class="chromaFocus"
-    :class="{ active: active }"
     @click="reroute"
   >
     <Icon

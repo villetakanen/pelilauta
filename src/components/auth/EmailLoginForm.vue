@@ -51,7 +51,6 @@ export default defineComponent({
 
     const singInWithEmail = () => {
       if (!emailAdress.value) {
-        console.log('missing email adress value')
         pushSnack({ topic: i18n.t('snacks.invalidEmail') })
       }
       firebase.auth().signInWithEmailLink(emailAdress.value, window.location.href)
@@ -66,18 +65,18 @@ export default defineComponent({
           const { createProfile, profile } = useProfile()
           if (!profile.value.uid) {
             createProfile().then(() => {
-              console.log(result)
+              console.warn(result)
               router.push('/profile')
             }).catch((error: Error) => {
               pushSnack({ topic: error.message })
-              console.log(error)
+              console.warn(error)
               firebase.auth().signOut()
             })
           }
         })
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
-          console.log(error)
+          console.warn(error)
         })
     }
 
@@ -111,7 +110,7 @@ export default defineComponent({
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
           sending.value = false
-          console.log(error)
+          console.warn(error)
         })
     }
 

@@ -64,7 +64,6 @@ export default defineComponent({
   },
   setup (props) {
     const { authors } = useAuthors()
-    console.log(authors, props.uid)
     const publicProfile = computed(() => (authors.value.find((val) => (val.uid === props.uid))))
 
     const threads = ref(new Array<Thread>())
@@ -73,7 +72,6 @@ export default defineComponent({
       const db = firebase.firestore()
       const streamRef = db.collection('stream')
       streamRef.where('author', '==', props.uid).get().then((streamDocs) => {
-        console.log('got stream. threads: ', streamDocs.size)
         streamDocs.forEach((streamDoc) => {
           threads.value.push(toThread(streamDoc.id, streamDoc.data()))
         })

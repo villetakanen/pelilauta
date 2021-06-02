@@ -63,8 +63,6 @@ export default defineComponent({
     const toggleInfo = ref(false)
     const { pushSnack } = useSnack()
 
-    console.debug('asset', props.asset)
-
     async function drop () {
       try {
         await deleteAsset(props.asset.name)

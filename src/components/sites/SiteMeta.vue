@@ -62,7 +62,6 @@ export default defineComponent({
     const badge = computed({
       get: () => (localBadge.value || site.value.systemBadge),
       set: (val) => {
-        console.log('to', val)
         localBadge.value = val
       }
     })

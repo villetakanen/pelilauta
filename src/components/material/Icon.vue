@@ -118,7 +118,7 @@ export default defineComponent({
     const sourcePath = computed(() => {
       const srcs = icons.value.get(props.name)
       if (Array.isArray(srcs) && srcs.length === 2) return props.dark ? srcs[1] : srcs[0]
-      console.debug('Missing icon', props.name, props.dark ? 'dark' : 'light')
+      console.warn('Missing icon', props.name, props.dark ? 'dark' : 'light')
       return require('@/assets/icons/light/d12.svg')
     })
 

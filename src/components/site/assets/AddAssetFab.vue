@@ -49,10 +49,6 @@ export default defineComponent({
       uploading.value = false
     }
 
-    onMounted(() => {
-      console.log(uploader.value)
-    })
-
     return { uploader, addAsset }
   }
 })

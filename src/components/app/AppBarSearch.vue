@@ -59,7 +59,6 @@ export default defineComponent({
       if (!searchString.value) return
 
       searchString.value = ''
-      console.debug('search reroutes to', p)
     })
     return { isAnonymous, searchString, toSearch }
   }

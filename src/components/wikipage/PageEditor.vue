@@ -155,8 +155,6 @@ export default defineComponent({
       set: (val:string) => {
         if (val !== formName.value) {
           formName.value = val
-        } else {
-          console.debug('Trying to set thread title to itself. This is likely a bug.')
         }
       }
     })
@@ -168,8 +166,6 @@ export default defineComponent({
       set: (val:string) => {
         if (val !== formContent.value) {
           formContent.value = val
-        } else {
-          console.debug('Trying to set thread title to itself. This is likely a bug.')
         }
       }
     })
@@ -202,7 +198,7 @@ export default defineComponent({
         pushSnack(i18n.t('wiki.page.updateSuccesfull'))
       }).catch((error:Error) => {
         pushSnack(i18n.t('wiki.page.updateFailed'))
-        console.debug(error)
+        console.error(error)
       })
     }
     async function deletePage () {

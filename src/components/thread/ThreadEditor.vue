@@ -140,7 +140,6 @@ export default defineComponent({
     const toggle = () => { toggleSettings.value = !toggleSettings.value }
     const toggleMedia = ref(false)
     const toggleInjectMedia = () => { toggleMedia.value = !toggleMedia.value }
-    console.debug('thread', props.thread)
     // Thread name
     const localTitle = ref('')
     const threadTitle = computed({
@@ -148,8 +147,6 @@ export default defineComponent({
       set: (val:string) => {
         if (val !== localTitle.value) {
           localTitle.value = val
-        } else {
-          console.debug('Trying to set thread title to itself. This is likely a bug.')
         }
       }
     })
@@ -160,8 +157,6 @@ export default defineComponent({
       set: (val:string) => {
         if (val !== localContent.value) {
           localContent.value = val
-        } else {
-          console.debug('Trying to set thread content to itself. This is likely a bug.')
         }
       }
     })
@@ -177,7 +172,6 @@ export default defineComponent({
     const { streams } = useMeta()
     const topicOpts = computed(() => (streams.value.filter((val) => (val.slug !== '-')).map((val) => ({ key: val.slug, value: val.name }))))
     const threadTopic = ref(props.thread.data.topic || props.topic || 'Yleinen')
-    console.debug('ThreadEditor.vue', threadTopic.value)
     const minLength = (value:any) => (value.length > 1)
     const maxLength = (value:any) => (value.toString().trim().length < 36)
     const rules = {

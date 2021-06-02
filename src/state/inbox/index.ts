@@ -18,6 +18,7 @@ const unreadCount = computed(() => {
 })
 
 function markRedByIndex (index: number): void {
+  if (!cachedMessages.value[index]) return
   cachedMessages.value[index].meta.new = false
   const db = firebase.firestore()
   const { uid } = useAuthState()
@@ -37,8 +38,6 @@ function subscribeToInbox () {
   if (uid.value === _uid) return
   _uid = uid.value
 
-  console.debug('subscribing to inbox contents')
-
   unsubscribe()
   const db = firebase.firestore()
   const inboxRef = db.collection('inbox').doc(uid.value)
@@ -53,7 +52,6 @@ function subscribeToInbox () {
       if (Array.isArray(notifications)) {
         cachedMessages.value = new Array<NotificationMessage>()
         notifications.forEach((row) => {
-          console.debug('pushing', row)
           cachedMessages.value.push(row as NotificationMessage)
         })
         cachedMessages.value.sort((a, b) => {

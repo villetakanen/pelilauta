@@ -113,13 +113,11 @@ function hasAdmin (uid: string): boolean {
 }
 
 async function addPlayer (uid:string) {
-  console.debug('addPlayer', stateSite.value.id, uid)
   const playersArray = Array.isArray(stateSite.value.players) ? stateSite.value.players : new Array<string>()
   if (!playersArray.includes(uid)) playersArray.push(uid)
   return updateSite({ id: stateSite.value.id, players: playersArray })
 }
 async function removePlayer (uid:string) {
-  console.debug('removePlayer', stateSite.value.id, uid)
   const playersArray = Array.isArray(stateSite.value.players)
     ? stateSite.value.players.filter((p) => (p !== uid))
     : new Array<string>()
