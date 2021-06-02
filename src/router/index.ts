@@ -133,10 +133,18 @@ const routes: Array<RouteRecordRaw> = [
     name: 'wiki.changes'
   },
   {
+    name: 'mekanismi.site',
     path: '/site/:siteid',
     component: () => import(/* webpackChunkName: "sites" */ '../views/site/ViewPage.vue'),
-    props: (route) => ({ siteid: route.params.siteid, pageid: route.params.siteid }),
-    name: 'mekanismi.site'
+    props: true,
+    children: [
+      {
+        name: 'mekanismi.page.view',
+        props: true,
+        path: 'page/:pageid',
+        component: () => import(/* webpackChunkName: "sites" */ '../views/site/ViewPage.vue')
+      }
+    ]
   },
   {
     path: '/mekanismi/view/:siteid/:pageid',
