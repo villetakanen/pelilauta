@@ -1,19 +1,27 @@
 <template>
-  <teleport to="#ScreenBottomFloatRight">
+  <teleport to="#ScreenBottomFabsContainer">
     <div class="pageFabs">
+      <Fab
+        v-if="canEdit"
+        id="pageFabsCreateThread"
+        secondary
+        :to="`/site/${page.siteid}/thread/new`"
+        :text="$t('action.addThread')"
+        icon="addDiscussion"
+      />
       <Fab
         v-if="canEdit"
         id="wikipageCreatePageFab"
         secondary
-        :to="`/site/addpage/${page.siteid}`"
-        :text="$t('action.create')"
+        :to="`/site/${page.siteid}/page/new`"
+        :text="$t('action.addPage')"
         icon="add"
       />
       <Fab
         v-if="canEdit"
         id="wikipageEditPageFab"
         :text="$t('action.edit')"
-        :to="`/mekanismi/edit/${page.siteid}/${page.id}`"
+        :to="`/site/${page.siteid}/page/edit/${page.id}`"
         icon="edit"
       />
     </div>
