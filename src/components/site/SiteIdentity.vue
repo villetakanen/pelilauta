@@ -38,7 +38,6 @@ export default defineComponent({
     const selected = computed({
       get: () => (site.value.splashURL),
       set: (val) => {
-        console.log(val)
         const siteFragment:SiteData = { id: site.value.id, splashURL: val }
         updateSite(siteFragment)
       }

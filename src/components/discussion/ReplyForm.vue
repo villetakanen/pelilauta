@@ -74,7 +74,6 @@ export default defineComponent({
       sending.value = true
       const m = [...mentions.value]
       return addReply(props.threadid, uid.value, formattedContent, m).then(() => {
-        console.log('got here?')
         reply.value = ''
         mentions.value.clear()
       }).finally(() => {
@@ -84,7 +83,6 @@ export default defineComponent({
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const addImageToEditor = (a: any) => {
-      console.log('addImageToEditor', a)
       imageToEditor.value = a
     }
 

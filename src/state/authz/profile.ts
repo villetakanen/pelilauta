@@ -65,7 +65,6 @@ function fetchProfile (uid:string|null) {
     const db = firebase.firestore()
     const fbProfileRef = db.collection('profiles').doc(uid)
     unsubscribe = fbProfileRef.onSnapshot((snap) => {
-      console.log('profile updated, fetching new data')
       if (!snap.exists) {
         profileRef.value = { nick: '', tagline: '' }
         return
@@ -91,7 +90,7 @@ function fetchProfile (uid:string|null) {
 }
 
 async function createProfile (): Promise<void> {
-  console.log('Initializing a new profile for the user')
+  console.warn('Initializing a new profile for the user')
   const db = firebase.firestore()
   const fbProfileRef = db.collection('profiles').doc(firebase.auth().currentUser?.uid)
   return fbProfileRef.get().then((doc) => {
@@ -118,10 +117,6 @@ async function updateProfile (fields: Record<string, string>): Promise<void> {
 
 function hasSeen (threadid: string, flowTime?: firebase.firestore.Timestamp|null): boolean {
   if (!flowTime) return false
-  /* console.log(profileMeta.value.allThreadsSeenSince?.seconds,
-    flowTime.seconds,
-    (profileMeta.value.allThreadsSeenSince?.seconds || 0) >= flowTime.seconds
-  ) */
   if (profileMeta.value.allThreadsSeenSince && profileMeta.value.allThreadsSeenSince.seconds >= flowTime.seconds) return true
   if (profileMeta.value.seenThreads) {
     return ((profileMeta.value.seenThreads.get(threadid) || 0) >= flowTime)
@@ -137,7 +132,6 @@ function seenFrom (threadid: string): number {
 }
 
 async function markAllThreadsRead (): Promise<void> {
-  console.log('markAllThreadRead')
   const db = firebase.firestore()
   const { uid } = useAuthState()
   const fbProfileRef = db.collection('profiles').doc(uid.value)

@@ -83,7 +83,6 @@ export default defineComponent({
       const { formattedContent: fc1, tags } = extractTags(content.value)
       const { formattedContent } = extractLinks(fc1)
       content.value = formattedContent
-      console.log(tags)
     }
 
     return { content, images, simulateSave, replyContent, exampleReply }

@@ -26,7 +26,6 @@ const uid = computed({
 })
 
 function flushAuth () {
-  console.log('flushAuth')
   anonymousSession.value = true
   authUid.value = ''
 }

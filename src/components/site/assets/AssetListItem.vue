@@ -73,7 +73,6 @@ export default defineComponent({
     const crudActions = computed(() => {
       const { hasAdmin } = useSite()
       const { uid } = useAuthState()
-      console.log(uid.value, hasAdmin(uid.value))
       return hasAdmin(uid.value)
     })
 

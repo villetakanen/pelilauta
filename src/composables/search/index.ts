@@ -21,7 +21,6 @@ function search (s: string) {
     return
   }
   index.search(s).then(({ hits }) => {
-    console.log(hits)
     const arr: Array<SearchResult> = hits.map((val) => ((val as unknown) as SearchResult))
     searchResults.value = arr.reverse()
   })

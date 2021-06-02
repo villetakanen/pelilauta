@@ -16,7 +16,6 @@ const snackStackLength = computed(() => (snackStack.value.length))
 function pushSnack (message: SnackMessage|string) {
   if (typeof message === 'string') snackStack.value.push({ topic: message })
   else snackStack.value.push(message)
-  console.log('snacks', snackStack.value)
 }
 
 function popSnack (): SnackMessage|undefined {

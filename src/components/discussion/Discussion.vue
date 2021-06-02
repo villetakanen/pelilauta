@@ -42,7 +42,6 @@ export default defineComponent({
   setup (props) {
     subscribeToReplies(props.thread.id)
     const { replies } = useReplies()
-    console.log(replies)
 
     const quote:Ref<Quote> = ref({ content: '', author: '' })
     provide('quotedContent', quote)

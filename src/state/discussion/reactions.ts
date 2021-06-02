@@ -20,7 +20,6 @@ export async function loveReply (uid: string, threadid: string, replyid: string)
   const db = firebase.firestore()
   const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
 
-  // console.log('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
   firebase.analytics().logEvent('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
   return db.runTransaction((transaction: firebase.firestore.Transaction) => {
@@ -64,7 +63,6 @@ export async function unloveReply (uid: string, threadid: string, replyid: strin
   const db = firebase.firestore()
   const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
 
-  // console.log('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
   firebase.analytics().logEvent('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
   return db.runTransaction((transaction: firebase.firestore.Transaction) => {
