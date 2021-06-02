@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.1.1](https://github.com/villetakanen/pelilauta/compare/v9.1.0...v9.1.1) (2021-06-02)
+
+
+### Bug Fixes
+
+* correct url to authorinfo ([72ac6fb](https://github.com/villetakanen/pelilauta/commit/72ac6fb60101b1838bd14a3d527b02a63511493c))
+* inbox code quality ([471a0d0](https://github.com/villetakanen/pelilauta/commit/471a0d0cc8bba02d21fb0af8714b2741e0ba1e46))
+* removed extraneous debug messages ([4f4aa39](https://github.com/villetakanen/pelilauta/commit/4f4aa392340ec67549389accce67d97f3d757b88))
+* removed extraneous logging of state ([d5fcc15](https://github.com/villetakanen/pelilauta/commit/d5fcc15c75e9579efe2d884956d7fbae0a5b94be))
+* sanity on markred for reloads ([ba38d44](https://github.com/villetakanen/pelilauta/commit/ba38d4476d70dc4865e7812ffe22159662062690))
+
 ## [9.1.0](https://github.com/villetakanen/pelilauta/compare/v9.0.1...v9.1.0) (2021-06-01)
 
 
