@@ -18,6 +18,7 @@ const unreadCount = computed(() => {
 })
 
 function markRedByIndex (index: number): void {
+  if (!cachedMessages.value[index]) return
   cachedMessages.value[index].meta.new = false
   const db = firebase.firestore()
   const { uid } = useAuthState()
