@@ -13,7 +13,7 @@
 <script lang="ts">
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import PageEditor from '@/components/wikipage/PageEditor.vue'
-import { usePages, useSite } from '@/state/site'
+import { fetchPage, usePages, useSite } from '@/state/site'
 import { defineComponent } from 'vue'
 
 /**
@@ -38,11 +38,13 @@ export default defineComponent({
     },
     pageid: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     }
   },
-  setup () {
-    const { site } = useSite()
+  setup (props) {
+    const { site } = useSite(props.siteid)
+    fetchPage(props.pageid || props.siteid)
     const { page } = usePages()
     return { site, page }
   }
