@@ -207,6 +207,26 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)',
     component: () => import(/* webpackChunkName: "global" */ '../views/404.vue')
+  },
+  // Site: create-an-entity routes
+  {
+    name: 'site.add.page',
+    path: '/site/:siteid/add/page',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/AddPageView.vue')
+  },
+  {
+    name: 'site.add.thread',
+    path: '/site/:siteid/add/thread',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/pelilauta/EditThread.vue')
+  },
+  // Site: Page (c)RUD routes
+  {
+    name: 'site.page.edit',
+    path: '/site/:siteid/page/:pageid/edit',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue')
   }
 ]
 

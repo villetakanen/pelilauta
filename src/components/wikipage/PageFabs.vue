@@ -5,7 +5,7 @@
         v-if="canEdit"
         id="pageFabsCreateThread"
         secondary
-        :to="`/site/${page.siteid}/thread/new`"
+        :to="`/site/${page.siteid}/add/thread`"
         :text="$t('action.addThread')"
         icon="addDiscussion"
       />
@@ -13,7 +13,7 @@
         v-if="canEdit"
         id="wikipageCreatePageFab"
         secondary
-        :to="`/site/${page.siteid}/page/new`"
+        :to="`/site/${page.siteid}/add/page`"
         :text="$t('action.addPage')"
         icon="add"
       />
@@ -21,7 +21,7 @@
         v-if="canEdit"
         id="wikipageEditPageFab"
         :text="$t('action.edit')"
-        :to="`/site/${page.siteid}/page/edit/${page.id}`"
+        :to="`/site/${page.siteid}/page/${page.id}/edit`"
         icon="edit"
       />
     </div>
