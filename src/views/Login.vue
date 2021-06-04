@@ -1,10 +1,7 @@
 <template>
-  <Toolbar>
-    <h3>{{ $t('login.title') }}</h3>
-  </Toolbar>
-  <div class="contentGrid">
+  <div class="singleColumnLayout">
     <EmailLoginForm />
-    <MaterialCard class="main-view">
+    <Card class="main-view">
       <p>{{ $t('login.message') }}</p>
       <div class="loginButton">
         <MaterialButton
@@ -30,7 +27,7 @@
           > {{ $t('login.withFacebookButton') }}
         </MaterialButton>
       </div>
-    </MaterialCard>
+    </Card>
   </div>
 </template>
 
@@ -39,18 +36,16 @@ import { defineComponent } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/analytics'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
-import Toolbar from '@/components/layout/Toolbar.vue'
 import EmailLoginForm from '@/components/auth/EmailLoginForm.vue'
+import Card from '@/components/layout/Card.vue'
 
 export default defineComponent({
   components: {
     MaterialButton,
-    MaterialCard,
-    Toolbar,
-    EmailLoginForm
+    EmailLoginForm,
+    Card
   },
   setup () {
     const router = useRouter()

@@ -10,6 +10,13 @@
     </Action>
     <Action
       v-if="isAdmin"
+      to="/thread/add"
+      prepend="lightbulb"
+    >
+      {{ $t('action.addThread') }}
+    </Action>
+    <Action
+      v-if="isAdmin"
       to="global.admin.editorTest"
       prepend="edit"
     >
