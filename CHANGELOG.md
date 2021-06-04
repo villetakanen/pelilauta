@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.2.0](https://github.com/villetakanen/pelilauta/compare/v9.1.1...v9.2.0) (2021-06-04)
+
+
+### Features
+
+* add a thread to a game site ([9545ad7](https://github.com/villetakanen/pelilauta/commit/9545ad7b6d207520885565467714dead840be220))
+
+
+### Bug Fixes
+
+* added a page tabs test ([53e5fe6](https://github.com/villetakanen/pelilauta/commit/53e5fe6ff892f3bb5b064d45a1b03405fb1426c9))
+* e2e test runs and fixes post pagefabs updates ([b9327f4](https://github.com/villetakanen/pelilauta/commit/b9327f4a718f6c37bc6b52abd685f529744206f5))
+* more apt chunk name for site front page route ([c090e50](https://github.com/villetakanen/pelilauta/commit/c090e5028db03784c319f3cafd4fce0ddc964530))
+* nested new routes for view site and view page ([d701bea](https://github.com/villetakanen/pelilauta/commit/d701beac7088620414ae5f48368efffbbc726752))
+* updated routes for pagefabs ([44d4daa](https://github.com/villetakanen/pelilauta/commit/44d4daa38895a09310756916a6d767931c6cb784))
+
 ### [9.1.1](https://github.com/villetakanen/pelilauta/compare/v9.1.0...v9.1.1) (2021-06-02)
 
 
