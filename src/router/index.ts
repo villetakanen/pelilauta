@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: () => import(/* webpackChunkName: "global" */ '../views/Login.vue')
   },
   {
