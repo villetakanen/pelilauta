@@ -63,13 +63,14 @@
   "login": {
     "title": "Kirjaudu tai rekisteröidy",
     "message": "Voit kirjautua sovellukseen Googlen tai Facebookin avulla allaolevilla nappuloilla.",
-    "withGoogleButton": "Googlella",
-    "withFacebookButton": "Facebookila",
+    "withGoogleButton": "Google",
+    "withFacebookButton": "Facebook",
     "verifyEmailLoginMessage": "Vahvistathan tunnuksesi saamasi sähköpostiviestin avulla",
     "emailLoginMessage": "Kirjaudu sähköpostilla",
     "emailLoginDataInfoLink": "Lisätietoja kirjautumisesta ja henkilötiedojen käsittelystä sovelluksessa",
     "withEmail": "Kirjaudu",
-    "emailLoginHelper": "Sähköpostiosoite"
+    "emailLoginHelper": "Sähköpostiosoite",
+    "socialLoginTitle": "Kirjaudu pavelun avulla"
   },
   "notification": {
     "newThreadReply": "vastasi ketjuun.",
