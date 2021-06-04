@@ -1,31 +1,40 @@
 <template>
-  <MaterialCard>
-    <p v-if="verify">
-      Please verify your email address.
-    </p>
-    <p v-else>
-      {{ $t('login.emailLoginMessage') }}
-      <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
-        {{ $t('login.emailLoginDataInfoLink') }}
-      </router-link>
-    </p>
-    <TextField
-      v-model="emailAdress"
-      :disabled="sending"
-    />
-    <Toolbar>
-      <div class="spacer" />
-      <MaterialButton :async-action="sendLinkToEmail">
-        {{ $t('login.withEmail') }}
-      </MaterialButton>
-    </Toolbar>
-  </MaterialCard>
+  <Card class="emailLoginForm">
+    <div
+      v-if="verify"
+      class="verifyWarning"
+    >
+      {{ $t('login.verifyEmailLoginMessage') }}
+    </div>
+    <div v-else>
+      <h1 class="title">
+        {{ $t('login.emailLoginMessage') }}
+      </h1>
+      <p class="caption">
+        <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
+          {{ $t('login.emailLoginDataInfoLink') }}
+        </router-link>
+      </p>
+    </div>
+    <div>
+      <TextField
+        v-model="emailAdress"
+        :disabled="sending"
+        :label="$t('login.emailLoginHelper')"
+      />
+      <Toolbar>
+        <div class="spacer" />
+        <MaterialButton :async-action="sendLinkToEmail">
+          {{ $t('login.withEmail') }}
+        </MaterialButton>
+      </Toolbar>
+    </div>
+  </Card>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import MaterialCard from '../material/MaterialCard.vue'
 import TextField from '../material/TextField.vue'
 import firebase from 'firebase/app'
 import { useSnack } from '@/composables/useSnack'
@@ -33,9 +42,10 @@ import { useRouter } from 'vue-router'
 import Toolbar from '../layout/Toolbar.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
+import Card from '../layout/Card.vue'
 
 export default defineComponent({
-  components: { MaterialCard, TextField, MaterialButton, Toolbar },
+  components: { TextField, MaterialButton, Toolbar, Card },
   setup () {
     const emailAdress = ref('')
     const verify = firebase.auth().isSignInWithEmailLink(window.location.href)
@@ -118,3 +128,14 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
+.caption
+  @include TypeCaption()
+  margin-bottom: 16px !important
+  opacity: 0.5
+  a
+    text-decoration: none
+</style>
