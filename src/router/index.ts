@@ -133,6 +133,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'wiki.changes'
   },
   {
+    path: '/site/:siteid',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
+    props: (route) => ({ siteid: route.params.siteid, pageid: route.params.siteid }),
+    name: 'mekanismi.site'
+  },
+  {
     path: '/mekanismi/view/:siteid/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
     props: true,
@@ -145,13 +151,19 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.players'
   },
   {
-    path: '/site/addpage/:siteid',
+    path: '/site/:siteid/page/new',
     component: () => import(/* webpackChunkName: "sites" */ '../views/site/AddPageView.vue'),
     props: true,
     name: 'site.page.new'
   },
   {
-    path: '/mekanismi/edit/:siteid/:pageid',
+    path: '/site/:siteid/thread/new',
+    component: () => import(/* webpackChunkName: "sites" */ '../views/pelilauta/EditThread.vue'),
+    props: true,
+    name: 'site.page.new'
+  },
+  {
+    path: '/site/:siteid/page/edit/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue'),
     props: true,
     name: 'mekanismi.edit'
@@ -195,6 +207,26 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)',
     component: () => import(/* webpackChunkName: "global" */ '../views/404.vue')
+  },
+  // Site: create-an-entity routes
+  {
+    name: 'site.add.page',
+    path: '/site/:siteid/add/page',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/AddPageView.vue')
+  },
+  {
+    name: 'site.add.thread',
+    path: '/site/:siteid/add/thread',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/pelilauta/EditThread.vue')
+  },
+  // Site: Page (c)RUD routes
+  {
+    name: 'site.page.edit',
+    path: '/site/:siteid/page/:pageid/edit',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue')
   }
 ]
 

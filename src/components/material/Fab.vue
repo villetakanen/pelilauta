@@ -125,9 +125,9 @@ export default defineComponent({
     padding: 0
     margin-left: 16px
 .fab:not(:last-child)
-  margin-left: 6px
-.fab:not(:first-child)
   margin-right: 6px
+.fab:not(:first-child)
+  margin-left: 6px
 @include media('>tablet')
   .fab
     &.hasLabel

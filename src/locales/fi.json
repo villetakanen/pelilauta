@@ -1,7 +1,8 @@
 {
   "action": {
     "addAttachment": "Lisää tiedosto",
-    "addThread": "Uusi aihe",
+    "addThread": "Uusi ketju",
+    "addPage": "Uusi sivu",
     "add": "Lisää",
     "admin": "Admin",
     "cancel": "Peruuta",
