@@ -22,12 +22,12 @@
         :disabled="sending"
         :label="$t('login.emailLoginHelper')"
       />
-      <Toolbar>
+      <div class="toolbar">
         <div class="spacer" />
         <MaterialButton :async-action="sendLinkToEmail">
           {{ $t('login.withEmail') }}
         </MaterialButton>
-      </Toolbar>
+      </div>
     </div>
   </Card>
 </template>
@@ -39,13 +39,12 @@ import TextField from '../material/TextField.vue'
 import firebase from 'firebase/app'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
-import Toolbar from '../layout/Toolbar.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
 import Card from '../layout/Card.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton, Toolbar, Card },
+  components: { TextField, MaterialButton, Card },
   setup () {
     const emailAdress = ref('')
     const verify = firebase.auth().isSignInWithEmailLink(window.location.href)
