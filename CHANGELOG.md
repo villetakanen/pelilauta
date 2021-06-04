@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.2.1](https://github.com/villetakanen/pelilauta/compare/v9.2.0...v9.2.1) (2021-06-04)
+
+
+### Bug Fixes
+
+* admin screen to use current layout classes ([78e4e67](https://github.com/villetakanen/pelilauta/commit/78e4e670ea0ee745de350c273cc418900d55e9c8))
+* email login layout ux to match current ds ([af81901](https://github.com/villetakanen/pelilauta/commit/af8190190b6b3dc824936ea6b6afea55293ad6f6))
+
 ## [9.2.0](https://github.com/villetakanen/pelilauta/compare/v9.1.1...v9.2.0) (2021-06-04)
 
 
