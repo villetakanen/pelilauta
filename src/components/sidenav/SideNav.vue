@@ -50,7 +50,7 @@ export default defineComponent({
 #sideNav
   position: absolute
   z-index: 900
-  top: 72px
+  top: 56px
   left: 0
   width: 310px
   height: 100vh
