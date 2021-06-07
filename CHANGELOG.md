@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.2.3](https://github.com/villetakanen/pelilauta/compare/v9.2.2...v9.2.3) (2021-06-07)
+
+
+### Bug Fixes
+
+* removed deprecated components ([3ec90a6](https://github.com/villetakanen/pelilauta/commit/3ec90a6bebfe37f4b7069411b3035e051db384f3))
+
 ### [9.2.2](https://github.com/villetakanen/pelilauta/compare/v9.2.1...v9.2.2) (2021-06-07)
 
 
