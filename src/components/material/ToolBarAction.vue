@@ -1,8 +1,7 @@
 <template>
   <div
     class="toolbarAction"
-    :class="{disabled: disabled, active: active, clicked: clicked}"
-    @click="clicks"
+    :class="{disabled: disabled, active: active }"
   >
     <Icon
       :name="icon"
@@ -36,23 +35,19 @@ export default defineComponent({
   },
   setup () {
     const clicked = ref(false)
-    function clicks () {
-      clicked.value = true
-      setTimeout(() => { clicked.value = false }, 300)
-    }
-    return { clicked, clicks }
+    return { clicked }
   }
 })
 </script>
 
 <style lang="sass" scoped>
 .toolbarAction
-  transition: background-color 300ms linear
+  transition: background-color 300ms
   &:hover
     background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
   &.active
     background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
-  &.clicked
+  &:active
     background-color: var(--chroma-clear)
 .toolbarAction+.toolbarAction
   border-left: solid 1px var(--chroma-primary-c)

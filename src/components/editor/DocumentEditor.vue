@@ -1,6 +1,5 @@
 <template>
   <div class="documentEditor">
-    Document editor skeleton
     <div class="toolbar">
       <ToolBarAction
         icon="head-1"
