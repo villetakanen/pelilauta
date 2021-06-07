@@ -21,6 +21,7 @@ import Quill from 'quill'
 import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
 import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
+import { hoistClipboardConfig } from '@/utils/quill/clipboard'
 
 /**
  * View component for the Tread Editor
@@ -42,6 +43,12 @@ export default defineComponent({
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
 
+    const config = {
+      formats: [
+        'bold'
+      ]
+    }
+
     function toggleBold () {
       if (quill) quill.format('bold', true)
     }
@@ -52,7 +59,9 @@ export default defineComponent({
       if (!editor.value) return
 
       // Init the quill-editor to the editor field
-      quill = new Quill(editor.value)
+      quill = new Quill(editor.value, config)
+
+      hoistClipboardConfig(quill)
 
       // If we have content at this point, inject it to editorfield
       // this could be done with v-once also, but that wound move the

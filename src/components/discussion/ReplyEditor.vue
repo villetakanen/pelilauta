@@ -49,7 +49,8 @@ export default defineComponent({
         'bold',
         'strike',
         'underline',
-        'italic'
+        'italic',
+        'link'
       ],
       modules: {
         mention: true
