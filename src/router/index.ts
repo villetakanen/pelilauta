@@ -219,7 +219,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.add.thread',
     path: '/site/:siteid/add/thread',
     props: true,
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/pelilauta/EditThread.vue')
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/threads/ThreadEditorView.vue')
   },
   // Site: Page (c)RUD routes
   {
