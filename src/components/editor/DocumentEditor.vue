@@ -1,7 +1,14 @@
 <template>
   <div class="documentEditor">
     Document editor skeleton
-    <div ref="toolbar" />
+    <div ref="toolbar">
+      <MaterialButton
+        icon
+        @click="toggleBold"
+      >
+        <Icon name="bold" />
+      </MaterialButton>
+    </div>
     <div
       ref="editor"
       class="editorArea"
@@ -12,6 +19,8 @@
 <script lang="ts">
 import Quill from 'quill'
 import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
+import Icon from '../material/Icon.vue'
+import MaterialButton from '../material/MaterialButton.vue'
 
 /**
  * View component for the Tread Editor
@@ -23,6 +32,8 @@ import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
 export default defineComponent({
   name: 'DocumentEditor',
   components: {
+    Icon,
+    MaterialButton
   },
   props: {
     content: { type: String, required: false, default: '' }
@@ -30,6 +41,10 @@ export default defineComponent({
   setup (props) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
+
+    function toggleBold () {
+      if (quill) quill.format('bold', true)
+    }
 
     function initializeEditor (): void {
       console.debug('DocumentEditor', 'initializeEditor')
@@ -57,7 +72,7 @@ export default defineComponent({
       initializeEditor()
     })
 
-    return { editor }
+    return { editor, toggleBold }
   }
 })
 </script>

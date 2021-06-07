@@ -62,6 +62,7 @@ export default defineComponent({
       'admin',
       'attachments',
       'avatar',
+      'bold',
       'books',
       'd6',
       'd12',
