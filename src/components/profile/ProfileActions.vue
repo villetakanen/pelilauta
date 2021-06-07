@@ -1,5 +1,5 @@
 <template>
-  <div class="profileActions">
+  <Card class="profileActions">
     <h3>{{ $t('profile.actions.title') }}</h3>
     <p>{{ $t('profile.actions.helper') }}</p>
     <div>
@@ -23,7 +23,7 @@
         {{ $t('action.logout') }}
       </MaterialButton>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts">
@@ -36,12 +36,14 @@ import { useProfile } from '@/state/authz'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
+import Card from '../layout/Card.vue'
 
 export default defineComponent({
   name: 'ProfileActions',
   components: {
     MaterialButton,
-    MaterialSelect
+    MaterialSelect,
+    Card
   },
   setup () {
     const i18n = useI18n()

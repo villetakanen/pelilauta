@@ -7,19 +7,9 @@
     <AppAction />
     <div class="spacer" />
     <AppBarSearch v-if="!isAnonymous" />
-    <Action
-      prepend="mekanismi"
-      to="/mekanismi"
-    >
-      <span
-        class="hideOnMobile"
-      >
-        Mekanismi
-      </span>
-    </Action>
     <InboxAction />
     <Action
-      v-if="!isAnonymous"
+      :disabled="isAnonymous"
       prepend="avatar"
       to="/profile"
     >
