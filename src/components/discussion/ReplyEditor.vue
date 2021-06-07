@@ -8,21 +8,9 @@
 <script lang="ts">
 import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue'
 import Quill from 'quill'
-import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
 import { mentionsModule } from '@/utils/quill/mentionsModule'
-
-function hoistClipboardConfig (quill:Quill) {
-  quill.clipboard.addMatcher(Node.ELEMENT_NODE,
-    function (node, delta) {
-      return delta.compose(new Delta().retain(delta.length(),
-        {
-          color: false,
-          background: false
-        }))
-    }
-  )
-}
+import { hoistClipboardConfig } from '@/utils/quill/clipboard'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
