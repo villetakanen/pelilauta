@@ -57,6 +57,7 @@ export default defineComponent({
     const slugs = [
       'about',
       'add',
+      'add-link',
       'addAnImage',
       'addDiscussion',
       'admin',

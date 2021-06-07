@@ -19,6 +19,22 @@
         @click="toggleItalic"
       />
       <div class="spacer" />
+      <ToolBarAction
+        icon="add-link"
+        @click="toggleItalic"
+      />
+      <ToolBarAction
+        icon="addAnImage"
+        @click="toggleItalic"
+      />
+      <ToolBarAction
+        icon="youtube"
+        @click="toggleItalic"
+      />
+      <div class="spacer" />
+      <ToolBarAction
+        icon="equalizer"
+      />
     </div>
     <div
       ref="editor"

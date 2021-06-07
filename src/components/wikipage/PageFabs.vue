@@ -2,9 +2,9 @@
   <teleport to="#ScreenBottomFabsContainer">
     <div class="pageFabs">
       <Fab
-        v-if="canEdit"
+        v-if="isAdmin"
         id="pageFabsCreateThread"
-        secondary
+        tertiary
         :to="`/site/${page.siteid}/add/thread`"
         :text="$t('action.addThread')"
         icon="addDiscussion"
@@ -40,6 +40,7 @@ export default defineComponent({
     Fab
   },
   setup () {
+    const { isAdmin } = useAuthState()
     const page = inject('page') as ComputedRef<Page>
     const dialog = ref(false)
     function addPageDialog () {
@@ -51,7 +52,7 @@ export default defineComponent({
       return hasAdmin(uid.value)
     })
 
-    return { page, dialog, addPageDialog, canEdit }
+    return { page, dialog, addPageDialog, canEdit, isAdmin }
   }
 })
 </script>

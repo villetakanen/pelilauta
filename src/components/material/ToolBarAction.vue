@@ -1,7 +1,8 @@
 <template>
   <div
     class="toolbarAction"
-    :class="{disabled: disabled, active: active}"
+    :class="{disabled: disabled, active: active, clicked: clicked}"
+    @click="clicks"
   >
     <Icon
       :name="icon"
@@ -11,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Icon from './Icon.vue'
 
 export default defineComponent({
@@ -32,6 +33,14 @@ export default defineComponent({
       required: false,
       default: false
     }
+  },
+  setup () {
+    const clicked = ref(false)
+    function clicks () {
+      clicked.value = true
+      setTimeout(() => { clicked.value = false }, 300)
+    }
+    return { clicked, clicks }
   }
 })
 </script>
@@ -43,6 +52,8 @@ export default defineComponent({
     background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
   &.active
     background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+  &.clicked
+    background-color: var(--chroma-clear)
 .toolbarAction+.toolbarAction
   border-left: solid 1px var(--chroma-primary-c)
 </style>
