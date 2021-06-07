@@ -3,6 +3,14 @@
     Document editor skeleton
     <div class="toolbar">
       <ToolBarAction
+        icon="head-1"
+        @click="toggleBold"
+      />
+      <ToolBarAction
+        icon="head-2"
+        @click="toggleBold"
+      />
+      <ToolBarAction
         icon="bold"
         @click="toggleBold"
       />

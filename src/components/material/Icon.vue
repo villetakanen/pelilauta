@@ -74,6 +74,8 @@ export default defineComponent({
       'equalizer',
       'filter',
       'forum',
+      'head-1',
+      'head-2',
       'hidden',
       'homebrew-logo',
       'idea',
