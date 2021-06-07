@@ -1,13 +1,16 @@
 <template>
   <div class="documentEditor">
     Document editor skeleton
-    <div ref="toolbar">
-      <MaterialButton
-        icon
+    <div class="toolbar">
+      <ToolBarAction
+        icon="bold"
         @click="toggleBold"
-      >
-        <Icon name="bold" />
-      </MaterialButton>
+      />
+      <ToolBarAction
+        icon="italic"
+        @click="toggleItalic"
+      />
+      <div class="spacer" />
     </div>
     <div
       ref="editor"
@@ -19,9 +22,8 @@
 <script lang="ts">
 import Quill from 'quill'
 import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
-import Icon from '../material/Icon.vue'
-import MaterialButton from '../material/MaterialButton.vue'
 import { hoistClipboardConfig } from '@/utils/quill/clipboard'
+import ToolBarAction from '../material/ToolBarAction.vue'
 
 /**
  * View component for the Tread Editor
@@ -33,8 +35,7 @@ import { hoistClipboardConfig } from '@/utils/quill/clipboard'
 export default defineComponent({
   name: 'DocumentEditor',
   components: {
-    Icon,
-    MaterialButton
+    ToolBarAction
   },
   props: {
     content: { type: String, required: false, default: '' }
@@ -51,6 +52,9 @@ export default defineComponent({
 
     function toggleBold () {
       if (quill) quill.format('bold', true)
+    }
+    function toggleItalic () {
+      if (quill) quill.format('italic', true)
     }
 
     function initializeEditor (): void {
@@ -81,7 +85,7 @@ export default defineComponent({
       initializeEditor()
     })
 
-    return { editor, toggleBold }
+    return { editor, toggleBold, toggleItalic }
   }
 })
 </script>

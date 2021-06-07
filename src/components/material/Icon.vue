@@ -78,6 +78,7 @@ export default defineComponent({
       'homebrew-logo',
       'idea',
       'images',
+      'italic',
       'lightbulb',
       'mekanismi',
       'monsters',

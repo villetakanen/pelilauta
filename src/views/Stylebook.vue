@@ -241,6 +241,17 @@
 
       <Card>
         <h1 class="title">
+          Toolbars
+        </h1>
+        <div class="toolbar">
+          <ToolBarAction icon="bold" />
+          <ToolBarAction icon="italic" />
+          <div class="spacer" />
+        </div>
+      </Card>
+
+      <Card>
+        <h1 class="title">
           Icons
         </h1>
         <Icon
@@ -522,6 +533,7 @@ import AdminActions from '@/components/admin/AdminActions.vue'
 import Card from '@/components/layout/Card.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import Chip from '@/components/material/Chip.vue'
+import ToolBarAction from '@/components/material/ToolBarAction.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -538,7 +550,8 @@ export default defineComponent({
     AdminActions,
     Card,
     MaterialSelect,
-    Chip
+    Chip,
+    ToolBarAction
   },
   setup () {
     function sendSnack () {
