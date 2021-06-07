@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.2.2](https://github.com/villetakanen/pelilauta/compare/v9.2.1...v9.2.2) (2021-06-07)
+
+
+### Bug Fixes
+
+* last button of a toolbar was misaligned ([1345380](https://github.com/villetakanen/pelilauta/commit/134538043f5583ab0b9bd1fdd6e9decff3e78a11))
+* sidenav height ([42f7a03](https://github.com/villetakanen/pelilauta/commit/42f7a03b9c3b7b5be6e15163280db1da9a70eedd))
+* social login ux fixes and refactors ([2ee8213](https://github.com/villetakanen/pelilauta/commit/2ee82130b9460e1a9cf5faf112132e8b37503989))
+* to login button no longer visible in login ([b3adf82](https://github.com/villetakanen/pelilauta/commit/b3adf823a5b8247624f12ebd59a4a95d57291d45))
+
 ### [9.2.1](https://github.com/villetakanen/pelilauta/compare/v9.2.0...v9.2.1) (2021-06-04)
 
 
