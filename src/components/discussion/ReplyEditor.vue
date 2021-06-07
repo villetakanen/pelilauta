@@ -11,7 +11,6 @@ import Quill from 'quill'
 import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
 import { mentionsModule } from '@/utils/quill/mentionsModule'
-import { useAuthors } from '@/state/authors'
 
 function hoistClipboardConfig (quill:Quill) {
   quill.clipboard.addMatcher(Node.ELEMENT_NODE,
