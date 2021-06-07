@@ -1,11 +1,15 @@
 <template>
   <div class="threadEditorView singleColumnLayout">
-    <DocumentEditor />
+    <ThreadEditForm
+      :threadid="threadid"
+      :site="site"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import DocumentEditor from '@/components/editor/DocumentEditor.vue'
+import ThreadEditForm from '@/components/thread/ThreadEditForm.vue'
+import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
 
 /**
@@ -18,9 +22,24 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'ThreadEditorView',
   components: {
-    DocumentEditor
+    ThreadEditForm
   },
-  setup () {
+  props: {
+    threadid: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    siteid: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
+  setup (props) {
+    console.debug(props.siteid)
+    const { site } = props.siteid ? useSite(props.siteid) : { site: null }
+    return { site }
   }
 })
 </script>
