@@ -48,8 +48,8 @@
 </template>
 
 <script lang="ts">
-import Quill, { StringMap } from 'quill'
-import { ComponentPublicInstance, defineComponent, onMounted, Ref, ref } from 'vue'
+import Quill from 'quill'
+import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
 import { hoistClipboardConfig } from '@/utils/quill/clipboard'
 import ToolBarAction from '../material/ToolBarAction.vue'
 
@@ -90,13 +90,6 @@ export default defineComponent({
       ]
     }
 
-    function toggleBold () {
-      if (quill) quill.format('bold', true)
-    }
-    function toggleItalic () {
-      if (quill) quill.format('italic', true)
-    }
-
     function initializeEditor (): void {
       console.debug('DocumentEditor', 'initializeEditor')
 
@@ -135,7 +128,7 @@ export default defineComponent({
       initializeEditor()
     })
 
-    return { editor, toggleBold, toggleItalic, format, selectionFormats }
+    return { editor, format, selectionFormats }
   }
 })
 </script>
