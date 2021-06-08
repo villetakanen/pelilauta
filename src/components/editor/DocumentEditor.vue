@@ -3,11 +3,13 @@
     <div class="toolbar editorToolbar">
       <ToolBarAction
         icon="head-1"
-        @click="toggleBold"
+        :active="selectionFormats.get('header') === 3"
+        @click="format('header', 3)"
       />
       <ToolBarAction
         icon="head-2"
-        @click="toggleBold"
+        :active="selectionFormats.get('header') === 4"
+        @click="format('header', 4)"
       />
       <ToolBarAction
         icon="bold"
@@ -24,6 +26,11 @@
         icon="add-link"
         @click="toggleItalic"
       />
+      <Icon
+        name="d6"
+        medium
+      />
+      <div class="spacer" />
       <ToolBarAction
         icon="addAnImage"
         @click="toggleItalic"
@@ -42,7 +49,7 @@
       class="editorArea"
     />
     <div class="debugger">
-      ...
+      {{ selectionFormats }}
     </div>
   </div>
 </template>
@@ -52,6 +59,7 @@ import Quill from 'quill'
 import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
 import { hoistClipboardConfig } from '@/utils/quill/clipboard'
 import ToolBarAction from '../material/ToolBarAction.vue'
+import Icon from '../material/Icon.vue'
 
 /**
  * View component for the Tread Editor
@@ -63,7 +71,8 @@ import ToolBarAction from '../material/ToolBarAction.vue'
 export default defineComponent({
   name: 'DocumentEditor',
   components: {
-    ToolBarAction
+    ToolBarAction,
+    Icon
   },
   props: {
     content: { type: String, required: false, default: '' }
@@ -72,14 +81,25 @@ export default defineComponent({
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
 
-    const selectionFormats = ref(new Set<string>())
-
-    function format (f:string) {
-      if (selectionFormats.value.has(f)) {
+    // We override quill internal selection controls with these
+    // making us able to replace quill toolbar with custom vue
+    // controlled toolbar. Essentially leaving only the complex
+    // management of the div:ContentEditable element to Quill
+    const selectionFormats = ref(new Map<string, boolean|number>())
+    function format (f:string, l?: number) {
+      if (l) {
+        if (selectionFormats.value.get(f) === l) {
+          selectionFormats.value.delete(f)
+          quill?.format(f, false)
+        } else {
+          selectionFormats.value.set(f, l)
+          quill?.format(f, l)
+        }
+      } else if (selectionFormats.value.has(f)) {
         selectionFormats.value.delete(f)
         quill?.format(f, false)
       } else {
-        selectionFormats.value.add(f)
+        selectionFormats.value.set(f, true)
         quill?.format(f, true)
       }
     }
@@ -101,11 +121,11 @@ export default defineComponent({
       hoistClipboardConfig(quill)
 
       quill.on('selection-change', (r) => {
-        selectionFormats.value = new Set<string>()
+        selectionFormats.value = new Map<string, boolean|number>()
         if (!r) return
         Object.entries(quill?.getFormat(r) ?? {}).forEach((e) => {
           const [key, value] = e
-          if (value) selectionFormats.value.add(key)
+          if (value) selectionFormats.value.set(key, typeof value === 'number' ? value : value as boolean)
         })
         console.debug(selectionFormats.value)
       })
@@ -136,7 +156,7 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/box-shadow.sass
 .editorToolbar
- @include Rise2()
+  @include Rise2()
 .editorArea
   background-color: #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
 </style>
