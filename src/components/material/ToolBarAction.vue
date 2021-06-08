@@ -49,6 +49,6 @@ export default defineComponent({
     background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
   &:active
     background-color: var(--chroma-clear)
-.toolbarAction+.toolbarAction
-  border-left: solid 1px var(--chroma-primary-c)
+/* .toolbarAction+.toolbarAction
+  border-left: solid 1px var(--chroma-primary-c) */
 </style>

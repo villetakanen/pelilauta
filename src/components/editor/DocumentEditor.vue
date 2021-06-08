@@ -1,6 +1,6 @@
 <template>
   <div class="documentEditor">
-    <div class="toolbar">
+    <div class="toolbar editorToolbar">
       <ToolBarAction
         icon="head-1"
         @click="toggleBold"
@@ -11,11 +11,13 @@
       />
       <ToolBarAction
         icon="bold"
-        @click="toggleBold"
+        :active="selectionFormats.has('bold')"
+        @click="format('bold')"
       />
       <ToolBarAction
         icon="italic"
-        @click="toggleItalic"
+        :active="selectionFormats.has('italic')"
+        @click="format('italic')"
       />
       <div class="spacer" />
       <ToolBarAction
@@ -39,12 +41,15 @@
       ref="editor"
       class="editorArea"
     />
+    <div class="debugger">
+      ...
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Quill from 'quill'
-import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
+import Quill, { StringMap } from 'quill'
+import { ComponentPublicInstance, defineComponent, onMounted, Ref, ref } from 'vue'
 import { hoistClipboardConfig } from '@/utils/quill/clipboard'
 import ToolBarAction from '../material/ToolBarAction.vue'
 
@@ -66,6 +71,18 @@ export default defineComponent({
   setup (props) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
+
+    const selectionFormats = ref(new Set<string>())
+
+    function format (f:string) {
+      if (selectionFormats.value.has(f)) {
+        selectionFormats.value.delete(f)
+        quill?.format(f, false)
+      } else {
+        selectionFormats.value.add(f)
+        quill?.format(f, true)
+      }
+    }
 
     const config = {
       formats: [
@@ -90,6 +107,16 @@ export default defineComponent({
 
       hoistClipboardConfig(quill)
 
+      quill.on('selection-change', (r) => {
+        selectionFormats.value = new Set<string>()
+        if (!r) return
+        Object.entries(quill?.getFormat(r) ?? {}).forEach((e) => {
+          const [key, value] = e
+          if (value) selectionFormats.value.add(key)
+        })
+        console.debug(selectionFormats.value)
+      })
+
       // If we have content at this point, inject it to editorfield
       // this could be done with v-once also, but that wound move the
       // init code to multiple places in the file: this way, it is all
@@ -108,12 +135,15 @@ export default defineComponent({
       initializeEditor()
     })
 
-    return { editor, toggleBold, toggleItalic }
+    return { editor, toggleBold, toggleItalic, format, selectionFormats }
   }
 })
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/box-shadow.sass
+.editorToolbar
+ @include Rise2()
 .editorArea
   background-color: #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
 </style>
