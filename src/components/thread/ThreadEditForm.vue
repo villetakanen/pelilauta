@@ -1,17 +1,12 @@
 <template>
   <div class="threadEditForm">
-    <div class="toolbar">
-      <Icon
-        v-if="site && site.systemBadge"
-        :name="site.systemBadge"
-        medium
+    <div class="threadHeader toolbar">
+      <TextField
+        v-model="v.threadTitle.$model"
+        header
+        :label="$t('threads.title')"
+        :error="v.threadTitle.$error"
       />
-      <div class="spacer">
-        <p class="topics">
-          <span v-if="site">{{ site.name }}</span>
-        </p>
-        <TextField :label="$t('thread.title')" />
-      </div>
     </div>
     <DocumentEditor v-if="!threadid || thread.data.content" />
   </div>
@@ -19,17 +14,17 @@
 
 <script lang="ts">
 import { Site } from '@/state/site'
-import { defineComponent, PropType } from 'vue'
+import useVuelidate from '@vuelidate/core'
+import { defineComponent, onMounted, PropType, ref } from 'vue'
+import { required } from '@vuelidate/validators'
 import DocumentEditor from '../editor/DocumentEditor.vue'
-import Icon from '../material/Icon.vue'
 import TextField from '../material/TextField.vue'
 
 export default defineComponent({
   name: 'ThreadEditForm',
   components: {
     DocumentEditor,
-    TextField,
-    Icon
+    TextField
   },
   props: {
     threadid: {
@@ -43,8 +38,15 @@ export default defineComponent({
       default: () => null
     }
   },
-  setup (props) {
-    console.debug(props.site)
+  setup () {
+    // Thread name
+    const threadTitle = ref('')
+
+    const v = useVuelidate({
+      threadTitle: { required }
+    }, { threadTitle })
+
+    return { v }
   }
 })
 </script>

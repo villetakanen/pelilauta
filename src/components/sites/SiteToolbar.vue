@@ -26,6 +26,18 @@
           </router-link>
         </p>
       </template>
+      <template v-else-if="title">
+        <p class="subject">
+          <router-link
+            :to="`/mekanismi/view/${site.id}/${site.id}`"
+          >
+            {{ site.name }}
+          </router-link>
+        </p>
+        <p class="pagetitle">
+          {{ title }}
+        </p>
+      </template>
       <template v-else>
         <h3 class="sitetitle">
           <router-link
@@ -89,9 +101,14 @@ export default defineComponent({
   components: { Toolbar, Action, Icon },
   props: {
     page: {
-      type: Object as PropType<Page>,
+      type: Object as PropType<Page|null>,
       required: false,
-      default: null
+      default: () => null
+    },
+    title: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   setup () {
