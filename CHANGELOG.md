@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.2.3](https://github.com/villetakanen/pelilauta/compare/v9.2.2...v9.2.3) (2021-06-07)
+
+
+### Bug Fixes
+
+* removed deprecated components ([3ec90a6](https://github.com/villetakanen/pelilauta/commit/3ec90a6bebfe37f4b7069411b3035e051db384f3))
+
+### [9.2.2](https://github.com/villetakanen/pelilauta/compare/v9.2.1...v9.2.2) (2021-06-07)
+
+
+### Bug Fixes
+
+* last button of a toolbar was misaligned ([1345380](https://github.com/villetakanen/pelilauta/commit/134538043f5583ab0b9bd1fdd6e9decff3e78a11))
+* sidenav height ([42f7a03](https://github.com/villetakanen/pelilauta/commit/42f7a03b9c3b7b5be6e15163280db1da9a70eedd))
+* social login ux fixes and refactors ([2ee8213](https://github.com/villetakanen/pelilauta/commit/2ee82130b9460e1a9cf5faf112132e8b37503989))
+* to login button no longer visible in login ([b3adf82](https://github.com/villetakanen/pelilauta/commit/b3adf823a5b8247624f12ebd59a4a95d57291d45))
+
+### [9.2.1](https://github.com/villetakanen/pelilauta/compare/v9.2.0...v9.2.1) (2021-06-04)
+
+
+### Bug Fixes
+
+* admin screen to use current layout classes ([78e4e67](https://github.com/villetakanen/pelilauta/commit/78e4e670ea0ee745de350c273cc418900d55e9c8))
+* email login layout ux to match current ds ([af81901](https://github.com/villetakanen/pelilauta/commit/af8190190b6b3dc824936ea6b6afea55293ad6f6))
+
+## [9.2.0](https://github.com/villetakanen/pelilauta/compare/v9.1.1...v9.2.0) (2021-06-04)
+
+
+### Features
+
+* add a thread to a game site ([9545ad7](https://github.com/villetakanen/pelilauta/commit/9545ad7b6d207520885565467714dead840be220))
+
+
+### Bug Fixes
+
+* added a page tabs test ([53e5fe6](https://github.com/villetakanen/pelilauta/commit/53e5fe6ff892f3bb5b064d45a1b03405fb1426c9))
+* e2e test runs and fixes post pagefabs updates ([b9327f4](https://github.com/villetakanen/pelilauta/commit/b9327f4a718f6c37bc6b52abd685f529744206f5))
+* more apt chunk name for site front page route ([c090e50](https://github.com/villetakanen/pelilauta/commit/c090e5028db03784c319f3cafd4fce0ddc964530))
+* nested new routes for view site and view page ([d701bea](https://github.com/villetakanen/pelilauta/commit/d701beac7088620414ae5f48368efffbbc726752))
+* updated routes for pagefabs ([44d4daa](https://github.com/villetakanen/pelilauta/commit/44d4daa38895a09310756916a6d767931c6cb784))
+
 ### [9.1.1](https://github.com/villetakanen/pelilauta/compare/v9.1.0...v9.1.1) (2021-06-02)
 
 

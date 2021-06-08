@@ -1,6 +1,8 @@
 <template>
-  <MaterialCard>
-    <h1>{{ $t('LovedThreads.title') }}</h1>
+  <Card>
+    <h1 class="title">
+      {{ $t('LovedThreads.title') }}
+    </h1>
     <div
       v-for="post in loved"
       :key="post.id"
@@ -11,19 +13,19 @@
         </router-link>
       </p>
     </div>
-  </MaterialCard>
+  </Card>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
+import Card from '@/components/layout/Card.vue'
 import { useThreads } from '@/state/threads'
 import { useProfile } from '@/state/authz'
 
 export default defineComponent({
   name: 'LovedTheads',
   components: {
-    MaterialCard
+    Card
   },
   setup () {
     const { profileMeta } = useProfile()
