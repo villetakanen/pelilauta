@@ -22,9 +22,9 @@
         @click="format('italic')"
       />
       <div class="spacer" />
-      <ToolBarAction
-        icon="add-link"
-        @click="toggleItalic"
+      <ToolbarLinkAction
+        v-model:title="linkerTitle"
+        v-model:url="linkerURL"
       />
       <Icon
         name="d6"
@@ -38,10 +38,6 @@
       <ToolBarAction
         icon="youtube"
         @click="toggleItalic"
-      />
-      <div class="spacer" />
-      <ToolBarAction
-        icon="equalizer"
       />
     </div>
     <div
@@ -60,6 +56,7 @@ import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
 import { hoistClipboardConfig } from '@/utils/quill/clipboard'
 import ToolBarAction from '../material/ToolBarAction.vue'
 import Icon from '../material/Icon.vue'
+import ToolbarLinkAction from './ToolbarLinkAction.vue'
 
 /**
  * View component for the Tread Editor
@@ -72,13 +69,16 @@ export default defineComponent({
   name: 'DocumentEditor',
   components: {
     ToolBarAction,
-    Icon
+    Icon,
+    ToolbarLinkAction
   },
   props: {
     content: { type: String, required: false, default: '' }
   },
   setup (props) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
+    const linkerTitle = ref('')
+    const linkerURL = ref('')
     let quill:null|Quill = null
 
     // We override quill internal selection controls with these
@@ -148,7 +148,7 @@ export default defineComponent({
       initializeEditor()
     })
 
-    return { editor, format, selectionFormats }
+    return { editor, format, selectionFormats, linkerTitle, linkerURL }
   }
 })
 </script>
@@ -159,4 +159,5 @@ export default defineComponent({
   @include Rise2()
 .editorArea
   background-color: #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
+
 </style>

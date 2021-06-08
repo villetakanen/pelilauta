@@ -7,6 +7,7 @@
       :name="icon"
       medium
     />
+    <slot />
   </div>
 </template>
 

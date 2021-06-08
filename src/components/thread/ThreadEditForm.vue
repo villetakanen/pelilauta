@@ -1,8 +1,9 @@
 <template>
   <div class="threadEditForm">
-    <div class="threadHeader toolbar">
+    <div class="editorHeader toolbar">
       <TextField
         v-model="v.threadTitle.$model"
+        class="field"
         header
         :label="$t('threads.title')"
         :error="v.threadTitle.$error"
@@ -12,6 +13,9 @@
         class="field"
         :opts="topicOpts"
         :label="$t('threads.topic')"
+      />
+      <ToolBarAction
+        icon="equalizer"
       />
     </div>
     <DocumentEditor v-if="!threadid || thread.data.content" />
@@ -26,13 +30,15 @@ import { required } from '@vuelidate/validators'
 import DocumentEditor from '../editor/DocumentEditor.vue'
 import TextField from '../material/TextField.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
+import ToolBarAction from '../material/ToolBarAction.vue'
 
 export default defineComponent({
   name: 'ThreadEditForm',
   components: {
     DocumentEditor,
     TextField,
-    MaterialSelect
+    MaterialSelect,
+    ToolBarAction
   },
   props: {
     threadid: {
@@ -66,4 +72,10 @@ export default defineComponent({
 
 .topics
   @include TypeCaption()
+.editorHeader
+  margin-bottom: 8px
+  div
+    margin: 0
+  div+div
+    margin: 0 8px
 </style>
