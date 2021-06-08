@@ -25,6 +25,8 @@
       <ToolbarLinkAction
         v-model:title="linkerTitle"
         v-model:url="linkerURL"
+        :open="linkerURL && linkerURL.length > 0"
+        @click="openLinker"
       />
       <Icon
         name="d6"
@@ -142,13 +144,18 @@ export default defineComponent({
       }
     }
 
+    function openLinker () {
+      linkerURL.value = quill?.getFormat(quill.getSelection() ?? undefined)?.link ?? ''
+      console.log('openLinker', linkerTitle.value, linkerURL.value)
+    }
+
     onMounted(() => {
       // We want to inject the Quill Editor only after this element has been
       // mounted, to have all the DOM we use from Quill available
       initializeEditor()
     })
 
-    return { editor, format, selectionFormats, linkerTitle, linkerURL }
+    return { editor, format, selectionFormats, linkerTitle, linkerURL, openLinker }
   }
 })
 </script>
