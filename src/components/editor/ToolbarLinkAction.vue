@@ -1,8 +1,9 @@
 <template>
-  <ToolBarAction
-    icon="add-link"
-    class="toolbarLinkAction"
-  >
+  <div class="toolbarLinkAction">
+    <ToolBarAction
+      icon="add-link"
+      @click="$emit('update:modelValue', true)"
+    />
     <div
       v-if="modelValue"
       class="linkOptions"
@@ -13,19 +14,19 @@
       />
       <div class="toolbar">
         <div class="spacer" />
-        <MaterialButton @click="$emit('update:modelValue', false)">
+        <MaterialButton @click="cancel">
           {{ $t('action.cancel') }}
         </MaterialButton>
-        <MaterialButton @click="pushUrl">
+        <MaterialButton @click="save">
           {{ $t('action.save') }}
         </MaterialButton>
       </div>
     </div>
-  </ToolBarAction>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
 import ToolBarAction from '../material/ToolBarAction.vue'
@@ -44,16 +45,29 @@ export default defineComponent({
       default: ''
     }
   },
-  emits: ['seturl', 'update:modelValue'],
+  emits: ['update:url', 'update:modelValue', 'urlAdded'],
   setup (props, context) {
     const formURL = ref('')
-    function pushUrl () {
+    onMounted(() => {
+      watch(() => props.url, (value) => {
+        formURL.value = value
+      },
+      { immediate: true })
+    })
+
+    function cancel () {
       context.emit('update:modelValue', false)
-      const url = new URL(formURL.value).toString()
-      context.emit('seturl', url)
+      context.emit('update:url', '')
     }
 
-    return { formURL, pushUrl }
+    function save () {
+      const url = new URL(formURL.value).toString()
+      context.emit('update:modelValue', false)
+      context.emit('update:url', url)
+      context.emit('urlAdded', url)
+    }
+
+    return { formURL, cancel, save }
   }
 })
 </script>

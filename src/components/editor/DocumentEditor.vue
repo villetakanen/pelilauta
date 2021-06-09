@@ -24,9 +24,8 @@
       <div class="spacer" />
       <ToolbarLinkAction
         v-model="linkerActive"
-        :url="linkerURL"
-        @click="openLinker"
-        @seturl="seturl"
+        v-model:url="linkerURL"
+        @url-added="seturl"
       />
       <Icon
         name="d6"
@@ -77,8 +76,6 @@ export default defineComponent({
   },
   setup (props) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
-    const linkerTitle = ref('')
-    const linkerURL = ref('')
     let quill:null|Quill = null
 
     // We override quill internal selection controls with these
@@ -108,7 +105,10 @@ export default defineComponent({
       formats: [
         'bold',
         'link'
-      ]
+      ],
+      modules: {
+        toolbar: ['bold']
+      }
     }
 
     function initializeEditor (): void {
@@ -127,6 +127,7 @@ export default defineComponent({
         Object.entries(quill?.getFormat(r) ?? {}).forEach((e) => {
           const [key, value] = e
           if (value) selectionFormats.value.set(key, typeof value === 'number' ? value : value as boolean)
+          if (key === 'link') linkerURL.value = value as string
         })
         console.debug(selectionFormats.value)
       })
@@ -145,22 +146,25 @@ export default defineComponent({
 
     // Add a link functionality
     const linkerActive = ref(false)
+    const linkerURL = ref('')
 
-    function openLinker () {
-      if (!quill) return
-      if (linkerActive.value) {
-        linkerActive.value = false
-        return
+    // we are trying to open the linker toolbar component
+    // if we are in a link blot, lets prefeed that url
+    /* function openLinker () {
+      if (!quill) return // sanity
+      if (linkerActive.value) return
+      // It seems we are inside a link blot
+      if (quill.getFormat(quill.getSelection() ?? undefined)?.link) {
+        linkerURL.value = quill.getFormat(quill.getSelection() ?? undefined)?.link ?? ''
       }
-      linkerActive.value = true
-      linkerURL.value = quill?.getFormat(quill.getSelection() ?? undefined)?.link ?? ''
-      console.log('openLinker', linkerURL.value)
-    }
+    } */
 
     function seturl (url: string) {
       if (!quill) return
       console.debug('seturl', url)
-      quill.format('link', url, Quill.sources.USER)
+      // quill.focus()
+      quill.format('link', false)
+      // quill.format('link', url)
     }
 
     onMounted(() => {
@@ -169,7 +173,7 @@ export default defineComponent({
       initializeEditor()
     })
 
-    return { editor, format, selectionFormats, linkerTitle, linkerURL, openLinker, linkerActive, seturl }
+    return { editor, format, selectionFormats, linkerURL, linkerActive, seturl }
   }
 })
 </script>
