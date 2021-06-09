@@ -4,20 +4,19 @@
     class="toolbarLinkAction"
   >
     <div
-      v-if="open"
+      v-if="modelValue"
       class="linkOptions"
     >
-      <TextField
-        v-model="formTitle"
-        :label="$t('editor.link.title')"
-      />
       <TextField
         v-model="formURL"
         :label="$t('editor.link.url')"
       />
       <div class="toolbar">
         <div class="spacer" />
-        <MaterialButton>
+        <MaterialButton @click="$emit('update:modelValue', false)">
+          {{ $t('action.cancel') }}
+        </MaterialButton>
+        <MaterialButton @click="pushUrl">
           {{ $t('action.save') }}
         </MaterialButton>
       </div>
@@ -26,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
 import ToolBarAction from '../material/ToolBarAction.vue'
@@ -34,15 +33,10 @@ import ToolBarAction from '../material/ToolBarAction.vue'
 export default defineComponent({
   components: { ToolBarAction, TextField, MaterialButton },
   props: {
-    open: {
+    modelValue: {
       type: Boolean,
       required: false,
       default: false
-    },
-    title: {
-      type: String,
-      required: false,
-      default: ''
     },
     url: {
       type: String,
@@ -50,26 +44,16 @@ export default defineComponent({
       default: ''
     }
   },
-  emits: ['update:title', 'update:url'],
+  emits: ['seturl', 'update:modelValue'],
   setup (props, context) {
-    const rawTitle = ref('')
-    const formTitle = computed({
-      get: () => (rawTitle.value ?? props.title),
-      set: (value: string) => {
-        rawTitle.value = value
-        context.emit('update:title', value)
-      }
-    })
-    const rawURL = ref('')
-    const formURL = computed({
-      get: () => (rawURL.value ?? props.url),
-      set: (value: string) => {
-        const url = new URL(value).toString()
-        rawTitle.value = url
-        context.emit('update:title', url)
-      }
-    })
-    return { formTitle, formURL }
+    const formURL = ref('')
+    function pushUrl () {
+      context.emit('update:modelValue', false)
+      const url = new URL(formURL.value).toString()
+      context.emit('seturl', url)
+    }
+
+    return { formURL, pushUrl }
   }
 })
 </script>

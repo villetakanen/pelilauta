@@ -23,10 +23,10 @@
       />
       <div class="spacer" />
       <ToolbarLinkAction
-        v-model:title="linkerTitle"
-        v-model:url="linkerURL"
-        :open="linkerURL && linkerURL.length > 0"
+        v-model="linkerActive"
+        :url="linkerURL"
         @click="openLinker"
+        @seturl="seturl"
       />
       <Icon
         name="d6"
@@ -35,11 +35,9 @@
       <div class="spacer" />
       <ToolBarAction
         icon="addAnImage"
-        @click="toggleItalic"
       />
       <ToolBarAction
         icon="youtube"
-        @click="toggleItalic"
       />
     </div>
     <div
@@ -108,7 +106,8 @@ export default defineComponent({
 
     const config = {
       formats: [
-        'bold'
+        'bold',
+        'link'
       ]
     }
 
@@ -144,9 +143,24 @@ export default defineComponent({
       }
     }
 
+    // Add a link functionality
+    const linkerActive = ref(false)
+
     function openLinker () {
+      if (!quill) return
+      if (linkerActive.value) {
+        linkerActive.value = false
+        return
+      }
+      linkerActive.value = true
       linkerURL.value = quill?.getFormat(quill.getSelection() ?? undefined)?.link ?? ''
-      console.log('openLinker', linkerTitle.value, linkerURL.value)
+      console.log('openLinker', linkerURL.value)
+    }
+
+    function seturl (url: string) {
+      if (!quill) return
+      console.debug('seturl', url)
+      quill.format('link', url, Quill.sources.USER)
     }
 
     onMounted(() => {
@@ -155,7 +169,7 @@ export default defineComponent({
       initializeEditor()
     })
 
-    return { editor, format, selectionFormats, linkerTitle, linkerURL, openLinker }
+    return { editor, format, selectionFormats, linkerTitle, linkerURL, openLinker, linkerActive, seturl }
   }
 })
 </script>

@@ -11,7 +11,7 @@
       <MaterialSelect
         v-model="v.threadTopic.$model"
         class="field"
-        :opts="topicOpts"
+        :opts="['topicOpts']"
         :label="$t('threads.topic')"
       />
       <ToolBarAction
