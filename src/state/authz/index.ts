@@ -1,4 +1,5 @@
 import firebase from 'firebase/app'
+import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import { useProfile, PublicProfile, ProfileMeta } from './profile'
@@ -28,10 +29,11 @@ function fetchProfile () {
   const profileRef = db.collection('profiles').doc(authState.user.uid)
   unsubscribeProfile = profileRef.onSnapshot((snap) => {
     if (snap.exists) {
-      // ...
       if (!snap.data()?.nick) {
         console.debug('profile is missing a nickname: please display the registration dialog')
         authState.missingProfileData = true
+      } else {
+        authState.missingProfileData = false
       }
     } else {
       console.debug('user does not have a profile entry: lets create that through the registration dialog')
