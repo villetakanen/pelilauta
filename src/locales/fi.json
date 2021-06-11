@@ -76,6 +76,9 @@
     "newThreadReply": "vastasi ketjuun.",
     "mentionInThread": "mainitsi sinut ketjussa"
   },
+  "registration": {
+    "title": "Tervetuloa Pelilaudalle"
+  },
   "search": {
     "results": {
       "title": "Haku"
