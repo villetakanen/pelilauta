@@ -77,7 +77,10 @@
     "mentionInThread": "mainitsi sinut ketjussa"
   },
   "registration": {
-    "title": "Tervetuloa Pelilaudalle"
+    "title": "Tervetuloa Pelilaudalle",
+    "info": "Luomme sinulle profiilin, joka näkyy kaikille käyttäjille. Alta voit valita profiilille nimimerkin",
+    "infolink": "Lisää tietoja henkilötietojen käsittelystä.",
+    "createProfile": "Luo profiili"
   },
   "search": {
     "results": {
@@ -169,7 +172,8 @@
     },
     "inbox": {
       "title": "Nostot"
-    }
+    },
+    "nick": "Nimimerkki"
   },
   "threads": {
     "sinceInTopic": "aiheessa",

@@ -10,12 +10,14 @@ const authState = reactive({
   missingProfileData: false,
   anonymous: true,
   admin: false,
+  displayName: '',
   user: {
     uid: ''
   }
 })
 const user = computed(() => (authState.user))
 const registrationIncomplete = computed(() => (authState.missingProfileData))
+const displayName = computed(() => (authState.displayName))
 
 let unsubscribeProfile:CallableFunction|undefined
 
@@ -51,6 +53,7 @@ function onAuthStateChanged (user: firebase.User|null) {
     console.debug('state.authz.onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
     authState.admin = false
+    authState.displayName = user.displayName ?? 'anonymous'
     authState.user = {
       uid: user.uid
     }
@@ -67,8 +70,8 @@ function createAuth (): void {
   })
 }
 
-function useAuth (): { user: ComputedRef<{ uid: string }>, registrationIncomplete: ComputedRef<boolean> } {
-  return { user, registrationIncomplete }
+function useAuth (): { user: ComputedRef<{ uid: string }>, registrationIncomplete: ComputedRef<boolean>, displayName: ComputedRef<string> } {
+  return { user, registrationIncomplete, displayName }
 }
 
 export {
