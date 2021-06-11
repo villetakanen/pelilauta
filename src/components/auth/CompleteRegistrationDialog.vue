@@ -54,6 +54,7 @@ export default defineComponent({
     const { pushSnack } = useSnack()
     const i18n = useI18n()
     const router = useRouter()
+
     const nickName:Ref<null|string> = ref(null)
     const formNickName = computed({
       get: () => (nickName.value !== null ? nickName.value : displayName.value),
@@ -61,11 +62,13 @@ export default defineComponent({
         nickName.value = value
       }
     })
+
     const logout = () => {
       firebase.auth().signOut().then(() => {
         router.push('/')
       })
     }
+
     const save = async () => {
       try {
         await updateProfile({ nick: '' + nickName.value })
@@ -74,6 +77,7 @@ export default defineComponent({
         pushSnack(i18n.t('snacks.updateFailed'))
       }
     }
+
     return { registrationIncomplete, formNickName, logout, save }
   }
 })
