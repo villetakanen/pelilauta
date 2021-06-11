@@ -5,7 +5,7 @@ import { useAuthState } from '@/state/authz'
 
 let init = false
 
-function _init () {
+export function createFirebase (): void {
   if (init) return
   init = true
   firebase.initializeApp({
@@ -24,8 +24,4 @@ function _init () {
   })
   firebase.firestore().enablePersistence()
   firebase.analytics()
-}
-
-export function useFirebase (): void {
-  _init()
 }
