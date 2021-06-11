@@ -15,6 +15,7 @@
       </main>
     </div>
   </div>
+  <CompleteRegistrationDialog />
   <BottomFloatContainer>
     <template #left>
       <SnackBar />
@@ -38,6 +39,7 @@ import BottomFloatContainer from './components/material/BottomFloatContainer.vue
 import { useAuthState, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
 import { getNavigatorLocale } from './utils/window'
+import CompleteRegistrationDialog from './components/auth/CompleteRegistrationDialog.vue'
 
 export default defineComponent({
   components: {
@@ -45,7 +47,8 @@ export default defineComponent({
     AppBar,
     MainTailer,
     SnackBar,
-    BottomFloatContainer
+    BottomFloatContainer,
+    CompleteRegistrationDialog
   },
   setup () {
     const { isAnonymous } = useAuthState()

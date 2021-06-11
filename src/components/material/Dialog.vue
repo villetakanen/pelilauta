@@ -5,14 +5,12 @@
       class="material-dialog-container"
       @click.self="close"
     >
-      <transition name="bounce">
-        <div
-          v-if="modelValue"
-          class="material-dialog-content"
-        >
-          <slot />
-        </div>
-      </transition>
+      <div
+        v-if="modelValue"
+        class="material-dialog-content"
+      >
+        <slot />
+      </div>
     </div>
   </teleport>
 </template>
@@ -57,7 +55,7 @@ export default defineComponent({
   .material-dialog-content
     position: fixed
     top: 16px
-    left: 16px
+    left: 8px
   .material-card
     @include BoxShadow24()
 
