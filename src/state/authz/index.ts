@@ -6,7 +6,11 @@ import { useProfile, PublicProfile, ProfileMeta } from './profile'
 import { useAuthState } from './state'
 import { useAssets } from './assets'
 import { computed, ComputedRef, reactive } from 'vue'
+import { useMeta } from '../meta'
 
+/**
+ * A reactive object, that holds all state internals for auth
+ */
 const authState = reactive({
   missingProfileData: false,
   anonymous: true,
@@ -16,9 +20,19 @@ const authState = reactive({
     uid: ''
   }
 })
+
 const user = computed(() => (authState.user))
 const registrationIncomplete = computed(() => (authState.missingProfileData))
 const displayName = computed(() => (authState.displayName))
+const frozen = computed(() => {
+  const { frozen: frozenAuthors } = useMeta()
+  return frozenAuthors.value.includes(authState.user.uid)
+})
+const showMemberTools = computed(() => {
+  if (authState.admin) return true
+  if (frozen.value) return false
+  return !authState.anonymous
+})
 
 let unsubscribeProfile:CallableFunction|undefined
 
@@ -72,8 +86,13 @@ function createAuth (): void {
   })
 }
 
-function useAuth (): { user: ComputedRef<{ uid: string }>, registrationIncomplete: ComputedRef<boolean>, displayName: ComputedRef<string> } {
-  return { user, registrationIncomplete, displayName }
+function useAuth (): {
+    user: ComputedRef<{ uid: string }>,
+    registrationIncomplete: ComputedRef<boolean>,
+    displayName: ComputedRef<string>,
+    frozen: ComputedRef<boolean>,
+    showMemberTools: ComputedRef<boolean>} {
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools }
 }
 
 export {
