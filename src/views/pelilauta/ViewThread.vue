@@ -1,5 +1,5 @@
 <template>
-  <div class="viewThread contentGrid">
+  <div class="viewThread singleColumnLayout">
     <ThreadBox>
       <ThreadBoxHeader :thread="thread" />
       <div
@@ -79,7 +79,12 @@ export default defineComponent({
   setup (props) {
     subscribeThread(props.threadid)
     const { thread } = useThreads()
-    onMounted(() => { firebase.analytics().logEvent('PageView', { name: 'ViewThread', threadid: props.threadid }) })
+    onMounted(() => {
+      firebase.analytics().logEvent('PageView', {
+        name: 'ViewThread',
+        threadid: props.threadid
+      })
+    })
     return { thread }
   }
 })
@@ -90,9 +95,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .viewThread
-  position: relative
-  margin: 0 auto
-  padding: 0
   div.threadContent
     p
       @include TypeBody2()
