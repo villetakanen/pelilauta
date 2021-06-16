@@ -1,5 +1,7 @@
 before(function () {
   // run this once before all code
+  cy.task('seed:fsdb')
+  // remove webworker stuff
   return window.caches.keys().then(function (cacheNames) {
     return Promise.all(
       cacheNames.map(function (cacheName) {
