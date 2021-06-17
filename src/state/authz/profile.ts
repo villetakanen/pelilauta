@@ -6,6 +6,7 @@ import { useMeta } from '@/state/meta'
 import { useAuthState } from './state'
 import { fetchAssets, useAssets } from './assets'
 import { setSeen, useInbox } from '@/state/inbox'
+import { useAuth } from '.'
 
 export interface PublicProfile {
   uid?: string
@@ -139,12 +140,16 @@ async function markAllThreadsRead (): Promise<void> {
 }
 
 async function stampSeen (threadid:string, flowTime?:firebase.firestore.Timestamp|number): Promise<void> {
+  const { user } = useAuth()
+  if (!user.value.uid) {
+    console.error('Trying to manipulate user data with no uid', user.value)
+    return
+  }
   // Stamp the same thread seen from notifications
   setSeen(threadid)
 
-  const { uid } = useAuthState()
   const db = firebase.firestore()
-  const profileRef = db.collection('profiles').doc(uid.value)
+  const profileRef = db.collection('profiles').doc(user.value.uid)
   return profileRef.get().then((doc) => {
     let arr = doc.data()?.seenThreads ? doc.data()?.seenThreads : new Array<seenThread>()
     arr = arr.filter((val:seenThread) => (val.threadid !== threadid))

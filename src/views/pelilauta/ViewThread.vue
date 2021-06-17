@@ -42,7 +42,7 @@ import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import ThreadBox from '@/components/thread/ThreadBox.vue'
 import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
-import { subscribeThread, useThreads } from '@/state/threads/threads'
+import { useThreads } from '@/state/threads/threads'
 import firebase from 'firebase/app'
 import 'firebase/analytics'
 import ThreadBoxTailer from '@/components/thread/ThreadBoxTailer.vue'
@@ -77,8 +77,8 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const { thread, subscribeThread } = useThreads()
     subscribeThread(props.threadid)
-    const { thread } = useThreads()
     onMounted(() => {
       firebase.analytics().logEvent('PageView', {
         name: 'ViewThread',

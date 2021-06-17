@@ -3,7 +3,6 @@ import HomeView from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
-import { subscribeThread } from '@/state/threads/threads'
 import { useAuthState } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
@@ -253,9 +252,6 @@ router.beforeEach((to, from, next) => {
     const pageid = Array.isArray(to.params.pageid) ? to.params.pageid[0] : to.params.pageid || ''
     usePage(pageid)
   }
-  // If we have a thread we need to pull from FB, we pull it to state here
-  const threadid = Array.isArray(to.params.threadid) ? to.params.threadid[0] : to.params.threadid || ''
-  subscribeThread(threadid)
 
   // Logged in only routes!
   const { isAnonymous, isAdmin, uid } = useAuthState()

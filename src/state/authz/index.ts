@@ -58,7 +58,7 @@ function fetchProfile () {
 
 function onAuthStateChanged (user: firebase.User|null) {
   if (!user || user.isAnonymous) {
-    console.debug('state.authz.onAuthStateChanged', 'anonymous')
+    console.debug('onAuthStateChanged', 'anonymous')
     authState.missingProfileData = false
     authState.anonymous = true
     authState.admin = false
@@ -66,7 +66,7 @@ function onAuthStateChanged (user: firebase.User|null) {
       uid: ''
     }
   } else {
-    console.debug('state.authz.onAuthStateChanged', user.displayName, user.uid)
+    console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
     authState.admin = false
     authState.displayName = user.displayName ?? 'anonymous'

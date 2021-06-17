@@ -4,7 +4,7 @@ import 'firebase/analytics'
 
 import { computed, ComputedRef, ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
-import { useProfile } from '../authz'
+import { useAuth, useProfile } from '../authz'
 import { Thread, PostData } from '@/utils/firestoreInterfaces'
 
 export interface Stream {
@@ -178,7 +178,7 @@ const subscribedPage = ref(toThread(''))
 const thread = computed(() => (subscribedPage.value))
 let unsubscribePage = () => {}
 
-export function subscribeThread (id?: string): void {
+function subscribeThread (id?: string): void {
   if (subscribedPage.value.id === id) return
   unsubscribePage()
   subscribedPage.value = toThread(id || '')
@@ -190,6 +190,7 @@ export function subscribeThread (id?: string): void {
       subscribedPage.value = toThread(id, doc.data())
       const { stampSeen } = useProfile()
       stampSeen(id, doc.data()?.flowTime)
+      dispatchThreadSeen()
     }
   })
 }
@@ -201,12 +202,53 @@ export async function deleteThread (actor: string, threadid: string): Promise<vo
   return postRef.delete()
 }
 
+const FB_INBOUND_EVENT_THREAD_SEEN = 'thread seen'
+
+/**
+ * Send Thread Seen event to cloud-side inbound queue as Add or Set
+ * depending if there exists an event for the user and thread
+ *
+ * Uses
+ * - user.uid from useAuth() as uid, and
+ * - thread.id as threadid
+ *
+ * @returns {Promise<void | firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>} A promise for dispatch completion
+ */
+async function dispatchThreadSeen (): Promise<void | firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
+  const { user } = useAuth()
+  if (!user.value.uid) {
+    console.error('Trying to dispatch an event before we have uid: aborting op', user.value)
+    return
+  }
+  const db = firebase.firestore()
+  const eventsRef = db.collection('inbound')
+    .where('uid', '==', user.value.uid)
+    .where('type', '==', FB_INBOUND_EVENT_THREAD_SEEN)
+    .where('threadid', '==', subscribedPage.value.id)
+  const eventDocs = await eventsRef.get()
+
+  const event = {
+    type: FB_INBOUND_EVENT_THREAD_SEEN,
+    uid: user.value.uid,
+    threadid: subscribedPage.value.id,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }
+
+  if (eventDocs.empty) {
+    return db.collection('inbound').add(event)
+  } else {
+    const eventDoc = eventDocs.docs[0]
+    return db.collection('inbound').doc(eventDoc.id).set(event)
+  }
+}
+
 export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
-    thread: ComputedRef<Thread> } {
+    thread: ComputedRef<Thread>,
+    subscribeThread: (id?: string | undefined) => void} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads }
+  return { stream, thread, pinnedThreads, siteThreads, subscribeThread }
 }
