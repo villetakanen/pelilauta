@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.3.0](https://github.com/villetakanen/pelilauta/compare/v9.2.3...v9.3.0) (2021-06-17)
+
+
+### Features
+
+* authstate controls inside the state ([d7c7d4e](https://github.com/villetakanen/pelilauta/commit/d7c7d4e09ca24febc01d6b1e1cfe6a40afa653c0))
+* new profile creation works ([b7369d1](https://github.com/villetakanen/pelilauta/commit/b7369d181083ddd77c7fa04b2e2735f21cc3a6ad))
+* registration dialog visuals complete ([c65cac2](https://github.com/villetakanen/pelilauta/commit/c65cac2f7681df344d81cc99fdb407fcce9f0aa8))
+* restored the registration dialog ([daa9e88](https://github.com/villetakanen/pelilauta/commit/daa9e8886bd2d3dd28659f0714fae70e09ee8f1f))
+* thread loading state changes prepped r 10.0 ([f66c647](https://github.com/villetakanen/pelilauta/commit/f66c64758e07c78673a3b4a3a7bd93a276bc3a60))
+
+
+### Bug Fixes
+
+* added a db re-seeding task to cypress ([8ed9a35](https://github.com/villetakanen/pelilauta/commit/8ed9a357d5fc52695d92e76185613c01b4a04953))
+* code quality ([d861623](https://github.com/villetakanen/pelilauta/commit/d8616231e8a2b05ce6dd5f4fc3ce1b98d73b6842))
+* disabled seeding db to fs ([e18789e](https://github.com/villetakanen/pelilauta/commit/e18789e3ce3261100859051022db3ed6a4bef0c2))
+* improved state loading for navigator locale. ([7dcb294](https://github.com/villetakanen/pelilauta/commit/7dcb294789e6c29e2deb8d11a25b54b356c152b1))
+* layout ux ([7bd339f](https://github.com/villetakanen/pelilauta/commit/7bd339f0a74672cc1d52ca90fa5e2580d15032fc))
+* thread view to use current layout styles ([1cc9b53](https://github.com/villetakanen/pelilauta/commit/1cc9b53c7080cb423946a30ae3a0422e8db5c1bf))
+* translations, app structure polish ([227386c](https://github.com/villetakanen/pelilauta/commit/227386cfd949fc9fc06e470600caea174d0c28d5))
+
 ### [9.2.3](https://github.com/villetakanen/pelilauta/compare/v9.2.2...v9.2.3) (2021-06-07)
 
 
