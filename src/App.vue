@@ -55,12 +55,6 @@ export default defineComponent({
     const { profileMeta } = useProfile()
     const i18n = useI18n()
     const route = useRoute()
-    onMounted(() => {
-      watch(
-        profileMeta, (l) => { i18n.locale.value = l.pelilautaLang || getNavigatorLocale() },
-        { immediate: true }
-      )
-    })
 
     const { pushSnack } = useSnack()
     provide('pushSnack', pushSnack)
