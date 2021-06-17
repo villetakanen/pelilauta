@@ -178,7 +178,7 @@ const subscribedPage = ref(toThread(''))
 const thread = computed(() => (subscribedPage.value))
 let unsubscribePage = () => {}
 
-export function subscribeThread (id?: string): void {
+function subscribeThread (id?: string): void {
   if (subscribedPage.value.id === id) return
   unsubscribePage()
   subscribedPage.value = toThread(id || '')
@@ -217,15 +217,15 @@ const FB_INBOUND_EVENT_THREAD_SEEN = 'thread seen'
 async function dispatchThreadSeen (): Promise<void | firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
   const { user } = useAuth()
   if (!user.value.uid) {
-    console.warn('Trying to dispatch an event before we have uid: aborting op', user.value)
+    console.error('Trying to dispatch an event before we have uid: aborting op', user.value)
     return
   }
   const db = firebase.firestore()
-  const eventsRef = db.collectionGroup('inbound')
+  const eventsRef = db.collection('inbound')
+    .where('uid', '==', user.value.uid)
     .where('type', '==', FB_INBOUND_EVENT_THREAD_SEEN)
     .where('threadid', '==', subscribedPage.value.id)
-    .where('uid', '==', user.value.uid)
-  // const eventDocs = await eventsRef.get()
+  const eventDocs = await eventsRef.get()
 
   const event = {
     type: FB_INBOUND_EVENT_THREAD_SEEN,
@@ -234,20 +234,21 @@ async function dispatchThreadSeen (): Promise<void | firebase.firestore.Document
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   }
 
-  /* if (eventDocs.empty) {
+  if (eventDocs.empty) {
     return db.collection('inbound').add(event)
   } else {
     const eventDoc = eventDocs.docs[0]
     return db.collection('inbound').doc(eventDoc.id).set(event)
-  } */
+  }
 }
 
 export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
-    thread: ComputedRef<Thread> } {
+    thread: ComputedRef<Thread>,
+    subscribeThread: (id?: string | undefined) => void} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads }
+  return { stream, thread, pinnedThreads, siteThreads, subscribeThread }
 }
