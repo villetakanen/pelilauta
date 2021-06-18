@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.4.0](https://github.com/villetakanen/pelilauta/compare/v9.3.0...v9.4.0) (2021-06-18)
+
+
+### Features
+
+* new icons for readcounts ([ab40d5d](https://github.com/villetakanen/pelilauta/commit/ab40d5d4563f97536d4d7ee60b028db917d6aa4e))
+* seencounts are visible in a thread ([8a6b5fd](https://github.com/villetakanen/pelilauta/commit/8a6b5fd280ebc43da9bfa8c38a21f8c114a91627))
+
 ## [9.3.0](https://github.com/villetakanen/pelilauta/compare/v9.2.3...v9.3.0) (2021-06-17)
 
 
