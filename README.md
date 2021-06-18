@@ -23,6 +23,10 @@ An Open Source vue3+firebase project for a community site.
 
 ## Breaking, and other major changes
 
+9.4.0 - and above
+- Some nice to have features expect additional cloud side triggers from pelilauta-functions-2, 
+  but the app will work without the new functions without any issues.
+
 9.0.0
 - Requires Pelilauta-functions 0.2.0 for inbox functionality. Breaks authz structure for 8.x and below.
 
