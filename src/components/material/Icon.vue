@@ -71,6 +71,7 @@ export default defineComponent({
       'delete',
       'edit',
       'equalizer',
+      'eye',
       'filter',
       'forum',
       'hidden',

@@ -1,12 +1,13 @@
 <template>
   <div class="threadBoxTailer">
     <div class="toolbar toright">
-      <div style="margin-right: 2em">
-        <Icon
-          name="seen"
-          inline
-        />
+      <div class="seendemo">
         {{ thread.seenCount }}
+        <Icon
+          name="eye"
+          x-small
+          class="seendemoicon"
+        />
       </div>
       <LoveAThreadAction
         :authorid="thread.author"
@@ -69,4 +70,12 @@ export default defineComponent({
   align-items: center
   justify-content: flex-end
   margin-bottom: 8px
+.seendemo
+  margin-right: 8px
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
+  padding: 0
+  padding-left: 12px
+  border-radius: 12px
+  .seendemoicon
+    opacity: 0.5
 </style>
