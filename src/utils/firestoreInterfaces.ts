@@ -42,6 +42,7 @@ export interface Thread {
   // Meta
   replyCount: number
   lovedCount: number
+  seenCount: number
   site?: string // this is a wikisite slug
   // Payload
   data: PostData
