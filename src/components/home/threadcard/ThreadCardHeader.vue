@@ -3,8 +3,11 @@
     <div
       v-if="thread.site"
       class="toolbar withSite"
+      :class="{ ddColors: site && site.systemBadge === 'dd'}"
     >
-      <div class="systenBadgeFrame">
+      <div
+        class="systenBadgeFrame"
+      >
         <transition name="fade">
           <Icon
             v-if="site"
@@ -113,4 +116,10 @@ a, h1.title a
     color: var(--chroma-primary-c)
   h1.title a
     color: var(--chroma-secondary-c)
+.ddColors
+  background: linear-gradient(160deg, rgba(188,15,15,.05) 0%, rgba(188,15,15,.25) 92%)
+  a
+    color: rgba(188,15,15,1)
+  h1.title a
+    color: rgba(96,7,7,1)
 </style>
