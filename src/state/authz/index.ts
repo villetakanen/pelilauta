@@ -13,7 +13,7 @@ import { useMeta } from '../meta'
  */
 const authState = reactive({
   missingProfileData: false,
-  anonymous: true,
+  anonymous: false,
   admin: false,
   displayName: '',
   user: {
@@ -33,6 +33,7 @@ const showMemberTools = computed(() => {
   if (frozen.value) return false
   return !authState.anonymous
 })
+const anonymousSession = computed(() => (authState.anonymous))
 
 let unsubscribeProfile:CallableFunction|undefined
 
@@ -91,8 +92,9 @@ function useAuth (): {
     registrationIncomplete: ComputedRef<boolean>,
     displayName: ComputedRef<string>,
     frozen: ComputedRef<boolean>,
+    anonymousSession: ComputedRef<boolean>,
     showMemberTools: ComputedRef<boolean>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools }
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession }
 }
 
 export {
