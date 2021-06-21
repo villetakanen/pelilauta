@@ -24,7 +24,7 @@ import 'firebase/analytics'
 import { toThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import ThreadCard from '@/components/home/ThreadCard.vue'
+import ThreadCard from '@/components/home/threadcard/ThreadCard.vue'
 
 export default defineComponent({
   name: 'Threadlist',

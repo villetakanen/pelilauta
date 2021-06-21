@@ -39,9 +39,9 @@
 </template>
 
 <script lang="ts">
-import { ComputedRef, defineComponent, inject, provide } from 'vue'
+import { ComputedRef, defineComponent, inject, onMounted, provide } from 'vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
-import { usePages, useSite } from '@/state/site'
+import { fetchPage, usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
@@ -59,9 +59,23 @@ export default defineComponent({
     Card,
     SiteThreadList
   },
-  setup () {
+  props: {
+    siteid: {
+      type: String,
+      required: true
+    },
+    pageid: {
+      type: String,
+      required: true
+    }
+  },
+  setup (props) {
     const { site } = useSite()
     const { page, pages } = usePages()
+
+    onMounted(() => {
+      fetchPage(props.pageid)
+    })
 
     // const route = useRoute()
     const mobileViewport = inject('mobileViewport') as ComputedRef<boolean>

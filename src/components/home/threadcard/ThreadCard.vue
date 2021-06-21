@@ -10,24 +10,7 @@
         class="imageframe"
         :style="`background-image: url('${thread.data.images[0].url}')`"
       />
-      <h1 class="contentBox">
-        <router-link :to="`/thread/${thread.id}/view`">
-          {{ thread.data.title }}
-        </router-link>
-      </h1>
-      <p
-        v-if="site"
-        class="subtitle"
-      >
-        <Icon
-          :name="site.systemBadge+'-logo'"
-          x-small
-          style="opacity:0.7"
-        />
-        <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
-          {{ site.name }}
-        </router-link>
-      </p>
+      <ThreadCardHeader :thread="thread" />
       <p
         v-if="!thread.data.youTubeSlug"
         class="contentSnippet"
@@ -112,18 +95,16 @@ import { loveThread, unloveThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
-import Card from '../layout/Card.vue'
-import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
+import Card from '../../layout/Card.vue'
+import LoveAThreadAction from '../../thread/LoveAThreadAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
-import Pill from '../material/Pill.vue'
+import Pill from '../../material/Pill.vue'
 import { useSites } from '@/state/sites'
-import Icon from '../material/Icon.vue'
-/**
- * A simple welcome card for anonymous visitors
- */
+import ThreadCardHeader from './ThreadCardHeader.vue'
+
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Card, LoveAThreadAction, Pill, Icon },
+  components: { Card, LoveAThreadAction, Pill, ThreadCardHeader },
   props: {
     thread: {
       type: Object as PropType<Thread>,
