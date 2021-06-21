@@ -14,7 +14,6 @@
     >
       <div class="spacer" />
       <Action
-        v-if="isAnonymous"
         to="/login"
         dark
         mobile
@@ -26,7 +25,6 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
 import { defineComponent } from 'vue'
 import Card from '../layout/Card.vue'
 import Action from '../material/Action.vue'
@@ -35,11 +33,7 @@ import Action from '../material/Action.vue'
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Action, Card },
-  setup () {
-    const { isAnonymous } = useAuthState()
-    return { isAnonymous }
-  }
+  components: { Action, Card }
 })
 </script>
 
