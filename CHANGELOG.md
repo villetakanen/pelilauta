@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.2](https://github.com/villetakanen/pelilauta/compare/v9.4.1...v9.4.2) (2021-06-21)
+
+
+### Bug Fixes
+
+* dd colors for dd sites on home ([64e171f](https://github.com/villetakanen/pelilauta/commit/64e171f1ae2092306b88d45cf6821c1bd0f04b33))
+
 ### [9.4.1](https://github.com/villetakanen/pelilauta/compare/v9.4.0...v9.4.1) (2021-06-21)
 
 
