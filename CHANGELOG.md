@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.1](https://github.com/villetakanen/pelilauta/compare/v9.4.0...v9.4.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* border radius to 12 on card ([170ba59](https://github.com/villetakanen/pelilauta/commit/170ba59b2ea915d4b5ab48bc47e07fe05cdb1b75))
+* site-thead ux and loading order on frontpage ([779af1b](https://github.com/villetakanen/pelilauta/commit/779af1b8778a5c3209128c36f126bd1814d941f3))
+* welcome card no longer flashes on app reload ([f573396](https://github.com/villetakanen/pelilauta/commit/f573396e0d34e3f432d834d1b7e2ef45cbfe2f25))
+
 ## [9.4.0](https://github.com/villetakanen/pelilauta/compare/v9.3.0...v9.4.0) (2021-06-18)
 
 
