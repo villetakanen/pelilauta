@@ -35,7 +35,7 @@ export default defineComponent({
   background-color: var(--chroma-clear)
   padding: 16px
   margin: 8px
-  border-radius: 8px
+  border-radius: 12px
   &.riseTwo
     @include Rise2()
   &.riseThree

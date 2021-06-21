@@ -108,7 +108,7 @@ a, h1.title a
   margin-right: -16px
   padding-right: 16px
   margin-bottom: 8px
-  border-radius: 8px 8px 0 0
+  border-radius: 12px 12px 0 0
   a
     color: var(--chroma-primary-c)
   h1.title a
