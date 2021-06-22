@@ -72,6 +72,9 @@ export default defineComponent({
   a
     color: var(--chroma-primary-d)
     text-decoration: none
+.threadCardTailer
+  padding-top: 8px
+  margin-top: 8px
 
 .withSite
   background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
@@ -82,6 +85,5 @@ export default defineComponent({
   padding-left: 16px
   margin-right: -16px
   padding-right: 16px
-  margin-top: 8px
   border-radius: 0 0 12px 12px
 </style>

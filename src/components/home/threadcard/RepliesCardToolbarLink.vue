@@ -35,7 +35,6 @@ export default defineComponent({
   line-height: 24px
   height: 24px
   padding: 0 12px
-  margin-top: 8px
   border-radius: 12px
   a
     text-decoration: none
