@@ -5,7 +5,9 @@
       withSite: thread.site
     }"
   >
-    ...
+    <div style="min-width: 64px">
+      ...
+    </div>
     <div class="topicLink spacer">
       {{ $t('stream.inStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
         {{ topicName }}
@@ -45,6 +47,9 @@ export default defineComponent({
 .topicLink
   @include TypeCaption()
   margin: 0px 8px
+  a
+    color: var(--chroma-primary-d)
+    text-decoration: none
 
 .withSite
   background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
