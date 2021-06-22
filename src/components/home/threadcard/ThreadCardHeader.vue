@@ -92,6 +92,7 @@ h1.title
   height: 48px
   width: 52px
   flex-grow: 0
+  flex-shrink: 0
   position: relative
   .badge
     position: absolute
