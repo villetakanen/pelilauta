@@ -1,13 +1,18 @@
 <template>
-  <div class="repliesCardToolbarLink">
-    <router-link :to="`/thread/${thread.id}/view/from/${seen}`">
+  <div
+    class="repliesCardToolbarLink"
+    :class="{
+      alert: newRepliesInThread
+    }"
+  >
+    <router-link :to="`/thread/${thread.id}/view/from/${showRepliesAfter}`">
       {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
     </router-link>
   </div>
 </template>
 
 <script lang="ts">
-import { useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 
@@ -19,9 +24,27 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { seenFrom } = useProfile()
-    const seen = computed(() => (seenFrom(props.thread.id)))
-    return { seen }
+    const { anonymousSession } = useAuth()
+    const { seenFrom, profileMeta } = useProfile()
+    const showRepliesAfter = computed(() => {
+      if (anonymousSession.value) return 0
+      return seenFrom(props.thread.id)
+    })
+    const newRepliesInThread = computed(() => {
+      if (anonymousSession.value) return false
+      if (props.thread.flowTime) {
+        if (
+          profileMeta.value.allThreadsSeenSince &&
+          props.thread.flowTime.seconds > profileMeta.value.allThreadsSeenSince.seconds &&
+          showRepliesAfter.value > 1 && props.thread.flowTime.seconds < showRepliesAfter.value
+        ) {
+          return true
+        }
+        return showRepliesAfter.value > 1 && props.thread.flowTime.seconds > showRepliesAfter.value
+      }
+      return false
+    })
+    return { newRepliesInThread, showRepliesAfter }
   }
 })
 </script>
@@ -42,4 +65,7 @@ export default defineComponent({
 .withSite
   .repliesCardToolbarLink
     background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+
+.alert, .withSite .alert
+  background: linear-gradient(140deg, var(--chroma-primary-i) 0%, var(--chroma-primary-h) 100%)
 </style>
