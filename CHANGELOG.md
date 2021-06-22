@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.4](https://github.com/villetakanen/pelilauta/compare/v9.4.3...v9.4.4) (2021-06-22)
+
+
+### Bug Fixes
+
+* love a thread on home card moved to comp ([299ece7](https://github.com/villetakanen/pelilauta/commit/299ece76ee32999c3abca643609e8cfd9110acb5))
+* new replies highlight restored ([5f13c24](https://github.com/villetakanen/pelilauta/commit/5f13c2436a8b0502ad5520cd402d040ebbbe3ef9))
+* refactored topic+replycount to separate comp ([94c6db6](https://github.com/villetakanen/pelilauta/commit/94c6db6304e0682499cf39db8ee5c12d07961b34))
+* removed dead code from threadcard ([64626de](https://github.com/villetakanen/pelilauta/commit/64626def7052747d04848072340a4f85949be028))
+* removed dead code of pill comp ([b118cbd](https://github.com/villetakanen/pelilauta/commit/b118cbd7cc5b6dec74e282b6b07e33064de54b96))
+* removed deprecated code ([fd53f38](https://github.com/villetakanen/pelilauta/commit/fd53f383921cf93872655310e5a8d067964f7e72))
+* removed deprecated dom from threadcard ([beb1463](https://github.com/villetakanen/pelilauta/commit/beb1463a69fa97582befcae0158bc42fa96ecd73))
+* topic link colors ([ab6c13f](https://github.com/villetakanen/pelilauta/commit/ab6c13f9f58d31c8b6cf73c65542257378fe2677))
+
 ### [9.4.3](https://github.com/villetakanen/pelilauta/compare/v9.4.2...v9.4.3) (2021-06-22)
 
 
