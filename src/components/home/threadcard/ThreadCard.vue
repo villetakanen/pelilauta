@@ -99,7 +99,6 @@ import Card from '../../layout/Card.vue'
 import LoveAThreadAction from '../../thread/LoveAThreadAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import Pill from '../../material/Pill.vue'
-import { useSites } from '@/state/sites'
 import ThreadCardHeader from './ThreadCardHeader.vue'
 
 export default defineComponent({
@@ -165,13 +164,7 @@ export default defineComponent({
       }
     }
 
-    const { allSites } = useSites()
-    const site = computed(() => {
-      if (!props.thread.site) return undefined
-      return allSites.value.find((site) => (site.id === props.thread.site))
-    })
-
-    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves, site, seen }
+    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves, seen }
   }
 })
 </script>
