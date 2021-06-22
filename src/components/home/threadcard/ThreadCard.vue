@@ -85,6 +85,7 @@
         </transition>
       </div>
     </div>
+    <ThreadCardTailer2 :thread="thread" />
   </Card>
 </template>
 
@@ -100,10 +101,11 @@ import LoveAThreadAction from '../../thread/LoveAThreadAction.vue'
 import { useAuthState, useProfile } from '@/state/authz'
 import Pill from '../../material/Pill.vue'
 import ThreadCardHeader from './ThreadCardHeader.vue'
+import ThreadCardTailer2 from './ThreadCardTailer2.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Card, LoveAThreadAction, Pill, ThreadCardHeader },
+  components: { Card, LoveAThreadAction, Pill, ThreadCardHeader, ThreadCardTailer2 },
   props: {
     thread: {
       type: Object as PropType<Thread>,
