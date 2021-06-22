@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.4.3](https://github.com/villetakanen/pelilauta/compare/v9.4.2...v9.4.3) (2021-06-22)
+
+
+### Bug Fixes
+
+* icons no longer clip for home cards on mobile ([02af152](https://github.com/villetakanen/pelilauta/commit/02af15206be34d58ddf6814a803b01c36e5d9544))
+
 ### [9.4.2](https://github.com/villetakanen/pelilauta/compare/v9.4.1...v9.4.2) (2021-06-21)
 
 
