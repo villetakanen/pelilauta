@@ -45,12 +45,10 @@
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
 import { useMeta } from '@/state/meta'
-import { loveThread, unloveThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Card from '../../layout/Card.vue'
-import { useAuthState, useProfile } from '@/state/authz'
 import ThreadCardHeader from './ThreadCardHeader.vue'
 import ThreadCardTailer2 from './ThreadCardTailer2.vue'
 
@@ -91,33 +89,8 @@ export default defineComponent({
     const { authors } = useAuthors()
     const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
     const authoruid = computed(() => (author.value?.uid || ''))
-    const { isAnonymous, uid } = useAuthState()
-    const { hasSeen, profileMeta, seenFrom } = useProfile()
-    const newReplies = computed(() => (
-      !isAnonymous.value &&
-      !hasSeen(props.thread.id, props.thread.flowTime) &&
-      props.thread.replyCount > 0
-    ))
-    const seen = computed(() => (seenFrom(props.thread.id)))
-    const loves = computed(() => {
-      if (typeof profileMeta.value.lovedThreads === 'undefined') return false
-      return profileMeta.value.lovedThreads.includes(props.thread.id)
-    })
 
-    async function toggleLove () {
-      // no-op if the author is trying to love their own posts
-      if (props.thread.author === uid.value) return
-      // love/unlove
-      if (loves.value) {
-        return unloveThread(uid.value, props.thread.id).then(() => {
-        })
-      } else {
-        return loveThread(uid.value, props.thread.id).then(() => {
-        })
-      }
-    }
-
-    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves, seen }
+    return { snippet, topicName, author, toDisplayString, authoruid }
   }
 })
 </script>
