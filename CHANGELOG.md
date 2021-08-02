@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.5.0](https://github.com/villetakanen/pelilauta/compare/v9.4.4...v9.5.0) (2021-08-02)
+
+
+### Features
+
+* adventurer icon added ([a1e2538](https://github.com/villetakanen/pelilauta/commit/a1e253810843823693170c3d8bbb9bc4a7fcea9a))
+* adventurer icon added ([7d1d257](https://github.com/villetakanen/pelilauta/commit/7d1d257daa1a06a3c0375209a991eef434bdd709))
+
+
+### Bug Fixes
+
+* canonical page urls in sidebar links ([c8443d3](https://github.com/villetakanen/pelilauta/commit/c8443d3e0521a30cecac3ba89434837bc2b84ab1))
+* canonical url for page links in changes card ([c295700](https://github.com/villetakanen/pelilauta/commit/c2957005defbf2dfc7933cff2c81b6aa0ce88e84))
+* feature flagging :D ([4b4b543](https://github.com/villetakanen/pelilauta/commit/4b4b543305faed20c4f684f0ce9149c6691f9c31))
+* in-view route changes when view is mounted ([ea66723](https://github.com/villetakanen/pelilauta/commit/ea66723489f6eb7216ff7d2e746dc555d7436cfc))
+
 ### [9.4.4](https://github.com/villetakanen/pelilauta/compare/v9.4.3...v9.4.4) (2021-06-22)
 
 
