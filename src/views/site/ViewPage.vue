@@ -33,7 +33,10 @@
           :siteid="site.id"
         />
       </Card>
-      <Icon name="adventurer" />
+      <Icon
+        v-if="false"
+        name="adventurer"
+      />
     </div>
     <PageFabs />
   </div>
