@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { ComputedRef, defineComponent, inject, onMounted, provide } from 'vue'
+import { ComputedRef, defineComponent, inject, onMounted, provide, watch } from 'vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
 import { fetchPage, usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
@@ -77,7 +77,9 @@ export default defineComponent({
     const { page, pages } = usePages()
 
     onMounted(() => {
-      fetchPage(props.pageid)
+      watch(() => props.pageid, (pageid) => {
+        fetchPage(pageid)
+      }, { immediate: true })
     })
 
     // const route = useRoute()
