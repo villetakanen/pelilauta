@@ -90,6 +90,10 @@
     "noQuickResultsHelper": "Ei pikahakutuloksia, paina enter nähdäksesi koko haun"
   },
   "site": {
+    "characters": {
+      "title": "Hahmot",
+      "template": "Valitse lomake"
+    },
     "players": {
       "title": "Pelaajat",
       "addAsNew": "Lisää pelaajaksi",
