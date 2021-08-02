@@ -65,6 +65,7 @@ export default defineComponent({
       'addAnImage',
       'addDiscussion',
       'admin',
+      'adventurer',
       'attachments',
       'avatar',
       'books',

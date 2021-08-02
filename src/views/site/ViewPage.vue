@@ -33,6 +33,7 @@
           :siteid="site.id"
         />
       </Card>
+      <Icon name="adventurer" />
     </div>
     <PageFabs />
   </div>
@@ -48,6 +49,7 @@ import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { renderWikiLinks } from '@/utils/contentFormat'
 import Card from '@/components/layout/Card.vue'
 import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
+import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -57,7 +59,8 @@ export default defineComponent({
     PageFabs,
     SiteToolbar,
     Card,
-    SiteThreadList
+    SiteThreadList,
+    Icon
   },
   props: {
     siteid: {
