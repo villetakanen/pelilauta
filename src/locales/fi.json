@@ -92,7 +92,11 @@
   "site": {
     "characters": {
       "title": "Hahmot",
-      "template": "Valitse lomake"
+      "template": "Valitse lomake",
+      "templates": {
+        "default": "Tyhjä",
+        "ll": "Legendoja ja lohikäärmeitä"
+      }
     },
     "players": {
       "title": "Pelaajat",
