@@ -5,7 +5,7 @@
     <transition name="fade">
       <div v-if="site">
         <h3 style="margin: 0">
-          <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
+          <router-link :to="`/site/${site.id}/page/${site.id}`">
             {{ site.name }}
           </router-link>
         </h3>
@@ -24,7 +24,7 @@
               v-for="page in pages"
               :key="page.id"
             >
-              <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
+              <router-link :to="`/site/${site.id}/page/${page.id}`">
                 {{ page.name }}
               </router-link>
             </li>
@@ -37,7 +37,7 @@
               v-for="page in noCategory"
               :key="page.id"
             >
-              <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
+              <router-link :to="`/site/${site.id}/page/${page.id}`">
                 {{ page.name }}
               </router-link>
             </li>
@@ -53,7 +53,7 @@
                 v-for="page in inTopic(cat)"
                 :key="page.id"
               >
-                <router-link :to="`/mekanismi/view/${site.id}/${page.id}`">
+                <router-link :to="`/site/${site.id}/page/${page.id}`">
                   {{ page.name }}
                 </router-link>
               </li>
