@@ -61,3 +61,18 @@ export interface NotificationMessage {
     author?: string
   }
 }
+
+export interface PCStat {
+  type: string
+  value: string|number|boolean
+  calculated: boolean
+}
+
+export interface PlayerCharacter {
+  id: string,
+  name: string,
+  playerid: string,
+  type: string
+  description: string
+  stats?: PCStat[]
+}
