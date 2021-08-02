@@ -73,7 +73,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { site } = useSite()
+    const { site } = useSite(props.siteid)
     const { page, pages } = usePages()
 
     onMounted(() => {

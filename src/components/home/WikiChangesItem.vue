@@ -7,7 +7,7 @@
       {{ siteName }}
     </div>
     <div class="page">
-      <router-link :to="`/mekanismi/view/${siteid}/${pageid}`">
+      <router-link :to="`/site/${siteid}/page/${pageid}`">
         {{ name }}
       </router-link>
     </div>

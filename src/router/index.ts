@@ -168,6 +168,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'mekanismi.edit'
   },
   {
+    path: '/site/:siteid/page/:pageid',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
+    props: true,
+    name: 'site.page'
+  },
+  {
     path: '/site/meta/:siteid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/SiteMetaView.vue'),
     props: true,
