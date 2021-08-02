@@ -63,9 +63,8 @@ export interface NotificationMessage {
 }
 
 export interface PCStat {
-  type: string
+  key: string
   value: string|number|boolean
-  calculated: boolean
 }
 
 export interface PlayerCharacter {
