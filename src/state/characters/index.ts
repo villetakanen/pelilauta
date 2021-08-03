@@ -1,4 +1,4 @@
-import { ref, Ref } from 'vue'
+import { ref, Ref, watch } from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
@@ -17,10 +17,51 @@ async function addPlayerCharacter (type: string) {
     throw new Error('can not add characters to a game with no player functions')
   }
 }
+let init:boolean
+let siteid = ''
+let unsubscribe = () => {}
+
+function toPlayerCharacter (pcid:string, data:firebase.firestore.DocumentData|undefined):PlayerCharacter {
+  return {
+    id: pcid,
+    name: data?.name ?? 'N.N.',
+    description: data?.description ?? '',
+    playerid: data?.playerid ?? '',
+    type: data?.type ?? 'default'
+  }
+}
+
+function subscribeCharacters () {
+  unsubscribe()
+  characters.value = new Map<string, PlayerCharacter>()
+  const db = firebase.firestore()
+  const characterCollection = db.collection('sites').doc(siteid).collection('characters')
+  unsubscribe = characterCollection.onSnapshot((snapshot) => {
+    snapshot.docChanges().forEach((docChange) => {
+      if (docChange.type === 'removed') {
+        characters.value.delete(docChange.doc.id)
+      } else {
+        characters.value.set(docChange.doc.id, toPlayerCharacter(docChange.doc.id, docChange.doc.data()))
+      }
+    })
+  })
+}
 
 export function useCharacters (): {
     addPlayerCharacter: (type: string) => Promise<string>
     characters: Ref<Map<string, PlayerCharacter>>
     } {
+  if (!init) {
+    init = true
+    const { site } = useSite()
+    watch(() => site, (val) => {
+      if (val.value.id !== siteid) {
+        siteid = val.value.id
+        subscribeCharacters()
+      }
+    }, {
+      immediate: true
+    })
+  }
   return { addPlayerCharacter, characters }
 }
