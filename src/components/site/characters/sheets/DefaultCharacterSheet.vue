@@ -1,7 +1,6 @@
 <template>
   <div class="defaultCharacterSheet characterSheet">
     <h1>Default Character Sheet</h1>
-    {{ character }}
     <div>
       <h2>{{ $t('site.characters.fields.name') }}</h2>
       <TextField v-model="name" />
@@ -13,7 +12,9 @@
     </div>
     <div class="toolbar">
       <div class="spacer" />
-      <MaterialButton>{{ $t('action.save') }}</MaterialButton>
+      <MaterialButton :async-action="pushChanges">
+        {{ $t('action.save') }}
+      </MaterialButton>
     </div>
   </div>
 </template>
@@ -21,8 +22,9 @@
 <script lang="ts">
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import TextField from '@/components/material/TextField.vue'
+import { useCharacters } from '@/state/characters'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 
 export default defineComponent({
   components: { TextField, MaterialButton },
@@ -33,8 +35,22 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const description = ref(props.character.description)
-    return { description }
+    const name = ref('')
+    const description = ref('')
+    watch(() => props.character, (c) => {
+      name.value = c.name
+      description.value = c.description
+    }, {
+      immediate: true
+    })
+    const { updatePlayerCharacter } = useCharacters()
+    async function pushChanges () {
+      const char = { ...props.character }
+      char.name = name.value
+      char.description = description.value
+      return updatePlayerCharacter(char)
+    }
+    return { description, pushChanges, name }
   }
 })
 </script>

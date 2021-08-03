@@ -17,6 +17,18 @@ async function addPlayerCharacter (type: string) {
     throw new Error('can not add characters to a game with no player functions')
   }
 }
+
+async function updatePlayerCharacter (char:PlayerCharacter) {
+  const { site } = useSite()
+  console.debug('updating', site.value.id, char.id, char.name)
+  if (site.value.usePlayers) {
+    const db = firebase.firestore()
+    return db.collection('sites').doc(site.value.id).collection('characters').doc(char.id).update(char)
+  } else {
+    throw new Error('can not add characters to a game with no player functions')
+  }
+}
+
 let init = false
 let siteid = ''
 let unsubscribe = () => {}
@@ -50,6 +62,7 @@ function subscribeCharacters () {
 export function useCharacters (): {
     addPlayerCharacter: (type: string) => Promise<string>
     characters: Ref<Map<string, PlayerCharacter>>
+    updatePlayerCharacter: (char:PlayerCharacter) => Promise<void>
     } {
   if (!init) {
     init = true
@@ -63,5 +76,5 @@ export function useCharacters (): {
       immediate: true
     })
   }
-  return { addPlayerCharacter, characters }
+  return { addPlayerCharacter, characters, updatePlayerCharacter }
 }
