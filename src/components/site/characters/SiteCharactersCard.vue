@@ -7,7 +7,9 @@
       v-for="pc in pcs"
       :key="pc[0]"
     >
-      {{ pc[1].name }}
+      <router-link :to="`/site/${site.id}/character/${pc[0]}`">
+        {{ pc[1].name }}
+      </router-link>
     </div>
     <div>
       <MaterialSelect
@@ -27,6 +29,7 @@ import Card from '@/components/layout/Card.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import { useCharacters } from '@/state/characters'
+import { useSite } from '@/state/site'
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -48,7 +51,8 @@ export default defineComponent({
         console.error(e)
       }
     }
-    return { templates, pcs, newCharType, addCharacter }
+    const { site } = useSite()
+    return { templates, pcs, newCharType, addCharacter, site }
   }
 })
 </script>

@@ -17,13 +17,13 @@ async function addPlayerCharacter (type: string) {
     throw new Error('can not add characters to a game with no player functions')
   }
 }
-let init:boolean
+let init = false
 let siteid = ''
 let unsubscribe = () => {}
 
-function toPlayerCharacter (pcid:string, data:firebase.firestore.DocumentData|undefined):PlayerCharacter {
+export function toPlayerCharacter (pcid?:string, data?:firebase.firestore.DocumentData):PlayerCharacter {
   return {
-    id: pcid,
+    id: pcid ?? '',
     name: data?.name ?? 'N.N.',
     description: data?.description ?? '',
     playerid: data?.playerid ?? '',
@@ -54,9 +54,9 @@ export function useCharacters (): {
   if (!init) {
     init = true
     const { site } = useSite()
-    watch(() => site, (val) => {
-      if (val.value.id !== siteid) {
-        siteid = val.value.id
+    watch(site, (val) => {
+      if (val.id !== siteid) {
+        siteid = val.id
         subscribeCharacters()
       }
     }, {
