@@ -96,6 +96,10 @@
       "templates": {
         "default": "Tyhjä",
         "ll": "Legendoja ja lohikäärmeitä"
+      },
+      "fields": {
+        "name":"Nimi",
+        "description":"Kuvaus"
       }
     },
     "players": {

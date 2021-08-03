@@ -11,16 +11,21 @@
         class="characterSheetField descriptionField"
       />
     </div>
+    <div class="toolbar">
+      <div class="spacer" />
+      <MaterialButton>{{ $t('action.save') }}</MaterialButton>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import MaterialButton from '@/components/material/MaterialButton.vue'
 import TextField from '@/components/material/TextField.vue'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref } from 'vue'
 
 export default defineComponent({
-  components: { TextField },
+  components: { TextField, MaterialButton },
   props: {
     character: {
       type: Object as PropType<PlayerCharacter>,
