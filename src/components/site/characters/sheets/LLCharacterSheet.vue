@@ -1,7 +1,9 @@
 <template>
-  <div class="defaultCharacterSheet characterSheet">
-    <h1>Default Character Sheet</h1>
-    <div>
+  <div class="llCharacterSheet characterSheet">
+    <h1 class="gametitle">
+      Legendoja ja Lohikäärmeitä
+    </h1>
+    <div class="blockRow">
       <h2>{{ $t('site.characters.fields.name') }}</h2>
       <TextField v-model="name" />
       <h2>{{ $t('site.characters.fields.description') }}</h2>
@@ -16,7 +18,6 @@
         {{ $t('action.save') }}
       </MaterialButton>
     </div>
-    {{ character }}
   </div>
 </template>
 

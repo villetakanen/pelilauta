@@ -9,7 +9,7 @@ const characters = ref(new Map<string, PlayerCharacter>())
 
 async function addPlayerCharacter (type: string) {
   const { site } = useSite()
-  console.debug('adding a character to', site.value.id, site.value.name)
+  console.debug('adding a character to', site.value.id, site.value.name, type)
   if (site.value.usePlayers) {
     const db = firebase.firestore()
     return (await db.collection('sites').doc(site.value.id).collection('characters').add({ type: type })).id

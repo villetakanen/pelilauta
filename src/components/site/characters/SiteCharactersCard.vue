@@ -13,9 +13,9 @@
     </div>
     <div>
       <MaterialSelect
+        v-model="newCharType"
         :label="$t('site.characters.template')"
         :opts="templates"
-        :model-value="newCharType"
       />
       <MaterialButton :async-action="addCharacter">
         {{ $t('action.add') }}
