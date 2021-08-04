@@ -12,6 +12,13 @@
         class="characterSheetField descriptionField"
       />
     </div>
+    <div class="blockRow">
+      <CharsheetField
+        v-model="stats.strength"
+        name="strength"
+        label="Voima"
+      />
+    </div>
     <div class="toolbar">
       <div class="spacer" />
       <MaterialButton :async-action="pushChanges">
@@ -27,9 +34,19 @@ import TextField from '@/components/material/TextField.vue'
 import { useCharacters } from '@/state/characters'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref, watch } from 'vue'
+import CharsheetField from './CharsheetField.vue'
+
+const llStatBlocks = {
+  strength: 10,
+  dexterity: 10,
+  constitution: 10,
+  wisdom: 10,
+  intelligence: 10,
+  charisma: 10
+}
 
 export default defineComponent({
-  components: { TextField, MaterialButton },
+  components: { TextField, MaterialButton, CharsheetField },
   props: {
     character: {
       type: Object as PropType<PlayerCharacter>,
@@ -39,6 +56,7 @@ export default defineComponent({
   setup (props) {
     const name = ref('')
     const description = ref('')
+    const stats = ref({ ...llStatBlocks })
     watch(() => props.character, (c) => {
       name.value = c.name
       description.value = c.description
@@ -52,7 +70,7 @@ export default defineComponent({
       char.description = description.value
       return updatePlayerCharacter(char)
     }
-    return { description, pushChanges, name }
+    return { description, pushChanges, name, stats }
   }
 })
 </script>
