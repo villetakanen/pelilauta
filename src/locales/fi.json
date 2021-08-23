@@ -90,10 +90,27 @@
     "noQuickResultsHelper": "Ei pikahakutuloksia, paina enter nähdäksesi koko haun"
   },
   "site": {
+    "characters": {
+      "title": "Hahmot",
+      "template": "Valitse lomake",
+      "templates": {
+        "default": "Tyhjä",
+        "ll": "Legendoja ja lohikäärmeitä"
+      },
+      "fields": {
+        "name":"Nimi",
+        "description":"Kuvaus"
+      }
+    },
     "players": {
       "title": "Pelaajat",
       "addAsNew": "Lisää pelaajaksi",
-      "dropThePlayer": "Poista pelistä"
+      "dropThePlayer": "Poista pelaaja",
+      "linkACharacter": "Linkitä hahmo",
+      "newCharacter": "Uusi hahmo",
+      "author": "Pelaaja",
+      "character": "Hahmo",
+      "actions": "Toiminnot"
     },
     "meta": {
       "usePlayers": "Käytä pelaajat -toimintoa",
@@ -164,6 +181,11 @@
     "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
     "tagline": "Allekirjoitus",
     "assets": "Media",
+    "asset": {
+      "list": {
+        "title": "Lisäämäni kuvat"
+      }
+    },
     "stats": "Ketjut",
     "actions": {
       "title": "Asetukset ja toiminnot",

@@ -3,11 +3,13 @@
     <SiteToolbar />
     <div class="singleColumnLayout">
       <SitePlayersList :site="site" />
+      <SiteCharactersCard />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import SiteCharactersCard from '@/components/site/characters/SiteCharactersCard.vue'
 import SitePlayersList from '@/components/sites/SitePlayersList.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { useSite } from '@/state/site'
@@ -23,7 +25,7 @@ import { defineComponent } from 'vue'
  */
 export default defineComponent({
   name: 'SitePlayersView',
-  components: { SiteToolbar, SitePlayersList },
+  components: { SiteToolbar, SitePlayersList, SiteCharactersCard },
   props: {
     siteid: {
       type: String,
