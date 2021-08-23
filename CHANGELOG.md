@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.6.0](https://github.com/villetakanen/pelilauta/compare/v9.5.0...v9.6.0) (2021-08-23)
+
+
+### Features
+
+* add character view complete ([c68a6d0](https://github.com/villetakanen/pelilauta/commit/c68a6d0c3a3a196e80defbd71341c113840e5561))
+* adding and listing characters works ([f15a508](https://github.com/villetakanen/pelilauta/commit/f15a508195152c6ad4c912677e4f0067f7006754))
+* adding characters supported by state ([90948d3](https://github.com/villetakanen/pelilauta/commit/90948d3a75ef70a79590a8bc7045dc0181ff3c94))
+* character mgmnt card ([dc99c1a](https://github.com/villetakanen/pelilauta/commit/dc99c1aa9ffa618a5f420c1506f7a6f3f411c39d))
+* character selection tool for plrs view ([522ced8](https://github.com/villetakanen/pelilauta/commit/522ced879d603c2c08ac5bd8fc8cce50a7e8a3f5))
+* charactersheetfield component ([b226fbb](https://github.com/villetakanen/pelilauta/commit/b226fbb1d8246aee983b8fe0ac01e282c00af775))
+* default character sheet skeleton ([54f6615](https://github.com/villetakanen/pelilauta/commit/54f6615597285aabc777b78d91d599de64ac49b7))
+* moved pc hydration/dehydration to a class ([61fa60c](https://github.com/villetakanen/pelilauta/commit/61fa60cbc44e94ee3dc372bbf9652a8f44ffb188))
+* playercharacter datatype ([00c8d03](https://github.com/villetakanen/pelilauta/commit/00c8d0364bdc49e55d88fa66ef07338cc1d279be))
+* site characters state stub ([c4cdd24](https://github.com/villetakanen/pelilauta/commit/c4cdd24ebc5f8c6d4de93ac9389bbd9888ec8e0d))
+* site mgmnt card ([cbf3d5e](https://github.com/villetakanen/pelilauta/commit/cbf3d5e242bbfee4c6cb23229dd6d4e6cf63a4f1))
+* subscribe to characters when site changes ([db5d55c](https://github.com/villetakanen/pelilauta/commit/db5d55c333d05d3692048e323b10eb5730ba4daf))
+* supports two different charsheets ([3711f01](https://github.com/villetakanen/pelilauta/commit/3711f0169327ce1313e9e190b4bfe936d9667577))
+
+
+### Bug Fixes
+
+* default charsheet polish ([baf982e](https://github.com/villetakanen/pelilauta/commit/baf982e8b5fadbf68edd1b181f86734615febdac))
+* removed class as unneccessary ([ed7f9fa](https://github.com/villetakanen/pelilauta/commit/ed7f9faac2ad5e3d3fbbcb2358af3b36bfbe6d2b))
+
 ## [9.5.0](https://github.com/villetakanen/pelilauta/compare/v9.4.4...v9.5.0) (2021-08-02)
 
 
