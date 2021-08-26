@@ -59,18 +59,6 @@ function subscribeCharacters () {
   })
 }
 
-function toExpextedFormat (character:PlayerCharacter, expectedStats = new Array<string>()): PlayerCharacter {
-  const remainingStats = [...expectedStats]
-  const c:PlayerCharacter = {
-    id: character.id,
-    name: character.name,
-    playerid: character.id,
-    gameid: character.gameid,
-    type: character.type
-  }
-  return c
-}
-
 export function useCharacters (): {
     addPlayerCharacter: (type: string) => Promise<string>
     characters: Ref<Map<string, PlayerCharacter>>
