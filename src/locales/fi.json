@@ -82,6 +82,11 @@
     "infolink": "Lisää tietoja henkilötietojen käsittelystä.",
     "createProfile": "Luo profiili"
   },
+  "reply": {
+    "editor": {
+      "helpertext": "merkitsee kirjoittajan, ja lähettää notifikaation"
+    }
+  },
   "search": {
     "results": {
       "title": "Haku"
