@@ -35,11 +35,12 @@
         {{ $t('action.login') }}
       </MaterialButton>
     </div>
+    <EditorHelp />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, inject, Ref, watch, provide } from 'vue'
+import { defineComponent, ref, inject, Ref, provide } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import ReplyEditor from './ReplyEditor.vue'
 import { addReply } from '@/state/discussion'
@@ -47,6 +48,7 @@ import { useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 import Fab from '../material/Fab.vue'
 import AddImageReplyAction from './AddImageReplyAction.vue'
+import EditorHelp from './EditorHelp.vue'
 
 export default defineComponent({
   name: 'ReplyForm',
@@ -54,7 +56,8 @@ export default defineComponent({
     MaterialButton,
     ReplyEditor,
     Fab,
-    AddImageReplyAction
+    AddImageReplyAction,
+    EditorHelp
   },
   props: {
     threadid: {

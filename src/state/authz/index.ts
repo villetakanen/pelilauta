@@ -28,11 +28,14 @@ const frozen = computed(() => {
   const { frozen: frozenAuthors } = useMeta()
   return frozenAuthors.value.includes(authState.user.uid)
 })
+
+// Show member only tools of the App to the user
 const showMemberTools = computed(() => {
   if (authState.admin) return true
   if (frozen.value) return false
   return !authState.anonymous
 })
+
 const anonymousSession = computed(() => (authState.anonymous))
 
 let unsubscribeProfile:CallableFunction|undefined
