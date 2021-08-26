@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.6.2](https://github.com/villetakanen/pelilauta/compare/v9.6.1...v9.6.2) (2021-08-26)
+
+
+### Bug Fixes
+
+* display frozen status as expected on the app ([86d0ad1](https://github.com/villetakanen/pelilauta/commit/86d0ad1d3d527a1b10f04d92f1cd6b99d778bbaa))
+* frozen state visible in the ap ([058f9ba](https://github.com/villetakanen/pelilauta/commit/058f9ba38618cf0a860d349ed874e0c196947fa8))
+* ll charseet tests ([75e021d](https://github.com/villetakanen/pelilauta/commit/75e021db7b00755b7cd9fbdecaba4a25cc566a77))
+* removed deprecated authstate component ([a10c271](https://github.com/villetakanen/pelilauta/commit/a10c271f6574e1b424aab1cbb40924dae02a644a))
+* show profile toolbar on mythreads for self ([65327b8](https://github.com/villetakanen/pelilauta/commit/65327b87ba8109dac7f5011b81aa5f48a5d0d751))
+
 ### [9.6.1](https://github.com/villetakanen/pelilauta/compare/v9.6.0...v9.6.1) (2021-08-26)
 
 
