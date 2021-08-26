@@ -14,7 +14,6 @@
     </div>
     <div class="blockRow">
       <CharsheetField
-        v-model="stats.strength"
         name="strength"
         label="Voima"
       />
@@ -36,15 +35,6 @@ import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref, watch } from 'vue'
 import CharsheetField from './CharsheetField.vue'
 
-const llStatBlocks = {
-  strength: 10,
-  dexterity: 10,
-  constitution: 10,
-  wisdom: 10,
-  intelligence: 10,
-  charisma: 10
-}
-
 export default defineComponent({
   components: { TextField, MaterialButton, CharsheetField },
   props: {
@@ -56,10 +46,13 @@ export default defineComponent({
   setup (props) {
     const name = ref('')
     const description = ref('')
-    const stats = ref({ ...llStatBlocks })
+    const stats = ref(new Map<string, string|number|boolean>())
     watch(() => props.character, (c) => {
       name.value = c.name
       description.value = c.description
+
+      // get all DD stats here
+      if (c.stats) stats.value = c.stats
     }, {
       immediate: true
     })
