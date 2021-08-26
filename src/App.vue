@@ -10,6 +10,7 @@
       :class="{toggle: !navModel}"
     >
       <main>
+        <FrozenBar v-if="frozen" />
         <router-view />
         <MainTailer />
       </main>
@@ -27,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue'
+import { computed, defineComponent, provide, ref } from 'vue'
 import SideNav from '@/components/sidenav/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
 import MainTailer from '@/components/app/MainTailer.vue'
@@ -36,10 +37,10 @@ import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
-import { useAuthState, useProfile } from './state/authz'
+import { useAuth, useAuthState, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
-import { getNavigatorLocale } from './utils/window'
 import CompleteRegistrationDialog from './components/auth/CompleteRegistrationDialog.vue'
+import FrozenBar from '@/components/app/FrozenBar.vue'
 
 export default defineComponent({
   components: {
@@ -48,10 +49,12 @@ export default defineComponent({
     MainTailer,
     SnackBar,
     BottomFloatContainer,
-    CompleteRegistrationDialog
+    CompleteRegistrationDialog,
+    FrozenBar
   },
   setup () {
     const { isAnonymous } = useAuthState()
+    const { frozen } = useAuth()
     const { profileMeta } = useProfile()
     const i18n = useI18n()
     const route = useRoute()
@@ -103,7 +106,7 @@ export default defineComponent({
     }
     // *** Workbox/Service worker setup ends ********************************
 
-    return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta }
+    return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta, frozen }
   }
 })
 </script>
