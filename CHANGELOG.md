@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.6.1](https://github.com/villetakanen/pelilauta/compare/v9.6.0...v9.6.1) (2021-08-26)
+
+
+### Bug Fixes
+
+* extra struct fields removed on pc ([59374ce](https://github.com/villetakanen/pelilauta/commit/59374ce3e596752b9180a58ef544a1c588c7e9a0))
+* helper text for replyeditor ([c02e9a9](https://github.com/villetakanen/pelilauta/commit/c02e9a9c05c788248f81fe89da481f33e29abfab))
+* removed extraneous field from pc struct ([dfa5061](https://github.com/villetakanen/pelilauta/commit/dfa5061bec3ff11fa8c39cf7bc7e4df6dae888aa))
+* removed reduntant interface from pc intf ([6447355](https://github.com/villetakanen/pelilauta/commit/644735557bfaf707fc610dfca647e102d02bbaef))
+
 ## [9.6.0](https://github.com/villetakanen/pelilauta/compare/v9.5.0...v9.6.0) (2021-08-23)
 
 
