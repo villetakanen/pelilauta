@@ -37,7 +37,8 @@
     "welcome": {
       "title": "Tervetuloa Pelilaudalle",
       "message": "Pelilauta.fi ja Mekanismi.sange.fi sivustojen inspiroima yhteisösovellus. Kirjautumalla Facebookilla, Googlella tai sähköpostilla – saat käyttöösi enemmän toimintoja."
-    }
+    },
+    "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
   },
   "editorDialog": {
     "title": "Viesti",
