@@ -13,9 +13,29 @@
       />
     </div>
     <div class="blockRow">
-      <CharsheetField
-        name="strength"
-        label="Voima"
+      <LLPrimaryStatField
+        name="str"
+        label="Voimakkuus"
+      />
+      <LLPrimaryStatField
+        name="sta"
+        label="Sitkeys"
+      />
+      <LLPrimaryStatField
+        name="dex"
+        label="Ketteryys"
+      />
+      <LLPrimaryStatField
+        name="int"
+        label="Älykkyys"
+      />
+      <LLPrimaryStatField
+        name="wis"
+        label="Neuvokkuus"
+      />
+      <LLPrimaryStatField
+        name="cha"
+        label="Karisma"
       />
     </div>
     <div class="toolbar">
@@ -33,10 +53,10 @@ import TextField from '@/components/material/TextField.vue'
 import { useCharacters } from '@/state/characters'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref, watch } from 'vue'
-import CharsheetField from './CharsheetField.vue'
+import LLPrimaryStatField from './LLPrimaryStatField.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton, CharsheetField },
+  components: { TextField, MaterialButton, LLPrimaryStatField },
   props: {
     character: {
       type: Object as PropType<PlayerCharacter>,
