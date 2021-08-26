@@ -2,7 +2,7 @@
   <div class="replyForm">
     <!-- Show the form only for non-frozen logged in users -->
     <div
-      v-if="!isAnonymous"
+      v-if="showMemberTools"
       class="reply-form"
     >
       <AddImageReplyAction
@@ -24,7 +24,7 @@
       />
     </div>
     <div
-      v-if="isAnonymous"
+      v-if="!showMemberTools"
       style="text-align: center;padding: 16px"
     >
       {{ $t('global.messages.pleaseLogin') }}
@@ -44,7 +44,7 @@ import { defineComponent, ref, inject, Ref, provide } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import ReplyEditor from './ReplyEditor.vue'
 import { addReply } from '@/state/discussion'
-import { useAuthState } from '@/state/authz'
+import { useAuth, useAuthState } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 import Fab from '../material/Fab.vue'
 import AddImageReplyAction from './AddImageReplyAction.vue'
@@ -66,7 +66,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAnonymous, uid } = useAuthState()
+    const { user, showMemberTools } = useAuth()
     const reply = ref('')
     const sending = ref(false)
     const addImageDialog = ref(true)
@@ -76,7 +76,7 @@ export default defineComponent({
       const { formattedContent } = extractLinks(reply.value)
       sending.value = true
       const m = [...mentions.value]
-      return addReply(props.threadid, uid.value, formattedContent, m).then(() => {
+      return addReply(props.threadid, user.value.uid, formattedContent, m).then(() => {
         reply.value = ''
         mentions.value.clear()
       }).finally(() => {
@@ -100,7 +100,7 @@ export default defineComponent({
     const quotedContent = inject('quotedContent') as Ref<Quote>
     provide('quotedContent', quotedContent)
 
-    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
+    return { reply, send, showMemberTools, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
   }
 })
 </script>

@@ -1,10 +1,11 @@
 <template>
   <div id="publicProfileView">
-    <Toolbar>
+    <Toolbar v-if="user.uid !== uid">
       <h3 v-if="publicProfile">
         {{ publicProfile.nick }}
       </h3>
     </Toolbar>
+    <ProfileToolbar v-else />
     <div class="singleColumnLayout">
       <div class="linkGrid">
         <div>
@@ -45,6 +46,7 @@
 
 <script lang="ts">
 import Toolbar from '@/components/layout/Toolbar.vue'
+import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 import { useAuthors } from '@/state/authors'
 import { toThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
@@ -53,9 +55,10 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
 import Icon from '@/components/material/Icon.vue'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
-  components: { Toolbar, Icon },
+  components: { Toolbar, Icon, ProfileToolbar },
   props: {
     uid: {
       type: String,
@@ -64,6 +67,7 @@ export default defineComponent({
   },
   setup (props) {
     const { authors } = useAuthors()
+    const { user } = useAuth()
     const publicProfile = computed(() => (authors.value.find((val) => (val.uid === props.uid))))
 
     const threads = ref(new Array<Thread>())
@@ -79,7 +83,7 @@ export default defineComponent({
       })
     })
 
-    return { publicProfile, threads }
+    return { publicProfile, threads, user }
   }
 })
 </script>
