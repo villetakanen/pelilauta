@@ -52,6 +52,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "profile" */ '../views/profile/PublicProfileView.vue')
   },
   {
+    path: '/u/:uid/characters',
+    name: 'profile.characters',
+    props: true,
+    component: () => import(/* webpackChunkName: "profile" */ '../views/profile/CharacterListingView.vue')
+  },
+  {
     path: '/register',
     name: 'Register',
     // route level code-splitting
