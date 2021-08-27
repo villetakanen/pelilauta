@@ -36,7 +36,7 @@ const showMemberTools = computed(() => {
   return !authState.anonymous
 })
 
-const showAdminTools = computed(() => (!authState.anonymous && authState.admin))
+const showAdminTools = computed(() => (authState.admin))
 
 const anonymousSession = computed(() => (authState.anonymous))
 
@@ -74,7 +74,8 @@ function onAuthStateChanged (user: firebase.User|null) {
   } else {
     console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
-    authState.admin = false
+    const { admins } = useMeta()
+    authState.admin = admins.value.includes(user.uid)
     authState.displayName = user.displayName ?? 'anonymous'
     authState.user = {
       uid: user.uid

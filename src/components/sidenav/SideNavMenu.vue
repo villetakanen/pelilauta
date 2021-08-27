@@ -69,6 +69,14 @@
       >
         {{ $t('sideNav.toMySitesLink') }}
       </SideNavMenuItem>
+      <SideNavMenuItem
+        v-if="showAdminTools"
+        icon="players"
+        :to="`/u/${user.uid}/characters`"
+        @click="toggleNav"
+      >
+        {{ $t('sideNav.toMyCharactersLink') }}
+      </SideNavMenuItem>
 
       <li class="subtitle">
         Meta
@@ -103,7 +111,7 @@ export default defineComponent({
   name: 'SideNavMenu',
   components: { SideNavMenuItem },
   setup () {
-    const { showMemberTools, showAdminTools } = useAuth()
+    const { showMemberTools, showAdminTools, user } = useAuth()
     const { streams } = useMeta()
 
     const streamItems = computed(() => {
@@ -126,7 +134,7 @@ export default defineComponent({
       if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
-    return { routeTo, streamItems, showMemberTools, toggleNav, showAdminTools }
+    return { routeTo, streamItems, showMemberTools, toggleNav, showAdminTools, user }
   }
 })
 </script>
