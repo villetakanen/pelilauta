@@ -51,9 +51,7 @@ import { useAuthors } from '@/state/authors'
 import { toThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore'
 import Icon from '@/components/material/Icon.vue'
 import { useAuth } from '@/state/authz'
 
@@ -73,9 +71,11 @@ export default defineComponent({
     const threads = ref(new Array<Thread>())
 
     onMounted(() => {
-      const db = firebase.firestore()
-      const streamRef = db.collection('stream')
-      streamRef.where('author', '==', props.uid).get().then((streamDocs) => {
+      const db = getFirestore()
+      const streamRef = collection(db, 'stream')
+
+      const q = query(streamRef, where('author', '==', props.uid))
+      getDocs(q).then((streamDocs) => {
         streamDocs.forEach((streamDoc) => {
           threads.value.push(toThread(streamDoc.id, streamDoc.data()))
         })
