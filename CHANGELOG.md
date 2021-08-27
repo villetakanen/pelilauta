@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.6.3](https://github.com/villetakanen/pelilauta/compare/v9.6.2...v9.6.3) (2021-08-27)
+
+
+### Bug Fixes
+
+* my characters link to sidebar ([ef8dc33](https://github.com/villetakanen/pelilauta/commit/ef8dc33a31bb73bde56df45db4098f866cf39bd7))
+* placeholder for my characters ([b3c5561](https://github.com/villetakanen/pelilauta/commit/b3c5561eaf183b037f31578d11ad4838727dd03a))
+* side menu to use the auth state ([c2e46d3](https://github.com/villetakanen/pelilauta/commit/c2e46d33d529207b73ad43990a519d5420f70683))
+* sidenav button no longer scrolls on mobile ([d3fc5b1](https://github.com/villetakanen/pelilauta/commit/d3fc5b1b5e2fe0262b3acd1d84511267acf01082))
+
 ### [9.6.2](https://github.com/villetakanen/pelilauta/compare/v9.6.1...v9.6.2) (2021-08-26)
 
 
