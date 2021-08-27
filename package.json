@@ -15,7 +15,7 @@
     "@vuelidate/validators": "^2.0.0-alpha.14",
     "algoliasearch": "^4.9.1",
     "axios": "^0.21.1",
-    "firebase": "^8.6.3",
+    "firebase": "^9.0.0",
     "luxon": "^1.27.0",
     "quill": "^2.0.0-dev.4",
     "quill-better-table": "^1.2.10",

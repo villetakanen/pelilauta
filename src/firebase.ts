@@ -1,14 +1,11 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/analytics'
-import { useAuthState } from '@/state/authz'
-
+import { initializeApp } from 'firebase/app'
+import { initializeFirestore, CACHE_SIZE_UNLIMITED, enableIndexedDbPersistence } from 'firebase/firestore'
 let init = false
 
 export function createFirebase (): void {
   if (init) return
   init = true
-  firebase.initializeApp({
+  const app = initializeApp({
     apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
     authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
     databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
@@ -18,10 +15,8 @@ export function createFirebase (): void {
     appId: process.env.VUE_APP_FIREBASE_APP_ID,
     measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
   })
-  firebase.auth().onAuthStateChanged((user) => {
-    const { onAuthStateChanged } = useAuthState()
-    onAuthStateChanged(user)
+  const db = initializeFirestore(app, {
+    cacheSizeBytes: CACHE_SIZE_UNLIMITED
   })
-  firebase.firestore().enablePersistence()
-  firebase.analytics()
+  enableIndexedDbPersistence(db)
 }
