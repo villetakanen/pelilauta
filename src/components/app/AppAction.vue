@@ -38,6 +38,8 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/include-media.scss
+
 .siteIdentity
   margin-left: 0px
   h4
@@ -50,4 +52,8 @@ export default defineComponent({
     vertical-align: middle
     margin-top: -4px
     margin-bottom: -4px
+
+@include media('<tablet')
+  #sideNavAction-home
+    margin-left: 48px
 </style>

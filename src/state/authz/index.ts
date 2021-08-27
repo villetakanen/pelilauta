@@ -36,6 +36,8 @@ const showMemberTools = computed(() => {
   return !authState.anonymous
 })
 
+const showAdminTools = computed(() => (authState.admin))
+
 const anonymousSession = computed(() => (authState.anonymous))
 
 let unsubscribeProfile:CallableFunction|undefined
@@ -72,7 +74,8 @@ function onAuthStateChanged (user: firebase.User|null) {
   } else {
     console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
-    authState.admin = false
+    const { admins } = useMeta()
+    authState.admin = admins.value.includes(user.uid)
     authState.displayName = user.displayName ?? 'anonymous'
     authState.user = {
       uid: user.uid
@@ -96,8 +99,9 @@ function useAuth (): {
     displayName: ComputedRef<string>,
     frozen: ComputedRef<boolean>,
     anonymousSession: ComputedRef<boolean>,
-    showMemberTools: ComputedRef<boolean>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession }
+    showMemberTools: ComputedRef<boolean>
+    showAdminTools: ComputedRef<boolean>} {
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools }
 }
 
 export {
