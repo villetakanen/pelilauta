@@ -62,7 +62,7 @@
         Arkku
       </SideNavMenuItem>
       <SideNavMenuItem
-        v-if="!isAnonymous"
+        v-if="showMemberTools"
         icon="books"
         to="/mekanismi/sites/profile"
         @click="toggleNav"
@@ -74,7 +74,7 @@
         Meta
       </li>
       <SideNavMenuItem
-        v-if="isAdmin"
+        v-if="showAdminTools"
         icon="admin"
         to="/admin"
         @click="toggleNav"
@@ -94,7 +94,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useRouter } from 'vue-router'
 import { useMeta } from '@/state/meta'
 import SideNavMenuItem from './SideNavMenuItem.vue'
@@ -103,7 +103,7 @@ export default defineComponent({
   name: 'SideNavMenu',
   components: { SideNavMenuItem },
   setup () {
-    const { isAnonymous, isAdmin } = useAuthState()
+    const { showMemberTools, showAdminTools } = useAuth()
     const { streams } = useMeta()
 
     const streamItems = computed(() => {
@@ -126,7 +126,7 @@ export default defineComponent({
       if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
-    return { routeTo, streamItems, isAnonymous, toggleNav, isAdmin }
+    return { routeTo, streamItems, showMemberTools, toggleNav, showAdminTools }
   }
 })
 </script>

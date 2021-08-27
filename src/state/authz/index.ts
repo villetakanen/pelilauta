@@ -36,6 +36,8 @@ const showMemberTools = computed(() => {
   return !authState.anonymous
 })
 
+const showAdminTools = computed(() => (!authState.anonymous && authState.admin))
+
 const anonymousSession = computed(() => (authState.anonymous))
 
 let unsubscribeProfile:CallableFunction|undefined
@@ -96,8 +98,9 @@ function useAuth (): {
     displayName: ComputedRef<string>,
     frozen: ComputedRef<boolean>,
     anonymousSession: ComputedRef<boolean>,
-    showMemberTools: ComputedRef<boolean>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession }
+    showMemberTools: ComputedRef<boolean>
+    showAdminTools: ComputedRef<boolean>} {
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools }
 }
 
 export {
