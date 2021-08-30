@@ -54,7 +54,7 @@ export default defineComponent({
       router.push('/search/results')
     }
 
-    watch(() => route.path, (p) => {
+    watch(() => route.path, () => {
       // No empty searches!
       if (!searchString.value) return
 

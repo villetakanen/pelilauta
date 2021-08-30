@@ -1,7 +1,3 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
-
 /**
  * Given   I am logged in
  *   And   Have a profile

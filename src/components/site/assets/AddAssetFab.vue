@@ -23,7 +23,7 @@
 import { useSnack } from '@/composables/useSnack'
 import { useAuthState } from '@/state/authz'
 import { uploadAsset } from '@/state/site/assets'
-import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
+import { ComponentPublicInstance, defineComponent, ref } from 'vue'
 import Icon from '../../material/Icon.vue'
 
 export default defineComponent({

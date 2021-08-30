@@ -20,8 +20,7 @@ import Fab from '@/components/material/Fab.vue'
 import { useAuthState } from '@/state/authz'
 import HomeStream from '@/components/home/HomeStream.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
-import firebase from 'firebase/app'
-import 'firebase/analytics'
+import { getAnalytics, logEvent } from 'firebase/analytics'
 
 export default defineComponent({
   name: 'HomeView',
@@ -34,7 +33,8 @@ export default defineComponent({
     const { isAnonymous } = useAuthState()
     const editorDialog = ref(false)
     onMounted(() => {
-      firebase.analytics().logEvent('PageView', { name: 'homeView' })
+      const a = getAnalytics()
+      logEvent(a, 'PageView', { name: 'homeView' })
       document.title = 'Pelilauta'
     })
 

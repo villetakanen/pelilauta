@@ -1,7 +1,4 @@
 import { Ref, ref, computed, ComputedRef } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { useSite } from '.'
 

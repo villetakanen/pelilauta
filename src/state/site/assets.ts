@@ -1,9 +1,7 @@
 import { computed, ComputedRef, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
-import 'firebase/storage'
 import { Asset } from '../../utils/firestoreInterfaces'
+import { getStorage, StorageReference, getDownloadURL } from 'firebase/storage'
+import { getFirestore, serverTimestamp, doc, getDoc } from '@firebase/firestore'
 
 /*
  * This module handles site's assets and asset management.
@@ -18,20 +16,19 @@ let siteid = ''
 const siteAssets = ref(new Map<string, Asset>())
 const assets = computed(() => siteAssets.value)
 
-async function patchAsset (storageAsset: firebase.storage.Reference): Promise<void> {
-  const database = firebase.firestore()
-  const firestoreAssetsRef = database.collection('sites').doc(siteid).collection('assetMeta')
+async function patchAsset (storageAsset: StorageReference): Promise<void> {
+  const url = await getDownloadURL(storageAsset)
 
-  const url = await storageAsset.getDownloadURL()
-  const databaseAssetRef = firestoreAssetsRef.doc(storageAsset.name)
-  let databaseAssetDoc = await databaseAssetRef.get()
+  const db = getFirestore()
+  const databaseAssetRef = doc(db, 'sites', siteid, 'assetMeta', storageAsset.name)
+  let databaseAssetDoc = await getDoc(databaseAssetRef)
 
   // migration code for db sanity, might want to live in pelilauta-functions, or be deprecated at some point
   try {
     if (!(await databaseAssetDoc).exists) {
       console.debug('migtrating asset', siteid, storageAsset.name)
       await databaseAssetRef.set({
-        lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+        lastUpdate: serverTimestamp(),
         creator: 'migrated by the app'
       })
       databaseAssetDoc = await databaseAssetRef.get()
@@ -84,7 +81,7 @@ export async function subscribeTo (id: string): Promise<void> {
   if (siteid === id) return
   siteid = id
 
-  const storage = firebase.storage()
+  const storage = getStorage()
   const storageAssetList = await storage.ref().child(siteid).listAll()
 
   siteAssets.value = new Map<string, Asset>()

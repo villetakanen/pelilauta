@@ -30,13 +30,12 @@
 import { defineComponent, ref, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
-import firebase from 'firebase/app'
-import 'firebase/auth'
 import { useProfile } from '@/state/authz'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
 import Card from '../layout/Card.vue'
+import { getAuth } from '@firebase/auth'
 
 export default defineComponent({
   name: 'ProfileActions',
@@ -50,7 +49,7 @@ export default defineComponent({
     const router = useRouter()
 
     const logout = () => {
-      firebase.auth().signOut().then(() => {
+      getAuth().signOut().then(() => {
         router.push('/')
       })
     }

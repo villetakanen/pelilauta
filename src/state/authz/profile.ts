@@ -1,7 +1,4 @@
 import { computed, ComputedRef, Ref, ref, watch } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { useMeta } from '@/state/meta'
 import { useAuthState } from './state'
 import { fetchAssets, useAssets } from './assets'

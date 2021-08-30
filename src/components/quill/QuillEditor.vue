@@ -11,8 +11,7 @@
 import { defineComponent, onMounted, watch } from 'vue'
 import Quill from 'quill'
 import QuillBetterTable from 'quill-better-table'
-import firebase from 'firebase/app'
-import 'firebase/storage'
+import { getDownloadURL, getStorage, ref, uploadBytes } from '@firebase/storage'
 
 export default defineComponent({
   name: 'QuillEditor',
@@ -46,12 +45,11 @@ export default defineComponent({
           // Move cursor to right side of image (easier to continue typing)
           quill.setSelection(range.index + 1, 1)
 
-          const storageRef = firebase.storage().ref()
-          const fileRef = storageRef.child(`/${props.storage}/${file.name}`)
+          const storageRef = getStorage()
+          const fileRef = ref(storageRef, `/${props.storage}/${file.name}`)
 
-          const snapshot = await fileRef.put(file)
-          const url = await snapshot.ref.getDownloadURL()
-
+          await uploadBytes(fileRef, file)
+          const url = await getDownloadURL(fileRef)
           // Remove placeholder image
           quill.deleteText(range.index, 1)
 

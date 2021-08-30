@@ -17,6 +17,7 @@ export async function fetchLoki (): Promise<void> {
   try {
     const response = await axios.get('https://public-api.wordpress.com/rest/v1.1/sites/roolipeliloki.wordpress.com/posts?after=2020-04-01')
     if (Array.isArray(response.data.posts)) {
+      // eslint-disable-next-line
       response.data.posts.forEach((item:any) => {
         const post = item as FeedPost
         cachedPosts.value.set('' + post.ID, post)

@@ -1,7 +1,4 @@
 import { computed, ComputedRef, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 
 export interface PageLogEntry {
   name: string,

@@ -1,7 +1,5 @@
 
 import { ref, computed, ComputedRef } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
 import { PublicProfile } from '@/state/authz'
 import { useMeta } from '../meta'
 

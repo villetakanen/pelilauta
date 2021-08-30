@@ -1,11 +1,9 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
-
 import { computed, ComputedRef, ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
 import { useAuth, useProfile } from '../authz'
 import { Thread, PostData } from '@/utils/firestoreInterfaces'
+import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, where } from '@firebase/firestore'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export interface Stream {
   slug: string
@@ -16,7 +14,7 @@ export interface Stream {
   order: number
 }
 
-export function toThread (id: string, data?:firebase.firestore.DocumentData): Thread {
+export function toThread (id: string, data?:DocumentData): Thread {
   if (!data) {
     return {
       id: id,
@@ -84,12 +82,13 @@ function init () {
   if (_init) return
   _init = true
 
-  firebase.analytics().logEvent('firestore_stream_subscribed')
+  const analytics = getAnalytics()
+  logEvent(analytics, 'firestore_stream_subscribed')
 
-  // Firebase references
-  const db = firebase.firestore()
-  const streamRef = db.collection('stream')
-  streamRef.orderBy('flowTime', 'desc').limit(30).onSnapshot((snapshot) => {
+  const db = getFirestore()
+  const streamRef = collection(db, 'stream')
+  const q = query(streamRef, orderBy('flowTime', 'desc'), limit(30))
+  onSnapshot(q, (snapshot) => {
     snapshot.docChanges().forEach((change) => {
       if (change.type !== 'removed') patchToSubscribed(toThread(change.doc.id, change.doc.data()))
       else subscribedThreads.value = subscribedThreads.value.filter((thread) => (thread.id !== change.doc.id))
@@ -103,10 +102,10 @@ function init () {
  * @param topic slug of a topic
  */
 async function fetchTopic (topic: string) {
-  const db = firebase.firestore()
-  const stickyRef = db.collection('stream').where('topic', '==', topic).where('sticky', '==', true).orderBy('flowTime', 'desc')
+  const db = getFirestore()
+  const q = query(collection(db, 'stream'), where('topic', '==', topic), where('sticky', '==', true), orderBy('flowTime', 'desc'))
   try {
-    const stickyDocs = await stickyRef.get()
+    const stickyDocs = await getDocs(q)
     console.debug('stickyDocs', stickyDocs, topic)
     localPinnedThreads.value = new Array<Thread>()
     stickyDocs.forEach((stickyThread) => {
@@ -127,10 +126,10 @@ const siteThreads = computed(() => (localSiteThreads.value))
  */
 export async function fetchSite (siteid: string): Promise<void> {
   // console.debug('fetchSite', siteid)
-  const db = firebase.firestore()
-  const siteRef = db.collection('stream').where('site', '==', siteid).orderBy('flowTime', 'desc')
+  const db = getFirestore()
+  const q = query(collection(db, 'stream'), where('site', '==', siteid), orderBy('flowTime', 'desc'))
   try {
-    const siteDocs = await siteRef.get()
+    const siteDocs = await getDocs(q)
     // console.debug('fetchSite', siteDocs, siteid)
     localSiteThreads.value = new Array<Thread>()
     siteDocs.forEach((siteDocs) => {
@@ -142,28 +141,24 @@ export async function fetchSite (siteid: string): Promise<void> {
 }
 
 export async function createThread (actor: string, data:PostData): Promise<string> {
-  firebase.analytics().logEvent('createThread', { author: actor })
-  const db = firebase.firestore()
-  const postRef = db.collection('stream').doc()
-  return postRef.set({
+  logEvent(getAnalytics(), 'createThread', { author: actor })
+  const db = getFirestore()
+  return addDoc(collection(db, 'stream'), {
     author: actor,
     ...data,
-    created: firebase.firestore.FieldValue.serverTimestamp(),
-    flowTime: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(() => {
-    return postRef.get().then((doc) => {
-      return doc.id
-    })
+    created: serverTimestamp(),
+    flowTime: serverTimestamp()
+  }).then((d) => {
+    return d.id
   })
 }
 
 export async function updateThread (actor: string, post:Thread): Promise<string> {
   if (!post.id) throw new Error('can not update thread without an id')
-  firebase.analytics().logEvent('updateThread', { author: actor })
+  logEvent(getAnalytics(), 'updateThread', { author: actor })
   console.debug('updateThread', post)
-  const db = firebase.firestore()
-  const postRef = db.collection('stream').doc(post.id)
-  return postRef.update({
+  const db = getFirestore()
+  return updateDoc(doc(db, 'stream', post.id), {
     editor: actor,
     ...post.data,
     title: post.data.title || '',
@@ -171,7 +166,7 @@ export async function updateThread (actor: string, post:Thread): Promise<string>
     content: post.data.content || '',
     sticky: post.data.sticky || false,
     site: post.site || '',
-    editTime: firebase.firestore.FieldValue.serverTimestamp()
+    editTime: serverTimestamp()
   }).then(() => {
     return post.id
   })
@@ -185,10 +180,10 @@ function subscribeThread (id?: string): void {
   unsubscribePage()
   subscribedPage.value = toThread(id || '')
   if (!id) return
-  const db = firebase.firestore()
-  const threadRef = db.collection('stream').doc(id)
-  unsubscribePage = threadRef.onSnapshot((doc) => {
-    if (doc.exists) {
+  const db = getFirestore()
+  const threadRef = doc(db, 'stream', id)
+  unsubscribePage = onSnapshot(threadRef, (doc) => {
+    if (doc.exists()) {
       subscribedPage.value = toThread(id, doc.data())
       const { stampSeen } = useProfile()
       stampSeen(id, doc.data()?.flowTime)
@@ -198,10 +193,10 @@ function subscribeThread (id?: string): void {
 }
 
 export async function deleteThread (actor: string, threadid: string): Promise<void> {
-  firebase.analytics().logEvent('dropPost', { author: actor })
-  const db = firebase.firestore()
-  const postRef = db.collection('stream').doc(threadid)
-  return postRef.delete()
+  logEvent(getAnalytics(), 'dropPost', { author: actor })
+  const db = getFirestore()
+  const threadRef = doc(db, 'stream', threadid)
+  return deleteDoc(threadRef)
 }
 
 const FB_INBOUND_EVENT_THREAD_SEEN = 'thread seen'
@@ -214,33 +209,34 @@ const FB_INBOUND_EVENT_THREAD_SEEN = 'thread seen'
  * - user.uid from useAuth() as uid, and
  * - thread.id as threadid
  *
- * @returns {Promise<void | firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>} A promise for dispatch completion
+ * @returns {Promise<void | DocumentReference<DocumentData>>} A promise for dispatch completion
  */
-async function dispatchThreadSeen (): Promise<void | firebase.firestore.DocumentReference<firebase.firestore.DocumentData>> {
+async function dispatchThreadSeen (): Promise<void | DocumentReference<DocumentData>> {
   const { user } = useAuth()
   if (!user.value.uid) {
     console.error('Trying to dispatch an event before we have uid: aborting op', user.value)
     return
   }
-  const db = firebase.firestore()
-  const eventsRef = db.collection('inbound')
-    .where('uid', '==', user.value.uid)
-    .where('type', '==', FB_INBOUND_EVENT_THREAD_SEEN)
-    .where('threadid', '==', subscribedPage.value.id)
-  const eventDocs = await eventsRef.get()
+  const db = getFirestore()
+  const eventsRef = collection(db, 'inbound')
+  const q = query(eventsRef,
+    where('uid', '==', user.value.uid),
+    where('type', '==', FB_INBOUND_EVENT_THREAD_SEEN),
+    where('threadid', '==', subscribedPage.value.id))
+  const eventDocs = await getDocs(q)
 
   const event = {
     type: FB_INBOUND_EVENT_THREAD_SEEN,
     uid: user.value.uid,
     threadid: subscribedPage.value.id,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    timestamp: serverTimestamp()
   }
 
   if (eventDocs.empty) {
-    return db.collection('inbound').add(event)
+    return addDoc(collection(db, 'inbound'), event)
   } else {
     const eventDoc = eventDocs.docs[0]
-    return db.collection('inbound').doc(eventDoc.id).set(event)
+    return setDoc(doc(db, 'inbound', eventDoc.id), event)
   }
 }
 

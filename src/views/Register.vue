@@ -15,8 +15,7 @@ import { defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 
 export default defineComponent({
   name: 'Home',
@@ -28,7 +27,7 @@ export default defineComponent({
     const router = useRouter()
 
     const logout = () => {
-      firebase.auth().signOut().then(() => {
+      getAuth().signOut().then(() => {
         router.push('/')
       })
     }

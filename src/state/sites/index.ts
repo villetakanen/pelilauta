@@ -1,6 +1,3 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { computed, ComputedRef, ref } from 'vue'
 import { Site, toSite, SiteData } from '@/state/site'
 

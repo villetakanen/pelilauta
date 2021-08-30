@@ -22,14 +22,14 @@
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import { Thread, deleteThread } from '@/state/threads'
+import { deleteThread } from '@/state/threads'
 import { useMeta } from '@/state/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuthState } from '@/state/authz'
 import { getSeconds } from '@/utils/firebaseTools'
 import { MenuItem } from '@/utils/uiInterfaces'
+import { Thread } from '@/utils/firestoreInterfaces'
+import { Timestamp } from '@firebase/firestore'
 
 export default defineComponent({
   name: 'ThreadCardHeader',
@@ -49,7 +49,7 @@ export default defineComponent({
       return streams.value.find((val) => (val.slug === props.thread.data.topic))?.name
     })
     // @todo: extract to /utils
-    function toSince (timestamp: firebase.firestore.Timestamp|null) {
+    function toSince (timestamp: Timestamp|null) {
       let date = new Date(getSeconds(timestamp) * 1000)
       const now = new Date()
       const diff = (now.getTime() - date.getTime()) / 1000 / 60

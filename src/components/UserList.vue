@@ -30,9 +30,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import UserListRow from '@/components/UserListRow.vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
 import { useAuthState } from '@/state/authz'
+import { collection, getFirestore, onSnapshot } from '@firebase/firestore'
 
 interface UserListEntity {
   uid: string;
@@ -51,9 +50,9 @@ export default defineComponent({
     const { uid } = useAuthState()
 
     onMounted(() => {
-      const db = firebase.firestore()
-      const profilesRef = db.collection('profiles')
-      profilesRef.onSnapshot((changes) => {
+      const db = getFirestore()
+      const profilesRef = collection(db, 'profiles')
+      onSnapshot(profilesRef, (changes) => {
         changes.docChanges().forEach((change) => {
           if (change.type === 'added') {
             users.value.push({

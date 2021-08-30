@@ -1,6 +1,4 @@
 import { computed, ComputedRef, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
 import { Stream } from '../threads/threads'
 
 const localStreams = ref(new Array<Stream>())

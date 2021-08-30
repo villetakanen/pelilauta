@@ -1,5 +1,3 @@
-import firebase from 'firebase/app'
-
 export interface Reply {
   content: string;
   replyid: string;

@@ -1,8 +1,4 @@
 import { useAuthState } from './state'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
-import 'firebase/storage'
 import { Asset } from '@/utils/firestoreInterfaces'
 import { computed, ComputedRef, ref } from 'vue'
 

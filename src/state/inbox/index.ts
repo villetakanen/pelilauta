@@ -1,9 +1,6 @@
 
 import { computed, ref, ComputedRef } from 'vue'
 import { useAuthState } from '../authz'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { NotificationMessage } from '@/utils/firestoreInterfaces'
 
 const cachedMessages = ref(new Array<NotificationMessage>())

@@ -1,7 +1,4 @@
 import { ref, Ref, watch } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { useSite } from '../site'
 

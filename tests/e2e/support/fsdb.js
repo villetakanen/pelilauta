@@ -1,7 +1,3 @@
-/* import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore' */
-
 const seed = () => {
   console.log('Seeding the Firestore Database')
   /* const db = firebase.firestore()

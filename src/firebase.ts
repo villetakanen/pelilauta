@@ -1,3 +1,4 @@
+import { getAuth } from '@firebase/auth'
 import { initializeApp } from 'firebase/app'
 import { initializeFirestore, CACHE_SIZE_UNLIMITED, enableIndexedDbPersistence } from 'firebase/firestore'
 let init = false
@@ -19,4 +20,5 @@ export function createFirebase (): void {
     cacheSizeBytes: CACHE_SIZE_UNLIMITED
   })
   enableIndexedDbPersistence(db)
+  getAuth(app)
 }

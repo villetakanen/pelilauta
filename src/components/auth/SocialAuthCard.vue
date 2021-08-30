@@ -35,10 +35,9 @@
 import { defineComponent } from 'vue'
 import Card from '@/components/layout/Card.vue'
 import { useRouter } from 'vue-router'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/analytics'
 import MaterialButton from '../material/MaterialButton.vue'
+import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export default defineComponent({
   name: 'SocialAuthCard',
@@ -47,19 +46,19 @@ export default defineComponent({
     const router = useRouter()
 
     function socialGoogleLogin () {
-      const provider = new firebase.auth.GoogleAuthProvider()
+      const provider = new GoogleAuthProvider()
       provider.addScope('email')
-      firebase.auth().signInWithPopup(provider).then(() => {
-        firebase.analytics().logEvent('Login', { vendor: 'Google' })
+      signInWithPopup(getAuth(), provider).then(() => {
+        logEvent(getAnalytics(), 'Login', { vendor: 'Google' })
         router.push('/')
       })
     }
 
     function socialFacebookLogin () {
-      const provider = new firebase.auth.FacebookAuthProvider()
+      const provider = new FacebookAuthProvider()
       provider.addScope('email')
-      firebase.auth().signInWithPopup(provider).then(() => {
-        firebase.analytics().logEvent('Login', { vendor: 'Facebook' })
+      signInWithPopup(getAuth(), provider).then(() => {
+        logEvent(getAnalytics(), 'Login', { vendor: 'Facebook' })
         router.push('/')
       })
     }

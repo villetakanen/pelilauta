@@ -172,8 +172,8 @@ export default defineComponent({
     const { streams } = useMeta()
     const topicOpts = computed(() => (streams.value.filter((val) => (val.slug !== '-')).map((val) => ({ key: val.slug, value: val.name }))))
     const threadTopic = ref(props.thread.data.topic || props.topic || 'Yleinen')
-    const minLength = (value:any) => (value.length > 1)
-    const maxLength = (value:any) => (value.toString().trim().length < 36)
+    const minLength = (value:unknown) => (typeof value === 'string' && value.length > 1)
+    const maxLength = (value:unknown) => (typeof value === 'string' && value.toString().trim().length < 36)
     const rules = {
       threadTitle: { required, minLength, maxLength },
       threadTopic: { required }
