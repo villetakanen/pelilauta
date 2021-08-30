@@ -1,3 +1,5 @@
+import { doc, getFirestore, increment, runTransaction, Transaction } from '@firebase/firestore'
+
 /**
  * Given   I am logged in
  *   And   Have a profile
@@ -12,11 +14,11 @@
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  */
 export async function loveThread (uid: string, threadid: string): Promise<void> {
-  const db = firebase.firestore()
-  const threadRef = db.collection('stream').doc(threadid)
-  const profileRef = db.collection('profiles').doc(uid)
+  const db = getFirestore()
+  const threadRef = doc(db, 'stream', threadid)
+  const profileRef = doc(db, 'profiles', uid)
 
-  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
+  return runTransaction(db, (transaction: Transaction) => {
     return transaction.get(profileRef).then((profile) => {
       if (!profile.exists) {
         throw new Error('state/loveThread, trying to love by a non existing user' + uid)
@@ -34,7 +36,7 @@ export async function loveThread (uid: string, threadid: string): Promise<void> 
       transaction.update(profileRef, { lovedThreads: lovesArr })
 
       transaction.update(threadRef, {
-        lovedCount: firebase.firestore.FieldValue.increment(1)
+        lovedCount: increment(1)
       })
     })
   })
@@ -47,11 +49,11 @@ export async function loveThread (uid: string, threadid: string): Promise<void> 
  * @param threadid The id of a Stream Thread, found in /database/stream/{threadid}
  */
 export async function unloveThread (uid: string, threadid: string): Promise<void> {
-  const db = firebase.firestore()
-  const threadRef = db.collection('stream').doc(threadid)
-  const profileRef = db.collection('profiles').doc(uid)
+  const db = getFirestore()
+  const threadRef = doc(db, 'stream', threadid)
+  const profileRef = doc(db, 'profiles', uid)
 
-  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
+  return runTransaction(db, (transaction: Transaction) => {
     return transaction.get(profileRef).then((profile) => {
       if (!profile.exists) {
         throw new Error('state/loveThread, trying to love by a non existing user' + uid)
@@ -68,7 +70,7 @@ export async function unloveThread (uid: string, threadid: string): Promise<void
       transaction.update(profileRef, { lovedThreads: lovesArr })
 
       transaction.update(threadRef, {
-        lovedCount: firebase.firestore.FieldValue.increment(-1)
+        lovedCount: increment(-1)
       })
     })
   })

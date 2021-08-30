@@ -1,5 +1,6 @@
 import { computed, ComputedRef, ref } from 'vue'
 import { Site, toSite, SiteData } from '@/state/site'
+import { collection, doc, getDoc, getFirestore, onSnapshot, orderBy, query, serverTimestamp, setDoc } from '@firebase/firestore'
 
 const fullSiteList = ref(new Map<string, Site>())
 
@@ -26,16 +27,16 @@ async function createSite (id: string, creatorUid: string, name: string, hidden 
     owners: [creatorUid],
     hidden: hidden
   }
-  const db = firebase.firestore()
-  const siteRef = db.collection('sites').doc(siteData.id)
-  return siteRef.get().then((siteDoc) => {
-    if (siteDoc.exists) throw new Error('Site exists, create failed')
-    return siteRef.set({ ...siteData, lastUpdate: firebase.firestore.FieldValue.serverTimestamp() }).then(() => {
-      const pageRef = siteRef.collection('pages').doc(siteData.id)
-      return pageRef.set({
+  const db = getFirestore()
+  const siteRef = doc(db, 'sites', siteData.id)
+  return getDoc(siteRef).then((siteDoc) => {
+    if (siteDoc.exists()) throw new Error('Site exists, create failed')
+    return setDoc(siteRef, { ...siteData, lastUpdate: serverTimestamp() }).then(() => {
+      const pageRef = doc(db, 'pages', siteData.id)
+      return setDoc(pageRef, {
         name: siteData.id,
         htmlContent: '<p>...</p>',
-        lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
+        lastUpdate: serverTimestamp()
       })
     })
   })
@@ -46,9 +47,9 @@ let unsubscribe = () => {}
 
 async function subscribeToSites () {
   unsubscribe()
-  firebase.analytics().logEvent('Sites subscribed')
-  const db = firebase.firestore()
-  unsubscribe = db.collection('sites').orderBy('lastUpdate', 'desc').onSnapshot((snap) => {
+  const db = getFirestore()
+  const q = query(collection(db, 'sites'), orderBy('lastUpdate', 'desc'))
+  unsubscribe = onSnapshot(q, (snap) => {
     snap.docChanges().forEach((change) => {
       fullSiteList.value.set(change.doc.id, toSite(change.doc.id, change.doc.data()))
     })
