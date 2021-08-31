@@ -2,6 +2,8 @@
 // import { computed, ref, ComputedRef } from 'vue'
 import { computed, ComputedRef, ref } from 'vue'
 import { Reply } from '@/utils/firestoreInterfaces'
+import { addDoc, collection, deleteDoc, doc, getFirestore, increment, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from '@firebase/firestore'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 let parentThreadId = ''
 let unsubscribe:CallableFunction|null = null
@@ -13,8 +15,8 @@ export function subscribeToReplies (newId: string): void {
   parentThreadId = newId
   repliesState.value = new Map<string, Reply>()
   if (unsubscribe) unsubscribe()
-  const repliesRef = firebase.firestore().collection('stream').doc(newId).collection('comments').orderBy('created', 'asc')
-  unsubscribe = repliesRef.onSnapshot((snapshot) => {
+  const q = query(collection(getFirestore(), 'stream', newId, 'comments'), orderBy('created', 'asc'))
+  unsubscribe = onSnapshot(q, (snapshot) => {
     snapshot.docChanges().forEach((change) => {
       if (change.type !== 'removed') {
         repliesState.value.set(change.doc.id, {
@@ -44,21 +46,24 @@ export function useReplies (): { replies: ComputedRef<Map<string, Reply>> } {
  * @param comment the comment payload as HTML
  */
 export async function addReply (threadid: string, author: string, comment: string, mentions: string[]): Promise<void> {
-  firebase.analytics().logEvent('addComment', { author: author, comment: comment })
-  const parentRef = firebase.firestore().collection('stream').doc(threadid)
-  const commentRef = parentRef.collection('comments')
-  console.warn(addReply, mentions)
-  return commentRef.add({
+  logEvent(getAnalytics(), 'addComment', { author: author, comment: comment })
+  const db = getFirestore()
+  const parentRef = doc(db, 'stream', threadid)
+  const commentsRef = collection(db, 'stream', threadid, 'comments')
+  return addDoc(commentsRef, {
     author: author,
     content: comment,
-    created: firebase.firestore.FieldValue.serverTimestamp(),
+    created: serverTimestamp(),
     mentions: mentions
   }).then(() => {
-    return parentRef.update({
-      lastCommentAt: firebase.firestore.FieldValue.serverTimestamp(),
-      flowTime: firebase.firestore.FieldValue.serverTimestamp(),
-      replyCount: firebase.firestore.FieldValue.increment(1)
-    })
+    return updateDoc(
+      parentRef,
+      {
+        lastCommentAt: serverTimestamp(),
+        flowTime: serverTimestamp(),
+        replyCount: increment(1)
+      }
+    )
   })
 }
 
@@ -68,26 +73,28 @@ export async function addReply (threadid: string, author: string, comment: strin
  * @param replyid t.
  */
 export async function deleteReply (threadid:string, replyid:string): Promise<void> {
-  firebase.analytics().logEvent('dropComment')
-  const parentRef = firebase.firestore().collection('stream').doc(threadid)
-  const commentRef = parentRef.collection('comments').doc(replyid)
-  return commentRef.delete().then(() => {
-    return parentRef.update({
-      replyCount: firebase.firestore.FieldValue.increment(-1)
-    })
+  logEvent(getAnalytics(), 'dropComment')
+  const db = getFirestore()
+  const parentRef = doc(db, 'stream', threadid)
+  const commentRef = doc(db, 'stream', threadid, 'comments', replyid)
+  return deleteDoc(commentRef).then(() => {
+    return updateDoc(
+      parentRef,
+      {
+        replyCount: increment(-1)
+      }
+    )
   })
 }
 
 export async function updateReplyContent (author: string, threadid: string, replyid: string, contents: string): Promise<void> {
-  firebase.analytics().logEvent('updateComment', { author: author })
-
-  const db = firebase.firestore()
-  const threadRef = db.collection('stream').doc(threadid)
-  const replyRef = threadRef.collection('comments').doc(replyid)
-
-  return replyRef.update({
-    content: contents,
-    updatedBy: author,
-    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-  })
+  logEvent(getAnalytics(), 'updateComment', { author: author })
+  return updateDoc(
+    doc(getFirestore(), 'stream', threadid, 'comments', replyid),
+    {
+      content: contents,
+      updatedBy: author,
+      updatedAt: serverTimestamp()
+    }
+  )
 }

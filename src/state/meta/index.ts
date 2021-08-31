@@ -1,3 +1,4 @@
+import { doc, getFirestore, onSnapshot } from '@firebase/firestore'
 import { computed, ComputedRef, ref } from 'vue'
 import { Stream } from '../threads/threads'
 
@@ -13,10 +14,9 @@ function init () {
   if (_init) return
   _init = true
 
-  const db = firebase.firestore()
-  const metaRef = db.collection('meta').doc('pelilauta')
+  const metaRef = doc(getFirestore(), 'meta', 'pelilauta')
 
-  metaRef.onSnapshot((metaDoc) => {
+  onSnapshot(metaRef, (metaDoc) => {
     const s = new Array<Stream>()
     for (const key in metaDoc.data()?.streams) {
       s.push({
