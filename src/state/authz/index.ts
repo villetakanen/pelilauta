@@ -46,14 +46,15 @@ function fetchProfile () {
 
   const profileRef = doc(getFirestore(), 'profiles', authState.user.uid)
   unsubscribeProfile = onSnapshot(profileRef, (snap) => {
-    console.debug('got snap, processing')
     if (snap.exists()) {
-      console.debug('got profile, processing')
       if (!snap.data()?.nick) {
         console.debug('profile is missing a nickname: please display the registration dialog')
         authState.missingProfileData = true
       } else {
         authState.missingProfileData = false
+
+        // @TODO refactor profile fetching to this module
+        useProfile(authState.user.uid)
       }
     } else {
       console.debug('user does not have a profile entry: lets create that through the registration dialog')
