@@ -37,7 +37,7 @@ import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
-import { useAuth, useAuthState, useProfile } from './state/authz'
+import { useAuth, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
 import CompleteRegistrationDialog from './components/auth/CompleteRegistrationDialog.vue'
 import FrozenBar from '@/components/app/FrozenBar.vue'
@@ -53,7 +53,6 @@ export default defineComponent({
     FrozenBar
   },
   setup () {
-    const { isAnonymous } = useAuthState()
     const { frozen } = useAuth()
     const { profileMeta } = useProfile()
     const i18n = useI18n()
@@ -106,7 +105,7 @@ export default defineComponent({
     }
     // *** Workbox/Service worker setup ends ********************************
 
-    return { isAnonymous, ...useI18n(), route, navModel, mekanismi, profileMeta, frozen }
+    return { ...useI18n(), route, navModel, mekanismi, profileMeta, frozen }
   }
 })
 </script>

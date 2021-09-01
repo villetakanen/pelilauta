@@ -51,8 +51,8 @@
 import { defineComponent, computed } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useMeta } from '@/state/meta'
-import { useAuthState } from '@/state/authz'
 import { doc, getDoc, getFirestore, updateDoc } from '@firebase/firestore'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'EditPost',
@@ -76,8 +76,8 @@ export default defineComponent({
   },
   setup (props) {
     const { frozen, admins } = useMeta()
-    const { uid: activeUid } = useAuthState()
-    const isMe = computed(() => (props.uid === activeUid.value))
+    const { user } = useAuth()
+    const isMe = computed(() => (props.uid === user.value.uid))
     const isFrozen = computed(() => (frozen.value.includes(props.uid)))
     const isAdmin = computed(() => (admins.value.includes(props.uid)))
 

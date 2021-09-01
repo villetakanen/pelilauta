@@ -30,8 +30,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import UserListRow from '@/components/UserListRow.vue'
-import { useAuthState } from '@/state/authz'
 import { collection, getFirestore, onSnapshot } from '@firebase/firestore'
+import { useAuth } from '@/state/authz'
 
 interface UserListEntity {
   uid: string;
@@ -47,7 +47,7 @@ export default defineComponent({
   },
   setup () {
     const users = ref(new Array<UserListEntity>())
-    const { uid } = useAuthState()
+    const { user } = useAuth()
 
     onMounted(() => {
       const db = getFirestore()
@@ -58,7 +58,7 @@ export default defineComponent({
             users.value.push({
               uid: change.doc.id,
               nick: change.doc.data()?.nick,
-              isMe: change.doc.id === uid.value,
+              isMe: change.doc.id === user.value.uid,
               photoURL: change.doc.data()?.photoURL
             })
           }
