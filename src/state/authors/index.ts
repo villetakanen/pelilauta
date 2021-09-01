@@ -2,6 +2,7 @@
 import { ref, computed, ComputedRef } from 'vue'
 import { PublicProfile } from '@/state/authz'
 import { useMeta } from '../meta'
+import { collection, getFirestore, onSnapshot } from '@firebase/firestore'
 
 const authorsState = ref(new Array<PublicProfile>())
 const authors = computed(() => authorsState.value)
@@ -16,12 +17,11 @@ function _init () {
   init = true
 
   // fetch all authors
-  const db = firebase.firestore()
-  const profilesRef = db.collection('profiles')
-  profilesRef.onSnapshot((changes) => {
+  const profilesRef = collection(getFirestore(), 'profiles')
+  onSnapshot(profilesRef, (changes) => {
     changes.docChanges().forEach((change) => {
       const doc = change.doc
-      if (doc.exists) {
+      if (doc.exists()) {
         const author: PublicProfile = {
           uid: doc.id,
           nick: doc.data()?.nick,

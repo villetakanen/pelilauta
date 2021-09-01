@@ -1,18 +1,18 @@
 import { useAuthState } from './state'
 import { Asset } from '@/utils/firestoreInterfaces'
 import { computed, ComputedRef, ref } from 'vue'
+import { StorageReference, ref as storeRef, getStorage, uploadBytes, getDownloadURL, deleteObject, listAll } from '@firebase/storage'
 
 const siteAssets = ref(new Map<string, Asset>())
 const assets = computed(() => siteAssets.value)
 
 async function uploadAsset (file:File): Promise<string> {
   const { uid } = useAuthState()
-  const storageRef = firebase.storage().ref()
-  const fileRef = storageRef.child('authors/' + uid.value + '/' + file.name)
-  const snapshot = fileRef.put(file)
+  const fileRef = storeRef(getStorage(), 'authors/' + uid.value + '/' + file.name)
+  const snapshot = await uploadBytes(fileRef, file)
 
   const storageAsset = (await snapshot).ref
-  const url = await storageAsset.getDownloadURL()
+  const url = await getDownloadURL(fileRef)
 
   siteAssets.value.set(storageAsset.name, {
     name: storageAsset.name,
@@ -27,14 +27,13 @@ async function uploadAsset (file:File): Promise<string> {
 
 export async function deleteAsset (name: string): Promise<void> {
   const { uid } = useAuthState()
-  const storageRef = firebase.storage().ref()
-  const fileRef = storageRef.child('authors/' + uid.value + '/' + name)
-  await fileRef.delete()
+  const fileRef = storeRef(getStorage(), 'authors/' + uid.value + '/' + name)
+  await deleteObject(fileRef)
   siteAssets.value.delete(name)
 }
 
-async function patchAsset (storageAsset: firebase.storage.Reference, uid:string): Promise<void> {
-  const url = await storageAsset.getDownloadURL()
+async function patchAsset (storageAsset: StorageReference, uid:string): Promise<void> {
+  const url = await getDownloadURL(storageAsset)
   // console.debug('patching:', url)
   siteAssets.value.set(storageAsset.name, {
     name: storageAsset.name,
@@ -46,9 +45,8 @@ async function patchAsset (storageAsset: firebase.storage.Reference, uid:string)
 }
 
 export async function fetchAssets (uid: string): Promise<void> {
-  const storage = firebase.storage()
-  const bucket = storage.ref().child('authors').child(uid)
-  const storageAssetList = await bucket.listAll()
+  const bucket = storeRef(getStorage(), 'authors/' + uid)
+  const storageAssetList = await listAll(bucket)
 
   siteAssets.value = new Map<string, Asset>()
   storageAssetList.items.forEach(async (storageAsset) => patchAsset(storageAsset, uid))
