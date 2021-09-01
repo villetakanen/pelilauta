@@ -1,3 +1,6 @@
+import { getAnalytics, logEvent } from '@firebase/analytics'
+import { doc, getDoc, getFirestore, runTransaction, Transaction } from '@firebase/firestore'
+
 /**
  * Given   I am logged in
  *   And   Have a profile
@@ -13,13 +16,13 @@
  * @param replyid the id of a reply, of the thread, found in /database/stream/{threadid}/comments/{replyid}
  */
 export async function loveReply (uid: string, threadid: string, replyid: string): Promise<void> {
-  const db = firebase.firestore()
-  const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
+  const db = getFirestore()
+  const replyRef = doc(db, 'stream', threadid, 'comments', replyid)
 
-  firebase.analytics().logEvent('loveReply', { uid: uid, threadid: threadid, replyid: replyid })
+  logEvent(getAnalytics(), 'loveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
-  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
-    return transaction.get(replyRef).then((reply) => {
+  return runTransaction(db, (transaction: Transaction) => {
+    return getDoc(replyRef).then((reply) => {
       if (!reply.exists) {
         throw new Error('state/loveReply, trying to love by a non existing reply' + threadid + '/' + replyid)
       }
@@ -34,7 +37,7 @@ export async function loveReply (uid: string, threadid: string, replyid: string)
       lovesArr.push(uid)
       transaction.update(replyRef, { lovesCount: lovesArr.length, lovers: lovesArr })
 
-      const reactionsRef = db.collection('profiles').doc(uid).collection('reactions').doc(replyid)
+      const reactionsRef = doc(db, 'profiles', uid, 'reactions', replyid)
 
       transaction.set(reactionsRef, { uid: uid, thread: threadid, reply: replyid, type: 'love', target: 'thread' })
     })
@@ -56,13 +59,13 @@ export async function loveReply (uid: string, threadid: string, replyid: string)
  * @param replyid the id of a reply, of the thread, found in /database/stream/{threadid}/comments/{replyid}
  */
 export async function unloveReply (uid: string, threadid: string, replyid: string): Promise<void> {
-  const db = firebase.firestore()
-  const replyRef = db.collection('stream').doc(threadid).collection('comments').doc(replyid)
+  const db = getFirestore()
+  const replyRef = doc(db, 'stream', threadid, 'comments', replyid)
 
-  firebase.analytics().logEvent('unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
+  logEvent(getAnalytics(), 'unloveReply', { uid: uid, threadid: threadid, replyid: replyid })
 
-  return db.runTransaction((transaction: firebase.firestore.Transaction) => {
-    return transaction.get(replyRef).then((reply) => {
+  return runTransaction(db, (transaction: Transaction) => {
+    return getDoc(replyRef).then((reply) => {
       if (!reply.exists) {
         throw new Error('state/loveReply, trying to love by a non existing reply' + threadid + '/' + replyid)
       }
@@ -76,7 +79,7 @@ export async function unloveReply (uid: string, threadid: string, replyid: strin
       }
       transaction.update(replyRef, { lovesCount: lovesArr.length, lovers: lovesArr })
 
-      const reactionsRef = db.collection('profiles').doc(uid).collection('reactions').doc(replyid)
+      const reactionsRef = doc(db, 'profiles', uid, 'reactions', replyid)
 
       transaction.delete(reactionsRef)
     })
