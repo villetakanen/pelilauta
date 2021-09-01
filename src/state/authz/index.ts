@@ -41,11 +41,14 @@ const anonymousSession = computed(() => (authState.anonymous))
 let unsubscribeProfile:CallableFunction|undefined
 
 function fetchProfile () {
+  console.debug('fetchProfile from firestore')
   if (unsubscribeProfile) unsubscribeProfile()
 
   const profileRef = doc(getFirestore(), 'profiles', authState.user.uid)
   unsubscribeProfile = onSnapshot(profileRef, (snap) => {
+    console.debug('got snap, processing')
     if (snap.exists()) {
+      console.debug('got profile, processing')
       if (!snap.data()?.nick) {
         console.debug('profile is missing a nickname: please display the registration dialog')
         authState.missingProfileData = true

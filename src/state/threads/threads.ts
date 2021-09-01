@@ -2,7 +2,7 @@ import { computed, ComputedRef, ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
 import { useAuth, useProfile } from '../authz'
 import { Thread, PostData } from '@/utils/firestoreInterfaces'
-import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, where } from '@firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, FirestoreError, getDocs, getDocsFromServer, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, where } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export interface Stream {
@@ -78,22 +78,33 @@ function patchToSubscribed (thread: Thread|undefined) {
 }
 
 let _init = false
-function init () {
+async function init () {
   if (_init) return
   _init = true
-
-  const analytics = getAnalytics()
-  logEvent(analytics, 'firestore_stream_subscribed')
 
   const db = getFirestore()
   const streamRef = collection(db, 'stream')
   const q = query(streamRef, orderBy('flowTime', 'desc'), limit(30))
+
+  const test = await getDocsFromServer(q)
+  console.log('test', test)
+
   onSnapshot(q, (snapshot) => {
+    console.debug('got strean of', snapshot.size)
     snapshot.docChanges().forEach((change) => {
       if (change.type !== 'removed') patchToSubscribed(toThread(change.doc.id, change.doc.data()))
       else subscribedThreads.value = subscribedThreads.value.filter((thread) => (thread.id !== change.doc.id))
     })
+  },
+  (error: FirestoreError) => {
+    console.error(error)
+  },
+  () => {
+    console.debug('snapshot completed')
   })
+
+  logEvent(getAnalytics(), 'firestore_stream_subscribed')
+  console.debug('firestore_stream_subscribed', db)
 }
 
 /**

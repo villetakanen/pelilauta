@@ -1,10 +1,11 @@
 import { getAuth } from '@firebase/auth'
-import { initializeApp } from 'firebase/app'
-import { initializeFirestore, CACHE_SIZE_UNLIMITED, enableIndexedDbPersistence } from 'firebase/firestore'
+import { initializeApp } from '@firebase/app'
+import { initializeFirestore, CACHE_SIZE_UNLIMITED, enableIndexedDbPersistence } from '@firebase/firestore'
 let init = false
 
 export function createFirebase (): void {
   if (init) return
+  console.debug('createFirebase starts')
   init = true
   const app = initializeApp({
     apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -16,9 +17,21 @@ export function createFirebase (): void {
     appId: process.env.VUE_APP_FIREBASE_APP_ID,
     measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
   })
+  getAuth(app)
   const db = initializeFirestore(app, {
     cacheSizeBytes: CACHE_SIZE_UNLIMITED
   })
-  enableIndexedDbPersistence(db)
-  getAuth(app)
+  try {
+    enableIndexedDbPersistence(db)
+    /*
+    console.log('got db', db)
+
+    getDocFromServer(doc(db, 'meta', 'pelilauta')).then((result) => {
+      console.log('got result from server', result)
+    }) */
+  } catch (error:unknown) {
+    console.warn(error)
+  }
+
+  console.debug('createFirebase complete')
 }
