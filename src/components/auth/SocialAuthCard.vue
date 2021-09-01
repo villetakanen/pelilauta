@@ -36,7 +36,7 @@ import { defineComponent } from 'vue'
 import Card from '@/components/layout/Card.vue'
 import { useRouter } from 'vue-router'
 import MaterialButton from '../material/MaterialButton.vue'
-import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from '@firebase/auth'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export default defineComponent({

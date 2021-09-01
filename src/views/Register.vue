@@ -15,7 +15,7 @@ import { defineComponent } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
-import { getAuth } from 'firebase/auth'
+import { getAuth } from '@firebase/auth'
 
 export default defineComponent({
   name: 'Home',

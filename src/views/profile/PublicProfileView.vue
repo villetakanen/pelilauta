@@ -51,7 +51,7 @@ import { useAuthors } from '@/state/authors'
 import { toThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, query, where, getDocs } from '@firebase/firestore'
 import Icon from '@/components/material/Icon.vue'
 import { useAuth } from '@/state/authz'
 

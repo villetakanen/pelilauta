@@ -20,7 +20,7 @@ import Fab from '@/components/material/Fab.vue'
 import { useAuth } from '@/state/authz'
 import HomeStream from '@/components/home/HomeStream.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
-import { getAnalytics, logEvent } from 'firebase/analytics'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export default defineComponent({
   name: 'HomeView',

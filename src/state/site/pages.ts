@@ -2,7 +2,7 @@ import { Ref, ref, computed, ComputedRef } from 'vue'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { useSite } from '.'
 import { doc, getFirestore, serverTimestamp, Timestamp, collection, DocumentData, onSnapshot, deleteDoc, updateDoc, setDoc, getDoc } from '@firebase/firestore'
-import { getAnalytics, logEvent } from 'firebase/analytics'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export interface Page {
   siteid: string,

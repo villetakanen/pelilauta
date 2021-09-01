@@ -1,6 +1,6 @@
 import { computed, ComputedRef, ref } from 'vue'
 import { Asset } from '../../utils/firestoreInterfaces'
-import { getStorage, StorageReference, getDownloadURL, ref as storeRef, uploadBytes, deleteObject, listAll } from 'firebase/storage'
+import { getStorage, StorageReference, getDownloadURL, ref as storeRef, uploadBytes, deleteObject, listAll } from '@firebase/storage'
 import { getFirestore, serverTimestamp, doc, getDoc, setDoc, deleteDoc } from '@firebase/firestore'
 
 /*
