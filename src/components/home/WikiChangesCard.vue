@@ -35,7 +35,6 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
 import { usePagelog } from '@/state/pagelog'
 import { defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
@@ -49,9 +48,8 @@ export default defineComponent({
   name: 'WikiChangesCard',
   components: { Action, WikiChangesItem, Card },
   setup () {
-    const { isAnonymous } = useAuthState()
     const { recent } = usePagelog()
-    return { isAnonymous, recent, toDisplayString }
+    return { recent, toDisplayString }
   }
 })
 </script>

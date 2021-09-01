@@ -21,12 +21,6 @@ export interface ProfileMeta {
   allThreadsSeenSince?: Timestamp
 }
 
-const isAdmin: ComputedRef<boolean> = computed(() => {
-  const { uid } = useAuthState()
-  const { admins } = useMeta()
-  return admins.value.includes(uid.value)
-})
-
 const profileRef:Ref<PublicProfile> = ref({
   nick: '',
   tagline: '',
@@ -117,9 +111,9 @@ async function createProfile (): Promise<void> {
 
 async function updateProfile (fields: Record<string, string>): Promise<void> {
   if (fields.nick || fields.tagline) {
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     return updateDoc(
-      doc(getFirestore(), 'profiles', uid.value),
+      doc(getFirestore(), 'profiles', user.value.uid),
       { ...fields }
     )
   }
@@ -180,7 +174,6 @@ async function switchLang (lang: string): Promise<void> {
 let stateUid = ''
 
 export function useProfile (uid?: string): {
-    isAdmin: ComputedRef<boolean>
     profile: ComputedRef<PublicProfile>
     profileMeta: ComputedRef<ProfileMeta>
     updateProfile: (fields: Record<string, string>) => Promise<void>
@@ -197,5 +190,5 @@ export function useProfile (uid?: string): {
     stateUid = uid
   }
   const { uploadAsset } = useAssets()
-  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset, seenFrom }
+  return { profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset, seenFrom }
 }

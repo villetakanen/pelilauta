@@ -1,14 +1,14 @@
-import { useAuthState } from './state'
 import { Asset } from '@/utils/firestoreInterfaces'
 import { computed, ComputedRef, ref } from 'vue'
 import { StorageReference, ref as storeRef, getStorage, uploadBytes, getDownloadURL, deleteObject, listAll } from '@firebase/storage'
+import { useAuth } from '.'
 
 const siteAssets = ref(new Map<string, Asset>())
 const assets = computed(() => siteAssets.value)
 
 async function uploadAsset (file:File): Promise<string> {
-  const { uid } = useAuthState()
-  const fileRef = storeRef(getStorage(), 'authors/' + uid.value + '/' + file.name)
+  const { user } = useAuth()
+  const fileRef = storeRef(getStorage(), 'authors/' + user.value.uid + '/' + file.name)
   const snapshot = await uploadBytes(fileRef, file)
 
   const storageAsset = (await snapshot).ref
@@ -17,7 +17,7 @@ async function uploadAsset (file:File): Promise<string> {
   siteAssets.value.set(storageAsset.name, {
     name: storageAsset.name,
     url: url,
-    creator: uid.value,
+    creator: user.value.uid,
     lastUpdate: null,
     fullPath: storageAsset.fullPath
   })
@@ -26,8 +26,8 @@ async function uploadAsset (file:File): Promise<string> {
 }
 
 export async function deleteAsset (name: string): Promise<void> {
-  const { uid } = useAuthState()
-  const fileRef = storeRef(getStorage(), 'authors/' + uid.value + '/' + name)
+  const { user } = useAuth()
+  const fileRef = storeRef(getStorage(), 'authors/' + user.value.uid + '/' + name)
   await deleteObject(fileRef)
   siteAssets.value.delete(name)
 }

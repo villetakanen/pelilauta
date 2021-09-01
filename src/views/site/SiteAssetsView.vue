@@ -41,7 +41,7 @@ import SideBar from '@/components/wikipage/SideBar.vue'
 import AttachmentRow from '@/components/site/assets/AssetListItem.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import Card from '@/components/layout/Card.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import AddAssetFab from '@/components/site/assets/AddAssetFab.vue'
 
 /**
@@ -70,11 +70,11 @@ export default defineComponent({
   },
   setup (props) {
     const { site, hasAdmin } = useSite(props.siteid)
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const { assets } = useAssets()
 
     const crudActions = computed(() => {
-      return hasAdmin(uid.value)
+      return hasAdmin(user.value.uid)
     })
 
     return { site, assets, crudActions }
