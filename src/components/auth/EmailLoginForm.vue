@@ -38,7 +38,7 @@ import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
 import Card from '../layout/Card.vue'
 import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from '@firebase/auth'
@@ -54,8 +54,8 @@ export default defineComponent({
     const i18n = useI18n()
 
     onMounted(() => {
-      const { isAnonymous } = useAuthState()
-      if (!isAnonymous.value) router.push('/profile')
+      const { anonymousSession } = useAuth()
+      if (!anonymousSession.value) router.push('/profile')
     })
 
     const singInWithEmail = () => {

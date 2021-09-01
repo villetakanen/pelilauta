@@ -5,7 +5,7 @@
         <input
           v-model="searchString"
           class="searchField"
-          :disabled="isAnonymous"
+          :disabled="showMemberTools"
           :placeholder="$t('search.placeholderText')"
         >
       </form>
@@ -27,10 +27,10 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
 import Icon from '@/components/material/Icon.vue'
-import { useAuthState } from '@/state/authz'
 import { useSearch } from '@/composables/search'
 import { useRoute, useRouter } from 'vue-router'
 import QuickSearchResultsPanel from '../search/QuickSearchResultsPanel.vue'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'AppBarSearch',
@@ -39,7 +39,7 @@ export default defineComponent({
     QuickSearchResultsPanel
   },
   setup () {
-    const { isAnonymous } = useAuthState()
+    const { showMemberTools } = useAuth()
     const { search } = useSearch()
     const router = useRouter()
     const route = useRoute()
@@ -60,7 +60,7 @@ export default defineComponent({
 
       searchString.value = ''
     })
-    return { isAnonymous, searchString, toSearch }
+    return { showMemberTools, searchString, toSearch }
   }
 })
 </script>
