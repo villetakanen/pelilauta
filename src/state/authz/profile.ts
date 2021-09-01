@@ -1,10 +1,10 @@
-import { computed, ComputedRef, Ref, ref, watch } from 'vue'
+import { computed, ComputedRef, Ref, ref } from 'vue'
 import { useMeta } from '@/state/meta'
 import { useAuthState } from './state'
 import { fetchAssets, useAssets } from './assets'
 import { setSeen, useInbox } from '@/state/inbox'
 import { useAuth } from '.'
-import { collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, Timestamp, updateDoc } from '@firebase/firestore'
+import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, Timestamp, updateDoc } from '@firebase/firestore'
 import { getAuth } from '@firebase/auth'
 
 export interface PublicProfile {
@@ -167,16 +167,6 @@ async function stampSeen (threadid:string, flowTime?:Timestamp|number): Promise<
   })
 }
 
-let _init = false
-function init () {
-  if (_init) return
-  _init = true
-
-  const { uid } = useAuthState()
-  fetchProfile(uid.value)
-  watch(uid, fetchProfile)
-}
-
 async function switchLang (lang: string): Promise<void> {
   const { uid } = useAuthState()
   return updateDoc(
@@ -187,7 +177,9 @@ async function switchLang (lang: string): Promise<void> {
   )
 }
 
-export function useProfile (): {
+let stateUid = ''
+
+export function useProfile (uid?: string): {
     isAdmin: ComputedRef<boolean>
     profile: ComputedRef<PublicProfile>
     profileMeta: ComputedRef<ProfileMeta>
@@ -200,7 +192,10 @@ export function useProfile (): {
     switchLang: (lang: string) => Promise<void>
     uploadAsset: (file:File) => Promise<string>
     } {
-  init()
+  if (uid && uid !== stateUid) {
+    fetchProfile(uid)
+    stateUid = uid
+  }
   const { uploadAsset } = useAssets()
   return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset, seenFrom }
 }
