@@ -281,7 +281,8 @@
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
     "messages": {
-      "pleaseLogin": "Kirjaudu sisään osallistuaksesi keskusteluun"
+      "pleaseLogin": "Kirjaudu sisään osallistuaksesi keskusteluun",
+      "linkShared": "Linkki kopioitu leikepöydälle"
     }
   }
 }

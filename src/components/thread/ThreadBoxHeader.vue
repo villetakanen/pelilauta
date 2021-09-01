@@ -5,6 +5,12 @@
       <p class="caption">
         {{ toDisplayString(thread.created) }}
         {{ $t('threads.sinceInTopic') }}
+        <span v-if="thread.site">
+          <router-link :to="`/site/${thread.site}`">
+            {{ siteName }}
+          </router-link>
+          /
+        </span>
         <router-link :to="`/stream/topic/${thread.data.topic}`">
           {{ topicName }}
         </router-link>
@@ -65,6 +71,8 @@ import Card from '../layout/Card.vue'
 import TextField from '../material/TextField.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import Dialog from '../material/Dialog.vue'
+import { useSites } from '@/state/sites'
+import { toSite } from '@/state/site'
 
 export default defineComponent({
   name: 'ThreadBoxHeader',
@@ -124,7 +132,13 @@ export default defineComponent({
       }
     }
 
-    return { topicName, toDisplayString, canManageThread, copyLink, menu, deleteConfirm, deleteThreadFromFirestore, toggleDelete, cancelDelete }
+    const siteName = computed(() => {
+      if (!props.thread.site) return ''
+      const { allSites } = useSites()
+      return (allSites.value.find((s) => (s.id === props.thread.site)) ?? toSite())?.name
+    })
+
+    return { topicName, toDisplayString, canManageThread, copyLink, menu, deleteConfirm, deleteThreadFromFirestore, toggleDelete, cancelDelete, siteName }
   }
 })
 </script>
