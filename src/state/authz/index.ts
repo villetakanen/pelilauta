@@ -3,6 +3,8 @@ import { useAuthState } from './state'
 import { useAssets } from './assets'
 import { computed, ComputedRef, reactive } from 'vue'
 import { useMeta } from '../meta'
+import { onAuthStateChanged, getAuth, User } from '@firebase/auth'
+import { doc, getFirestore, onSnapshot } from '@firebase/firestore'
 
 /**
  * A reactive object, that holds all state internals for auth
@@ -41,10 +43,9 @@ let unsubscribeProfile:CallableFunction|undefined
 function fetchProfile () {
   if (unsubscribeProfile) unsubscribeProfile()
 
-  const db = firebase.firestore()
-  const profileRef = db.collection('profiles').doc(authState.user.uid)
-  unsubscribeProfile = profileRef.onSnapshot((snap) => {
-    if (snap.exists) {
+  const profileRef = doc(getFirestore(), 'profiles', authState.user.uid)
+  unsubscribeProfile = onSnapshot(profileRef, (snap) => {
+    if (snap.exists()) {
       if (!snap.data()?.nick) {
         console.debug('profile is missing a nickname: please display the registration dialog')
         authState.missingProfileData = true
@@ -58,7 +59,7 @@ function fetchProfile () {
   })
 }
 
-function onAuthStateChanged (user: firebase.User|null) {
+function processAuthStateChanged (user: User|null) {
   if (!user || user.isAnonymous) {
     console.debug('onAuthStateChanged', 'anonymous')
     authState.missingProfileData = false
@@ -84,8 +85,8 @@ function onAuthStateChanged (user: firebase.User|null) {
  * Initializes the auth state, fires all hooks for auth state retrieval
  */
 function createAuth (): void {
-  firebase.auth().onAuthStateChanged((user) => {
-    onAuthStateChanged(user)
+  onAuthStateChanged(getAuth(), (user) => {
+    processAuthStateChanged(user)
   })
 }
 
