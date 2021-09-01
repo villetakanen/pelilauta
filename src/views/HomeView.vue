@@ -4,7 +4,7 @@
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
       <Fab
-        v-if="!isAnonymous"
+        v-if="showMemberTools"
         id="addThreadFab"
         to="/stream/add/thread"
         :text="$t('action.addThread')"
@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import Fab from '@/components/material/Fab.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import HomeStream from '@/components/home/HomeStream.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 import { getAnalytics, logEvent } from 'firebase/analytics'
@@ -30,7 +30,7 @@ export default defineComponent({
     ToTopFab
   },
   setup () {
-    const { isAnonymous } = useAuthState()
+    const { showMemberTools } = useAuth()
     const editorDialog = ref(false)
     onMounted(() => {
       const a = getAnalytics()
@@ -38,7 +38,7 @@ export default defineComponent({
       document.title = 'Pelilauta'
     })
 
-    return { editorDialog, isAnonymous }
+    return { editorDialog, showMemberTools }
   }
 })
 </script>

@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import Fab from '@/components/material/Fab.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
@@ -31,11 +31,11 @@ export default defineComponent({
     Fab
   },
   setup () {
-    const { isAnonymous } = useAuthState()
+    const { anonymousSession } = useAuth()
     const route = useRoute()
     const loginVisible = computed(() => {
       if (route.name === 'login') return false
-      return isAnonymous.value
+      return anonymousSession.value
     })
     return { loginVisible }
   }
