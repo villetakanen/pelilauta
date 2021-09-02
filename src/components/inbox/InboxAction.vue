@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!isAnonymous"
+    v-if="showMemberTools"
     id="inboxAction"
     class="chromaFocus"
     @click="reroute"
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useInbox } from '@/state/inbox'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
@@ -31,13 +31,13 @@ export default defineComponent({
   name: 'InboxAction',
   components: { Icon },
   setup () {
-    const { isAnonymous } = useAuthState()
+    const { showMemberTools } = useAuth()
     const router = useRouter()
     const { unreadCount } = useInbox()
     const reroute = () => {
       router.push('/profile/inbox')
     }
-    return { unreadCount, isAnonymous, reroute }
+    return { unreadCount, showMemberTools, reroute }
   }
 })
 </script>

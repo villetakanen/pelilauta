@@ -37,7 +37,6 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
 import { FeedPost } from '@/state/feeds/loki'
 import { toDisplayString } from '@/utils/firebaseTools'
 import { computed, defineComponent, PropType } from 'vue'
@@ -56,7 +55,6 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAnonymous } = useAuthState()
     const excerpt = computed(() => {
       const div = document.createElement('div')
       div.innerHTML = props.feedPost.excerpt
@@ -67,7 +65,7 @@ export default defineComponent({
       }
       return snip
     })
-    return { isAnonymous, excerpt, toDisplayString }
+    return { excerpt, toDisplayString }
   }
 })
 </script>
