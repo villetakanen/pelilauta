@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import { Thread } from '@/state/threads'
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
+import { Thread } from '@/utils/firestoreInterfaces'
 
 export default defineComponent({
   name: 'ThreadRepliesLink',
@@ -30,10 +30,10 @@ export default defineComponent({
   },
   setup (props) {
     const { hasSeen } = useProfile()
-    const { isAnonymous } = useAuthState()
+    const { showMemberTools } = useAuth()
 
     const newReplies = computed(() => (
-      !isAnonymous.value &&
+      showMemberTools.value &&
       !hasSeen(props.thread.id, props.thread.flowTime) &&
       props.thread.replyCount > 0
     ))

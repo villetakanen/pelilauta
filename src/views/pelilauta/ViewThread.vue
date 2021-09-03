@@ -43,9 +43,8 @@ import PhotoBox from '@/components/stream/PhotoBox.vue'
 import ThreadBox from '@/components/thread/ThreadBox.vue'
 import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
 import { useThreads } from '@/state/threads/threads'
-import firebase from 'firebase/app'
-import 'firebase/analytics'
 import ThreadBoxTailer from '@/components/thread/ThreadBoxTailer.vue'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 /**
  * A Router view for a Stream Thread.
@@ -80,7 +79,8 @@ export default defineComponent({
     const { thread, subscribeThread } = useThreads()
     subscribeThread(props.threadid)
     onMounted(() => {
-      firebase.analytics().logEvent('PageView', {
+      const a = getAnalytics()
+      logEvent(a, 'PageView', {
         name: 'ViewThread',
         threadid: props.threadid
       })

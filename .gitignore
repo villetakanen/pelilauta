@@ -8,6 +8,7 @@ node_modules
 .env.*.local
 .env.production
 cypress.env.json
+.env.stash.*
 
 # Log files
 npm-debug.log*

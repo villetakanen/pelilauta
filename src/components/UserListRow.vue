@@ -51,9 +51,8 @@
 import { defineComponent, computed } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useMeta } from '@/state/meta'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import { useAuthState } from '@/state/authz'
+import { doc, getDoc, getFirestore, updateDoc } from '@firebase/firestore'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'EditPost',
@@ -77,64 +76,59 @@ export default defineComponent({
   },
   setup (props) {
     const { frozen, admins } = useMeta()
-    const { uid: activeUid } = useAuthState()
-    const isMe = computed(() => (props.uid === activeUid.value))
+    const { user } = useAuth()
+    const isMe = computed(() => (props.uid === user.value.uid))
     const isFrozen = computed(() => (frozen.value.includes(props.uid)))
     const isAdmin = computed(() => (admins.value.includes(props.uid)))
 
+    const db = getFirestore()
+    const metaRef = doc(db, 'meta', 'pelilauta')
+
     const revoke = () => {
-      const db = firebase.firestore()
-      const metaRef = db.collection('meta').doc('pelilauta')
-      metaRef.get().then((meta) => {
-        if (meta.exists) {
+      getDoc(metaRef).then((meta) => {
+        if (meta.exists()) {
           let admins: string[] = meta.data()?.admins
           if (admins) {
             admins = admins.filter((admin) => (admin !== props.uid))
           }
-          if (admins.length > 0) metaRef.update({ admins: admins })
+          if (admins.length > 0) updateDoc(metaRef, { admins: admins })
         }
       })
     }
     const elevate = () => {
-      const db = firebase.firestore()
-      const metaRef = db.collection('meta').doc('pelilauta')
-      metaRef.get().then((meta) => {
-        if (meta.exists) {
+      getDoc(metaRef).then((meta) => {
+        if (meta.exists()) {
           const admins: string[] = meta.data()?.admins
           if (admins) {
             admins.push(props.uid)
           }
-          if (admins.length > 0) metaRef.update({ admins: admins })
+          if (admins.length > 0) updateDoc(metaRef, { admins: admins })
         }
       })
     }
 
     const defrost = () => {
-      const db = firebase.firestore()
-      const metaRef = db.collection('meta').doc('pelilauta')
-      metaRef.get().then((meta) => {
-        if (meta.exists) {
+      getDoc(metaRef).then((meta) => {
+        if (meta.exists()) {
           let frozen: string[] = meta.data()?.frozen
           if (frozen) {
             frozen = frozen.filter((f) => (f !== props.uid))
           }
-          metaRef.update({ frozen: frozen })
+          updateDoc(metaRef, { frozen: frozen })
         }
       })
     }
 
     const freeze = () => {
-      if (isAdmin.value) throw new Error('can not freeze an admin')
-      const db = firebase.firestore()
-      const metaRef = db.collection('meta').doc('pelilauta')
-      metaRef.get().then((meta) => {
-        if (meta.exists) {
+      if (isAdmin.value) throw new Error('Freezing an Admin user does not do anything, aborting.')
+      getDoc(metaRef).then((meta) => {
+        if (meta.exists()) {
           let frozen: string[] = meta.data()?.frozen
           if (!frozen) frozen = new Array<string>()
           if (frozen) {
             frozen.push(props.uid)
           }
-          metaRef.update({ frozen: frozen })
+          updateDoc(metaRef, { frozen: frozen })
         }
       })
     }

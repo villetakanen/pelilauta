@@ -1,9 +1,7 @@
 import { computed, ComputedRef, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
-import 'firebase/storage'
 import { Asset } from '../../utils/firestoreInterfaces'
+import { getStorage, StorageReference, getDownloadURL, ref as storeRef, uploadBytes, deleteObject, listAll } from '@firebase/storage'
+import { getFirestore, serverTimestamp, doc, getDoc, setDoc, deleteDoc } from '@firebase/firestore'
 
 /*
  * This module handles site's assets and asset management.
@@ -18,23 +16,22 @@ let siteid = ''
 const siteAssets = ref(new Map<string, Asset>())
 const assets = computed(() => siteAssets.value)
 
-async function patchAsset (storageAsset: firebase.storage.Reference): Promise<void> {
-  const database = firebase.firestore()
-  const firestoreAssetsRef = database.collection('sites').doc(siteid).collection('assetMeta')
+async function patchAsset (storageAsset: StorageReference): Promise<void> {
+  const url = await getDownloadURL(storageAsset)
 
-  const url = await storageAsset.getDownloadURL()
-  const databaseAssetRef = firestoreAssetsRef.doc(storageAsset.name)
-  let databaseAssetDoc = await databaseAssetRef.get()
+  const db = getFirestore()
+  const databaseAssetRef = doc(db, 'sites', siteid, 'assetMeta', storageAsset.name)
+  let databaseAssetDoc = await getDoc(databaseAssetRef)
 
   // migration code for db sanity, might want to live in pelilauta-functions, or be deprecated at some point
   try {
     if (!(await databaseAssetDoc).exists) {
       console.debug('migtrating asset', siteid, storageAsset.name)
-      await databaseAssetRef.set({
-        lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+      await setDoc(databaseAssetRef, {
+        lastUpdate: serverTimestamp(),
         creator: 'migrated by the app'
       })
-      databaseAssetDoc = await databaseAssetRef.get()
+      databaseAssetDoc = await getDoc(databaseAssetRef)
     }
   } catch (error) {
     console.error('insufficcient priviledges to update db', error)
@@ -50,32 +47,29 @@ async function patchAsset (storageAsset: firebase.storage.Reference): Promise<vo
 }
 
 export async function uploadAsset (file:File, uid: string): Promise<void> {
-  const storageRef = firebase.storage().ref()
-  const fileRef = storageRef.child(siteid + '/' + file.name)
-  const snapshot = fileRef.put(file)
+  const fileRef = storeRef(getStorage(), siteid + '/' + file.name)
+  const snapshot = await uploadBytes(fileRef, file)
+  const storageAsset = snapshot.ref
+  const firestoreAsset = doc(getFirestore(), 'sites', siteid, 'assetMeta', file.name)
 
-  const storageAsset = (await snapshot).ref
-
-  const database = firebase.firestore()
-  const firestoreAssetRef = database.collection('sites').doc(siteid).collection('assetMeta').doc(file.name)
-
-  await firestoreAssetRef.set({
-    creator: uid,
-    lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
-  })
+  await setDoc(
+    firestoreAsset,
+    {
+      creator: uid,
+      lastUpdate: serverTimestamp()
+    }
+  )
 
   return patchAsset(storageAsset)
 }
 
 export async function deleteAsset (name: string): Promise<void> {
-  const storageRef = firebase.storage().ref()
-  const fileRef = storageRef.child(siteid + '/' + name)
-  await fileRef.delete()
+  const fileRef = storeRef(getStorage(), siteid + '/' + name)
+  await deleteObject(fileRef)
 
-  const database = firebase.firestore()
-  const firestoreAssetRef = database.collection('sites').doc(siteid).collection('assetMeta').doc(name)
+  const firestoreAsset = doc(getFirestore(), 'sites', siteid, 'assetMeta', name)
 
-  await firestoreAssetRef.delete()
+  await deleteDoc(firestoreAsset)
 
   siteAssets.value.delete(name)
 }
@@ -84,8 +78,7 @@ export async function subscribeTo (id: string): Promise<void> {
   if (siteid === id) return
   siteid = id
 
-  const storage = firebase.storage()
-  const storageAssetList = await storage.ref().child(siteid).listAll()
+  const storageAssetList = await listAll(storeRef(getStorage(), siteid))
 
   siteAssets.value = new Map<string, Asset>()
   storageAssetList.items.forEach(async (storageAsset) => patchAsset(storageAsset))

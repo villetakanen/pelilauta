@@ -1,8 +1,5 @@
+import { getDownloadURL, getStorage, listAll, ref as storeRef } from '@firebase/storage'
 import { computed, ComputedRef, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
-import 'firebase/storage'
 
 export interface Attachment {
   url: string,
@@ -22,19 +19,18 @@ export function refreshStorage (siteid: string): void {
   cachedFilelisting.value = new Array<[string, string]>()
   cachedAttachments.value = new Map<string, Attachment>()
 
-  const storage = firebase.storage()
-  const listRef = storage.ref().child(siteid)
+  const listRef = storeRef(getStorage(), siteid)
   // Find all the prefixes and items.
   // Note, this only fetches files on the site storage root
-  listRef.listAll().then((res) => {
+  listAll(listRef).then((res) => {
     res.items.forEach((itemRef) => {
       // All the items under listRef.
-      itemRef.getDownloadURL().then((url) => {
+      getDownloadURL(itemRef).then((url) => {
         cachedFilelisting.value.push([itemRef.name, url])
         cachedAttachments.value.set(itemRef.name, { name: itemRef.name, url: url, site: siteid, fullPath: itemRef.fullPath })
       })
     })
-  }).catch((error) => {
+  }).catch((error: Error) => {
     console.warn(error)
   })
 }

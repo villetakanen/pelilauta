@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
@@ -58,10 +58,10 @@ import ToTopFab from '@/components/app/ToTopFab.vue'
 export default defineComponent({
   components: { Icon, ProfileToolbar, ToTopFab },
   setup () {
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const { profile } = useProfile()
     const { allSites } = useSites()
-    const mySites = computed(() => (allSites.value.filter((val) => (Array.isArray(val.owners)) && val.owners.includes(uid.value))))
+    const mySites = computed(() => (allSites.value.filter((val) => (Array.isArray(val.owners)) && val.owners.includes(user.value.uid))))
     return { profile, mySites, toDisplayString }
   }
 })

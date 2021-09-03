@@ -23,11 +23,11 @@ import { computed, defineComponent, provide } from 'vue'
 import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useAuthors } from '@/state/authors'
-import { useAuthState } from '@/state/authz'
 import SiteMeta from '@/components/sites/SiteMeta.vue'
 import SiteIdentity from '@/components/site/SiteIdentity.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import SiteCategoriesCard from '@/components/site/SiteCategoriesCard.vue'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -39,7 +39,7 @@ export default defineComponent({
     SiteCategoriesCard
   },
   setup () {
-    const { uid, isAdmin } = useAuthState()
+    const { user } = useAuth()
     const { site, hasAdmin } = useSite()
     const { authors } = useAuthors()
     const nonOwners = computed(() => {
@@ -49,11 +49,11 @@ export default defineComponent({
       return availableAuthors.map((author) => (author?.uid || ''))
     })
 
-    const actions = computed(() => hasAdmin(uid.value))
+    const actions = computed(() => hasAdmin(user.value.uid))
 
     provide('site', site)
 
-    return { site, nonOwners, actions, isAdmin }
+    return { site, nonOwners, actions }
   }
 })
 </script>

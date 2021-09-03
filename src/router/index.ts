@@ -3,7 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -272,11 +272,11 @@ router.beforeEach((to, from, next) => {
   }
 
   // Logged in only routes!
-  const { isAnonymous, isAdmin, uid } = useAuthState()
-  if (AUTH_ROUTES.includes(to.name?.toString() || '') && (isAnonymous.value || !uid.value)) {
+  const { showMemberTools, showAdminTools } = useAuth()
+  if (AUTH_ROUTES.includes(to.name?.toString() || '') && !showMemberTools.value) {
     next({ name: 'Login' })
   }
-  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !isAdmin.value) {
+  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !showAdminTools.value) {
     next({ name: 'Login' })
   }
   // next!

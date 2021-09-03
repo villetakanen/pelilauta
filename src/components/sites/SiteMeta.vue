@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { Site, SiteData, updateSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, Ref, ref } from 'vue'
 import Card from '../layout/Card.vue'
@@ -96,8 +96,8 @@ export default defineComponent({
       { key: 'ptba', value: 'Powered by the Apocalypse' },
       { key: 'pathfinder', value: 'Pathfinder' }
     ]
-    const { isAdmin } = useAuthState()
-    if (isAdmin.value) badges.push({ key: 'mekanismi', value: 'Mekanismi' })
+    const { showAdminTools } = useAuth()
+    if (showAdminTools.value) badges.push({ key: 'mekanismi', value: 'Mekanismi' })
     return { site, siteName, siteDescription, update, badges, badge, siteVisible, siteFeatures }
   }
 })

@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useSite } from '@/state/site'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import MaterialButton from '../../material/MaterialButton.vue'
@@ -72,8 +72,8 @@ export default defineComponent({
 
     const crudActions = computed(() => {
       const { hasAdmin } = useSite()
-      const { uid } = useAuthState()
-      return hasAdmin(uid.value)
+      const { user } = useAuth()
+      return hasAdmin(user.value.uid)
     })
 
     async function drop () {

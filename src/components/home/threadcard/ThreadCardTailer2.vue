@@ -11,6 +11,7 @@
           :loves="loves"
           :count="thread.lovedCount"
           :action="toggleLove"
+          :authorid="thread.author"
         />
       </div>
     </div>

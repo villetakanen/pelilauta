@@ -36,33 +36,33 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
-import firebase from 'firebase/app'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
 import Card from '../layout/Card.vue'
+import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from '@firebase/auth'
 
 export default defineComponent({
   components: { TextField, MaterialButton, Card },
   setup () {
     const emailAdress = ref('')
-    const verify = firebase.auth().isSignInWithEmailLink(window.location.href)
+    const verify = isSignInWithEmailLink(getAuth(), window.location.href)
     const router = useRouter()
     const sending = ref(false)
     const { pushSnack } = useSnack()
     const i18n = useI18n()
 
     onMounted(() => {
-      const { isAnonymous } = useAuthState()
-      if (!isAnonymous.value) router.push('/profile')
+      const { anonymousSession } = useAuth()
+      if (!anonymousSession.value) router.push('/profile')
     })
 
     const singInWithEmail = () => {
       if (!emailAdress.value) {
         pushSnack({ topic: i18n.t('snacks.invalidEmail') })
       }
-      firebase.auth().signInWithEmailLink(emailAdress.value, window.location.href)
+      signInWithEmailLink(getAuth(), emailAdress.value, window.location.href)
         .then((result) => {
           // Clear email from storage.
           window.localStorage.removeItem('emailForSignIn')
@@ -79,7 +79,7 @@ export default defineComponent({
             }).catch((error: Error) => {
               pushSnack({ topic: error.message })
               console.warn(error)
-              firebase.auth().signOut()
+              getAuth().signOut()
             })
           }
         })
@@ -107,7 +107,7 @@ export default defineComponent({
     const sendLinkToEmail = async () => {
       if (verify) singInWithEmail()
       sending.value = true
-      return firebase.auth().sendSignInLinkToEmail(emailAdress.value, actionCodeSettings)
+      return sendSignInLinkToEmail(getAuth(), emailAdress.value, actionCodeSettings)
         .then(() => {
           // The link was successfully sent. Inform the user.
           // Save the email locally so you don't need to ask the user for it again

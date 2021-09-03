@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { Site, useSite } from '@/state/site'
 import { refreshStorage } from '@/state/site/attachments'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
@@ -45,9 +45,9 @@ export default defineComponent({
   setup () {
     const attachDialog = ref(false)
     const canEdit = computed(() => {
-      const { uid } = useAuthState()
+      const { user } = useAuth()
       const { hasAdmin } = useSite()
-      return hasAdmin(uid.value)
+      return hasAdmin(user.value.uid)
     })
     const site = inject('site') as ComputedRef<Site>
     function imageUploaded () {

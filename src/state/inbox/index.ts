@@ -1,10 +1,8 @@
 
 import { computed, ref, ComputedRef } from 'vue'
-import { useAuthState } from '../authz'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
+import { useAuth } from '../authz'
 import { NotificationMessage } from '@/utils/firestoreInterfaces'
+import { doc, getFirestore, onSnapshot, setDoc, updateDoc } from '@firebase/firestore'
 
 const cachedMessages = ref(new Array<NotificationMessage>())
 const inboxMessages = computed(() => (cachedMessages.value))
@@ -20,10 +18,11 @@ const unreadCount = computed(() => {
 function markRedByIndex (index: number): void {
   if (!cachedMessages.value[index]) return
   cachedMessages.value[index].meta.new = false
-  const db = firebase.firestore()
-  const { uid } = useAuthState()
-  const inboxRef = db.collection('inbox').doc(uid.value)
-  inboxRef.update({ notifications: cachedMessages.value })
+  const { user } = useAuth()
+  updateDoc(
+    doc(getFirestore(), 'inbox', user.value.uid),
+    { notifications: cachedMessages.value }
+  )
 }
 
 export async function setSeen (notificationSourceID: string): Promise<void> {
@@ -34,19 +33,22 @@ export async function setSeen (notificationSourceID: string): Promise<void> {
 let unsubscribe = () => {}
 
 function subscribeToInbox () {
-  const { uid } = useAuthState()
-  if (uid.value === _uid) return
-  _uid = uid.value
+  const { user } = useAuth()
+  if (user.value.uid === _uid) return
+  _uid = user.value.uid
 
   unsubscribe()
-  const db = firebase.firestore()
-  const inboxRef = db.collection('inbox').doc(uid.value)
-  unsubscribe = inboxRef.onSnapshot((snap) => {
+  const db = getFirestore()
+  const inboxRef = doc(db, 'inbox', user.value.uid)
+  unsubscribe = onSnapshot(inboxRef, (snap) => {
     // inbox does not exist, lets create it
     if (!snap.exists) {
-      db.collection('inbox').doc(uid.value).set({
-        owner: uid.value
-      })
+      setDoc(
+        doc(db, 'inbox', user.value.uid),
+        {
+          owner: user.value.uid
+        }
+      )
     } else {
       const notifications = snap.data()?.notifications
       if (Array.isArray(notifications)) {

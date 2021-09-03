@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { Page, useSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import Fab from '../material/Fab.vue'
@@ -47,8 +47,8 @@ export default defineComponent({
     }
     const canEdit = computed(() => {
       const { hasAdmin } = useSite()
-      const { uid } = useAuthState()
-      return hasAdmin(uid.value)
+      const { user } = useAuth()
+      return hasAdmin(user.value.uid)
     })
 
     return { page, dialog, addPageDialog, canEdit }

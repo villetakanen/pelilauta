@@ -40,11 +40,10 @@ import Card from '../layout/Card.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
-import firebase from 'firebase/app'
-import 'firebase/auth'
 import { useRouter } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
+import { getAuth } from '@firebase/auth'
 
 export default defineComponent({
   components: { Dialog, Card, TextField, MaterialButton },
@@ -64,7 +63,7 @@ export default defineComponent({
     })
 
     const logout = () => {
-      firebase.auth().signOut().then(() => {
+      getAuth().signOut().then(() => {
         router.push('/')
       })
     }

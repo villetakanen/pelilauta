@@ -6,10 +6,10 @@
     <SideNavAction class="onlyForMobile" />
     <AppAction />
     <div class="spacer" />
-    <AppBarSearch v-if="!isAnonymous" />
+    <AppBarSearch v-if="showMemberTools" />
     <InboxAction />
     <Action
-      :disabled="isAnonymous"
+      :disabled="anonymousSession"
       prepend="avatar"
       to="/profile"
     >
@@ -25,7 +25,7 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue'
 import SideNavAction from '@/components/sidenav/SideNavAction.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
 import Action from '../material/Action.vue'
@@ -42,11 +42,11 @@ export default defineComponent({
     InboxAction
   },
   setup () {
-    const { isAdmin, isAnonymous } = useAuthState()
+    const { anonymousSession, showMemberTools } = useAuth()
     const mobileViewport = inject('mobileViewport')
     const route = useRoute()
     const mekanismi = computed(() => ((route.name || '').toString().split('.')[0] === 'mekanismi'))
-    return { isAdmin, mobileViewport, mekanismi, isAnonymous }
+    return { mobileViewport, mekanismi, anonymousSession, showMemberTools }
   }
 })
 </script>

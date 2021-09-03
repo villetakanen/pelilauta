@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import { loveThread, unloveThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
@@ -40,7 +40,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const { profileMeta } = useProfile()
     const loves = computed(() => {
       if (typeof profileMeta.value.lovedThreads === 'undefined') return false
@@ -49,13 +49,13 @@ export default defineComponent({
 
     async function toggleLove () {
       // no-op if the author is trying to love their own posts
-      if (props.thread.author === uid.value) return
+      if (props.thread.author === user.value.uid) return
       // love/unlove
       if (loves.value) {
-        return unloveThread(uid.value, props.thread.id).then(() => {
+        return unloveThread(user.value.uid, props.thread.id).then(() => {
         })
       } else {
-        return loveThread(uid.value, props.thread.id).then(() => {
+        return loveThread(user.value.uid, props.thread.id).then(() => {
         })
       }
     }

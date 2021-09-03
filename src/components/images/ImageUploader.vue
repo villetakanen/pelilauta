@@ -28,10 +28,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/storage'
 import Loader from '../app/Loader.vue'
 import { useSnack } from '@/composables/useSnack/useSnack'
+import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from '@firebase/storage'
 
 export default defineComponent({
   name: 'ImageUploader',
@@ -46,22 +45,20 @@ export default defineComponent({
   setup (props, context) {
     const uploading = ref(false)
 
-    function uploadImage (e: Event) {
+    async function uploadImage (e: Event) {
       if (!e.target || !props.target) return
       const element = e.target as HTMLInputElement
       uploading.value = true
       if (element.files && element.files[0]) {
         const file = element.files[0]
-        const storageRef = firebase.storage().ref()
-        const fileRef = storageRef.child(props.target + '/' + file.name)
-        fileRef.put(file).then((snapshot) => {
-          snapshot.ref.getDownloadURL().then((url) => {
-            uploading.value = false
-            context.emit('imageUploaded', url)
-            const { pushSnack } = useSnack()
-            pushSnack({ topic: 'File uploaded', message: 'The semi permanent storage url is ' + url })
-          })
-        })
+        const fileRef = storageRef(getStorage(), `/${props.target}/${file.name}`)
+
+        await uploadBytes(fileRef, file)
+        const url = await getDownloadURL(fileRef)
+        uploading.value = false
+        context.emit('imageUploaded', url)
+        const { pushSnack } = useSnack()
+        pushSnack({ topic: 'File uploaded', message: 'The semi permanent storage url is ' + url })
       }
     }
 

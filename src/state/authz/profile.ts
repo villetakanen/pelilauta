@@ -1,12 +1,9 @@
-import { computed, ComputedRef, Ref, ref, watch } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
-import { useMeta } from '@/state/meta'
-import { useAuthState } from './state'
+import { computed, ComputedRef, Ref, ref } from 'vue'
 import { fetchAssets, useAssets } from './assets'
 import { setSeen, useInbox } from '@/state/inbox'
 import { useAuth } from '.'
+import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, Timestamp, updateDoc } from '@firebase/firestore'
+import { getAuth } from '@firebase/auth'
 
 export interface PublicProfile {
   uid?: string
@@ -17,16 +14,10 @@ export interface PublicProfile {
 
 export interface ProfileMeta {
   lovedThreads: Array<string>
-  seenThreads: Map<string, firebase.firestore.Timestamp>
+  seenThreads: Map<string, Timestamp>
   pelilautaLang?: string
-  allThreadsSeenSince?: firebase.firestore.Timestamp
+  allThreadsSeenSince?: Timestamp
 }
-
-const isAdmin: ComputedRef<boolean> = computed(() => {
-  const { uid } = useAuthState()
-  const { admins } = useMeta()
-  return admins.value.includes(uid.value)
-})
 
 const profileRef:Ref<PublicProfile> = ref({
   nick: '',
@@ -37,7 +28,7 @@ const profile = computed(() => profileRef.value)
 
 const profileMetaRef:Ref<ProfileMeta> = ref({
   lovedThreads: new Array<string>(),
-  seenThreads: new Map<string, firebase.firestore.Timestamp>()
+  seenThreads: new Map<string, Timestamp>()
 })
 const profileMeta = computed(() => profileMetaRef.value)
 
@@ -45,11 +36,11 @@ let unsubscribe = () => {}
 
 interface seenThread {
   threadid: string,
-  timestamp: firebase.firestore.Timestamp
+  timestamp: Timestamp
 }
 
 function parseSeen (seenArray:Array<seenThread>) {
-  const newMap = new Map<string, firebase.firestore.Timestamp>()
+  const newMap = new Map<string, Timestamp>()
   if (seenArray) {
     seenArray.forEach((seenThread) => {
       newMap.set(seenThread.threadid, seenThread.timestamp)
@@ -63,9 +54,8 @@ function fetchProfile (uid:string|null) {
   if (!uid) {
     profileRef.value = { nick: '', tagline: '' }
   } else {
-    const db = firebase.firestore()
-    const fbProfileRef = db.collection('profiles').doc(uid)
-    unsubscribe = fbProfileRef.onSnapshot((snap) => {
+    const fbProfileRef = doc(getFirestore(), 'profiles', uid)
+    unsubscribe = onSnapshot(fbProfileRef, (snap) => {
       if (!snap.exists) {
         profileRef.value = { nick: '', tagline: '' }
         return
@@ -92,31 +82,42 @@ function fetchProfile (uid:string|null) {
 
 async function createProfile (): Promise<void> {
   console.warn('Initializing a new profile for the user')
-  const db = firebase.firestore()
-  const fbProfileRef = db.collection('profiles').doc(firebase.auth().currentUser?.uid)
-  return fbProfileRef.get().then((doc) => {
-    const nick = firebase.auth().currentUser?.displayName || firebase.auth().currentUser?.email?.split('@')[0]
+  const db = getFirestore()
+  const authUid = getAuth().currentUser?.uid ?? ''
+  if (!authUid) throw new Error('Trying to create a profile for non existing user')
+  const fbProfileRef = doc(db, 'profiles', '')
+  return getDoc(fbProfileRef).then((profileDoc) => {
+    const currentUser = getAuth().currentUser
+    const nick = currentUser?.displayName ?? currentUser?.email?.split('@')[0] ?? 'Nomen Nix'
     let pelilautaLang = navigator.languages ? navigator.languages[0] : navigator.language
-    let photoURL = firebase.auth().currentUser?.photoURL
-    if (doc.exists && !doc.data()?.nick) {
-      pelilautaLang = doc.data()?.pelilautaLang || pelilautaLang
-      photoURL = doc.data()?.photoURL || photoURL
-      return fbProfileRef.update({ nick: nick, pelilautaLang: pelilautaLang, photoURL: photoURL })
+    let photoURL = currentUser?.photoURL
+    if (profileDoc.exists() && !profileDoc.data()?.nick) {
+      pelilautaLang = profileDoc.data()?.pelilautaLang || pelilautaLang
+      photoURL = profileDoc.data()?.photoURL || photoURL
+      return updateDoc(
+        fbProfileRef,
+        { nick: nick, pelilautaLang: pelilautaLang, photoURL: photoURL }
+      )
+    } else {
+      return setDoc(
+        fbProfileRef,
+        { nick: nick, pelilautaLang: pelilautaLang, photoURL: photoURL }
+      )
     }
-    if (!doc.exists) return fbProfileRef.set({ nick: nick, pelilautaLang: pelilautaLang, photoURL: photoURL })
   })
 }
 
 async function updateProfile (fields: Record<string, string>): Promise<void> {
   if (fields.nick || fields.tagline) {
-    const db = firebase.firestore()
-    const { uid } = useAuthState()
-    const fbProfileRef = db.collection('profiles').doc(uid.value)
-    return fbProfileRef.update(fields)
+    const { user } = useAuth()
+    return updateDoc(
+      doc(getFirestore(), 'profiles', user.value.uid),
+      { ...fields }
+    )
   }
 }
 
-function hasSeen (threadid: string, flowTime?: firebase.firestore.Timestamp|null): boolean {
+function hasSeen (threadid: string, flowTime?: Timestamp|null): boolean {
   if (!flowTime) return false
   if (profileMeta.value.allThreadsSeenSince && profileMeta.value.allThreadsSeenSince.seconds >= flowTime.seconds) return true
   if (profileMeta.value.seenThreads) {
@@ -133,13 +134,14 @@ function seenFrom (threadid: string): number {
 }
 
 async function markAllThreadsRead (): Promise<void> {
-  const db = firebase.firestore()
-  const { uid } = useAuthState()
-  const fbProfileRef = db.collection('profiles').doc(uid.value)
-  return fbProfileRef.update({ allThreadsSeenSince: firebase.firestore.FieldValue.serverTimestamp() })
+  const { user } = useAuth()
+  return updateDoc(
+    doc(getFirestore(), 'profiles', user.value.uid),
+    { allThreadsSeenSince: serverTimestamp() }
+  )
 }
 
-async function stampSeen (threadid:string, flowTime?:firebase.firestore.Timestamp|number): Promise<void> {
+async function stampSeen (threadid:string, flowTime?:Timestamp|number): Promise<void> {
   const { user } = useAuth()
   if (!user.value.uid) {
     console.error('Trying to manipulate user data with no uid', user.value)
@@ -148,49 +150,43 @@ async function stampSeen (threadid:string, flowTime?:firebase.firestore.Timestam
   // Stamp the same thread seen from notifications
   setSeen(threadid)
 
-  const db = firebase.firestore()
-  const profileRef = db.collection('profiles').doc(user.value.uid)
-  return profileRef.get().then((doc) => {
+  const profileRef = doc(getFirestore(), 'profiles', user.value.uid)
+  return getDoc(profileRef).then((doc) => {
     let arr = doc.data()?.seenThreads ? doc.data()?.seenThreads : new Array<seenThread>()
     arr = arr.filter((val:seenThread) => (val.threadid !== threadid))
-    arr.push({ threadid: threadid, timestamp: flowTime || firebase.firestore.FieldValue.serverTimestamp() })
-    return profileRef.update({ seenThreads: arr })
+    arr.push({ threadid: threadid, timestamp: flowTime || serverTimestamp() })
+    return updateDoc(profileRef, { seenThreads: arr })
   })
-}
-
-let _init = false
-function init () {
-  if (_init) return
-  _init = true
-
-  const { uid } = useAuthState()
-  fetchProfile(uid.value)
-  watch(uid, fetchProfile)
 }
 
 async function switchLang (lang: string): Promise<void> {
-  const { uid } = useAuthState()
-  const db = firebase.firestore()
-  const profileRef = db.collection('profiles').doc(uid.value)
-  return profileRef.update({
-    pelilautaLang: lang
-  })
+  const { user } = useAuth()
+  return updateDoc(
+    doc(getFirestore(), 'profiles', user.value.uid),
+    {
+      pelilautaLang: lang
+    }
+  )
 }
 
-export function useProfile (): {
-    isAdmin: ComputedRef<boolean>
+let stateUid = ''
+
+export function useProfile (uid?: string): {
     profile: ComputedRef<PublicProfile>
     profileMeta: ComputedRef<ProfileMeta>
     updateProfile: (fields: Record<string, string>) => Promise<void>
     createProfile: () => Promise<void>
     markAllThreadsRead: () => Promise<void>
-    hasSeen: (threadid: string, flowTime?: firebase.firestore.Timestamp|null) => boolean
-    stampSeen: (threadid:string, flowTime?:firebase.firestore.Timestamp|number) => Promise<void>
+    hasSeen: (threadid: string, flowTime?: Timestamp|null) => boolean
+    stampSeen: (threadid:string, flowTime?: Timestamp|number) => Promise<void>
     seenFrom: (threadid: string) => number
     switchLang: (lang: string) => Promise<void>
     uploadAsset: (file:File) => Promise<string>
     } {
-  init()
+  if (uid && uid !== stateUid) {
+    fetchProfile(uid)
+    stateUid = uid
+  }
   const { uploadAsset } = useAssets()
-  return { isAdmin, profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset, seenFrom }
+  return { profile, profileMeta, updateProfile, createProfile, markAllThreadsRead, hasSeen, stampSeen, switchLang, uploadAsset, seenFrom }
 }

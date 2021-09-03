@@ -94,7 +94,7 @@
 
 <script lang="ts">
 import { useSnack } from '@/composables/useSnack'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { Page, PageFragment, Site, updatePage, deletePage as deletePageFromFirestore } from '@/state/site'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
@@ -178,7 +178,7 @@ export default defineComponent({
     }
     const v = useVuelidate(rules, { pageName })
 
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const router = useRouter()
     const { pushSnack } = useSnack()
 
@@ -188,7 +188,7 @@ export default defineComponent({
       const pageData:PageFragment = {
         id: props.page.id,
         siteid: props.site.id,
-        author: uid.value,
+        author: user.value.uid,
         category: formCategory.value
       }
       if (formName.value) pageData.name = formName.value

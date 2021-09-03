@@ -1,9 +1,7 @@
 import { ref, Ref, watch } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { useSite } from '../site'
+import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc } from '@firebase/firestore'
 
 const characters = ref(new Map<string, PlayerCharacter>())
 
@@ -11,8 +9,10 @@ async function addPlayerCharacter (type: string) {
   const { site } = useSite()
   console.debug('adding a character to', site.value.id, site.value.name, type)
   if (site.value.usePlayers) {
-    const db = firebase.firestore()
-    return (await db.collection('sites').doc(site.value.id).collection('characters').add({ type: type })).id
+    return (await addDoc(
+      collection(getFirestore(), 'sites', site.value.id, 'characters'),
+      { type: type })
+    ).id
   } else {
     throw new Error('can not add characters to a game with no player functions')
   }
@@ -22,8 +22,10 @@ async function updatePlayerCharacter (char:PlayerCharacter) {
   const { site } = useSite()
   console.debug('updating', site.value.id, char.id, char.name)
   if (site.value.usePlayers) {
-    const db = firebase.firestore()
-    return db.collection('sites').doc(site.value.id).collection('characters').doc(char.id).update(char)
+    return updateDoc(
+      doc(getFirestore(), 'sites', site.value.id, 'characters', char.id),
+      { ...char }
+    )
   } else {
     throw new Error('can not add characters to a game with no player functions')
   }
@@ -33,7 +35,7 @@ let init = false
 let siteid = ''
 let unsubscribe = () => {}
 
-export function toPlayerCharacter (pcid?:string, data?:firebase.firestore.DocumentData):PlayerCharacter {
+export function toPlayerCharacter (pcid?:string, data?:DocumentData):PlayerCharacter {
   return {
     id: pcid ?? '',
     name: data?.name ?? 'N.N.',
@@ -46,9 +48,8 @@ export function toPlayerCharacter (pcid?:string, data?:firebase.firestore.Docume
 function subscribeCharacters () {
   unsubscribe()
   characters.value = new Map<string, PlayerCharacter>()
-  const db = firebase.firestore()
-  const characterCollection = db.collection('sites').doc(siteid).collection('characters')
-  unsubscribe = characterCollection.onSnapshot((snapshot) => {
+  const characterCollection = collection(getFirestore(), 'sites', siteid, 'characters')
+  unsubscribe = onSnapshot(characterCollection, (snapshot) => {
     snapshot.docChanges().forEach((docChange) => {
       if (docChange.type === 'removed') {
         characters.value.delete(docChange.doc.id)
