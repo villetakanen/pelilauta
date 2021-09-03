@@ -80,10 +80,9 @@ export default defineComponent({
     const images = ref('')
 
     const simulateSave = () => {
-      const { formattedContent: fc1, tags } = extractTags(content.value)
+      const { formattedContent: fc1 } = extractTags(content.value)
       const { formattedContent } = extractLinks(fc1)
       content.value = formattedContent
-      console.log(tags)
     }
 
     return { content, images, simulateSave, replyContent, exampleReply }

@@ -1,14 +1,13 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/analytics'
-import { useAuthState } from '@/state/authz'
-
+import { getAuth } from '@firebase/auth'
+import { initializeApp } from '@firebase/app'
+import { initializeFirestore, CACHE_SIZE_UNLIMITED, enableIndexedDbPersistence } from '@firebase/firestore'
 let init = false
 
-function _init () {
+export function createFirebase (): void {
   if (init) return
+  console.debug('createFirebase starts')
   init = true
-  firebase.initializeApp({
+  const app = initializeApp({
     apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
     authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
     databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
@@ -18,14 +17,21 @@ function _init () {
     appId: process.env.VUE_APP_FIREBASE_APP_ID,
     measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
   })
-  firebase.auth().onAuthStateChanged((user) => {
-    const { onAuthStateChanged } = useAuthState()
-    onAuthStateChanged(user)
+  getAuth(app)
+  const db = initializeFirestore(app, {
+    cacheSizeBytes: CACHE_SIZE_UNLIMITED
   })
-  firebase.firestore().enablePersistence()
-  firebase.analytics()
-}
+  try {
+    enableIndexedDbPersistence(db)
+    /*
+    console.log('got db', db)
 
-export function useFirebase (): void {
-  _init()
+    getDocFromServer(doc(db, 'meta', 'pelilauta')).then((result) => {
+      console.log('got result from server', result)
+    }) */
+  } catch (error:unknown) {
+    console.warn(error)
+  }
+
+  console.debug('createFirebase complete')
 }

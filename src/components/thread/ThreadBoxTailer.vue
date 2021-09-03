@@ -1,6 +1,14 @@
 <template>
   <div class="threadBoxTailer">
     <div class="toolbar toright">
+      <div class="seendemo">
+        {{ thread.seenCount }}
+        <Icon
+          name="eye"
+          x-small
+          class="seendemoicon"
+        />
+      </div>
       <LoveAThreadAction
         :authorid="thread.author"
         :loves="loves"
@@ -14,16 +22,17 @@
 </template>
 
 <script lang="ts">
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import { loveThread, unloveThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import AuthorInfo from '../author/AuthorInfo.vue'
+import Icon from '../material/Icon.vue'
 import LoveAThreadAction from './LoveAThreadAction.vue'
 
 export default defineComponent({
   name: 'ThreadBoxTailer',
-  components: { AuthorInfo, LoveAThreadAction },
+  components: { AuthorInfo, LoveAThreadAction, Icon },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -31,7 +40,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const { profileMeta } = useProfile()
     const loves = computed(() => {
       if (typeof profileMeta.value.lovedThreads === 'undefined') return false
@@ -40,13 +49,13 @@ export default defineComponent({
 
     async function toggleLove () {
       // no-op if the author is trying to love their own posts
-      if (props.thread.author === uid.value) return
+      if (props.thread.author === user.value.uid) return
       // love/unlove
       if (loves.value) {
-        return unloveThread(uid.value, props.thread.id).then(() => {
+        return unloveThread(user.value.uid, props.thread.id).then(() => {
         })
       } else {
-        return loveThread(uid.value, props.thread.id).then(() => {
+        return loveThread(user.value.uid, props.thread.id).then(() => {
         })
       }
     }
@@ -61,4 +70,12 @@ export default defineComponent({
   align-items: center
   justify-content: flex-end
   margin-bottom: 8px
+.seendemo
+  margin-right: 8px
+  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
+  padding: 0
+  padding-left: 12px
+  border-radius: 12px
+  .seendemoicon
+    opacity: 0.5
 </style>

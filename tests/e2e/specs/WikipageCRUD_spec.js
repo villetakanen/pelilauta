@@ -30,7 +30,7 @@ describe('Wikipage', () => {
     cy.wait(300)
 
     // Did we succeed
-    cy.visit('/mekanismi/edit/e2e-testing/a-bit-complicated-te5t-page-named-silly-for-')
+    cy.visit('/site/e2e-testing/page/a-bit-complicated-te5t-page-named-silly-for-/edit')
 
     // Delete the page we created
     cy.get('#pageEditorToggleEditorButton').click()

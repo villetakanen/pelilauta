@@ -38,7 +38,7 @@ import { required } from '@vuelidate/validators'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'AddPageForm',
@@ -75,13 +75,13 @@ export default defineComponent({
     const { pushSnack } = useSnack()
 
     // Save the page
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     async function add () {
       if (v.value.$errors.length > 0) {
         pushSnack(i18n.t('sites.pages.canNoAddError'))
         return
       }
-      await addPage(uid.value, site.value.id, pageName.value)
+      await addPage(user.value.uid, site.value.id, pageName.value)
       router.push(`/mekanismi/view/${site.value.id}/${toMekanismiURI(pageName.value)}`)
     }
 

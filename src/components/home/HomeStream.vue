@@ -1,5 +1,8 @@
 <template>
   <div class="homeStream">
+    <transition name="fade">
+      <WelcomeCard v-if="anonymousSession" />
+    </transition>
     <div
       v-for="(entry) in stream"
       :key="entry.key"
@@ -13,10 +16,6 @@
           <!-- @todo add new thread card for front page -->
           <WPCard :feed-post="entry.feedPost" />
         </div>
-        <div v-else-if="entry.key === 'welcome'">
-          <!-- @todo add new welcome card for front page -->
-          <WelcomeCard />
-        </div>
         <div v-else-if="entry.key === 'wikiChanges'">
           <!-- @todo add new wikichanges card for front page -->
           <WikiChangesCard />
@@ -27,12 +26,12 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { usePagelog } from '@/state/pagelog'
 import { useThreads } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent } from 'vue'
-import ThreadCard from './ThreadCard.vue'
+import ThreadCard from './threadcard/ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'
 import WikiChangesCard from './WikiChangesCard.vue'
 import { useLoki } from '@/state/feeds'
@@ -64,7 +63,7 @@ export default defineComponent({
   components: { WelcomeCard, ThreadCard, WikiChangesCard, WPCard },
   setup () {
     const { lastFlowtime } = usePagelog()
-    const { isAnonymous } = useAuthState()
+    const { anonymousSession } = useAuth()
 
     const stream = computed(() => {
       const entries = new Array<StreamEntry>()
@@ -83,9 +82,7 @@ export default defineComponent({
         // inject latest wikichanges to relevant position
         // @TODO state handler for wiki latest changes, and
         // insert it here
-        // console.log(t.flowTime?.seconds, lastFlowtime.value)
         if (!wikiChangesInStream && ('flowTime' in t && (t.flowTime?.seconds || 0) < lastFlowtime.value)) {
-          // console.debug('wikiChanges?')
           entries.push({ key: 'wikiChanges' })
           wikiChangesInStream = true
         }
@@ -93,16 +90,9 @@ export default defineComponent({
         else if ('ID' in t) entries.push({ key: '' + t.ID, feedPost: t })
       })
 
-      // push to the top of array, if needed
-      if (isAnonymous.value) {
-        entries.reverse()
-        entries.push({ key: 'welcome' })
-        entries.reverse()
-      }
-
       return entries
     })
-    return { stream }
+    return { stream, anonymousSession }
   }
 })
 </script>

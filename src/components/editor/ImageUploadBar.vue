@@ -34,9 +34,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/storage'
 import Loader from '@/components/app/Loader.vue'
+import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from '@firebase/storage'
 
 export default defineComponent({
   components: {
@@ -56,20 +55,17 @@ export default defineComponent({
 
     watch(images, (value) => context.emit('update:modelValue', value))
 
-    function uploadImage (e: Event) {
+    async function uploadImage (e: Event) {
       if (!e.target) return
       const element = e.target as HTMLInputElement
       uploading.value = true
       if (element.files && element.files[0]) {
         const file = element.files[0]
-        const storageRef = firebase.storage().ref()
-        const fileRef = storageRef.child('/stream/uploads/' + new Date().getTime() + file.name)
-        fileRef.put(file).then((snapshot) => {
-          snapshot.ref.getDownloadURL().then((url) => {
-            images.value.push(url)
-            uploading.value = false
-          })
-        })
+        const fileRef = storageRef(getStorage(), '/stream/uploads/' + new Date().getTime() + file.name)
+        await uploadBytes(fileRef, file)
+        const url = await getDownloadURL(fileRef)
+        images.value.push(url)
+        uploading.value = false
       }
     }
 

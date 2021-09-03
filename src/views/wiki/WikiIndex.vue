@@ -21,7 +21,6 @@ export default defineComponent({
   setup () {
     const filter = ref('')
     function setFilter (val:string) {
-      console.debug('setFilter')
       filter.value = val
     }
     return { filter, setFilter }

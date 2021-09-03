@@ -33,21 +33,26 @@
           :siteid="site.id"
         />
       </Card>
+      <Icon
+        v-if="false"
+        name="adventurer"
+      />
     </div>
     <PageFabs />
   </div>
 </template>
 
 <script lang="ts">
-import { ComputedRef, defineComponent, inject, provide } from 'vue'
+import { ComputedRef, defineComponent, inject, onMounted, provide, watch } from 'vue'
 import SideBar from '@/components/wikipage/SideBar.vue'
-import { usePages, useSite } from '@/state/site'
+import { fetchPage, usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { renderWikiLinks } from '@/utils/contentFormat'
 import Card from '@/components/layout/Card.vue'
 import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
+import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -57,11 +62,28 @@ export default defineComponent({
     PageFabs,
     SiteToolbar,
     Card,
-    SiteThreadList
+    SiteThreadList,
+    Icon
   },
-  setup () {
-    const { site } = useSite()
+  props: {
+    siteid: {
+      type: String,
+      required: true
+    },
+    pageid: {
+      type: String,
+      required: true
+    }
+  },
+  setup (props) {
+    const { site } = useSite(props.siteid)
     const { page, pages } = usePages()
+
+    onMounted(() => {
+      watch(() => props.pageid, (pageid) => {
+        fetchPage(pageid)
+      }, { immediate: true })
+    })
 
     // const route = useRoute()
     const mobileViewport = inject('mobileViewport') as ComputedRef<boolean>

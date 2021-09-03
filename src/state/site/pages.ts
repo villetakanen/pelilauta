@@ -1,9 +1,8 @@
 import { Ref, ref, computed, ComputedRef } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { useSite } from '.'
+import { doc, getFirestore, serverTimestamp, Timestamp, collection, DocumentData, onSnapshot, deleteDoc, updateDoc, setDoc, getDoc } from '@firebase/firestore'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export interface Page {
   siteid: string,
@@ -11,7 +10,7 @@ export interface Page {
   name: string,
   category: string,
   htmlContent: string,
-  lastUpdate: firebase.firestore.Timestamp|null
+  lastUpdate: Timestamp|null
 }
 export interface PageFragment {
   siteid: string,
@@ -20,7 +19,7 @@ export interface PageFragment {
   name?: string,
   category?: string,
   htmlContent?: string,
-  lastUpdate?: firebase.firestore.Timestamp|null
+  lastUpdate?: Timestamp|null
 }
 
 const subscribedPages: Ref<Page[]> = ref(new Array<Page>())
@@ -32,7 +31,7 @@ const page = computed(() => (statePage.value))
 
 let unsubscribe = () => {}
 
-function toPage (siteid?:string, id?:string, data?:firebase.firestore.DocumentData): Page {
+function toPage (siteid?:string, id?:string, data?:DocumentData): Page {
   if (!siteid || !id) {
     return {
       siteid: '',
@@ -103,10 +102,9 @@ export function subscribeTo (siteid:string|null|undefined): void {
     unsubscribe()
     return
   }
-  const db = firebase.firestore()
-  const siteRef = db.collection('sites').doc(siteid)
-  const pagesRef = siteRef.collection('pages')
-  unsubscribe = pagesRef.onSnapshot((snapshot) => {
+  const db = getFirestore()
+  const pagesRef = collection(db, 'sites', siteid, 'pages')
+  unsubscribe = onSnapshot(pagesRef, (snapshot) => {
     snapshot.docChanges().forEach((change) => {
       if (change.type === 'removed') {
         dropFromSubscribed(change.doc.id)
@@ -118,43 +116,50 @@ export function subscribeTo (siteid:string|null|undefined): void {
 }
 
 export async function deletePage (siteid: string, pageid:string): Promise<void> {
-  const db = firebase.firestore()
-  const pageRef = db.collection('sites').doc(siteid).collection('pages').doc(pageid)
-  return pageRef.delete()
+  return deleteDoc(
+    doc(getFirestore(), 'sites', siteid, 'pages', pageid)
+  )
 }
 
 export async function updatePage (page: PageFragment): Promise<void> {
   console.debug('Page fragment for update', page.id, page)
   const { site } = useSite()
-  const db = firebase.firestore()
-  const pageRef = db.collection('sites').doc(page.siteid).collection('pages').doc(page.id)
-  return pageRef.update({
+  const db = getFirestore()
+  const pageRef = doc(db, 'sites', page.siteid, 'pages', page.id)
+  return updateDoc(pageRef, {
     ...page,
     hidden: site.value.hidden || false,
     silent: site.value.silent || false,
-    lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
+    lastUpdate: serverTimestamp()
   }).then(() => {
-    const siteRef = db.collection('sites').doc(page.siteid)
-    return siteRef.update({ lastUpdate: firebase.firestore.FieldValue.serverTimestamp() })
+    return updateDoc(
+      doc(db, 'sites', page.siteid),
+      { lastUpdate: serverTimestamp() }
+    )
   })
 }
 
 export async function addPage (authorUid: string, siteid: string, pageName: string): Promise<void> {
   const pageid = toMekanismiURI(pageName)
 
-  const db = firebase.firestore()
-  const pageRef = db.collection('sites').doc(siteid).collection('pages').doc(pageid)
+  logEvent(getAnalytics(), 'addPage', { site: siteid, page: pageid, author: authorUid })
 
-  firebase.analytics().logEvent('addPage', { site: siteid, page: pageid, author: authorUid })
+  const docRef = doc(getFirestore(), 'sites', siteid, 'pages', pageid)
 
-  return pageRef.set({
-    author: authorUid,
-    creator: authorUid,
-    name: pageName,
-    created: firebase.firestore.FieldValue.serverTimestamp(),
-    lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
-    htmlContent: '<p>...</p>'
-  })
+  const pageDoc = await getDoc(docRef)
+  if (pageDoc.exists()) throw new Error('Trying to create a page that already exists')
+
+  return setDoc(
+    docRef,
+    {
+      author: authorUid,
+      creator: authorUid,
+      name: pageName,
+      created: serverTimestamp(),
+      lastUpdate: serverTimestamp(),
+      htmlContent: '<p>...</p>'
+    }
+  )
 }
 
 export function usePages (): { pages: ComputedRef<Page[]>, page:ComputedRef<Page> } {

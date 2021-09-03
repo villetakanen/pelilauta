@@ -48,7 +48,7 @@ export default defineComponent({
 .sideNavAction
   @include SpacingIcon2()
   @include Halo8()
-  position: relative
+  position: fixed
   background: linear-gradient(-45deg, var(--chroma-primary-g) 0%, var(--chroma-primary-a) 100%)
   .foxIcon, .closedIcon
     @include SpacingIcon2()

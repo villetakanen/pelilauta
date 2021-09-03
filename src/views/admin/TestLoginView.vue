@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts">
+import { getAuth, signInWithEmailAndPassword } from '@firebase/auth'
 import { defineComponent, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/auth'
+
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -30,10 +30,11 @@ export default defineComponent({
     const username = ref('')
     const router = useRouter()
     const login = () => {
-      firebase.auth().signInWithEmailAndPassword(username.value, password.value).then(() => {
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, username.value, password.value).then(() => {
         router.push('/profile')
       }).catch((error) => {
-        console.debug(error)
+        console.error(error)
         router.push('/login')
       })
     }

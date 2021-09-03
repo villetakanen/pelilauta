@@ -13,7 +13,7 @@
 <script lang="ts">
 import ThreadBox from '@/components/thread/ThreadBox.vue'
 import ThreadEditor from '@/components/thread/ThreadEditor.vue'
-import { subscribeThread, useThreads } from '@/state/threads/threads'
+import { useThreads } from '@/state/threads/threads'
 import { defineComponent } from 'vue'
 
 /**
@@ -47,7 +47,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    console.debug('EditTheadView.vue', props.threadid, props.mode, props.topic)
+    const { subscribeThread } = useThreads()
     subscribeThread(props.threadid)
     const { thread } = useThreads()
     return { thread }

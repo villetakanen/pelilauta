@@ -1,7 +1,8 @@
 {
   "action": {
     "addAttachment": "Lisää tiedosto",
-    "addThread": "Uusi aihe",
+    "addThread": "Uusi ketju",
+    "addPage": "Uusi sivu",
     "add": "Lisää",
     "admin": "Admin",
     "cancel": "Peruuta",
@@ -36,7 +37,8 @@
     "welcome": {
       "title": "Tervetuloa Pelilaudalle",
       "message": "Pelilauta.fi ja Mekanismi.sange.fi sivustojen inspiroima yhteisösovellus. Kirjautumalla Facebookilla, Googlella tai sähköpostilla – saat käyttöösi enemmän toimintoja."
-    }
+    },
+    "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
   },
   "editorDialog": {
     "title": "Viesti",
@@ -57,16 +59,34 @@
   },
   "language": {
     "fi": "Suomi",
-    "en": "Englati"
+    "en": "Englanti"
   },
   "login": {
     "title": "Kirjaudu tai rekisteröidy",
     "message": "Voit kirjautua sovellukseen Googlen tai Facebookin avulla allaolevilla nappuloilla.",
-    "withGoogleButton": "Googlella",
-    "withFacebookButton": "Facebookila"
+    "withGoogleButton": "Google",
+    "withFacebookButton": "Facebook",
+    "verifyEmailLoginMessage": "Vahvistathan tunnuksesi saamasi sähköpostiviestin avulla",
+    "emailLoginMessage": "Kirjaudu sähköpostilla",
+    "emailLoginDataInfoLink": "Lisätietoja kirjautumisesta ja henkilötiedojen käsittelystä sovelluksessa",
+    "withEmail": "Kirjaudu",
+    "emailLoginHelper": "Sähköpostiosoite",
+    "socialLoginTitle": "Kirjaudu pavelun avulla"
   },
   "notification": {
-    "newThreadReply": "vastasi ketjuun."
+    "newThreadReply": "vastasi ketjuun.",
+    "mentionInThread": "mainitsi sinut ketjussa"
+  },
+  "registration": {
+    "title": "Tervetuloa Pelilaudalle",
+    "info": "Luomme sinulle profiilin, joka näkyy kaikille käyttäjille. Alta voit valita profiilille nimimerkin",
+    "infolink": "Lisää tietoja henkilötietojen käsittelystä.",
+    "createProfile": "Luo profiili"
+  },
+  "reply": {
+    "editor": {
+      "helpertext": "merkitsee kirjoittajan, ja lähettää notifikaation"
+    }
   },
   "search": {
     "results": {
@@ -76,10 +96,27 @@
     "noQuickResultsHelper": "Ei pikahakutuloksia, paina enter nähdäksesi koko haun"
   },
   "site": {
+    "characters": {
+      "title": "Hahmot",
+      "template": "Valitse lomake",
+      "templates": {
+        "default": "Tyhjä",
+        "ll": "Legendoja ja lohikäärmeitä"
+      },
+      "fields": {
+        "name":"Nimi",
+        "description":"Kuvaus"
+      }
+    },
     "players": {
       "title": "Pelaajat",
       "addAsNew": "Lisää pelaajaksi",
-      "dropThePlayer": "Poista pelistä"
+      "dropThePlayer": "Poista pelaaja",
+      "linkACharacter": "Linkitä hahmo",
+      "newCharacter": "Uusi hahmo",
+      "author": "Pelaaja",
+      "character": "Hahmo",
+      "actions": "Toiminnot"
     },
     "meta": {
       "usePlayers": "Käytä pelaajat -toimintoa",
@@ -111,6 +148,7 @@
     "toForumLink": "Keskustelu",
     "toSitesLink": "Hakemisto",
     "toMySitesLink": "Omat pelini",
+    "toMyCharactersLink": "Omat hahmoni",
     "home": "Pelilauta",
     "admin": "Admin",
     "sections": "Aiheet",
@@ -150,6 +188,11 @@
     "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
     "tagline": "Allekirjoitus",
     "assets": "Media",
+    "asset": {
+      "list": {
+        "title": "Lisäämäni kuvat"
+      }
+    },
     "stats": "Ketjut",
     "actions": {
       "title": "Asetukset ja toiminnot",
@@ -158,7 +201,8 @@
     },
     "inbox": {
       "title": "Nostot"
-    }
+    },
+    "nick": "Nimimerkki"
   },
   "threads": {
     "sinceInTopic": "aiheessa",
@@ -237,7 +281,8 @@
   "LovedThreads":{"title": "Ketjut joista olen pitänyt"},
   "global": {
     "messages": {
-      "pleaseLogin": "Kirjaudu sisään osallistuaksesi keskusteluun"
+      "pleaseLogin": "Kirjaudu sisään osallistuaksesi keskusteluun",
+      "linkShared": "Linkki kopioitu leikepöydälle"
     }
   }
 }

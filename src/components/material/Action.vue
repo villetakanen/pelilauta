@@ -1,7 +1,7 @@
 <template>
   <div
     class="action"
-    :class="{ 'theme--dark': dark, active: active }"
+    :class="{ 'theme--dark': dark, active: active, disabled: disabled }"
     @click="clicked"
   >
     <Icon
@@ -10,7 +10,10 @@
       :color="dark ? 'dark' : ''"
       class="prepend"
     />
-    <div :class="{label: !mobile, paddedLabel: mobile}">
+    <div
+      v-if="!disabled"
+      :class="{label: !mobile, paddedLabel: mobile}"
+    >
       <slot />
     </div>
     <Icon
@@ -54,6 +57,11 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -65,7 +73,7 @@ export default defineComponent({
     })
 
     const clicked = () => {
-      if (!props.to) return
+      if (!props.to || props.disabled) return
       // route with a name
       if (router.hasRoute(props.to)) router.push({ name: props.to })
       // route with params
@@ -133,6 +141,8 @@ export default defineComponent({
       background-color: rgba(255,255,255,0.11)
     div.label, div.paddedLabel
       color: var(--chroma-secondary-i)
+  &.disabled
+    opacity: 0.5
 
 @include media('<tablet')
   div.action

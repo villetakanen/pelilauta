@@ -1,5 +1,5 @@
 <template>
-  <div class="viewThread contentGrid">
+  <div class="viewThread singleColumnLayout">
     <ThreadBox>
       <ThreadBoxHeader :thread="thread" />
       <div
@@ -42,10 +42,9 @@ import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
 import ThreadBox from '@/components/thread/ThreadBox.vue'
 import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
-import { subscribeThread, useThreads } from '@/state/threads/threads'
-import firebase from 'firebase/app'
-import 'firebase/analytics'
+import { useThreads } from '@/state/threads/threads'
 import ThreadBoxTailer from '@/components/thread/ThreadBoxTailer.vue'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 /**
  * A Router view for a Stream Thread.
@@ -77,9 +76,15 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const { thread, subscribeThread } = useThreads()
     subscribeThread(props.threadid)
-    const { thread } = useThreads()
-    onMounted(() => { firebase.analytics().logEvent('PageView', { name: 'ViewThread', threadid: props.threadid }) })
+    onMounted(() => {
+      const a = getAnalytics()
+      logEvent(a, 'PageView', {
+        name: 'ViewThread',
+        threadid: props.threadid
+      })
+    })
     return { thread }
   }
 })
@@ -90,9 +95,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .viewThread
-  position: relative
-  margin: 0 auto
-  padding: 0
   div.threadContent
     p
       @include TypeBody2()

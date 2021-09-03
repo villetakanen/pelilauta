@@ -98,7 +98,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import MaterialButton from '../material/MaterialButton.vue'
 import Icon from '../material/Icon.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -140,7 +140,6 @@ export default defineComponent({
     const toggle = () => { toggleSettings.value = !toggleSettings.value }
     const toggleMedia = ref(false)
     const toggleInjectMedia = () => { toggleMedia.value = !toggleMedia.value }
-    console.debug('thread', props.thread)
     // Thread name
     const localTitle = ref('')
     const threadTitle = computed({
@@ -148,8 +147,6 @@ export default defineComponent({
       set: (val:string) => {
         if (val !== localTitle.value) {
           localTitle.value = val
-        } else {
-          console.debug('Trying to set thread title to itself. This is likely a bug.')
         }
       }
     })
@@ -160,8 +157,6 @@ export default defineComponent({
       set: (val:string) => {
         if (val !== localContent.value) {
           localContent.value = val
-        } else {
-          console.debug('Trying to set thread content to itself. This is likely a bug.')
         }
       }
     })
@@ -177,21 +172,20 @@ export default defineComponent({
     const { streams } = useMeta()
     const topicOpts = computed(() => (streams.value.filter((val) => (val.slug !== '-')).map((val) => ({ key: val.slug, value: val.name }))))
     const threadTopic = ref(props.thread.data.topic || props.topic || 'Yleinen')
-    console.debug('ThreadEditor.vue', threadTopic.value)
-    const minLength = (value:any) => (value.length > 1)
-    const maxLength = (value:any) => (value.toString().trim().length < 36)
+    const minLength = (value:unknown) => (typeof value === 'string' && value.length > 1)
+    const maxLength = (value:unknown) => (typeof value === 'string' && value.toString().trim().length < 36)
     const rules = {
       threadTitle: { required, minLength, maxLength },
       threadTopic: { required }
     }
     const v = useVuelidate(rules, { threadTitle, threadTopic })
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const { pushSnack } = useSnack()
     const i18n = useI18n()
     const router = useRouter()
     const save = async () => {
       if (props.mode === 'new') {
-        return createThread(uid.value, {
+        return createThread(user.value.uid, {
           content: localContent.value,
           title: localTitle.value,
           topic: threadTopic.value,
@@ -210,7 +204,7 @@ export default defineComponent({
       if (threadTopic.value) updatedThread.data.topic = threadTopic.value
       if (localSticky.value !== null) updatedThread.data.sticky = localSticky.value
       if (threadSite.value !== null) updatedThread.site = threadSite.value
-      return updateThread(uid.value, updatedThread).then(() => {
+      return updateThread(user.value.uid, updatedThread).then(() => {
         pushSnack(i18n.t('snacks.updateSuccess'))
         router.push(`/thread/${props.thread.id}/view`)
       }).catch((error:Error) => {
@@ -221,7 +215,7 @@ export default defineComponent({
 
     const threadSite:Ref<string|null> = ref(null)
     const { allSites } = useSites()
-    const mySites = computed(() => (allSites.value.filter((val) => (Array.isArray(val.owners)) && val.owners.includes(uid.value))))
+    const mySites = computed(() => (allSites.value.filter((val) => (Array.isArray(val.owners)) && val.owners.includes(user.value.uid))))
     const siteList = computed(() => {
       const list = [{ key: '-', value: '-' }]
       list.pop()

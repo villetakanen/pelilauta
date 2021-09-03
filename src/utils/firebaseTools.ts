@@ -1,6 +1,5 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/storage'
+import { Timestamp } from '@firebase/firestore'
+import { getDownloadURL, getStorage, ref } from '@firebase/storage'
 import { DateTime } from 'luxon'
 
 /**
@@ -12,9 +11,9 @@ export const fireStoreURL = function (path: string): Promise<string> {
     if (url !== null) {
       resolve(url)
     }
-    const storage = firebase.storage()
-    const pathRef = storage.ref(path)
-    pathRef.getDownloadURL().then((newUrl) => {
+    const storage = getStorage()
+    const pathRef = ref(storage, path)
+    getDownloadURL(pathRef).then((newUrl) => {
       localStorage.setItem(path, newUrl)
       if (!url) {
         resolve(newUrl)
@@ -26,7 +25,7 @@ export const fireStoreURL = function (path: string): Promise<string> {
   })
 }
 
-export const toDisplayString = (timestamp: firebase.firestore.Timestamp|string|null): string => {
+export const toDisplayString = (timestamp: Timestamp|string|null): string => {
   if (timestamp === null) return '---'
   const date = (typeof timestamp === 'string') ? DateTime.fromISO(timestamp) : DateTime.fromSeconds(timestamp.seconds)
   const duration = DateTime.now().diff(date)
@@ -41,11 +40,11 @@ export const toDisplayString = (timestamp: firebase.firestore.Timestamp|string|n
   return date.toFormat('dd.MM.yyyy – HH:mm')
 }
 
-export const toUTCDate = (timestamp: firebase.firestore.Timestamp|null): Date => {
+export const toUTCDate = (timestamp: Timestamp|null): Date => {
   return new Date(getSeconds(timestamp) * 1000)
 }
 
-export const getSeconds = function (time?: firebase.firestore.Timestamp|null): number {
+export const getSeconds = function (time?: Timestamp|null): number {
   if (!time) return 0
   return time.seconds
 }

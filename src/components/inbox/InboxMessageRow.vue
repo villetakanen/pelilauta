@@ -10,7 +10,7 @@
       </router-link>
 
       <div
-        v-if="notification.source.type === 'thread.reply'"
+        v-if="notification.source.type === 'thread.reply' || notification.source.type === 'thread.reply.mention'"
         class="caption"
       >
         <AuthorLink :uid="notification.meta.author || ''" /> {{ $t(notification.source.message || '...') }}

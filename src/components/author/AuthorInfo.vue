@@ -2,7 +2,7 @@
   <div class="authorInfo">
     <router-link
       v-if="author.nick"
-      :to="{ name: 'profile.public', params: { uid: authoruid }}"
+      :to="{ name: 'profile.public', params: { uid: author.uid }}"
     >
       <img
         v-if="author.photoURL"

@@ -1,60 +1,68 @@
 <template>
-  <MaterialCard>
-    <p v-if="verify">
-      Please verify your email address.
-    </p>
-    <p v-else>
-      {{ $t('login.emailLoginMessage') }}
-      <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
-        {{ $t('login.emailLoginDataInfoLink') }}
-      </router-link>
-    </p>
-    <TextField
-      v-model="emailAdress"
-      :disabled="sending"
-    />
-    <Toolbar>
-      <div class="spacer" />
-      <MaterialButton :async-action="sendLinkToEmail">
-        {{ $t('login.withEmail') }}
-      </MaterialButton>
-    </Toolbar>
-  </MaterialCard>
+  <Card class="emailLoginForm">
+    <div
+      v-if="verify"
+      class="verifyWarning"
+    >
+      {{ $t('login.verifyEmailLoginMessage') }}
+    </div>
+    <div v-else>
+      <h1 class="title">
+        {{ $t('login.emailLoginMessage') }}
+      </h1>
+      <p class="caption">
+        <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
+          {{ $t('login.emailLoginDataInfoLink') }}
+        </router-link>
+      </p>
+    </div>
+    <div>
+      <TextField
+        v-model="emailAdress"
+        :disabled="sending"
+        :label="$t('login.emailLoginHelper')"
+      />
+      <div class="toolbar">
+        <div class="spacer" />
+        <MaterialButton :async-action="sendLinkToEmail">
+          {{ $t('login.withEmail') }}
+        </MaterialButton>
+      </div>
+    </div>
+  </Card>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import MaterialCard from '../material/MaterialCard.vue'
 import TextField from '../material/TextField.vue'
-import firebase from 'firebase/app'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
-import Toolbar from '../layout/Toolbar.vue'
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
+import Card from '../layout/Card.vue'
+import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from '@firebase/auth'
 
 export default defineComponent({
-  components: { MaterialCard, TextField, MaterialButton, Toolbar },
+  components: { TextField, MaterialButton, Card },
   setup () {
     const emailAdress = ref('')
-    const verify = firebase.auth().isSignInWithEmailLink(window.location.href)
+    const verify = isSignInWithEmailLink(getAuth(), window.location.href)
     const router = useRouter()
     const sending = ref(false)
     const { pushSnack } = useSnack()
     const i18n = useI18n()
 
     onMounted(() => {
-      const { isAnonymous } = useAuthState()
-      if (!isAnonymous.value) router.push('/profile')
+      const { anonymousSession } = useAuth()
+      if (!anonymousSession.value) router.push('/profile')
     })
 
     const singInWithEmail = () => {
       if (!emailAdress.value) {
-        console.log('missing email adress value')
         pushSnack({ topic: i18n.t('snacks.invalidEmail') })
       }
-      firebase.auth().signInWithEmailLink(emailAdress.value, window.location.href)
+      signInWithEmailLink(getAuth(), emailAdress.value, window.location.href)
         .then((result) => {
           // Clear email from storage.
           window.localStorage.removeItem('emailForSignIn')
@@ -66,18 +74,18 @@ export default defineComponent({
           const { createProfile, profile } = useProfile()
           if (!profile.value.uid) {
             createProfile().then(() => {
-              console.log(result)
+              console.warn(result)
               router.push('/profile')
             }).catch((error: Error) => {
               pushSnack({ topic: error.message })
-              console.log(error)
-              firebase.auth().signOut()
+              console.warn(error)
+              getAuth().signOut()
             })
           }
         })
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
-          console.log(error)
+          console.warn(error)
         })
     }
 
@@ -99,7 +107,7 @@ export default defineComponent({
     const sendLinkToEmail = async () => {
       if (verify) singInWithEmail()
       sending.value = true
-      return firebase.auth().sendSignInLinkToEmail(emailAdress.value, actionCodeSettings)
+      return sendSignInLinkToEmail(getAuth(), emailAdress.value, actionCodeSettings)
         .then(() => {
           // The link was successfully sent. Inform the user.
           // Save the email locally so you don't need to ask the user for it again
@@ -111,7 +119,7 @@ export default defineComponent({
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
           sending.value = false
-          console.log(error)
+          console.warn(error)
         })
     }
 
@@ -119,3 +127,14 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
+.caption
+  @include TypeCaption()
+  margin-bottom: 16px !important
+  opacity: 0.5
+  a
+    text-decoration: none
+</style>

@@ -24,15 +24,15 @@
 import Toolbar from '@/components/layout/Toolbar.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 import { defineComponent, onMounted } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/analytics'
 
 export default defineComponent({
   name: '404',
   components: { Toolbar, MaterialCard, MaterialButton },
   setup () {
-    onMounted(() => { firebase.analytics().logEvent('PageView', { name: '404' }) })
+    const a = getAnalytics()
+    onMounted(() => { logEvent(a, 'PageView', { name: '404' }) })
   }
 })
 </script>

@@ -11,7 +11,6 @@ import Quill from 'quill'
 import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
 import { mentionsModule } from '@/utils/quill/mentionsModule'
-import { useAuthors } from '@/state/authors'
 
 function hoistClipboardConfig (quill:Quill) {
   quill.clipboard.addMatcher(Node.ELEMENT_NODE,
@@ -56,22 +55,6 @@ export default defineComponent({
         mention: true
       }
     }
-
-    const { nonFrozenAuthors } = useAuthors()
-
-    /* function mentionsModule (quill:Quill) {
-      quill.on('text-change', function (d, e) {
-        if (d.ops[0]?.insert === '@' || d.ops[1]?.insert === '@') {
-          console.debug('! add mention!', d, e)
-          quill.updateContents(new Delta({
-            ops: [
-              d.ops[0],
-              { insert: nonFrozenAuthors.value[0].nick }
-            ]
-          }))
-        }
-      })
-    } */
 
     // Implement and register module
     Quill.register('modules/mention', mentionsModule)
@@ -124,7 +107,6 @@ export default defineComponent({
       // at the initial load, so we do not use { immediate: true } on
       // the watch code
       watch(quotedContent, (quote) => {
-        console.debug('watch2(() => quotedContent', quote)
         if (quill !== null && quote.content) {
           // see https://github.com/quilljs/quill/issues/2124
           quill.insertEmbed(0, 'blockquote', '', 'user')
@@ -137,7 +119,6 @@ export default defineComponent({
       // at the initial load, so we do not use { immediate: true } on
       // the watch code
       watch(imageToEditor, (url) => {
-        console.debug('watch(imageToEditor...', url)
         if (quill !== null && url) {
           // https://quilljs.com/docs/api/#content
           quill.insertEmbed(0, 'image', url)
@@ -147,7 +128,6 @@ export default defineComponent({
       document.addEventListener('quill.mention', function (e: Event) {
         e.preventDefault()
         const ce = e as CustomEvent
-        console.debug('quill.mention event', ce.detail)
         context.emit('mention', ce.detail)
       })
     }

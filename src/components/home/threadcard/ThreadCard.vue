@@ -10,24 +10,7 @@
         class="imageframe"
         :style="`background-image: url('${thread.data.images[0].url}')`"
       />
-      <h1 class="contentBox">
-        <router-link :to="`/thread/${thread.id}/view`">
-          {{ thread.data.title }}
-        </router-link>
-      </h1>
-      <p
-        v-if="site"
-        class="subtitle"
-      >
-        <Icon
-          :name="site.systemBadge+'-logo'"
-          x-small
-          style="opacity:0.7"
-        />
-        <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
-          {{ site.name }}
-        </router-link>
-      </p>
+      <ThreadCardHeader :thread="thread" />
       <p
         v-if="!thread.data.youTubeSlug"
         class="contentSnippet"
@@ -55,75 +38,23 @@
         {{ toDisplayString(thread.created) }}
       </p>
     </div>
-    <div class="toolbar">
-      <LoveAThreadAction
-        :authorid="authoruid"
-        :loves="loves"
-        :action="toggleLove"
-        :count="thread.lovedCount"
-        style="margin-right: 8px"
-      />
-      <div>
-        <p class="topic">
-          {{ $t('stream.inStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
-            {{ topicName }}
-          </router-link>
-        </p>
-      </div>
-      <div class="spacer" />
-      <div
-        class="replies"
-        style="position: relative"
-      >
-        <transition name="fade">
-          <div
-            style="width: 120px;position:relative; text-align: right"
-          >
-            <Pill
-              v-if="newReplies"
-              small
-              prepend-icon="send"
-              dark
-            >
-              <router-link :to="`/thread/${thread.id}/view/from/${seen}`">
-                {{ thread.replyCount ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
-              </router-link>
-            </Pill>
-            <p
-              v-else
-              class="topic"
-              style="position: absolute; top: 0; right : 10px"
-            >
-              <router-link :to="`/thread/${thread.id}/view/from/${seen}`">
-                {{ thread ? thread.replyCount + ' ' + $t('post.nOfReplies') : $t('post.more') }}
-              </router-link>
-            </p>
-          </div>
-        </transition>
-      </div>
-    </div>
+    <ThreadCardTailer2 :thread="thread" />
   </Card>
 </template>
 
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
 import { useMeta } from '@/state/meta'
-import { loveThread, unloveThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
-import Card from '../layout/Card.vue'
-import LoveAThreadAction from '../thread/LoveAThreadAction.vue'
-import { useAuthState, useProfile } from '@/state/authz'
-import Pill from '../material/Pill.vue'
-import { useSites } from '@/state/sites'
-import Icon from '../material/Icon.vue'
-/**
- * A simple welcome card for anonymous visitors
- */
+import Card from '../../layout/Card.vue'
+import ThreadCardHeader from './ThreadCardHeader.vue'
+import ThreadCardTailer2 from './ThreadCardTailer2.vue'
+
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Card, LoveAThreadAction, Pill, Icon },
+  components: { Card, ThreadCardHeader, ThreadCardTailer2 },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -147,7 +78,7 @@ export default defineComponent({
       let snip = ''
       if (div.firstChild) {
         snip = div.firstChild.textContent || ''
-        if (snip.length > 72) snip = snip.substring(0, 72) + '...'
+        if (snip.length > 140) snip = snip.substring(0, 140) + '...'
       }
       return snip
     })
@@ -158,39 +89,8 @@ export default defineComponent({
     const { authors } = useAuthors()
     const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
     const authoruid = computed(() => (author.value?.uid || ''))
-    const { isAnonymous, uid } = useAuthState()
-    const { hasSeen, profileMeta, seenFrom } = useProfile()
-    const newReplies = computed(() => (
-      !isAnonymous.value &&
-      !hasSeen(props.thread.id, props.thread.flowTime) &&
-      props.thread.replyCount > 0
-    ))
-    const seen = computed(() => (seenFrom(props.thread.id)))
-    const loves = computed(() => {
-      if (typeof profileMeta.value.lovedThreads === 'undefined') return false
-      return profileMeta.value.lovedThreads.includes(props.thread.id)
-    })
 
-    async function toggleLove () {
-      // no-op if the author is trying to love their own posts
-      if (props.thread.author === uid.value) return
-      // love/unlove
-      if (loves.value) {
-        return unloveThread(uid.value, props.thread.id).then(() => {
-        })
-      } else {
-        return loveThread(uid.value, props.thread.id).then(() => {
-        })
-      }
-    }
-
-    const { allSites } = useSites()
-    const site = computed(() => {
-      if (!props.thread.site) return undefined
-      return allSites.value.find((site) => (site.id === props.thread.site))
-    })
-
-    return { snippet, topicName, author, toDisplayString, authoruid, newReplies, toggleLove, loves, site, seen }
+    return { snippet, topicName, author, toDisplayString, authoruid }
   }
 })
 </script>

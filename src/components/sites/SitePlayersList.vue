@@ -3,11 +3,16 @@
     <h1 class="title">
       {{ $t('site.players.title') }}
     </h1>
-    <PlayerRowItem
-      v-for="player in playerList"
-      :key="player.uid"
-      :player="player"
-    />
+    <div class="playerTable">
+      <h4>{{ $t('site.players.author') }}</h4>
+      <h4>{{ $t('site.players.character') }}</h4>
+      <h4>{{ $t('site.players.actions') }}</h4>
+      <PlayerRowItem
+        v-for="player in playerList"
+        :key="player.uid"
+        :player="player"
+      />
+    </div>
     <p class="tooltip">
       {{ $t('site.settings.access.playerTooltip') }}
     </p>
@@ -69,3 +74,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.playerTable
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+</style>

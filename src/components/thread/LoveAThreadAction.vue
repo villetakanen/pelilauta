@@ -11,7 +11,7 @@
       alt="love"
     >
     <img
-      v-if="uid !== authorid && (loves || buttonClasses.submitting)"
+      v-if="user.uid !== authorid && (loves || buttonClasses.submitting)"
       src="@/assets/icons/love/loveIcon.svg"
       :class="{loved: loves}"
       class="loveImage"
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { defineComponent, PropType, ref } from 'vue'
 export default defineComponent({
   props: {
@@ -46,21 +46,21 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const buttonClasses = ref({
       submitting: false,
-      fromMe: uid.value === props.authorid
+      fromMe: user.value.uid === props.authorid
     })
 
     const clicked = () => {
-      if (uid.value === props.authorid) return // no loving of own comments
+      if (user.value.uid === props.authorid) return // no loving of own comments
       buttonClasses.value.submitting = true
       props.action().then(() => {
         buttonClasses.value.submitting = false
       })
     }
 
-    return { uid, buttonClasses, clicked }
+    return { user, buttonClasses, clicked }
   }
 })
 </script>

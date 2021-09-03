@@ -2,28 +2,35 @@
   <Toolbar>
     <h3>{{ title }}</h3>
     <div class="spacer" /><Action
-      v-if="isAdmin"
+      v-if="showAdminTools"
       to="stylebook"
       prepend="d20"
     >
       {{ $t('admin.action.stylebook') }}
     </Action>
     <Action
-      v-if="isAdmin"
+      v-if="showAdminTools"
+      to="/thread/add"
+      prepend="lightbulb"
+    >
+      {{ $t('action.addThread') }}
+    </Action>
+    <Action
+      v-if="showAdminTools"
       to="global.admin.editorTest"
       prepend="edit"
     >
       {{ $t('admin.action.editorTest') }}
     </Action>
     <Action
-      v-if="isAdmin"
+      v-if="showAdminTools"
       to="global.admin.topics"
       prepend="books"
     >
       {{ $t('admin.action.topics') }}
     </Action>
     <Action
-      v-if="isAdmin"
+      v-if="showAdminTools"
       to="global.admin"
       prepend="admin"
     >
@@ -36,7 +43,7 @@
 import { defineComponent } from 'vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import Action from '../material/Action.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   components: {
@@ -51,8 +58,8 @@ export default defineComponent({
     }
   },
   setup () {
-    const { isAdmin } = useAuthState()
-    return { isAdmin }
+    const { showAdminTools } = useAuth()
+    return { showAdminTools }
   }
 })
 </script>

@@ -1,15 +1,14 @@
 <template>
-  <div class="playerRowItem">
-    <router-link :to="`/u/${player.uid}`">
-      {{ player.nick }}
-    </router-link>
-    <MaterialButton
-      text
-      :async-action="dropPlayer"
-    >
-      {{ $t('site.players.dropThePlayer') }}
-    </MaterialButton>
-  </div>
+  <router-link :to="`/u/${player.uid}`">
+    {{ player.nick }}
+  </router-link>
+  <p>[ select a character ]</p>
+  <MaterialButton
+    text
+    :async-action="dropPlayer"
+  >
+    {{ $t('site.players.dropThePlayer') }}
+  </MaterialButton>
 </template>
 
 <script lang="ts">

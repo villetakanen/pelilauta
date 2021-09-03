@@ -3,8 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
-import { subscribeThread } from '@/state/threads/threads'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -22,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: () => import(/* webpackChunkName: "global" */ '../views/Login.vue')
   },
   {
@@ -51,6 +50,12 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "profile" */ '../views/profile/PublicProfileView.vue')
+  },
+  {
+    path: '/u/:uid/characters',
+    name: 'profile.characters',
+    props: true,
+    component: () => import(/* webpackChunkName: "profile" */ '../views/profile/CharacterListingView.vue')
   },
   {
     path: '/register',
@@ -133,6 +138,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'wiki.changes'
   },
   {
+    path: '/site/:siteid',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
+    props: (route) => ({ siteid: route.params.siteid, pageid: route.params.siteid }),
+    name: 'mekanismi.site'
+  },
+  {
     path: '/mekanismi/view/:siteid/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
     props: true,
@@ -145,16 +156,28 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.players'
   },
   {
-    path: '/site/addpage/:siteid',
+    path: '/site/:siteid/page/new',
     component: () => import(/* webpackChunkName: "sites" */ '../views/site/AddPageView.vue'),
     props: true,
     name: 'site.page.new'
   },
   {
-    path: '/mekanismi/edit/:siteid/:pageid',
+    path: '/site/:siteid/thread/new',
+    component: () => import(/* webpackChunkName: "sites" */ '../views/pelilauta/EditThread.vue'),
+    props: true,
+    name: 'site.page.new'
+  },
+  {
+    path: '/site/:siteid/page/edit/:pageid',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue'),
     props: true,
     name: 'mekanismi.edit'
+  },
+  {
+    path: '/site/:siteid/page/:pageid',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
+    props: true,
+    name: 'site.page'
   },
   {
     path: '/site/meta/:siteid',
@@ -173,6 +196,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/SiteAssetsView.vue'),
     props: true,
     name: 'mekanismi.attachments'
+  },
+  {
+    path: '/site/:siteid/character/:characterid',
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/CharacterSheetView.vue'),
+    props: true,
+    name: 'site.character.view'
   },
   {
     path: '/mekanismi/create',
@@ -195,6 +224,26 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)',
     component: () => import(/* webpackChunkName: "global" */ '../views/404.vue')
+  },
+  // Site: create-an-entity routes
+  {
+    name: 'site.add.page',
+    path: '/site/:siteid/add/page',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/AddPageView.vue')
+  },
+  {
+    name: 'site.add.thread',
+    path: '/site/:siteid/add/thread',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/pelilauta/EditThread.vue')
+  },
+  // Site: Page (c)RUD routes
+  {
+    name: 'site.page.edit',
+    path: '/site/:siteid/page/:pageid/edit',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue')
   }
 ]
 
@@ -214,25 +263,20 @@ const ADMIN_ROUTES = [
 ]
 
 router.beforeEach((to, from, next) => {
-  // console.log(to, from)
   if (to.name && to.name.toString().startsWith('mekanismi')) {
     const id = Array.isArray(to.params.siteid) ? to.params.siteid[0] : to.params.siteid || ''
-    // console.log('routing to mekanismi', id)
     useSite(id)
     // If we have a page id we need to pull from FB, we pull it to state here
     const pageid = Array.isArray(to.params.pageid) ? to.params.pageid[0] : to.params.pageid || ''
     usePage(pageid)
   }
-  // If we have a thread we need to pull from FB, we pull it to state here
-  const threadid = Array.isArray(to.params.threadid) ? to.params.threadid[0] : to.params.threadid || ''
-  subscribeThread(threadid)
 
   // Logged in only routes!
-  const { isAnonymous, isAdmin, uid } = useAuthState()
-  if (AUTH_ROUTES.includes(to.name?.toString() || '') && (isAnonymous.value || !uid.value)) {
+  const { showMemberTools, showAdminTools } = useAuth()
+  if (AUTH_ROUTES.includes(to.name?.toString() || '') && !showMemberTools.value) {
     next({ name: 'Login' })
   }
-  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !isAdmin.value) {
+  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !showAdminTools.value) {
     next({ name: 'Login' })
   }
   // next!

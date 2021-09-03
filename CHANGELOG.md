@@ -2,6 +2,224 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.6.3](https://github.com/villetakanen/pelilauta/compare/v9.6.2...v9.6.3) (2021-08-27)
+
+
+### Bug Fixes
+
+* my characters link to sidebar ([ef8dc33](https://github.com/villetakanen/pelilauta/commit/ef8dc33a31bb73bde56df45db4098f866cf39bd7))
+* placeholder for my characters ([b3c5561](https://github.com/villetakanen/pelilauta/commit/b3c5561eaf183b037f31578d11ad4838727dd03a))
+* side menu to use the auth state ([c2e46d3](https://github.com/villetakanen/pelilauta/commit/c2e46d33d529207b73ad43990a519d5420f70683))
+* sidenav button no longer scrolls on mobile ([d3fc5b1](https://github.com/villetakanen/pelilauta/commit/d3fc5b1b5e2fe0262b3acd1d84511267acf01082))
+
+### [9.6.2](https://github.com/villetakanen/pelilauta/compare/v9.6.1...v9.6.2) (2021-08-26)
+
+
+### Bug Fixes
+
+* display frozen status as expected on the app ([86d0ad1](https://github.com/villetakanen/pelilauta/commit/86d0ad1d3d527a1b10f04d92f1cd6b99d778bbaa))
+* frozen state visible in the ap ([058f9ba](https://github.com/villetakanen/pelilauta/commit/058f9ba38618cf0a860d349ed874e0c196947fa8))
+* ll charseet tests ([75e021d](https://github.com/villetakanen/pelilauta/commit/75e021db7b00755b7cd9fbdecaba4a25cc566a77))
+* removed deprecated authstate component ([a10c271](https://github.com/villetakanen/pelilauta/commit/a10c271f6574e1b424aab1cbb40924dae02a644a))
+* show profile toolbar on mythreads for self ([65327b8](https://github.com/villetakanen/pelilauta/commit/65327b87ba8109dac7f5011b81aa5f48a5d0d751))
+
+### [9.6.1](https://github.com/villetakanen/pelilauta/compare/v9.6.0...v9.6.1) (2021-08-26)
+
+
+### Bug Fixes
+
+* extra struct fields removed on pc ([59374ce](https://github.com/villetakanen/pelilauta/commit/59374ce3e596752b9180a58ef544a1c588c7e9a0))
+* helper text for replyeditor ([c02e9a9](https://github.com/villetakanen/pelilauta/commit/c02e9a9c05c788248f81fe89da481f33e29abfab))
+* removed extraneous field from pc struct ([dfa5061](https://github.com/villetakanen/pelilauta/commit/dfa5061bec3ff11fa8c39cf7bc7e4df6dae888aa))
+* removed reduntant interface from pc intf ([6447355](https://github.com/villetakanen/pelilauta/commit/644735557bfaf707fc610dfca647e102d02bbaef))
+
+## [9.6.0](https://github.com/villetakanen/pelilauta/compare/v9.5.0...v9.6.0) (2021-08-23)
+
+
+### Features
+
+* add character view complete ([c68a6d0](https://github.com/villetakanen/pelilauta/commit/c68a6d0c3a3a196e80defbd71341c113840e5561))
+* adding and listing characters works ([f15a508](https://github.com/villetakanen/pelilauta/commit/f15a508195152c6ad4c912677e4f0067f7006754))
+* adding characters supported by state ([90948d3](https://github.com/villetakanen/pelilauta/commit/90948d3a75ef70a79590a8bc7045dc0181ff3c94))
+* character mgmnt card ([dc99c1a](https://github.com/villetakanen/pelilauta/commit/dc99c1aa9ffa618a5f420c1506f7a6f3f411c39d))
+* character selection tool for plrs view ([522ced8](https://github.com/villetakanen/pelilauta/commit/522ced879d603c2c08ac5bd8fc8cce50a7e8a3f5))
+* charactersheetfield component ([b226fbb](https://github.com/villetakanen/pelilauta/commit/b226fbb1d8246aee983b8fe0ac01e282c00af775))
+* default character sheet skeleton ([54f6615](https://github.com/villetakanen/pelilauta/commit/54f6615597285aabc777b78d91d599de64ac49b7))
+* moved pc hydration/dehydration to a class ([61fa60c](https://github.com/villetakanen/pelilauta/commit/61fa60cbc44e94ee3dc372bbf9652a8f44ffb188))
+* playercharacter datatype ([00c8d03](https://github.com/villetakanen/pelilauta/commit/00c8d0364bdc49e55d88fa66ef07338cc1d279be))
+* site characters state stub ([c4cdd24](https://github.com/villetakanen/pelilauta/commit/c4cdd24ebc5f8c6d4de93ac9389bbd9888ec8e0d))
+* site mgmnt card ([cbf3d5e](https://github.com/villetakanen/pelilauta/commit/cbf3d5e242bbfee4c6cb23229dd6d4e6cf63a4f1))
+* subscribe to characters when site changes ([db5d55c](https://github.com/villetakanen/pelilauta/commit/db5d55c333d05d3692048e323b10eb5730ba4daf))
+* supports two different charsheets ([3711f01](https://github.com/villetakanen/pelilauta/commit/3711f0169327ce1313e9e190b4bfe936d9667577))
+
+
+### Bug Fixes
+
+* default charsheet polish ([baf982e](https://github.com/villetakanen/pelilauta/commit/baf982e8b5fadbf68edd1b181f86734615febdac))
+* removed class as unneccessary ([ed7f9fa](https://github.com/villetakanen/pelilauta/commit/ed7f9faac2ad5e3d3fbbcb2358af3b36bfbe6d2b))
+
+## [9.5.0](https://github.com/villetakanen/pelilauta/compare/v9.4.4...v9.5.0) (2021-08-02)
+
+
+### Features
+
+* adventurer icon added ([a1e2538](https://github.com/villetakanen/pelilauta/commit/a1e253810843823693170c3d8bbb9bc4a7fcea9a))
+* adventurer icon added ([7d1d257](https://github.com/villetakanen/pelilauta/commit/7d1d257daa1a06a3c0375209a991eef434bdd709))
+
+
+### Bug Fixes
+
+* canonical page urls in sidebar links ([c8443d3](https://github.com/villetakanen/pelilauta/commit/c8443d3e0521a30cecac3ba89434837bc2b84ab1))
+* canonical url for page links in changes card ([c295700](https://github.com/villetakanen/pelilauta/commit/c2957005defbf2dfc7933cff2c81b6aa0ce88e84))
+* feature flagging :D ([4b4b543](https://github.com/villetakanen/pelilauta/commit/4b4b543305faed20c4f684f0ce9149c6691f9c31))
+* in-view route changes when view is mounted ([ea66723](https://github.com/villetakanen/pelilauta/commit/ea66723489f6eb7216ff7d2e746dc555d7436cfc))
+
+### [9.4.4](https://github.com/villetakanen/pelilauta/compare/v9.4.3...v9.4.4) (2021-06-22)
+
+
+### Bug Fixes
+
+* love a thread on home card moved to comp ([299ece7](https://github.com/villetakanen/pelilauta/commit/299ece76ee32999c3abca643609e8cfd9110acb5))
+* new replies highlight restored ([5f13c24](https://github.com/villetakanen/pelilauta/commit/5f13c2436a8b0502ad5520cd402d040ebbbe3ef9))
+* refactored topic+replycount to separate comp ([94c6db6](https://github.com/villetakanen/pelilauta/commit/94c6db6304e0682499cf39db8ee5c12d07961b34))
+* removed dead code from threadcard ([64626de](https://github.com/villetakanen/pelilauta/commit/64626def7052747d04848072340a4f85949be028))
+* removed dead code of pill comp ([b118cbd](https://github.com/villetakanen/pelilauta/commit/b118cbd7cc5b6dec74e282b6b07e33064de54b96))
+* removed deprecated code ([fd53f38](https://github.com/villetakanen/pelilauta/commit/fd53f383921cf93872655310e5a8d067964f7e72))
+* removed deprecated dom from threadcard ([beb1463](https://github.com/villetakanen/pelilauta/commit/beb1463a69fa97582befcae0158bc42fa96ecd73))
+* topic link colors ([ab6c13f](https://github.com/villetakanen/pelilauta/commit/ab6c13f9f58d31c8b6cf73c65542257378fe2677))
+
+### [9.4.3](https://github.com/villetakanen/pelilauta/compare/v9.4.2...v9.4.3) (2021-06-22)
+
+
+### Bug Fixes
+
+* icons no longer clip for home cards on mobile ([02af152](https://github.com/villetakanen/pelilauta/commit/02af15206be34d58ddf6814a803b01c36e5d9544))
+
+### [9.4.2](https://github.com/villetakanen/pelilauta/compare/v9.4.1...v9.4.2) (2021-06-21)
+
+
+### Bug Fixes
+
+* dd colors for dd sites on home ([64e171f](https://github.com/villetakanen/pelilauta/commit/64e171f1ae2092306b88d45cf6821c1bd0f04b33))
+
+### [9.4.1](https://github.com/villetakanen/pelilauta/compare/v9.4.0...v9.4.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* border radius to 12 on card ([170ba59](https://github.com/villetakanen/pelilauta/commit/170ba59b2ea915d4b5ab48bc47e07fe05cdb1b75))
+* site-thead ux and loading order on frontpage ([779af1b](https://github.com/villetakanen/pelilauta/commit/779af1b8778a5c3209128c36f126bd1814d941f3))
+* welcome card no longer flashes on app reload ([f573396](https://github.com/villetakanen/pelilauta/commit/f573396e0d34e3f432d834d1b7e2ef45cbfe2f25))
+
+## [9.4.0](https://github.com/villetakanen/pelilauta/compare/v9.3.0...v9.4.0) (2021-06-18)
+
+
+### Features
+
+* new icons for readcounts ([ab40d5d](https://github.com/villetakanen/pelilauta/commit/ab40d5d4563f97536d4d7ee60b028db917d6aa4e))
+* seencounts are visible in a thread ([8a6b5fd](https://github.com/villetakanen/pelilauta/commit/8a6b5fd280ebc43da9bfa8c38a21f8c114a91627))
+
+## [9.3.0](https://github.com/villetakanen/pelilauta/compare/v9.2.3...v9.3.0) (2021-06-17)
+
+
+### Features
+
+* authstate controls inside the state ([d7c7d4e](https://github.com/villetakanen/pelilauta/commit/d7c7d4e09ca24febc01d6b1e1cfe6a40afa653c0))
+* new profile creation works ([b7369d1](https://github.com/villetakanen/pelilauta/commit/b7369d181083ddd77c7fa04b2e2735f21cc3a6ad))
+* registration dialog visuals complete ([c65cac2](https://github.com/villetakanen/pelilauta/commit/c65cac2f7681df344d81cc99fdb407fcce9f0aa8))
+* restored the registration dialog ([daa9e88](https://github.com/villetakanen/pelilauta/commit/daa9e8886bd2d3dd28659f0714fae70e09ee8f1f))
+* thread loading state changes prepped r 10.0 ([f66c647](https://github.com/villetakanen/pelilauta/commit/f66c64758e07c78673a3b4a3a7bd93a276bc3a60))
+
+
+### Bug Fixes
+
+* added a db re-seeding task to cypress ([8ed9a35](https://github.com/villetakanen/pelilauta/commit/8ed9a357d5fc52695d92e76185613c01b4a04953))
+* code quality ([d861623](https://github.com/villetakanen/pelilauta/commit/d8616231e8a2b05ce6dd5f4fc3ce1b98d73b6842))
+* disabled seeding db to fs ([e18789e](https://github.com/villetakanen/pelilauta/commit/e18789e3ce3261100859051022db3ed6a4bef0c2))
+* improved state loading for navigator locale. ([7dcb294](https://github.com/villetakanen/pelilauta/commit/7dcb294789e6c29e2deb8d11a25b54b356c152b1))
+* layout ux ([7bd339f](https://github.com/villetakanen/pelilauta/commit/7bd339f0a74672cc1d52ca90fa5e2580d15032fc))
+* thread view to use current layout styles ([1cc9b53](https://github.com/villetakanen/pelilauta/commit/1cc9b53c7080cb423946a30ae3a0422e8db5c1bf))
+* translations, app structure polish ([227386c](https://github.com/villetakanen/pelilauta/commit/227386cfd949fc9fc06e470600caea174d0c28d5))
+
+### [9.2.3](https://github.com/villetakanen/pelilauta/compare/v9.2.2...v9.2.3) (2021-06-07)
+
+
+### Bug Fixes
+
+* removed deprecated components ([3ec90a6](https://github.com/villetakanen/pelilauta/commit/3ec90a6bebfe37f4b7069411b3035e051db384f3))
+
+### [9.2.2](https://github.com/villetakanen/pelilauta/compare/v9.2.1...v9.2.2) (2021-06-07)
+
+
+### Bug Fixes
+
+* last button of a toolbar was misaligned ([1345380](https://github.com/villetakanen/pelilauta/commit/134538043f5583ab0b9bd1fdd6e9decff3e78a11))
+* sidenav height ([42f7a03](https://github.com/villetakanen/pelilauta/commit/42f7a03b9c3b7b5be6e15163280db1da9a70eedd))
+* social login ux fixes and refactors ([2ee8213](https://github.com/villetakanen/pelilauta/commit/2ee82130b9460e1a9cf5faf112132e8b37503989))
+* to login button no longer visible in login ([b3adf82](https://github.com/villetakanen/pelilauta/commit/b3adf823a5b8247624f12ebd59a4a95d57291d45))
+
+### [9.2.1](https://github.com/villetakanen/pelilauta/compare/v9.2.0...v9.2.1) (2021-06-04)
+
+
+### Bug Fixes
+
+* admin screen to use current layout classes ([78e4e67](https://github.com/villetakanen/pelilauta/commit/78e4e670ea0ee745de350c273cc418900d55e9c8))
+* email login layout ux to match current ds ([af81901](https://github.com/villetakanen/pelilauta/commit/af8190190b6b3dc824936ea6b6afea55293ad6f6))
+
+## [9.2.0](https://github.com/villetakanen/pelilauta/compare/v9.1.1...v9.2.0) (2021-06-04)
+
+
+### Features
+
+* add a thread to a game site ([9545ad7](https://github.com/villetakanen/pelilauta/commit/9545ad7b6d207520885565467714dead840be220))
+
+
+### Bug Fixes
+
+* added a page tabs test ([53e5fe6](https://github.com/villetakanen/pelilauta/commit/53e5fe6ff892f3bb5b064d45a1b03405fb1426c9))
+* e2e test runs and fixes post pagefabs updates ([b9327f4](https://github.com/villetakanen/pelilauta/commit/b9327f4a718f6c37bc6b52abd685f529744206f5))
+* more apt chunk name for site front page route ([c090e50](https://github.com/villetakanen/pelilauta/commit/c090e5028db03784c319f3cafd4fce0ddc964530))
+* nested new routes for view site and view page ([d701bea](https://github.com/villetakanen/pelilauta/commit/d701beac7088620414ae5f48368efffbbc726752))
+* updated routes for pagefabs ([44d4daa](https://github.com/villetakanen/pelilauta/commit/44d4daa38895a09310756916a6d767931c6cb784))
+
+### [9.1.1](https://github.com/villetakanen/pelilauta/compare/v9.1.0...v9.1.1) (2021-06-02)
+
+
+### Bug Fixes
+
+* correct url to authorinfo ([72ac6fb](https://github.com/villetakanen/pelilauta/commit/72ac6fb60101b1838bd14a3d527b02a63511493c))
+* inbox code quality ([471a0d0](https://github.com/villetakanen/pelilauta/commit/471a0d0cc8bba02d21fb0af8714b2741e0ba1e46))
+* removed extraneous debug messages ([4f4aa39](https://github.com/villetakanen/pelilauta/commit/4f4aa392340ec67549389accce67d97f3d757b88))
+* removed extraneous logging of state ([d5fcc15](https://github.com/villetakanen/pelilauta/commit/d5fcc15c75e9579efe2d884956d7fbae0a5b94be))
+* sanity on markred for reloads ([ba38d44](https://github.com/villetakanen/pelilauta/commit/ba38d4476d70dc4865e7812ffe22159662062690))
+
+## [9.1.0](https://github.com/villetakanen/pelilauta/compare/v9.0.1...v9.1.0) (2021-06-01)
+
+
+### Features
+
+* mentions are added to quill ([e4d2fad](https://github.com/villetakanen/pelilauta/commit/e4d2fadd1b572b033fce849f2f84923cce23cdbb))
+* mentions-module is testable ([cabbe78](https://github.com/villetakanen/pelilauta/commit/cabbe78d7f749dcd0e03fef1209aff771bee7707))
+* very early alpha of mentions working ([35d8e20](https://github.com/villetakanen/pelilauta/commit/35d8e202cdffa5bad09f1d799e76c64c1c7f05f0))
+
+
+### Bug Fixes
+
+* code quality fixes ([17de8a9](https://github.com/villetakanen/pelilauta/commit/17de8a95ffde15680541c60854069be66619ac5c))
+* keep bold on paste ([543a3c4](https://github.com/villetakanen/pelilauta/commit/543a3c45826737864730ec222acc85eb860e3add))
+* locales and inbox messages ([834f0e2](https://github.com/villetakanen/pelilauta/commit/834f0e26d5a8b2e881b7b1b596bad882577ef0a7))
+* removed a deprecated component ([1cdf8fe](https://github.com/villetakanen/pelilauta/commit/1cdf8fec851ff74512d57deb293a13a9af1371fb))
+* styles restored to comments ([2884fd2](https://github.com/villetakanen/pelilauta/commit/2884fd27b512895e68e8215113dc29df255e4175))
+
+### [9.0.1](https://github.com/villetakanen/pelilauta/compare/v9.0.0...v9.0.1) (2021-05-28)
+
+
+### Bug Fixes
+
+* profile stats page bugs fixed ([355e2b5](https://github.com/villetakanen/pelilauta/commit/355e2b5dbf3c88dfcca87fe03697f2f1acba33ad))
+* sets a thread seen in inbox ([dbba8b8](https://github.com/villetakanen/pelilauta/commit/dbba8b8c2db04a99f966060730cce45b17e40f36))
+* stylebook updates ([2b8018d](https://github.com/villetakanen/pelilauta/commit/2b8018deb0b93609f3222185c9be1d81958281bf))
+
 ## [9.0.0](https://github.com/villetakanen/pelilauta/compare/v8.5.9...v9.0.0) (2021-05-27)
 
 

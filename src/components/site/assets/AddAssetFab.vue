@@ -21,9 +21,9 @@
 
 <script lang="ts">
 import { useSnack } from '@/composables/useSnack'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { uploadAsset } from '@/state/site/assets'
-import { ComponentPublicInstance, defineComponent, onMounted, ref } from 'vue'
+import { ComponentPublicInstance, defineComponent, ref } from 'vue'
 import Icon from '../../material/Icon.vue'
 
 export default defineComponent({
@@ -32,7 +32,7 @@ export default defineComponent({
   setup () {
     const uploader = ref<ComponentPublicInstance<HTMLInputElement>>()
     const uploading = ref(false)
-    const { uid } = useAuthState()
+    const { user } = useAuth()
     const { pushSnack } = useSnack()
 
     async function addAsset (e: Event) {
@@ -40,7 +40,7 @@ export default defineComponent({
       if (!el || !el.files || !el.files[0]) return
       uploading.value = true
       try {
-        await uploadAsset(el.files[0], uid.value)
+        await uploadAsset(el.files[0], user.value.uid)
         pushSnack('upload ok')
       } catch (error) {
         console.error(error)
@@ -48,10 +48,6 @@ export default defineComponent({
       }
       uploading.value = false
     }
-
-    onMounted(() => {
-      console.log(uploader.value)
-    })
 
     return { uploader, addAsset }
   }

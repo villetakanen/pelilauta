@@ -2,7 +2,7 @@
   <div class="replyForm">
     <!-- Show the form only for non-frozen logged in users -->
     <div
-      v-if="!isAnonymous"
+      v-if="showMemberTools"
       class="reply-form"
     >
       <AddImageReplyAction
@@ -24,7 +24,7 @@
       />
     </div>
     <div
-      v-if="isAnonymous"
+      v-if="!showMemberTools"
       style="text-align: center;padding: 16px"
     >
       {{ $t('global.messages.pleaseLogin') }}
@@ -35,18 +35,20 @@
         {{ $t('action.login') }}
       </MaterialButton>
     </div>
+    <EditorHelp />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, inject, Ref, watch, provide } from 'vue'
+import { defineComponent, ref, inject, Ref, provide } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import ReplyEditor from './ReplyEditor.vue'
 import { addReply } from '@/state/discussion'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
 import Fab from '../material/Fab.vue'
 import AddImageReplyAction from './AddImageReplyAction.vue'
+import EditorHelp from './EditorHelp.vue'
 
 export default defineComponent({
   name: 'ReplyForm',
@@ -54,7 +56,8 @@ export default defineComponent({
     MaterialButton,
     ReplyEditor,
     Fab,
-    AddImageReplyAction
+    AddImageReplyAction,
+    EditorHelp
   },
   props: {
     threadid: {
@@ -63,7 +66,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { isAnonymous, uid } = useAuthState()
+    const { user, showMemberTools } = useAuth()
     const reply = ref('')
     const sending = ref(false)
     const addImageDialog = ref(true)
@@ -73,8 +76,7 @@ export default defineComponent({
       const { formattedContent } = extractLinks(reply.value)
       sending.value = true
       const m = [...mentions.value]
-      return addReply(props.threadid, uid.value, formattedContent, m).then(() => {
-        console.log('got here?')
+      return addReply(props.threadid, user.value.uid, formattedContent, m).then(() => {
         reply.value = ''
         mentions.value.clear()
       }).finally(() => {
@@ -84,7 +86,6 @@ export default defineComponent({
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const addImageToEditor = (a: any) => {
-      console.log('addImageToEditor', a)
       imageToEditor.value = a
     }
 
@@ -98,11 +99,8 @@ export default defineComponent({
 
     const quotedContent = inject('quotedContent') as Ref<Quote>
     provide('quotedContent', quotedContent)
-    watch(quotedContent, (quote) => {
-      console.debug('watch(() => quotedContent', quote)
-    })
 
-    return { reply, send, isAnonymous, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
+    return { reply, send, showMemberTools, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
   }
 })
 </script>

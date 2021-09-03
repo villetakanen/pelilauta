@@ -69,7 +69,7 @@ import { useI18n } from 'vue-i18n'
 import LoveAReplyAction from './LoveAReplyAction.vue'
 import { Reply } from '@/utils/firestoreInterfaces'
 import { useAuthors } from '@/state/authors'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import ReplyEditor from './ReplyEditor.vue'
 import Fab from '../material/Fab.vue'
 
@@ -97,8 +97,7 @@ export default defineComponent({
   emits: ['quote'],
   setup (props, context) {
     const replyRef = ref<ComponentPublicInstance<HTMLInputElement>>()
-    const { uid, isAnonymous } = useAuthState()
-    const { isAdmin } = useAuthState()
+    const { user, showAdminTools, showMemberTools } = useAuth()
     const { authors } = useAuthors()
 
     const nick = computed(() => (authors.value.find((a) => (a.uid === props.reply.author))?.nick))
@@ -112,7 +111,7 @@ export default defineComponent({
     })
 
     const replyClasses = computed(() => ({
-      fromMe: props.reply.author === uid.value
+      fromMe: props.reply.author === user.value.uid
     }))
 
     const dropComment = () => {
@@ -124,13 +123,13 @@ export default defineComponent({
     }
 
     const loves = computed(() => {
-      return props.reply?.lovers?.includes(uid.value)
+      return props.reply?.lovers?.includes(user.value.uid)
     })
 
     async function toggleLove () {
-      if (isAnonymous.value) return
-      if (loves.value) return unloveReply(uid.value, props.threadid, props.reply.replyid)
-      else return loveReply(uid.value, props.threadid, props.reply.replyid)
+      if (!showMemberTools.value) return
+      if (loves.value) return unloveReply(user.value.uid, props.threadid, props.reply.replyid)
+      else return loveReply(user.value.uid, props.threadid, props.reply.replyid)
     }
 
     const quoteComment = () => {
@@ -147,10 +146,10 @@ export default defineComponent({
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
       arr.push({ action: quoteComment, text: i18n.t('action.quote') })
-      if (uid.value === props.reply?.author) {
+      if (user.value.uid === props.reply?.author) {
         arr.push({ action: dropComment, text: i18n.t('action.delete') })
         arr.push({ action: editComment, text: i18n.t('action.edit') })
-      } else if (isAdmin.value) {
+      } else if (showAdminTools.value) {
         arr.push({ action: dropComment, text: i18n.t('action.delete'), admin: true })
       }
       return arr
@@ -158,15 +157,14 @@ export default defineComponent({
 
     const updateReply = async () => {
       editReply.value = false
-      return updateReplyContent(uid.value, props.threadid, props.reply.replyid, replyContent.value)
+      return updateReplyContent(user.value.uid, props.threadid, props.reply.replyid, replyContent.value)
     }
 
     onMounted(() => {
-      console.debug('focus:', props.focus)
       if (props.focus) replyRef.value?.scrollIntoView(true)
     })
 
-    return { menu, replyClasses, uid, loves, toggleLove, editReply, replyContent, updateReply, nick, replyRef }
+    return { menu, replyClasses, loves, toggleLove, editReply, replyContent, updateReply, nick, replyRef }
   }
 })
 </script>

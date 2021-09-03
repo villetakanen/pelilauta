@@ -1,14 +1,12 @@
+import { collection, getDocs, getFirestore, limit, onSnapshot, orderBy, query, Timestamp, where } from '@firebase/firestore'
 import { computed, ComputedRef, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 
 export interface PageLogEntry {
   name: string,
   siteid: string,
   pageid: string,
   creator: string,
-  changetime: firebase.firestore.Timestamp,
+  changetime: Timestamp,
 }
 
 const localRecent = ref(new Array<PageLogEntry>())
@@ -39,25 +37,21 @@ function addToRecent (entry: PageLogEntry) {
 async function fetchPagelog (): Promise<Array<PageLogEntry>> {
   const log = new Array<PageLogEntry>()
 
-  const db = firebase.firestore()
-  const pageLogRef = db.collection('pagelog')
-  await pageLogRef.orderBy('changetime', 'desc').where('silent', '==', false).limit(30).get().then((snapshot) => {
+  const pageLogRef = collection(getFirestore(), 'pagelog')
+  const q = query(pageLogRef, orderBy('changetime', 'desc'), where('silent', '==', false), limit(30))
+  await getDocs(q).then((snapshot) => {
     snapshot.forEach((doc) => {
-      console.debug('pushing change', doc.id)
       log.push(doc.data() as PageLogEntry)
     })
   })
-  console.debug('returning', log)
   return log
 }
 
 function subscribeToRecent () {
   unsubscribe()
-  const db = firebase.firestore()
-  const pageLogRef = db.collection('pagelog')
-  unsubscribe = pageLogRef.orderBy('changetime', 'desc').where('silent', '==', false).limit(3).onSnapshot((snapshot) => {
+  const q = query(collection(getFirestore(), 'pagelog'), orderBy('changetime', 'desc'), where('silent', '==', false), limit(3))
+  unsubscribe = onSnapshot(q, (snapshot) => {
     snapshot.docChanges().forEach((change) => {
-      console.debug('got change', change.doc.id)
       addToRecent(change.doc.data() as PageLogEntry)
     })
   })

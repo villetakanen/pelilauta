@@ -18,10 +18,11 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import { Thread, loveThread, unloveThread } from '@/state/threads'
+import { loveThread, unloveThread } from '@/state/threads'
 import ThreadRepliesLink from './ThreadRepliesLink.vue'
 import LoveAction from '@/components/app/LoveAction.vue'
-import { useAuthState, useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
+import { Thread } from '@/utils/firestoreInterfaces'
 
 export default defineComponent({
   name: 'ThreadCardTailer',
@@ -38,7 +39,7 @@ export default defineComponent({
   emits: ['updated'],
   setup (props, context) {
     const { profileMeta } = useProfile()
-    const { uid } = useAuthState()
+    const { user } = useAuth()
 
     const loves = computed(() => {
       if (typeof profileMeta.value.lovedThreads === 'undefined') return false
@@ -47,14 +48,14 @@ export default defineComponent({
 
     async function toggleLove () {
       // no-op if the author is trying to love their own posts
-      if (props.thread.author === uid.value) return
+      if (props.thread.author === user.value.uid) return
       // love/unlove
       if (loves.value) {
-        return unloveThread(uid.value, props.thread.id).then(() => {
+        return unloveThread(user.value.uid, props.thread.id).then(() => {
           context.emit('updated')
         })
       } else {
-        return loveThread(uid.value, props.thread.id).then(() => {
+        return loveThread(user.value.uid, props.thread.id).then(() => {
           context.emit('updated')
         })
       }

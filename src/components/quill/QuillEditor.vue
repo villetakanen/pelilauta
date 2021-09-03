@@ -11,8 +11,7 @@
 import { defineComponent, onMounted, watch } from 'vue'
 import Quill from 'quill'
 import QuillBetterTable from 'quill-better-table'
-import firebase from 'firebase/app'
-import 'firebase/storage'
+import { getDownloadURL, getStorage, ref, uploadBytes } from '@firebase/storage'
 
 export default defineComponent({
   name: 'QuillEditor',
@@ -24,9 +23,7 @@ export default defineComponent({
   emits: ['update:modelValue', 'new-images'],
   setup (props, context) {
     onMounted(() => {
-      console.debug('Quill editor injected, starting to add Quill', props.toolbar)
       const imageHandler = () => {
-        console.debug('imageHandler')
         const input = document.createElement('input')
 
         input.setAttribute('type', 'file')
@@ -34,7 +31,6 @@ export default defineComponent({
         input.click()
 
         input.onchange = async () => {
-          console.debug('event triggered!')
           const file = input.files ? input.files[0] : null
           if (!file || !props.storage) {
             throw Error('Missing file or storage path')
@@ -49,14 +45,11 @@ export default defineComponent({
           // Move cursor to right side of image (easier to continue typing)
           quill.setSelection(range.index + 1, 1)
 
-          const storageRef = firebase.storage().ref()
-          const fileRef = storageRef.child(`/${props.storage}/${file.name}`)
+          const storageRef = getStorage()
+          const fileRef = ref(storageRef, `/${props.storage}/${file.name}`)
 
-          const snapshot = await fileRef.put(file)
-          console.debug('snapshot:', snapshot)
-          const url = await snapshot.ref.getDownloadURL()
-          console.debug('url:', url)
-
+          await uploadBytes(fileRef, file)
+          const url = await getDownloadURL(fileRef)
           // Remove placeholder image
           quill.deleteText(range.index, 1)
 

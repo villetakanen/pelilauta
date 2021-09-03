@@ -15,7 +15,7 @@
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
       <Fab
-        v-if="!isAnonymous && stream"
+        v-if="showMemberTools && stream"
         :to="`/stream/topic/${stream.slug}/post`"
         :text="$t('action.addThread')"
         icon="addDiscussion"
@@ -30,7 +30,7 @@ import ThreadList from '@/components/stream/ThreadList.vue'
 import Fab from '@/components/material/Fab.vue'
 import { useMeta } from '@/state/meta'
 import { useRoute } from 'vue-router'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import PinnedStream from '@/components/topic/PinnedStream.vue'
 import { useThreads } from '@/state/threads'
@@ -69,9 +69,9 @@ export default defineComponent({
       return streams.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
     })
 
-    const { isAnonymous } = useAuthState()
+    const { showMemberTools } = useAuth()
 
-    return { stream, routeTopic, isAnonymous }
+    return { stream, routeTopic, showMemberTools }
   }
 })
 </script>

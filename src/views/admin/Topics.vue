@@ -53,12 +53,11 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
 import { Stream } from '@/state/threads/threads'
 import TextField from '@/components/material/TextField.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
+import { doc, getFirestore, onSnapshot, collection, getDocs, updateDoc } from '@firebase/firestore'
 
 export default defineComponent({
   name: 'About',
@@ -72,9 +71,9 @@ export default defineComponent({
     const topics = ref(new Array<Stream>())
 
     onMounted(() => {
-      const db = firebase.firestore()
-      const metaRef = db.collection('meta').doc('pelilauta')
-      metaRef.onSnapshot((metaDoc) => {
+      const db = getFirestore()
+      const metaRef = doc(db, 'meta', 'pelilauta')
+      onSnapshot(metaRef, (metaDoc) => {
         const t = new Array<Stream>()
         for (const key in metaDoc.data()?.streams) {
           t.push({
@@ -95,9 +94,9 @@ export default defineComponent({
       topics.value.forEach((val) => {
         topicsMap.set(val.slug, val)
       })
-      const db = firebase.firestore()
-      const streamRef = db.collection('stream')
-      streamRef.get().then((s) => {
+      const db = getFirestore()
+      const streamRef = collection(db, 'stream')
+      getDocs(streamRef).then((s) => {
         topics.value.forEach((t) => {
           t.count = 0
         })
@@ -112,7 +111,7 @@ export default defineComponent({
             })
           }
         })
-        return db.collection('meta').doc('pelilauta').update({ streams: Object.fromEntries(topicsMap) })
+        return updateDoc(doc(db, 'meta', 'pelilauta'), { streams: Object.fromEntries(topicsMap) })
       })
     }
 

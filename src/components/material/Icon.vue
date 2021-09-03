@@ -1,7 +1,7 @@
 <template>
   <div
     class="icon"
-    :class="{ xSmall: xSmall, inline: inline, medium: medium, headline: headline }"
+    :class="{ xSmall: xSmall, inline: inline, medium: medium, headline: headline, large: large }"
   >
     <img
       ref="icon"
@@ -50,6 +50,11 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false
+    },
+    large: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -60,6 +65,7 @@ export default defineComponent({
       'addAnImage',
       'addDiscussion',
       'admin',
+      'adventurer',
       'attachments',
       'avatar',
       'books',
@@ -71,6 +77,7 @@ export default defineComponent({
       'delete',
       'edit',
       'equalizer',
+      'eye',
       'filter',
       'forum',
       'hidden',
@@ -118,7 +125,7 @@ export default defineComponent({
     const sourcePath = computed(() => {
       const srcs = icons.value.get(props.name)
       if (Array.isArray(srcs) && srcs.length === 2) return props.dark ? srcs[1] : srcs[0]
-      console.debug('Missing icon', props.name, props.dark ? 'dark' : 'light')
+      console.warn('Missing icon', props.name, props.dark ? 'dark' : 'light')
       return require('@/assets/icons/light/d12.svg')
     })
 
@@ -161,6 +168,18 @@ export default defineComponent({
     img
       height: 100%
       width: 100%
+
+.large
+  display: inline-block
+  height: 48px
+  width: 48px
+  padding: 0px
+  margin: 4px
+  vertical-align: middle
+  img
+    height: 48px
+    width: 48px
+    vertical-align: top
 
 .xSmall
   height: 24px

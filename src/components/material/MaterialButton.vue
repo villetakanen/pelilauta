@@ -202,6 +202,10 @@ export default defineComponent({
 .material-button + .material-button
   margin-left: 8px
 
+.toolbar
+  .material-button:last-child
+    margin-right: 0
+
 @include media('<tablet')
   .material-button.block-button
     display: block

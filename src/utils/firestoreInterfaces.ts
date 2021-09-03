@@ -1,5 +1,3 @@
-import firebase from 'firebase/app'
-
 export interface Reply {
   content: string;
   replyid: string;
@@ -42,6 +40,7 @@ export interface Thread {
   // Meta
   replyCount: number
   lovedCount: number
+  seenCount: number
   site?: string // this is a wikisite slug
   // Payload
   data: PostData
@@ -59,4 +58,13 @@ export interface NotificationMessage {
     new?: boolean
     author?: string
   }
+}
+
+export interface PlayerCharacter {
+  id: string,
+  name: string,
+  playerid: string,
+  type: string
+  description: string
+  stats?: Map<string, string|number|boolean>
 }

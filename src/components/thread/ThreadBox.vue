@@ -13,7 +13,6 @@
   background-color: var(--chroma-clear)
   margin: 8px 8px
   padding: 16px
-  max-width: 780px
 
 @include media('<tablet')
   .threadBox

@@ -1,8 +1,6 @@
 import { computed, ref, Ref, ComputedRef, WritableComputedRef } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { useMeta } from '@/state/meta'
+import { User } from '@firebase/auth'
 
 const anonymousSession = ref(true)
 const isAnonymous = computed(() => (anonymousSession.value))
@@ -26,18 +24,17 @@ const uid = computed({
 })
 
 function flushAuth () {
-  console.log('flushAuth')
   anonymousSession.value = true
   authUid.value = ''
 }
 
-function loginAs (user: firebase.User) {
+function loginAs (user: User) {
   anonymousSession.value = user.isAnonymous
   // ./profile.ts watches this change!
   authUid.value = user.uid
 }
 
-function onAuthStateChanged (user: firebase.User|null): void {
+function onAuthStateChanged (user: User|null): void {
   if (user === null) flushAuth()
   else loginAs(user)
 }
@@ -47,7 +44,7 @@ export function useAuthState (): {
   isAnonymous: ComputedRef<boolean>;
   uid: WritableComputedRef<string>;
   isAdmin: ComputedRef<boolean>;
-  onAuthStateChanged: (user: firebase.User|null) => void;
+  onAuthStateChanged: (user: User|null) => void;
   } {
   return { anonymousSession, isAnonymous, uid, isAdmin, onAuthStateChanged }
 }

@@ -8,12 +8,19 @@
 
 // /* eslint-disable import/no-extraneous-dependencies, global-require */
 // const webpack = require('@cypress/webpack-preprocessor')
+const fsdb = require('tests/e2e/support/fsdb.js')
 
 module.exports = (on, config) => {
   // on('file:preprocessor', webpack({
   //  webpackOptions: require('@vue/cli-service/webpack.config'),
   //  watchOptions: {}
   // }))
+  
+  on('task', {
+    'seed:fsdb': () => {
+      return fsdb.seed()
+    }
+  })
 
   return Object.assign({}, config, {
     fixturesFolder: 'tests/e2e/fixtures',

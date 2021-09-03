@@ -18,13 +18,11 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { toThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import ThreadCard from '@/components/home/ThreadCard.vue'
+import ThreadCard from '@/components/home/threadcard/ThreadCard.vue'
+import { collection, getDocs, getFirestore, limit, orderBy, query, QueryDocumentSnapshot, startAfter, where } from '@firebase/firestore'
 
 export default defineComponent({
   name: 'Threadlist',
@@ -41,13 +39,13 @@ export default defineComponent({
   setup (props) {
     const localThreads = ref(new Array<Thread>())
     const atEnd = ref(false)
-    let offset:undefined|firebase.firestore.QueryDocumentSnapshot
+    let offset:undefined|QueryDocumentSnapshot
 
     function fetchThreads (topic: string, count = 11) {
-      const db = firebase.firestore()
+      const db = getFirestore()
       if (offset) {
-        // const cursor = db.collection('stream').doc(offset.id)
-        db.collection('stream').where('topic', '==', topic).orderBy('flowTime', 'desc').startAfter(offset).limit(count).get().then((snapshot) => {
+        const q = query(collection(db, 'stream'), where('topic', '==', topic), orderBy('flowTime', 'desc'), startAfter(offset), limit(count))
+        getDocs(q).then((snapshot) => {
           if (snapshot.size < count) atEnd.value = true
           snapshot.forEach((doc) => {
             if (!doc.data()?.sticky) localThreads.value.push(toThread(doc.id, doc.data()))
@@ -55,7 +53,8 @@ export default defineComponent({
           })
         })
       } else {
-        db.collection('stream').where('topic', '==', topic).orderBy('flowTime', 'desc').limit(count).get().then((snapshot) => {
+        const q = query(collection(db, 'stream'), where('topic', '==', topic), orderBy('flowTime', 'desc'), limit(count))
+        getDocs(q).then((snapshot) => {
           if (snapshot.size < count) atEnd.value = true
           snapshot.forEach((doc) => {
             if (!doc.data()?.sticky) localThreads.value.push(toThread(doc.id, doc.data()))

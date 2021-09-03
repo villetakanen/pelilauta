@@ -1,20 +1,19 @@
 import { computed, ComputedRef, Ref, ref } from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/analytics'
 import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
 import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
 import { PublicProfile } from '../authz'
 import { PageCategory, defaultCategories, unmarshallCategories, marshallCategories } from './pagecategory'
+import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateDoc } from '@firebase/firestore'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export interface Site {
   id: string,
   description: string,
   hidden: boolean,
   silent: boolean,
-  lastUpdate?: firebase.firestore.Timestamp,
+  lastUpdate?: Timestamp,
   name: string
   owners: string[]|null
   players: string[]|null
@@ -31,7 +30,7 @@ export interface SiteData {
   splashURL?: string,
   systemBadge?: string,
   owners?: string[],
-  lastUpdate?: firebase.firestore.Timestamp,
+  lastUpdate?: Timestamp,
   hidden?: boolean,
   usePlayers?: boolean
   players?: string[],
@@ -47,7 +46,7 @@ const site = computed(() => (stateSite.value))
  * @param id siteDoc.id from firestore
  * @param data siteDoc.data() from firestore
  */
-export function toSite (id?: string, data?:firebase.firestore.DocumentData): Site {
+export function toSite (id?: string, data?:DocumentData): Site {
   if (id) {
     return {
       id: id,
@@ -96,12 +95,12 @@ function subscribeTo (id: string): void {
   subscribeToPages(id)
   subscribeToAssets(id)
 
-  firebase.analytics().logEvent('Subscribing Site', { id: id })
+  logEvent(getAnalytics(), 'Subscribing Site', { id: id })
 
-  const db = firebase.firestore()
-  const siteRef = db.collection('sites').doc(id)
-  unsubscribe = siteRef.onSnapshot((snap) => {
-    if (snap.exists) {
+  const db = getFirestore()
+  const siteRef = doc(db, 'sites', id)
+  unsubscribe = onSnapshot(siteRef, (snap) => {
+    if (snap.exists()) {
       stateSite.value = toSite(id, snap.data())
     }
   })
@@ -113,13 +112,11 @@ function hasAdmin (uid: string): boolean {
 }
 
 async function addPlayer (uid:string) {
-  console.debug('addPlayer', stateSite.value.id, uid)
   const playersArray = Array.isArray(stateSite.value.players) ? stateSite.value.players : new Array<string>()
   if (!playersArray.includes(uid)) playersArray.push(uid)
   return updateSite({ id: stateSite.value.id, players: playersArray })
 }
 async function removePlayer (uid:string) {
-  console.debug('removePlayer', stateSite.value.id, uid)
   const playersArray = Array.isArray(stateSite.value.players)
     ? stateSite.value.players.filter((p) => (p !== uid))
     : new Array<string>()
@@ -132,33 +129,34 @@ async function updateSite (data: SiteData): Promise<void> {
   const update = { ...data }
   if (data.categories) update.categories = unmarshallCategories(data.categories)
 
-  const db = firebase.firestore()
-  const siteRef = db.collection('sites').doc(stateSite.value.id)
-  return siteRef.update(update)
+  return updateDoc(
+    doc(getFirestore(), 'sites', stateSite.value.id),
+    update
+  )
 }
 
 async function revokeOwner (uid: string) {
-  const db = firebase.firestore()
-  const siteRef = db.collection('sites').doc(stateSite.value.id)
-  siteRef.get().then((doc) => {
+  const db = getFirestore()
+  const siteRef = doc(db, 'sites', stateSite.value.id)
+  getDoc(siteRef).then((doc) => {
     if (!doc.exists) throw new Error('Trying to remove an owner from non-existing site')
     let owners = doc.data()?.owners
     if (!Array.isArray(owners)) throw new Error('Trying to remove an owner, from pre 6.0 site data')
     owners = owners.filter((owner) => (owner !== uid))
-    return siteRef.update({ owners: owners })
+    return updateDoc(siteRef, { owners: owners })
   })
 }
 
 async function addOwner (uid: string) {
-  const db = firebase.firestore()
-  const siteRef = db.collection('sites').doc(stateSite.value.id)
-  siteRef.get().then((doc) => {
+  const db = getFirestore()
+  const siteRef = doc(db, 'sites', stateSite.value.id)
+  getDoc(siteRef).then((doc) => {
     if (!doc.exists) throw new Error('Trying to remove an owner from non-existing site')
     let owners = doc.data()?.owners
     if (!Array.isArray(owners)) throw new Error('Trying to remove an owner, from pre 6.0 site data')
     owners = owners.filter((owner) => (owner !== uid))
     owners.push(uid)
-    return siteRef.update({ owners: owners })
+    return updateDoc(siteRef, { owners: owners })
   })
 }
 

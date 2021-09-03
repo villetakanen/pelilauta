@@ -64,7 +64,6 @@ export function toMekanismiURI (s: string): string {
  * etc. See Skaldmd in Skald 2.x for reference
  */
 export function renderWikiLinks (siteid:string, htmlContent:string): string {
-  /* console.log('rendWikiLinks', siteLinkStub, line) */
   // eslint-disable-next-line
   const re = new RegExp('([\\[(]wiki:)(.+?)([\\])])', 'gmu')
   let siteslug = siteid
@@ -82,7 +81,7 @@ export function renderWikiLinks (siteid:string, htmlContent:string): string {
   return content
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line
 export const minLength = (value:any): boolean => (value.length > 1)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line
 export const maxLength = (value:any): boolean => (value.toString().trim().length < 36)

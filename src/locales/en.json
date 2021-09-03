@@ -51,6 +51,7 @@
     "withEmail": "Send me the link",
     "emailLoginMessage": "You can register, and login by using a link sent to you with email. Please note we use Google Firebase Authentication, and do store your account details in Google Public Cloud (EU sites, where possible)",
     "emailLoginDataInfoLink": "More info at the Wiki",
+    "emailLoginHelper": "Your email adress",
     "message": "Alternatively, you can use single sign on with the services below",
     "withGoogleButton": "Google",
     "withFacebookButton": "Facebook"

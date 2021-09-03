@@ -1,13 +1,15 @@
 import { createApp } from 'vue'
 import { createI18n, LocaleMessageDictionary, VueMessageType } from 'vue-i18n'
-import App from './App.vue'
-import router from './router'
-import { useFirebase } from './firebase'
-import { getNavigatorLocale } from './utils/window'
-useFirebase()
+import App from '@/App.vue'
+import router from '@/router'
+import { getNavigatorLocale } from '@/utils/window'
+import { createFirebase } from '@/firebase'
+import { createAuth } from '@/state/authz'
 
 const app = createApp(App)
 app.use(router)
+createFirebase()
+createAuth()
 
 function loadLocaleMessages () {
   const locales = require.context('./locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
