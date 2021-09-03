@@ -2,7 +2,7 @@
   <Chip
     :label="nick"
     :delete-function="deleteFunction"
-    :disabled="activeUserUid === uid"
+    :disabled="user.uid === uid"
     secondary
   />
 </template>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import Chip from '@/components/material/Chip.vue'
 import { useAuthors } from '@/state/authors'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useSite } from '@/state/site'
 import { computed, defineComponent } from 'vue'
 
@@ -25,13 +25,13 @@ export default defineComponent({
   },
   setup (props) {
     const { authors } = useAuthors()
-    const { uid: activeUserUid } = useAuthState()
+    const { user } = useAuth()
     const { revokeOwner } = useSite()
     const nick = computed(() => (authors.value.find((a) => (a.uid === props.uid))?.nick || 'anonymous'))
     const deleteFunction = async () => {
       return revokeOwner(props.uid)
     }
-    return { nick, deleteFunction, activeUserUid }
+    return { nick, deleteFunction, user }
   }
 })
 </script>

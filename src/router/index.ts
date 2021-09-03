@@ -3,7 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useSite, usePage } from '@/state/site'
-import { useAuth, useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
   {

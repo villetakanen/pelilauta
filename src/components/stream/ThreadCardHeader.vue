@@ -25,7 +25,7 @@ import { useI18n } from 'vue-i18n'
 import { deleteThread } from '@/state/threads'
 import { useMeta } from '@/state/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { getSeconds } from '@/utils/firebaseTools'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { Thread } from '@/utils/firestoreInterfaces'
@@ -64,10 +64,10 @@ export default defineComponent({
       return s
     }
 
-    const { uid, isAdmin } = useAuthState()
+    const { user, showAdminTools } = useAuth()
 
     function drop () {
-      deleteThread(uid.value, props.thread.id)
+      deleteThread(user.value.uid, props.thread.id)
     }
 
     const editorVisible = ref(false)
@@ -93,10 +93,10 @@ export default defineComponent({
       // arr.push({ to: '/stream/view/' + props.threadid, text: 'Open' })
       arr.push({ action: copyUrl, text: 'Copy link', icon: 'link' })
 
-      if (uid.value === props.thread.author) {
+      if (user.value.uid === props.thread.author) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit' })
         arr.push({ action: drop, text: 'Delete!' })
-      } else if (isAdmin.value || uid.value === props.thread.author) {
+      } else if (showAdminTools.value) {
         arr.push({ action: edit, icon: 'edit', text: 'Edit', admin: true })
         arr.push({ action: drop, text: 'Delete!', admin: true })
       }

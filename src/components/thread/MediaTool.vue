@@ -24,7 +24,7 @@ import { defineComponent, PropType, ref } from 'vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
 import { updateThread } from '@/state/threads/threads'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   components: { TextField, MaterialButton },
@@ -36,12 +36,12 @@ export default defineComponent({
   },
   setup (props) {
     const slug = ref(props.thread.data.youTubeSlug || '')
-    const { uid } = useAuthState()
+    const { user } = useAuth()
 
     async function saveSlug () {
       const updatedThread:Thread = { ...props.thread }
       updatedThread.data.youTubeSlug = slug.value || ''
-      updateThread(uid.value, updatedThread)
+      updateThread(user.value.uid, updatedThread)
     }
     return { slug, saveSlug }
   }

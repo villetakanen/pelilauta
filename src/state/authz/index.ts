@@ -1,5 +1,5 @@
 import { useProfile, PublicProfile, ProfileMeta } from './profile'
-import { useAuthState } from './state'
+// import { useAuthState } from './state'
 import { useAssets } from './assets'
 import { computed, ComputedRef, reactive } from 'vue'
 import { useMeta } from '../meta'
@@ -110,7 +110,6 @@ export {
   PublicProfile,
   createAuth,
   useAuth,
-  useAuthState,
   useAssets,
   useProfile
 }

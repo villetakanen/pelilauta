@@ -83,7 +83,7 @@ import Action from '../material/Action.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import Icon from '../material/Icon.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   components: { Toolbar, Action, Icon },
@@ -96,7 +96,7 @@ export default defineComponent({
   },
   setup () {
     const { site, members } = useSite()
-    const { uid } = useAuthState()
+    const { user } = useAuth()
 
     const i18n = useI18n()
     const { pushSnack } = useSnack()
@@ -104,8 +104,8 @@ export default defineComponent({
       copyUrl()
       pushSnack({ topic: i18n.t('global.messages.linkShared') })
     }
-    const owns = computed(() => (site.value.owners && site.value.owners.includes(uid.value)))
-    const memberOf = computed(() => (members.value.findIndex((a) => (a.uid === uid.value)) > -1))
+    const owns = computed(() => (site.value.owners && site.value.owners.includes(user.value.uid)))
+    const memberOf = computed(() => (members.value.findIndex((a) => (a.uid === user.value.uid)) > -1))
     return { site, copyLink, owns, memberOf }
   }
 })

@@ -61,7 +61,7 @@ import { useMeta } from '@/state/meta'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Action from '../material/Action.vue'
 import MaterialMenu from '../material/MaterialMenu.vue'
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { copyUrl } from '@/utils/window'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
@@ -85,7 +85,7 @@ export default defineComponent({
   },
   setup (props) {
     const { streams } = useMeta()
-    const { uid, isAdmin } = useAuthState()
+    const { user, showAdminTools } = useAuth()
     const { pushSnack } = useSnack()
     const i18n = useI18n()
 
@@ -93,14 +93,14 @@ export default defineComponent({
     const topicName = computed(() => {
       return streams.value.find((val) => (val.slug === props.thread.data.topic))?.name
     })
-    const canManageThread = computed(() => (uid.value === props.thread.author || isAdmin.value))
+    const canManageThread = computed(() => (user.value.uid === props.thread.author || showAdminTools.value))
 
     const menu = computed(() => {
       const arr = new Array<MenuItem>()
 
       if (canManageThread.value) {
-        arr.push({ to: `/thread/${props.thread.id}/edit`, icon: 'edit', text: i18n.t('action.edit'), admin: uid.value !== props.thread.author })
-        arr.push({ action: drop, icon: 'delete', text: i18n.t('action.delete'), admin: uid.value !== props.thread.author })
+        arr.push({ to: `/thread/${props.thread.id}/edit`, icon: 'edit', text: i18n.t('action.edit'), admin: user.value.uid !== props.thread.author })
+        arr.push({ action: drop, icon: 'delete', text: i18n.t('action.delete'), admin: user.value.uid !== props.thread.author })
       }
       return arr
     })
@@ -124,7 +124,7 @@ export default defineComponent({
     const deleteThreadFromFirestore = async () => {
       if (deleteConfirm.value !== 'DELETE') return
       try {
-        await deleteThread(uid.value, props.thread.id)
+        await deleteThread(user.value.uid, props.thread.id)
         pushSnack(i18n.t('stream.thread.deleteSucces'))
         router.push('/')
       } catch (error) {

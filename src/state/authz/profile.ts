@@ -1,6 +1,4 @@
 import { computed, ComputedRef, Ref, ref } from 'vue'
-import { useMeta } from '@/state/meta'
-import { useAuthState } from './state'
 import { fetchAssets, useAssets } from './assets'
 import { setSeen, useInbox } from '@/state/inbox'
 import { useAuth } from '.'
@@ -136,9 +134,9 @@ function seenFrom (threadid: string): number {
 }
 
 async function markAllThreadsRead (): Promise<void> {
-  const { uid } = useAuthState()
+  const { user } = useAuth()
   return updateDoc(
-    doc(getFirestore(), 'profiles', uid.value),
+    doc(getFirestore(), 'profiles', user.value.uid),
     { allThreadsSeenSince: serverTimestamp() }
   )
 }
@@ -162,9 +160,9 @@ async function stampSeen (threadid:string, flowTime?:Timestamp|number): Promise<
 }
 
 async function switchLang (lang: string): Promise<void> {
-  const { uid } = useAuthState()
+  const { user } = useAuth()
   return updateDoc(
-    doc(getFirestore(), 'profiles', uid.value),
+    doc(getFirestore(), 'profiles', user.value.uid),
     {
       pelilautaLang: lang
     }

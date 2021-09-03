@@ -4,14 +4,14 @@
       <h3>{{ $t('wiki.title') }}</h3>
       <div class="spacer" />
       <Action
-        v-if="!isAnonymous"
+        v-if="showMemberTools"
         to="mekanismi.profile.sites"
         prepend="books"
       >
         <span v-if="!mobile">{{ $t('wiki.mySites') }}</span>
       </Action>
       <Action
-        v-if="!isAnonymous"
+        v-if="showMemberTools"
         to="mekanismi.create.site"
         prepend="add"
       >
@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { useAuthState } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { ComputedRef, defineComponent, inject, ref } from 'vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
@@ -95,8 +95,8 @@ export default defineComponent({
       else filterTag.value = f
       context.emit('update:filterTag', filterTag.value)
     }
-    const { isAnonymous } = useAuthState()
-    return { mobile, isAnonymous, filterToggle, setFilter, filterTag }
+    const { showMemberTools } = useAuth()
+    return { mobile, showMemberTools, filterToggle, setFilter, filterTag }
   }
 })
 </script>
