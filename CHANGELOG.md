@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.0](https://github.com/villetakanen/pelilauta/compare/v9.6.3...v10.0.0) (2021-09-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* this change enbles tree shaking of firebase code
+and will require a lot of restructuring of
+the code
+
+### Bug Fixes
+
+* 0.5 or so of firebase 8 code converted to 9 ([a10b493](https://github.com/villetakanen/pelilauta/commit/a10b49336cffa42d3a94c1fa255381ec44520d9f))
+* authstate removals ([991dfbe](https://github.com/villetakanen/pelilauta/commit/991dfbe2c42c5a4cd545c5868b3a8c5757869192))
+* correct imports for firebase 9 ([c6eef0d](https://github.com/villetakanen/pelilauta/commit/c6eef0d20eaca22f9c3f3c12311184fe58a44212))
+* firebase 9 conversion ([b3fbdf5](https://github.com/villetakanen/pelilauta/commit/b3fbdf5bf7c22099a745d3d6380363c2b5d3cd84))
+* firebase 9 conversion ([0546701](https://github.com/villetakanen/pelilauta/commit/0546701048ce23efe51be5dba4806d15e693e072))
+* firebase 9 conversion ([82914e9](https://github.com/villetakanen/pelilauta/commit/82914e93eb22a57b94176b2e91da3ba092cf6214))
+* firebase 9 conversion ([b068e41](https://github.com/villetakanen/pelilauta/commit/b068e416c41f9dd51d786fe2175c72851fa8bf13))
+* firebase 9 conversion ([fae9c24](https://github.com/villetakanen/pelilauta/commit/fae9c24d4e829da945db37c2d4fa6da446f6ce03))
+* firebase 9 conversions ([423bd5d](https://github.com/villetakanen/pelilauta/commit/423bd5dac6c77dcc0433a0b04b14544419938f3f))
+* firebase load ordering fixed ([b539666](https://github.com/villetakanen/pelilauta/commit/b5396669211fc12869b67fef518e6cbf8287f454))
+* profile loading and creation triggers fixed ([9fe85f4](https://github.com/villetakanen/pelilauta/commit/9fe85f462174ac41123696572162e27f1d0b2dae))
+* refactored fb8 methods to 9 ([d20d6df](https://github.com/villetakanen/pelilauta/commit/d20d6df12d83f1bcb6e3762a7cf474b3d55c2670))
+* refactors for fb9 modular api ([4488590](https://github.com/villetakanen/pelilauta/commit/448859028e14ac32ce27f5404dde812a85991386))
+* removed authstate from bottom fabs ([7a03e24](https://github.com/villetakanen/pelilauta/commit/7a03e244465278409ca622f079fe0a55f2fabaf8))
+* removed authstate from code ([0432c4e](https://github.com/villetakanen/pelilauta/commit/0432c4e99129d4de70707450b7474f0aacdab685))
+* removed authstate from components ([9fa4347](https://github.com/villetakanen/pelilauta/commit/9fa434788acff762b2a2aa26d56d0445c1588039))
+* removed authstate from loves ([e10a13b](https://github.com/villetakanen/pelilauta/commit/e10a13be97792465cb94b878eb4939d6725a09c0))
+* removed authstate from router ([c480914](https://github.com/villetakanen/pelilauta/commit/c480914b14faa09b91f0bb3e9516c4f3e520ea30))
+* removed depr authstate from components ([359f078](https://github.com/villetakanen/pelilauta/commit/359f078c8a5603064987c5ad772b6121c8de42a9))
+* removed deprecated authstate uses from code ([e2a719a](https://github.com/villetakanen/pelilauta/commit/e2a719a6e1787fa53425f2822cd11eb8d53bac73))
+* removed extra state handling from views ([dcc6d9d](https://github.com/villetakanen/pelilauta/commit/dcc6d9d82d39a0bacf18e507859ef4955ac77bc3))
+* showAdminTools is now shown reactively ([663b683](https://github.com/villetakanen/pelilauta/commit/663b68372c91c845ee9de75b88af6fbe9a088d58))
+* vue updates ([d994eab](https://github.com/villetakanen/pelilauta/commit/d994eab9839f09460d257046008e97374dfcfa66))
+
+
+* updated firebase to 9 ([6673eb0](https://github.com/villetakanen/pelilauta/commit/6673eb02368d05a4949c1b14352bbdc2f8e3dd93))
+
 ### [9.6.3](https://github.com/villetakanen/pelilauta/compare/v9.6.2...v9.6.3) (2021-08-27)
 
 
