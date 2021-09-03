@@ -12,7 +12,6 @@ import { doc, getFirestore, onSnapshot } from '@firebase/firestore'
 const authState = reactive({
   missingProfileData: false,
   anonymous: false,
-  admin: false,
   displayName: '',
   user: {
     uid: ''
@@ -29,12 +28,15 @@ const frozen = computed(() => {
 
 // Show member only tools of the App to the user
 const showMemberTools = computed(() => {
-  if (authState.admin) return true
+  if (showAdminTools.value) return true
   if (frozen.value) return false
   return !authState.anonymous
 })
 
-const showAdminTools = computed(() => (authState.admin))
+const showAdminTools = computed(() => {
+  const { admins } = useMeta()
+  return admins.value.includes(authState.user.uid)
+})
 
 const anonymousSession = computed(() => (authState.anonymous))
 
@@ -68,15 +70,12 @@ function processAuthStateChanged (user: User|null) {
     console.debug('onAuthStateChanged', 'anonymous')
     authState.missingProfileData = false
     authState.anonymous = true
-    authState.admin = false
     authState.user = {
       uid: ''
     }
   } else {
     console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
-    const { admins } = useMeta()
-    authState.admin = admins.value.includes(user.uid)
     authState.displayName = user.displayName ?? 'anonymous'
     authState.user = {
       uid: user.uid
