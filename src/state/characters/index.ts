@@ -1,9 +1,15 @@
-import { ref, Ref, watch } from 'vue'
+import { ComputedRef, ref, Ref, computed } from 'vue'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { useSite } from '../site'
-import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc } from '@firebase/firestore'
+import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where } from '@firebase/firestore'
+import { useAuth } from '../authz'
 
+const localPlayerCharacters = ref(new Map<string, PlayerCharacter>())
+const playerCharacters = computed(() => localPlayerCharacters.value)
 const characters = ref(new Map<string, PlayerCharacter>())
+
+let init = false
+let unsubscribe = () => {}
 
 async function addPlayerCharacter (type: string) {
   const { site } = useSite()
@@ -20,10 +26,10 @@ async function addPlayerCharacter (type: string) {
 
 async function updatePlayerCharacter (char:PlayerCharacter) {
   const { site } = useSite()
-  console.debug('updating', site.value.id, char.id, char.name)
+  console.debug('updating', site.value.id, '?', char.name)
   if (site.value.usePlayers) {
     return updateDoc(
-      doc(getFirestore(), 'sites', site.value.id, 'characters', char.id),
+      doc(getFirestore(), 'sites', site.value.id, 'characters', '?'),
       { ...char }
     )
   } else {
@@ -31,30 +37,32 @@ async function updatePlayerCharacter (char:PlayerCharacter) {
   }
 }
 
-let init = false
-let siteid = ''
-let unsubscribe = () => {}
-
-export function toPlayerCharacter (pcid?:string, data?:DocumentData):PlayerCharacter {
+export function toPlayerCharacter (data?:DocumentData):PlayerCharacter {
   return {
-    id: pcid ?? '',
     name: data?.name ?? 'N.N.',
-    description: data?.description ?? '',
-    playerid: data?.playerid ?? '',
-    type: data?.type ?? 'default'
+    player: data?.player ?? 'Anonymous'
   }
 }
 
 function subscribeCharacters () {
-  unsubscribe()
+  console.debug('Subscribing the users character database')
+  const { user } = useAuth()
   characters.value = new Map<string, PlayerCharacter>()
-  const characterCollection = collection(getFirestore(), 'sites', siteid, 'characters')
-  unsubscribe = onSnapshot(characterCollection, (snapshot) => {
+
+  // We subsribe to all characters with primary player is current user
+  unsubscribe()
+  const characterCollectionQuery = query(
+    collection(getFirestore(), 'characters'),
+    where('player', '==', user.value.uid)
+  )
+
+  unsubscribe = onSnapshot(characterCollectionQuery, (snapshot) => {
     snapshot.docChanges().forEach((docChange) => {
+      console.debug('got', docChange.doc.data())
       if (docChange.type === 'removed') {
-        characters.value.delete(docChange.doc.id)
+        playerCharacters.value.delete(docChange.doc.id)
       } else {
-        characters.value.set(docChange.doc.id, toPlayerCharacter(docChange.doc.id, docChange.doc.data()))
+        playerCharacters.value.set(docChange.doc.id, toPlayerCharacter(docChange.doc.data()))
       }
     })
   })
@@ -62,20 +70,13 @@ function subscribeCharacters () {
 
 export function useCharacters (): {
     addPlayerCharacter: (type: string) => Promise<string>
-    characters: Ref<Map<string, PlayerCharacter>>
+    characters: Ref<Map<string, PlayerCharacter>>,
+    playerCharacters: ComputedRef<Map<string, PlayerCharacter>>,
     updatePlayerCharacter: (char:PlayerCharacter) => Promise<void>
     } {
   if (!init) {
     init = true
-    const { site } = useSite()
-    watch(site, (val) => {
-      if (val.id !== siteid) {
-        siteid = val.id
-        subscribeCharacters()
-      }
-    }, {
-      immediate: true
-    })
+    subscribeCharacters()
   }
-  return { addPlayerCharacter, characters, updatePlayerCharacter }
+  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters }
 }

@@ -211,7 +211,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/mekanismi/sites/profile',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/ProfileSites.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/profile/SiteListingView.vue'),
     props: true,
     name: 'mekanismi.profile.sites'
   },
