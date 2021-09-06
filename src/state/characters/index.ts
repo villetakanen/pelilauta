@@ -1,7 +1,7 @@
 import { ComputedRef, ref, Ref, computed } from 'vue'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { useSite } from '../site'
-import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where } from '@firebase/firestore'
+import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, getDoc } from '@firebase/firestore'
 import { useAuth } from '../authz'
 
 const localPlayerCharacters = ref(new Map<string, PlayerCharacter>())
@@ -40,7 +40,9 @@ async function updatePlayerCharacter (char:PlayerCharacter) {
 export function toPlayerCharacter (data?:DocumentData):PlayerCharacter {
   return {
     name: data?.name ?? 'N.N.',
-    player: data?.player ?? 'Anonymous'
+    player: data?.player ?? 'Anonymous',
+    htmlContent: data?.htmlContent ?? '',
+    deltaContent: data?.htmlContent ?? ''
   }
 }
 
@@ -68,15 +70,37 @@ function subscribeCharacters () {
   })
 }
 
+const localCharacter = ref<PlayerCharacter|undefined|null>(undefined)
+const character = computed(() => localCharacter.value)
+
+async function fetchPlayerCharacter (id: string): Promise<void> {
+  localCharacter.value = undefined
+  if (localPlayerCharacters.value.has(id)) {
+    localCharacter.value = localPlayerCharacters.value.get(id)
+  } else {
+    const c = await getDoc(
+      doc(
+        getFirestore(),
+        'characters',
+        id
+      )
+    )
+    if (c.exists()) localCharacter.value = toPlayerCharacter(c.data())
+    else localCharacter.value = null
+  }
+}
+
 export function useCharacters (): {
     addPlayerCharacter: (type: string) => Promise<string>
     characters: Ref<Map<string, PlayerCharacter>>,
     playerCharacters: ComputedRef<Map<string, PlayerCharacter>>,
-    updatePlayerCharacter: (char:PlayerCharacter) => Promise<void>
+    updatePlayerCharacter: (char:PlayerCharacter) => Promise<void>,
+    fetchPlayerCharacter: (id: string) => Promise<void>,
+    character: ComputedRef<PlayerCharacter|unknown|null>
     } {
   if (!init) {
     init = true
     subscribeCharacters()
   }
-  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters }
+  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character }
 }

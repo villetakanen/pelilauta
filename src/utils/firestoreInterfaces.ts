@@ -62,5 +62,7 @@ export interface NotificationMessage {
 
 export interface PlayerCharacter {
   name: string,
-  player: string
+  player: string,
+  htmlContent?: string,
+  deltaContent?: string
 }

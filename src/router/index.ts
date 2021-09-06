@@ -244,6 +244,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/site/:siteid/page/:pageid/edit',
     props: true,
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue')
+  },
+  // Character related routes
+  {
+    name: 'character.view',
+    path: '/character/:id',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/characters/CharacterView.vue')
   }
 ]
 

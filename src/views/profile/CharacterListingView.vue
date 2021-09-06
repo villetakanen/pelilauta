@@ -10,7 +10,11 @@
           v-for="pc in playerCharacters"
           :key="pc[0]"
         >
-          <h4>{{ pc[1].name }}</h4>
+          <h4>
+            <router-link :to="`/character/${pc[0]}`">
+              {{ pc[1].name }}
+            </router-link>
+          </h4>
         </div>
       </div>
       <div class="debug">
@@ -36,14 +40,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-.debug
-  font-size: 10px
-  font-family: monospace
-  line-height: 12px
-  color: green
-  border: solid 1px green
-  padding:8px
-  margin-top:8px
-</style>
