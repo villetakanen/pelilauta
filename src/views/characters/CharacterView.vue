@@ -1,14 +1,18 @@
 <template>
   <div class="characterListingView">
-    <h1
-      class="title"
-      style="padding: 0 8px"
-    >
-      {{ character.name }}
-    </h1>
-    <div class="singleColumnLayout">
-      <div class="debug">
-        {{ character }}
+    <div v-if="character">
+      <h1
+        class="title"
+        style="padding: 0 8px"
+      >
+        {{ character.name }}
+      </h1>
+      <div class="singleColumnLayout">
+        <RichTextEditor />
+
+        <div class="debug">
+          {{ character }}
+        </div>
       </div>
     </div>
   </div>
@@ -17,9 +21,11 @@
 <script lang="ts">
 import { defineComponent, onMounted, watch } from 'vue'
 import { useCharacters } from '@/state/characters'
+import RichTextEditor from '@/components/quill/RichTextEditor.vue'
 
 export default defineComponent({
   name: 'CharacterView',
+  components: { RichTextEditor },
   props: {
     id: {
       type: String,

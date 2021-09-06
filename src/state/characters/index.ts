@@ -1,4 +1,4 @@
-import { ComputedRef, ref, Ref, computed } from 'vue'
+import { ComputedRef, ref, Ref, computed, watch } from 'vue'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { useSite } from '../site'
 import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, getDoc } from '@firebase/firestore'
@@ -8,7 +8,6 @@ const localPlayerCharacters = ref(new Map<string, PlayerCharacter>())
 const playerCharacters = computed(() => localPlayerCharacters.value)
 const characters = ref(new Map<string, PlayerCharacter>())
 
-let init = false
 let unsubscribe = () => {}
 
 async function addPlayerCharacter (type: string) {
@@ -73,6 +72,7 @@ function subscribeCharacters () {
   })
 }
 
+let playerid = ''
 let localCharacterId = ''
 const localCharacter = ref<PlayerCharacter|undefined|null>(undefined)
 const character = computed(() => localCharacter.value)
@@ -103,9 +103,12 @@ export function useCharacters (): {
     fetchPlayerCharacter: (id: string) => Promise<void>,
     character: ComputedRef<PlayerCharacter|unknown|null>
     } {
-  if (!init) {
-    init = true
-    subscribeCharacters()
-  }
+  const { user } = useAuth()
+  watch(() => user, (u) => {
+    if (u.value.uid && u.value.uid !== playerid) {
+      subscribeCharacters()
+      playerid = u.value.uid
+    }
+  }, { immediate: true })
   return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character }
 }

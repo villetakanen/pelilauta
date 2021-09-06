@@ -6,7 +6,37 @@
 // ***
 @import include-media.scss
 @import material-typography.sass
+@import layout.sass
 // note: 1rem === 24px from the typography PoV
+
+$icon_size: 22px
+
+.rtEditor
+  .ql-toolbar
+    background-color: white
+    button
+      background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.22)'}
+      border: none
+      height: $icon_size
+      width: $icon_size
+      margin: 2px
+      padding: 0
+      background-size: $icon_size
+      background-repeat: no-repeat
+      background-position: top left
+      &:first-of-type
+        margin-left: 0
+      &.ql-bold
+        background-image: url('./assets/icons/rte/rte-bold.svg')
+      &.ql-italic
+        background-image: url('./assets/icons/rte/rte-italic.svg')
+      &.ql-strike
+        background-image: url('./assets/icons/rte/rte-strike.svg')
+      &.ql-underline
+        background-image: url('./assets/icons/rte/rte-underline.svg')
+      &.ql-active
+        background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.33)'}
+        
 
 // Base styles, Mobile First. Overwritten with include-media where needed
 .richText, .richText .ql-editor
