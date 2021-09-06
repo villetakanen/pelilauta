@@ -42,7 +42,7 @@ export function toPlayerCharacter (data?:DocumentData):PlayerCharacter {
     name: data?.name ?? 'N.N.',
     player: data?.player ?? 'Anonymous',
     htmlContent: data?.htmlContent ?? '',
-    deltaContent: data?.htmlContent ?? ''
+    deltaContent: data?.deltaContent ?? ''
   }
 }
 
@@ -63,18 +63,23 @@ function subscribeCharacters () {
       console.debug('got', docChange.doc.data())
       if (docChange.type === 'removed') {
         playerCharacters.value.delete(docChange.doc.id)
+        if (localCharacterId === docChange.doc.id) localCharacter.value = undefined
       } else {
-        playerCharacters.value.set(docChange.doc.id, toPlayerCharacter(docChange.doc.data()))
+        const pc = toPlayerCharacter(docChange.doc.data())
+        playerCharacters.value.set(docChange.doc.id, pc)
+        if (localCharacterId === docChange.doc.id) localCharacter.value = pc
       }
     })
   })
 }
 
+let localCharacterId = ''
 const localCharacter = ref<PlayerCharacter|undefined|null>(undefined)
 const character = computed(() => localCharacter.value)
 
 async function fetchPlayerCharacter (id: string): Promise<void> {
   localCharacter.value = undefined
+  localCharacterId = id
   if (localPlayerCharacters.value.has(id)) {
     localCharacter.value = localPlayerCharacters.value.get(id)
   } else {

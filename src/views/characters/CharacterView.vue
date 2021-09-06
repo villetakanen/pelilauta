@@ -1,7 +1,16 @@
 <template>
-  <h1>CharacterView.vue</h1>
-  <div class="debug">
-    {{ character }}
+  <div class="characterListingView">
+    <h1
+      class="title"
+      style="padding: 0 8px"
+    >
+      {{ character.name }}
+    </h1>
+    <div class="singleColumnLayout">
+      <div class="debug">
+        {{ character }}
+      </div>
+    </div>
   </div>
 </template>
 
