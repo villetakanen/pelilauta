@@ -1,8 +1,9 @@
 <template>
   <div id="sideNavAction-home">
-    <h4 class="hideOnMobile siteIdentity">
+    <h4 class="siteIdentity">
       <router-link to="/">
         <img
+          class="hideOnMobile"
           alt=""
           src="@/assets/fox-green.svg"
         >
@@ -13,23 +14,13 @@
         class="subtitle"
       > / <router-link to="/mekanismi">Mekanismi</router-link></span>
     </h4>
-    <Action
-      mobile
-      class="onlyForMobile"
-      :to="mekanismi ? '/mekanismi' : '/'"
-    >
-      <span v-if="!mekanismi">Pelilauta</span>
-      <span v-else>Mekanismi</span>
-    </Action>
   </div>
 </template>
 
 <script lang="ts">
 import { ComputedRef, defineComponent, inject } from 'vue'
-import Action from '../material/Action.vue'
 
 export default defineComponent({
-  components: { Action },
   setup () {
     const mekanismi = inject('appMode') as ComputedRef<boolean>
     return { mekanismi }
@@ -55,5 +46,5 @@ export default defineComponent({
 
 @include media('<tablet')
   #sideNavAction-home
-    margin-left: 48px
+    margin-left: 8px
 </style>
