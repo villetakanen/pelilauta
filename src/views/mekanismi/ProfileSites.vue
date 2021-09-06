@@ -9,14 +9,14 @@
           class="siteGrid"
         >
           <div
-            class="siteCell"
+            class="siteCell siteTitle"
             :class="{hidden: site.hidden}"
           >
             <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
               {{ site.name }}
             </router-link>
           </div>
-          <div class="siteCell">
+          <div class="siteCell siteBadge">
             <Icon
               v-if="site.hidden"
               name="hidden"
@@ -30,7 +30,7 @@
             />
           </div>
           <div
-            class="siteCell"
+            class="siteCell siteDescription"
             :class="{hidden: site.hidden}"
           >
             {{ site.description }}
@@ -69,6 +69,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 
 .siteGrid
   display: grid
@@ -79,8 +80,29 @@ export default defineComponent({
     text-decoration: none
   div.hidden
     opacity: 0.44
-    a
-      opacity: 0.5
+    font-style: italic
   .caption
     @include TypeCaption()
+
+@include media('<tablet')
+  .siteGrid
+    padding: 8px
+    display: flex
+    flex-wrap: wrap
+    .siteTitle
+      width: 100%
+      flex: none
+      @include TypeHeadline6()
+      border-bottom: solid 1px var(--chroma-primary-f)
+      &.hidden
+        opacity: 1
+        color: var(--chroma-secondary-b)
+        border-bottom: dashed 1px var(--chroma-secondary-h)
+        a
+          color: var(--chroma-secondary-b)
+    .siteBadge
+      width: 22px
+    .siteDescription
+      width: calc( 100% -  30px)
+      margin-bottom: 16px
 </style>

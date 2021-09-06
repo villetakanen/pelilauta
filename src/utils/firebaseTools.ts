@@ -25,8 +25,8 @@ export const fireStoreURL = function (path: string): Promise<string> {
   })
 }
 
-export const toDisplayString = (timestamp: Timestamp|string|null): string => {
-  if (timestamp === null) return '---'
+export const toDisplayString = (timestamp: Timestamp|string|null|undefined): string => {
+  if (timestamp === null || typeof timestamp === 'undefined') return '---'
   const date = (typeof timestamp === 'string') ? DateTime.fromISO(timestamp) : DateTime.fromSeconds(timestamp.seconds)
   const duration = DateTime.now().diff(date)
   if (duration.toMillis() < 30 * 60000) {
