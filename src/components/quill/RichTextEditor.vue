@@ -7,10 +7,9 @@
 </template>
 
 <script lang="ts">
-import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue'
+import { ComponentPublicInstance, defineComponent, onMounted, ref, watch } from 'vue'
 import Quill from 'quill'
 import Delta from 'quill-delta'
-import { Quote } from '@/utils/contentFormat'
 import { mentionsModule } from '@/utils/quill/mentionsModule'
 
 function hoistClipboardConfig (quill:Quill) {
@@ -42,8 +41,6 @@ export default defineComponent({
   setup (props, context) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
-    const quotedContent = inject('quotedContent') as Ref<Quote>
-    const imageToEditor = inject('imageToEditor') as Ref<string>
 
     const config = {
       formats: [
@@ -108,28 +105,6 @@ export default defineComponent({
       // quill.enable(boolean) instead of DOM attrs.
       watch(() => props.disabled, (value) => {
         quill?.enable(!value)
-      })
-
-      // Start watching for incoming Quote events. This never happens
-      // at the initial load, so we do not use { immediate: true } on
-      // the watch code
-      watch(quotedContent, (quote) => {
-        if (quill !== null && quote.content) {
-          // see https://github.com/quilljs/quill/issues/2124
-          quill.insertEmbed(0, 'blockquote', '', 'user')
-          quill.insertText(0, quote.content, 'user')
-          quill.insertText(0, quote.author + ': ', { bold: true }, 'user')
-        }
-      })
-
-      // Start watching for incoming Image events. This never happens
-      // at the initial load, so we do not use { immediate: true } on
-      // the watch code
-      watch(imageToEditor, (url) => {
-        if (quill !== null && url) {
-          // https://quilljs.com/docs/api/#content
-          quill.insertEmbed(0, 'image', url)
-        }
       })
 
       document.addEventListener('quill.mention', function (e: Event) {
