@@ -39,6 +39,9 @@ export function wikiLinkModule (quill:Quill): void {
     start = quill.getSelection()?.index ?? 0
     length = quill.getSelection()?.length ?? 0
 
+    const format = quill.getFormat(start) as Record<string, unknown>
+    if (format.wikilink) return
+
     document.dispatchEvent(new Event('rte-wikilink-tool'))
 
     return true
