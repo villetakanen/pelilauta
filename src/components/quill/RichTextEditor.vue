@@ -3,6 +3,7 @@
     <div
       ref="editor"
     />
+    <WikiLinkDialog />
   </div>
 </template>
 
@@ -10,7 +11,8 @@
 import { ComponentPublicInstance, defineComponent, onMounted, ref, watch } from 'vue'
 import Quill from 'quill'
 import Delta from 'quill-delta'
-import { mentionsModule } from '@/utils/quill/mentionsModule'
+import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
+import WikiLinkDialog from './WikiLinkDialog.vue'
 
 function hoistClipboardConfig (quill:Quill) {
   quill.clipboard.addMatcher(Node.ELEMENT_NODE,
@@ -29,6 +31,7 @@ function hoistClipboardConfig (quill:Quill) {
  */
 export default defineComponent({
   name: 'ReplyEditor',
+  components: { WikiLinkDialog },
   props: {
     content: { type: String, required: false, default: '' },
     disabled: { type: Boolean, required: false, default: false },
@@ -50,7 +53,7 @@ export default defineComponent({
         'italic'
       ],
       modules: {
-        mention: true,
+        wikilinks: true,
         toolbar: [
           'bold',
           'italic',
@@ -61,7 +64,7 @@ export default defineComponent({
     }
 
     // Implement and register module
-    Quill.register('modules/mention', mentionsModule)
+    Quill.register('modules/wikilinks', wikiLinkModule)
 
     onMounted(() => {
       // We want to inject the Quill Editor only after this element has been
