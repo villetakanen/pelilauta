@@ -1,5 +1,13 @@
 <template>
   <div class="rtEditor">
+    <div id="rte-toolbar">
+      <button class="ql-bold" />
+      <button class="ql-italic" />
+      <button class="ql-strike" />
+      <button class="ql-underline" />
+      &nbsp;
+      <button class="ql-wikilink" />
+    </div>
     <div
       ref="editor"
     />
@@ -50,16 +58,20 @@ export default defineComponent({
         'bold',
         'strike',
         'underline',
-        'italic'
+        'italic',
+        'wikilink'
       ],
       modules: {
         wikilinks: true,
-        toolbar: [
-          'bold',
-          'italic',
-          'strike',
-          'underline'
-        ]
+        toolbar: {
+          container: '#rte-toolbar',
+          handlers: {
+            wikilink: () => {
+              console.log('!')
+              document.dispatchEvent(new Event('rte-wikilink-tool'))
+            }
+          }
+        }
       }
     }
 
@@ -116,7 +128,6 @@ export default defineComponent({
         context.emit('mention', ce.detail)
       })
     }
-
     return { editor }
   }
 })

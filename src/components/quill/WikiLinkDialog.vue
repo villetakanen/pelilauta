@@ -1,6 +1,9 @@
 <template>
   <Dialog v-model="showDialog">
     <Card>
+      <h1 class="title">
+        {{ $t('rte.wikilink.Title') }}
+      </h1>
       <TextField v-model="customUrl" />
       <TextField
         v-model="customUrlText"
@@ -9,17 +12,21 @@
       <MaterialButton
         :action="sendUrl"
         :disabled="!urlValid"
+        :label="$t('rte.wikilink.urlfield')"
       >
         {{ $t('action.add') }}
       </MaterialButton>
-      <hr>
-      <MaterialSelect
-        v-model="linkValue"
-        :opts="pageOpts"
-      />
-      <MaterialButton :action="sendValue">
-        {{ $t('action.add') }}
-      </MaterialButton>
+      <div v-if="site.name && site.name.length > 0">
+        <hr>
+        <MaterialSelect
+          v-model="linkValue"
+          :opts="pageOpts"
+          :label="$t('rte.wikilink.pagefield')"
+        />
+        <MaterialButton :action="sendValue">
+          {{ $t('action.add') }}
+        </MaterialButton>
+      </div>
     </Card>
   </Dialog>
 </template>
@@ -81,7 +88,7 @@ export default defineComponent({
       showDialog.value = false
     }
 
-    return { showDialog, pageOpts, linkValue, sendValue, urlValid, customUrl, sendUrl, customUrlText }
+    return { showDialog, pageOpts, linkValue, sendValue, urlValid, customUrl, sendUrl, customUrlText, site }
   }
 })
 </script>

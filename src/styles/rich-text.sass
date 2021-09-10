@@ -9,7 +9,7 @@
 @import layout.sass
 // note: 1rem === 24px from the typography PoV
 
-$icon_size: 22px
+$icon_size: 32px
 
 .rtEditor
   .ql-toolbar
@@ -26,6 +26,8 @@ $icon_size: 22px
       background-position: top left
       &:first-of-type
         margin-left: 0
+      &.ql-wikilink
+         background-image: url('./assets/icons/rte/rte-link.svg')
       &.ql-bold
         background-image: url('./assets/icons/rte/rte-bold.svg')
       &.ql-italic
