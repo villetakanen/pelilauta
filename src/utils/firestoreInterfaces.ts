@@ -65,4 +65,10 @@ export interface PlayerCharacter {
   player: string,
   htmlContent?: string,
   deltaContent?: string
+  siteid?: string
+}
+
+export interface PartialPlayerCharacter {
+  name?: string,
+  siteid?: string
 }
