@@ -1,7 +1,7 @@
 <template>
   <Card>
     <h1 class="title">
-      {{ $t('character.metacard.title') }}
+      {{ $t('character.meta.title') }}
     </h1>
     <TextField :label="$t('character.stats.name')" />
     <MaterialSelect

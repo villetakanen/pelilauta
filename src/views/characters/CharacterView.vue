@@ -8,10 +8,10 @@
         {{ character.name }}
       </h1>
       <div class="flexLayout">
-        <CharacterMetaForm />
-        <RichTextEditor />
+        <CharacterMetaForm class="flex-span-1" />
+        <RichTextEditor class="flex-span-2" />
 
-        <div class="debug">
+        <div class="debug flex-span-2">
           {{ character }}
         </div>
       </div>
