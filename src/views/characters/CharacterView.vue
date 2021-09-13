@@ -7,10 +7,11 @@
       >
         {{ character.name }}
       </h1>
-      <div class="singleColumnLayout">
-        <RichTextEditor />
+      <div class="flexLayout">
+        <CharacterMetaForm class="flex-span-1" />
+        <RichTextEditor class="flex-span-2" />
 
-        <div class="debug">
+        <div class="debug flex-span-2">
           {{ character }}
         </div>
       </div>
@@ -22,10 +23,13 @@
 import { defineComponent, onMounted, watch } from 'vue'
 import { useCharacters } from '@/state/characters'
 import RichTextEditor from '@/components/quill/RichTextEditor.vue'
+import { useSite } from '@/state/site'
+import { PlayerCharacter } from '@/utils/firestoreInterfaces'
+import CharacterMetaForm from '@/components/character/CharacterMetaForm.vue'
 
 export default defineComponent({
   name: 'CharacterView',
-  components: { RichTextEditor },
+  components: { RichTextEditor, CharacterMetaForm },
   props: {
     id: {
       type: String,
@@ -40,6 +44,15 @@ export default defineComponent({
       watch(() => props.id, (id) => {
         fetchPlayerCharacter(id)
       }, { immediate: true })
+      watch(character, (c) => {
+        console.log('c', c)
+        if (!c) return
+        const char = c as PlayerCharacter
+        if (char.siteid) {
+          useSite(char.siteid)
+        }
+      },
+      { immediate: true })
     })
 
     return { character }

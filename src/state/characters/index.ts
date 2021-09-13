@@ -1,5 +1,5 @@
 import { ComputedRef, ref, Ref, computed, watch } from 'vue'
-import { PlayerCharacter } from '@/utils/firestoreInterfaces'
+import { PlayerCharacter, PartialPlayerCharacter } from '@/utils/firestoreInterfaces'
 import { useSite } from '../site'
 import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, getDoc } from '@firebase/firestore'
 import { useAuth } from '../authz'
@@ -23,6 +23,13 @@ async function addPlayerCharacter (type: string) {
   }
 }
 
+async function updatePlayerCharacterFields (id: string, fields: PartialPlayerCharacter) {
+  return updateDoc(
+    doc(getFirestore(), 'characters', id),
+    { ...fields }
+  )
+}
+
 async function updatePlayerCharacter (char:PlayerCharacter) {
   const { site } = useSite()
   console.debug('updating', site.value.id, '?', char.name)
@@ -41,7 +48,8 @@ export function toPlayerCharacter (data?:DocumentData):PlayerCharacter {
     name: data?.name ?? 'N.N.',
     player: data?.player ?? 'Anonymous',
     htmlContent: data?.htmlContent ?? '',
-    deltaContent: data?.deltaContent ?? ''
+    deltaContent: data?.deltaContent ?? '',
+    siteid: data?.siteid ?? undefined
   }
 }
 
@@ -62,24 +70,25 @@ function subscribeCharacters () {
       console.debug('got', docChange.doc.data())
       if (docChange.type === 'removed') {
         playerCharacters.value.delete(docChange.doc.id)
-        if (localCharacterId === docChange.doc.id) localCharacter.value = undefined
+        if (localCharacterId.value === docChange.doc.id) localCharacter.value = undefined
       } else {
         const pc = toPlayerCharacter(docChange.doc.data())
         playerCharacters.value.set(docChange.doc.id, pc)
-        if (localCharacterId === docChange.doc.id) localCharacter.value = pc
+        if (localCharacterId.value === docChange.doc.id) localCharacter.value = pc
       }
     })
   })
 }
 
 let playerid = ''
-let localCharacterId = ''
+const localCharacterId = ref('')
 const localCharacter = ref<PlayerCharacter|undefined|null>(undefined)
 const character = computed(() => localCharacter.value)
+const characterid = computed(() => localCharacterId.value)
 
 async function fetchPlayerCharacter (id: string): Promise<void> {
   localCharacter.value = undefined
-  localCharacterId = id
+  localCharacterId.value = id
   if (localPlayerCharacters.value.has(id)) {
     localCharacter.value = localPlayerCharacters.value.get(id)
   } else {
@@ -101,7 +110,9 @@ export function useCharacters (): {
     playerCharacters: ComputedRef<Map<string, PlayerCharacter>>,
     updatePlayerCharacter: (char:PlayerCharacter) => Promise<void>,
     fetchPlayerCharacter: (id: string) => Promise<void>,
-    character: ComputedRef<PlayerCharacter|unknown|null>
+    character: ComputedRef<PlayerCharacter|undefined|null>,
+    updatePlayerCharacterFields: (id: string, fields: PartialPlayerCharacter) => Promise<void>,
+    characterid: ComputedRef<string>
     } {
   const { user } = useAuth()
   watch(() => user, (u) => {
@@ -110,5 +121,5 @@ export function useCharacters (): {
       playerid = u.value.uid
     }
   }, { immediate: true })
-  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character }
+  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character, updatePlayerCharacterFields, characterid }
 }

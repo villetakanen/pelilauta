@@ -20,6 +20,19 @@
   .dashboardCard
     min-width: 30vw
 
+.flexLayout
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  align-items: flex-start
+  padding: 0 8px
+  .flex-span-1
+    max-width: 320px
+    flex-grow: 1
+  .flex-span-2
+    max-width: 740px
+    flex-grow: 2
+
 @include media('>tablet')
   .dashBoardLayout
     .dashboardCard
