@@ -19,6 +19,7 @@ import Card from '../layout/Card.vue'
 import { useSites } from '@/state/sites'
 import { useCharacters } from '@/state/characters'
 import TextField from '../material/TextField.vue'
+import { useSite } from '@/state/site'
 
 export default defineComponent({
   name: 'CharacterMetaForm',
@@ -33,6 +34,7 @@ export default defineComponent({
       get: () => (character?.value?.siteid ?? ''),
       set: (s: string) => {
         updatePlayerCharacterFields(characterid.value, { siteid: s })
+        useSite(s)
       }
     })
     return { siteOpts, site }
