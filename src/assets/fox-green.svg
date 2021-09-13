@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:url(#SVGID_1_);stroke:#000000;stroke-miterlimit:10;}
+	.st0{fill:#1D4565;}
 	.st1{fill:#FFFFFF;}
 </style>
-<g id="Layer_2">
-	
-		<radialGradient id="SVGID_1_" cx="256.0039" cy="259.3356" r="367.0061" fx="-35.1696" fy="35.9269" gradientUnits="userSpaceOnUse">
-		<stop  offset="0.1621" style="stop-color:#00C853"/>
-		<stop  offset="0.8261" style="stop-color:#00796B"/>
-	</radialGradient>
+<g id="Layer_2_00000016037431761422086380000001582741514257499280_">
 	<circle class="st0" cx="256.5" cy="243.7" r="240.7"/>
 </g>
-<g id="Layer_1">
+<g id="Layer_1_00000020369543538201650960000006993231215895362726_">
 	<g>
 		<polygon class="st1" points="256,512 61.6,213 84.4,211.7 227.6,442.5 245.8,421.1 245.8,320.2 256.1,287.3 266.3,320.2 
 			266.3,421.1 287.9,433.9 423.2,211.7 450.4,213.4 		"/>

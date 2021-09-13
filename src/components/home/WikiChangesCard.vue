@@ -60,7 +60,7 @@ export default defineComponent({
 
 .wikiChangesCard
   display: block
-  background: linear-gradient(-44deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-c) 100%)
+  background: linear-gradient(-44deg, var(--chroma-primary-a) 0%, var(--chroma-primary-c) 100%)
   position: relative
   min-height: 72px
   img.logo

@@ -61,10 +61,8 @@ export interface NotificationMessage {
 }
 
 export interface PlayerCharacter {
-  id: string,
   name: string,
-  playerid: string,
-  type: string
-  description: string
-  stats?: Map<string, string|number|boolean>
+  player: string,
+  htmlContent?: string,
+  deltaContent?: string
 }

@@ -54,12 +54,12 @@ export default defineComponent({
 
 div.site
   @include TypeBody2()
-  color: var(--chroma-secondary-e)
+  color: var(--chroma-primary-h)
   line-height: 20px
   margin: 0
   padding: 0
   div.time
-    color: var(--chroma-secondary-c)
+    color: var(--chroma-primary-e)
     float: right
 div.page
   @include TypeBody2()
