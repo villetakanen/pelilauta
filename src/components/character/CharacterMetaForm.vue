@@ -25,9 +25,9 @@ export default defineComponent({
   components: { MaterialSelect, Card, TextField },
   setup () {
     const { characterid, character, updatePlayerCharacterFields } = useCharacters()
-    const { allSites } = useSites()
+    const { userSites } = useSites()
     const siteOpts = computed(() => {
-      return allSites.value.map((s) => ({ key: s.id, value: s.name }))
+      return userSites.value.filter((s) => (s.usePlayers)).map((s) => ({ key: s.id, value: s.name }))
     })
     const site = computed({
       get: () => (character?.value?.siteid ?? ''),

@@ -40,6 +40,15 @@
     },
     "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
   },
+  "character": {
+    "meta": {
+      "title": "Yleistä"
+    },
+    "stats": {
+      "name": "Nimi",
+      "game": "Peli"
+    }
+  },
   "editorDialog": {
     "title": "Viesti",
     "titleFieldPlaceholder": "Ketjun otsikko"
