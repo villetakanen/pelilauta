@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.2.0](https://github.com/villetakanen/pelilauta/compare/v10.1.1...v10.2.0) (2021-09-13)
+
+
+### Features
+
+* characters can swap sites ([487603c](https://github.com/villetakanen/pelilauta/commit/487603c760668e7c9df6bbaed26c1550f1199115))
+
+
+### Bug Fixes
+
+* name field saves on blur ([8aa7c5c](https://github.com/villetakanen/pelilauta/commit/8aa7c5c0caed24652b42278569a4c0f2f1a24bdd))
+* show only sites where the user is a player ([363611a](https://github.com/villetakanen/pelilauta/commit/363611ad31da410fde5434453b5b0e1a9aebd39f))
+* small character sheet ui fixes ([544b852](https://github.com/villetakanen/pelilauta/commit/544b852a851beec01fe12a82c2e3a7dbf2dd3c92))
+* updates corrrect site for wikilinks ([3af7e96](https://github.com/villetakanen/pelilauta/commit/3af7e960c467278e91cc2c17cb2e50e5a147fb5f))
+
 ### [10.1.1](https://github.com/villetakanen/pelilauta/compare/v10.1.0...v10.1.1) (2021-09-13)
 
 
