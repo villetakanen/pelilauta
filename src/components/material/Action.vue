@@ -9,6 +9,7 @@
       :name="prepend"
       :color="dark ? 'dark' : ''"
       class="prepend"
+      :class="{ large: mobile }"
     />
     <div
       v-if="!disabled"
@@ -113,6 +114,9 @@ export default defineComponent({
       top: 0
       left: 0
       position: absolute
+  .large
+    div.icon
+      height: 40px
   div.label
     display: inline-block
   div.paddedLabel, div.label

@@ -8,17 +8,12 @@
     <div class="spacer" />
     <AppBarSearch v-if="showMemberTools" />
     <InboxAction />
-    <Action
+    <AppBarAction
       :disabled="anonymousSession"
-      prepend="avatar"
+      icon="avatar"
       to="/profile"
-    >
-      <span
-        class="hideOnMobile"
-      >
-        {{ $t('sideNav.profile') }}
-      </span>
-    </Action>
+      :label="$t('sideNav.profile') "
+    />
   </div>
 </template>
 
@@ -28,7 +23,7 @@ import SideNavAction from '@/components/sidenav/SideNavAction.vue'
 import { useAuth } from '@/state/authz'
 import { useRoute } from 'vue-router'
 import AppAction from './AppAction.vue'
-import Action from '../material/Action.vue'
+import AppBarAction from './AppBarAction.vue'
 import AppBarSearch from './AppBarSearch.vue'
 import InboxAction from '../inbox/InboxAction.vue'
 
@@ -37,7 +32,7 @@ export default defineComponent({
   components: {
     SideNavAction,
     AppAction,
-    Action,
+    AppBarAction,
     AppBarSearch,
     InboxAction
   },

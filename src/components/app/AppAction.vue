@@ -1,5 +1,5 @@
 <template>
-  <div id="sideNavAction-home">
+  <div id="appAction">
     <h4 class="siteIdentity">
       <router-link to="/">
         <img
@@ -31,12 +31,19 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
 
-.siteIdentity
+#appAction
   margin-left: 0px
+  color: var(--color-a-a)
   h4
     line-height: 40px
-  .subtitle, .subtitle a
-    color: var(--chroma-primary-b)
+    margin: 0
+  a
+    color: var(--color-a-d)
+  .subtitle
+    a
+      color: var(--color-a-a)
+
+.siteIdentity
   img
     height: 40px
     width: 40px
@@ -45,6 +52,6 @@ export default defineComponent({
     margin-bottom: -4px
 
 @include media('<tablet')
-  #sideNavAction-home
+  #appAction
     margin-left: 8px
 </style>
