@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.1.0](https://github.com/villetakanen/pelilauta/compare/v10.0.1...v10.1.0) (2021-09-13)
+
+
+### Features
+
+* added wikilinks blot ([4352b63](https://github.com/villetakanen/pelilauta/commit/4352b633230b597b993609980350e7b41e61c08e))
+* character view ([2fff3d9](https://github.com/villetakanen/pelilauta/commit/2fff3d95c9c8d07c2a9276bf54d740f0773b16fc))
+* initial linker operational ([a119428](https://github.com/villetakanen/pelilauta/commit/a119428d9ca09d374db75b8e6b5bdfac44aea5b0))
+* mvp functionality for visual linker ([79fb73e](https://github.com/villetakanen/pelilauta/commit/79fb73e7257b000a448caded2cd98b8028bbf3c1))
+* player characters belong to player now ([df0a6a4](https://github.com/villetakanen/pelilauta/commit/df0a6a426430d48c1153dd5955e9dd9d9b48db67))
+* rte for character description ([fea5041](https://github.com/villetakanen/pelilauta/commit/fea5041218bdbf56c633956f7ef01fe17e036009))
+
+
+### Bug Fixes
+
+* character page correctly fetches the char ([b246838](https://github.com/villetakanen/pelilauta/commit/b24683839e7c4fcd50f1f9864e1e8f5b1b65ddb3))
+* colors ([81a0d45](https://github.com/villetakanen/pelilauta/commit/81a0d45952b316153800162e144fae61db3c838d))
+* rte styling fixes ([5ce404b](https://github.com/villetakanen/pelilauta/commit/5ce404b79cd2842211243ca38a12313696d58f11))
+
 ### [10.0.1](https://github.com/villetakanen/pelilauta/compare/v10.0.0...v10.0.1) (2021-09-06)
 
 
