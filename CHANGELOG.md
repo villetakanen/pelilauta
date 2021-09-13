@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.0.1](https://github.com/villetakanen/pelilauta/compare/v10.0.0...v10.0.1) (2021-09-06)
+
+
+### Bug Fixes
+
+* profile sites looks decent on mobille ([feaaf53](https://github.com/villetakanen/pelilauta/commit/feaaf534414ea5a96bf594f8526e49e20e343c46))
+* small mobile usability issues ([9a6337f](https://github.com/villetakanen/pelilauta/commit/9a6337f4f06afb547afeb977ca1b96568aed33b8))
+* small mobile usability issues ([cfd6f27](https://github.com/villetakanen/pelilauta/commit/cfd6f2795df9aa48d08b0962ac2a8a610862d5b0))
+* timestamp types match firebase 9 ([936ab8d](https://github.com/villetakanen/pelilauta/commit/936ab8dfe18cf2b2f8533ae6e64675050684fc26))
+
 ## [10.0.0](https://github.com/villetakanen/pelilauta/compare/v9.6.3...v10.0.0) (2021-09-03)
 
 
