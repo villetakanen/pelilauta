@@ -35,7 +35,7 @@ export default defineComponent({
   margin-left: 0px
   color: var(--color-a-a)
   h4
-    line-height: 40px
+    line-height: 48px
     margin: 0
   a
     color: var(--color-a-d)
