@@ -42,14 +42,14 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Boolean,
-      required: false,
+      required: true,
       default: false
     }
   },
   emits: ['update:modelValue'],
   setup (props, context) {
     const toggle = ref(!props.modelValue)
-    watch(() => toggle, (t) => {
+    watch(toggle, (t) => {
       context.emit('update:modelValue', t)
     })
     return { toggle }

@@ -70,5 +70,6 @@ export interface PlayerCharacter {
 
 export interface PartialPlayerCharacter {
   name?: string,
-  siteid?: string
+  siteid?: string,
+  htmlContent?: string,
 }
