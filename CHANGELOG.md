@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.3.0](https://github.com/villetakanen/pelilauta/compare/v10.2.0...v10.3.0) (2021-09-14)
+
+
+### Features
+
+* editablecolumn added ([e682e08](https://github.com/villetakanen/pelilauta/commit/e682e08bab946bf5f8862afb6817202b27baead4))
+
+
+### Bug Fixes
+
+* correct row height for app name ([217fa1c](https://github.com/villetakanen/pelilauta/commit/217fa1c7a9b0c58fb192ceff34a0aa849bda140f))
+
 ## [10.2.0](https://github.com/villetakanen/pelilauta/compare/v10.1.1...v10.2.0) (2021-09-13)
 
 
