@@ -58,6 +58,13 @@
       <span class="onlyForDesktop">{{ $t('site.players.title') }}</span>
     </Action>
     <Action
+      v-if="site.usePlayers && memberOf"
+      prepend="keeper"
+      :to="`/site/${site.id}/keeper`"
+    >
+      <span class="onlyForDesktop">{{ $t('site.keeper.title') }}</span>
+    </Action>
+    <Action
       v-if="owns"
       prepend="equalizer"
       :to="`/site/meta/${site.id}`"

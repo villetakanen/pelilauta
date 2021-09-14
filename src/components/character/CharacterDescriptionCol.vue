@@ -7,6 +7,12 @@
       <div :innerHTML="description" />
     </template>
     <template #editor>
+      <MaterialButton
+        text
+        :async-action="save"
+      >
+        {{ $t('action.save') }}
+      </MaterialButton>
       <RichTextEditor v-model:content="description" />
     </template>
   </EditableColumn>
@@ -17,10 +23,11 @@ import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import { useCharacters } from '@/state/characters'
 import EditableColumn from '../layout/EditableColumn.vue'
 import RichTextEditor from '../quill/RichTextEditor.vue'
+import MaterialButton from '../material/MaterialButton.vue'
 
 export default defineComponent({
   name: 'CharacterMetaForm',
-  components: { EditableColumn, RichTextEditor },
+  components: { EditableColumn, RichTextEditor, MaterialButton },
   setup () {
     const { characterid, character, updatePlayerCharacterFields } = useCharacters()
     const updatedContent = ref('')
@@ -36,12 +43,16 @@ export default defineComponent({
     onMounted(() => {
       watch(toggle, (t) => {
         if (t && updatedContent) {
-          updatePlayerCharacterFields(characterid.value, { htmlContent: updatedContent.value })
+          save()
         }
       })
     })
 
-    return { description, toggle }
+    async function save () {
+      updatePlayerCharacterFields(characterid.value, { htmlContent: updatedContent.value })
+    }
+
+    return { description, toggle, save }
   }
 })
 </script>
