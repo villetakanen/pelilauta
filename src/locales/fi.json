@@ -105,6 +105,9 @@
     "noQuickResultsHelper": "Ei pikahakutuloksia, paina enter nähdäksesi koko haun"
   },
   "site": {
+    "keeper": {
+      "title": "Keeper"
+    },
     "characters": {
       "title": "Hahmot",
       "template": "Valitse lomake",
@@ -191,6 +194,9 @@
     "more": "Lue lisää"
   },
   "profile": {
+    "characterListing": {
+      "title": "Hahmoni"
+    },
     "publicInfoTitle": "Julkinen profiilini",
     "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
     "ssoInfocardTitle": "Omat tietoni",
