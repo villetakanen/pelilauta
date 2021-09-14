@@ -1,35 +1,49 @@
 <template>
-  <Card>
-    <Icon
-      :name="site.systemBadge+'-logo'"
-      headline
-    />
-    <MaterialSelect
-      v-model="siteid"
-      :opts="siteOpts"
-      :label="$t('character.stats.game')"
-    />
-    <TextField
-      v-model="charname"
-      :label="$t('character.stats.name')"
-      blur
-    />
-  </Card>
+  <EditableColumn>
+    <template #viewer>
+      <p v-if="site">
+        <Icon
+          :name="site.systemBadge+'-logo'"
+          inline
+        />
+        {{ site.name }}
+      </p>
+      <p v-if="character">
+        {{ character.name }}
+      </p>
+    </template>
+    <template #editor>
+      <Icon
+        :name="site.systemBadge+'-logo'"
+        headline
+      />
+      <MaterialSelect
+        v-model="siteid"
+        :opts="siteOpts"
+        :label="$t('character.stats.game')"
+      />
+      <TextField
+        v-model="charname"
+        :label="$t('character.stats.name')"
+        blur
+      />
+    </template>
+  </EditableColumn>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
-import Card from '../layout/Card.vue'
 import { useSites } from '@/state/sites'
 import { useCharacters } from '@/state/characters'
 import TextField from '../material/TextField.vue'
 import { useSite } from '@/state/site'
 import Icon from '../material/Icon.vue'
+import EditableColumn from '../layout/EditableColumn.vue'
 
 export default defineComponent({
   name: 'CharacterMetaForm',
-  components: { MaterialSelect, Card, TextField, Icon },
+  components: { MaterialSelect, TextField, Icon, EditableColumn },
   setup () {
     const { characterid, character, updatePlayerCharacterFields } = useCharacters()
     const { userSites } = useSites()
@@ -53,7 +67,7 @@ export default defineComponent({
         }
       }
     })
-    return { siteOpts, siteid, site, charname }
+    return { siteOpts, siteid, site, charname, character }
   }
 })
 </script>

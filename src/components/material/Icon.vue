@@ -69,6 +69,7 @@ export default defineComponent({
       'attachments',
       'avatar',
       'books',
+      'close',
       'd6',
       'd12',
       'd20',
