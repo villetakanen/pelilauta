@@ -12,17 +12,10 @@
           class="flex-span-1"
           style="border-bottom: solid 1px var(--color-b-h)"
         />
-        <EditableColumn
+        <CharacterDescriptionCol
           class="flex-span-2"
           style="border-bottom: solid 1px var(--color-b-h)"
-        >
-          <template #viewer>
-            <div :innerHTML="character.htmlContent" />
-          </template>
-          <template #editor>
-            <RichTextEditor />
-          </template>
-        </EditableColumn>
+        />
         <div class="debug flex-span-2">
           {{ character }}
         </div>
@@ -34,15 +27,14 @@
 <script lang="ts">
 import { defineComponent, onMounted, watch } from 'vue'
 import { useCharacters } from '@/state/characters'
-import RichTextEditor from '@/components/quill/RichTextEditor.vue'
 import { useSite } from '@/state/site'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import CharacterMetaForm from '@/components/character/CharacterMetaForm.vue'
-import EditableColumn from '@/components/layout/EditableColumn.vue'
+import CharacterDescriptionCol from '@/components/character/CharacterDescriptionCol.vue'
 
 export default defineComponent({
   name: 'CharacterView',
-  components: { RichTextEditor, CharacterMetaForm, EditableColumn },
+  components: { CharacterMetaForm, CharacterDescriptionCol },
   props: {
     id: {
       type: String,
