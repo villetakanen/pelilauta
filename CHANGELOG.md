@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.3.1](https://github.com/villetakanen/pelilauta/compare/v10.3.0...v10.3.1) (2021-09-14)
+
+
+### Bug Fixes
+
+* partial updates to color scheme ([f49e456](https://github.com/villetakanen/pelilauta/commit/f49e4561a5f9c16b1ec8b7a1671fb395edb81b4f))
+* saves character details ([d9315ad](https://github.com/villetakanen/pelilauta/commit/d9315ad9a00bdea39df1f01486effc782ca82e35))
+
 ## [10.3.0](https://github.com/villetakanen/pelilauta/compare/v10.2.0...v10.3.0) (2021-09-14)
 
 
