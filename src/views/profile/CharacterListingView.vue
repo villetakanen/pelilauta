@@ -2,9 +2,15 @@
   <div class="characterListingView">
     <ProfileToolbar />
     <div class="singleColumnLayout">
-      <h1 class="title">
-        {{ $t('profile.characterListing.title') }}
-      </h1>
+      <div class="toolbar">
+        <h1 class="title">
+          {{ $t('profile.characterListing.title') }}
+        </h1>
+        <div class="spacer" />
+        <MaterialButton :async-action="addNewCharacter">
+          {{ $t('action.create') }}
+        </MaterialButton>
+      </div>
       <div class="characterListing">
         <div
           v-for="pc in playerCharacters"
@@ -28,15 +34,22 @@
 import { defineComponent } from 'vue'
 import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 import { useCharacters } from '@/state/characters'
+import MaterialButton from '@/components/material/MaterialButton.vue'
 
 export default defineComponent({
   name: 'ProfileView',
   components: {
-    ProfileToolbar
+    ProfileToolbar,
+    MaterialButton
   },
   setup () {
-    const { playerCharacters } = useCharacters()
-    return { playerCharacters }
+    const { playerCharacters, createNewPlayerCharacter } = useCharacters()
+
+    async function addNewCharacter () {
+      return createNewPlayerCharacter({ name: 'N.N.' })
+    }
+
+    return { playerCharacters, addNewCharacter }
   }
 })
 </script>
