@@ -70,7 +70,7 @@ export default defineComponent({
 
     const save = async () => {
       try {
-        await updateProfile({ nick: '' + nickName.value })
+        await updateProfile({ nick: '' + formNickName.value })
         pushSnack(i18n.t('snacks.updateSuccess'))
       } catch {
         pushSnack(i18n.t('snacks.updateFailed'))
