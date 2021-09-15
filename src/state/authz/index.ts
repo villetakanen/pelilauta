@@ -10,6 +10,7 @@ import { doc, getFirestore, onSnapshot, deleteDoc } from '@firebase/firestore'
  * A reactive object, that holds all state internals for auth
  */
 const authState = reactive({
+  profileDeletionInProgress: false,
   missingProfileData: false,
   anonymous: false,
   displayName: '',
@@ -19,7 +20,7 @@ const authState = reactive({
 })
 
 const user = computed(() => (authState.user))
-const registrationIncomplete = computed(() => (authState.missingProfileData))
+const registrationIncomplete = computed(() => (!authState.profileDeletionInProgress && authState.missingProfileData))
 const displayName = computed(() => (authState.displayName))
 const frozen = computed(() => {
   const { frozen: frozenAuthors } = useMeta()
@@ -94,6 +95,7 @@ function createAuth (): void {
 }
 
 async function eraseProfile (): Promise<void> {
+  authState.profileDeletionInProgress = true
   await deleteDoc(
     doc(
       getFirestore(),
@@ -101,7 +103,8 @@ async function eraseProfile (): Promise<void> {
       user.value.uid
     )
   )
-  return getAuth().signOut()
+  getAuth().signOut()
+  authState.profileDeletionInProgress = false
 }
 
 function useAuth (): {
