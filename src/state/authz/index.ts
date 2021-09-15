@@ -94,6 +94,15 @@ function createAuth (): void {
   })
 }
 
+async function createProfile (nickname?: string): Promise<void> {
+  const user = getAuth().currentUser
+  const { updateProfile } = useProfile()
+  return updateProfile({
+    nick: nickname ?? user?.displayName ?? '',
+    photoURL: user?.photoURL ?? '/assets/void.svg'
+  })
+}
+
 async function eraseProfile (): Promise<void> {
   authState.profileDeletionInProgress = true
   await deleteDoc(
@@ -115,8 +124,9 @@ function useAuth (): {
     anonymousSession: ComputedRef<boolean>,
     showMemberTools: ComputedRef<boolean>
     showAdminTools: ComputedRef<boolean>
-    eraseProfile: () => Promise<void>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile }
+    eraseProfile: () => Promise<void>,
+    createProfile: (nick: string) => Promise<void>} {
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile }
 }
 
 export {
