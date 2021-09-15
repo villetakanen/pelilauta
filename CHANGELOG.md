@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.1](https://github.com/villetakanen/pelilauta/compare/v10.4.0...v10.4.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* profile creation correctly grabs the user photo ([b1a7070](https://github.com/villetakanen/pelilauta/commit/b1a70709142d208be57fdb1fcc9f33b609eace01))
+* profile deletion no longer blinks ([109de42](https://github.com/villetakanen/pelilauta/commit/109de421539f79b07c66281a0ba0dfefce672290))
+
 ## [10.4.0](https://github.com/villetakanen/pelilauta/compare/v10.3.2...v10.4.0) (2021-09-15)
 
 
