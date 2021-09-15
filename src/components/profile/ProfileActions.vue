@@ -15,6 +15,13 @@
       {{ $t('action.markAllRead') }}
     </MaterialButton>
     <div class="toolbar">
+      <MaterialButton
+        text
+        :action="forgetMe"
+      >
+        {{ $t('action.forgetMe') }}
+      </MaterialButton>
+
       <div class="spacer" />
       <MaterialButton
         text
