@@ -61,7 +61,10 @@ export default defineComponent({
     const { user } = useAuth()
     const { profile } = useProfile()
     const { allSites } = useSites()
-    const mySites = computed(() => (allSites.value.filter((val) => (Array.isArray(val.owners)) && val.owners.includes(user.value.uid))))
+    const mySites = computed(() => (allSites.value.filter((val) => (
+      (Array.isArray(val.owners) && val.owners.includes(user.value.uid)) ||
+      (Array.isArray(val.players) && val.players.includes(user.value.uid))
+    ))))
     return { profile, mySites, toDisplayString }
   }
 })
