@@ -10,6 +10,7 @@ import { doc, getFirestore, onSnapshot, deleteDoc } from '@firebase/firestore'
  * A reactive object, that holds all state internals for auth
  */
 const authState = reactive({
+  profileDeletionInProgress: false,
   missingProfileData: false,
   anonymous: false,
   displayName: '',
@@ -19,7 +20,7 @@ const authState = reactive({
 })
 
 const user = computed(() => (authState.user))
-const registrationIncomplete = computed(() => (authState.missingProfileData))
+const registrationIncomplete = computed(() => (!authState.profileDeletionInProgress && authState.missingProfileData))
 const displayName = computed(() => (authState.displayName))
 const frozen = computed(() => {
   const { frozen: frozenAuthors } = useMeta()
@@ -93,7 +94,17 @@ function createAuth (): void {
   })
 }
 
+async function createProfile (nickname?: string): Promise<void> {
+  const user = getAuth().currentUser
+  const { updateProfile } = useProfile()
+  return updateProfile({
+    nick: nickname ?? user?.displayName ?? '',
+    photoURL: user?.photoURL ?? '/assets/void.svg'
+  })
+}
+
 async function eraseProfile (): Promise<void> {
+  authState.profileDeletionInProgress = true
   await deleteDoc(
     doc(
       getFirestore(),
@@ -101,7 +112,8 @@ async function eraseProfile (): Promise<void> {
       user.value.uid
     )
   )
-  return getAuth().signOut()
+  getAuth().signOut()
+  authState.profileDeletionInProgress = false
 }
 
 function useAuth (): {
@@ -112,8 +124,9 @@ function useAuth (): {
     anonymousSession: ComputedRef<boolean>,
     showMemberTools: ComputedRef<boolean>
     showAdminTools: ComputedRef<boolean>
-    eraseProfile: () => Promise<void>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile }
+    eraseProfile: () => Promise<void>,
+    createProfile: (nick: string) => Promise<void>} {
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile }
 }
 
 export {

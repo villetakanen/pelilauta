@@ -48,8 +48,7 @@ import { getAuth } from '@firebase/auth'
 export default defineComponent({
   components: { Dialog, Card, TextField, MaterialButton },
   setup () {
-    const { registrationIncomplete, displayName } = useAuth()
-    const { updateProfile } = useProfile()
+    const { registrationIncomplete, displayName, createProfile } = useAuth()
     const { pushSnack } = useSnack()
     const i18n = useI18n()
     const router = useRouter()
@@ -70,7 +69,7 @@ export default defineComponent({
 
     const save = async () => {
       try {
-        await updateProfile({ nick: '' + formNickName.value })
+        await createProfile(formNickName.value)
         pushSnack(i18n.t('snacks.updateSuccess'))
       } catch {
         pushSnack(i18n.t('snacks.updateFailed'))

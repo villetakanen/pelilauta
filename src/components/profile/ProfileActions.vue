@@ -113,10 +113,12 @@ export default defineComponent({
     const forgetMeConfirm = ref('')
 
     async function forgetMe () {
+      forgetMeDialog.value = false
+      forgetMeConfirm.value = ''
       console.warn('Erasing the user profile from the store, and logging out the user. This can not be undone.')
       const { eraseProfile } = useAuth()
       await eraseProfile()
-      const router = useRouter()
+      pushSnack(i18n.t('profile.deleteCompleteSnackMessage'))
       router.push('/')
     }
 
