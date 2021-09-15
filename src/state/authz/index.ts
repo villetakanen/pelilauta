@@ -4,7 +4,7 @@ import { useAssets } from './assets'
 import { computed, ComputedRef, reactive } from 'vue'
 import { useMeta } from '../meta'
 import { onAuthStateChanged, getAuth, User } from '@firebase/auth'
-import { doc, getFirestore, onSnapshot } from '@firebase/firestore'
+import { doc, getFirestore, onSnapshot, deleteDoc } from '@firebase/firestore'
 
 /**
  * A reactive object, that holds all state internals for auth
@@ -93,6 +93,17 @@ function createAuth (): void {
   })
 }
 
+async function eraseProfile (): Promise<void> {
+  await deleteDoc(
+    doc(
+      getFirestore(),
+      'profiles',
+      user.value.uid
+    )
+  )
+  return getAuth().signOut()
+}
+
 function useAuth (): {
     user: ComputedRef<{ uid: string }>,
     registrationIncomplete: ComputedRef<boolean>,
@@ -100,8 +111,9 @@ function useAuth (): {
     frozen: ComputedRef<boolean>,
     anonymousSession: ComputedRef<boolean>,
     showMemberTools: ComputedRef<boolean>
-    showAdminTools: ComputedRef<boolean>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools }
+    showAdminTools: ComputedRef<boolean>
+    eraseProfile: () => Promise<void>} {
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile }
 }
 
 export {
