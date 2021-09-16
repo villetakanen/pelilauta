@@ -2,7 +2,7 @@
   <Dialog v-model="showDialog">
     <Card>
       <h1 class="title">
-        {{ $t('rte.wikilink.Title') }}
+        {{ $t('rte.wikilink.title') }}
       </h1>
       <TextField v-model="customUrl" />
       <TextField
@@ -18,6 +18,9 @@
       </MaterialButton>
       <div v-if="site.name && site.name.length > 0">
         <hr>
+        <h1 class="title">
+          {{ $t('rte.wikilink.inbound') }}
+        </h1>
         <MaterialSelect
           v-model="linkValue"
           :opts="pageOpts"
