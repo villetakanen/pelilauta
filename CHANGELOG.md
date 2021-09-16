@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.3](https://github.com/villetakanen/pelilauta/compare/v10.4.2...v10.4.3) (2021-09-16)
+
+
+### Bug Fixes
+
+* app tailer visibility ([9126659](https://github.com/villetakanen/pelilauta/commit/91266598e718df03c3388bd176c75e8c139258b3))
+* color code fixes post chroma ([a289576](https://github.com/villetakanen/pelilauta/commit/a289576ef6d0a977ce1030be70dcb7a184dd56b2))
+* removed duplicate "mekanismi" link from side ([551cc0e](https://github.com/villetakanen/pelilauta/commit/551cc0eef5f2a7638dba919a43f8c1c640b0a224))
+* wikilinks and headers for character editor ([c8f1aba](https://github.com/villetakanen/pelilauta/commit/c8f1abad77eae20cd8c7e13a4e0152a577864e07))
+
 ### [10.4.2](https://github.com/villetakanen/pelilauta/compare/v10.4.1...v10.4.2) (2021-09-16)
 
 
