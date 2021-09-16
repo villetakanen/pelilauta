@@ -15,7 +15,7 @@ $icon_size: 32px
   .ql-toolbar
     background-color: white
     button
-      background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.22)'}
+      background-color: var(--color-b-h)
       border: none
       height: $icon_size
       width: $icon_size
@@ -26,6 +26,10 @@ $icon_size: 32px
       background-position: top left
       &:first-of-type
         margin-left: 0
+      &.ql-h-1
+         background-image: url('./assets/icons/rte/rte-header-1.svg')
+      &.ql-h-2
+         background-image: url('./assets/icons/rte/rte-header-2.svg')
       &.ql-wikilink
          background-image: url('./assets/icons/rte/rte-link.svg')
       &.ql-bold
@@ -37,7 +41,7 @@ $icon_size: 32px
       &.ql-underline
         background-image: url('./assets/icons/rte/rte-underline.svg')
       &.ql-active
-        background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.33)'}
+        background-color: var(--color-b-f)
         
 
 // Base styles, Mobile First. Overwritten with include-media where needed

@@ -220,6 +220,14 @@
     },
     "nick": "Nimimerkki"
   },
+  "rte": {
+    "wikilink": {
+      "title": "Linkitä URL",
+      "inbound": "Linkitä sivu",
+      "urlfield": "Osoite",
+      "pageid": "Sivun nimi"
+    }
+  },
   "threads": {
     "sinceInTopic": "aiheessa",
     "discussion": "Keskustelu",

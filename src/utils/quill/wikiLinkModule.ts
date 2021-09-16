@@ -10,13 +10,13 @@ class WikiLinkBlot extends InlineBlot {
   static create (url: unknown) {
     const node = super.create()
     // This should likely be onClick="window.location.href=..." for routing instead of href attr.
+    console.log('create link', url)
     if (typeof url === 'string') {
       node.setAttribute('href', url)
     }
     // Okay to set other non-format related attributes
     // These are invisible to Parchment so must be static
     node.setAttribute('target', '_top')
-    node.setAttribute('onClick', 'window.location.href="//"')
     return node
   }
 

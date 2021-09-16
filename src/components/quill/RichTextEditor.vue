@@ -1,6 +1,15 @@
 <template>
   <div class="rtEditor">
     <div id="rte-toolbar">
+      <button
+        class="ql-header ql-h-1"
+        value="1"
+      />
+      <button
+        class="ql-header ql-h-2"
+        value="2"
+      />
+      &nbsp;
       <button class="ql-bold" />
       <button class="ql-italic" />
       <button class="ql-strike" />
@@ -59,7 +68,8 @@ export default defineComponent({
         'strike',
         'underline',
         'italic',
-        'wikilink'
+        'wikilink',
+        'header'
       ],
       modules: {
         wikilinks: true,
@@ -135,5 +145,5 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .rtEditor
-  background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.11)'}
+  background-color: var(--color-b-j)
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="sideNav">
+  <div id="sideNav">
     <transition name="fadeFast">
       <div
         v-if="!modelValue"
@@ -8,7 +8,7 @@
       />
     </transition>
     <div
-      id="sideNav"
+      id="drawer"
       :class="{ toggled: modelValue }"
     >
       <div class="menuContainer">
@@ -48,62 +48,45 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 #sideNav
-  position: absolute
-  z-index: 900
-  top: 56px
-  left: 0
-  width: 310px
-  height: 100vh
-  transition: transform 0.3s ease-in-out
+  position: relative
+  #drawer
+    width: 310px
 
 @include media('>=tablet')
   #sideNav
-    background-color: var(--chroma-clear)
     .back
       display: none
 
 @include media('<tablet')
   #sideNav
     position: fixed
-    box-shadow: 0 0 24px 0 var(--chroma-secondary-c)
-    background-color: var(--chroma-clear)
-    width: 84vw
-    top: 0px
     z-index: 20000
-    transform: translateX(0px)
-    overflow: hidden
-    overflow-y: scroll
-    .menuContainer
-      margin-top: 0px
-    &.toggled
-      transform: translateX(-100vw)
-  .overlay
-     position: fixed
-     top: 0
-     left: 0
-     height: 100vh
-     width: 100vw
-     background-color: var(--chroma-primary-a)
-     opacity: 0.37
-     z-index: 999
-     &.toggled
-       display: none
-
-#nav-screen-overlay
-  display: block
-  position: fixed
-  top: 0
-  left: 0
-  margin: 0
-  padding: 0
-  z-index: 2
-  height: 100vh
-  width: 100vw
-  background-color: var(--chroma-primary-a)
-  opacity: 0
-  cursor: default
-  pointer-events: none
-  transition: opacity 0.5s ease-in-out
+    top: 0
+    left: 0
+    background-color: white
+    #drawer
+      transition: transform 0.3s ease-in-out
+      width: 85vw
+      box-sizing: border-box
+      padding-right: 24px
+      position: fixed
+      z-index: 10000
+      top: 0
+      left: 0
+      transform: translateX(0)
+      background-color: white
+      box-shadow: 0 0 15vw 0 var(--color-a-a)
+      &.toggled
+        transform: translateX(-100vw)
+    .overlay
+      position: fixed
+      top: 0
+      left: 0
+      height: 100vh
+      width: 100vw
+      background-color: var(--color-b-c)
+      opacity: 0.37
+      z-index: 999
 
 .fadeFast-enter-active,
 .fadeFast-leave-active
