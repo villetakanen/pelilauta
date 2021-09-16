@@ -9,14 +9,7 @@
       >
         Pelilauta
       </SideNavMenuItem>
-      <SideNavMenuItem
-        icon="mekanismi"
-        to="/mekanismi"
-        mobile-only
-        @click="toggleNav"
-      >
-        Mekanismi
-      </SideNavMenuItem>
+
       <!-- Forum topics start here! *************************************** -->
       <li class="subtitle">
         {{ $t('sideNav.toForumLink') }}
