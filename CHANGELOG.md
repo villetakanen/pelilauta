@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.2](https://github.com/villetakanen/pelilauta/compare/v10.4.1...v10.4.2) (2021-09-16)
+
+
+### Bug Fixes
+
+* character adding works for user ([633d585](https://github.com/villetakanen/pelilauta/commit/633d58597c063ddfc5dc60ccfa681fc3059a66e4))
+* my sites shows games user plays ([0184326](https://github.com/villetakanen/pelilauta/commit/0184326862222c62d3b93545f9901f34996b2b00))
+* showmembertools for players ([dc98378](https://github.com/villetakanen/pelilauta/commit/dc98378dd76a4c354b40253767a316e9b7f56ee9))
+
 ### [10.4.1](https://github.com/villetakanen/pelilauta/compare/v10.4.0...v10.4.1) (2021-09-15)
 
 
