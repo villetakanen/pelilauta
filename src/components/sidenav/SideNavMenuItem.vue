@@ -59,11 +59,11 @@ export default defineComponent({
 .sideNavMenuItem
   @include TypeButton()
   a
-    color: var(--chroma-secondary-b)
+    color: var(--color-b-a)
     text-decoration: none
     padding-left: 8px
   &:hover
-    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.44)'}
+    background-color: var(--color-b-j)
     border-radius: 0 24px 24px 0
     .icon
       background-color: var(--chroma-clear)

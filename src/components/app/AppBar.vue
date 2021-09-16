@@ -9,7 +9,7 @@
     <AppBarSearch v-if="showMemberTools" />
     <InboxAction />
     <AppBarAction
-      :disabled="anonymousSession"
+      v-if="!anonymousSession"
       icon="avatar"
       to="/profile"
       :label="$t('sideNav.profile') "
@@ -58,9 +58,10 @@ export default defineComponent({
   margin: 0
   margin-bottom: 0px
   // border-bottom: solid 1px var(--chroma-primary-e)
-  padding: 4px
+  padding: 3px
   display: flex
   z-index: 100
+  border-bottom: solid 1px var(--color-b-i)
 
 @include media('>phone')
 

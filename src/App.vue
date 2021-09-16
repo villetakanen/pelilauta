@@ -122,6 +122,7 @@ export default defineComponent({
     width: calc(100vw - 310px)
     flex-shrink: 0
     margin: 0
+    min-height: 800px
 
 @include media('<tablet')
   #appContent
