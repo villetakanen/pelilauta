@@ -2,6 +2,77 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.2](https://github.com/villetakanen/pelilauta/compare/v10.4.1...v10.4.2) (2021-09-16)
+
+
+### Bug Fixes
+
+* character adding works for user ([633d585](https://github.com/villetakanen/pelilauta/commit/633d58597c063ddfc5dc60ccfa681fc3059a66e4))
+* my sites shows games user plays ([0184326](https://github.com/villetakanen/pelilauta/commit/0184326862222c62d3b93545f9901f34996b2b00))
+* showmembertools for players ([dc98378](https://github.com/villetakanen/pelilauta/commit/dc98378dd76a4c354b40253767a316e9b7f56ee9))
+
+### [10.4.1](https://github.com/villetakanen/pelilauta/compare/v10.4.0...v10.4.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* profile creation correctly grabs the user photo ([b1a7070](https://github.com/villetakanen/pelilauta/commit/b1a70709142d208be57fdb1fcc9f33b609eace01))
+* profile deletion no longer blinks ([109de42](https://github.com/villetakanen/pelilauta/commit/109de421539f79b07c66281a0ba0dfefce672290))
+
+## [10.4.0](https://github.com/villetakanen/pelilauta/compare/v10.3.2...v10.4.0) (2021-09-15)
+
+
+### Features
+
+* profile erase ux for profile page ([1ba48d7](https://github.com/villetakanen/pelilauta/commit/1ba48d7cf3241104158362840891b00db2968d6e))
+
+
+### Bug Fixes
+
+* new profile creation works ([e67dc9a](https://github.com/villetakanen/pelilauta/commit/e67dc9a4c88947dc6d4755689c5157957d50f583))
+
+### [10.3.2](https://github.com/villetakanen/pelilauta/compare/v10.3.1...v10.3.2) (2021-09-14)
+
+
+### Bug Fixes
+
+* character keeper rehash ([7035425](https://github.com/villetakanen/pelilauta/commit/7035425a7bf9a1e0218ca10495fa73dd4c3912a1))
+
+### [10.3.1](https://github.com/villetakanen/pelilauta/compare/v10.3.0...v10.3.1) (2021-09-14)
+
+
+### Bug Fixes
+
+* partial updates to color scheme ([f49e456](https://github.com/villetakanen/pelilauta/commit/f49e4561a5f9c16b1ec8b7a1671fb395edb81b4f))
+* saves character details ([d9315ad](https://github.com/villetakanen/pelilauta/commit/d9315ad9a00bdea39df1f01486effc782ca82e35))
+
+## [10.3.0](https://github.com/villetakanen/pelilauta/compare/v10.2.0...v10.3.0) (2021-09-14)
+
+
+### Features
+
+* editablecolumn added ([e682e08](https://github.com/villetakanen/pelilauta/commit/e682e08bab946bf5f8862afb6817202b27baead4))
+
+
+### Bug Fixes
+
+* correct row height for app name ([217fa1c](https://github.com/villetakanen/pelilauta/commit/217fa1c7a9b0c58fb192ceff34a0aa849bda140f))
+
+## [10.2.0](https://github.com/villetakanen/pelilauta/compare/v10.1.1...v10.2.0) (2021-09-13)
+
+
+### Features
+
+* characters can swap sites ([487603c](https://github.com/villetakanen/pelilauta/commit/487603c760668e7c9df6bbaed26c1550f1199115))
+
+
+### Bug Fixes
+
+* name field saves on blur ([8aa7c5c](https://github.com/villetakanen/pelilauta/commit/8aa7c5c0caed24652b42278569a4c0f2f1a24bdd))
+* show only sites where the user is a player ([363611a](https://github.com/villetakanen/pelilauta/commit/363611ad31da410fde5434453b5b0e1a9aebd39f))
+* small character sheet ui fixes ([544b852](https://github.com/villetakanen/pelilauta/commit/544b852a851beec01fe12a82c2e3a7dbf2dd3c92))
+* updates corrrect site for wikilinks ([3af7e96](https://github.com/villetakanen/pelilauta/commit/3af7e960c467278e91cc2c17cb2e50e5a147fb5f))
+
 ### [10.1.1](https://github.com/villetakanen/pelilauta/compare/v10.1.0...v10.1.1) (2021-09-13)
 
 
