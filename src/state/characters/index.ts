@@ -23,6 +23,17 @@ async function addPlayerCharacter (type: string) {
   }
 }
 
+async function createNewPlayerCharacter (fields: PartialPlayerCharacter) {
+  const { user } = useAuth()
+  return addDoc(
+    collection(getFirestore(), 'characters'),
+    {
+      player: user.value.uid,
+      ...fields
+    }
+  )
+}
+
 async function updatePlayerCharacterFields (id: string, fields: PartialPlayerCharacter) {
   return updateDoc(
     doc(getFirestore(), 'characters', id),
@@ -112,7 +123,8 @@ export function useCharacters (): {
     fetchPlayerCharacter: (id: string) => Promise<void>,
     character: ComputedRef<PlayerCharacter|undefined|null>,
     updatePlayerCharacterFields: (id: string, fields: PartialPlayerCharacter) => Promise<void>,
-    characterid: ComputedRef<string>
+    characterid: ComputedRef<string>,
+    createNewPlayerCharacter: (fields: PartialPlayerCharacter) => Promise<DocumentData>
     } {
   const { user } = useAuth()
   watch(() => user, (u) => {
@@ -121,5 +133,5 @@ export function useCharacters (): {
       playerid = u.value.uid
     }
   }, { immediate: true })
-  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character, updatePlayerCharacterFields, characterid }
+  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character, updatePlayerCharacterFields, characterid, createNewPlayerCharacter }
 }
