@@ -68,7 +68,7 @@ export default defineComponent({
 
 .wikiChangesCard
   display: block
-  background: linear-gradient(-44deg, var(--color-b-a) 0%, var(--color-b-c) 100%)
+  background: linear-gradient(-44deg, var(--color-a-a) 0%, var(--color-b-d) 100%)
   position: relative
   min-height: 72px
   img.logo
@@ -77,7 +77,8 @@ export default defineComponent({
     right: -98px
     height: 280px
     width: 280px
-    opacity: 0.22
+    opacity: 0.11
+    pointer-events: none
   h1
     @include TypeCardHeadline()
     // margin-left:76px
