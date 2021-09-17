@@ -1,27 +1,35 @@
 <template>
   <div class="wikiChangesItem">
-    <div class="site">
-      <div class="time">
-        {{ change }}
+    <router-link :to="`/site/${siteid}/page/${pageid}`">
+      <Icon
+        class="badge"
+        headline
+        dark
+        :name="badge + '-logo'"
+      />
+      <div class="site">
+        <div class="time">
+          {{ change }}
+        </div>
+        {{ siteName }}
       </div>
-      {{ siteName }}
-    </div>
-    <div class="page">
-      <router-link :to="`/site/${siteid}/page/${pageid}`">
+      <div class="page">
         {{ name }}
-      </router-link>
-    </div>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
+import Icon from '../material/Icon.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WikiChangesItem',
+  components: { Icon },
   props: {
     name: {
       type: String,
@@ -38,6 +46,11 @@ export default defineComponent({
     change: {
       type: String,
       required: true
+    },
+    badge: {
+      type: String,
+      required: false,
+      default: 'mekanismi'
     }
   },
   setup (props) {
@@ -52,14 +65,30 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 @import @/styles/include-media.scss
 
+.wikiChangesItem
+  position: relative
+  .badge
+    position: absolute
+    top: 0
+    left: 0
+    margin: 0
+    padding: 0
+    opacity: 0.42
+  .site, .page
+    margin-left: 54px
+  a
+    .page
+      color: white
+      text-decoration: none
+    .site
+      color: var(--color-b-f)
 div.site
   @include TypeBody2()
   color: var(--chroma-primary-h)
   line-height: 20px
-  margin: 0
   padding: 0
   div.time
-    color: var(--chroma-primary-e)
+    color: var(--color-b-g)
     float: right
 div.page
   @include TypeBody2()
