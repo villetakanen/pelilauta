@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.6](https://github.com/villetakanen/pelilauta/compare/v10.4.5...v10.4.6) (2021-09-17)
+
+
+### Bug Fixes
+
+* mekanismi card colors ([ae95454](https://github.com/villetakanen/pelilauta/commit/ae95454638b27c8c867b5638c884573aac38b8ae))
+* mekanismi card pointer events ([98b60ac](https://github.com/villetakanen/pelilauta/commit/98b60acff7d6f1d8d40345c89c486ea375d0f680))
+* time color on desktop ([524bc7f](https://github.com/villetakanen/pelilauta/commit/524bc7f538f379959a47706ffa0c73fce501d53e))
+
 ### [10.4.5](https://github.com/villetakanen/pelilauta/compare/v10.4.4...v10.4.5) (2021-09-17)
 
 
