@@ -8,7 +8,7 @@
     >
     <p>Pelilauta 2 <span style="opacity:0.5">– {{ version }}</span></p>
     <p>
-      <router-link to="/about">
+      <router-link to="/site/mekanismi/page/pelilauta-about">
         {{ $t('app.footnote') }}
       </router-link>
     </p>
