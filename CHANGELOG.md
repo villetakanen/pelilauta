@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.4](https://github.com/villetakanen/pelilauta/compare/v10.4.3...v10.4.4) (2021-09-17)
+
+
+### Bug Fixes
+
+* tailer ux polish ([4d0526d](https://github.com/villetakanen/pelilauta/commit/4d0526d32759eddf4bb28fad96a8ccf7c6a2a235))
+* wiki header no longer clips ([06c32f4](https://github.com/villetakanen/pelilauta/commit/06c32f4f7544ce35c4d8725cd44ea00647f9b0be))
+
 ### [10.4.3](https://github.com/villetakanen/pelilauta/compare/v10.4.2...v10.4.3) (2021-09-16)
 
 
