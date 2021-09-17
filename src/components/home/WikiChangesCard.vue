@@ -10,11 +10,11 @@
     >
     <h1>{{ $t('home.changesCard.title') }}</h1>
     <WikiChangesItem
-      v-for="item in recent"
+      v-for="item in pageLog"
       :key="item.changetime"
-      style="margin-left: 76px"
       :name="item.name"
       :pageid="item.pageid"
+      :badge="item.badge"
       :change="toDisplayString(item.changetime)"
       :siteid="item.siteid"
     />
@@ -36,11 +36,12 @@
 
 <script lang="ts">
 import { usePagelog } from '@/state/pagelog'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Action from '../material/Action.vue'
 import WikiChangesItem from './WikiChangesItem.vue'
 import Card from '../layout/Card.vue'
+import { useSites } from '@/state/sites'
 /**
  * A simple welcome card for anonymous visitors
  */
@@ -49,7 +50,14 @@ export default defineComponent({
   components: { Action, WikiChangesItem, Card },
   setup () {
     const { recent } = usePagelog()
-    return { recent, toDisplayString }
+    const { allSites } = useSites()
+    const pageLog = computed(() => (recent.value.map((r) => (
+      {
+        ...r,
+        badge: allSites.value.find((s) => (s.id === r.siteid))?.systemBadge ?? 'mekanismi'
+      }
+    ))))
+    return { pageLog, toDisplayString }
   }
 })
 </script>
@@ -60,25 +68,26 @@ export default defineComponent({
 
 .wikiChangesCard
   display: block
-  background: linear-gradient(-44deg, var(--chroma-primary-a) 0%, var(--chroma-primary-c) 100%)
+  background: linear-gradient(-44deg, var(--color-b-a) 0%, var(--color-b-c) 100%)
   position: relative
   min-height: 72px
   img.logo
     position: absolute
-    top: 8px
-    left: 8px
-    height: 72px
-    width: 72px
+    top: -22px
+    right: -98px
+    height: 280px
+    width: 280px
+    opacity: 0.22
   h1
     @include TypeCardHeadline()
-    margin-left:76px
+    // margin-left:76px
     color: var(--chroma-secondary-i)
   ul
     margin-left: 0
     padding-left: 18px
   p, li
     @include TypeBody2()
-    margin-left: 72px
+    // margin-left: 72px
     color: $color-dark-font-medium
     a
       color: $color-dark-font-medium
