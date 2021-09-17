@@ -1,21 +1,18 @@
 <template>
   <div class="footnote">
-    <span style="line-height: 56px;opacity:0.37; font-size:12px">Pelilauta</span>
     <img
-      style="max-height: 56px; max-width:96px; vertical-align: middle"
+      style="max-height: 56px; max-width:96px; float: left; padding-right: 12px; padding-bottom: 64px"
       src="@/assets/fox.svg"
       class="shadowLogo"
       alt="Pelilauta Logo"
     >
-    <span style="line-height: 56px;opacity:0.37; font-size:12px">{{ version }} </span>
-    <div style="text-align: center; padding:16px; line-height: 12px;opacity:0.37; font-size:12px">
+    <p>Pelilauta 2 <span style="opacity:0.5">– {{ version }}</span></p>
+    <p>
       <router-link to="/about">
         {{ $t('app.footnote') }}
       </router-link>
-    </div>
-    <div style="text-align: center; padding:16px; line-height: 12px;opacity:0.37; font-size:12px">
-      <a href="https://github.com/villetakanen/pelilauta">GitHub</a>
-    </div>
+    </p>
+    <p>Fork me @ <a href="https://github.com/villetakanen/pelilauta">GitHub</a></p>
   </div>
 </template>
 
@@ -32,12 +29,19 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
 .footnote
-  text-align: center
   padding:16px
+  padding-bottom: 64px
+  p
+    @include TypeBody2()
+    color: var(--color-a-d)
+    margin-bottom: 8px
   a
     text-decoration: none
+    color: var(--color-a-a)
 
 .shadowLogo
-  filter: drop-shadow( 0px 0px 12px var(--chroma-primary-c))
+  filter: drop-shadow( 0px 0px 12px var(--color-b-a))
 </style>
