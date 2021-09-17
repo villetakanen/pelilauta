@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.5](https://github.com/villetakanen/pelilauta/compare/v10.4.4...v10.4.5) (2021-09-17)
+
+
+### Bug Fixes
+
+* tailer about page link fixed ([40da89a](https://github.com/villetakanen/pelilauta/commit/40da89ac02da600cf1b5606d38f9e054a8fa37bd))
+* thread reader colors and margins on phone ([a43f928](https://github.com/villetakanen/pelilauta/commit/a43f928304e3348d6c403f79db193d893d57b74e))
+
 ### [10.4.4](https://github.com/villetakanen/pelilauta/compare/v10.4.3...v10.4.4) (2021-09-17)
 
 
