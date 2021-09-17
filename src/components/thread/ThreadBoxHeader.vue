@@ -19,6 +19,7 @@
     <div class="spacer" />
     <Action
       prepend="share"
+      style="margin:2px"
       @click="copyLink"
     >
       <span class="hideOnMobile">{{ $t('action.share') }}</span>
@@ -155,20 +156,25 @@ export default defineComponent({
   margin-top: -16px
   padding-top: 12px
   padding-bottom: 7px
-  border-bottom: solid 1px var(--chroma-primary-g)
+  border-bottom: solid 1px var(--color-b-h)
   margin-bottom: 8px
-  background-color: var(--color-fill-background)
   z-index: 5
+  background-color: white
   h1
     @include TypeHeadline5()
     margin: 0
     overflow: hidden
     text-overflow: ellipsis
-    color: var(--chroma-secondary-b)
+    color: var(--color-a-b)
   p.caption
     @include TypeCaption()
 
 @include media('<tablet')
   .threadBoxHeader
     height: auto
+    margin-left: -16px
+    padding-left: 16px
+    margin-right: -16px
+    padding-right: 4px
+    background-color: var(--color-b-j)
 </style>

@@ -100,7 +100,7 @@ export default defineComponent({
       @include TypeBody2()
   h2.section
     @include TypeHeadline5()
-    border-top: solid 1px var(--chroma-primary-g)
+    border-top: solid 1px var(--color-b-h)
     padding-top: 7px
     padding-bottom: 8px
   .youtubePreviewFrame
