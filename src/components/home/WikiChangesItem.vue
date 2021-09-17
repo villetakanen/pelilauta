@@ -88,7 +88,7 @@ div.site
   line-height: 20px
   padding: 0
   div.time
-    color: var(--chroma-primary-e)
+    color: var(--color-b-g)
     float: right
 div.page
   @include TypeBody2()
