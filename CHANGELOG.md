@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.7](https://github.com/villetakanen/pelilauta/compare/v10.4.6...v10.4.7) (2021-09-18)
+
+
+### Bug Fixes
+
+* firebase9 fixes for email login ([90d38cc](https://github.com/villetakanen/pelilauta/commit/90d38cce0c095f436137aedc89a2fe6949706bf0))
+* reply color scheme ([99e7920](https://github.com/villetakanen/pelilauta/commit/99e7920196940dd826cfa5c2683d0e478d273a10))
+* wiki changes lnf ([31102a3](https://github.com/villetakanen/pelilauta/commit/31102a3def47a5f4e915c99aac1ead57366bee34))
+
 ### [10.4.6](https://github.com/villetakanen/pelilauta/compare/v10.4.5...v10.4.6) (2021-09-17)
 
 
