@@ -66,22 +66,7 @@ export default defineComponent({
         .then((result) => {
           // Clear email from storage.
           window.localStorage.removeItem('emailForSignIn')
-          // You can access the new user via result.user
-          // Additional user info profile not available via:
-          // result.additionalUserInfo.profile == null
-          // You can check if the user is new or existing:
-          // result.additionalUserInfo.isNewUser
-          const { createProfile, profile } = useProfile()
-          if (!profile.value.uid) {
-            createProfile().then(() => {
-              console.warn(result)
-              router.push('/profile')
-            }).catch((error: Error) => {
-              pushSnack({ topic: error.message })
-              console.warn(error)
-              getAuth().signOut()
-            })
-          }
+          router.push('/profile')
         })
         .catch((error: Error) => {
           pushSnack({ topic: error.message })
