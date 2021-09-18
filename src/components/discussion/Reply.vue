@@ -177,7 +177,7 @@ export default defineComponent({
   @include TypeBody2()
   @include DontBreakOut()
   position: relative
-  background-color: #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
+  background-color: var(--color-c-j) // #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
   margin: 8px 4px
   padding: 16px
   border-radius: 0 8px 8px 8px
@@ -187,7 +187,7 @@ export default defineComponent({
   &.fromMe
     margin-left: 8px
     margin-right: 16px
-    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+    background-color: var(--color-e-i) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
     border-radius: 8px 0px 8px 8px
   .message
     margin-top:8px
@@ -208,16 +208,16 @@ export default defineComponent({
   font-weight: bold
   a
     text-decoration: none
-    color: var(--chroma-secondary-d)
+    color: var(--color-c-a)
 .fromMe .author
   a
-    color: var(--chroma-primary-d)
+    color: var(--color-a-d)
 
 .replyComment:after
   content: ""
   position: absolute
   border-style: solid
-  border-color: transparent #{'rgba(var(--chroma-secondary-g-rgb), 0.22)'}
+  border-color: transparent var(--color-c-j)
 
 .replyComment:not(.fromMe):after
   top: 0px // controls vertical position
@@ -230,7 +230,7 @@ export default defineComponent({
   right: -16px // value = - border-left-width - border-right-width */
   border-width: 0px 0px 16px 16px
   bottom: auto
-  border-color: transparent #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+  border-color: transparent var(--color-e-i)
 
 .stream-reply
   @include TypeBody2()
