@@ -1,5 +1,8 @@
 <template>
   <div class="threadEditor">
+    <p class="details">
+      {{ v.threadTopic.$model }} <span v-if="threadSite">/ {{ threadSite }}</span>
+    </p>
     <div class="threadHeader toolbar">
       <TextField
         v-model="v.threadTitle.$model"
@@ -9,54 +12,43 @@
         :error="v.threadTitle.$error"
       />
       <HamburgerMenuButton v-model="toggleMenu" />
-      <!-- MaterialSelect
+    </div>
+    <div
+      class="drawer toolbar"
+      :class="{ closed: !toggleMenu }"
+    >
+      <MaterialSelect
         v-model="v.threadTopic.$model"
         class="field"
         :opts="topicOpts"
         :label="$t('threads.topic')"
       />
-      <!- -MaterialButton
+      <MaterialButton
         icon
         :action="toggleInjectMedia"
       >
         <Icon name="youtube" />
       </MaterialButton>
-      <MaterialButton
-        icon
-        :action="toggle"
-      >
-        <Icon name="equalizer" />
-      </MaterialButton-->
+      <MaterialSelect
+        v-model="threadSite"
+        class="field"
+        :opts="siteList"
+        label="Site / Game"
+      />
+      <Toggle
+        v-model="threadSticky"
+        :label="$t('thread.stickyToggle')"
+      />
+      <Toggle
+        v-if="false"
+        :label="$t('thread.pushToStream')"
+      />
     </div>
-
     <transition name="rollin">
       <div
         v-if="toggleMedia"
       >
         <MediaTool :thread="thread" />
-      </div>
-    </transition>
-
-    <transition name="rollin">
-      <div
-        v-if="toggleSettings"
-        class="additionalFields toolbar"
-      >
-        <Toggle
-          v-model="threadSticky"
-          :label="$t('thread.stickyToggle')"
-        />
-        <Toggle
-          v-if="false"
-          :label="$t('thread.pushToStream')"
-        />
-        <div class="spacer" />
-        <MaterialSelect
-          v-model="threadSite"
-          class="field"
-          :opts="siteList"
-          label="Site / Game"
-        />
       </div>
     </transition>
 
@@ -95,7 +87,7 @@ import TextField from '../material/TextField.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import MaterialButton from '../material/MaterialButton.vue'
-// import Icon from '../material/Icon.vue'
+import Icon from '../material/Icon.vue'
 import { useAuth } from '@/state/authz'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
@@ -114,7 +106,7 @@ export default defineComponent({
     TextField,
     MaterialSelect,
     MaterialButton,
-    // Icon,
+    Icon,
     Toggle,
     MediaTool,
     RichTextEditor,
@@ -137,6 +129,7 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const toggleMenu = ref(false)
     const toggleSettings = ref(false)
     const toggle = () => { toggleSettings.value = !toggleSettings.value }
     const toggleMedia = ref(false)
@@ -226,7 +219,7 @@ export default defineComponent({
       return list
     })
 
-    return { threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky, siteList, threadSite, toggleInjectMedia, toggleMedia }
+    return { toggleMenu, threadContent, threadTitle, topicOpts, threadTopic, v, save, toggleSettings, toggle, threadSticky, siteList, threadSite, toggleInjectMedia, toggleMedia }
   }
 })
 </script>
@@ -237,23 +230,43 @@ export default defineComponent({
 
 .threadEditor
   padding-top: 8px
+  .details
+    @include TypeCaption()
 
-.editor
-  border: solid 1px var(--color-fill-primary)
-.threadHeader
-  margin-bottom: 8px
-  div
-    margin: 0
-  div+div
-    margin: 0 8px
+.drawer
+  transition: all 200ms ease-in-out
+  max-height: 200px
+  overflow: hidden
+  background-color: var(--color-b-i)
+  padding: 8px 16px
+  margin: 0 -16px
+  box-shadow: inset 0px 0px 16px 0px var(--color-b-f)
+  border-top: solid 1px var(--color-b-f)
+  border-bottom: solid 1px var(--color-b-f)
+  opacity: 1
+  flex-wrap: wrap
+  gap: 4px
+  &.closed
+    max-height: 0px
+    padding: 0 16px
+    margin: 0 -16px
+    border: none
+    opacity: 0
+
 @include media('<tablet')
   .threadEditor
     .threadHeader
-      display: block
       .field
         margin-bottom: 8px
         margin-left: 0
-        min-width: calc(100vw - 112px)
+        width: calc(100vw - 78px)
+    .drawer
+      .field
+        width: calc(100vw - 144px)
+        flex-grow: 1
+      div
+        margin-left: 0
+        margin-right: 0
 
 .additionalFields
   border: solid 2px var(--chroma-primary-g)
