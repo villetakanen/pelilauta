@@ -1,8 +1,5 @@
 <template>
   <div class="threadEditor">
-    <p class="details">
-      {{ v.threadTopic.$model }} <span v-if="threadSite">/ {{ threadSite }}</span>
-    </p>
     <div class="threadHeader toolbar">
       <TextField
         v-model="v.threadTitle.$model"
@@ -55,6 +52,9 @@
     <RichTextEditor
       v-model="threadContent"
     />
+    <div class="toolbar extras">
+      <TopicSelector v-model="v.threadTopic.$model" />
+    </div>
 
     <div
       class="toolbar"
@@ -97,6 +97,7 @@ import { useSites } from '@/state/sites'
 import MediaTool from './MediaTool.vue'
 import RichTextEditor from '../quill/RichTextEditor.vue'
 import HamburgerMenuButton from '../material/HamburgerMenuButton.vue'
+import TopicSelector from './TopicSelector.vue'
 /**
  * An editor form for Thread data.
  */
@@ -110,7 +111,8 @@ export default defineComponent({
     Toggle,
     MediaTool,
     RichTextEditor,
-    HamburgerMenuButton
+    HamburgerMenuButton,
+    TopicSelector
   },
   props: {
     thread: {
@@ -230,8 +232,8 @@ export default defineComponent({
 
 .threadEditor
   padding-top: 8px
-  .details
-    @include TypeCaption()
+  .extras
+    margin-top: 8px
 
 .drawer
   transition: all 200ms ease-in-out
