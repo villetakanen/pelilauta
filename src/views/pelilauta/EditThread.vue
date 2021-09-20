@@ -1,20 +1,18 @@
 <template>
-  <div class="viewThread contentGrid">
-    <ThreadBox>
-      <ThreadEditor
-        :thread="thread"
-        :mode="mode"
-        :topic="topic"
-      />
-    </ThreadBox>
+  <div class="editThread singleColumnLayout">
+    <ThreadEditor
+      :thread="thread"
+      :mode="mode"
+      :topic="topic"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import ThreadBox from '@/components/thread/ThreadBox.vue'
 import ThreadEditor from '@/components/thread/ThreadEditor.vue'
+import { useSite } from '@/state/site'
 import { useThreads } from '@/state/threads/threads'
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, watch } from 'vue'
 
 /**
  * A Router view for a Stream Thread in an edit mode.
@@ -27,7 +25,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'EditThread',
   components: {
-    ThreadBox,
     ThreadEditor
   },
   props: {
@@ -47,9 +44,19 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { subscribeThread } = useThreads()
+    const { subscribeThread, thread } = useThreads()
     subscribeThread(props.threadid)
-    const { thread } = useThreads()
+
+    onMounted(() => {
+      watch(thread, (t) => {
+        if (t.site) {
+          // The thread is linked to a site, lets update the state to
+          // use the linked site.
+          useSite(t.site)
+        }
+      })
+    })
+
     return { thread }
   }
 })

@@ -233,6 +233,10 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
 @import @/styles/include-media.scss
+
+.threadEditor
+  padding-top: 8px
+
 .editor
   border: solid 1px var(--color-fill-primary)
 .threadHeader
