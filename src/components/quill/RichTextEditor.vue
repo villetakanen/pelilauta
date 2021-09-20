@@ -1,6 +1,9 @@
 <template>
   <div class="rtEditor">
-    <div id="rte-toolbar">
+    <div
+      id="rte-toolbar"
+      class="toolbar"
+    >
       <button
         class="ql-header ql-h-1"
         value="1"
@@ -9,12 +12,12 @@
         class="ql-header ql-h-2"
         value="2"
       />
-      &nbsp;
+      <div class="spacer" />
       <button class="ql-bold" />
       <button class="ql-italic" />
       <button class="ql-strike" />
       <button class="ql-underline" />
-      &nbsp;
+      <div class="spacer" />
       <button class="ql-wikilink" />
     </div>
     <div

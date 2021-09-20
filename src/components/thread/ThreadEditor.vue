@@ -8,13 +8,14 @@
         :label="$t('threads.title')"
         :error="v.threadTitle.$error"
       />
-      <MaterialSelect
+      <HamburgerMenuButton v-model="toggleMenu" />
+      <!-- MaterialSelect
         v-model="v.threadTopic.$model"
         class="field"
         :opts="topicOpts"
         :label="$t('threads.topic')"
       />
-      <MaterialButton
+      <!- -MaterialButton
         icon
         :action="toggleInjectMedia"
       >
@@ -25,7 +26,7 @@
         :action="toggle"
       >
         <Icon name="equalizer" />
-      </MaterialButton>
+      </MaterialButton-->
     </div>
 
     <transition name="rollin">
@@ -59,12 +60,10 @@
       </div>
     </transition>
 
-    <div class="editor">
-      <QuillEditor
-        v-model="threadContent"
-        toolbar
-      />
-    </div>
+    <RichTextEditor
+      v-model="threadContent"
+    />
+
     <div
       class="toolbar"
       style="margin-top:8px"
@@ -93,11 +92,10 @@ import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType, Ref, ref } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
-import QuillEditor from '../quill/QuillEditor.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import MaterialButton from '../material/MaterialButton.vue'
-import Icon from '../material/Icon.vue'
+// import Icon from '../material/Icon.vue'
 import { useAuth } from '@/state/authz'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
@@ -105,6 +103,8 @@ import { useRouter } from 'vue-router'
 import Toggle from '../material/Toggle.vue'
 import { useSites } from '@/state/sites'
 import MediaTool from './MediaTool.vue'
+import RichTextEditor from '../quill/RichTextEditor.vue'
+import HamburgerMenuButton from '../material/HamburgerMenuButton.vue'
 /**
  * An editor form for Thread data.
  */
@@ -113,11 +113,12 @@ export default defineComponent({
   components: {
     TextField,
     MaterialSelect,
-    QuillEditor,
     MaterialButton,
-    Icon,
+    // Icon,
     Toggle,
-    MediaTool
+    MediaTool,
+    RichTextEditor,
+    HamburgerMenuButton
   },
   props: {
     thread: {
