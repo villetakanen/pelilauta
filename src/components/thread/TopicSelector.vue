@@ -85,6 +85,7 @@ export default defineComponent({
   .selectDialog
     @include Rise3()
     position: absolute
+    z-index: 1000
     top: 16px
     left: 16px
     background-color: var(--color-c-j)

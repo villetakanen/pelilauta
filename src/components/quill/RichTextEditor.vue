@@ -149,4 +149,5 @@ export default defineComponent({
 <style lang="sass" scoped>
 .rtEditor
   background-color: var(--color-b-j)
+  min-height: 240px
 </style>

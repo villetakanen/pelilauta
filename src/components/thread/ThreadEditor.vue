@@ -8,9 +8,9 @@
         :label="$t('threads.title')"
         :error="v.threadTitle.$error"
       />
-      <HamburgerMenuButton v-model="toggleMenu" />
+      <!--HamburgerMenuButton v-model="toggleMenu" /-->
     </div>
-    <div
+    <!--div
       class="drawer toolbar"
       :class="{ closed: !toggleMenu }"
     >
@@ -47,19 +47,18 @@
       >
         <MediaTool :thread="thread" />
       </div>
-    </transition>
+    </transition-->
 
     <RichTextEditor
       v-model="threadContent"
     />
-    <div class="toolbar extras">
-      <TopicSelector v-model="v.threadTopic.$model" />
-    </div>
 
     <div
       class="toolbar"
       style="margin-top:8px"
     >
+      <TopicSelector v-model="v.threadTopic.$model" />
+      <SiteSelector v-model="threadSite" />
       <div class="spacer" />
       <MaterialButton
         id="threadEditorCancelButton"
@@ -82,22 +81,23 @@ import { useMeta } from '@/state/meta'
 import { createThread, updateThread } from '@/state/threads/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType, Ref, ref } from 'vue'
-import MaterialSelect from '../material/MaterialSelect.vue'
+// import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import MaterialButton from '../material/MaterialButton.vue'
-import Icon from '../material/Icon.vue'
+// import Icon from '../material/Icon.vue'
 import { useAuth } from '@/state/authz'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import Toggle from '../material/Toggle.vue'
+// import Toggle from '../material/Toggle.vue'
 import { useSites } from '@/state/sites'
-import MediaTool from './MediaTool.vue'
+// import MediaTool from './MediaTool.vue'
 import RichTextEditor from '../quill/RichTextEditor.vue'
-import HamburgerMenuButton from '../material/HamburgerMenuButton.vue'
+// import HamburgerMenuButton from '../material/HamburgerMenuButton.vue'
 import TopicSelector from './TopicSelector.vue'
+import SiteSelector from './SiteSelector.vue'
 /**
  * An editor form for Thread data.
  */
@@ -105,14 +105,15 @@ export default defineComponent({
   name: 'ThreadEditor',
   components: {
     TextField,
-    MaterialSelect,
+    // MaterialSelect,
     MaterialButton,
-    Icon,
-    Toggle,
-    MediaTool,
+    // Icon,
+    // Toggle,
+    // MediaTool,
     RichTextEditor,
-    HamburgerMenuButton,
-    TopicSelector
+    // HamburgerMenuButton,
+    TopicSelector,
+    SiteSelector
   },
   props: {
     thread: {
@@ -261,7 +262,7 @@ export default defineComponent({
       .field
         margin-bottom: 8px
         margin-left: 0
-        width: calc(100vw - 78px)
+        // width: calc(100vw - 78px)
     .drawer
       .field
         width: calc(100vw - 144px)
