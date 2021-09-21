@@ -69,6 +69,8 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/include-media.scss
+
 .loginButton
   margin: 0 auto
   text-align: center
@@ -90,20 +92,10 @@ export default defineComponent({
   position: absolute
   top: 5px
   left: 9px
-/* #app
-  .loginButton
-    padding: 8px
-    margin: 0 auto
-    text-align: center
-  .googleLoginButton
-    background-color: white
-    color: #666
-    width: 230px
-    text-align: left
 
-  .facebookLoginButton
-    background-color: #4267B2
-    color: rgba(255,255,255,0.8)
-    width: 230px
-    text-align: left */
+@include media('<tablet')
+  .googleLoginButton, .facebookLoginButton
+    width: 100%
+    text-align: center
+    margin-top: 16px
 </style>

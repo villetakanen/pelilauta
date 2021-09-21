@@ -10,11 +10,6 @@
       <h1 class="title">
         {{ $t('login.emailLoginMessage') }}
       </h1>
-      <p class="caption">
-        <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
-          {{ $t('login.emailLoginDataInfoLink') }}
-        </router-link>
-      </p>
     </div>
     <div>
       <TextField
@@ -112,13 +107,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-@import @/styles/material-typography.sass
-
-.caption
-  @include TypeCaption()
-  margin-bottom: 16px !important
-  a
-    text-decoration: none
-</style>
