@@ -86,9 +86,6 @@ async function init () {
   const streamRef = collection(db, 'stream')
   const q = query(streamRef, orderBy('flowTime', 'desc'), limit(30))
 
-  const test = await getDocsFromServer(q)
-  console.log('test', test)
-
   onSnapshot(q, (snapshot) => {
     console.debug('got strean of', snapshot.size)
     snapshot.docChanges().forEach((change) => {
@@ -98,13 +95,8 @@ async function init () {
   },
   (error: FirestoreError) => {
     console.error(error)
-  },
-  () => {
-    console.debug('snapshot completed')
   })
-
   logEvent(getAnalytics(), 'firestore_stream_subscribed')
-  console.debug('firestore_stream_subscribed', db)
 }
 
 /**
