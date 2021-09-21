@@ -1,5 +1,5 @@
 <template>
-  <div class="singleColumnLayout">
+  <div class="loginView singleColumnLayout">
     <EmailLoginForm />
     <SocialAuthCard />
   </div>
@@ -17,3 +17,8 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.loginView
+  padding-top: 16px
+</style>
