@@ -19,6 +19,7 @@
       <button class="ql-underline" />
       <div class="spacer" />
       <button class="ql-wikilink" />
+      <button class="ql-image" />
     </div>
     <div
       ref="editor"
@@ -124,20 +125,21 @@ export default defineComponent({
         context.emit('update:content', quill?.root.innerHTML ?? '')
       })
 
-      // *** TODO CLEAR DOWN FROM HERE ****************************************
-
       hoistClipboardConfig(quill)
+
       // Reset field, when model is reset. Do not inject other
       // changes to the editor, to avoid contentEditable issues.
       watch(() => props.content, (value) => {
         if (!value) quill?.setText('')
       })
+
       // we need to handle disable prop with
       // quill.enable(boolean) instead of DOM attrs.
       watch(() => props.disabled, (value) => {
         quill?.enable(!value)
       })
     }
+
     return { editor }
   }
 })
