@@ -36,7 +36,7 @@ import { computed, defineComponent, ref } from 'vue'
 import Icon from '../material/Icon.vue'
 
 export default defineComponent({
-  name: 'HamburgerMenuButton',
+  name: 'TopicSelector',
   components: { Icon },
   props: {
     modelValue: {
