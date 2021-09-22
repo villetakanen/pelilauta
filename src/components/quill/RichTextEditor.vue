@@ -100,7 +100,10 @@ export default defineComponent({
     const initialize = () => {
       // Just sanity: if we try to initialize before the element has
       // been mounted, editor ref is null
-      if (!editor.value) return
+      if (!editor.value) {
+        console.warn('initialize() can not be called before the onMounted lifecycle event.')
+        return
+      }
 
       // Init the quill-editor to the editor field
       quill = new Quill(editor.value, config)
