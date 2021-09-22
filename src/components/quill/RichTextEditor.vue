@@ -31,21 +31,8 @@
 <script lang="ts">
 import { ComponentPublicInstance, defineComponent, onMounted, ref, watch } from 'vue'
 import Quill from 'quill'
-import Delta from 'quill-delta'
-import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
+import useQuill from '@/composables/useQuill'
 import WikiLinkDialog from './WikiLinkDialog.vue'
-
-function hoistClipboardConfig (quill:Quill) {
-  quill.clipboard.addMatcher(Node.ELEMENT_NODE,
-    function (node, delta) {
-      return delta.compose(new Delta().retain(delta.length(),
-        {
-          color: false,
-          background: false
-        }))
-    }
-  )
-}
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
@@ -89,9 +76,6 @@ export default defineComponent({
       }
     }
 
-    // Implement and register module
-    Quill.register('modules/wikilinks', wikiLinkModule)
-
     onMounted(() => {
       // We want to inject the Quill Editor only after this element has been
       // mounted, to have all the DOM we use from Quill, available
@@ -107,7 +91,7 @@ export default defineComponent({
       }
 
       // Init the quill-editor to the editor field
-      quill = new Quill(editor.value, config)
+      quill = useQuill(editor.value, config)
 
       // If we have content at this point, inject it to editorfield
       // this could be done with v-once also, but that wound move the
@@ -122,10 +106,8 @@ export default defineComponent({
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
-        context.emit('update:content', quill?.root.innerHTML ?? '')
+        context.emit('update:content', quill?.root.innerHTML || '')
       })
-
-      hoistClipboardConfig(quill)
 
       // Reset field, when model is reset. Do not inject other
       // changes to the editor, to avoid contentEditable issues.
