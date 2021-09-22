@@ -7,9 +7,9 @@
       :error="v.threadTitle.$error"
     />
     <RichTextEditor
-      v-model:content="v.threadTitle.$model"
+      v-model:content="v.threadContent.$model"
       class="contentEditor"
-      :error="v.threadTitle.$error"
+      :error="v.threadContent.$error"
     />
     <div
       class="toolbar editorActions"

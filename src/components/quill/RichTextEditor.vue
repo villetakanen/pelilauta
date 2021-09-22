@@ -134,12 +134,6 @@ export default defineComponent({
       watch(() => props.disabled, (value) => {
         quill?.enable(!value)
       })
-
-      document.addEventListener('quill.mention', function (e: Event) {
-        e.preventDefault()
-        const ce = e as CustomEvent
-        context.emit('mention', ce.detail)
-      })
     }
     return { editor }
   }
