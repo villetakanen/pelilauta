@@ -127,10 +127,10 @@ export default defineComponent({
       }
       if (createANewThread.value) {
         const id = await createThread(data)
-        router.push(`/threads/${id}/view`)
+        router.push(`/thread/${id}/view`)
       } else {
         await updateThread(props.threadid, data)
-        router.push(`/threads/${props.threadid}/view`)
+        router.push(`/thread/${props.threadid}/view`)
       }
     }
 
