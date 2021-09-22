@@ -1,5 +1,5 @@
 import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
-import Quill, { QuillOptionsStatic } from 'quill'
+import Quill from 'quill'
 import Delta from 'quill-delta'
 
 // Implement and register module
@@ -17,8 +17,32 @@ function hoistClipboardConfig (quill:Quill) {
   )
 }
 
-export default function useQuill (container: Element, options?: QuillOptionsStatic | undefined): Quill {
-  const q = new Quill(container, options)
+export default function useQuill (container: Element): Quill {
+  const config = {
+    formats: [
+      'bold',
+      'strike',
+      'underline',
+      'italic',
+      'wikilink',
+      'header'
+    ],
+    modules: {
+      wikilinks: true,
+      toolbar: {
+        container: '#rte-toolbar',
+        handlers: {
+          wikilink: () => {
+            document.dispatchEvent(new CustomEvent('rte-wikilink-tool', {
+              detail: q.getSelection()?.index
+            }))
+          }
+        }
+      }
+    }
+  }
+
+  const q = new Quill(container, config)
   hoistClipboardConfig(q)
   return q
 }

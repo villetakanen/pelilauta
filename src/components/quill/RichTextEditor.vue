@@ -53,29 +53,6 @@ export default defineComponent({
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
     let quill:null|Quill = null
 
-    const config = {
-      formats: [
-        'bold',
-        'strike',
-        'underline',
-        'italic',
-        'wikilink',
-        'header'
-      ],
-      modules: {
-        wikilinks: true,
-        toolbar: {
-          container: '#rte-toolbar',
-          handlers: {
-            wikilink: () => {
-              console.log('!')
-              document.dispatchEvent(new Event('rte-wikilink-tool'))
-            }
-          }
-        }
-      }
-    }
-
     onMounted(() => {
       // We want to inject the Quill Editor only after this element has been
       // mounted, to have all the DOM we use from Quill, available
@@ -91,7 +68,7 @@ export default defineComponent({
       }
 
       // Init the quill-editor to the editor field
-      quill = useQuill(editor.value, config)
+      quill = useQuill(editor.value)
 
       // If we have content at this point, inject it to editorfield
       // this could be done with v-once also, but that wound move the
@@ -100,9 +77,9 @@ export default defineComponent({
       //
       // Please note: we react to v-model:content changes from
       // the parent a bit later
-      if (props.content) {
-        if (quill) quill.root.innerHTML = props.content
-      }
+      // if (props.content) {
+      if (quill) quill.root.innerHTML = props.content
+      // }
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
