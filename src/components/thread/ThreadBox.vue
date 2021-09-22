@@ -10,11 +10,13 @@
 
 .threadBox
   @include Rise1()
-  background-color: var(--chroma-clear)
   margin: 8px 8px
   padding: 16px
 
 @include media('<tablet')
   .threadBox
+    @include Rise0()
     margin: 0px
+    padding: 0px
+    padding: 8px
 </style>

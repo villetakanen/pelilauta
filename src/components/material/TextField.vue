@@ -1,6 +1,6 @@
 <template>
   <div
-    class="materialTextfield"
+    class="textField"
     :class="{withLabel: true && label, error: error }"
   >
     <input
@@ -52,53 +52,49 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 @import @/styles/layout.sass
 @import @/styles/include-media.scss
 
-div.materialTextfield
+div.textField
   width: calc(100% - 8px)
-  border-bottom: solid 1px var(--chroma-secondary-f)
-  background-color: var(--chroma-secondary-i)
+  border-bottom: solid 1px var(--color-b-g)
+  background-color: var(--color-b-j)
   padding-left: 4px
   padding-right: 4px
   position: relative
   margin-top: 4px
   margin-bottom: 4px
-  &.withLabel
-    input
-      margin-top: 8px
+  border-top-right-radius: 12px
   input
+    @include TypeBody1()
     border: 0
-    height: 28px
+    height: 24px
     margin-top: 2px
     background: none
     width: 100%
+    padding-top:14px
+    padding-bottom: 2px
     &.header
       @include TypeHeadline5()
-      padding-top: 16px
+      padding-top: 12px
+      padding-bottom: 4px
   label
     position: absolute
     left: 4px
-    top: 14px
+    top: 4px
     width: 100%
     transition: 0.2s
     font-size: 14px
     pointer-events: none
     line-height: 14px
-    color: var(--chroma-secondary-e)
+    color: var(--color-a-d)
   &:hover
-    background-color: var(--chroma-secondary-h)
+    background-color: var(--color-b-i)
     border-bottom: solid 1px var(--chroma-secondary-b)
   &:focus
-    background-color: var(--chroma-secondary-h)
+    background-color: var(--color-b-i)
     border-bottom: solid 1px var(--chroma-secondary-b)
-  .toSide, input:focus + label
-      top: 4px
-      left: 4px
-      font-size: 10px
-      line-height: 10px
   &.error
     border-bottom: solid 1px var(--chroma-alert)
     background-color: #{'rgba(var(--chroma-alert-rgb), 0.11)'}

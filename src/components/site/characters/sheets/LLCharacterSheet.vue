@@ -69,10 +69,10 @@ export default defineComponent({
     const stats = ref(new Map<string, string|number|boolean>())
     watch(() => props.character, (c) => {
       name.value = c.name
-      description.value = c.description
+      // description.value = c.description
 
       // get all DD stats here
-      if (c.stats) stats.value = c.stats
+      // if (c.stats) stats.value = c.stats
     }, {
       immediate: true
     })
@@ -80,7 +80,7 @@ export default defineComponent({
     async function pushChanges () {
       const char = { ...props.character }
       char.name = name.value
-      char.description = description.value
+      // char.description = description.value
       return updatePlayerCharacter(char)
     }
     return { description, pushChanges, name, stats }

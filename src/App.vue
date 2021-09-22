@@ -3,20 +3,18 @@
   <AppBar />
   <div id="AppBarSubmenu" />
   <!-- The side navigation drawer, with mobile and desktop modes distinctively -->
-  <SideNav v-model="navModel" />
-  <div style="position: relative">
-    <div
-      id="mainContentWrapper"
-      :class="{toggle: !navModel}"
-    >
-      <main>
-        <FrozenBar v-if="frozen" />
-        <router-view />
-        <MainTailer />
-      </main>
-    </div>
+  <FrozenBar v-if="frozen" />
+
+  <!-- App Content wrapper -->
+  <div id="appContent">
+    <SideNav v-model="navModel" />
+    <main>
+      <router-view />
+    </main>
   </div>
-  <CompleteRegistrationDialog />
+  <MainTailer />
+
+  <!-- Fixed floating components -->
   <BottomFloatContainer>
     <template #left>
       <SnackBar />
@@ -25,6 +23,9 @@
       <div id="BottomFabsContainer" />
     </template>
   </BottomFloatContainer>
+
+  <!-- App level dialogs -->
+  <CompleteRegistrationDialog />
 </template>
 
 <script lang="ts">
@@ -113,14 +114,19 @@ export default defineComponent({
 <style lang="sass">
 @import styles/base.sass
 
-.topLeftFab
-  position: fixed
-  top: 16px
-  left: 16px
-  z-index: 10000
+#appContent
+  display: flex
+  background-color: white
+  padding-bottom: 24px
+  main
+    width: calc(100vw - 310px)
+    flex-shrink: 0
+    margin: 0
+    min-height: 800px
 
-@include media('>=tablet')
-  #mainContentWrapper
-    margin-left: 310px
-
+@include media('<tablet')
+  #appContent
+    display: block
+    main
+      width: 100vw
 </style>

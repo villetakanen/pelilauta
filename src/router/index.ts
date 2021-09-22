@@ -95,21 +95,21 @@ const routes: Array<RouteRecordRaw> = [
     path: '/thread/:threadid/edit',
     name: 'threads.edit',
     // route level code-splitting
-    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThreadView.vue'),
     props: true
   },
   {
     path: '/stream/add/thread',
     name: 'threads.create',
     // route level code-splitting
-    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
-    props: { threadid: '', mode: 'new', topic: '' }
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThreadView.vue'),
+    props: false
   },
   {
     path: '/stream/topic/:topic/post',
     name: 'stream.topic.post',
     // route level code-splitting
-    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThread.vue'),
+    component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/EditThreadView.vue'),
     props: (route) => ({ threadid: '', mode: 'new', topic: route.params.topic })
   },
   {
@@ -163,7 +163,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/site/:siteid/thread/new',
-    component: () => import(/* webpackChunkName: "sites" */ '../views/pelilauta/EditThread.vue'),
+    component: () => import(/* webpackChunkName: "sites" */ '../views/pelilauta/EditThreadView.vue'),
     props: true,
     name: 'site.page.new'
   },
@@ -211,7 +211,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/mekanismi/sites/profile',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/ProfileSites.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/profile/SiteListingView.vue'),
     props: true,
     name: 'mekanismi.profile.sites'
   },
@@ -236,7 +236,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.add.thread',
     path: '/site/:siteid/add/thread',
     props: true,
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/pelilauta/EditThread.vue')
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/pelilauta/EditThreadView.vue')
   },
   // Site: Page (c)RUD routes
   {
@@ -244,6 +244,19 @@ const routes: Array<RouteRecordRaw> = [
     path: '/site/:siteid/page/:pageid/edit',
     props: true,
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue')
+  },
+  // Character related routes
+  {
+    name: 'character.view',
+    path: '/character/:id',
+    props: true,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/characters/CharacterView.vue')
+  },
+  {
+    name: 'site.keeper.view',
+    path: '/site/:siteid/keeper',
+    props: true,
+    component: () => import(/* webpackChunkName: "site" */ '../views/site/Keeper.vue')
   }
 ]
 

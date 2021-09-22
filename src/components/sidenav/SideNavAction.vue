@@ -9,7 +9,7 @@
         class="foxIcon"
       >
         <img
-          src="@/assets/fox.svg"
+          src="@/assets/fox-green.svg"
           alt="Pelilauta logo"
         >
       </div>
@@ -18,7 +18,7 @@
         class="closedIcon"
       >
         <img
-          src="@/assets/fox.svg"
+          src="@/assets/fox-green.svg"
           alt="Pelilauta logo"
         >
       </div>
@@ -48,8 +48,7 @@ export default defineComponent({
 .sideNavAction
   @include SpacingIcon2()
   @include Halo8()
-  position: fixed
-  background: linear-gradient(-45deg, var(--chroma-primary-g) 0%, var(--chroma-primary-a) 100%)
+  position: relative
   .foxIcon, .closedIcon
     @include SpacingIcon2()
     position: absolute

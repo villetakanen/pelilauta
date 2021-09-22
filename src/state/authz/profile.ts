@@ -110,8 +110,12 @@ async function createProfile (): Promise<void> {
 async function updateProfile (fields: Record<string, string>): Promise<void> {
   if (fields.nick || fields.tagline) {
     const { user } = useAuth()
+    console.debug('updating profile for ', user)
+    const d = doc(getFirestore(), 'profiles', user.value.uid)
+    const p = await getDoc(d)
+    if (!p.exists()) return setDoc(d, { ...fields })
     return updateDoc(
-      doc(getFirestore(), 'profiles', user.value.uid),
+      d,
       { ...fields }
     )
   }

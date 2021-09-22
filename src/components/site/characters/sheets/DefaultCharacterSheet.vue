@@ -40,7 +40,7 @@ export default defineComponent({
     const description = ref('')
     watch(() => props.character, (c) => {
       name.value = c.name
-      description.value = c.description
+      // description.value = c.description
     }, {
       immediate: true
     })
@@ -48,7 +48,7 @@ export default defineComponent({
     async function pushChanges () {
       const char = { ...props.character }
       char.name = name.value
-      char.description = description.value
+      // char.description = description.value
       return updatePlayerCharacter(char)
     }
     return { description, pushChanges, name }

@@ -55,9 +55,11 @@ export default defineComponent({
     const clicked = () => {
       if (user.value.uid === props.authorid) return // no loving of own comments
       buttonClasses.value.submitting = true
-      props.action().then(() => {
-        buttonClasses.value.submitting = false
-      })
+      if (props.action) {
+        props.action().then(() => {
+          buttonClasses.value.submitting = false
+        })
+      }
     }
 
     return { user, buttonClasses, clicked }

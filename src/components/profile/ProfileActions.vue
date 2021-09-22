@@ -15,6 +15,13 @@
       {{ $t('action.markAllRead') }}
     </MaterialButton>
     <div class="toolbar">
+      <MaterialButton
+        text
+        @click="forgetMeDialog = true"
+      >
+        {{ $t('action.forgetMe') }}
+      </MaterialButton>
+
       <div class="spacer" />
       <MaterialButton
         text
@@ -23,6 +30,29 @@
         {{ $t('action.logout') }}
       </MaterialButton>
     </div>
+    <Dialog v-model="forgetMeDialog">
+      <Card>
+        <h3>{{ $t('action.delete') }}</h3>
+        <p>{{ $t('profile.deleteWarning') }}</p>
+        <TextField
+          id="pageEditorDeleteVerifyField"
+          v-model="forgetMeConfirm"
+        />
+        <div class="toolbar">
+          <div class="spacer" />
+          <MaterialButton
+            id="pageEditorDeleteVerifyButton"
+            :disabled="forgetMeConfirm !== 'FORGET ME'"
+            @click="forgetMe"
+          >
+            {{ $t('action.delete') }}
+          </MaterialButton>
+          <MaterialButton @click="forgetMeDialog=false">
+            {{ $t('action.cancel') }}
+          </MaterialButton>
+        </div>
+      </Card>
+    </Dialog>
   </Card>
 </template>
 
@@ -30,19 +60,23 @@
 import { defineComponent, ref, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
-import { useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
 import Card from '../layout/Card.vue'
 import { getAuth } from '@firebase/auth'
+import Dialog from '../material/Dialog.vue'
+import TextField from '../material/TextField.vue'
 
 export default defineComponent({
   name: 'ProfileActions',
   components: {
     MaterialButton,
     MaterialSelect,
-    Card
+    Card,
+    Dialog,
+    TextField
   },
   setup () {
     const i18n = useI18n()
@@ -74,7 +108,21 @@ export default defineComponent({
       })
     })
 
-    return { logout, stampAllSeen, langs, selectedLang }
+    // Forget me functionality
+    const forgetMeDialog = ref(false)
+    const forgetMeConfirm = ref('')
+
+    async function forgetMe () {
+      forgetMeDialog.value = false
+      forgetMeConfirm.value = ''
+      console.warn('Erasing the user profile from the store, and logging out the user. This can not be undone.')
+      const { eraseProfile } = useAuth()
+      await eraseProfile()
+      pushSnack(i18n.t('profile.deleteCompleteSnackMessage'))
+      router.push('/')
+    }
+
+    return { logout, stampAllSeen, langs, selectedLang, forgetMeDialog, forgetMeConfirm, forgetMe }
   }
 })
 </script>

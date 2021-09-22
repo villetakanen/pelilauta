@@ -1,5 +1,8 @@
 <template>
-  <Toolbar class="siteToolbar">
+  <Toolbar
+    id="siteToolbar"
+    class="siteToolbar"
+  >
     <div class="pageIdentity clipWithEllipsis">
       <router-link
         :to="`/mekanismi/view/${site.id}/${site.id}`"
@@ -56,6 +59,13 @@
       :to="`/site/players/${site.id}/`"
     >
       <span class="onlyForDesktop">{{ $t('site.players.title') }}</span>
+    </Action>
+    <Action
+      v-if="site.usePlayers && memberOf"
+      prepend="keeper"
+      :to="`/site/${site.id}/keeper`"
+    >
+      <span class="onlyForDesktop">{{ $t('site.keeper.title') }}</span>
     </Action>
     <Action
       v-if="owns"
@@ -115,14 +125,21 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 
-div.appToolbar.siteToolbar
-  margin-left: 8px
-  padding-left: 0
-  margin-bottom: 0
+#siteToolbar
+  //background-color: red
+  margin: 0
+  padding: 0 4px
+  .pageIdentity
+    position: relative
+    margin: 0
+    padding: 0
+    padding-left: 52px
+
+@include media('<tablet')
+  #siteToolbar
+    border-bottom: solid 1px var(--color-b-h)
 
 .pageIdentity
-  position: relative
-  padding-left: 52px
   .systemBadge
     position: absolute
     top: 0
@@ -130,20 +147,21 @@ div.appToolbar.siteToolbar
     margin: 0
     padding: 0
   .subject
-    @include TypeBody2()
-    line-height: 16px
+    @include TypeCaption()
+    margin: 0
+    padding: 0
+    line-height: 12px
+    padding-top: 4px
     a
-      color: var(--chroma-secondary-f)
+      color: var(--color-a-g)
+      text-decoration: none
   .pagetitle
     @include TypeHeadline5()
-    line-height: 32px
-    a
-      color: var(--chroma-secondary-a)
-  .subject, .pagetitle
-    white-space: nowrap
     padding: 0
     margin: 0
+    line-height: 32px
     a
+      color: var(--color-a-a)
       text-decoration: none
 
 @include media('<tablet')

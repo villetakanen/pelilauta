@@ -10,6 +10,7 @@
     "deferUpdate": "Muistuta myöhemmin",
     "delete": "Poista",
     "edit": "Muokkaa",
+    "forgetMe": "Poista profiilini",
     "login": "Kirjaudu",
     "logout": "Kirjaudu ulos",
     "markAllRead": "Merkitse kaikki aiheet luetuiksi",
@@ -32,13 +33,22 @@
   "app": {
     "lang": "FI",
     "title": "Pelilauta",
-    "footnote": "Beta- tasoinen PWA yhteisösivustoille",
+    "footnote": "Progressiivinen verkkosovellus roolipelien tueksi ja roolipeleistä keskusteluun",
     "updatesAvailable": "Sovelluksesta on saatavilla uusi versio. Klikkaa päivitä -nappulaa alta ladataksesi uuden version",
     "welcome": {
       "title": "Tervetuloa Pelilaudalle",
       "message": "Pelilauta.fi ja Mekanismi.sange.fi sivustojen inspiroima yhteisösovellus. Kirjautumalla Facebookilla, Googlella tai sähköpostilla – saat käyttöösi enemmän toimintoja."
     },
     "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
+  },
+  "character": {
+    "meta": {
+      "title": "Yleistä"
+    },
+    "stats": {
+      "name": "Nimi",
+      "game": "Peli"
+    }
   },
   "editorDialog": {
     "title": "Viesti",
@@ -71,7 +81,7 @@
     "emailLoginDataInfoLink": "Lisätietoja kirjautumisesta ja henkilötiedojen käsittelystä sovelluksessa",
     "withEmail": "Kirjaudu",
     "emailLoginHelper": "Sähköpostiosoite",
-    "socialLoginTitle": "Kirjaudu pavelun avulla"
+    "socialLoginTitle": "Kirjaudu toisella palvelulla"
   },
   "notification": {
     "newThreadReply": "vastasi ketjuun.",
@@ -96,6 +106,9 @@
     "noQuickResultsHelper": "Ei pikahakutuloksia, paina enter nähdäksesi koko haun"
   },
   "site": {
+    "keeper": {
+      "title": "Keeper"
+    },
     "characters": {
       "title": "Hahmot",
       "template": "Valitse lomake",
@@ -182,6 +195,9 @@
     "more": "Lue lisää"
   },
   "profile": {
+    "characterListing": {
+      "title": "Hahmoni"
+    },
     "publicInfoTitle": "Julkinen profiilini",
     "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
     "ssoInfocardTitle": "Omat tietoni",
@@ -203,6 +219,14 @@
       "title": "Nostot"
     },
     "nick": "Nimimerkki"
+  },
+  "rte": {
+    "wikilink": {
+      "title": "Linkitä URL",
+      "inbound": "Linkitä sivu",
+      "urlfield": "Osoite",
+      "pageid": "Sivun nimi"
+    }
   },
   "threads": {
     "sinceInTopic": "aiheessa",

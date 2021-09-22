@@ -6,7 +6,48 @@
 // ***
 @import include-media.scss
 @import material-typography.sass
+@import layout.sass
 // note: 1rem === 24px from the typography PoV
+
+$icon_size: 32px
+
+.rtEditor
+  border-top-right-radius: 12px
+  .ql-toolbar
+    // background-color: var(--color-b-j)
+    border-bottom: solid 1px var(--color-b-h)
+    padding: 4px 
+    // border-top: solid red 1px
+    button
+      background: none
+      border: none
+      height: $icon_size
+      width: $icon_size
+      margin: 2px
+      padding: 0
+      background-size: $icon_size
+      background-repeat: no-repeat
+      background-position: top left
+      &:first-of-type
+        margin-left: 0
+      &.ql-h-1
+         background-image: url('./assets/icons/rte/rte-header-1.svg')
+      &.ql-h-2
+         background-image: url('./assets/icons/rte/rte-header-2.svg')
+      &.ql-wikilink
+         background-image: url('./assets/icons/rte/rte-link.svg')
+      &.ql-bold
+        background-image: url('./assets/icons/rte/rte-bold.svg')
+      &.ql-italic
+        background-image: url('./assets/icons/rte/rte-italic.svg')
+      &.ql-strike
+        background-image: url('./assets/icons/rte/rte-strike.svg')
+      &.ql-underline
+        background-image: url('./assets/icons/rte/rte-underline.svg')
+      &.ql-active
+        background-color: var(--color-b-f)
+        border-radius: 50%
+        
 
 // Base styles, Mobile First. Overwritten with include-media where needed
 .richText, .richText .ql-editor

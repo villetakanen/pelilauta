@@ -4,15 +4,15 @@ import { useAssets } from './assets'
 import { computed, ComputedRef, reactive } from 'vue'
 import { useMeta } from '../meta'
 import { onAuthStateChanged, getAuth, User } from '@firebase/auth'
-import { doc, getFirestore, onSnapshot } from '@firebase/firestore'
+import { doc, getFirestore, onSnapshot, deleteDoc } from '@firebase/firestore'
 
 /**
  * A reactive object, that holds all state internals for auth
  */
 const authState = reactive({
+  profileDeletionInProgress: false,
   missingProfileData: false,
   anonymous: false,
-  admin: false,
   displayName: '',
   user: {
     uid: ''
@@ -20,7 +20,7 @@ const authState = reactive({
 })
 
 const user = computed(() => (authState.user))
-const registrationIncomplete = computed(() => (authState.missingProfileData))
+const registrationIncomplete = computed(() => (!authState.profileDeletionInProgress && authState.missingProfileData))
 const displayName = computed(() => (authState.displayName))
 const frozen = computed(() => {
   const { frozen: frozenAuthors } = useMeta()
@@ -29,12 +29,15 @@ const frozen = computed(() => {
 
 // Show member only tools of the App to the user
 const showMemberTools = computed(() => {
-  if (authState.admin) return true
+  if (showAdminTools.value) return true
   if (frozen.value) return false
   return !authState.anonymous
 })
 
-const showAdminTools = computed(() => (authState.admin))
+const showAdminTools = computed(() => {
+  const { admins } = useMeta()
+  return admins.value.includes(authState.user.uid)
+})
 
 const anonymousSession = computed(() => (authState.anonymous))
 
@@ -68,15 +71,12 @@ function processAuthStateChanged (user: User|null) {
     console.debug('onAuthStateChanged', 'anonymous')
     authState.missingProfileData = false
     authState.anonymous = true
-    authState.admin = false
     authState.user = {
       uid: ''
     }
   } else {
     console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
-    const { admins } = useMeta()
-    authState.admin = admins.value.includes(user.uid)
     authState.displayName = user.displayName ?? 'anonymous'
     authState.user = {
       uid: user.uid
@@ -94,6 +94,28 @@ function createAuth (): void {
   })
 }
 
+async function createProfile (nickname?: string): Promise<void> {
+  const user = getAuth().currentUser
+  const { updateProfile } = useProfile()
+  return updateProfile({
+    nick: nickname ?? user?.displayName ?? '',
+    photoURL: user?.photoURL ?? '/assets/void.svg'
+  })
+}
+
+async function eraseProfile (): Promise<void> {
+  authState.profileDeletionInProgress = true
+  await deleteDoc(
+    doc(
+      getFirestore(),
+      'profiles',
+      user.value.uid
+    )
+  )
+  getAuth().signOut()
+  authState.profileDeletionInProgress = false
+}
+
 function useAuth (): {
     user: ComputedRef<{ uid: string }>,
     registrationIncomplete: ComputedRef<boolean>,
@@ -101,8 +123,10 @@ function useAuth (): {
     frozen: ComputedRef<boolean>,
     anonymousSession: ComputedRef<boolean>,
     showMemberTools: ComputedRef<boolean>
-    showAdminTools: ComputedRef<boolean>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools }
+    showAdminTools: ComputedRef<boolean>
+    eraseProfile: () => Promise<void>,
+    createProfile: (nick: string) => Promise<void>} {
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile }
 }
 
 export {

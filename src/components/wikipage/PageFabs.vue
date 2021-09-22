@@ -2,7 +2,7 @@
   <teleport to="#ScreenBottomFabsContainer">
     <div class="pageFabs">
       <Fab
-        v-if="canEdit"
+        v-if="showSiteMemberTools"
         id="pageFabsCreateThread"
         secondary
         :to="`/site/${page.siteid}/add/thread`"
@@ -10,7 +10,7 @@
         icon="addDiscussion"
       />
       <Fab
-        v-if="canEdit"
+        v-if="showSiteMemberTools"
         id="wikipageCreatePageFab"
         secondary
         :to="`/site/${page.siteid}/add/page`"
@@ -18,7 +18,7 @@
         icon="add"
       />
       <Fab
-        v-if="canEdit"
+        v-if="showSiteMemberTools"
         id="wikipageEditPageFab"
         :text="$t('action.edit')"
         :to="`/site/${page.siteid}/page/${page.id}/edit`"
@@ -29,9 +29,8 @@
 </template>
 
 <script lang="ts">
-import { useAuth } from '@/state/authz'
 import { Page, useSite } from '@/state/site'
-import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
+import { ComputedRef, defineComponent, inject, ref } from 'vue'
 import Fab from '../material/Fab.vue'
 
 export default defineComponent({
@@ -41,17 +40,13 @@ export default defineComponent({
   },
   setup () {
     const page = inject('page') as ComputedRef<Page>
+    const { showSiteMemberTools } = useSite()
     const dialog = ref(false)
     function addPageDialog () {
       dialog.value = true
     }
-    const canEdit = computed(() => {
-      const { hasAdmin } = useSite()
-      const { user } = useAuth()
-      return hasAdmin(user.value.uid)
-    })
 
-    return { page, dialog, addPageDialog, canEdit }
+    return { page, dialog, addPageDialog, showSiteMemberTools }
   }
 })
 </script>

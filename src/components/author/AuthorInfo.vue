@@ -52,7 +52,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .authorInfo
-  border-top: solid 1px var(--chroma-primary-g)
+  border-top: solid 1px var(--color-b-h)
   position: relative
   height: 72px
   a

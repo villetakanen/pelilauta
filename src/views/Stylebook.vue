@@ -397,6 +397,21 @@
         />
       </Card>
 
+      <Card>
+        <div class="z-1">
+          Z-1
+        </div>
+        <div class="z-2">
+          Z-2
+        </div>
+        <div class="z-3">
+          Z-3
+        </div>
+        <div class="z-4">
+          Z-4
+        </div>
+      </Card>
+
       <div>
         <teleport to="#BottomFabsContainer">
           <Fab
@@ -595,4 +610,16 @@ export default defineComponent({
 .rise4
   background-color: var(--chroma-clear)
   @include Rise4()
+.z-1
+  background-color: #004d62
+  opacity: 0.11
+.z-2
+  background-color: #004d62
+  opacity: 0.22
+.z-3
+  background-color: #004d62
+  opacity: 0.33
+.z-4
+  background-color: #004d62
+  opacity: 0.44
 </style>

@@ -3,10 +3,11 @@ import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, up
 import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
-import { PublicProfile } from '../authz'
+import { PublicProfile, useAuth } from '../authz'
 import { PageCategory, defaultCategories, unmarshallCategories, marshallCategories } from './pagecategory'
 import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateDoc } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
+import { subscribeCharacters, useSiteCharacters } from './characters'
 
 export interface Site {
   id: string,
@@ -94,6 +95,7 @@ function subscribeTo (id: string): void {
   refreshStorage(id)
   subscribeToPages(id)
   subscribeToAssets(id)
+  subscribeCharacters(id)
 
   logEvent(getAnalytics(), 'Subscribing Site', { id: id })
 
@@ -175,10 +177,18 @@ const members = computed(() => {
   return m
 })
 
+const showSiteMemberTools = computed(() => {
+  const { user } = useAuth()
+  if (site.value.owners?.includes(user.value.uid)) return true
+  if (site.value.players?.includes(user.value.uid)) return true
+  return false
+})
+
 function useSite (id?: string):
   {
     site: ComputedRef<Site>,
     members: ComputedRef<Array<PublicProfile>>,
+    showSiteMemberTools: ComputedRef<boolean>,
     hasAdmin: (uid: string) => boolean,
     revokeOwner: (uid: string) => Promise<void>
     addOwner: (uid: string) => Promise<void>,
@@ -186,7 +196,7 @@ function useSite (id?: string):
     removePlayer: (uid: string) => Promise<void>,
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members }
+  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members, showSiteMemberTools }
 }
 
 export {
@@ -203,5 +213,6 @@ export {
   subscribeTo,
   updatePage,
   updateSite,
-  useAssets
+  useAssets,
+  useSiteCharacters
 }

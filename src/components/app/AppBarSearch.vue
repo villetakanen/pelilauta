@@ -5,7 +5,7 @@
         <input
           v-model="searchString"
           class="searchField"
-          :disabled="showMemberTools"
+          :disabled="!showMemberTools"
           :placeholder="$t('search.placeholderText')"
         >
       </form>
@@ -72,7 +72,7 @@ export default defineComponent({
 .appBarSearch
   position: relative
   .inputContainer
-    background-color: var(--chroma-secondary-e) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+    background-color: var(--color-a-d) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
     height: 40px
     position: relative
     border-radius: 20px

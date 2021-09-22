@@ -8,6 +8,7 @@
 @import rich-text.sass
 @import views.sass
 @import charactersheets.sass
+@import colors.sass
 
 h3
   @include TypeHeadline5()
@@ -35,11 +36,6 @@ select
     background-color: $color-base-darker
   &:focus
     background-color: $color-base-darker
-
-#mainContentWrapper
-  main
-    p.caption
-      @include TypeCaption()
 
 .viewHeader
   @include TypeHeadline3()
@@ -220,9 +216,9 @@ body
   @include TypeBody1() // Default body font
   margin: 0
   padding: 0
-  background: white
   min-width: 370px
-  background-color: var(--chroma-clear)// var(--chroma-secondary-i)
+  background: none
+  background-color: var(--color-b-j)
 
 h1
   @include TypeHeadline3()
@@ -345,3 +341,12 @@ table.quill-better-table
 .author-link
   background-color: var(--chroma-primary-h)
   font-weight: bold
+
+div.debug
+  font-size: 10px
+  font-family: monospace
+  line-height: 12px
+  color: green
+  border: solid 1px green
+  padding:8px
+  margin:8px
