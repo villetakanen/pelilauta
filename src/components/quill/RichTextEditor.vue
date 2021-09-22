@@ -19,7 +19,7 @@
       <button class="ql-underline" />
       <div class="spacer" />
       <button class="ql-wikilink" />
-      <button class="ql-image" />
+      <!--button class="ql-image" /-->
     </div>
     <div
       ref="editor"

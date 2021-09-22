@@ -43,6 +43,8 @@ import MaterialButton from '../material/MaterialButton.vue'
 import TopicSelector from './TopicSelector.vue'
 import { useThreads } from '@/state/threads'
 import { useSite } from '@/state/site'
+import { PostData } from '@/utils/firestoreInterfaces'
+import { useRouter } from 'vue-router'
 
 /**
  * An form for editing and creating threads
@@ -68,7 +70,8 @@ export default defineComponent({
   },
   setup (props) {
     console.log('ThreadEditor setup with', props.threadid, props.topic)
-    const { thread, subscribeThread } = useThreads()
+    const { thread, subscribeThread, createThread, updateThread } = useThreads()
+    const router = useRouter()
 
     const createANewThread = computed(() => (!props.threadid))
     const originalThread = computed(() => (thread.value))
@@ -117,6 +120,18 @@ export default defineComponent({
 
     async function save () {
       console.debug('threadEditor saving', dirtyTitle.value, dirtyTopic.value, dirtyContent.value)
+      const data:PostData = {
+        title: threadTitle.value,
+        topic: threadTopic.value,
+        content: threadContent.value
+      }
+      if (createANewThread.value) {
+        const id = await createThread(data)
+        router.push(`/threads/${id}/view`)
+      } else {
+        await updateThread(props.threadid, data)
+        router.push(`/threads/${props.threadid}/view`)
+      }
     }
 
     return {

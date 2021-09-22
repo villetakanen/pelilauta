@@ -143,11 +143,12 @@ export async function fetchSite (siteid: string): Promise<void> {
   }
 }
 
-export async function createThread (actor: string, data:PostData): Promise<string> {
-  logEvent(getAnalytics(), 'createThread', { author: actor })
+async function createThread (data:PostData): Promise<string> {
+  const { user } = useAuth()
+  logEvent(getAnalytics(), 'createThread', { author: user.value.uid })
   const db = getFirestore()
   return addDoc(collection(db, 'stream'), {
-    author: actor,
+    author: user.value.uid,
     ...data,
     created: serverTimestamp(),
     flowTime: serverTimestamp()
@@ -156,22 +157,16 @@ export async function createThread (actor: string, data:PostData): Promise<strin
   })
 }
 
-export async function updateThread (actor: string, post:Thread): Promise<string> {
-  if (!post.id) throw new Error('can not update thread without an id')
-  logEvent(getAnalytics(), 'updateThread', { author: actor })
-  console.debug('updateThread', post)
+export async function updateThread (threadid:string, data:PostData): Promise<void> {
+  if (!threadid) throw new Error('Can not update thread with empty id')
+  const { user } = useAuth()
+  logEvent(getAnalytics(), 'updateThread', { author: user.value.uid })
+
   const db = getFirestore()
-  return updateDoc(doc(db, 'stream', post.id), {
-    editor: actor,
-    ...post.data,
-    title: post.data.title || '',
-    images: post.data.images || null,
-    content: post.data.content || '',
-    sticky: post.data.sticky || false,
-    site: post.site || '',
+  return updateDoc(doc(db, 'stream', threadid), {
+    editor: user.value.uid,
+    ...data,
     editTime: serverTimestamp()
-  }).then(() => {
-    return post.id
   })
 }
 const subscribedPage = ref(toThread(''))
@@ -247,9 +242,11 @@ export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
-    thread: ComputedRef<Thread>,
-    subscribeThread: (id?: string | undefined) => void} {
+    thread: ComputedRef<Thread>
+    subscribeThread: (id?: string | undefined) => void
+    createThread: (data:PostData) => Promise<string>
+    updateThread: (threadid:string, data:PostData) => Promise<void>} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads, subscribeThread }
+  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread }
 }

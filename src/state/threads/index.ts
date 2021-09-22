@@ -1,5 +1,5 @@
 import { loveThread, unloveThread } from './reactions'
-import { useThreads, toThread, deleteThread, updateThread, createThread, fetchSite } from './threads'
+import { useThreads, toThread, deleteThread, fetchSite } from './threads'
 
 export {
   fetchSite,
@@ -7,7 +7,5 @@ export {
   unloveThread,
   useThreads,
   toThread,
-  deleteThread,
-  updateThread,
-  createThread
+  deleteThread
 }
