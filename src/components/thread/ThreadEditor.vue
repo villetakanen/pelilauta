@@ -42,6 +42,7 @@ import RichTextEditor from '../quill/RichTextEditor.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import TopicSelector from './TopicSelector.vue'
 import { useThreads } from '@/state/threads'
+import { useSite } from '@/state/site'
 
 /**
  * An form for editing and creating threads
@@ -75,6 +76,9 @@ export default defineComponent({
 
     onMounted(() => {
       subscribeThread(props.threadid)
+      if (siteid.value) {
+        useSite(siteid.value)
+      }
     })
 
     const dirtyTitle = ref('')
