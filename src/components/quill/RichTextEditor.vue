@@ -41,7 +41,7 @@ export default defineComponent({
   name: 'ReplyEditor',
   components: { WikiLinkDialog },
   props: {
-    content: { type: String, required: false, default: '' },
+    content: { type: String, required: true },
     disabled: { type: Boolean, required: false, default: false },
     waiting: { type: Boolean, required: false, default: false }
   },
