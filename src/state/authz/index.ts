@@ -10,6 +10,7 @@ import { doc, getFirestore, onSnapshot, deleteDoc } from '@firebase/firestore'
  * A reactive object, that holds all state internals for auth
  */
 const authState = reactive({
+  loginComplete: false,
   profileDeletionInProgress: false,
   missingProfileData: false,
   anonymous: false,
@@ -26,6 +27,7 @@ const frozen = computed(() => {
   const { frozen: frozenAuthors } = useMeta()
   return frozenAuthors.value.includes(authState.user.uid)
 })
+const loginComplete = computed(() => (authState.loginComplete))
 
 // Show member only tools of the App to the user
 const showMemberTools = computed(() => {
@@ -67,6 +69,7 @@ function fetchProfile () {
 }
 
 function processAuthStateChanged (user: User|null) {
+  authState.loginComplete = false
   if (!user || user.isAnonymous) {
     console.debug('onAuthStateChanged', 'anonymous')
     authState.missingProfileData = false
@@ -74,6 +77,7 @@ function processAuthStateChanged (user: User|null) {
     authState.user = {
       uid: ''
     }
+    authState.loginComplete = true
   } else {
     console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
@@ -81,6 +85,7 @@ function processAuthStateChanged (user: User|null) {
     authState.user = {
       uid: user.uid
     }
+    authState.loginComplete = true
     fetchProfile()
   }
 }
@@ -124,9 +129,10 @@ function useAuth (): {
     anonymousSession: ComputedRef<boolean>,
     showMemberTools: ComputedRef<boolean>
     showAdminTools: ComputedRef<boolean>
+    loginComplete: ComputedRef<boolean>
     eraseProfile: () => Promise<void>,
     createProfile: (nick: string) => Promise<void>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile }
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete }
 }
 
 export {

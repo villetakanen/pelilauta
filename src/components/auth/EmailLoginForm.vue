@@ -51,7 +51,7 @@ export default defineComponent({
 
     onMounted(() => {
       const { anonymousSession } = useAuth()
-      if (!anonymousSession.value) router.push('/profile')
+      if (!anonymousSession.value) router.push('/')
     })
 
     const singInWithEmail = () => {

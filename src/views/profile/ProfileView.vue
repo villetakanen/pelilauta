@@ -1,7 +1,14 @@
 <template>
   <div class="profileView">
     <ProfileToolbar />
-    <div class="singleColumnLayout">
+    <Loader
+      v-if="!loginComplete"
+      poster
+    />
+    <div
+      v-else
+      class="singleColumnLayout"
+    >
       <PublicProfile />
       <ProfileActions />
       <PrivateInfo v-if="false" />
@@ -11,13 +18,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from 'vue'
+import { defineComponent, onMounted, provide, watch } from 'vue'
 import PrivateInfo from '@/components/profile/PrivateInfo.vue'
 import PublicProfile from '@/components/profile/PublicProfile.vue'
 import LovedThreads from '@/components/profile/LovedThreads.vue'
 import ProfileActions from '@/components/profile/ProfileActions.vue'
-import { useProfile } from '@/state/authz'
+import { useAuth, useProfile } from '@/state/authz'
 import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
+import Loader from '@/components/app/Loader.vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'ProfileView',
@@ -26,11 +35,14 @@ export default defineComponent({
     ProfileActions,
     PrivateInfo,
     PublicProfile,
-    ProfileToolbar
+    ProfileToolbar,
+    Loader
   },
   setup () {
     const { switchLang } = useProfile()
     const { profile, profileMeta } = useProfile()
+    const { loginComplete, anonymousSession } = useAuth()
+    const router = useRouter()
 
     provide('profileMeta', profileMeta)
     provide('publicProfile', profile)
@@ -39,7 +51,13 @@ export default defineComponent({
       switchLang(lang)
     }
 
-    return { profile, setLang }
+    onMounted(() => {
+      watch(loginComplete, (val) => {
+        if (val && anonymousSession.value) router.push('/login')
+      })
+    })
+
+    return { profile, setLang, loginComplete }
   }
 })
 </script>
