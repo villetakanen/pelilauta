@@ -1,5 +1,5 @@
 <template>
-  <Card class="emailLoginForm">
+  <Column class="emailLoginForm">
     <div
       v-if="verify"
       class="verifyWarning"
@@ -11,20 +11,17 @@
         {{ $t('login.emailLoginMessage') }}
       </h1>
     </div>
-    <div>
+    <div class="toolbar">
       <TextField
         v-model="emailAdress"
         :disabled="sending"
         :label="$t('login.emailLoginHelper')"
       />
-      <div class="toolbar">
-        <div class="spacer" />
-        <MaterialButton :async-action="sendLinkToEmail">
-          {{ $t('login.withEmail') }}
-        </MaterialButton>
-      </div>
+      <MaterialButton :async-action="sendLinkToEmail">
+        {{ $t('login.withEmail') }}
+      </MaterialButton>
     </div>
-  </Card>
+  </Column>
 </template>
 
 <script lang="ts">
@@ -35,11 +32,15 @@ import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
-import Card from '../layout/Card.vue'
 import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from '@firebase/auth'
+import Column from '../layout/Column.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton, Card },
+  components: {
+    TextField,
+    MaterialButton,
+    Column
+  },
   setup () {
     const emailAdress = ref('')
     const verify = isSignInWithEmailLink(getAuth(), window.location.href)
@@ -107,3 +108,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.emailLoginForm
+  background-color: var(--color-b-a)
+  h1.title
+    color: white
+    opacity: 0.72
+    margin-bottom: 16px
+</style>

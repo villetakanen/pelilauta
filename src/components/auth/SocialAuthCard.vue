@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card class="socialAuthCard">
     <h1 class="title">
       {{ $t('login.socialLoginTitle') }}
     </h1>
@@ -70,6 +70,9 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
+
+.socialAuthCard
+  margin: 16px auto
 
 .loginButton
   margin: 0 auto

@@ -56,6 +56,11 @@ export default defineComponent({
 @import @/styles/layout.sass
 @import @/styles/include-media.scss
 
+div.toolbar
+  div.textField
+    width: auto
+    flex-grow: 1
+
 div.textField
   width: calc(100% - 8px)
   border-bottom: solid 1px var(--color-b-g)
