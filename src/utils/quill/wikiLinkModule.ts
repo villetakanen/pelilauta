@@ -1,4 +1,4 @@
-import Quill from 'quill'
+import Quill, { RangeStatic } from 'quill'
 
 const InlineBlot = Quill.import('blots/inline')
 
@@ -28,18 +28,12 @@ class WikiLinkBlot extends InlineBlot {
 }
 
 export function wikiLinkModule (quill:Quill): void {
-  console.log('hoisting the WikilinkModule')
-
-  let start = 0
-  let length = 0
+  console.log('Registering WikilinkModule')
 
   function addWikiLink (range: unknown) {
     console.warn('addWikiLink', range)
 
-    start = quill.getSelection()?.index ?? 0
-    length = quill.getSelection()?.length ?? 0
-
-    const format = quill.getFormat(start) as Record<string, unknown>
+    const format = quill.getFormat(quill.getSelection() || undefined) as Record<string, unknown>
     if (format.wikilink) return
 
     document.dispatchEvent(new Event('rte-wikilink-tool'))
@@ -48,10 +42,11 @@ export function wikiLinkModule (quill:Quill): void {
   }
 
   document.addEventListener('rte-post-link', (value) => {
-    console.log('rte-post-link', value, start, length, value)
+    const selection = quill.getSelection() || { index: 0, length: 0 }
+    console.log('rte-post-link', value)
     const detail = (value as CustomEvent).detail
-    quill.insertText(start, detail?.text)
-    quill.formatText(start, (detail?.text.length) ?? 1, { wikilink: detail?.url ?? '' }, Quill.sources.API)
+    quill.insertText(selection.index, detail?.text)
+    quill.formatText(selection.index, (detail?.text.length) ?? 1, { wikilink: detail?.url ?? '' }, Quill.sources.API)
   })
 
   Quill.register(WikiLinkBlot)

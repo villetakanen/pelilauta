@@ -12,10 +12,18 @@
 $icon_size: 32px
 
 .rtEditor
+  border-top-right-radius: 12px
+  .ql-editor
+    min-height: 240px
+    img
+      max-width: 100%
   .ql-toolbar
-    background-color: white
+    // background-color: var(--color-b-j)
+    border-bottom: solid 1px var(--color-b-h)
+    padding: 4px 
+    // border-top: solid red 1px
     button
-      background-color: var(--color-b-h)
+      background: none
       border: none
       height: $icon_size
       width: $icon_size
@@ -40,8 +48,11 @@ $icon_size: 32px
         background-image: url('./assets/icons/rte/rte-strike.svg')
       &.ql-underline
         background-image: url('./assets/icons/rte/rte-underline.svg')
+      &.ql-image
+        background-image: url('./assets/icons/rte/rte-image.svg')
       &.ql-active
         background-color: var(--color-b-f)
+        border-radius: 50%
         
 
 // Base styles, Mobile First. Overwritten with include-media where needed

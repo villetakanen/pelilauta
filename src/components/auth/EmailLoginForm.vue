@@ -10,11 +10,6 @@
       <h1 class="title">
         {{ $t('login.emailLoginMessage') }}
       </h1>
-      <p class="caption">
-        <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
-          {{ $t('login.emailLoginDataInfoLink') }}
-        </router-link>
-      </p>
     </div>
     <div>
       <TextField
@@ -38,7 +33,7 @@ import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
-import { useAuth, useProfile } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
 import Card from '../layout/Card.vue'
 import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from '@firebase/auth'
@@ -63,7 +58,7 @@ export default defineComponent({
         pushSnack({ topic: i18n.t('snacks.invalidEmail') })
       }
       signInWithEmailLink(getAuth(), emailAdress.value, window.location.href)
-        .then((result) => {
+        .then(() => {
           // Clear email from storage.
           window.localStorage.removeItem('emailForSignIn')
           router.push('/profile')
@@ -112,14 +107,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-@import @/styles/material-typography.sass
-
-.caption
-  @include TypeCaption()
-  margin-bottom: 16px !important
-  opacity: 0.5
-  a
-    text-decoration: none
-</style>

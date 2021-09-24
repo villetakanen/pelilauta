@@ -14,9 +14,8 @@
     <div class="test-container">
       <div class="test-box">
         <MaterialCard>
-          <QuillEditor
+          <RichTextEditor
             v-model="content"
-            :toolbar="true"
           />
         </MaterialCard>
         <MaterialButton :action="simulateSave">
@@ -50,23 +49,23 @@
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, ref } from 'vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
-import QuillEditor from '@/components/quill/QuillEditor.vue'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
 import ReplyEditor from '@/components/discussion/ReplyEditor.vue'
 import { Reply as ReplyInterface } from '@/utils/firestoreInterfaces'
 import Reply from '@/components/discussion/Reply.vue'
+import RichTextEditor from '@/components/quill/RichTextEditor.vue'
 
 export default defineComponent({
   name: 'EditorTest',
   components: {
     MaterialCard,
-    QuillEditor,
     MaterialButton,
     AdminActions,
     ReplyEditor,
-    Reply
+    Reply,
+    RichTextEditor
   },
   setup () {
     const content = ref('')

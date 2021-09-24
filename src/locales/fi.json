@@ -81,7 +81,7 @@
     "emailLoginDataInfoLink": "Lisätietoja kirjautumisesta ja henkilötiedojen käsittelystä sovelluksessa",
     "withEmail": "Kirjaudu",
     "emailLoginHelper": "Sähköpostiosoite",
-    "socialLoginTitle": "Kirjaudu pavelun avulla"
+    "socialLoginTitle": "Kirjaudu toisella palvelulla"
   },
   "notification": {
     "newThreadReply": "vastasi ketjuun.",

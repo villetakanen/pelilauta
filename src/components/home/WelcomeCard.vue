@@ -2,7 +2,7 @@
   <Card class="welcomeCard">
     <img
       class="logo"
-      :alt="$t('site.title')"
+      alt="Pelilauta"
       src="@/assets/fox.svg"
       :rise="2"
     >
