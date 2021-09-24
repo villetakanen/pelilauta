@@ -19,12 +19,13 @@
       <button class="ql-underline" />
       <div class="spacer" />
       <button class="ql-wikilink" />
-      <!--button class="ql-image" /-->
+      <button class="ql-image" />
     </div>
     <div
       ref="editor"
     />
     <WikiLinkDialog />
+    <InsertMediaDialog />
   </div>
 </template>
 
@@ -33,13 +34,14 @@ import { ComponentPublicInstance, defineComponent, onMounted, ref, watch } from 
 import Quill from 'quill'
 import useQuill from '@/composables/useQuill'
 import WikiLinkDialog from './WikiLinkDialog.vue'
+import InsertMediaDialog from './InsertMediaDialog.vue'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
  */
 export default defineComponent({
   name: 'ReplyEditor',
-  components: { WikiLinkDialog },
+  components: { WikiLinkDialog, InsertMediaDialog },
   props: {
     content: { type: String, required: true },
     disabled: { type: Boolean, required: false, default: false },

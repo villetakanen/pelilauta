@@ -28,7 +28,7 @@ class WikiLinkBlot extends InlineBlot {
 }
 
 export function wikiLinkModule (quill:Quill): void {
-  console.log('hoisting the WikilinkModule')
+  console.log('Registering WikilinkModule')
 
   function addWikiLink (range: unknown) {
     console.warn('addWikiLink', range)
