@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.5.0](https://github.com/villetakanen/pelilauta/compare/v10.4.7...v10.5.0) (2021-09-24)
+
+
+### Features
+
+* image selector rte module added ([b416b5c](https://github.com/villetakanen/pelilauta/commit/b416b5ca8def0491518e7ded2f4e117ff0907962))
+* media insert dialog added ([74539c2](https://github.com/villetakanen/pelilauta/commit/74539c27118dd190ade7b1f7bd08232573e2dae0))
+* moved quill to composable ([c0d9850](https://github.com/villetakanen/pelilauta/commit/c0d985085bc72a962227911cf2b271fe11027c10))
+
+
+### Bug Fixes
+
+* added site subsrcript to the edit thread view ([abd25cb](https://github.com/villetakanen/pelilauta/commit/abd25cb1337b75025650b9ac17bd900eb736d858))
+* correct url for thread editor saving ([ca55c7c](https://github.com/villetakanen/pelilauta/commit/ca55c7cbbe6abc2af3b45ea6365ce2a7b8524d08))
+* login cleanup for styles and fb9 ([30e2845](https://github.com/villetakanen/pelilauta/commit/30e28452e6fc77b5289fe1aa2bab7ba6af725f28))
+* login page ux fixes ([0b1b0f7](https://github.com/villetakanen/pelilauta/commit/0b1b0f708861024db3147470d8ee69ef3eed0275))
+* moved quill configs to composable ([e237290](https://github.com/villetakanen/pelilauta/commit/e237290af97c59e8643bf4f607e541eeae9acdac))
+* moved rte-editor quill setup to a composable ([9b87a89](https://github.com/villetakanen/pelilauta/commit/9b87a89c85e22d639a5d4a80cea1b27fa631c0ec))
+* prop reqs for rte ([31cf035](https://github.com/villetakanen/pelilauta/commit/31cf03512acb280b9bc38e763c084c31b2869322))
+* refactored saving of a thread to code-style ([d1fb041](https://github.com/villetakanen/pelilauta/commit/d1fb04187261346d7b61b379cb7eb2db4f73ec3b))
+* removed dead code, extra logging ([0bde2d2](https://github.com/villetakanen/pelilauta/commit/0bde2d2c312393c0b999723e10cea7ea3241f2ed))
+* removed dead i18n string ([7bc5dbc](https://github.com/villetakanen/pelilauta/commit/7bc5dbce45083607d3042931ec124d424a13b82b))
+* route loading of updated thread editor works ([8de7c02](https://github.com/villetakanen/pelilauta/commit/8de7c0265c89f1883855b99ffaa89a5868c4e2e1))
+* rte scrolling ([cf45270](https://github.com/villetakanen/pelilauta/commit/cf452703b7e4e953ff01ca62ad083789d7755dba))
+* rte selection issues fixed ([849dfc1](https://github.com/villetakanen/pelilauta/commit/849dfc13e35922e6081c3f942b3c67847b52a23e))
+* site loading for thread editing works ([ea61a25](https://github.com/villetakanen/pelilauta/commit/ea61a25dcdb87db8059e6c7296a96378c1dbafac))
+* small code polish ([8fe95bd](https://github.com/villetakanen/pelilauta/commit/8fe95bdbf068e519ee27449b0ac3c683c665fa64))
+* text-field label no longer floats around ([28cd097](https://github.com/villetakanen/pelilauta/commit/28cd0979c1025cad6a0a52f87f2abf7be540a65e))
+* thread editor ux polish part 1 ([9698309](https://github.com/villetakanen/pelilauta/commit/9698309a8fff517a5a9f3ebc9da1871dc64b7ffa))
+* topic selectable as a tag for stream ([4638ce9](https://github.com/villetakanen/pelilauta/commit/4638ce9f7cdc0c3942be9a31ca5910b5becccfa7))
+* topic selection ux ([8f02bc4](https://github.com/villetakanen/pelilauta/commit/8f02bc4c237ea9f448b00258b55b16d407c74a3b))
+* updated editor testing tools ([3aa7456](https://github.com/villetakanen/pelilauta/commit/3aa7456ed27b3e71c140b775f66a74f989cf5579))
+* ux fixes ([723e0d5](https://github.com/villetakanen/pelilauta/commit/723e0d5942403762dc705b7606db271ae60e8336))
+* ux testing ([9993fa7](https://github.com/villetakanen/pelilauta/commit/9993fa7865f924db0f7cd5e170ec7abbb70d0efe))
+
 ### [10.4.7](https://github.com/villetakanen/pelilauta/compare/v10.4.6...v10.4.7) (2021-09-18)
 
 
