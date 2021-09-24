@@ -1,5 +1,5 @@
 <template>
-  <Card class="publicProfile">
+  <Column class="publicProfile">
     <h3>{{ $t('profile.publicInfoTitle') }}</h3>
     <p>{{ $t('profile.publicInfoHelper') }}</p>
     <div class="profileForm">
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-  </Card>
+  </Column>
 </template>
 
 <script lang="ts">
@@ -42,7 +42,7 @@ import TextField from '../material/TextField.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import AvatarTool from './AvatarTool.vue'
-import Card from '../layout/Card.vue'
+import Column from '../layout/Column.vue'
 
 export default defineComponent({
   name: 'PublicProfileInfoCard',
@@ -50,7 +50,7 @@ export default defineComponent({
     MaterialButton,
     TextField,
     AvatarTool,
-    Card
+    Column
   },
   setup () {
     const { profile, updateProfile } = useProfile()
