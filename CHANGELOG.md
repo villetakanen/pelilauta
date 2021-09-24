@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.5.1](https://github.com/villetakanen/pelilauta/compare/v10.5.0...v10.5.1) (2021-09-24)
+
+
+### Bug Fixes
+
+* login ux polish ([9dfa8e9](https://github.com/villetakanen/pelilauta/commit/9dfa8e9241f8e2fc38eefe6eb577f4ed5efdfc74))
+* profile page only visible if login complete ([d7f81a0](https://github.com/villetakanen/pelilauta/commit/d7f81a0966959b7e664b3c91a942e9bf0ced9419))
+* removed card from public profile data ([7f8ac09](https://github.com/villetakanen/pelilauta/commit/7f8ac0914a1bc7262e89e96287964b9453f6af65))
+
 ## [10.5.0](https://github.com/villetakanen/pelilauta/compare/v10.4.7...v10.5.0) (2021-09-24)
 
 
