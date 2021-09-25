@@ -249,7 +249,7 @@ p:first-child, ul:first-child, ol:first-child
 
 p, li
   @include TypeBody1()
-  color: var(--chroma-secondary-c)
+  @include highEmphasis()
 
 p+p
   margin-top: 16px
@@ -325,6 +325,13 @@ table.quill-better-table
       color: var(--chroma-secondary-c)
 .ql-disabled
   opacity: 0.22
+
+span.code
+  font-family: 'Source Code Pro', monospace
+  color: black
+  background: rgba(231, 251, 251, 1)
+  padding: 0 4px
+
 
 // Vue transitions: move to transitions.sass or something like it
 .pop-enter-active, .pop-leave-active
