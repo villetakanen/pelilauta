@@ -8,7 +8,7 @@
       <option
         v-for="t in opts"
         :key="t[0]"
-        :value="t[1]"
+        :value="t[0]"
       >
         {{ t[1] }}
       </option>
@@ -56,12 +56,15 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 div.Select
+  display: inline-block
+  vertical-align: middle
   background-color: var(--chroma-secondary-h)
   position: relative
   border-bottom: solid 1px var(--chroma-secondary-d)
   border-top-right-radius: 12px
   margin: 3px 0
   padding: 0 4px
+  min-width: 170px
   &:hover, &:focus
     background-color: var(--chroma-secondary-i)
   select
@@ -74,6 +77,7 @@ div.Select
     margin-top: 18px
     border: none
     color: var(--chroma-secondary-a)
+    width: 100%
   label
     @include TypeCaption()
     margin: 0
