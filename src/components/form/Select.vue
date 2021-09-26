@@ -1,0 +1,85 @@
+<template>
+  <div class="Select">
+    <select
+      v-model="value"
+      :name="name"
+      @change="onChange"
+    >
+      <option
+        v-for="t in opts"
+        :key="t[0]"
+        :value="t[1]"
+      >
+        {{ t[1] }}
+      </option>
+    </select>
+    <label
+      v-if="label"
+      :for="name"
+    >{{ label }}</label>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, watch, ref, PropType } from 'vue'
+
+export default defineComponent({
+  name: 'MaterialSelect',
+  props: {
+    // Required Props
+    name: { type: String, required: true },
+    opts: { type: Map as PropType<Map<string, string>>, required: true },
+    // modelValue props
+    modelValue: { type: String, required: false, default: '' },
+    // Optional props
+    label: { type: String, required: false, default: '' },
+    error: { type: Boolean, required: false, default: false }
+  },
+  emits: ['update:modelValue'],
+  setup (props, context) {
+    const value = ref(props.modelValue)
+
+    watch(() => props.modelValue, (val) => {
+      value.value = val
+    })
+
+    function onChange () {
+      context.emit('update:modelValue', value.value)
+    }
+
+    return { value, onChange }
+  }
+})
+</script>
+
+<style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
+div.Select
+  background-color: var(--chroma-secondary-h)
+  position: relative
+  border-bottom: solid 1px var(--chroma-secondary-d)
+  border-top-right-radius: 12px
+  margin: 3px 0
+  padding: 0 4px
+  &:hover, &:focus
+    background-color: var(--chroma-secondary-i)
+  select
+    @include TypeBody2()
+    background: none
+    border: none
+    height: 26px
+    padding: 0
+    margin: 0
+    margin-top: 18px
+    border: none
+    color: var(--chroma-secondary-a)
+  label
+    @include TypeCaption()
+    margin: 0
+    padding: 0
+    position: absolute
+    top: 4px
+    left: 8px
+    color: var(--chroma-secondary-d)
+</style>

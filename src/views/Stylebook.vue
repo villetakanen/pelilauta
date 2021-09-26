@@ -3,9 +3,9 @@
   <div>
     <div
       id="Stylebook"
-      class="singleColumnLayout"
+      :class="layout"
     >
-      <StylebookIntro />
+      <StylebookIntro v-model="layout" />
       <TextStyles />
       <Card>
         <h1>Chroma</h1>
@@ -562,6 +562,8 @@ export default defineComponent({
     StylebookIntro
   },
   setup () {
+    const layout = ref('singleColumnLayout')
+
     function sendSnack () {
       const { pushSnack } = useSnack()
       pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') }, actionMessage: 'alert?' })
@@ -577,7 +579,7 @@ export default defineComponent({
     }
     const toggle = ref(true)
     const selected = ref('a')
-    return { sendSnack, asyncWaitDemo, toggle, sendSnacks, selected }
+    return { sendSnack, asyncWaitDemo, toggle, sendSnacks, selected, layout }
   }
 })
 </script>
