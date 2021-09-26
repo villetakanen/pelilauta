@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.6.1](https://github.com/villetakanen/pelilauta/compare/v10.6.0...v10.6.1) (2021-09-26)
+
+
+### Bug Fixes
+
+* sidenav visibility on all 3 screen sizes ([c9e3ea3](https://github.com/villetakanen/pelilauta/commit/c9e3ea30d1a708260af577881c50776344c228eb))
+
 ## [10.6.0](https://github.com/villetakanen/pelilauta/compare/v10.5.1...v10.6.0) (2021-09-26)
 
 
