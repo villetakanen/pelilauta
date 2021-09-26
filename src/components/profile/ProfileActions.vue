@@ -3,9 +3,10 @@
     <h3>{{ $t('profile.actions.title') }}</h3>
     <p>{{ $t('profile.actions.helper') }}</p>
     <div>
-      {{ $t('profile.actions.selectLang') }}
-      <MaterialSelect
+      <Select
         v-model="selectedLang"
+        name="selectLanguage"
+        :label="$t('profile.actions.selectLang')"
         :opts="langs"
       />
     </div>
@@ -57,26 +58,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
 import { useAuth, useProfile } from '@/state/authz'
-import MaterialSelect from '../material/MaterialSelect.vue'
 import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
 import Card from '../layout/Card.vue'
 import { getAuth } from '@firebase/auth'
 import Dialog from '../material/Dialog.vue'
 import TextField from '../material/TextField.vue'
+import Select from '../form/Select.vue'
 
 export default defineComponent({
   name: 'ProfileActions',
   components: {
     MaterialButton,
-    MaterialSelect,
     Card,
     Dialog,
-    TextField
+    TextField,
+    Select
   },
   setup () {
     const i18n = useI18n()
@@ -93,10 +94,12 @@ export default defineComponent({
       markAllThreadsRead()
     }
 
-    const langs = [
-      { key: 'fi', value: i18n.t('language.fi') },
-      { key: 'en', value: i18n.t('language.en') }
-    ]
+    const langs = computed(() => {
+      const l = new Map<string, string>()
+      l.set('fi', i18n.t('language.fi'))
+      l.set('en', i18n.t('language.en'))
+      return l
+    })
 
     const { profileMeta, switchLang } = useProfile()
     const selectedLang = ref(profileMeta.value.pelilautaLang || 'fi')

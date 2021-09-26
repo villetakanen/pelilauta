@@ -3,8 +3,10 @@
   <div>
     <div
       id="Stylebook"
-      class="dashBoardLayout"
+      :class="layout"
     >
+      <StylebookIntro v-model="layout" />
+      <TextStyles />
       <Card>
         <h1>Chroma</h1>
         Primary
@@ -537,6 +539,8 @@ import AdminActions from '@/components/admin/AdminActions.vue'
 import Card from '@/components/layout/Card.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import Chip from '@/components/material/Chip.vue'
+import TextStyles from '@/components/stylebook/TextStyles.vue'
+import StylebookIntro from '@/components/stylebook/StylebookIntro.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -553,9 +557,13 @@ export default defineComponent({
     AdminActions,
     Card,
     MaterialSelect,
-    Chip
+    Chip,
+    TextStyles,
+    StylebookIntro
   },
   setup () {
+    const layout = ref('singleColumnLayout')
+
     function sendSnack () {
       const { pushSnack } = useSnack()
       pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') }, actionMessage: 'alert?' })
@@ -571,7 +579,7 @@ export default defineComponent({
     }
     const toggle = ref(true)
     const selected = ref('a')
-    return { sendSnack, asyncWaitDemo, toggle, sendSnacks, selected }
+    return { sendSnack, asyncWaitDemo, toggle, sendSnacks, selected, layout }
   }
 })
 </script>
