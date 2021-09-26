@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.6.0](https://github.com/villetakanen/pelilauta/compare/v10.5.1...v10.6.0) (2021-09-26)
+
+
+### Features
+
+* components fo stylebook ([3e1796e](https://github.com/villetakanen/pelilauta/commit/3e1796eefc516dab8dba90bb821f0ed43983cbef))
+* components fo stylebook ([5d33f40](https://github.com/villetakanen/pelilauta/commit/5d33f40436eae0434403eeefa55bcc164e4e1c61))
+
+
+### Bug Fixes
+
+* layout selector for the stylebook ([d4fab13](https://github.com/villetakanen/pelilauta/commit/d4fab1350d331bcea657958cef3009cc818325d6))
+* select ux for language selector ([24c77b4](https://github.com/villetakanen/pelilauta/commit/24c77b4a856578c6c3a0aa409c0b260f35bb68ff))
+* small text adjustments to the stylebook ([cdf0ec2](https://github.com/villetakanen/pelilauta/commit/cdf0ec2418e787a51651259e4bae626d8d7615fe))
+
 ### [10.5.1](https://github.com/villetakanen/pelilauta/compare/v10.5.0...v10.5.1) (2021-09-24)
 
 
