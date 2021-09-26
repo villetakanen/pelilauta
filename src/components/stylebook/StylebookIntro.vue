@@ -6,6 +6,8 @@
       very convinient way to test and document usage of UX/UI practices, tooling, components, and
       styles in the codebase.
     </p>
+    <h2>Router View style classes</h2>
+    <p>Found in <span class="code">@/styles/views.sass</span></p>
     <div style="display:flex; align-items: flex-start; gap: 16px">
       <p>
         By using the <span class="code">&lt;@/components/form/Select.vue&gt;</span> component in the right,
