@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.6.3](https://github.com/villetakanen/pelilauta/compare/v10.6.2...v10.6.3) (2021-09-27)
+
+
+### Bug Fixes
+
+* alert color for select ([1f15331](https://github.com/villetakanen/pelilauta/commit/1f15331e79ee3a057733e4f345a41af162d13b89))
+* current layoutclasses added to stylebook ([e0af3aa](https://github.com/villetakanen/pelilauta/commit/e0af3aa8187124fa0481cee307ca57dd3ed71b06))
+* icon colors 002337 ([963fc94](https://github.com/villetakanen/pelilauta/commit/963fc9401e26c92af6e3d15b881f67d2a2661cd9))
+* icon colors fixed ([f65a116](https://github.com/villetakanen/pelilauta/commit/f65a1166a533bfc9e3fac289f26d0631b31da1e8))
+* iconography for the stylebook ([3ac3b25](https://github.com/villetakanen/pelilauta/commit/3ac3b2513e7608bba7b6e649772c208adbd332d3))
+* profile settings to column ([bf91740](https://github.com/villetakanen/pelilauta/commit/bf91740a085dd4343daf6d91fd4daa8c98a972aa))
+* provileview layout to dashboard ([e6f57e6](https://github.com/villetakanen/pelilauta/commit/e6f57e6fe939ea7ea2a5bd110e29cfadeca943d2))
+* refactored textfield to form components ([6adcdfb](https://github.com/villetakanen/pelilauta/commit/6adcdfb996e85755a27abe205897857b633ec453))
+
 ### [10.6.2](https://github.com/villetakanen/pelilauta/compare/v10.6.1...v10.6.2) (2021-09-27)
 
 
