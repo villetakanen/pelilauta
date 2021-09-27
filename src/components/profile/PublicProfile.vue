@@ -7,12 +7,12 @@
         <AvatarTool />
       </div>
       <div class="profileFields">
-        <TextField
+        <Textfield
           v-model="v.nickname.$model"
           :label="$t('profile.nick')"
           :error="v.nickname.$error"
         />
-        <TextField
+        <Textfield
           v-model="v.tagline.$model"
           :label="$t('profile.tagline')"
           :error="v.tagline.$error"
@@ -38,7 +38,7 @@ import { required } from '@vuelidate/validators'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useProfile } from '@/state/authz'
 import { useAuthors } from '@/state/authors'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import AvatarTool from './AvatarTool.vue'
@@ -48,7 +48,7 @@ export default defineComponent({
   name: 'PublicProfileInfoCard',
   components: {
     MaterialButton,
-    TextField,
+    Textfield,
     AvatarTool,
     Column
   },

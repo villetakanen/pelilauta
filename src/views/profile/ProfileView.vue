@@ -3,11 +3,10 @@
     <ProfileToolbar />
     <Loader
       v-if="!loginComplete"
-      poster
     />
     <div
       v-else
-      class="singleColumnLayout"
+      class="dashBoardLayout"
     >
       <PublicProfile />
       <ProfileActions />
