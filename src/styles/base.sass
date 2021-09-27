@@ -258,6 +258,19 @@ p+p
 ol
   list-style-type: disc
 
+table
+  margin-top: 16px
+  margin-bottom: 16px
+  border-collapse: collapse
+  th
+    @include TypeBody1()
+    border-bottom: solid 1px var(--chroma-secondary-g)
+    padding: 4px
+  td
+    @include TypeBody2()
+    padding: 4px
+    vertical-align: top
+
 // Layout helpers
 .contentArea
   overflow: hidden

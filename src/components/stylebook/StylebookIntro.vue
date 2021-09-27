@@ -8,20 +8,53 @@
     </p>
     <h2>Router View style classes</h2>
     <p>Found in <span class="code">@/styles/views.sass</span></p>
-    <div class="grid-of-2">
-      <p>
-        By using the <span class="code">&lt;@/components/form/Select.vue&gt;</span> component in the right,
-        you can switch between the different layout models we have for the router-views.
-      </p>
-      <div>
-        <Select
-          v-model="selectedLayout"
-          name="LayoutSelector"
-          :opts="layouts"
-          label="Select a layoyt"
-        />
-      </div>
+
+    <p>
+      By using the <span class="code">&lt;@/components/form/Select.vue&gt;</span> component below,
+      you can switch between the different layout models we have for the router-views.
+    </p>
+    <div>
+      <Select
+        v-model="selectedLayout"
+        name="LayoutSelector"
+        :opts="layouts"
+        label="Select a layoyt"
+      />
     </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="code">singleColumnLayout</span>
+          </td>
+          <td>A simple layout with a single, centered column of text.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="code">dashBoardLayout</span>
+          </td>
+          <td>A layout for dashboards. Arranges sections into rows of 3 items for desktop and tablet. (on mobile, acts like the <span class="code">singleColumnLayout</span>)</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="code">withSideBarLayout</span>
+          </td>
+          <td>A layout for wiki and game pages, with a site specific sidebar.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="code">emptyLayout</span>
+          </td>
+          <td>A layout filling 100% of the space with some padding.</td>
+        </tr>
+      </tbody>
+    </table>
   </Column>
 </template>
 
@@ -43,10 +76,10 @@ export default defineComponent({
       context.emit('update:modelValue', v)
     })
     const layouts = new Map<string, string>()
-    layouts.set('emptyLayout', 'emptyLayout')
     layouts.set('singleColumnLayout', 'singleColumnLayout')
     layouts.set('dashBoardLayout', 'dashBoardLayout')
-    layouts.set('flexLayout', 'flexLayout')
+    layouts.set('withSideBarLayout', 'withSideBarLayout')
+    layouts.set('emptyLayout', 'emptyLayout')
     return { selectedLayout, layouts }
   }
 })
