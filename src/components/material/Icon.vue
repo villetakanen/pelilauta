@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
+import iconslist from './iconslist.json'
 
 export default defineComponent({
   props: {
@@ -59,50 +60,7 @@ export default defineComponent({
   },
   setup (props) {
     const icons = ref(new Map<string, Array<string>>())
-    const slugs = [
-      'about',
-      'add',
-      'addAnImage',
-      'addDiscussion',
-      'admin',
-      'adventurer',
-      'attachments',
-      'avatar',
-      'books',
-      'close',
-      'd6',
-      'd12',
-      'd20',
-      'discussion',
-      'dd-logo',
-      'delete',
-      'edit',
-      'equalizer',
-      'eye',
-      'filter',
-      'forum',
-      'hidden',
-      'homebrew-logo',
-      'idea',
-      'images',
-      'keeper',
-      'lightbulb',
-      'mekanismi',
-      'monsters',
-      'pages',
-      'pathfinder-logo',
-      'players',
-      'remove',
-      'report',
-      'stats',
-      'search',
-      'send',
-      'settings',
-      'share',
-      'quick-logo',
-      'up',
-      'youtube'
-    ]
+    const slugs = iconslist.icons
 
     function addIcon (slug: string) {
       icons.value.set(slug, [
