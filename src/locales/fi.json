@@ -211,9 +211,10 @@
     },
     "stats": "Ketjut",
     "actions": {
-      "title": "Asetukset ja toiminnot",
+      "title": "Asetukset",
       "helper": "Erilaisia nappuloita ja säätöjä",
-      "selectLang": "Sovelluksen kieli"
+      "selectLang": "Sovelluksen kieli",
+      "actions": "Toiminnot"
     },
     "inbox": {
       "title": "Nostot"

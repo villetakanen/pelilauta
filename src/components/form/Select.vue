@@ -1,8 +1,12 @@
 <template>
-  <div class="Select">
+  <div
+    class="Select"
+    :class="{ error: error }"
+  >
     <select
       v-model="value"
       :name="name"
+
       @change="onChange"
     >
       <option
@@ -54,19 +58,17 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
+@import @/styles/formcontrols.sass
 
 div.Select
+  @include FormField()
   display: inline-block
   vertical-align: middle
-  background-color: var(--chroma-secondary-h)
   position: relative
-  border-bottom: solid 1px var(--chroma-secondary-d)
   border-top-right-radius: 12px
   margin: 3px 0
   padding: 0 4px
   min-width: 170px
-  &:hover, &:focus
-    background-color: var(--chroma-secondary-i)
   select
     @include TypeBody2()
     background: none
@@ -78,12 +80,5 @@ div.Select
     border: none
     color: var(--chroma-secondary-a)
     width: 100%
-  label
-    @include TypeCaption()
-    margin: 0
-    padding: 0
-    position: absolute
-    top: 4px
-    left: 8px
-    color: var(--chroma-secondary-d)
+
 </style>
