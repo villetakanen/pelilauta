@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.6.2](https://github.com/villetakanen/pelilauta/compare/v10.6.1...v10.6.2) (2021-09-27)
+
+
+### Bug Fixes
+
+* added grid styles for in-page-grids ([925f23d](https://github.com/villetakanen/pelilauta/commit/925f23dd92244ca6f6526a44cac083681f049c2e))
+* added stylebookentry for select component ([8978e08](https://github.com/villetakanen/pelilauta/commit/8978e080d30c8cdd23f221395def04423d0331e0))
+* site meta uses select component ([8a411ae](https://github.com/villetakanen/pelilauta/commit/8a411aecec7fc652ca364002977eace76cf10033))
+
 ### [10.6.1](https://github.com/villetakanen/pelilauta/compare/v10.6.0...v10.6.1) (2021-09-26)
 
 
