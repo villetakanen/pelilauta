@@ -1,6 +1,8 @@
 <template>
-  <Card class="profileActions">
-    <h3>{{ $t('profile.actions.title') }}</h3>
+  <Column class="profileActions">
+    <h1 class="title">
+      {{ $t('profile.actions.title') }}
+    </h1>
     <p>{{ $t('profile.actions.helper') }}</p>
     <div>
       <Select
@@ -10,18 +12,26 @@
         :opts="langs"
       />
     </div>
-    <MaterialButton
-      :action="stampAllSeen"
-    >
-      {{ $t('action.markAllRead') }}
-    </MaterialButton>
-    <div class="toolbar">
+
+    <div>
+      <h1 class="title">
+        {{ $t('profile.actions.actions') }}
+      </h1>
+      <MaterialButton
+        text
+        :action="stampAllSeen"
+      >
+        {{ $t('action.markAllRead') }}
+      </MaterialButton>
+      <br>
+
       <MaterialButton
         text
         @click="forgetMeDialog = true"
       >
         {{ $t('action.forgetMe') }}
       </MaterialButton>
+      <br>
 
       <div class="spacer" />
       <MaterialButton
@@ -54,7 +64,7 @@
         </div>
       </Card>
     </Dialog>
-  </Card>
+  </Column>
 </template>
 
 <script lang="ts">
@@ -64,7 +74,7 @@ import { useRouter } from 'vue-router'
 import { useAuth, useProfile } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
-import Card from '../layout/Card.vue'
+import Column from '../layout/Column.vue'
 import { getAuth } from '@firebase/auth'
 import Dialog from '../material/Dialog.vue'
 import TextField from '../material/TextField.vue'
@@ -74,7 +84,7 @@ export default defineComponent({
   name: 'ProfileActions',
   components: {
     MaterialButton,
-    Card,
+    Column,
     Dialog,
     TextField,
     Select
