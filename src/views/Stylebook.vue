@@ -7,6 +7,7 @@
     >
       <StylebookIntro v-model="layout" />
       <TextStyles />
+      <FormControls />
       <Card>
         <h1>Chroma</h1>
         Primary
@@ -541,6 +542,7 @@ import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import Chip from '@/components/material/Chip.vue'
 import TextStyles from '@/components/stylebook/TextStyles.vue'
 import StylebookIntro from '@/components/stylebook/StylebookIntro.vue'
+import FormControls from '@/components/stylebook/FormControls.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -559,7 +561,8 @@ export default defineComponent({
     MaterialSelect,
     Chip,
     TextStyles,
-    StylebookIntro
+    StylebookIntro,
+    FormControls
   },
   setup () {
     const layout = ref('singleColumnLayout')
