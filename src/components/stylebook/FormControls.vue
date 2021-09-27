@@ -5,16 +5,29 @@
       v-model="error"
       label="Set fields to error state"
     />
-    <div class="toolbar">
-      <p>Select field</p>
+    <div
+      class="toolbar"
+      style="margin-top:8px"
+    >
       <Select
         v-model="selectKey"
-        label="Select?"
+        label="A Select input"
         :opts="selectOps"
         :error="error"
         name="ExampleSelect"
       />
       <p>key: <span class="code">{{ selectKey }}</span></p>
+    </div>
+    <div
+      class="toolbar"
+      style="margin-top:8px"
+    >
+      <Textfield
+        v-model="textFieldValue"
+        label="A Textfield input"
+        :error="error"
+      />
+      <p>value: <span class="code">{{ textFieldValue }}</span></p>
     </div>
   </Column>
 </template>
@@ -23,11 +36,12 @@
 import { defineComponent, ref } from 'vue'
 import Select from '../form/Select.vue'
 import Column from '../layout/Column.vue'
+import Textfield from '../form/Textfield.vue'
 import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
   name: 'FromControls',
-  components: { Column, Select, Toggle },
+  components: { Column, Select, Toggle, Textfield },
   setup () {
     const error = ref(false)
 
@@ -36,7 +50,9 @@ export default defineComponent({
     selectOps.set('one', 'Option one')
     selectOps.set('two', 'Option two')
 
-    return { selectKey, selectOps, error }
+    const textFieldValue = ref('')
+
+    return { selectKey, selectOps, error, textFieldValue }
   }
 })
 </script>
