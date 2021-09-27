@@ -1,8 +1,12 @@
 <template>
-  <div class="Select">
+  <div
+    class="Select"
+    :class="{ error: error }"
+  >
     <select
       v-model="value"
       :name="name"
+
       @change="onChange"
     >
       <option
@@ -60,13 +64,18 @@ div.Select
   vertical-align: middle
   background-color: var(--chroma-secondary-h)
   position: relative
-  border-bottom: solid 1px var(--chroma-secondary-d)
+  border-bottom: solid 1px var(--chroma-secondary-f)
   border-top-right-radius: 12px
   margin: 3px 0
   padding: 0 4px
   min-width: 170px
   &:hover, &:focus
     background-color: var(--chroma-secondary-i)
+  &.error
+    border-bottom: solid 1px var(--chroma-alert)
+    background-color: var(--chroma-alert-field-tint)
+    label
+      color: var(--chroma-alert)
   select
     @include TypeBody2()
     background: none
