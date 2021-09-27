@@ -364,6 +364,9 @@
         </MaterialButton>
       </div>
     </div>
+    <SecondLevelNav v-if="layout === 'withSideBarLayout'">
+      <h1>Hello from the second level nav!</h1>
+    </SecondLevelNav>
   </div>
 </template>
 
@@ -387,6 +390,7 @@ import TextStyles from '@/components/stylebook/TextStyles.vue'
 import StylebookIntro from '@/components/stylebook/StylebookIntro.vue'
 import FormControls from '@/components/stylebook/FormControls.vue'
 import Iconography from '@/components/stylebook/Iconography.vue'
+import SecondLevelNav from '@/components/sidenav/SecondLevelNav.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -407,7 +411,8 @@ export default defineComponent({
     TextStyles,
     StylebookIntro,
     FormControls,
-    Iconography
+    Iconography,
+    SecondLevelNav
   },
   setup () {
     const layout = ref('dashBoardLayout')
