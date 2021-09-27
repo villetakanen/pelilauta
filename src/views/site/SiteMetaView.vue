@@ -4,16 +4,13 @@
     <transition name="fade">
       <div
         v-if="site && site.name"
-        class="dashboardFlexSection"
+        class="dashBoardLayout"
       >
         <SiteMeta class="inDashboardBox" />
         <SiteIdentity class="inDashboardBox" />
         <SiteCategoriesCard class="inDashboardBox" />
       </div>
-      <Loader
-        v-else
-        style="position:absolute"
-      />
+      <Loader v-else />
     </transition>
   </div>
 </template>
@@ -57,27 +54,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-@import @/styles/include-media.scss
-
-.dashboardFlexSection
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  align-items: flex-start
-
-@include media('<desktop')
-  .dashboardFlexSection
-    .inDashboardBox
-      min-width: none
-      max-width: none
-      width: calc(100vw - 90px)
-
-@include media('>=desktop')
-  .dashboardFlexSection
-    .inDashboardBox
-      min-width: none
-      max-width: none
-      width: calc(30vw - 96px)
-</style>
