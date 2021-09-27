@@ -8,17 +8,19 @@
     </p>
     <h2>Router View style classes</h2>
     <p>Found in <span class="code">@/styles/views.sass</span></p>
-    <div style="display:flex; align-items: flex-start; gap: 16px">
+    <div class="grid-of-2">
       <p>
         By using the <span class="code">&lt;@/components/form/Select.vue&gt;</span> component in the right,
         you can switch between the different layout models we have for the router-views.
       </p>
-      <Select
-        v-model="selectedLayout"
-        name="LayoutSelector"
-        :opts="layouts"
-        label="Select a layoyt"
-      />
+      <div>
+        <Select
+          v-model="selectedLayout"
+          name="LayoutSelector"
+          :opts="layouts"
+          label="Select a layoyt"
+        />
+      </div>
     </div>
   </Column>
 </template>

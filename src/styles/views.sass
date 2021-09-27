@@ -8,17 +8,32 @@
   padding: 0 8px
   margin: 0 auto
 
+// *** dashBoardLayout ************************************************
+.dashBoardLayout
+
+@include media('>=tablet')
+  .dashBoardLayout
+    display: flex
+    gap: 16px
+    flex-wrap: wrap
+  .dashBoardLayout > div
+    width: calc(100% / 3 - 60px)
+    flex-grow: 0
+    flex-shrink: 0
+
+// Cleaned
+
 .emptyLayout
   padding: 0 8px
   margin: 8px auto
 
-.dashBoardLayout
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  align-items: flex-start
-  .dashboardCard
-    min-width: 30vw
+// .dashBoardLayout
+//   display: flex
+//   flex-direction: row
+//   flex-wrap: wrap
+//   align-items: flex-start
+//   .dashboardCard
+//     min-width: 30vw
 
 .flexLayout
   display: flex
@@ -36,9 +51,9 @@
     flex-grow: 0
     flex-shrink: 0
 
-@include media('>tablet')
-  .dashBoardLayout
-    .dashboardCard
-      min-width: 520px
-      max-width: 520px
-      width:520px
+// @include media('>tablet')
+//   .dashBoardLayout
+//     .dashboardCard
+//       min-width: 520px
+//       max-width: 520px
+//       width:520px
