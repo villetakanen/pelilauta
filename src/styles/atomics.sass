@@ -63,8 +63,19 @@
   @include lowEmphasis()
 
 
+// *** Grids **********************************************************
 
-// *** Visual helpers *********************************************************
+.grid-of-two
+  display: flex
+  flex-wrap: wrap
+  gap: 16px
+
+@include media('>=tablet')
+  .grid-of-two
+    display: grid
+    grid-template-rows: auto auto
+
+// *** Visual helpers *************************************************
 
 // Actions and buttons that can be "active" and need hover on focus
 .chromaFocus
