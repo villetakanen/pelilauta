@@ -118,6 +118,7 @@ main
   padding-bottom: 16px
   background-color: var(--chroma-clear)
   min-height: calc(100vh - 270px)
+  position: relative
 
 @include media('>=tablet')
   main

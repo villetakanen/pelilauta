@@ -83,7 +83,9 @@ export default defineComponent({
   #sideNav
     position: relative
     float: left
+    z-index: 2
     #drawer
+      z-index: 1
       position: relative
       width: 310px
       @include Rise0()
