@@ -73,7 +73,10 @@
       <div class="f">
         F
       </div>
-      <div class="g">
+      <div
+        class="chosen g"
+        @click="chosenColorVar = '--chroma-secondary-g'"
+      >
         G
       </div>
       <div
@@ -181,6 +184,7 @@ export default defineComponent({
       background-color: #002337
 .scale
   display: flex
+  gap: 4px
   div
     height: 44px
     width: 44px
@@ -188,7 +192,6 @@ export default defineComponent({
     line-height: 28px
     box-sizing: border-box
     border: solid 8px white
-    border-radius: 50%
     &.chosen
       border: none
       line-height: 44px
@@ -248,8 +251,7 @@ export default defineComponent({
     background-color: var(--chroma-secondary-f)
     color: white
   .g
-    background-color: var(--chroma-secondary-g)
-    color: white
+    border: solid 1px var(--chroma-secondary-g) !important
   .h
     background-color: var(--chroma-secondary-h)
     color: #002337

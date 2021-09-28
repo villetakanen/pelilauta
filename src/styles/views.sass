@@ -11,15 +11,19 @@
 // *** dashBoardLayout ************************************************
 // .dashBoardLayout
 
-@include media('>=tablet')
+@include media('>=desktop')
   .dashBoardLayout
     display: flex
     gap: 16px
     flex-wrap: wrap
   .dashBoardLayout > div
-    width: calc(100% / 3 - 60px)
+    width: calc(100% / 2 - 60px)
     flex-grow: 0
     flex-shrink: 0
+
+@include media('>=1400px')
+  .dashBoardLayout > div
+    width: calc(100% / 3 - 60px)
 
 // *** emptyLayout ****************************************************
 @include media('>=tablet')
