@@ -9,7 +9,7 @@
   margin: 0 auto
 
 // *** dashBoardLayout ************************************************
-.dashBoardLayout
+// .dashBoardLayout
 
 @include media('>=tablet')
   .dashBoardLayout
@@ -20,6 +20,15 @@
     width: calc(100% / 3 - 60px)
     flex-grow: 0
     flex-shrink: 0
+
+// *** emptyLayout ****************************************************
+@include media('>=tablet')
+  .emptyLayout
+    display: flex
+    flex-wrap: wrap
+    box-sizing: border-box
+    div.column
+      width: 100%
 
 // *** withSideBarLayout **********************************************
 
@@ -33,9 +42,6 @@
 
 // Cleaned
 
-.emptyLayout
-  padding: 0 8px
-  margin: 8px auto
 
 // .dashBoardLayout
 //   display: flex
