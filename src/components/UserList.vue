@@ -11,6 +11,9 @@
             Author
           </th>
           <th scope="col">
+            {{ $t('admin.users.lastActivity') }}
+          </th>
+          <th scope="col">
             State
           </th>
         </tr>
