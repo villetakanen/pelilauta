@@ -6,12 +6,28 @@
       very convinient way to test and document usage of UX/UI practices, tooling, components, and
       styles in the codebase.
     </p>
-    <h2>Router View style classes</h2>
-    <p>Found in <span class="code">@/styles/views.sass</span></p>
+    <h2>Router Views</h2>
+
+    <div class="frame right-of-text">
+      <img
+        src="@/assets/MobileWeb.svg"
+        alt="An Example of the App Wireframe"
+      >
+      <p class="TypeCaption">
+        Base layout of the App
+      </p>
+    </div>
 
     <p>
-      By using the <span class="code">&lt;@/components/form/Select.vue&gt;</span> component below,
-      you can switch between the different layout models we have for the router-views.
+      The Single Page App routing is created using <a href="https://router.vuejs.org/">Vue Router</a>, and all the
+      views can be found from the default location <span class="code">@/view</span>
+    </p>
+
+    <p>The class declarations for view styles can be found in <span class="code">@/styles/views.sass</span></p>
+
+    <p>
+      Use the <span class="code">&lt;@/components/form/Select.vue&gt;</span> below,
+      to switch between the different layout models we have for the router-views.
     </p>
     <div>
       <Select
