@@ -21,6 +21,16 @@
     flex-grow: 0
     flex-shrink: 0
 
+// *** withSideBarLayout **********************************************
+
+.withSideBarLayout
+  padding: 0 8px
+  margin: 8px auto
+
+@include media('>=tablet')
+  .withSideBarLayout
+    padding-left: 310px
+
 // Cleaned
 
 .emptyLayout
