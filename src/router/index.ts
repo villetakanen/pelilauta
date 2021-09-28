@@ -270,10 +270,6 @@ const router = createRouter({
 })
 
 const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites', 'threads.create']
-const ADMIN_ROUTES = [
-  'global.admin',
-  'global.admin.topics'
-]
 
 router.beforeEach((to, from, next) => {
   if (to.name && to.name.toString().startsWith('mekanismi')) {
@@ -285,11 +281,8 @@ router.beforeEach((to, from, next) => {
   }
 
   // Logged in only routes!
-  const { showMemberTools, showAdminTools } = useAuth()
+  const { showMemberTools } = useAuth()
   if (AUTH_ROUTES.includes(to.name?.toString() || '') && !showMemberTools.value) {
-    next({ name: 'Login' })
-  }
-  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !showAdminTools.value) {
     next({ name: 'Login' })
   }
   // next!

@@ -1,20 +1,22 @@
 <template>
-  <div class="userlist">
+  <Column class="userlist">
     <table>
       <caption>User Admin</caption>
-      <tr>
-        <th scope="col">
-          Avatar
-        </th>
-        <th scope="col">
-          Author
-        </th>
-        <th scope="col">
-          State
-        </th>
-      </tr>
+      <thead>
+        <tr>
+          <th scope="col">
+            Avatar
+          </th>
+          <th scope="col">
+            Author
+          </th>
+          <th scope="col">
+            State
+          </th>
+        </tr>
+      </thead>
       <tr
-        v-for="user in users"
+        v-for="user in authors"
         :key="user.uid"
       >
         <UserListRow
@@ -24,49 +26,24 @@
         />
       </tr>
     </table>
-  </div>
+  </Column>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import UserListRow from '@/components/UserListRow.vue'
-import { collection, getFirestore, onSnapshot } from '@firebase/firestore'
-import { useAuth } from '@/state/authz'
-
-interface UserListEntity {
-  uid: string;
-  nick: string;
-  isMe: boolean;
-  photoURL: string;
-}
+import Column from './layout/Column.vue'
+import { useAuthors } from '@/state/authors'
 
 export default defineComponent({
   name: 'EditPost',
   components: {
-    UserListRow
+    UserListRow,
+    Column
   },
   setup () {
-    const users = ref(new Array<UserListEntity>())
-    const { user } = useAuth()
-
-    onMounted(() => {
-      const db = getFirestore()
-      const profilesRef = collection(db, 'profiles')
-      onSnapshot(profilesRef, (changes) => {
-        changes.docChanges().forEach((change) => {
-          if (change.type === 'added') {
-            users.value.push({
-              uid: change.doc.id,
-              nick: change.doc.data()?.nick,
-              isMe: change.doc.id === user.value.uid,
-              photoURL: change.doc.data()?.photoURL
-            })
-          }
-        })
-      })
-    })
-
-    return { users }
+    const { authors } = useAuthors()
+    return { authors }
   }
 })
 </script>
@@ -75,16 +52,4 @@ export default defineComponent({
 .userlist
   table
     width: 100%
-    border-collapse: collapse
-    margin-bottom: 16px
-  td
-    border-bottom: solid 1px #ddd
-.avatar
-  height: 22px
-  width: 22px
-  border-radius: 11px
-.admin
-  color: red
-.myself
-  color: #666
 </style>
