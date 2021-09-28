@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.1](https://github.com/villetakanen/pelilauta/compare/v10.7.0...v10.7.1) (2021-09-28)
+
+
+### Bug Fixes
+
+* removed non functional layout style ([c45e3f0](https://github.com/villetakanen/pelilauta/commit/c45e3f01892451a39185a8a405ee7a43956b760a))
+* site meta to new field styles ([bdb83fc](https://github.com/villetakanen/pelilauta/commit/bdb83fc26c307ecb7ba8084c0755a4706ecca625))
+* stylebook polish ([dcfd958](https://github.com/villetakanen/pelilauta/commit/dcfd95826658b309a0cf1a0caf50a2a6e6b5e6bb))
+
 ## [10.7.0](https://github.com/villetakanen/pelilauta/compare/v10.6.4...v10.7.0) (2021-09-28)
 
 
