@@ -33,15 +33,15 @@ export default defineComponent({
 
 #appAction
   margin-left: 0px
-  color: var(--color-a-a)
+  color: var(--chroma-secondary-a)
   h4
     line-height: 48px
     margin: 0
   a
-    color: var(--color-a-d)
+    color: var(--chroma-secondary-d)
   .subtitle
     a
-      color: var(--color-a-a)
+      color: var(--chroma-secondary-a)
 
 .siteIdentity
   img

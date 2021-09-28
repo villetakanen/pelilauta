@@ -51,18 +51,14 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #AppBar
-  // box-shadow: 0 0 13px 0 var(--chroma-secondary-h)
   position: relative
-  background: var(--chroma-clear) // linear-gradient(140deg, var(--chroma-primary-a) 0%, var(--chroma-primary-e) 100%) // linear-gradient(127deg, rgba(0,121,107,1) 0%, rgba(0,200,83,1) 100%)
+  background: var(--chroma-clear)
   height: 48px
   margin: 0
   margin-bottom: 0px
-  // border-bottom: solid 1px var(--chroma-primary-e)
   padding: 3px
   display: flex
   z-index: 100
-  border-bottom: solid 1px var(--color-b-i)
-
-@include media('>phone')
+  border-bottom: solid 1px var(--chroma-secondary-g)
 
 </style>

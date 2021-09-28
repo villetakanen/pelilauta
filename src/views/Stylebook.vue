@@ -10,127 +10,6 @@
     <Iconography />
     <FormControls />
     <Card>
-      <h1>Chroma</h1>
-      Primary
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-primary-a)"
-      >
-        A
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-primary-b)"
-      >
-        B
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-primary-c)"
-      >
-        C
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-primary-d)"
-      >
-        D
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-primary-e)"
-      >
-        E
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-primary-f)"
-      >
-        F
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-primary-g)"
-      >
-        G
-      </div>
-      <div
-        class="colorbox light"
-        style="background-color:var(--chroma-primary-h)"
-      >
-        H
-      </div>
-      <div
-        class="colorbox light"
-        style="background-color:var(--chroma-primary-i)"
-      >
-        I
-      </div>
-      <br>
-      Secondary
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-secondary-a)"
-      >
-        A
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-secondary-b)"
-      >
-        B
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-secondary-c)"
-      >
-        C
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-secondary-d)"
-      >
-        D
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-secondary-e)"
-      >
-        E
-      </div>
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-secondary-f)"
-      >
-        F
-      </div>
-      <div
-        class="colorbox light"
-        style="background-color:var(--chroma-secondary-g)"
-      >
-        G
-      </div>
-      <div
-        class="colorbox light"
-        style="background-color:var(--chroma-secondary-h)"
-      >
-        H
-      </div>
-      <div
-        class="colorbox light"
-        style="background-color:var(--chroma-secondary-i)"
-      >
-        I
-      </div>
-      <br>
-      Alert
-      <div
-        class="colorbox"
-        style="background-color:var(--chroma-alert)"
-      >
-        !
-      </div>
-      <br>
       Rises
       <div
         class="colorbox rise1 light"
@@ -154,47 +33,6 @@
       </div>
     </Card>
     <Card>
-      <h1>Headline 1</h1>
-      <p>And some text</p>
-      <h2>Headline 2</h2>
-      <p>And some text</p>
-      <h3>Headline 3</h3>
-      <p>And some text</p>
-      <h4>Headline 4</h4>
-      <p>And some text</p>
-    </Card>
-    <Card>
-      <h1>Buttons</h1>
-      <MaterialButton :async-action="asyncWaitDemo">
-        Button
-      </MaterialButton>
-      <MaterialButton text>
-        Text button
-      </MaterialButton>
-      <div style="background-color:var(--chroma-secondary-a);display: inline-block; margin: 0 4px; padding: 4px">
-        <MaterialButton dark>
-          Button on dark
-        </MaterialButton>
-        <MaterialButton
-          dark
-          text
-        >
-          Text button on dark
-        </MaterialButton>
-      </div>
-      <br>
-      Icon buttons
-      <MaterialButton icon>
-        <Icon name="send" />
-      </MaterialButton>
-      <div style="background-color:var(--chroma-secondary-a);display: inline-block; margin: 0 4px; padding: 4px">
-        <MaterialButton dark>
-          <Icon
-            color="dark"
-            name="send"
-          />
-        </MaterialButton>
-      </div>
       <h2>
         Actions
       </h2>
@@ -243,37 +81,20 @@
       </div>
     </Card>
 
-    <Card>
-      <div class="z-1">
-        Z-1
-      </div>
-      <div class="z-2">
-        Z-2
-      </div>
-      <div class="z-3">
-        Z-3
-      </div>
-      <div class="z-4">
-        Z-4
-      </div>
-    </Card>
-
-    <div>
-      <teleport to="#BottomFabsContainer">
-        <Fab
-          text="Pelilauta"
-          dark
-          icon="pelilauta"
-        />
-        <Fab
-          secondary
-          icon="d6"
-        />
-        <Fab
-          icon="edit"
-        />
-      </teleport>
-    </div>
+    <teleport to="#BottomFabsContainer">
+      <Fab
+        text="Pelilauta"
+        dark
+        icon="pelilauta"
+      />
+      <Fab
+        secondary
+        icon="d6"
+      />
+      <Fab
+        icon="edit"
+      />
+    </teleport>
 
     <!-- inputs -->
     <div class="section">
@@ -319,35 +140,6 @@
       />
     </div>
 
-    <!-- icons -->
-    <div class="section">
-      <Icon name="equalizer" />
-      <Icon name="players" />
-      <Icon name="filter" />
-    </div>
-
-    <div class="section">
-      <h1>Cards</h1>
-      <div style="display:flex">
-        <MaterialCard>
-          <h1>Headline 1</h1>
-          <h2>Headline 2</h2>
-          <h3>Headline 3</h3>
-          <h4>Headline 4</h4>
-        </MaterialCard>
-        <MaterialCard>
-          <ol>
-            <li>
-              list item
-              <ol>
-                <li>secondary</li>
-              </ol>
-            </li>
-          </ol>
-        </MaterialCard>
-      </div>
-    </div>
-
     <div class="section">
       <h1>Statefull components</h1>
       <Avatar nick="no-image" />
@@ -374,13 +166,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
-import Avatar from '@/components/app/Avatar.vue'
 import TextField from '@/components/material/TextField.vue'
 import { useSnack } from '@/composables/useSnack'
 import Fab from '@/components/material/Fab.vue'
-import Icon from '@/components/material/Icon.vue'
 import Toggle from '@/components/material/Toggle.vue'
 import Action from '@/components/material/Action.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
@@ -398,12 +186,8 @@ import ColorTheme from '@/components/stylebook/ColorTheme.vue'
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
-    MaterialButton,
-    Avatar,
-    MaterialCard,
     TextField,
     Fab,
-    Icon,
     Toggle,
     Action,
     AdminActions,

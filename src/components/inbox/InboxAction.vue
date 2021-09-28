@@ -55,7 +55,7 @@ export default defineComponent({
   .actionIcon
     margin: 0
   .inactive
-    opacity: 0.3
+    opacity: 0.5
     transition: opacity 0.3s
   &:hover
     .inactive

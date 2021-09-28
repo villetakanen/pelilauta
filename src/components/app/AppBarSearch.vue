@@ -72,7 +72,7 @@ export default defineComponent({
 .appBarSearch
   position: relative
   .inputContainer
-    background-color: var(--color-a-d) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+    background-color: var(--chroma-secondary-d)
     height: 40px
     position: relative
     border-radius: 20px

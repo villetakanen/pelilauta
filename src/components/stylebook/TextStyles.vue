@@ -8,22 +8,25 @@
         label="Apply class TypeBody2 to the paragraphs below"
       />
     </p>
-    <p :class="{ TypeBody2: bodyTextSmall }">
-      We support three text colors for body text. Here is a paragraph with no color styling for High Emphasis. It can also be
-      "turned on" for other tags by using the class <span class="code">highEmphasis</span> or a mixin <span class="code">@highEmphasis</span>
-    </p>
     <p
-      class="mediumEmphasis"
+      class="highEmphasis"
       :class="{ TypeBody2: bodyTextSmall }"
     >
-      Using the class <span class="code">mediumEmphasis</span> or a mixin <span class="code">@mediumEmphasis</span>
-      from <span class="code">@import @/styles/atomics.sass</span> will tone down the text.
+      We support three text colors for body text. Here is a paragraph with High Emphasis. It can also be
+      "turned on" by using the class <span class="code">highEmphasis</span> or a mixin <span class="code">@highEmphasis</span>
+    </p>
+    <p
+      :class="{ TypeBody2: bodyTextSmall }"
+    >
+      The default emphasis for text elements is called 'mediumEmphasis'<br>
+      It can be added to other elements with the class <span class="code">mediumEmphasis</span> or the mixin <span class="code">@mediumEmphasis</span>
+      from <span class="code">@import @/styles/atomics.sass</span>.
     </p>
     <p
       class="lowEmphasis"
       :class="{ TypeBody2: bodyTextSmall }"
     >
-      In a similar fashion, the class <span class="code">lowEmphasis</span> or a mixin <span class="code">@lowEmphasis</span>
+      In a similar fashion, the class <span class="code">lowEmphasis</span> or the mixin <span class="code">@lowEmphasis</span>
       from <span class="code">@import @/styles/atomics.sass</span> will tone down the text.
     </p>
   </Column>
