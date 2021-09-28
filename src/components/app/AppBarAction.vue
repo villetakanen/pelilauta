@@ -83,9 +83,9 @@ export default defineComponent({
   .mobileIcon
     margin: 0px
   &:hover
-    background-color: var(--color-b-h)
+    background-color: var(--chroma-secondary-h)
   &.active
-    background-color: var(--color-b-i)
+    background-color: var(--chroma-secondary-i)
 
 @include media('>tablet')
   .appBarAction
