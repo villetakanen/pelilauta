@@ -58,10 +58,18 @@
           <td>A layout for dashboards. Arranges sections into rows of 3 items for desktop and tablet. (on mobile, acts like the <span class="code">singleColumnLayout</span>)</td>
         </tr>
         <tr>
-          <td>
+          <td
+            style="text-decoration:line-through"
+            class="lowEmphasis"
+          >
             <span class="code">withSideBarLayout</span>
           </td>
-          <td>A layout for wiki and game pages, with a site specific sidebar.</td>
+          <td
+            style="text-decoration:line-through"
+            class="lowEmphasis"
+          >
+            A layout for wiki and game pages, with a site specific sidebar.
+          </td>
         </tr>
         <tr>
           <td>
@@ -94,7 +102,6 @@ export default defineComponent({
     const layouts = new Map<string, string>()
     layouts.set('singleColumnLayout', 'singleColumnLayout')
     layouts.set('dashBoardLayout', 'dashBoardLayout')
-    layouts.set('withSideBarLayout', 'withSideBarLayout')
     layouts.set('emptyLayout', 'emptyLayout')
     return { selectedLayout, layouts }
   }
