@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.4](https://github.com/villetakanen/pelilauta/compare/v10.7.3...v10.7.4) (2021-09-28)
+
+
+### Bug Fixes
+
+* added loki graphics to loki card ([c72f97d](https://github.com/villetakanen/pelilauta/commit/c72f97d645102db60c9823a6c9160fe91dfbff08))
+* loki image ([8421f63](https://github.com/villetakanen/pelilauta/commit/8421f633c090c39c7b4deb3dffd4de97dfc54f2a))
+
 ### [10.7.3](https://github.com/villetakanen/pelilauta/compare/v10.7.2...v10.7.3) (2021-09-28)
 
 
