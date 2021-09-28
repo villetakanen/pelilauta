@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.3](https://github.com/villetakanen/pelilauta/compare/v10.7.2...v10.7.3) (2021-09-28)
+
+
+### Bug Fixes
+
+* color theme clearing ([b5a6c1c](https://github.com/villetakanen/pelilauta/commit/b5a6c1c4d117ef99b87faaf0ffb92e8071cee6a5))
+* color theme info moved to column 1/2 ([9bc76eb](https://github.com/villetakanen/pelilauta/commit/9bc76ebfd568eddf7565f965cef89500ac04ee6c))
+* color tool 2/2 ([cf64ea9](https://github.com/villetakanen/pelilauta/commit/cf64ea9b6fdfbe06fe8002a3ca1aabd541054e62))
+* responsiveness of dashboardlayout ([418ef96](https://github.com/villetakanen/pelilauta/commit/418ef962fd9c82b7384d0da20d396d18e74b9e0f))
+
 ### [10.7.2](https://github.com/villetakanen/pelilauta/compare/v10.7.1...v10.7.2) (2021-09-28)
 
 
