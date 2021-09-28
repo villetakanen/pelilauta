@@ -89,6 +89,21 @@
         I
       </div>
     </div>
+    <p>Alert <span class="code">1: var(--chroma-alert), 2: var(--chroma-alert-field-tint)</span></p>
+    <div class="scale alert">
+      <div
+        class="chosen base"
+        @click="chosenColorVar = '--chroma-alert'"
+      >
+        1
+      </div>
+      <div
+        class="chosen tint"
+        @click="chosenColorVar = '--chroma-alert-field-tint'"
+      >
+        2
+      </div>
+    </div>
     <h2 style="margin-top:16px">
       In Action
     </h2>
@@ -177,6 +192,12 @@ export default defineComponent({
     &.chosen
       border: none
       line-height: 44px
+
+.alert
+  .base
+    background-color: var(--chroma-alert)
+  .tint
+    background-color: var(--chroma-alert-field-tint)
 
 .primary
   .a

@@ -5,6 +5,7 @@
     :class="layout"
   >
     <StylebookIntro v-model="layout" />
+    <ColorTheme />
     <TextStyles />
     <Iconography />
     <FormControls />
@@ -392,6 +393,7 @@ import FormControls from '@/components/stylebook/FormControls.vue'
 import Iconography from '@/components/stylebook/Iconography.vue'
 import SecondLevelNav from '@/components/sidenav/SecondLevelNav.vue'
 import SideNavMenuItem from '@/components/sidenav/SideNavMenuItem.vue'
+import ColorTheme from '@/components/stylebook/ColorTheme.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -413,7 +415,8 @@ export default defineComponent({
     FormControls,
     Iconography,
     SecondLevelNav,
-    SideNavMenuItem
+    SideNavMenuItem,
+    ColorTheme
   },
   setup () {
     const layout = ref('dashBoardLayout')
