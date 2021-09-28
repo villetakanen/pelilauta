@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.2](https://github.com/villetakanen/pelilauta/compare/v10.7.1...v10.7.2) (2021-09-28)
+
+
+### Bug Fixes
+
+* admin view layout ([515d21b](https://github.com/villetakanen/pelilauta/commit/515d21b7b665954dee96d7fe71c0c8e6420698f5))
+* userlist shows latest activity ([21d6445](https://github.com/villetakanen/pelilauta/commit/21d6445dc86e31464deeeca62caada635b6a162a))
+
 ### [10.7.1](https://github.com/villetakanen/pelilauta/compare/v10.7.0...v10.7.1) (2021-09-28)
 
 
