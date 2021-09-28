@@ -37,7 +37,7 @@ import WikiChangesCard from './WikiChangesCard.vue'
 import { useLoki } from '@/state/feeds'
 import { FeedPost } from '@/state/feeds/loki'
 import { DateTime } from 'luxon'
-import WPCard from './WPCard.vue'
+import WPCard from './LokiCard.vue'
 
 interface StreamEntry {
   key: string
