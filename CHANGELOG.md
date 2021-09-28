@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.7.0](https://github.com/villetakanen/pelilauta/compare/v10.6.4...v10.7.0) (2021-09-28)
+
+
+### Features
+
+* second level nav ([d92a5dd](https://github.com/villetakanen/pelilauta/commit/d92a5dd38d1d5d22eea265df62b8d465ee070759))
+
+
+### Bug Fixes
+
+* snack no longer clips for menu (on desktop) ([3cc74ed](https://github.com/villetakanen/pelilauta/commit/3cc74ed6a1859750685e9272dafc35e261bbe474))
+
 ### [10.6.4](https://github.com/villetakanen/pelilauta/compare/v10.6.3...v10.6.4) (2021-09-27)
 
 ### [10.6.3](https://github.com/villetakanen/pelilauta/compare/v10.6.2...v10.6.3) (2021-09-27)
