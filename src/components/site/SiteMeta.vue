@@ -3,16 +3,17 @@
     <h1 class="title">
       {{ $t('mekanismi.site.meta') }}
     </h1>
-    <hr>
-    <div>
-      <TextField
+    <p>
+      <Textfield
         v-model="siteName"
         :label="$t('mekanismi.site.name')"
       />
-      <TextField
+      <Textfield
         v-model="siteDescription"
         :label="$t('mekanismi.site.description')"
       />
+    </p>
+    <div>
       <Select
         v-model="badge"
         :opts="badges"
@@ -53,11 +54,19 @@ import Select from '../form/Select.vue'
 import Column from '../layout/Column.vue'
 import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton, Icon, Toggle, Column, Select },
+  name: 'SiteMeta',
+  components: {
+    Textfield,
+    MaterialButton,
+    Icon,
+    Toggle,
+    Column,
+    Select
+  },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const localName = ref('')
