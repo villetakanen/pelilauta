@@ -108,8 +108,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-.rtEditor
-  background-color: var(--color-b-j)
-</style>
