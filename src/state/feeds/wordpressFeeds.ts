@@ -12,7 +12,8 @@ class WordpressFeed {
   }
 
   subscribe = async (rssFeedUrl:URL) => {
-    try {
+    console.warn('subscribe = async (rssFeedUrl:URL) is deactivated at the moment')
+    /* try {
       const response = await axios.get(rssFeedUrl.href + '?after=2020-04-01')
       if (Array.isArray(response.data.posts)) {
         response.data.posts.forEach((item:unknown) => {
@@ -22,7 +23,7 @@ class WordpressFeed {
       }
     } catch (e) {
       console.error(e)
-    }
+    } */
   }
 }
 
