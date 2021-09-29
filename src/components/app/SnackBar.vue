@@ -83,7 +83,7 @@ export default defineComponent({
   @include BoxShadow24()
   position: relative
   max-height: 96px
-  background-color: $color-fill-dark
+  background-color: var(--chroma-secondary-d)
   border-radius: 8px
   #snackAction
     display: inline-block
@@ -92,7 +92,7 @@ export default defineComponent({
   p
     @include TypeBody2()
     padding: 16px
-    color: $color-dark-font-medium
+    color: var(--chroma-secondary-h)
 
 @include media('<tablet')
   #snackBar
