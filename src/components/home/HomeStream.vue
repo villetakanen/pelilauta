@@ -34,7 +34,7 @@ import { computed, defineComponent } from 'vue'
 import ThreadCard from './threadcard/ThreadCard.vue'
 import WelcomeCard from './WelcomeCard.vue'
 import WikiChangesCard from './WikiChangesCard.vue'
-import { useLoki } from '@/state/feeds'
+import { useLoki, createFeed } from '@/state/feeds'
 import { FeedPost } from '@/state/feeds/loki'
 import { DateTime } from 'luxon'
 import WPCard from './LokiCard.vue'
@@ -75,9 +75,15 @@ export default defineComponent({
       let wikiChangesInStream: boolean
       const { stream: streamThreads } = useThreads()
       const { feedPosts } = useLoki()
+      const roolipelitiedotus = createFeed(new URL('https://roolipelitiedotus.fi/feed/'))
+      const rptArray = Array.from(roolipelitiedotus.cachedPosts.value.values())
+      if (rptArray.length > 4) rptArray.length = 5
       const clipped = Array.from(feedPosts.value.values())
-      if (clipped.length > 5) clipped.length = 5
-      const streamItems = merge(clipped, Array.from(streamThreads.value))
+      if (clipped.length > 0) clipped.length = 0
+      const streamItems = merge(
+        merge(clipped, Array.from(streamThreads.value)),
+        rptArray
+      )
       streamItems.forEach((t) => {
         // inject latest wikichanges to relevant position
         // @TODO state handler for wiki latest changes, and
