@@ -49,7 +49,8 @@ export default defineComponent({
   },
   emits: [
     'update:content',
-    'mention'
+    'mention',
+    'delta'
   ],
   setup (props, context) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
@@ -85,7 +86,9 @@ export default defineComponent({
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
+        if (props.content === quill?.root.innerHTML) return
         context.emit('update:content', quill?.root.innerHTML || '')
+        context.emit('delta', quill?.getContents())
       })
 
       // Reset field, when model is reset. Do not inject other

@@ -9,6 +9,7 @@
     <TextStyles />
     <Iconography />
     <FormControls />
+    <RichText />
     <Card>
       Rises
       <div
@@ -182,6 +183,7 @@ import Iconography from '@/components/stylebook/Iconography.vue'
 import SecondLevelNav from '@/components/sidenav/SecondLevelNav.vue'
 import SideNavMenuItem from '@/components/sidenav/SideNavMenuItem.vue'
 import ColorTheme from '@/components/stylebook/ColorTheme.vue'
+import RichText from '@/components/stylebook/RichText.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -200,7 +202,8 @@ export default defineComponent({
     Iconography,
     SecondLevelNav,
     SideNavMenuItem,
-    ColorTheme
+    ColorTheme,
+    RichText
   },
   setup () {
     const layout = ref('dashBoardLayout')
