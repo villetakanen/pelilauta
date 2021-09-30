@@ -77,18 +77,18 @@ export default defineComponent({
   .site, .page
     margin-left: 54px
   a
+    text-decoration: none
     .page
       color: white
-      text-decoration: none
     .site
-      color: var(--color-b-f)
+      color: var(--chroma-secondary-g)
 div.site
   @include TypeBody2()
   color: var(--chroma-primary-h)
   line-height: 20px
   padding: 0
   div.time
-    color: var(--color-b-g)
+    color: var(--chroma-secondary-f)
     float: right
 div.page
   @include TypeBody2()
@@ -97,7 +97,7 @@ div.page
   padding: 0
   margin-bottom: 8px
   a
-    color: var(--chroma-clear )
+    color: var(--chroma-secondary-i)
     text-decoration: none
 
 @include media('<tablet')

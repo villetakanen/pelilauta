@@ -63,24 +63,14 @@ export default defineComponent({
 
 .wikiChangesCard
   display: block
-  background: linear-gradient(-44deg, var(--color-a-a) 0%, var(--color-b-d) 100%)
+  background: linear-gradient(-37deg, var(--chroma-secondary-a ) 22%, var(--chroma-secondary-d) 100%)
   position: relative
   min-height: 72px
   h1
     @include TypeCardHeadline()
-    // margin-left:76px
-    color: var(--chroma-secondary-i)
+    color: var(--chroma-secondary-h)
   ul
     margin-left: 0
     padding-left: 18px
-  p, li
-    @include TypeBody2()
-    // margin-left: 72px
-    color: $color-dark-font-medium
-    a
-      color: $color-dark-font-medium
-    .siteslug
-      color: $color-dark-font-disabled
-      padding-right: 8px
 
 </style>
