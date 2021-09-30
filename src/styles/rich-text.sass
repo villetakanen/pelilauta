@@ -12,14 +12,17 @@
 $icon_size: 32px
 
 .rtEditor
+  @include Rise1()
   border-top-right-radius: 12px
   .ql-editor
     min-height: 240px
+    border-bottom: solid 1px var(--chroma-secondary-g)
     img
       max-width: 100%
   .ql-toolbar
-    // background-color: var(--color-b-j)
-    border-bottom: solid 1px var(--color-b-h)
+    border-top-right-radius: 12px
+    background-color: var(--chroma-secondary-i)
+    border-bottom: solid 1px var(--chroma-secondary-g)
     padding: 4px 
     // border-top: solid red 1px
     button
@@ -53,6 +56,10 @@ $icon_size: 32px
       &.ql-active
         background-color: var(--color-b-f)
         border-radius: 50%
+  &:hover
+    .ql-toolbar
+      border-top-right-radius: 12px
+      background-color: var(--chroma-secondary-h)
         
 .rte-embedded-image
   max-width: 100%

@@ -1,8 +1,7 @@
 <template>
   <div class="threadEditor">
-    <TextField
+    <Textfield
       v-model="v.threadTitle.$model"
-      header
       :label="$t('threads.title')"
       :error="v.threadTitle.$error"
     />
@@ -36,7 +35,7 @@
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 import { maxLength } from '@/utils/contentFormat'
 import RichTextEditor from '../quill/RichTextEditor.vue'
 import MaterialButton from '../material/MaterialButton.vue'
@@ -52,7 +51,7 @@ import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'ThreadEditor',
   components: {
-    TextField,
+    Textfield,
     RichTextEditor,
     MaterialButton,
     TopicSelector
