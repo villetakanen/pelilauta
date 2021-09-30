@@ -29,6 +29,8 @@
     <div v-if="mode === 'delta'">
       {{ delta }}
     </div>
+
+    <RitchTextView :delta-content="deltaOps" />
   </Column>
 </template>
 
@@ -38,19 +40,23 @@ import Button from '../form/Button.vue'
 import Column from '../layout/Column.vue'
 import RichTextEditor from '../quill/RichTextEditor.vue'
 import Delta from 'quill-delta'
+import RitchTextView from '../quill/RichTextView.vue'
+import { DeltaOperation } from '@/utils/contentFormat'
 
 export default defineComponent({
   name: 'TextStyles',
-  components: { Column, RichTextEditor, Button },
+  components: { Column, RichTextEditor, Button, RitchTextView },
   setup () {
     const mode = ref('editor')
     const innerHTML = ref('<p>...</p>')
     const delta = ref('')
+    const deltaOps = ref(new Array<DeltaOperation>())
     function setDelta (val:unknown) {
       const d = (val as Delta).ops
       delta.value = d.map((v) => (JSON.stringify(v))).join()
+      deltaOps.value = d
     }
-    return { mode, innerHTML, setDelta, delta }
+    return { mode, innerHTML, setDelta, delta, deltaOps }
   }
 })
 </script>

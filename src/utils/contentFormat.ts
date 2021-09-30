@@ -85,3 +85,8 @@ export function renderWikiLinks (siteid:string, htmlContent:string): string {
 export const minLength = (value:any): boolean => (value.length > 0)
 // eslint-disable-next-line
 export const maxLength = (value:any): boolean => (value.toString().trim().length < 36)
+
+export interface DeltaOperation {
+  insert?: string|unknown
+  attributes?: Record<string, unknown>
+}
