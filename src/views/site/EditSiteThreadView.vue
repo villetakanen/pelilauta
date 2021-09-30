@@ -1,14 +1,18 @@
 <template>
-  <div class="editSiteThreadView singleColumnLayout">
-    <SiteThreadEditor
-      :threadid="threadid"
-      :topic="topic"
-    />
+  <div class="editSiteThreadView ">
+    <SiteToolbar />
+    <div class="singleColumnLayout">
+      <SiteThreadEditor
+        :threadid="threadid"
+        :topic="topic"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import SiteThreadEditor from '@/components/site/threads/SiteThreadEditor.vue'
+import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { defineComponent } from 'vue'
 
 /**
@@ -20,7 +24,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'EditSiteThreadView',
   components: {
-    SiteThreadEditor
+    SiteThreadEditor,
+    SiteToolbar
   },
   props: {
     threadid: {

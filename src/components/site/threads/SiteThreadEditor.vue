@@ -20,14 +20,19 @@
           :label="site.name"
           :icon="site.systemBadge + '-logo'"
         />
-        <Button>{{ $t('action.save') }}</Button>
+        <Button
+          :working="working"
+          @click="save"
+        >
+          {{ $t('action.save') }}
+        </Button>
       </Toolbar>
     </template>
   </Column>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import Column from '@/components/layout/Column.vue'
 import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
@@ -41,6 +46,8 @@ import Toolbar from '@/components/layout/Toolbar.vue'
 import TopicSelector from '@/components/thread/TopicSelector.vue'
 import Button from '@/components/form/Button.vue'
 import RichTextEditor from '@/components/quill/RichTextEditor.vue'
+import { PostData } from '@/utils/firestoreInterfaces'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'TextStyles',
@@ -63,7 +70,8 @@ export default defineComponent({
   },
   setup (props) {
     const { site } = useSite(props.siteid)
-    const { thread } = useThreads()
+    const { thread, updateThread, createThread } = useThreads()
+    const router = useRouter()
 
     console.log('siteThreadEditor', props.siteid, props.threadid, props.topic)
 
@@ -99,12 +107,40 @@ export default defineComponent({
       }
     })
 
+    onMounted(() => {
+      dirtyContent.value = ''
+      dirtyTitle.value = ''
+    })
+
     const rules = {
       threadTitle: { required, maxLength }
     }
     const v = useVuelidate(rules, { threadTitle })
 
-    return { site, v, threadTopic, threadContent }
+    const working = ref(false)
+
+    async function save () {
+      working.value = true
+
+      const threadData:PostData = {
+        content: threadContent.value,
+        topic: threadTopic.value,
+        title: threadTitle.value
+      }
+
+      let slug = props.threadid
+
+      if (props.threadid) {
+        await updateThread(props.threadid, threadData)
+      } else {
+        slug = await createThread(threadData, { site: site.value.id })
+      }
+
+      working.value = false
+      router.push('/thread/' + slug + '/view')
+    }
+
+    return { site, v, threadTopic, threadContent, save, working }
   }
 })
 </script>

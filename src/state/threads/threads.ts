@@ -143,15 +143,20 @@ export async function fetchSite (siteid: string): Promise<void> {
   }
 }
 
-async function createThread (data:PostData): Promise<string> {
+export interface ThreadMeta {
+  site?: string
+}
+
+async function createThread (data:PostData, meta?:ThreadMeta): Promise<string> {
   const { user } = useAuth()
-  logEvent(getAnalytics(), 'createThread', { author: user.value.uid })
+  logEvent(getAnalytics(), 'createThread', { author: user.value.uid, ...data, ...meta })
   const db = getFirestore()
   return addDoc(collection(db, 'stream'), {
     author: user.value.uid,
     ...data,
     created: serverTimestamp(),
-    flowTime: serverTimestamp()
+    flowTime: serverTimestamp(),
+    ...meta
   }).then((d) => {
     return d.id
   })
@@ -244,7 +249,7 @@ export function useThreads (topic?:string): {
     siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread>
     subscribeThread: (id?: string | undefined) => void
-    createThread: (data:PostData) => Promise<string>
+    createThread: (data:PostData, meta?:ThreadMeta) => Promise<string>
     updateThread: (threadid:string, data:PostData) => Promise<void>} {
   init()
   if (topic) fetchTopic(topic)
