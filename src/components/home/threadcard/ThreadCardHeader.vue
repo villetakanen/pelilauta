@@ -103,7 +103,7 @@ h1.title
 a, h1.title a
   color: var(--chroma-secondary-b)
 .withSite
-  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+  background-color: var(--chroma-secondary-i)
   margin-top: -16px
   padding-top: 8px
   padding-bottom: 8px
@@ -118,7 +118,7 @@ a, h1.title a
   h1.title a
     color: var(--chroma-secondary-c)
 .ddColors
-  background: linear-gradient(160deg, rgba(188,15,15,.05) 0%, rgba(188,15,15,.25) 92%)
+  background: linear-gradient(160deg, rgba(188,15,15,.10) 0%, rgba(188,15,15,.30) 92%)
   a
     color: rgba(188,15,15,1)
   h1.title a

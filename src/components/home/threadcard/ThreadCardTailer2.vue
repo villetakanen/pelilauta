@@ -2,7 +2,8 @@
   <div
     class="threadCardTailer toolbar"
     :class="{
-      withSite: thread.site
+      withSite: thread.site,
+      ddColors: site && site.systemBadge === 'dd'
     }"
   >
     <div style="min-width: 64px; display: block">
@@ -32,6 +33,7 @@ import { Thread } from '@/utils/firestoreInterfaces'
 import { loveThread, unloveThread } from '@/state/threads'
 import { computed, defineComponent, PropType } from 'vue'
 import RepliesCardToolbarLink from './RepliesCardToolbarLink.vue'
+import { useSites } from '@/state/sites'
 
 export default defineComponent({
   components: { RepliesCardToolbarLink, LoveAThreadAction },
@@ -43,6 +45,11 @@ export default defineComponent({
   },
   setup (props) {
     const { streams } = useMeta()
+    const { allSites } = useSites()
+    const site = computed(() => {
+      if (!props.thread.site) return undefined
+      return allSites.value.find((site) => (site.id === props.thread.site))
+    })
     const topicName = computed(() => {
       return streams.value.find((val) => (val.slug === props.thread.data.topic))?.name
     })
@@ -59,7 +66,7 @@ export default defineComponent({
       return loveThread(user.value.uid, props.thread.id)
     }
 
-    return { topicName, loves, toggleLove }
+    return { topicName, loves, toggleLove, site }
   }
 })
 </script>
@@ -71,14 +78,14 @@ export default defineComponent({
   @include TypeCaption()
   margin: 0px 8px
   a
-    color: var(--chroma-primary-d)
+    color: var(--chroma-secondary-d)
     text-decoration: none
 .threadCardTailer
   padding-top: 8px
   margin-top: 8px
 
 .withSite
-  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
+  background-color: var(--chroma-secondary-i)
   margin-bottom: -16px
   padding-bottom: 8px
   padding-bottom: 8px
@@ -87,4 +94,6 @@ export default defineComponent({
   margin-right: -16px
   padding-right: 16px
   border-radius: 0 0 12px 12px
+.ddColors
+  // background: linear-gradient(160deg, rgba(188,15,15,.20) 0%, rgba(188,15,15,.40) 92%)
 </style>
