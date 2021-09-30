@@ -13,7 +13,10 @@
       <slot />
     </div>
     <div class="worker">
-      <img src="@/assets/animations/puff.svg">
+      <img
+        src="@/assets/animations/puff.svg"
+        alt=""
+      >
     </div>
   </button>
 </template>
