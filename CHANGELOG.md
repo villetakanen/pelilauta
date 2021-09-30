@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.5](https://github.com/villetakanen/pelilauta/compare/v10.7.4...v10.7.5) (2021-09-30)
+
+
+### Bug Fixes
+
+* accessibility bug for image ([aed3f19](https://github.com/villetakanen/pelilauta/commit/aed3f19ae186e2abce9e869aabd6cc4269b36c26))
+* card colors chroma ([75c76e2](https://github.com/villetakanen/pelilauta/commit/75c76e24fdd6f4ab4f4f97c530210c6dd8f51060))
+* new thread view ([8017e84](https://github.com/villetakanen/pelilauta/commit/8017e840927079aa48b215b3ea1eb5a7ca7b5661))
+* site thread editor view added ([a3a06d6](https://github.com/villetakanen/pelilauta/commit/a3a06d65009fe8a4eb1f55d7963ec742f21f09e6))
+* site thread saves correctly ([cb3aaef](https://github.com/villetakanen/pelilauta/commit/cb3aaef33cd3173aecd59b45aa61f6aa6a725be5))
+* small updates to ux ([0fae486](https://github.com/villetakanen/pelilauta/commit/0fae4869ab1727bc5a66da6053cce9c34abeb1d9))
+
 ### [10.7.4](https://github.com/villetakanen/pelilauta/compare/v10.7.3...v10.7.4) (2021-09-28)
 
 
