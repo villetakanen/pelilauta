@@ -1,7 +1,10 @@
 <template>
-  <Dialog v-model="registrationIncomplete">
-    <Card class="dialogCard">
-      <h1 class="title">
+  <Dialog
+    v-model="registrationIncomplete"
+    :label="$t('registration.title')"
+  >
+    <div class="completeRegistrationDialog">
+      <h1 class="title hideOnMobile">
         {{ $t('registration.title') }}
       </h1>
       <p>
@@ -29,14 +32,13 @@
           {{ $t('registration.createProfile') }}
         </MaterialButton>
       </div>
-    </Card>
+    </div>
   </Dialog>
 </template>
 
 <script lang="ts">
-import { useAuth, useProfile } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { computed, defineComponent, Ref, ref } from 'vue'
-import Card from '../layout/Card.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import TextField from '../material/TextField.vue'
@@ -46,7 +48,7 @@ import { useI18n } from 'vue-i18n'
 import { getAuth } from '@firebase/auth'
 
 export default defineComponent({
-  components: { Dialog, Card, TextField, MaterialButton },
+  components: { Dialog, TextField, MaterialButton },
   setup () {
     const { registrationIncomplete, displayName, createProfile } = useAuth()
     const { pushSnack } = useSnack()
@@ -80,12 +82,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-@import @/styles/include-media.scss
-
-@include media('<tablet')
-  .dialogCard
-    max-width: calc(100vw - 64px)
-    width: calc(100vw - 64px)
-</style>

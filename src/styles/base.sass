@@ -61,6 +61,10 @@ div.toolbar
     margin: 0px
     margin-right: 12px
 
+@include media('<tablet')
+  .toolbar
+    flex-wrap: wrap // HOTFIX 1.10.2021 for page widht breaking toolbars.
+
 .fade-enter-active, .fade-leave-active
   transition: opacity .5s ease
 
