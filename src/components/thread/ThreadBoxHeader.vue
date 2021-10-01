@@ -29,7 +29,7 @@
       v-model="menu"
     />
     <Dialog v-model="toggleDelete">
-      <Card>
+      <div>
         <h3>{{ $t('action.delete') }}</h3>
         <p>{{ $t('stream.thread.deleteWarning') }}</p>
         <TextField
@@ -49,7 +49,7 @@
             {{ $t('action.cancel') }}
           </MaterialButton>
         </div>
-      </Card>
+      </div>
     </Dialog>
   </div>
 </template>
@@ -68,7 +68,6 @@ import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { MenuItem } from '@/utils/uiInterfaces'
 import router from '@/router'
-import Card from '../layout/Card.vue'
 import TextField from '../material/TextField.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import Dialog from '../material/Dialog.vue'
@@ -77,7 +76,7 @@ import { toSite } from '@/state/site'
 
 export default defineComponent({
   name: 'ThreadBoxHeader',
-  components: { Action, MaterialMenu, Card, TextField, MaterialButton, Dialog },
+  components: { Action, MaterialMenu, TextField, MaterialButton, Dialog },
   props: {
     thread: {
       type: Object as PropType<Thread>,

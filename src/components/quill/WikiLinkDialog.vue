@@ -1,6 +1,6 @@
 <template>
   <Dialog v-model="showDialog">
-    <Card>
+    <div>
       <h1 class="title">
         {{ $t('rte.wikilink.title') }}
       </h1>
@@ -30,21 +30,20 @@
           {{ $t('action.add') }}
         </MaterialButton>
       </div>
-    </Card>
+    </div>
   </Dialog>
 </template>
 
 <script lang="ts">
 import { usePages, useSite } from '@/state/site'
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import Card from '../layout/Card.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 
 export default defineComponent({
-  components: { Dialog, Card, MaterialSelect, MaterialButton, TextField },
+  components: { Dialog, MaterialSelect, MaterialButton, TextField },
   setup () {
     const showDialog = ref(false)
     const linkValue = ref('')

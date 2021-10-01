@@ -42,7 +42,7 @@
       </MaterialButton>
     </div>
     <Dialog v-model="forgetMeDialog">
-      <Card>
+      <div>
         <h3>{{ $t('action.delete') }}</h3>
         <p>{{ $t('profile.deleteWarning') }}</p>
         <TextField
@@ -62,7 +62,7 @@
             {{ $t('action.cancel') }}
           </MaterialButton>
         </div>
-      </Card>
+      </div>
     </Dialog>
   </Column>
 </template>

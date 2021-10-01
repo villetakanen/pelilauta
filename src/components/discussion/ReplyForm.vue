@@ -69,7 +69,6 @@ export default defineComponent({
     const { user, showMemberTools } = useAuth()
     const reply = ref('')
     const sending = ref(false)
-    const addImageDialog = ref(true)
     const mentions = ref(new Set<string>())
 
     const send = async () => {
@@ -100,7 +99,7 @@ export default defineComponent({
     const quotedContent = inject('quotedContent') as Ref<Quote>
     provide('quotedContent', quotedContent)
 
-    return { reply, send, showMemberTools, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
+    return { reply, send, showMemberTools, quotedContent, sending, addImageToEditor, mentions, mention }
   }
 })
 </script>

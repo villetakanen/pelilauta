@@ -40,7 +40,7 @@
           {{ $t('action.delete') }}
         </MaterialButton>
         <Dialog v-model="deleteDialog">
-          <Card>
+          <div>
             <h3>{{ $t('action.delete') }}</h3>
             <p>{{ $t('wiki.page.deleteWarning') }}</p>
             <TextField
@@ -60,7 +60,7 @@
                 {{ $t('action.cancel') }}
               </MaterialButton>
             </div>
-          </Card>
+          </div>
         </Dialog>
       </div>
       <!-- Page content -->
@@ -109,7 +109,6 @@ import MaterialSelect from '../material/MaterialSelect.vue'
 import TextField from '../material/TextField.vue'
 import QuillEditor from '../quill/QuillEditor.vue'
 import Dialog from '../material/Dialog.vue'
-import Card from '../layout/Card.vue'
 
 /**
  * An editor form for a Wiki Page.
@@ -123,8 +122,7 @@ export default defineComponent({
     Icon,
     Loader,
     QuillEditor,
-    Dialog,
-    Card
+    Dialog
   },
   props: {
     site: {
