@@ -98,6 +98,14 @@
       "helpertext": "merkitsee kirjoittajan, ja lähettää notifikaation"
     }
   },
+  "rte": {
+    "wikilink": {
+      "title": "Lisää linkki",
+      "inbound": "Linkitä sivu",
+      "urlfield": "Osoite",
+      "pagefield": "Sivun nimi"
+    }
+  },
   "search": {
     "results": {
       "title": "Haku"
@@ -220,14 +228,6 @@
       "title": "Nostot"
     },
     "nick": "Nimimerkki"
-  },
-  "rte": {
-    "wikilink": {
-      "title": "Linkitä URL",
-      "inbound": "Linkitä sivu",
-      "urlfield": "Osoite",
-      "pageid": "Sivun nimi"
-    }
   },
   "threads": {
     "sinceInTopic": "aiheessa",

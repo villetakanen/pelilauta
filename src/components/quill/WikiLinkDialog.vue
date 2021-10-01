@@ -1,7 +1,10 @@
 <template>
-  <Dialog v-model="showDialog">
+  <Dialog
+    v-model="showDialog"
+    :label="$t('rte.wikilink.title') "
+  >
     <div>
-      <h1 class="title">
+      <h1 class="hideOnMobile">
         {{ $t('rte.wikilink.title') }}
       </h1>
       <TextField v-model="customUrl" />

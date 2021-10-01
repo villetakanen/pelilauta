@@ -91,6 +91,14 @@
       }
     }
   },
+  "rte": {
+    "wikilink": {
+      "title": "Link",
+      "inbound": "Link a page",
+      "urlfield": "Address",
+      "pagefield": "Page title"
+    }
+  },
   "stream": {
     "title": "Pelilauta",
     "inStream": "In",
