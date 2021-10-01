@@ -51,7 +51,7 @@ export default defineComponent({
   width: 100%
   height: 100%
   z-index: 50000
-  background-color: rgba($color-fill-primary-dark, 0.37)
+  background-color: var(--overlay-secondary-a)
   .material-dialog-content
     position: fixed
     top: 16px
