@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.6](https://github.com/villetakanen/pelilauta/compare/v10.7.5...v10.7.6) (2021-10-01)
+
+
+### Bug Fixes
+
+* add a link locales fixed ([c58c5dd](https://github.com/villetakanen/pelilauta/commit/c58c5ddd7cc57c832649df04a94465fe9cc78bb8))
+* added dialog to stylebook ([f60038a](https://github.com/villetakanen/pelilauta/commit/f60038ae56758ee7e1db575e5fc8bc377af49e71))
+* all dialog uxs follows new patttern ([86fcc9b](https://github.com/villetakanen/pelilauta/commit/86fcc9bd4a6b6788a5544cd717c513f8215206bc))
+* dialog now includes area for content ([3dd6cfd](https://github.com/villetakanen/pelilauta/commit/3dd6cfd0f93c5d1597697f0d77d5025b80b019f6))
+* hotfix for toolbars on mobile ([02df512](https://github.com/villetakanen/pelilauta/commit/02df512db1d34454ed85312061d30ee3eb3e95cd))
+* registrationdialog ux follows new patttern ([a682ba6](https://github.com/villetakanen/pelilauta/commit/a682ba6b9cbd5f12d7bed0d7d33204e26aacf386))
+
 ### [10.7.5](https://github.com/villetakanen/pelilauta/compare/v10.7.4...v10.7.5) (2021-09-30)
 
 
