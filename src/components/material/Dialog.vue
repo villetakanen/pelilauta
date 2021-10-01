@@ -90,7 +90,7 @@ div#dialog
     @include Rise3()
     border-radius: 12px
     width: calc(100% - 16px)
-    height: calc(100% - 16px)
+    height: auto // xcalc(100% - 16px)
     box-sizing: border-box
     padding: 16px
   .contentSlot
