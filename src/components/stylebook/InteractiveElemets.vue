@@ -9,7 +9,10 @@
     >
       Open a Dialog
     </Button>
-    <Dialog v-model="dialogVisible">
+    <Dialog
+      v-model="dialogVisible"
+      label="Example Dialog"
+    >
       ...
     </Dialog>
   </Column>
