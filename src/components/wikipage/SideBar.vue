@@ -59,6 +59,11 @@
         </ul>
       </div>
     </template>
+    <Icon
+      :name="site.systemBadge + '-logo'"
+      dark
+      style="margin: 16px auto 0px auto; display: block;"
+    />
   </Column>
 </template>
 
@@ -66,10 +71,11 @@
 import { computed, defineComponent } from 'vue'
 import { usePages, useSite } from '@/state/site'
 import Column from '../layout/Column.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'SideBar',
-  components: { Column },
+  components: { Column, Icon },
   setup () {
     const { site } = useSite()
     const { pages } = usePages()
@@ -102,4 +108,5 @@ export default defineComponent({
     margin-top: 0
   em
     color: var(--chroma-secondary-g)
+
 </style>

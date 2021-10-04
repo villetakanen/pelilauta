@@ -12,7 +12,7 @@
             class="siteCell siteTitle"
             :class="{hidden: site.hidden}"
           >
-            <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
+            <router-link :to="`/site/${site.id}`">
               {{ site.name }}
             </router-link>
           </div>

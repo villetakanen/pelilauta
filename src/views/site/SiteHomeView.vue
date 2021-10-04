@@ -55,7 +55,7 @@ export default defineComponent({
     onMounted(() => {
       watch(() => props.siteid, (siteid) => {
         useSite(siteid)
-        usePage(props.siteid)
+        usePage(props.siteid, props.siteid)
       }, { immediate: true })
     })
 
