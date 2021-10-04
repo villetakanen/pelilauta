@@ -2,7 +2,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
-import { useSite, usePage } from '@/state/site'
 import { useAuth } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
@@ -272,14 +271,6 @@ const router = createRouter({
 const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites', 'threads.create']
 
 router.beforeEach((to, from, next) => {
-  if (to.name && to.name.toString().startsWith('mekanismi')) {
-    const id = Array.isArray(to.params.siteid) ? to.params.siteid[0] : to.params.siteid || ''
-    useSite(id)
-    // If we have a page id we need to pull from FB, we pull it to state here
-    const pageid = Array.isArray(to.params.pageid) ? to.params.pageid[0] : to.params.pageid || ''
-    usePage(pageid)
-  }
-
   // Logged in only routes!
   const { showMemberTools } = useAuth()
   if (AUTH_ROUTES.includes(to.name?.toString() || '') && !showMemberTools.value) {

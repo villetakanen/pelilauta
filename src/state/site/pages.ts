@@ -52,12 +52,6 @@ function toPage (siteid?:string, id?:string, data?:DocumentData): Page {
   }
 }
 
-export function usePage (id: string): ComputedRef<Page> {
-  if (requestedPage !== id) statePage.value = subscribedPages.value.find((p) => (p.id === id)) || toPage()
-  requestedPage = id
-  return computed(() => (statePage.value))
-}
-
 export function fetchPage (id: string): void {
   if (requestedPage === id) return
   requestedPage = id

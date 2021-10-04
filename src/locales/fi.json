@@ -129,6 +129,9 @@
         "description":"Kuvaus"
       }
     },
+    "page": {
+      "title": "Sivun nimi"
+    },
     "players": {
       "title": "Pelaajat",
       "addAsNew": "Lisää pelaajaksi",
