@@ -37,7 +37,7 @@
 import { computed, defineComponent } from 'vue'
 import { useSite, useAssets } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-import SideBar from '@/components/wikipage/SideBar.vue'
+import SideBar from '@/components/site/SideBar.vue'
 import AttachmentRow from '@/components/site/assets/AssetListItem.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import Card from '@/components/layout/Card.vue'

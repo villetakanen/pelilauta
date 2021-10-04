@@ -30,7 +30,7 @@ import Loader from '@/components/app/Loader.vue'
 import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { usePage } from '@/state/pages/usePage'
 import Column from '@/components/layout/Column.vue'
-import SideBar from '@/components/wikipage/SideBar.vue'
+import SideBar from '@/components/site/SideBar.vue'
 import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
 
 export default defineComponent({
