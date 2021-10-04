@@ -44,6 +44,7 @@
     >
       A Disabled Alert
     </Button>
+    <br>
     <Button
       secondary
       :working="working"
@@ -57,6 +58,7 @@
     >
       Secondary + Disabled
     </Button>
+    <br>
     <Button tertiary>
       Tertiary
     </Button>
@@ -65,6 +67,16 @@
       disabled
     >
       Tertiary + Disabled
+    </Button>
+    <br>
+    <Button text>
+      Text
+    </Button>
+    <Button
+      text
+      disabled
+    >
+      Text + Disabled
     </Button>
   </Column>
 </template>
