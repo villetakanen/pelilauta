@@ -6,6 +6,10 @@
       :label="$t('site.page.title')"
       :error="v.pageName.$error"
     />
+    <RichTextEditor
+      v-model:content="pageContent"
+      style="margin-top: 8px"
+    />
     <div class="toolbar">
       <div class="spacer" />
       <Button
@@ -30,10 +34,6 @@
         Site
       </p>
       {{ site }}
-      <p class="TypeCaption">
-        Page
-      </p>
-      {{ page }}
     </div>
   </div>
 </template>
@@ -49,19 +49,23 @@ import { toMekanismiURI } from '@/utils/contentFormat'
 import { useAuth } from '@/state/authz'
 import Button from '@/components/form/Button.vue'
 import { Page, createPage } from '@/state/pages/usePage'
+import RichTextEditor from '@/components/quill/RichTextEditor.vue'
 
 export default defineComponent({
   name: 'AddPageForm',
   components: {
     Textfield,
-    Button
+    Button,
+    RichTextEditor
   },
   setup () {
     const { showAdminTools } = useAuth()
     const { site } = useSite()
     const { pages } = usePages()
     const router = useRouter()
+
     const pageName = ref('')
+    const pageContent = ref('')
 
     function cancel () {
       router.back()
@@ -83,12 +87,13 @@ export default defineComponent({
       const page = new Page()
 
       page.name = pageName.value
+      page.htmlContent = pageContent.value
       const slug = await createPage(page)
 
       router.push(`/mekanismi/view/${site.value.id}/${slug}`)
     }
 
-    return { cancel, v, add, showAdminTools, site }
+    return { cancel, v, add, showAdminTools, site, pageContent }
   }
 })
 </script>
