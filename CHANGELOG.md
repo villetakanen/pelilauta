@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.7](https://github.com/villetakanen/pelilauta/compare/v10.7.6...v10.7.7) (2021-10-04)
+
+
+### Bug Fixes
+
+* add page styling follows stylebook ([d5bf753](https://github.com/villetakanen/pelilauta/commit/d5bf753ba12d88309ace0712020774eedd5e28f8))
+* cleaned up page toolbar for addpage ([8ca13ad](https://github.com/villetakanen/pelilauta/commit/8ca13ad58807e682bde85b9ae6cad89618188800))
+* cleaned up page toolbar for addpage ([be5ae7f](https://github.com/villetakanen/pelilauta/commit/be5ae7f619f5127d831fe4f618c6eab18e520e9d))
+* removed deprecated router-state management ([484dd8c](https://github.com/villetakanen/pelilauta/commit/484dd8cc7038a7bc0bd2d6ab67a793c13cbdfcc1))
+* sonarcloud smells removed ([0df86a8](https://github.com/villetakanen/pelilauta/commit/0df86a8155d6522a7fc381364f699ec9486f956e))
+
 ### [10.7.6](https://github.com/villetakanen/pelilauta/compare/v10.7.5...v10.7.6) (2021-10-01)
 
 
