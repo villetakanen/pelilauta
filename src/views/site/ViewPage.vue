@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { ComputedRef, defineComponent, inject, onMounted, provide, watch } from 'vue'
-import SideBar from '@/components/wikipage/SideBar.vue'
+import SideBar from '@/components/site/SideBar.vue'
 import { fetchPage, usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import PageFabs from '@/components/wikipage/PageFabs.vue'

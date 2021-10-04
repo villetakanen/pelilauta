@@ -42,14 +42,14 @@
       </SideNavMenuItem>
       <SideNavMenuItem
         icon="d20"
-        to="/mekanismi/view/mekanismi/mekanismi"
+        to="/site/mekanismi"
         @click="toggleNav"
       >
         Wiki
       </SideNavMenuItem>
       <SideNavMenuItem
         icon="homebrew-logo"
-        to="/mekanismi/view/arkku/arkku"
+        to="/site/arkku"
         @click="toggleNav"
       >
         Arkku
@@ -84,7 +84,7 @@
       </SideNavMenuItem>
       <SideNavMenuItem
         icon="about"
-        to="/mekanismi/view/mekanismi/pelilauta-about"
+        to="/site/mekanismi/page/pelilauta-about"
         @click="toggleNav"
       >
         {{ $t('sideNav.about') }}

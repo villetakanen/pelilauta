@@ -16,14 +16,14 @@
       <template v-if="page">
         <p class="subject">
           <router-link
-            :to="`/mekanismi/view/${site.id}/${site.id}`"
+            :to="`/site/${site.id}`"
           >
             {{ site.name }}
           </router-link>
         </p>
         <p class="pagetitle">
           <router-link
-            :to="`/mekanismi/view/${site.id}/${page.id}`"
+            :to="`/site/${site.id}/page/${page.id}`"
           >
             {{ page.name }}
           </router-link>
@@ -32,7 +32,7 @@
       <template v-else>
         <h3 class="sitetitle">
           <router-link
-            :to="`/mekanismi/view/${site.id}/${site.id}`"
+            :to="`/site/${site.id}`"
           >
             {{ site.name }}
           </router-link>

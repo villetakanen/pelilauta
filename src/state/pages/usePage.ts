@@ -58,19 +58,18 @@ let unsub:undefined|CallableFunction
 /**
  * @param id page id
  */
-async function subscribeToPage (id: string) {
+async function subscribeToPage (siteid:string, pageid:string) {
   // Flush state
   activePage.value = new Page()
   if (typeof unsub === 'function') unsub()
 
-  const { site } = useSite()
   unsub = onSnapshot(
     doc(
       getFirestore(),
       'sites',
-      site.value.id,
+      siteid,
       'pages',
-      id
+      pageid
     ), (pageDoc) => {
       if (pageDoc.exists()) {
         activePage.value = new Page(pageDoc.id, pageDoc.data())
@@ -80,11 +79,11 @@ async function subscribeToPage (id: string) {
     })
 }
 
-export function usePage (id?:string): {
+export function usePage (siteid?:string, pageid?:string): {
   page: ComputedRef<Page>
   } {
-  if (id) {
-    subscribeToPage(id)
+  if (siteid && pageid) {
+    subscribeToPage(siteid, pageid)
   }
   return { page }
 }

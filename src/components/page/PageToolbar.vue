@@ -10,7 +10,7 @@
     <div class="clipWithEllipsis">
       <h3 class="siteTitle">
         <router-link
-          :to="`/mekanismi/view/${site.id}/${site.id}`"
+          :to="`/site/${site.id}`"
         >
           {{ site.name }}
         </router-link>
