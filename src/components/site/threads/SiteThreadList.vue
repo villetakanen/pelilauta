@@ -12,7 +12,9 @@
     </ul>
     <div class="toolbar">
       <div class="spacer" />
-      <Button>{{ $t('action.addThread') }}</Button>
+      <Button @click="newConvo">
+        {{ $t('action.addThread') }}
+      </Button>
     </div>
   </div>
 </template>
@@ -22,6 +24,7 @@ import Button from '@/components/form/Button.vue'
 import ThreadListItem from '@/components/thread/ThreadListItem.vue'
 import { useThreads, fetchSite } from '@/state/threads'
 import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'SiteThreadList',
@@ -38,7 +41,12 @@ export default defineComponent({
   setup (props) {
     fetchSite(props.siteid)
     const { siteThreads } = useThreads()
-    return { siteThreads }
+
+    const router = useRouter()
+    function newConvo () {
+      router.push('/site/' + props.siteid + '/add/thread')
+    }
+    return { siteThreads, newConvo }
   }
 })
 </script>
