@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.8.0](https://github.com/villetakanen/pelilauta/compare/v10.7.8...v10.8.0) (2021-10-04)
+
+
+### Features
+
+* updated site home view and book layout ([7227079](https://github.com/villetakanen/pelilauta/commit/7227079b312d68c89f45cc435ed4a5e452f40771))
+
+
+### Bug Fixes
+
+* fixed links to site front page ([ad25fe2](https://github.com/villetakanen/pelilauta/commit/ad25fe26f252faf82b09cbf0492289ff3671e1d6))
+* moved sidebar to more sensible location ([a2646ca](https://github.com/villetakanen/pelilauta/commit/a2646cad78a126e33b98fd41419193cf2aa6bc6d))
+* new thread link fixed ([ddae7a6](https://github.com/villetakanen/pelilauta/commit/ddae7a62d1665ba2c7be32ab57302eec449f0c59))
+
 ### [10.7.8](https://github.com/villetakanen/pelilauta/compare/v10.7.7...v10.7.8) (2021-10-04)
 
 
