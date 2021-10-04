@@ -8,12 +8,12 @@
     />
     <div class="toolbar">
       <div class="spacer" />
-      <MaterialButton
+      <Button
         text
-        :action="cancel"
+        @click="cancel"
       >
         {{ $t('action.cancel') }}
-      </MaterialButton>
+      </Button>
       <Button
         id="addPageCardCreateButton"
         :disabled="v.pageName.$error || !v.pageName.$dirty"
@@ -22,6 +22,19 @@
         {{ $t('action.add') }}
       </Button>
     </div>
+    <div
+      v-if="showAdminTools"
+      class="debug"
+    >
+      <p class="TypeCaption">
+        Site
+      </p>
+      {{ site }}
+      <p class="TypeCaption">
+        Page
+      </p>
+      {{ page }}
+    </div>
   </div>
 </template>
 
@@ -29,7 +42,6 @@
 import { addPage, usePages, useSite } from '@/state/site'
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import MaterialButton from '../material/MaterialButton.vue'
 import Textfield from '@/components/form/Textfield.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
@@ -43,10 +55,10 @@ export default defineComponent({
   name: 'AddPageForm',
   components: {
     Textfield,
-    MaterialButton,
     Button
   },
   setup () {
+    const { showAdminTools } = useAuth()
     const { site } = useSite()
     const { pages } = usePages()
     const router = useRouter()
@@ -81,7 +93,7 @@ export default defineComponent({
       router.push(`/mekanismi/view/${site.value.id}/${toMekanismiURI(pageName.value)}`)
     }
 
-    return { cancel, v, add }
+    return { cancel, v, add, showAdminTools, site }
   }
 })
 </script>
