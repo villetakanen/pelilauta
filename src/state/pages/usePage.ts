@@ -41,7 +41,7 @@ export async function createPage (newPage:Page): Promise<string> {
   newPage.author = user.value.uid
 
   const { site } = useSite()
-  const page = await addDoc(
+  const createdDoc = await addDoc(
     collection(
       getFirestore(),
       'sites',
@@ -50,10 +50,10 @@ export async function createPage (newPage:Page): Promise<string> {
     ),
     newPage.dry()
   )
-  return page.id
+  return createdDoc.id
 }
 
-let unsub:CallableFunction = () => {}
+let unsub:undefined|CallableFunction
 
 /**
  * @param id page id
@@ -61,7 +61,7 @@ let unsub:CallableFunction = () => {}
 async function subscribeToPage (id: string) {
   // Flush state
   activePage.value = new Page()
-  unsub()
+  if (typeof unsub === 'function') unsub()
 
   const { site } = useSite()
   unsub = onSnapshot(
