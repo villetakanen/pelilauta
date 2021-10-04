@@ -1,6 +1,8 @@
 <template>
-  <div class="siteThreadList">
-    <h3>{{ $t('site.threads.title') }}</h3>
+  <div id="siteThreadList">
+    <h1 class="title">
+      {{ $t('site.threads.title') }}
+    </h1>
     <ul>
       <ThreadListItem
         v-for="thread in siteThreads"
@@ -8,10 +10,15 @@
         :thread="thread"
       />
     </ul>
+    <div class="toolbar">
+      <div class="spacer" />
+      <Button>{{ $t('action.addThread') }}</Button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import Button from '@/components/form/Button.vue'
 import ThreadListItem from '@/components/thread/ThreadListItem.vue'
 import { useThreads, fetchSite } from '@/state/threads'
 import { defineComponent } from 'vue'
@@ -19,7 +26,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'SiteThreadList',
   components: {
-    ThreadListItem
+    ThreadListItem,
+    Button
   },
   props: {
     siteid: {
@@ -34,3 +42,14 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+#siteThreadList
+  ul
+    list-style-type: none
+    margin-left: 0
+    padding-left: 0
+    li+li
+      border-top: solid 1px var(--chroma-secondary-g)
+      padding-top: 7px
+</style>

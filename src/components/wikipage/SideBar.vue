@@ -1,93 +1,78 @@
 <template>
-  <div
-    class="sidebar contentBox"
+  <Column
+    id="sideBar"
+    class="contentBox"
   >
-    <transition name="fade">
-      <div v-if="site">
-        <h3 style="margin: 0">
-          <router-link :to="`/site/${site.id}/page/${site.id}`">
-            {{ site.name }}
-          </router-link>
-        </h3>
-        <p><em>{{ site.description }}</em></p>
-        <img
-          v-if="site.splashURL"
-          class="cardPoster"
-          alt="Site splash image"
-          :src="site.splashURL"
-          style="margin-top: 8px"
+    <h1 class="title">
+      <router-link :to="`/site/${site.id}/page/${site.id}`">
+        {{ site.name }}
+      </router-link>
+    </h1>
+    <p><em>{{ site.description }}</em></p>
+    <img
+      v-if="site.splashURL"
+      class="cardPoster"
+      alt="Site splash image"
+      :src="site.splashURL"
+      style="margin-top: 8px"
+    >
+    <template v-if="!site.hasCategories">
+      <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
+      <ul class="index">
+        <li
+          v-for="page in pages"
+          :key="page.id"
         >
-        <template v-if="!site.hasCategories">
-          <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
-          <ul class="index">
-            <li
-              v-for="page in pages"
-              :key="page.id"
-            >
-              <router-link :to="`/site/${site.id}/page/${page.id}`">
-                {{ page.name }}
-              </router-link>
-            </li>
-          </ul>
-        </template>
-        <template v-if="site.hasCategories">
-          <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
-          <ul class="index">
-            <li
-              v-for="page in noCategory"
-              :key="page.id"
-            >
-              <router-link :to="`/site/${site.id}/page/${page.id}`">
-                {{ page.name }}
-              </router-link>
-            </li>
-          </ul>
-          <div
-            v-for="cat in site.categories"
-            :key="cat.slug"
-            class="category"
+          <router-link :to="`/site/${site.id}/page/${page.id}`">
+            {{ page.name }}
+          </router-link>
+        </li>
+      </ul>
+    </template>
+    <template v-if="site.hasCategories">
+      <h4>{{ $t('mekanismi.sidebar.pagelist') }}</h4>
+      <ul class="index">
+        <li
+          v-for="page in noCategory"
+          :key="page.id"
+        >
+          <router-link :to="`/site/${site.id}/page/${page.id}`">
+            {{ page.name }}
+          </router-link>
+        </li>
+      </ul>
+      <div
+        v-for="cat in site.categories"
+        :key="cat.slug"
+        class="category"
+      >
+        {{ cat.name }}
+        <ul class="index">
+          <li
+            v-for="page in inTopic(cat)"
+            :key="page.id"
           >
-            {{ cat.name }}
-            <ul class="index">
-              <li
-                v-for="page in inTopic(cat)"
-                :key="page.id"
-              >
-                <router-link :to="`/site/${site.id}/page/${page.id}`">
-                  {{ page.name }}
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </template>
+            <router-link :to="`/site/${site.id}/page/${page.id}`">
+              {{ page.name }}
+            </router-link>
+          </li>
+        </ul>
       </div>
-    </transition>
-  </div>
+    </template>
+  </Column>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { usePages, useSite } from '@/state/site'
+import Column from '../layout/Column.vue'
 
 export default defineComponent({
-  name: 'WikiSideBar',
-  props: {
-    modelValue: {
-      type: Boolean,
-      required: false,
-      default: true
-    }
-  },
-  emits: ['update:modelValue'],
-  setup (props, context) {
+  name: 'SideBar',
+  components: { Column },
+  setup () {
     const { site } = useSite()
     const { pages } = usePages()
-    const open = ref(props.modelValue)
-
-    function toggle () {
-      open.value = !open.value
-      context.emit('update:modelValue', open.value)
-    }
 
     function inTopic (topic: { slug: string, name: string}) {
       return pages.value.filter((a) => (a.category === topic.slug))
@@ -95,17 +80,26 @@ export default defineComponent({
 
     const noCategory = computed(() => (pages.value.filter((a) => (!site.value.categories.find((c) => (c.slug === a.category))))))
 
-    return { toggle, open, site, pages, inTopic, noCategory }
+    return { site, pages, inTopic, noCategory }
   }
 })
 </script>
 
 <style lang="sass" scoped>
-.sidebar
-  position: relative
-  .index
+#sideBar
+  background-color: var(--chroma-secondary-a)
+  color: var(--chroma-secondary-g)
+  a
+    color: var(--chroma-secondary-h)
+    text-decoration: none
+  h1.title, h4
+    color: var(--chroma-secondary-i)
     a
-      text-decoration: none
-      color: var(--chroma-secondary-c)
-
+      color: var(--chroma-secondary-i)
+  h4
+    margin-bottom: 0
+  h4+ul, h4+p
+    margin-top: 0
+  em
+    color: var(--chroma-secondary-g)
 </style>

@@ -138,9 +138,9 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/site/:siteid',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
-    props: (route) => ({ siteid: route.params.siteid, pageid: route.params.siteid }),
-    name: 'mekanismi.site'
+    component: () => import(/* webpackChunkName: "sites" */ '../views/site/SiteHomeView.vue'),
+    props: true,
+    name: 'site.home'
   },
   {
     path: '/mekanismi/view/:siteid/:pageid',
