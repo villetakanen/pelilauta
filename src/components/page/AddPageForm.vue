@@ -46,8 +46,6 @@ import Textfield from '@/components/form/Textfield.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { toMekanismiURI } from '@/utils/contentFormat'
-import { useSnack } from '@/composables/useSnack'
-import { useI18n } from 'vue-i18n'
 import { useAuth } from '@/state/authz'
 import Button from '@/components/form/Button.vue'
 import { Page, createPage } from '@/state/pages/usePage'
@@ -64,7 +62,6 @@ export default defineComponent({
     const { pages } = usePages()
     const router = useRouter()
     const pageName = ref('')
-    const i18n = useI18n()
 
     function cancel () {
       router.back()
