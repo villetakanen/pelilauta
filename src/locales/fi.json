@@ -130,7 +130,8 @@
       }
     },
     "page": {
-      "title": "Sivun nimi"
+      "title": "Sivun nimi",
+      "edit": "Muokkaa sivua"
     },
     "players": {
       "title": "Pelaajat",

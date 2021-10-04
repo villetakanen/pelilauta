@@ -1,19 +1,17 @@
 <template>
   <div class="editPage">
-    <SiteToolbar />
-    <div class="contentGrid">
-      <PageEditor
-        :page="page"
-        :site="site"
-      />
+    <PageToolbar :title="$t('site.page.edit')" />
+    <div class="singleColumnLayout">
+      <PageEditForm />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
-import PageEditor from '@/components/wikipage/PageEditor.vue'
-import { fetchPage, usePages, useSite } from '@/state/site'
+import PageToolbar from '@/components/page/PageToolbar.vue'
+import PageEditForm from '@/components/page/EditPageForm.vue'
+import { usePage } from '@/state/pages/usePage'
+import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
 
 /**
@@ -28,8 +26,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'EditPage',
   components: {
-    PageEditor,
-    SiteToolbar
+    PageEditForm,
+    PageToolbar
   },
   props: {
     siteid: {
@@ -44,9 +42,9 @@ export default defineComponent({
   },
   setup (props) {
     const { site } = useSite(props.siteid)
-    fetchPage(props.pageid || props.siteid)
-    const { page } = usePages()
-    return { site, page }
+    const { page } = usePage(props.siteid, props.pageid)
+
+    return { page, site }
   }
 })
 </script>
