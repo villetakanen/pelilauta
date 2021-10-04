@@ -1,13 +1,11 @@
 <template>
   <div class="addPageForm">
-    <h3>{{ $t('site.actions.addPage') }}</h3>
-    <TextField
+    <Textfield
       id="addPageCardPageNameField"
       v-model="v.pageName.$model"
       :label="$t('site.page.title')"
       :error="v.pageName.$error"
     />
-    <p>{{ $t('site.page.adress') }}: <span class="mockURL">{{ address }}</span></p>
     <div class="toolbar">
       <div class="spacer" />
       <MaterialButton
@@ -16,35 +14,37 @@
       >
         {{ $t('action.cancel') }}
       </MaterialButton>
-      <MaterialButton
+      <Button
         id="addPageCardCreateButton"
         :disabled="v.pageName.$error || !v.pageName.$dirty"
-        :async-action="add"
+        @click="add"
       >
         {{ $t('action.add') }}
-      </MaterialButton>
+      </Button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { addPage, usePages, useSite } from '@/state/site'
-import { computed, defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import MaterialButton from '../material/MaterialButton.vue'
-import TextField from '../material/TextField.vue'
+import Textfield from '@/components/form/Textfield.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { useAuth } from '@/state/authz'
+import Button from '@/components/form/Button.vue'
 
 export default defineComponent({
   name: 'AddPageForm',
   components: {
-    TextField,
-    MaterialButton
+    Textfield,
+    MaterialButton,
+    Button
   },
   setup () {
     const { site } = useSite()
@@ -52,10 +52,6 @@ export default defineComponent({
     const router = useRouter()
     const pageName = ref('')
     const i18n = useI18n()
-
-    const address = computed(() => {
-      return `${window.location.hostname}/mekanismi/view/${site.value.id}/`
-    })
 
     function cancel () {
       router.back()
@@ -85,7 +81,7 @@ export default defineComponent({
       router.push(`/mekanismi/view/${site.value.id}/${toMekanismiURI(pageName.value)}`)
     }
 
-    return { address, cancel, v, add }
+    return { cancel, v, add }
   }
 })
 </script>
