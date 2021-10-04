@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.7.8](https://github.com/villetakanen/pelilauta/compare/v10.7.7...v10.7.8) (2021-10-04)
+
+
+### Bug Fixes
+
+* addpage now includes ritch text editor ([09f6d63](https://github.com/villetakanen/pelilauta/commit/09f6d63d41a7da4ead9e5b2f1e08ba0de0caf8ad))
+* backported stylebook buttons view ([fbea812](https://github.com/villetakanen/pelilauta/commit/fbea812466c3f367163091d74c6538d9ac4387ed))
+* new page slugs are now firebase id's ([3e1b251](https://github.com/villetakanen/pelilauta/commit/3e1b25172df7271d6c8fafd34a24cdad8ec52e2f))
+* refactored page creation to page state ([e00a670](https://github.com/villetakanen/pelilauta/commit/e00a6706409c6712fed906a7282f00bbcf21a470))
+* removed deprecated code ([043c84d](https://github.com/villetakanen/pelilauta/commit/043c84d6bb65a29b2b849ff1b42f0c73833f33c3))
+* side nav colors ([04e623b](https://github.com/villetakanen/pelilauta/commit/04e623be0345a6558d9db5ace9b80a2a05cd859b))
+* sonarcloud smells fixed ([c29cfaf](https://github.com/villetakanen/pelilauta/commit/c29cfafa4f6b8c44ea097e4289091c01512273e5))
+* subscription fixed ([3076c3c](https://github.com/villetakanen/pelilauta/commit/3076c3c25dd6db3563f23797cea7ccc364a5207e))
+* text-buttons restored ([7b74041](https://github.com/villetakanen/pelilauta/commit/7b740416d3115221e165028b83bd49e9a22c84e6))
+* ux polish for addPage ([f3991a3](https://github.com/villetakanen/pelilauta/commit/f3991a335637aa64cf4bd2e8878f3d9d484a8ea2))
+
 ### [10.7.7](https://github.com/villetakanen/pelilauta/compare/v10.7.6...v10.7.7) (2021-10-04)
 
 
