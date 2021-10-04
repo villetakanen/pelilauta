@@ -193,8 +193,8 @@ export default defineComponent({
         background-color: var(--chroma-primary-e)
         color: var(--chroma-clear)
     &.subtitle
-      color: var(--color-b-f)
-      border-bottom: solid 1px var(--color-b-h)
+      color: var(--chroma-secondary-d)
+      border-bottom: solid 1px var(--chroma-secondary-g)
       margin: 0 16px
       padding-left: 8px
       &:hover
