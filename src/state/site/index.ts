@@ -1,5 +1,5 @@
 import { computed, ComputedRef, Ref, ref } from 'vue'
-import { usePage, usePages, Page, fetchPage, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
+import { fetchPage, usePages, Page, subscribeTo as subscribeToPages, updatePage, addPage, PageFragment, deletePage } from './pages'
 import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
@@ -207,7 +207,6 @@ export {
   Page,
   PageFragment,
   useFiles,
-  usePage,
   usePages,
   useSite,
   subscribeTo,
