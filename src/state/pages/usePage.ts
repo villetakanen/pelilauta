@@ -1,5 +1,5 @@
 import { ref, computed, ComputedRef } from 'vue'
-import { Timestamp, DocumentData, serverTimestamp, addDoc, collection, getFirestore } from '@firebase/firestore'
+import { Timestamp, DocumentData, serverTimestamp, addDoc, onSnapshot, doc, collection, getFirestore } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { useSite } from '../site'
 
@@ -34,6 +34,9 @@ const page = computed(() => (activePage.value))
 export async function createPage (newPage:Page): Promise<string> {
   console.debug('createPage', Page)
 
+  // As we are creating a new page, force the creator to be the
+  // current user!
+  if (newPage.author) console.warn('Trying to create a page with pre-set author -> page author set to current user')
   const { user } = useAuth()
   newPage.author = user.value.uid
 
@@ -50,13 +53,38 @@ export async function createPage (newPage:Page): Promise<string> {
   return page.id
 }
 
+let unsub:CallableFunction = () => {}
+
+/**
+ * @param id page id
+ */
+async function subscribeToPage (id: string) {
+  // Flush state
+  activePage.value = new Page()
+  unsub()
+
+  const { site } = useSite()
+  unsub = onSnapshot(
+    doc(
+      getFirestore(),
+      'sites',
+      site.value.id,
+      'pages',
+      id
+    ), (pageDoc) => {
+      if (pageDoc.exists()) {
+        activePage.value = new Page(pageDoc.id, pageDoc.data())
+      } else {
+        activePage.value = new Page()
+      }
+    })
+}
+
 export function usePage (id?:string): {
   page: ComputedRef<Page>
   } {
-  if (!id) {
-    if (activePage.value.id) {
-      activePage.value = new Page()
-    }
+  if (id) {
+    subscribeToPage(id)
   }
   return { page }
 }
