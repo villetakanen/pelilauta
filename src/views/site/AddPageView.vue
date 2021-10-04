@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useSite } from '@/state/site'
-import AddPageForm from '@/components/site/AddPageForm.vue'
+import AddPageForm from '@/components/page/AddPageForm.vue'
 import PageToolbar from '@/components/page/PageToolbar.vue'
 
 export default defineComponent({

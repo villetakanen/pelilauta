@@ -5,6 +5,7 @@
       disabled: disabled,
       secondary: secondary,
       tertiary: tertiary,
+      text: text,
       working: working
     }"
     @click="emitAction"
@@ -41,6 +42,11 @@ export default defineComponent({
       required: false,
       default: false
     },
+    text: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     working: {
       type: Boolean,
       required: false,
@@ -70,7 +76,7 @@ button.button
   border: none
   height: 38px
   margin: 5px
-  padding: 0 24px
+  padding: 0 18px
   border-radius: 19px
   transition-property: box-shadow background
   transition-duration: 0.3s
@@ -122,6 +128,23 @@ button.button
       background-color: var(--chroma-secondary-i)
       color: var(--chroma-secondary-h)
       border: solid 1px var(--chroma-secondary-g)
+  // *** text *********************************************************
+  &.text
+    @include Rise0()
+    background: none
+    color: var(--chroma-secondary-d)
+    // padding: 0 8px
+    &:hover
+      background-color: var(--chroma-secondary-i)
+    &:active
+      background-color: var(--chroma-secondary-h)
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:active
+      @include Rise0()
+      background: none
+      color: var(--chroma-secondary-g)
+      border: none
   div.worker
     position: absolute
     left: calc(50% - 24px)

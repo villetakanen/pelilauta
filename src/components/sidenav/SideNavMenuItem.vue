@@ -63,7 +63,7 @@ export default defineComponent({
     text-decoration: none
     padding-left: 8px
   &:hover
-    background-color: var(--color-b-j)
+    background-color: var(--chroma-secondary-i)
     border-radius: 0 24px 24px 0
     .icon
       background-color: var(--chroma-clear)
