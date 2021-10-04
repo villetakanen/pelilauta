@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { addPage, usePages, useSite } from '@/state/site'
+import { usePages, useSite } from '@/state/site'
 import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Textfield from '@/components/form/Textfield.vue'
@@ -50,6 +50,7 @@ import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import { useAuth } from '@/state/authz'
 import Button from '@/components/form/Button.vue'
+import { Page, createPage } from '@/state/pages/usePage'
 
 export default defineComponent({
   name: 'AddPageForm',
@@ -80,17 +81,14 @@ export default defineComponent({
       pageName: { required, notUsed }
     }
     const v = useVuelidate(rules, { pageName })
-    const { pushSnack } = useSnack()
 
-    // Save the page
-    const { user } = useAuth()
     async function add () {
-      if (v.value.$errors.length > 0) {
-        pushSnack(i18n.t('sites.pages.canNoAddError'))
-        return
-      }
-      await addPage(user.value.uid, site.value.id, pageName.value)
-      router.push(`/mekanismi/view/${site.value.id}/${toMekanismiURI(pageName.value)}`)
+      const page = new Page()
+
+      page.name = pageName.value
+      const slug = await createPage(page)
+
+      router.push(`/mekanismi/view/${site.value.id}/${slug}`)
     }
 
     return { cancel, v, add, showAdminTools, site }
