@@ -1,6 +1,6 @@
 <template>
   <div class="addPageView">
-    <SiteToolbar />
+    <PageToolbar :title="$t('site.actions.addPage')" />
     <div class="singleColumnLayout">
       <AddPageForm />
     </div>
@@ -10,14 +10,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useSite } from '@/state/site'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import AddPageForm from '@/components/site/AddPageForm.vue'
+import PageToolbar from '@/components/page/PageToolbar.vue'
 
 export default defineComponent({
   name: 'AddPageView',
   components: {
-    SiteToolbar,
-    AddPageForm
+    AddPageForm,
+    PageToolbar
   },
   props: {
     siteid: {
