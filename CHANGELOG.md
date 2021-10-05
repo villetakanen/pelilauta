@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.2](https://github.com/villetakanen/pelilauta/compare/v10.8.1...v10.8.2) (2021-10-05)
+
+
+### Bug Fixes
+
+* added a link to new site to profile sites ([b986c0c](https://github.com/villetakanen/pelilauta/commit/b986c0ca932d627dbe5844eb045c97c6658c83d2))
+* profle nav i18n ([4a62471](https://github.com/villetakanen/pelilauta/commit/4a624719351e4ee652af2f83401c4dd92909c927))
+* reroute to old site adder for compatibility ([261fe42](https://github.com/villetakanen/pelilauta/commit/261fe422ada1450335f03e1764b753f57bd2d0c3))
+
 ### [10.8.1](https://github.com/villetakanen/pelilauta/compare/v10.8.0...v10.8.1) (2021-10-05)
 
 
