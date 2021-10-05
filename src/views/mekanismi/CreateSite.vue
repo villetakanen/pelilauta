@@ -1,38 +1,42 @@
 <template>
-  <div class="viewFull">
-    <h3>{{ $t('wiki.createSiteTitle') }}</h3>
-    <MaterialCard>
-      <TextField
-        v-model="v.siteName.$model"
-        :label="$t('wiki.newSiteFieldLabel')"
-        :class="{ error: v.siteName.$error }"
-      />
-      <div class="fieldCaption">
-        <div>slug: /{{ uri }}</div>
-        <div class="spacer" />
-        <div
-          v-if="v.siteName.$error"
-          class="fieldErrorLabel"
-        >
-          {{ $t('wiki.errorSiteSlug') }}
+  <div class="createSite">
+    <Toolbar>
+      <h3>{{ $t('action.addSite') }}</h3>
+    </Toolbar>
+    <div class="singleColumnLayout">
+      <MaterialCard>
+        <TextField
+          v-model="v.siteName.$model"
+          :label="$t('wiki.newSiteFieldLabel')"
+          :class="{ error: v.siteName.$error }"
+        />
+        <div class="fieldCaption">
+          <div>slug: /{{ uri }}</div>
+          <div class="spacer" />
+          <div
+            v-if="v.siteName.$error"
+            class="fieldErrorLabel"
+          >
+            {{ $t('wiki.errorSiteSlug') }}
+          </div>
         </div>
-      </div>
-      <div class="toolbar">
-        <div class="spacer" />
-        <MaterialButton
-          text
-          to="/mekanismi"
-        >
-          {{ $t('action.cancel') }}
-        </MaterialButton>
-        <MaterialButton
-          :disabled="v.siteName.$error || !v.siteName.$dirty"
-          :async-action="createSiteAction"
-        >
-          {{ $t('action.add') }}
-        </MaterialButton>
-      </div>
-    </MaterialCard>
+        <div class="toolbar">
+          <div class="spacer" />
+          <MaterialButton
+            text
+            to="/mekanismi"
+          >
+            {{ $t('action.cancel') }}
+          </MaterialButton>
+          <MaterialButton
+            :disabled="v.siteName.$error || !v.siteName.$dirty"
+            :async-action="createSiteAction"
+          >
+            {{ $t('action.add') }}
+          </MaterialButton>
+        </div>
+      </MaterialCard>
+    </div>
   </div>
 </template>
 

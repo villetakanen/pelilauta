@@ -1,6 +1,6 @@
 import { useRouter } from 'vue-router'
 
-export function useUxActions (): { back: CallableFunction } {
+export function useUxActions (): { back: CallableFunction, reroute: CallableFunction } {
   const router = useRouter()
 
   function back () {
@@ -8,5 +8,9 @@ export function useUxActions (): { back: CallableFunction } {
     router.back()
   }
 
-  return { back }
+  function reroute (route:string) {
+    router.push(route)
+  }
+
+  return { back, reroute }
 }

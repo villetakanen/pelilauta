@@ -22,7 +22,7 @@
       to="mekanismi.profile.sites"
       prepend="books"
     >
-      <span class="hideOnMobile">{{ $t('wiki.mySites') }}</span>
+      <span class="hideOnMobile">{{ $t('sideNav.toMySitesLink') }}</span>
     </Action>
   </Toolbar>
 </template>
