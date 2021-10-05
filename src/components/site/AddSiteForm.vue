@@ -36,8 +36,11 @@
       >
         {{ $t('action.cancel') }}
       </Button>
-      <Button @click="save">
-        {{ $t('action.save') }}
+      <Button
+        :disabled="disableSaving"
+        @click="save"
+      >
+        {{ $t('action.add') }}
       </Button>
     </div>
   </Column>
@@ -74,11 +77,16 @@ export default defineComponent({
 
     const v = useVuelidate(rules, { name })
 
+    const disableSaving = computed(() => {
+      if (v.value.name.$error) return true
+      return !v.value.name.$dirty
+    })
+
     function save () {
       reroute('/')
     }
 
-    return { v, visible, siteTypes, description, type, players, back, save }
+    return { v, visible, siteTypes, description, type, players, back, save, disableSaving }
   }
 })
 </script>
