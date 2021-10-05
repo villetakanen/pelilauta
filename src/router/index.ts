@@ -133,7 +133,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/wiki/changes',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/RecentChanges.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/RecentChanges.vue'),
     name: 'wiki.changes'
   },
   // *** Sites ********************************************************

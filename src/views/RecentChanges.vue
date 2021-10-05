@@ -2,7 +2,7 @@
   <div class="recentChanges">
     <SiteListToolbar />
     <div class="singleColumnLayout">
-      <RecentChangesCard />
+      <RecentChangesList />
     </div>
     <teleport to="#ScreenBottomFloatRight">
       <ToTopFab style="margin-right:8px" />
@@ -13,13 +13,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import SiteListToolbar from '@/components/sites/SiteListToolbar.vue'
-import RecentChangesCard from '@/components/sites/RecentChangesCard.vue'
+import RecentChangesList from '@/components/sites/RecentChangesList.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 
 export default defineComponent({
   name: 'RecentChanges',
   components: {
-    RecentChangesCard,
+    RecentChangesList,
     SiteListToolbar,
     ToTopFab
   }
