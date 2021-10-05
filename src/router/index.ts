@@ -136,6 +136,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/RecentChanges.vue'),
     name: 'wiki.changes'
   },
+  // *** Sites ********************************************************
+  {
+    path: '/create/site',
+    component: () => import(/* webpackChunkName: "sites" */ '../views/site/AddSiteView.vue'),
+    name: 'create.site'
+  },
   {
     path: '/site/:siteid',
     component: () => import(/* webpackChunkName: "sites" */ '../views/site/SiteHomeView.vue'),
