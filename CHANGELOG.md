@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.3](https://github.com/villetakanen/pelilauta/compare/v10.8.2...v10.8.3) (2021-10-05)
+
+
+### Bug Fixes
+
+* code quality fixes ([3590719](https://github.com/villetakanen/pelilauta/commit/359071916a4bbadc5fea77dc0935123d5713ab69))
+* new ux for create a site form ([5b98a81](https://github.com/villetakanen/pelilauta/commit/5b98a8125a930c62a3b892c7981822ac2f66d1a7))
+* site creation uses new pattern and ux ([2f751f2](https://github.com/villetakanen/pelilauta/commit/2f751f27daae6938a3d8c85ef433259a03a474fc))
+* small polish for add site form ([9617cf9](https://github.com/villetakanen/pelilauta/commit/9617cf98e244aa6d79fe633b3105afee8849fce3))
+
 ### [10.8.2](https://github.com/villetakanen/pelilauta/compare/v10.8.1...v10.8.2) (2021-10-05)
 
 
