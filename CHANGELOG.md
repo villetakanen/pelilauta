@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.1](https://github.com/villetakanen/pelilauta/compare/v10.8.0...v10.8.1) (2021-10-05)
+
+
+### Bug Fixes
+
+* align items for booklayout ([0234d9b](https://github.com/villetakanen/pelilauta/commit/0234d9b105a2b0d0604c03d3b0f440a5fd14a2fb))
+* back button works ([d63f3d0](https://github.com/villetakanen/pelilauta/commit/d63f3d09ea44b3898291698e00fb9b5635e2fd66))
+* back button works ([1abcd4e](https://github.com/villetakanen/pelilauta/commit/1abcd4ecf7edbd292926efb1e0f8fb6f606924b2))
+* page saving works ([cfcf844](https://github.com/villetakanen/pelilauta/commit/cfcf844b8cbdb3d056a33874cb470ba6f773ed07))
+* stylebook entry for booklayout ([0fbcc93](https://github.com/villetakanen/pelilauta/commit/0fbcc934c1c1b2250baa160ff12a987cbc68872b))
+* updated edit view for new rte ([f960b25](https://github.com/villetakanen/pelilauta/commit/f960b2576b32577d3ca2b6c4f2edf1151f05fc0d))
+
 ## [10.8.0](https://github.com/villetakanen/pelilauta/compare/v10.7.8...v10.8.0) (2021-10-04)
 
 
