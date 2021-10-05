@@ -1,6 +1,6 @@
 import { computed, ComputedRef, ref } from 'vue'
-import { Site, toSite, SiteData } from '@/state/site'
-import { collection, doc, getDoc, getFirestore, onSnapshot, orderBy, query, serverTimestamp, setDoc } from '@firebase/firestore'
+import { Site, toSite } from '@/state/site'
+import { collection, getFirestore, onSnapshot, orderBy, query } from '@firebase/firestore'
 import { useAuth } from '../authz'
 
 const fullSiteList = ref(new Map<string, Site>())
@@ -32,33 +32,6 @@ const userSites = computed(() => {
   return filteredSites
 })
 
-/**
- * Creates a new wikisite, and a page to accompany it
- *
- * @param data SiteData, with fields owners
- */
-async function createSite (id: string, creatorUid: string, name: string, hidden = true): Promise<void> {
-  const siteData:SiteData = {
-    id: id,
-    name: name,
-    owners: [creatorUid],
-    hidden: hidden
-  }
-  const db = getFirestore()
-  const siteRef = doc(db, 'sites', siteData.id)
-  return getDoc(siteRef).then((siteDoc) => {
-    if (siteDoc.exists()) throw new Error('Site exists, create failed')
-    return setDoc(siteRef, { ...siteData, lastUpdate: serverTimestamp() }).then(() => {
-      const pageRef = doc(db, 'pages', siteData.id)
-      return setDoc(pageRef, {
-        name: siteData.id,
-        htmlContent: '<p>...</p>',
-        lastUpdate: serverTimestamp()
-      })
-    })
-  })
-}
-
 let _init = false
 let unsubscribe = () => {}
 
@@ -77,11 +50,10 @@ export function useSites (): {
     publicSites: ComputedRef<Array<Site>>,
     allSites: ComputedRef<Array<Site>>,
     userSites: ComputedRef<Array<Site>>,
-    createSite: (id: string, creatorUid: string, name: string, hidden?: boolean) => Promise<void>
     } {
   if (!_init) {
     subscribeToSites()
     _init = true
   }
-  return { publicSites, allSites, createSite, userSites }
+  return { publicSites, allSites, userSites }
 }

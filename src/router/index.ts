@@ -209,12 +209,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.character.view'
   },
   {
-    path: '/mekanismi/create',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/CreateSite.vue'),
-    props: true,
-    name: 'mekanismi.create.site'
-  },
-  {
     path: '/mekanismi/sites/profile',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/profile/SiteListingView.vue'),
     props: true,
