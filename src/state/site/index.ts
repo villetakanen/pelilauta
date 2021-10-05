@@ -9,6 +9,14 @@ import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateD
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { subscribeCharacters, useSiteCharacters } from './characters'
 
+export const siteTypes = new Map([
+  ['dd', 'Dungeons and Dragons 5e'],
+  ['quick', 'The Quick'],
+  ['homebrew', 'Homebrew'],
+  ['ptba', 'Powered by the Apocalypse'],
+  ['pathfinder', 'Pathfinder']
+])
+
 export interface Site {
   id: string,
   description: string,
