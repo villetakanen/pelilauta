@@ -15,7 +15,13 @@
     </div>
     <div class="worker">
       <img
+        class="light"
         src="@/assets/animations/puff.svg"
+        alt=""
+      >
+      <img
+        class="dark"
+        src="@/assets/animations/puff-dark.svg"
         alt=""
       >
     </div>
@@ -86,6 +92,8 @@ button.button
   &:active
     background-color: var(--chroma-secondary-c)
     @include Rise1()
+  img.dark
+    display: none
   div.slot
     display: inline-block
     margin: 0
@@ -99,6 +107,10 @@ button.button
     background-color: var(--chroma-secondary-i)
     color: var(--chroma-secondary-h)
     border: solid 1px var(--chroma-secondary-g)
+    img.dark
+      display: inline-block
+    img.light
+      display: none
   // *** secondary ****************************************************
   &.secondary
     background-color: var(--chroma-primary-d)
@@ -145,18 +157,28 @@ button.button
       background: none
       color: var(--chroma-secondary-g)
       border: none
+    img.dark
+      display: inline-block
+    img.light
+      display: none
   div.worker
     position: absolute
     left: calc(50% - 24px)
-    top: -2px
+    top: -4px
     opacity: 0
     transition-property: opacity
     transition-duration: 0.3s
   &.working
     div.slot
-      transform: translatey(-24px)
-      opacity: 0
+      // transform: translatey(-24px)
+      opacity: 0.25
       pointer-events: none
+    &.text
+      background-color: var(--chroma-secondary-i)
+      div.slot
+        opacity: 0.5
+        transform: none
+        co
     div.worker
       opacity: 1
 </style>
