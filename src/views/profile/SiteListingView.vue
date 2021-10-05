@@ -7,7 +7,7 @@
         <Icon headline />
         <div class="toolbar">
           <div class="spacer" />
-          <Button @click="reroute('/create/site')">
+          <Button @click="reroute('/mekanismi/create')">
             {{ $t('action.addSite') }}
           </Button>
         </div>
