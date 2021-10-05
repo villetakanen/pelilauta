@@ -9,6 +9,7 @@ export class Page {
   htmlContent:string // Contents of the page, in HTML format
   author:string // a firebase owner for the new page
   lastUpdate: Timestamp|FieldValue //
+  category:string
 
   constructor (id?:string, data?:DocumentData) {
     this.id = id || ''
@@ -16,6 +17,7 @@ export class Page {
     this.htmlContent = data?.htmlContent || ''
     this.author = data?.author || ''
     this.lastUpdate = data?.lastUpdate || null
+    this.category = data?.category || ''
   }
 
   dry ():DocumentData {
@@ -23,6 +25,7 @@ export class Page {
       name: this.name,
       htmlContent: this.htmlContent,
       author: this.author,
+      category: this.category,
       lastUpdate: this.lastUpdate || serverTimestamp()
     }
   }

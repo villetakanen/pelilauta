@@ -12,7 +12,7 @@ import PageToolbar from '@/components/page/PageToolbar.vue'
 import PageEditForm from '@/components/page/EditPageForm.vue'
 import { usePage } from '@/state/pages/usePage'
 import { useSite } from '@/state/site'
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, watch } from 'vue'
 
 /**
  * A Router view for a Wiki Page in an edit mode.
@@ -43,6 +43,16 @@ export default defineComponent({
   setup (props) {
     const { site } = useSite(props.siteid)
     const { page } = usePage(props.siteid, props.pageid)
+
+    onMounted(() => {
+      // Route changed, withoout unmounting of this item
+      watch(props, (p) => {
+        if (p.pageid !== page.value.id || p.siteid !== site.value.id) {
+          useSite(props.siteid)
+          usePage(props.siteid, props.pageid)
+        }
+      })
+    })
 
     return { page, site }
   }

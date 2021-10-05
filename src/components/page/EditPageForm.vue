@@ -1,12 +1,14 @@
 <template>
   <Column class="editPageForm">
     <template v-if="page && page.id">
-      <div
-        v-if="updated"
-        class="warning"
-      >
-        {{ $t('site.page.updated') }}
-      </div>
+      <transition name="appear">
+        <div
+          v-if="updated && !working"
+          class="warning"
+        >
+          {{ $t('site.page.updated') }}
+        </div>
+      </transition>
       <Textfield
         v-model="v.name.$model"
         :label="$t('site.page.title')"
@@ -17,6 +19,13 @@
         style="margin-top: 8px"
       />
       <div class="toolbar">
+        <Select
+          v-model="v.category.$model"
+          name="CategorySelect"
+          :opts="opts"
+          :label="$t('wiki.page.category')"
+          class="pageCategory"
+        />
         <div class="spacer" />
         <Button
           text
@@ -26,6 +35,7 @@
         </Button>
         <Button
           id="addPageCardCreateButton"
+          :working="working"
           :disabled="disableSaving"
           @click="save"
         >
@@ -52,19 +62,25 @@ import { computed, defineComponent, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Loader from '../app/Loader.vue'
 import Button from '../form/Button.vue'
+import Select from '../form/Select.vue'
 import Textfield from '../form/Textfield.vue'
 import Column from '../layout/Column.vue'
 import RichTextEditor from '../quill/RichTextEditor.vue'
 
 export default defineComponent({
   name: 'TextStyles',
-  components: { Column, Loader, Textfield, RichTextEditor, Button },
+  components: { Column, Loader, Textfield, RichTextEditor, Button, Select },
   setup () {
+    const { site } = useSite()
     const { page } = usePage()
 
     const updated = ref(false)
     const name = ref('')
     const content = ref('')
+    const working = ref(false)
+
+    const opts = computed(() => (new Map(site.value.categories.map((c) => ([c.slug, c.name])))))
+    const category = ref('')
 
     const rules = computed(() => ({
       name: {
@@ -72,10 +88,13 @@ export default defineComponent({
       },
       content: {
         required
+      },
+      category: {
+        required
       }
     }))
 
-    const v = useVuelidate(rules, { name, content })
+    const v = useVuelidate(rules, { name, content, category })
 
     const disableSaving = computed(() => {
       if (updated.value) return true
@@ -90,28 +109,37 @@ export default defineComponent({
       } else {
         name.value = val.name
         content.value = val.htmlContent
+        category.value = val.category
       }
     })
 
     const router = useRouter()
-    const { site } = useSite()
 
     async function save () {
+      working.value = true
       page.value.name = name.value
       page.value.htmlContent = content.value
+      page.value.category = category.value
 
       await savePage(page.value)
 
       router.push(`/site/${site.value.id}/page/${page.value.id}`)
+      working.value = false
     }
 
-    return { page, v, disableSaving, save, updated }
+    return { page, v, disableSaving, save, updated, working, opts, category }
   }
 })
 </script>
 
 <style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
 .warning
+  @include TypeBody2()
+  padding: 8px
   background-color: var(--chroma-alert-field-tint)
   color: var(--chroma-alert)
+  border-radius: 12px 0 12px 0
+  margin-bottom: 8px
 </style>
