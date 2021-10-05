@@ -29,7 +29,7 @@
         <div class="spacer" />
         <Button
           text
-          @click="cancel"
+          @click="back"
         >
           {{ $t('action.cancel') }}
         </Button>
@@ -66,6 +66,7 @@ import Select from '../form/Select.vue'
 import Textfield from '../form/Textfield.vue'
 import Column from '../layout/Column.vue'
 import RichTextEditor from '../quill/RichTextEditor.vue'
+import { useUxActions } from '@/composables/useUxActions'
 
 export default defineComponent({
   name: 'TextStyles',
@@ -73,6 +74,7 @@ export default defineComponent({
   setup () {
     const { site } = useSite()
     const { page } = usePage()
+    const { back } = useUxActions()
 
     const updated = ref(false)
     const name = ref('')
@@ -127,7 +129,7 @@ export default defineComponent({
       working.value = false
     }
 
-    return { page, v, disableSaving, save, updated, working, opts, category }
+    return { page, v, disableSaving, save, updated, working, opts, category, back }
   }
 })
 </script>
