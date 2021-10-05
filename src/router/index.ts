@@ -168,7 +168,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/site/:siteid/page/edit/:pageid',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/EditPageView.vue'),
     props: true,
     name: 'mekanismi.edit'
   },
@@ -242,7 +242,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.page.edit',
     path: '/site/:siteid/page/:pageid/edit',
     props: true,
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue')
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/EditPageView.vue')
   },
   // Character related routes
   {

@@ -1,5 +1,5 @@
 <template>
-  <Column class="formContols">
+  <Column class="formContols double">
     <h1>Forms</h1>
     <p>
       And other input components.

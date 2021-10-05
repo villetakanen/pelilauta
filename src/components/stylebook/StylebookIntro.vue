@@ -1,5 +1,5 @@
 <template>
-  <Column class="textStyles">
+  <Column class="textStyles double">
     <h1>Stylebook</h1>
     <p>
       This page acts as a kind of a Diary for the UX and UI design for the app. Additionally, it is a
@@ -77,6 +77,12 @@
           </td>
           <td>A layout filling 100% of the space with some padding.</td>
         </tr>
+        <tr>
+          <td>
+            <span class="code">bookLayout</span>
+          </td>
+          <td>A layout with 2 sized columns. use class <span class="code">double</span> to get 2 columnns wide <span class="code">Column</span></td>
+        </tr>
       </tbody>
     </table>
   </Column>
@@ -103,6 +109,7 @@ export default defineComponent({
     layouts.set('singleColumnLayout', 'singleColumnLayout')
     layouts.set('dashBoardLayout', 'dashBoardLayout')
     layouts.set('emptyLayout', 'emptyLayout')
+    layouts.set('bookLayout', 'bookLayout')
     return { selectedLayout, layouts }
   }
 })

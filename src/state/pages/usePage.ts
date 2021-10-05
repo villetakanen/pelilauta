@@ -1,5 +1,5 @@
 import { ref, computed, ComputedRef } from 'vue'
-import { Timestamp, DocumentData, serverTimestamp, addDoc, onSnapshot, doc, collection, getFirestore } from '@firebase/firestore'
+import { Timestamp, DocumentData, serverTimestamp, addDoc, onSnapshot, doc, collection, getFirestore, updateDoc, FieldValue } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { useSite } from '../site'
 
@@ -8,7 +8,8 @@ export class Page {
   name:string // Mandatory field from UX perspective
   htmlContent:string // Contents of the page, in HTML format
   author:string // a firebase owner for the new page
-  lastUpdate: Timestamp|null //
+  lastUpdate: Timestamp|FieldValue //
+  category:string
 
   constructor (id?:string, data?:DocumentData) {
     this.id = id || ''
@@ -16,6 +17,7 @@ export class Page {
     this.htmlContent = data?.htmlContent || ''
     this.author = data?.author || ''
     this.lastUpdate = data?.lastUpdate || null
+    this.category = data?.category || ''
   }
 
   dry ():DocumentData {
@@ -23,6 +25,7 @@ export class Page {
       name: this.name,
       htmlContent: this.htmlContent,
       author: this.author,
+      category: this.category,
       lastUpdate: this.lastUpdate || serverTimestamp()
     }
   }
@@ -51,6 +54,35 @@ export async function createPage (newPage:Page): Promise<string> {
     newPage.dry()
   )
   return createdDoc.id
+}
+
+export async function savePage (updatedPage:Page): Promise<void> {
+  const { site } = useSite()
+
+  updatedPage.lastUpdate = serverTimestamp()
+
+  console.debug('site', site.value, 'page', updatedPage)
+
+  await updateDoc(
+    doc(
+      getFirestore(),
+      'sites',
+      site.value.id,
+      'pages',
+      updatedPage.id
+    ),
+    {
+      ...updatedPage.dry(),
+      hidden: site.value.hidden || false,
+      silent: site.value.silent || false
+    })
+  return updateDoc(
+    doc(
+      getFirestore(),
+      'sites',
+      site.value.id),
+    { lastUpdate: serverTimestamp() }
+  )
 }
 
 let unsub:undefined|CallableFunction

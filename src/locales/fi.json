@@ -130,7 +130,9 @@
       }
     },
     "page": {
-      "title": "Sivun nimi"
+      "title": "Sivun nimi",
+      "edit": "Muokkaa sivua",
+      "updated": "Sivun sisältöä on päivitetty toisessa ikkunassa tai toisen käyttäjän toimesta. Tallentaminen yliajaa muualla tehdyt muutokset."
     },
     "players": {
       "title": "Pelaajat",
