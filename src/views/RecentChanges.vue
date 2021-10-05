@@ -1,9 +1,7 @@
 <template>
   <div class="recentChanges">
     <SiteListToolbar />
-    <div class="singleColumnLayout">
-      <RecentChangesList />
-    </div>
+    <RecentChangesList />
     <teleport to="#ScreenBottomFloatRight">
       <ToTopFab style="margin-right:8px" />
     </teleport>

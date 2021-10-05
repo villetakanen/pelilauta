@@ -1,10 +1,10 @@
 <template>
-  <div class="recentChangesList">
+  <div class="recentChangesList flexLayout">
     <div
       v-for="site in sitelist"
       :key="site.id"
     >
-      {{ site.name }}
+      <RecentChangesCard :site="site" />
     </div>
   </div>
 </template>
@@ -12,9 +12,10 @@
 <script lang="ts">
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
+import RecentChangesCard from './RecentChangesCard.vue'
 
 export default defineComponent({
-  components: { },
+  components: { RecentChangesCard },
   setup () {
     const { publicSites, userSites } = useSites()
 
