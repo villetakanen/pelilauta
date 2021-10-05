@@ -12,7 +12,7 @@
       </Action>
       <Action
         v-if="showMemberTools"
-        to="mekanismi.create.site"
+        to="create.site"
         prepend="add"
       >
         <span v-if="!mobile">{{ $t('wiki.createSite') }}</span>

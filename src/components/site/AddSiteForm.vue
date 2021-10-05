@@ -52,7 +52,7 @@ import Select from '../form/Select.vue'
 import Textfield from '../form/Textfield.vue'
 import Column from '../layout/Column.vue'
 import Toggle from '../material/Toggle.vue'
-import { siteTypes } from '@/state/site'
+import { createSite, SiteData, siteTypes } from '@/state/site'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import Button from '../form/Button.vue'
@@ -68,6 +68,7 @@ export default defineComponent({
     const type = ref('')
     const visible = ref(false)
     const players = ref(false)
+    const working = ref(false)
 
     const rules = computed(() => ({
       name: {
@@ -82,8 +83,21 @@ export default defineComponent({
       return !v.value.name.$dirty
     })
 
-    function save () {
-      reroute('/')
+    async function save () {
+      working.value = true
+      if (v.value.name.$error) return
+
+      const siteData:SiteData = {
+        name: name.value,
+        description: description.value,
+        hidden: !visible.value,
+        usePlayers: players.value
+      }
+
+      const id = await createSite(siteData)
+
+      reroute('/site/' + id)
+      working.value = false
     }
 
     return { v, visible, siteTypes, description, type, players, back, save, disableSaving }

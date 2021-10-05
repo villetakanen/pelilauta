@@ -49,15 +49,10 @@ import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { useSites } from '@/state/sites'
 import { toMekanismiURI } from '@/utils/contentFormat'
-import { useAuth } from '@/state/authz'
-import { useRouter } from 'vue-router'
-
 export default defineComponent({
   components: { MaterialCard, TextField, MaterialButton },
   setup () {
-    const { allSites, createSite } = useSites()
-    const { user } = useAuth()
-    const router = useRouter()
+    const { allSites } = useSites()
     const siteName = ref('')
     const uri = computed(() => (toMekanismiURI(siteName.value)))
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -72,9 +67,6 @@ export default defineComponent({
     const v = useVuelidate(rules, { siteName })
 
     async function createSiteAction () {
-      return createSite(uri.value, user.value.uid, siteName.value).then(() => {
-        return router.push('/site/meta/' + uri.value)
-      })
     }
 
     return { siteName, v, uri, createSiteAction }
