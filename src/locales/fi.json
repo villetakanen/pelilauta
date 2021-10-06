@@ -118,6 +118,7 @@
     "keeper": {
       "title": "Keeper"
     },
+    "recentChanges": "Uusimmat päivitykset",
     "characters": {
       "title": "Hahmot",
       "template": "Valitse lomake",
@@ -133,7 +134,9 @@
     "page": {
       "title": "Sivun nimi",
       "edit": "Muokkaa sivua",
-      "updated": "Sivun sisältöä on päivitetty toisessa ikkunassa tai toisen käyttäjän toimesta. Tallentaminen yliajaa muualla tehdyt muutokset."
+      "updated": "Sivun sisältöä on päivitetty toisessa ikkunassa tai toisen käyttäjän toimesta. Tallentaminen yliajaa muualla tehdyt muutokset.",
+      "deleteWarning": "Sivun poistamista ei voi peruuttaa. Jos olet varma että haluat poistaa sivun, kirjoita DELETE allaolevaan laatikkoon",
+      "deleteConfirmLabel": "Vahvista poisto"
     },
     "players": {
       "title": "Pelaajat",

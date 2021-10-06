@@ -35,46 +35,65 @@
     </div>
 
     <h2>Buttons</h2>
-    <Button @action="alert">
+    <p>
+      <Toggle
+        v-model="working"
+        label="Set buttons to working state"
+      />
+    </p>
+    <Button
+      :working="working"
+      @action="alert"
+    >
       An Alert Button
     </Button>
     <Button
       disabled
+      :working="working"
       @action="alert"
     >
       A Disabled Alert
     </Button>
     <br>
     <Button
-      secondary
       :working="working"
+      secondary
       @click="working=!working"
     >
       Secondary + Async
     </Button>
     <Button
+      :working="working"
       secondary
       disabled
     >
       Secondary + Disabled
     </Button>
     <br>
-    <Button tertiary>
+    <Button
+      :working="working"
+      tertiary
+    >
       Tertiary
     </Button>
     <Button
+      :working="working"
       tertiary
       disabled
     >
       Tertiary + Disabled
     </Button>
     <br>
-    <Button text>
+    <Button
+      :working="working"
+      text
+    >
       Text
     </Button>
     <Button
       text
       disabled
+      :working="working"
     >
       Text + Disabled
     </Button>
@@ -101,7 +120,7 @@ export default defineComponent({
     function alert () {
       window.alert('An annoying test functionality')
     }
-    const working = ref(false)
+    const working = ref(true)
     return { selectKey, selectOps, error, textFieldValue, alert, working }
   }
 })
