@@ -1,5 +1,5 @@
 <template>
-  <Card class="welcomeCard">
+  <Column class="welcomeCard">
     <img
       class="logo"
       alt="Pelilauta"
@@ -20,20 +20,21 @@
       >
         {{ $t('action.login') }}
       </Action>
+      <div class="spacer" />
     </div>
-  </Card>
+  </Column>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Card from '../layout/Card.vue'
+import Column from '../layout/Column.vue'
 import Action from '../material/Action.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Action, Card }
+  components: { Action, Column }
 })
 </script>
 
@@ -42,9 +43,9 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .welcomeCard
-  display: block
-  // background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-b) 100%)
-  background: linear-gradient(-42deg, var(--chroma-primary-a) 0%, var(--chroma-primary-d) 100%)
+  margin: 8px
+  margin-bottom: 16px
+  background: linear-gradient(-42deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-d) 100%)
   position: relative
   img.logo
     position: absolute
