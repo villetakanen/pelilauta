@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.4](https://github.com/villetakanen/pelilauta/compare/v10.8.3...v10.8.4) (2021-10-06)
+
+
+### Bug Fixes
+
+* page deletion ux ([a7e4356](https://github.com/villetakanen/pelilauta/commit/a7e435647da81255cd49837a34d15b6722b150ca))
+* page toolbar clipping fixed on mobile ([bd3816d](https://github.com/villetakanen/pelilauta/commit/bd3816d989a8907a6776ef2f5256ee773fb35d78))
+* pages can again be deleted ([52ba122](https://github.com/villetakanen/pelilauta/commit/52ba1227de6fafb9edfb9662017543b3417dc15f))
+* recent changes fetches sites, not log top ([677ee73](https://github.com/villetakanen/pelilauta/commit/677ee7312003c41eb0e306395e8b05ef838fd5d9))
+* recent changes is semi-readable ([ecc90b1](https://github.com/villetakanen/pelilauta/commit/ecc90b1ab2c7db60f9e1c6e9b00570499ad7305f))
+* removed a sc bug ([383db09](https://github.com/villetakanen/pelilauta/commit/383db0900ec911efb8c3a9690681a5864f9b73df))
+* system badge colors for recent change cards ([9f99ddc](https://github.com/villetakanen/pelilauta/commit/9f99ddcee8f2767c89ef0b75cd8c156099eadaec))
+* working button states ([4b5c2a0](https://github.com/villetakanen/pelilauta/commit/4b5c2a0f403647ea2576a290185f32e740b601aa))
+
 ### [10.8.3](https://github.com/villetakanen/pelilauta/compare/v10.8.2...v10.8.3) (2021-10-05)
 
 
