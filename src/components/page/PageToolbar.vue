@@ -68,6 +68,8 @@ import { useI18n } from 'vue-i18n'
 import Dialog from '../material/Dialog.vue'
 import Textfield from '../form/Textfield.vue'
 import Button from '../form/Button.vue'
+import { usePage } from '@/state/pages/usePage'
+import { useUxActions } from '@/composables/useUxActions'
 
 export default defineComponent({
   components: { Toolbar, Action, Icon, MaterialMenu, Dialog, Textfield, Button },
@@ -79,8 +81,10 @@ export default defineComponent({
   },
   setup () {
     const { site, hasAdmin } = useSite()
+    const { deletePage } = usePage()
     const copyLink = useCopyLinkToClipboard()
     const i18n = useI18n()
+    const { reroute } = useUxActions()
 
     const toggleDelete = ref(false)
     const deleteConfirm = ref('')
@@ -89,8 +93,11 @@ export default defineComponent({
       toggleDelete.value = true
     }
 
-    function deletePageFromFirestore () {
-
+    async function deletePageFromFirestore () {
+      if (deleteConfirm.value === 'DELETE') {
+        await deletePage()
+        reroute('/site/' + site.value.id)
+      }
     }
 
     const menu = computed(() => {

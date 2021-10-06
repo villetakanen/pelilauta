@@ -1,5 +1,5 @@
 import { ref, computed, ComputedRef } from 'vue'
-import { Timestamp, DocumentData, serverTimestamp, addDoc, onSnapshot, doc, collection, getFirestore, updateDoc, FieldValue } from '@firebase/firestore'
+import { Timestamp, DocumentData, serverTimestamp, addDoc, onSnapshot, doc, collection, getFirestore, updateDoc, FieldValue, deleteDoc } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { useSite } from '../site'
 
@@ -85,6 +85,23 @@ export async function savePage (updatedPage:Page): Promise<void> {
   )
 }
 
+async function deletePage (): Promise<void> {
+  const { site } = useSite()
+
+  await deleteDoc(
+    doc(
+      getFirestore(),
+      'sites',
+      site.value.id,
+      'pages',
+      page.value.id
+    )
+  )
+  // Flush Local state
+  activePage.value = new Page()
+  if (typeof unsub === 'function') unsub()
+}
+
 let unsub:undefined|CallableFunction
 
 /**
@@ -113,9 +130,10 @@ async function subscribeToPage (siteid:string, pageid:string) {
 
 export function usePage (siteid?:string, pageid?:string): {
   page: ComputedRef<Page>
+  deletePage: () => Promise<void>
   } {
   if (siteid && pageid) {
     subscribeToPage(siteid, pageid)
   }
-  return { page }
+  return { page, deletePage }
 }

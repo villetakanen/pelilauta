@@ -32,6 +32,7 @@ import PageFabs from '@/components/wikipage/PageFabs.vue'
 import { renderWikiLinks } from '@/utils/contentFormat'
 import PageToolbar from '@/components/page/PageToolbar.vue'
 import Column from '@/components/layout/Column.vue'
+import { usePage } from '@/state/pages/usePage'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -59,6 +60,7 @@ export default defineComponent({
     onMounted(() => {
       watch(() => props.pageid, (pageid) => {
         fetchPage(pageid)
+        usePage(props.siteid, props.pageid)
       }, { immediate: true })
     })
 
