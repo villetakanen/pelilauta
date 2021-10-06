@@ -76,7 +76,6 @@ export default defineComponent({
   background-color: var(--chroma-secondary-d)
   width: 310px
   h1.title
-    color: white
     padding-bottom: 8px
     color: var(--chroma-secondary-i)
   p.description
