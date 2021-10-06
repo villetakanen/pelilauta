@@ -1,6 +1,12 @@
 <template>
   <div class="recentChanges">
     <SiteListToolbar />
+    <h1
+      class="title"
+      style="margin: 0 8px"
+    >
+      {{ $t('site.recentChanges') }}
+    </h1>
     <RecentChangesList />
     <teleport to="#ScreenBottomFloatRight">
       <ToTopFab style="margin-right:8px" />
