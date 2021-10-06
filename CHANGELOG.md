@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.5](https://github.com/villetakanen/pelilauta/compare/v10.8.4...v10.8.5) (2021-10-06)
+
+
+### Bug Fixes
+
+* added missing aria tag ([a9ebfe4](https://github.com/villetakanen/pelilauta/commit/a9ebfe466883b79bf1651d0f16e30b0d05401b7b))
+* front page ad for sites ([ad930ff](https://github.com/villetakanen/pelilauta/commit/ad930ff57287eb3a8da113932865fa25e716bc10))
+
 ### [10.8.4](https://github.com/villetakanen/pelilauta/compare/v10.8.3...v10.8.4) (2021-10-06)
 
 
