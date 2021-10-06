@@ -2,20 +2,20 @@
   <Toolbar
     id="pageToolbar"
   >
-    <Icon
-      :name="site.systemBadge + '-logo'"
-      headline
-      class="systemBadge"
-    />
-    <div class="clipWithEllipsis">
-      <h3 class="siteTitle">
+    <div class="title">
+      <Icon
+        :name="site.systemBadge + '-logo'"
+        headline
+        class="badge"
+      />
+      <h3 class="siteTitle clipWithEllipsis">
         <router-link
           :to="`/site/${site.id}`"
         >
           {{ site.name }}
         </router-link>
       </h3>
-      <h3 class="pageTitle">
+      <h3 class="pageTitle clipWithEllipsis">
         {{ title }}
       </h3>
     </div>
@@ -59,6 +59,15 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 #pageToolbar
+  .title
+    position: relative
+    margin: 0
+    padding: 0
+    padding-left: 56px
+    .badge
+      position: absolute
+      top: 0
+      left: 0
   .siteTitle
     @include TypeCaption()
     a
@@ -67,5 +76,14 @@ export default defineComponent({
     @include TypeHeadline5()
     margin-top:0
     padding-top:0
+    height: 1em
+    white-space: nowrap
+    padding-bottom: 8px
+    margin-bottom: -8px
+    max-width: calc(100vw - 70px)
 
+@include media('>=tablet')
+#pageToolbar
+  .pageTitle
+    max-width: auto
 </style>

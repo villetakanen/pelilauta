@@ -178,7 +178,6 @@ button.button
       div.slot
         opacity: 0.5
         transform: none
-        co
     div.worker
       opacity: 1
 </style>
