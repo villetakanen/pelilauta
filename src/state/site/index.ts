@@ -116,9 +116,11 @@ function subscribeTo (id: string): void {
   })
 }
 
-function hasAdmin (uid: string): boolean {
+function hasAdmin (uid?: string): boolean {
+  const { user } = useAuth()
+  const queriedUid = uid || user.value.uid
   if (stateSite.value.owners === null) return false
-  return stateSite.value.owners.includes(uid)
+  return stateSite.value.owners.includes(queriedUid)
 }
 
 async function addPlayer (uid:string) {
@@ -213,7 +215,7 @@ function useSite (id?: string):
     site: ComputedRef<Site>,
     members: ComputedRef<Array<PublicProfile>>,
     showSiteMemberTools: ComputedRef<boolean>,
-    hasAdmin: (uid: string) => boolean,
+    hasAdmin: (uid?: string) => boolean,
     revokeOwner: (uid: string) => Promise<void>
     addOwner: (uid: string) => Promise<void>,
     addPlayer: (uid: string) => Promise<void>,
