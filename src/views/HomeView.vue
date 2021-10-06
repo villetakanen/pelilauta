@@ -1,6 +1,7 @@
 <template>
-  <div class="homeView singleColumnLayout">
+  <div class="homeView bookLayout">
     <HomeStream />
+    <CreateASiteAd />
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
       <Fab
@@ -21,13 +22,15 @@ import { useAuth } from '@/state/authz'
 import HomeStream from '@/components/home/HomeStream.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
+import CreateASiteAd from '@/components/home/cta/CreateASiteAd.vue'
 
 export default defineComponent({
   name: 'HomeView',
   components: {
     Fab,
     HomeStream,
-    ToTopFab
+    ToTopFab,
+    CreateASiteAd
   },
   setup () {
     const { showMemberTools } = useAuth()

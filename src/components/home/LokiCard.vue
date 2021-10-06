@@ -71,6 +71,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 
 section.lokiCard
   background-image: url('/src/loki.jpg')
@@ -111,5 +112,10 @@ section.lokiCard
     a
       color: var(--chroma-secondary-h)
       text-decoration: none
+
+@include media('>phone')
+  .lokiCard
+    min-width: 220px
+    max-width: 602px
 
 </style>

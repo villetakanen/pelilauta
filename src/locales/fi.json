@@ -3,7 +3,7 @@
     "addAttachment": "Lisää tiedosto",
     "addThread": "Uusi ketju",
     "addPage": "Uusi sivu",
-    "addSite": "Lisää uusi",
+    "addSite": "Luo uusi peli",
     "add": "Lisää",
     "admin": "Admin",
     "cancel": "Peruuta",
@@ -41,6 +41,13 @@
       "message": "Pelilauta.fi ja Mekanismi.sange.fi sivustojen inspiroima yhteisösovellus. Kirjautumalla Facebookilla, Googlella tai sähköpostilla – saat käyttöösi enemmän toimintoja."
     },
     "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
+  },
+  "calltoaction": {
+    "site": {
+      "title": "Mekanismin Pelisivustot",
+      "text": "Voit luoda pelillesi oman wikityylisen sivuston pelilaudalle. Sivustot toimivat melko lailla kuten mekanismi.sange.fi:ssä.",
+      "text2": "Sivuston voi halutessaan julkaista näkyväksi julkisissa listauksissa, tai piilottaa vain linkin tietävien saataville."
+    }
   },
   "character": {
     "meta": {
