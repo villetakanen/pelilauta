@@ -4,14 +4,22 @@
       {{ $t('profile.actions.title') }}
     </h1>
     <p>{{ $t('profile.actions.helper') }}</p>
-    <div>
+
+    <p>
       <Select
         v-model="selectedLang"
         name="selectLanguage"
         :label="$t('profile.actions.selectLang')"
         :opts="langs"
       />
-    </div>
+    </p>
+
+    <p>
+      <Toggle
+        v-model="showExperimentalTools"
+        :label="$t('profile.actions.useExperimental')"
+      />
+    </p>
 
     <div>
       <h1 class="title">
@@ -79,6 +87,7 @@ import { getAuth } from '@firebase/auth'
 import Dialog from '../material/Dialog.vue'
 import TextField from '../material/TextField.vue'
 import Select from '../form/Select.vue'
+import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
   name: 'ProfileActions',
@@ -87,7 +96,8 @@ export default defineComponent({
     Column,
     Dialog,
     TextField,
-    Select
+    Select,
+    Toggle
   },
   setup () {
     const i18n = useI18n()
@@ -121,6 +131,8 @@ export default defineComponent({
       })
     })
 
+    const { showExperimentalTools } = useAuth()
+
     // Forget me functionality
     const forgetMeDialog = ref(false)
     const forgetMeConfirm = ref('')
@@ -135,7 +147,7 @@ export default defineComponent({
       router.push('/')
     }
 
-    return { logout, stampAllSeen, langs, selectedLang, forgetMeDialog, forgetMeConfirm, forgetMe }
+    return { logout, stampAllSeen, langs, selectedLang, forgetMeDialog, forgetMeConfirm, forgetMe, showExperimentalTools }
   }
 })
 </script>

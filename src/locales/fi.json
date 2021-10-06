@@ -95,6 +95,34 @@
     "newThreadReply": "vastasi ketjuun.",
     "mentionInThread": "mainitsi sinut ketjussa"
   },
+  "profile": {
+    "characterListing": {
+      "title": "Hahmoni"
+    },
+    "publicInfoTitle": "Julkinen profiilini",
+    "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
+    "ssoInfocardTitle": "Omat tietoni",
+    "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
+    "tagline": "Allekirjoitus",
+    "assets": "Media",
+    "asset": {
+      "list": {
+        "title": "Lisäämäni kuvat"
+      }
+    },
+    "stats": "Ketjut",
+    "actions": {
+      "title": "Asetukset",
+      "helper": "Erilaisia nappuloita ja säätöjä",
+      "selectLang": "Sovelluksen kieli",
+      "actions": "Toiminnot",
+      "useExperimental": "Ota käyttöön kokoeelliset toiminnot sovelluksessa."
+    },
+    "inbox": {
+      "title": "Nostot"
+    },
+    "nick": "Nimimerkki"
+  },
   "registration": {
     "title": "Tervetuloa Pelilaudalle",
     "info": "Luomme sinulle profiilin, joka näkyy kaikille käyttäjille. Alta voit valita profiilille nimimerkin",
@@ -218,33 +246,7 @@
     "newRepliesNote": "uusi",
     "more": "Lue lisää"
   },
-  "profile": {
-    "characterListing": {
-      "title": "Hahmoni"
-    },
-    "publicInfoTitle": "Julkinen profiilini",
-    "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
-    "ssoInfocardTitle": "Omat tietoni",
-    "ssoInfocardHelper": "Nämä tiedot näkyvät vain minulle ja ylläpidolle.",
-    "tagline": "Allekirjoitus",
-    "assets": "Media",
-    "asset": {
-      "list": {
-        "title": "Lisäämäni kuvat"
-      }
-    },
-    "stats": "Ketjut",
-    "actions": {
-      "title": "Asetukset",
-      "helper": "Erilaisia nappuloita ja säätöjä",
-      "selectLang": "Sovelluksen kieli",
-      "actions": "Toiminnot"
-    },
-    "inbox": {
-      "title": "Nostot"
-    },
-    "nick": "Nimimerkki"
-  },
+  
   "threads": {
     "sinceInTopic": "aiheessa",
     "discussion": "Keskustelu",
