@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.6](https://github.com/villetakanen/pelilauta/compare/v10.8.5...v10.8.6) (2021-10-07)
+
+
+### Bug Fixes
+
+* front page visibilities ([dc70bfb](https://github.com/villetakanen/pelilauta/commit/dc70bfb21a6caf3ce5c19d66edcd044ad98eaded))
+* small adjustmets to ads ([8d2c8ad](https://github.com/villetakanen/pelilauta/commit/8d2c8ad21c2bee5b56bc27a9f6194c56cb1318e4))
+* topic ux prepped for sidenav updates ([4fc859a](https://github.com/villetakanen/pelilauta/commit/4fc859a3c076ba1c5446c45d615e978068ba3c62))
+
 ### [10.8.5](https://github.com/villetakanen/pelilauta/compare/v10.8.4...v10.8.5) (2021-10-06)
 
 
