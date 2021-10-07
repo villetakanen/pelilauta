@@ -1,7 +1,12 @@
 <template>
   <div class="homeView bookLayout">
     <HomeStream />
-    <CreateASiteAd />
+    <div>
+      <transition name="fade">
+        <WelcomeCard v-if="anonymousSession" />
+      </transition>
+      <CreateASiteAd />
+    </div>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
       <Fab
@@ -23,6 +28,7 @@ import HomeStream from '@/components/home/HomeStream.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import CreateASiteAd from '@/components/home/cta/CreateASiteAd.vue'
+import WelcomeCard from '@/components/home/WelcomeCard.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -30,10 +36,11 @@ export default defineComponent({
     Fab,
     HomeStream,
     ToTopFab,
-    CreateASiteAd
+    CreateASiteAd,
+    WelcomeCard
   },
   setup () {
-    const { showMemberTools } = useAuth()
+    const { showMemberTools, anonymousSession } = useAuth()
     const editorDialog = ref(false)
     onMounted(() => {
       const a = getAnalytics()
@@ -41,7 +48,7 @@ export default defineComponent({
       document.title = 'Pelilauta'
     })
 
-    return { editorDialog, showMemberTools }
+    return { editorDialog, showMemberTools, anonymousSession }
   }
 })
 </script>

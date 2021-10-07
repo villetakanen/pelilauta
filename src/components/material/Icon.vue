@@ -162,7 +162,7 @@ export default defineComponent({
 .inline.icon + .inline.icon
   margin-left: 0px
 
-.headline.icon
+.headline.icon, h3 .icon
   display: inline-block
   height: 44px
   width: 44px

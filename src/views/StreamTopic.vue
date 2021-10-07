@@ -1,16 +1,14 @@
 <template>
   <div>
-    <Toolbar>
-      <h3 v-if="stream">
-        {{ stream.name }}
-      </h3>
-    </Toolbar>
-    <div class="twoColFlexSection">
-      <PinnedStream class="col" />
+    <TopicToolbar
+      :icon="stream.icon"
+      :channel="stream.name"
+    />
+    <div class="bookLayout">
       <ThreadList
         :topic="routeTopic"
-        class="col"
       />
+      <PinnedStream />
     </div>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
@@ -31,19 +29,19 @@ import Fab from '@/components/material/Fab.vue'
 import { useMeta } from '@/state/meta'
 import { useRoute } from 'vue-router'
 import { useAuth } from '@/state/authz'
-import Toolbar from '@/components/layout/Toolbar.vue'
 import PinnedStream from '@/components/topic/PinnedStream.vue'
 import { useThreads } from '@/state/threads'
 import ToTopFab from '@/components/app/ToTopFab.vue'
+import TopicToolbar from '@/components/topic/TopicToolbar.vue'
 
 export default defineComponent({
   name: 'StreamTopic',
   components: {
     ThreadList,
     Fab,
-    Toolbar,
     PinnedStream,
-    ToTopFab
+    ToTopFab,
+    TopicToolbar
   },
   props: {
     topic: {
@@ -66,7 +64,7 @@ export default defineComponent({
     })
 
     const stream = computed(() => {
-      return streams.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase()))
+      return streams.value.find((val) => (val.slug.toLowerCase() === routeTopic.value.toLowerCase())) || { name: '', icon: '' }
     })
 
     const { showMemberTools } = useAuth()
@@ -75,21 +73,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-@import @/styles/include-media.scss
-
-.twoColFlexSection
-  padding: 0 8px
-
-@include media('>tablet')
-  .twoColFlexSection
-    max-width: 1024px
-    margin: 0 auto
-    display: flex
-    flex-direction: row-reverse
-    .col
-      width: 50%
-      margin: 0
-
-</style>
