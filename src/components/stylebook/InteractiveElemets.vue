@@ -9,6 +9,12 @@
     >
       Open a Dialog
     </Button>
+    <Button
+      :disabled="dialogVisible"
+      @click="sendSnack()"
+    >
+      Push a message to snacks
+    </Button>
     <Dialog
       v-model="dialogVisible"
       label="Example Dialog"
@@ -19,6 +25,7 @@
 </template>
 
 <script lang="ts">
+import { useSnack } from '@/composables/useSnack'
 import { defineComponent, ref } from 'vue'
 import Button from '../form/Button.vue'
 import Column from '../layout/Column.vue'
@@ -29,7 +36,11 @@ export default defineComponent({
   components: { Column, Button, Dialog },
   setup () {
     const dialogVisible = ref(false)
-    return { dialogVisible }
+    function sendSnack () {
+      const { pushSnack } = useSnack()
+      pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') }, actionMessage: 'alert?' })
+    }
+    return { dialogVisible, sendSnack }
   }
 })
 </script>
