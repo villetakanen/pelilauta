@@ -66,6 +66,9 @@
     "notFound": "Väärä osoite",
     "message": "Vaikuttaa siltä, että tätä reittiä pitkin ei pääse mihinkään. Palaa takaisin lähtöruutuun alta."
   },
+  "experimental": {
+    "warningText": "Kokeelliset toiminnot käytössä. Voit kytkeä ne pois profiilisi asetuksista."
+  },
   "home": {
     "changesCard": {
       "title": "Mekanismi",
@@ -243,7 +246,8 @@
       "title": "Asetukset",
       "helper": "Erilaisia nappuloita ja säätöjä",
       "selectLang": "Sovelluksen kieli",
-      "actions": "Toiminnot"
+      "actions": "Toiminnot",
+      "useExperimental": "Käytä kokeellisia toimintoja"
     },
     "inbox": {
       "title": "Nostot"

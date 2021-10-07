@@ -13,6 +13,17 @@
     >
       <div class="menuContainer">
         <SideNavMenu />
+        <transition name="fade">
+          <div
+            v-if="showExperimentalTools"
+            class="warning"
+          >
+            <Icon name="alert" />
+            <p class="TypeBody2">
+              {{ $t('experimental.warningText') }}
+            </p>
+          </div>
+        </transition>
       </div>
     </div>
   </nav>
@@ -21,6 +32,7 @@
 <script lang="ts">
 import { ComputedRef, defineComponent, inject } from 'vue'
 import SideNavMenu from '@/components/sidenav/SideNavMenu.vue'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'SideNav',
@@ -39,7 +51,8 @@ export default defineComponent({
     const toggle = () => {
       if (mobile.value) toggleNav()
     }
-    return { toggle }
+    const { showExperimentalTools } = useAuth()
+    return { toggle, showExperimentalTools }
   }
 })
 </script>
