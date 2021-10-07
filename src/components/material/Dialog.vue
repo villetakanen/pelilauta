@@ -106,4 +106,5 @@ div#dialog
       width: auto
       height: auto
       border-radius: 4px
+      max-width: 720px
 </style>
