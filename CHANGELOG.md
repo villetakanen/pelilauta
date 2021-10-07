@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.7](https://github.com/villetakanen/pelilauta/compare/v10.8.6...v10.8.7) (2021-10-07)
+
+
+### Bug Fixes
+
+* experimental features toggle restored ([25208a9](https://github.com/villetakanen/pelilauta/commit/25208a95d9ff34908313e00c3b62ca79208e071a))
+
 ### [10.8.6](https://github.com/villetakanen/pelilauta/compare/v10.8.5...v10.8.6) (2021-10-07)
 
 
