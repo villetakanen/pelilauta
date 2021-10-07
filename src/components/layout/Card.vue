@@ -34,7 +34,7 @@ export default defineComponent({
   @include Rise1()
   background-color: var(--chroma-clear)
   padding: 16px
-  margin: 8px
+  margin: 0
   border-radius: 12px
   &.riseTwo
     @include Rise2()
@@ -57,7 +57,7 @@ export default defineComponent({
 @include media('<tablet')
   .card
     padding: 16px
-    margin: 0 8px
+    margin: 0
     border-radius: 12px
     margin-bottom: 16px
 </style>

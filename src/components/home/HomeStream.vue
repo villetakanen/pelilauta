@@ -96,6 +96,9 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .homeStream
-  padding: 0px
-  max-width: 604px
+  max-width: 580px
+  display: flex
+  flex-direction: column
+  gap: 16px
+  padding: 8px
 </style>

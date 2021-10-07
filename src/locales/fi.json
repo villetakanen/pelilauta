@@ -210,6 +210,11 @@
       "deleteSucces": "Ketju poistettu vastauksineen"
     }
   },
+  "topic": {
+    "home": {
+      "title": "Keskustelu"
+    }
+  },
   "postHeader": {
     "postedInStream": "aiheessa"
   },

@@ -1,7 +1,6 @@
 <template>
   <Card
     class="pinnedThreadCard"
-    secondary
     :rise="0"
   >
     <h1 class="cardTitle">
@@ -10,7 +9,7 @@
       </router-link>
     </h1>
     <p
-      class="contentSnippet onlyForDesktop"
+      class="contentSnippet onlyForDesktop TypeBody2"
     >
       {{ snippet }}
     </p>
@@ -62,6 +61,8 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .pinnedThreadCard
+  border-radius: 0
+  background: linear-gradient(-37deg, var(--chroma-secondary-c) 0%, var(--chroma-secondary-d) 100%)
   h1.cardTitle
     @include TypeHeadline6()
     padding-top: 0
@@ -78,6 +79,6 @@ export default defineComponent({
     text-align: right
     @include TypeBody2()
     a
-      color: var(--chroma-secondary-b)
+      color: var(--chroma-secondary-g)
       text-decoration: none
 </style>
