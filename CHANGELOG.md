@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.8](https://github.com/villetakanen/pelilauta/compare/v10.8.7...v10.8.8) (2021-10-07)
+
+
+### Bug Fixes
+
+* removed deprecated material buttons ([837b08a](https://github.com/villetakanen/pelilauta/commit/837b08afe630f45a85732291255e54e8ef0387a1))
+
 ### [10.8.7](https://github.com/villetakanen/pelilauta/compare/v10.8.6...v10.8.7) (2021-10-07)
 
 
