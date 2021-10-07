@@ -4,7 +4,7 @@
       <img
         alt=""
         class="splash"
-        src="https://firebasestorage.googleapis.com/v0/b/skaldbase.appspot.com/o/mekanismi%2FSnowy%20Green%20Mountain.105.v2%20POST.jpg?alt=media&token=fe488c4c-c4f2-44ac-816d-21397636d51f"
+        src="/src/wootha-public-domain-talk-to-me.jpg"
       >
       <h1>
         <router-link to="/mekanismi">
