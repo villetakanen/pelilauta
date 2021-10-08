@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.11](https://github.com/villetakanen/pelilauta/compare/v10.8.10...v10.8.11) (2021-10-08)
+
+
+### Bug Fixes
+
+* wiki site sidebar now follows view styling ([c0fb9e4](https://github.com/villetakanen/pelilauta/commit/c0fb9e4eedfdcbf3cbbd97c13e893410c65b97ee))
+
 ### [10.8.10](https://github.com/villetakanen/pelilauta/compare/v10.8.9...v10.8.10) (2021-10-08)
 
 
