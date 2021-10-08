@@ -2,6 +2,7 @@
   "action": {
     "addAttachment": "Add a file",
     "addThread": "New Thread",
+    "addSite": "Create a Game",
     "add": "Add",
     "admin": "Admin",
     "cancel": "Cancel",
@@ -37,6 +38,13 @@
     "welcome": {
       "title": "Welcome to Pelilauta",
       "message": "Please login with Facebook, Google or email to access the full functionality of the App."
+    }
+  },
+  "calltoaction": {
+    "site":{
+      "title": "Campaigns and Sites",
+      "text": "Create a site for you campaign or role playing game content using our wiki-like site creator.",
+      "text2": "Sites can be published to the community, or kept to the people who have the magic link."
     }
   },
   "editorDialog": {
@@ -89,7 +97,13 @@
       "list": {
         "title": "My uploads"
       }
-    }
+    },
+    "nick": "Nickname"
+  },
+  "registration": {
+    "title": "Registration",
+    "info": "Please choose a public nickame – and we'll create a profile for you. Some parts of the profile data is available to all logged in users. ",
+    "createProfile": "Create my profile"
   },
   "rte": {
     "wikilink": {
@@ -98,6 +112,9 @@
       "urlfield": "Address",
       "pagefield": "Page title"
     }
+  },
+  "search": {
+    "placeholderText": "Search..."
   },
   "stream": {
     "title": "Pelilauta",

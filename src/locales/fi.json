@@ -230,6 +230,7 @@
     "characterListing": {
       "title": "Hahmoni"
     },
+    "deleteWarning": "Profiilin poistamista ei voi peruuttaa. Jos haluat poistaa luomasi sisällön, tee se ennen profiilin poistoa. Profiilin poiston jälkeen on vaikeaa, jollei mahdotonta selvittää mitä sisältöä olet tehnyt. Jos olet täysin varma että haluat poistaa profiilisi, kirjoita FORGET ME allaolevaan kenttään.",
     "publicInfoTitle": "Julkinen profiilini",
     "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
     "ssoInfocardTitle": "Omat tietoni",

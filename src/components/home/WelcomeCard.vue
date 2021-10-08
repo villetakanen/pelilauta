@@ -41,10 +41,12 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 
 .welcomeCard
-  margin: 8px
-  margin-bottom: 16px
+  margin: 16px
+  margin-top: 8px
+  margin-bottom: 24px
   background: linear-gradient(-42deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-d) 100%)
   position: relative
   img.logo
@@ -62,5 +64,11 @@ export default defineComponent({
     margin-left: 72px
     color: var(--chroma-clear)
     opacity: 0.72
+
+@include media('>=tablet')
+  .welcomeCard
+    margin: 0
+    margin-bottom: 24px
+    margin-top: 8px
 
 </style>

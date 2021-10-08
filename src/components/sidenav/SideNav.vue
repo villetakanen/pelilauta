@@ -18,7 +18,6 @@
             v-if="showExperimentalTools"
             class="warning"
           >
-            <Icon name="alert" />
             <p class="TypeBody2">
               {{ $t('experimental.warningText') }}
             </p>

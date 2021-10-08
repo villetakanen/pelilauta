@@ -73,9 +73,11 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 
 .createASiteAd
-  margin: 8px
+  margin: 16px
+  margin-bottom: 8px
   background: linear-gradient(-18deg, var(--chroma-secondary-d) 0%, var(--chroma-primary-d) 100%)
   position: relative
   h1
@@ -100,4 +102,8 @@ export default defineComponent({
   img.splash
     width: 100%
     opacity: 1
+
+@include media('>=tablet')
+  .createASiteAd
+    margin: 0
 </style>
