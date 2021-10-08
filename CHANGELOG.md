@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.10](https://github.com/villetakanen/pelilauta/compare/v10.8.9...v10.8.10) (2021-10-08)
+
+
+### Bug Fixes
+
+* deprecated login with emails materialbutton ([105dd2a](https://github.com/villetakanen/pelilauta/commit/105dd2ad4242a65a17afdbdf24472e8b3ac0c3b0))
+* layout bugs smashed ([1613fa5](https://github.com/villetakanen/pelilauta/commit/1613fa503c11e8674885b76d1dffb87adb362a64))
+* layout system clearing ([18737d6](https://github.com/villetakanen/pelilauta/commit/18737d6420e6fd9c62e843165530174d6f65b01e))
+* material button deprecated from social login ([f038053](https://github.com/villetakanen/pelilauta/commit/f0380531af292296d33fe9a8c535956748f7590f))
+* stylebook entry for buttons with a dark back ([495aa46](https://github.com/villetakanen/pelilauta/commit/495aa462aa795d6fa394690f455137c1394824d8))
+
 ### [10.8.9](https://github.com/villetakanen/pelilauta/compare/v10.8.8...v10.8.9) (2021-10-08)
 
 
