@@ -206,6 +206,11 @@
     "updateSuccess": "Päivitetty",
     "updateFailed": "Päivitys epäonnistui"
   },
+  "sort": {
+    "title": "Järjestä",
+    "byName": "↑ Nimi",
+    "byDate": "↑ Aika"
+  },
   "stream": {
     "title": "Pelilauta",
     "inStream": "Aiheessa",
