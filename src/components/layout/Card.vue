@@ -1,10 +1,10 @@
 <template>
-  <div
+  <section
     class="card"
     :class="{ riseTwo: rise === 2, riseThree: rise === 3 , riseFour: rise === 4, riseZero: rise === 0, secondary: secondary }"
   >
     <slot />
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -29,8 +29,9 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/box-shadow.sass
 @import @/styles/include-media.scss
+@import @/styles/material-typography.sass
 
-.card
+section.card
   @include Rise1()
   background-color: var(--chroma-clear)
   padding: 16px
@@ -47,10 +48,12 @@ export default defineComponent({
   &.secondary
     background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-c) 100%)
 
+section + section.card
+  margin-top: 16px
+
 @include media('>phone')
   .card
     min-width: 220px
-    max-width: 570px
 
 // Material You inspired larger roundings to match
 // the mobile screen round corners
