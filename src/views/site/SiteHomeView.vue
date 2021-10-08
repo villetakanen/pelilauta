@@ -32,6 +32,7 @@ import { usePage } from '@/state/pages/usePage'
 import Column from '@/components/layout/Column.vue'
 import SideBar from '@/components/site/SideBar.vue'
 import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
+import { useThreads } from '@/state/threads'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -51,11 +52,13 @@ export default defineComponent({
   setup (props) {
     const { site } = useSite(props.siteid)
     const { page } = usePage(props.siteid, props.siteid)
+    const { fetchSiteThreads } = useThreads()
 
     onMounted(() => {
       watch(() => props.siteid, (siteid) => {
         useSite(siteid)
         usePage(props.siteid, props.siteid)
+        fetchSiteThreads(props.siteid)
       }, { immediate: true })
     })
 

@@ -127,7 +127,7 @@ const siteThreads = computed(() => (localSiteThreads.value))
  *
  * @param siteid slug of a site
  */
-export async function fetchSite (siteid: string): Promise<void> {
+async function fetchSiteThreads (siteid: string): Promise<void> {
   // console.debug('fetchSite', siteid)
   const db = getFirestore()
   const q = query(collection(db, 'stream'), where('site', '==', siteid), orderBy('flowTime', 'desc'))
@@ -248,10 +248,11 @@ export function useThreads (topic?:string): {
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread>
+    fetchSiteThreads: (id:string) => Promise<void>
     subscribeThread: (id?: string | undefined) => void
     createThread: (data:PostData, meta?:ThreadMeta) => Promise<string>
     updateThread: (threadid:string, data:PostData) => Promise<void>} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread }
+  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread, fetchSiteThreads }
 }
