@@ -22,7 +22,7 @@
 <script lang="ts">
 import Button from '@/components/form/Button.vue'
 import ThreadListItem from '@/components/thread/ThreadListItem.vue'
-import { useThreads, fetchSite } from '@/state/threads'
+import { useThreads } from '@/state/threads'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -39,7 +39,6 @@ export default defineComponent({
     }
   },
   setup (props) {
-    fetchSite(props.siteid)
     const { siteThreads } = useThreads()
 
     const router = useRouter()
