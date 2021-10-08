@@ -11,7 +11,7 @@
       <p><em>{{ site.description }}</em></p>
       <img
         v-if="site.splashURL"
-        class="cardPoster"
+        class="sitePoster"
         alt="Site splash image"
         :src="site.splashURL"
         style="margin-top: 8px"
@@ -103,5 +103,11 @@ export default defineComponent({
     margin-bottom: 12px
     li
       list-style-type: none
+
+.contentBox
+  img.sitePoster
+    max-width: calc(100% + 32px)
+    width: calc(100% + 32px)
+    margin: 0 -16px
 
 </style>
