@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.14](https://github.com/villetakanen/pelilauta/compare/v10.8.13...v10.8.14) (2021-10-08)
+
+
+### Bug Fixes
+
+* eliminate extra fetches from db ([1ebb8c9](https://github.com/villetakanen/pelilauta/commit/1ebb8c97e3966da2c69f94d7bd90fe1ea243959e))
+* site bugs smashed ([786cb9a](https://github.com/villetakanen/pelilauta/commit/786cb9a693329391aecb9fdcb5706c44e0028159))
+* wikichanges card points to main index ([6325627](https://github.com/villetakanen/pelilauta/commit/63256277492abc7f6eb46d435d7e758e9afdf1cc))
+
 ### [10.8.13](https://github.com/villetakanen/pelilauta/compare/v10.8.12...v10.8.13) (2021-10-08)
 
 
