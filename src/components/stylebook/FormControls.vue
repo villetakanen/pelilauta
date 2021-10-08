@@ -97,6 +97,43 @@
     >
       Text + Disabled
     </Button>
+    <div
+      class="chroma-box-1"
+      style="padding: 16px"
+    >
+      <Button
+        dark
+        :working="working"
+        @action="alert"
+      >
+        A Dark button
+      </Button>
+      <Button
+        dark
+        disabled
+        :working="working"
+        @action="alert"
+      >
+        A Dark button, disabled
+      </Button><br>
+      <Button
+        dark
+        text
+        :working="working"
+        @action="alert"
+      >
+        A Dark text button
+      </Button>
+      <Button
+        dark
+        text
+        disabled
+        :working="working"
+        @action="alert"
+      >
+        A Dark text button, disabled
+      </Button>
+    </div>
   </Column>
 </template>
 
