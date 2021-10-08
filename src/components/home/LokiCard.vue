@@ -71,7 +71,6 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
-@import @/styles/include-media.scss
 
 section.lokiCard
   background-image: url('/src/loki.jpg')
@@ -80,8 +79,6 @@ section.lokiCard
   position: relative
   border-radius: 12px
   box-sizing: border-box
-  padding: 0px
-  margin: 0
   div.overlay
     background: rgb(0,35,55)
     background: linear-gradient(177deg, rgba(0,35,55,0.4) 0%, rgba(0,35,55,0.9) 100%)
@@ -112,5 +109,7 @@ section.lokiCard
     a
       color: var(--chroma-secondary-h)
       text-decoration: none
+section + .lokiCard
+  margin-top: 12px
 
 </style>

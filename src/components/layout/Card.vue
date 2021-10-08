@@ -35,7 +35,6 @@ section.card
   @include Rise1()
   background-color: var(--chroma-clear)
   padding: 16px
-  margin: 0
   border-radius: 12px
   &.riseTwo
     @include Rise2()
@@ -49,7 +48,7 @@ section.card
     background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-c) 100%)
 
 section + section.card
-  margin-top: 16px
+  margin-top: 12px
 
 @include media('>phone')
   .card
@@ -60,6 +59,5 @@ section + section.card
 @include media('<tablet')
   .card
     padding: 16px
-    margin: 0
     border-radius: 12px
 </style>

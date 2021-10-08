@@ -1,5 +1,5 @@
 <template>
-  <Column class="welcomeCard">
+  <section class="welcomeCard">
     <img
       class="logo"
       alt="Pelilauta"
@@ -22,19 +22,18 @@
       </Action>
       <div class="spacer" />
     </div>
-  </Column>
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Column from '../layout/Column.vue'
 import Action from '../material/Action.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Action, Column }
+  components: { Action }
 })
 </script>
 
@@ -44,31 +43,22 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .welcomeCard
-  margin: 16px
-  margin-top: 8px
-  margin-bottom: 24px
   background: linear-gradient(-42deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-d) 100%)
   position: relative
+  padding: 16px
   img.logo
     position: absolute
-    top: 16px
+    top: 64px
     left: 8px
     height: 72px
     width: 72px
   h1
     @include TypeCardHeadline()
     color: var(--chroma-clear)
-    margin-left: 72px
   p
     @include TypeBody2()
     margin-left: 72px
     color: var(--chroma-clear)
     opacity: 0.72
-
-@include media('>=tablet')
-  .welcomeCard
-    margin: 0
-    margin-bottom: 16px
-    margin-top: 8px
 
 </style>
