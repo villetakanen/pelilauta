@@ -10,7 +10,7 @@
       class="bookLayout"
     >
       <Column class="double">
-        <div :innerHTML="page.htmlContent" />
+        <section :innerHTML="page.htmlContent" />
       </Column>
       <SideBar />
       <Column>
