@@ -59,5 +59,4 @@ export default defineComponent({
     padding: 16px
     margin: 0
     border-radius: 12px
-    margin-bottom: 16px
 </style>

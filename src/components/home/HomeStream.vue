@@ -100,5 +100,6 @@ export default defineComponent({
   display: flex
   flex-direction: column
   gap: 16px
-  padding: 8px
+  padding-top: 8px
+  padding-bottom: 8px
 </style>
