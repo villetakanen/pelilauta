@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.9](https://github.com/villetakanen/pelilauta/compare/v10.8.8...v10.8.9) (2021-10-08)
+
+
+### Bug Fixes
+
+* deprecated materialbutton and textfield ([becbeef](https://github.com/villetakanen/pelilauta/commit/becbeef31edb2be4d0a47881b4eb3ea5b293db43))
+* front page i18n fixes ([e130038](https://github.com/villetakanen/pelilauta/commit/e1300385dbf4df4243acaee41bed6bd0e3ee0b0e))
+* front page margins fixed ([bff6793](https://github.com/villetakanen/pelilauta/commit/bff6793150d107d52430f7a66021d35a4f653f05))
+
 ### [10.8.8](https://github.com/villetakanen/pelilauta/compare/v10.8.7...v10.8.8) (2021-10-07)
 
 
