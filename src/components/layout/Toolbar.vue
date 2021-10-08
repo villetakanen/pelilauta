@@ -33,7 +33,8 @@ div.appToolbar
     margin-right: 0
   h3:first-child
     margin-left: 0
-  h3, h4
+  h1, h3, h4
+    @include TypeHeadline5()
     margin: 0
     padding: 0
     line-height: 48px

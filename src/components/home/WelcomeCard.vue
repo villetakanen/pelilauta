@@ -68,7 +68,7 @@ export default defineComponent({
 @include media('>=tablet')
   .welcomeCard
     margin: 0
-    margin-bottom: 24px
+    margin-bottom: 16px
     margin-top: 8px
 
 </style>

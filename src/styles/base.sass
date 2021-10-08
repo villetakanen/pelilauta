@@ -236,7 +236,7 @@ h2
   color: var(--chroma-secondary-e)
 h3
   @include TypeHeadline5()
-  color: var(--chroma-secondary-a) !important
+  color: var(--chroma-secondary-a)
   a
     color: var(--chroma-secondary-a) 
 h4
@@ -275,6 +275,12 @@ table
     @include TypeBody2()
     padding: 4px
     vertical-align: top
+
+.dark
+  h1, h2, h3, h4
+    color: var(--chroma-secondary-g)
+  p, ul, li, td, th
+    color: var(--chroma-secondary-i)
 
 // Layout helpers
 .contentArea

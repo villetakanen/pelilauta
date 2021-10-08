@@ -88,9 +88,10 @@
     "withGoogleButton": "Google",
     "withFacebookButton": "Facebook",
     "verifyEmailLoginMessage": "Vahvistathan tunnuksesi saamasi sähköpostiviestin avulla",
-    "emailLoginMessage": "Kirjaudu sähköpostilla",
+    "emailLoginTitle": "Kirjaudu sähköpostilla",
+    "emailLoginInfo": "Voit kirjautua pelkän sähköpostiosoitteen avulla. Syötä osoitteesi allaolevaan kenttään ja paina kirjaudu. Lähetämme sähköpostiisi maagisen linkin, jonka avulla voit kirjautua pelilaudalle.",
     "emailLoginDataInfoLink": "Lisätietoja kirjautumisesta ja henkilötiedojen käsittelystä sovelluksessa",
-    "withEmail": "Kirjaudu",
+    "withEmail": "Lähetä linkki",
     "emailLoginHelper": "Sähköpostiosoite",
     "socialLoginTitle": "Kirjaudu toisella palvelulla"
   },
