@@ -100,8 +100,6 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 div.threadCard
   color: var(--chroma-secondary-a)
-  max-width: calc(100% - 32px)
-  width: calc(100% - 32px)
   p.subtitle
     @include TypeBody2()
     display: block

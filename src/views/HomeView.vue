@@ -1,11 +1,13 @@
 <template>
-  <div class="homeView bookLayout">
-    <HomeStream />
-    <div>
-      <transition name="fade">
-        <WelcomeCard v-if="anonymousSession" />
-      </transition>
-      <CreateASiteAd />
+  <div class="homeView">
+    <div class="bookLayout">
+      <HomeStream />
+      <Column class="double-cut">
+        <transition name="fade">
+          <WelcomeCard v-if="anonymousSession" />
+        </transition>
+        <CreateASiteAd />
+      </Column>
     </div>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
@@ -29,6 +31,7 @@ import ToTopFab from '@/components/app/ToTopFab.vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import CreateASiteAd from '@/components/home/cta/CreateASiteAd.vue'
 import WelcomeCard from '@/components/home/WelcomeCard.vue'
+import Column from '@/components/layout/Column.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -37,7 +40,8 @@ export default defineComponent({
     HomeStream,
     ToTopFab,
     CreateASiteAd,
-    WelcomeCard
+    WelcomeCard,
+    Column
   },
   setup () {
     const { showMemberTools, anonymousSession } = useAuth()
@@ -52,8 +56,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-.homeView
-  padding-top: 8px
-</style>

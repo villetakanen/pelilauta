@@ -10,11 +10,13 @@
       <Column class="double-cut">
         <EmailLoginForm />
         <SocialAuthCard />
-        <p class="caption">
-          <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
-            {{ $t('login.emailLoginDataInfoLink') }}
-          </router-link>
-        </p>
+        <section>
+          <p class="caption">
+            <router-link to="/mekanismi/view/mekanismi/meta-privacy-info">
+              {{ $t('login.emailLoginDataInfoLink') }}
+            </router-link>
+          </p>
+        </section>
       </Column>
     </div>
   </div>

@@ -23,7 +23,7 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .column
-  padding: 16px
+  padding: 0
   display: block
   background-color: white
   box-sizing: border-box

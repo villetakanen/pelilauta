@@ -1,5 +1,5 @@
 <template>
-  <Column class="homeStream double">
+  <Column class="homeStream double-cut">
     <template
       v-for="(entry) in stream"
       :key="entry.key"
@@ -93,13 +93,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-.homeStream
-  max-width: 580px
-  display: flex
-  flex-direction: column
-  gap: 16px
-  padding-top: 8px
-  padding-bottom: 8px
-</style>

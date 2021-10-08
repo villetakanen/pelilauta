@@ -1,5 +1,5 @@
 <template>
-  <Column class="createASiteAd">
+  <section class="createASiteAd">
     <div style="position: relative; margin: -16px">
       <img
         alt=""
@@ -49,12 +49,11 @@
         headline
       />
     </div>
-  </Column>
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Column from '@/components/layout/Column.vue'
 import Button from '@/components/form/Button.vue'
 import { useUxActions } from '@/composables/useUxActions'
 import { useAuth } from '@/state/authz'
@@ -62,7 +61,7 @@ import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
   name: 'CreateASiteAd',
-  components: { Column, Button, Icon },
+  components: { Button, Icon },
   setup () {
     const { reroute } = useUxActions()
     const { showMemberTools } = useAuth()
@@ -76,10 +75,9 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .createASiteAd
-  margin: 16px
-  margin-bottom: 8px
   background: linear-gradient(-18deg, var(--chroma-secondary-d) 0%, var(--chroma-primary-d) 100%)
   position: relative
+  padding: 16px
   h1
     @include TypeHeadline5()
     display: block
@@ -102,6 +100,8 @@ export default defineComponent({
   img.splash
     width: 100%
     opacity: 1
+section + .createASiteAd
+    margin-top: 12px
 
 @include media('>=tablet')
   .createASiteAd

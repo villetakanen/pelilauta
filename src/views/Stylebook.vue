@@ -5,6 +5,7 @@
     :class="layout"
   >
     <StylebookIntro v-model="layout" />
+    <ColumnsAndSections />
     <ColorTheme />
     <TextStyles />
     <Iconography />
@@ -184,6 +185,7 @@ import SecondLevelNav from '@/components/sidenav/SecondLevelNav.vue'
 import SideNavMenuItem from '@/components/sidenav/SideNavMenuItem.vue'
 import ColorTheme from '@/components/stylebook/ColorTheme.vue'
 import InteractiveElemets from '@/components/stylebook/InteractiveElemets.vue'
+import ColumnsAndSections from '@/components/stylebook/ColumnsAndSections.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -203,7 +205,8 @@ export default defineComponent({
     SecondLevelNav,
     SideNavMenuItem,
     ColorTheme,
-    InteractiveElemets
+    InteractiveElemets,
+    ColumnsAndSections
   },
   setup () {
     const layout = ref('dashBoardLayout')
