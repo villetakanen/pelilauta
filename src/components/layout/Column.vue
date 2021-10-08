@@ -23,9 +23,10 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .column
-  padding: 8px 16px
+  padding: 16px
   display: block
   background-color: white
+  box-sizing: border-box
 
 .theme__dark.column, .theme__dark .column
   background-color: var(--color-a-a)

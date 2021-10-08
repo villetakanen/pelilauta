@@ -1,7 +1,7 @@
 <template>
   <div
     class="textfield"
-    :class="{withLabel: true && label, error: error }"
+    :class="{withLabel: true && label, error: error, onDark: dark }"
   >
     <input
       v-model="fieldValue"
@@ -29,7 +29,8 @@ export default defineComponent({
     label: { type: String, required: false, default: '' },
     blur: { type: Boolean, required: false, default: false },
     header: { type: Boolean, required: false, default: false },
-    error: { type: Boolean, required: false, default: false }
+    error: { type: Boolean, required: false, default: false },
+    dark: { type: Boolean, required: false, default: false }
   },
   emits: ['update:modelValue'],
   setup (props, context) {
@@ -83,4 +84,6 @@ div.textfield
       padding-top: 12px
       padding-bottom: 4px
 
+div.textfield.onDark
+  @include FormFieldOnDark()
 </style>

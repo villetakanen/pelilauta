@@ -107,6 +107,12 @@ button.button
     transition-duration: 0.3s
   &.dark
     color: white
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:active
+      background: none
+      border: solid 1px var(--chroma-secondary-a)
+      color: var(--chroma-secondary-f)
   // *** disabled *****************************************************
   &.disabled,
   &.disabled:hover,
