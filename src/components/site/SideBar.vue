@@ -1,55 +1,26 @@
 <template>
   <Column
     id="sideBar"
-    class="contentBox"
   >
-    <h1 class="title">
-      <router-link :to="`/site/${site.id}/page/${site.id}`">
-        {{ site.name }}
-      </router-link>
-    </h1>
-    <p><em>{{ site.description }}</em></p>
-    <img
-      v-if="site.splashURL"
-      class="cardPoster"
-      alt="Site splash image"
-      :src="site.splashURL"
-      style="margin-top: 8px"
-    >
-    <template v-if="!site.hasCategories">
-      <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
-      <ul class="index">
-        <li
-          v-for="page in pages"
-          :key="page.id"
-        >
-          <router-link :to="`/site/${site.id}/page/${page.id}`">
-            {{ page.name }}
-          </router-link>
-        </li>
-      </ul>
-    </template>
-    <template v-if="site.hasCategories">
-      <h4>{{ $t('mekanismi.sidebar.pagelist') }}</h4>
-      <ul class="index">
-        <li
-          v-for="page in noCategory"
-          :key="page.id"
-        >
-          <router-link :to="`/site/${site.id}/page/${page.id}`">
-            {{ page.name }}
-          </router-link>
-        </li>
-      </ul>
-      <div
-        v-for="cat in site.categories"
-        :key="cat.slug"
-        class="category"
+    <section class="contentBox chroma-box-1">
+      <h1 class="title">
+        <router-link :to="`/site/${site.id}/page/${site.id}`">
+          {{ site.name }}
+        </router-link>
+      </h1>
+      <p><em>{{ site.description }}</em></p>
+      <img
+        v-if="site.splashURL"
+        class="cardPoster"
+        alt="Site splash image"
+        :src="site.splashURL"
+        style="margin-top: 8px"
       >
-        {{ cat.name }}
+      <template v-if="!site.hasCategories">
+        <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
         <ul class="index">
           <li
-            v-for="page in inTopic(cat)"
+            v-for="page in pages"
             :key="page.id"
           >
             <router-link :to="`/site/${site.id}/page/${page.id}`">
@@ -57,13 +28,43 @@
             </router-link>
           </li>
         </ul>
-      </div>
-    </template>
-    <Icon
-      :name="site.systemBadge + '-logo'"
-      dark
-      style="margin: 16px auto 0px auto; display: block;"
-    />
+      </template>
+      <template v-if="site.hasCategories">
+        <h4>{{ $t('mekanismi.sidebar.pagelist') }}</h4>
+        <ul class="index">
+          <li
+            v-for="page in noCategory"
+            :key="page.id"
+          >
+            <router-link :to="`/site/${site.id}/page/${page.id}`">
+              {{ page.name }}
+            </router-link>
+          </li>
+        </ul>
+        <div
+          v-for="cat in site.categories"
+          :key="cat.slug"
+          class="category"
+        >
+          {{ cat.name }}
+          <ul class="index">
+            <li
+              v-for="page in inTopic(cat)"
+              :key="page.id"
+            >
+              <router-link :to="`/site/${site.id}/page/${page.id}`">
+                {{ page.name }}
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </template>
+      <Icon
+        :name="site.systemBadge + '-logo'"
+        dark
+        style="margin: 16px auto 0px auto; display: block;"
+      />
+    </section>
   </Column>
 </template>
 
@@ -93,20 +94,14 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 #sideBar
-  background-color: var(--chroma-secondary-a)
-  color: var(--chroma-secondary-g)
-  a
-    color: var(--chroma-secondary-h)
-    text-decoration: none
-  h1.title, h4
-    color: var(--chroma-secondary-i)
-    a
-      color: var(--chroma-secondary-i)
-  h4
-    margin-bottom: 0
-  h4+ul, h4+p
-    margin-top: 0
-  em
-    color: var(--chroma-secondary-g)
+  section
+    padding: 16px
+  ul
+    margin: 0
+    padding: 0
+    padding-left: var(--grid-gap)
+    margin-bottom: 12px
+    li
+      list-style-type: none
 
 </style>

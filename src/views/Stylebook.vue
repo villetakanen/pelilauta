@@ -141,29 +141,7 @@
         secondary
       />
     </div>
-
-    <div class="section">
-      <h1>Statefull components</h1>
-      <Avatar nick="no-image" />
-      <MaterialButton :action="sendSnack">
-        Push a snack to the stack
-      </MaterialButton>
-      <MaterialButton :action="sendSnacks">
-        Push 3 snacks to the stack
-      </MaterialButton>
-    </div>
   </div>
-  <SecondLevelNav v-if="layout === 'withSideBarLayout'">
-    <h1>Hello from the second level!</h1>
-    <ul>
-      <SideNavMenuItem
-        icon="pelilauta"
-        to="/"
-      >
-        Pelilauta
-      </SideNavMenuItem>
-    </ul>
-  </SecondLevelNav>
 </template>
 
 <script lang="ts">
@@ -181,8 +159,6 @@ import TextStyles from '@/components/stylebook/TextStyles.vue'
 import StylebookIntro from '@/components/stylebook/StylebookIntro.vue'
 import FormControls from '@/components/stylebook/FormControls.vue'
 import Iconography from '@/components/stylebook/Iconography.vue'
-import SecondLevelNav from '@/components/sidenav/SecondLevelNav.vue'
-import SideNavMenuItem from '@/components/sidenav/SideNavMenuItem.vue'
 import ColorTheme from '@/components/stylebook/ColorTheme.vue'
 import InteractiveElemets from '@/components/stylebook/InteractiveElemets.vue'
 import ColumnsAndSections from '@/components/stylebook/ColumnsAndSections.vue'
@@ -202,8 +178,6 @@ export default defineComponent({
     StylebookIntro,
     FormControls,
     Iconography,
-    SecondLevelNav,
-    SideNavMenuItem,
     ColorTheme,
     InteractiveElemets,
     ColumnsAndSections
