@@ -148,7 +148,7 @@ export default defineComponent({
     height: 20px
     width: 20px
 
-.inline.icon
+.inline.icon, h4 .icon
   display: inline-block
   height: 20px
   width: 20px
