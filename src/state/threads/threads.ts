@@ -119,6 +119,7 @@ async function fetchTopic (topic: string) {
   }
 }
 
+let activeSiteID = ''
 const localSiteThreads = ref(new Array<Thread>())
 const siteThreads = computed(() => (localSiteThreads.value))
 
@@ -128,13 +129,14 @@ const siteThreads = computed(() => (localSiteThreads.value))
  * @param siteid slug of a site
  */
 async function fetchSiteThreads (siteid: string): Promise<void> {
-  // console.debug('fetchSite', siteid)
+  if (siteid === activeSiteID) return
+  activeSiteID = siteid
+  localSiteThreads.value = new Array<Thread>()
   const db = getFirestore()
   const q = query(collection(db, 'stream'), where('site', '==', siteid), orderBy('flowTime', 'desc'))
   try {
     const siteDocs = await getDocs(q)
     // console.debug('fetchSite', siteDocs, siteid)
-    localSiteThreads.value = new Array<Thread>()
     siteDocs.forEach((siteDocs) => {
       localSiteThreads.value.push(toThread(siteDocs.id, siteDocs.data()))
     })
