@@ -13,7 +13,7 @@
         <Button
           v-if="showSiteMemberTools"
           style="float: right"
-          @click="reroute()"
+          @click="reroute('/site/' + site.id + '/page/' +page.id + '/edit')"
         >
           {{ $t('action.edit') }}
         </Button>
@@ -42,6 +42,7 @@ import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
 import { useThreads } from '@/state/threads'
 import { renderWikiLinks } from '@/utils/contentFormat'
 import Button from '@/components/form/Button.vue'
+import { useUxActions } from '@/composables/useUxActions'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -63,6 +64,7 @@ export default defineComponent({
     const { site, showSiteMemberTools } = useSite(props.siteid)
     const { page } = usePage(props.siteid, props.siteid)
     const { fetchSiteThreads } = useThreads()
+    const { reroute } = useUxActions()
 
     onMounted(() => {
       watch(() => props.siteid, (siteid) => {
@@ -72,7 +74,7 @@ export default defineComponent({
       }, { immediate: true })
     })
 
-    return { page, site, renderWikiLinks, showSiteMemberTools }
+    return { page, site, renderWikiLinks, showSiteMemberTools, reroute }
   }
 })
 </script>
