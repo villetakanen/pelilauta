@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.16](https://github.com/villetakanen/pelilauta/compare/v10.8.15...v10.8.16) (2021-10-11)
+
+
+### Bug Fixes
+
+* bottom bar placing ([ee0e74e](https://github.com/villetakanen/pelilauta/commit/ee0e74e9d23efbd3cbbcbba073222539e623f1d9))
+* footer spacing issues cleared ([6400f14](https://github.com/villetakanen/pelilauta/commit/6400f146e6074263628a7e83eae38953b1bbda46))
+* incorrect scroll behaviour fixed ([52b409d](https://github.com/villetakanen/pelilauta/commit/52b409d6e3c424f1defe7f828ab2ea3d486ecd56))
+
 ### [10.8.15](https://github.com/villetakanen/pelilauta/compare/v10.8.14...v10.8.15) (2021-10-11)
 
 
