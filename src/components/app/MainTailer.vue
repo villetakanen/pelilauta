@@ -38,6 +38,7 @@ export default defineComponent({
   padding: 16px
   padding-bottom: 64px
   display: flex
+  background: linear-gradient(11deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-b) 100%)
   p
     @include TypeBody2()
     color: var(--chroma-secondary-f)
@@ -55,4 +56,5 @@ export default defineComponent({
   .footnote
     padding-bottom: 24px
     padding-top: 24px
+    margin-left: -310px
 </style>
