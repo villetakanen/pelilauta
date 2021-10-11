@@ -35,6 +35,7 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .footnote
+  display: border-box
   position: absolute
   bottom: 0
   padding: 16px
@@ -56,7 +57,7 @@ export default defineComponent({
 
 @include media('>=tablet')
   .footnote
-    width: 100vw
+    width: calc(100vw - 32px)
     margin-left: -310px
     padding-bottom: 32px
 </style>
