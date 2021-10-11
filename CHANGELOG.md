@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.15](https://github.com/villetakanen/pelilauta/compare/v10.8.14...v10.8.15) (2021-10-11)
+
+
+### Bug Fixes
+
+* mobile viewport for cta:s ([326ef55](https://github.com/villetakanen/pelilauta/commit/326ef55281c3dccfb8e805b4e3919ff91b9e036f))
+
 ### [10.8.14](https://github.com/villetakanen/pelilauta/compare/v10.8.13...v10.8.14) (2021-10-08)
 
 
