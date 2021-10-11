@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.17](https://github.com/villetakanen/pelilauta/compare/v10.8.16...v10.8.17) (2021-10-11)
+
+
+### Bug Fixes
+
+* show wiki edits on front, show ol on rte ([f432415](https://github.com/villetakanen/pelilauta/commit/f432415198261955e761c5403bb17588c968fe62))
+
 ### [10.8.16](https://github.com/villetakanen/pelilauta/compare/v10.8.15...v10.8.16) (2021-10-11)
 
 
