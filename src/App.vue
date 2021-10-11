@@ -7,10 +7,8 @@
   <SideNav v-model="navModel" />
   <main>
     <router-view />
-  </main>
-  <footer>
     <MainTailer />
-  </footer>
+  </main>
 
   <!-- Fixed floating components -->
   <BottomFloatContainer>
@@ -124,8 +122,10 @@ main
     width: calc(100vw - 310px)
     padding-left: 310px
     min-height: 400px
+    margin-bottom: calc(144 + 24px)
   footer
-    clear: both
-    margin: 0
-    padding: 0
+    position: absolute
+    bottom: 0
+    width: 100vw
+
 </style>
