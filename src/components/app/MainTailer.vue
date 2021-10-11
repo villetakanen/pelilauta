@@ -35,8 +35,10 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 .footnote
+  position: absolute
+  bottom: 0
   padding: 16px
-  padding-bottom: 64px
+  padding-bottom: 24px
   display: flex
   background: linear-gradient(11deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-b) 100%)
   p
@@ -54,7 +56,7 @@ export default defineComponent({
 
 @include media('>=tablet')
   .footnote
-    padding-bottom: 24px
-    padding-top: 24px
+    width: 100vw
     margin-left: -310px
+    padding-bottom: 32px
 </style>
