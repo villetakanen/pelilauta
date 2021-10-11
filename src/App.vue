@@ -115,7 +115,6 @@ export default defineComponent({
 main
   margin: 0
   padding: 0
-  padding-bottom: 16px
   background-color: var(--chroma-clear)
   min-height: calc(100vh - 270px)
   position: relative

@@ -14,7 +14,7 @@
     </div>
     <p
       class="TypeBody2 mediumEmphasis"
-      style="margin-top: 24px"
+      style="margin-top: 32px"
     >
       {{ $t('calltoaction.site.text') }}
     </p>
@@ -23,7 +23,7 @@
     </p>
     <div
       v-if="showMemberTools"
-      style="text-align: center"
+      style="text-align: center; margin-top:20px"
     >
       <Button
         text
@@ -77,7 +77,8 @@ export default defineComponent({
 .createASiteAd
   background: linear-gradient(-18deg, var(--chroma-secondary-d) 0%, var(--chroma-primary-d) 100%)
   position: relative
-  padding: 16px
+  padding: 24px
+  margin: -8px
   h1
     @include TypeHeadline5()
     display: block
@@ -88,18 +89,20 @@ export default defineComponent({
     z-index: 10
     bottom: 6px
     left: 0
-    padding: 8px 16px
+    padding: 8px 24px
     padding-top: 24px
     box-sizing: border-box
     line-height: 32px
-    width: 100%
+    width: calc(100% + 16px)
+    margin: -8px
     a
       color: white
   p
     color: var(--chroma-secondary-i)
   img.splash
-    width: 100%
+    width: calc(100% + 16px)
     opacity: 1
+    margin: -8px
 section + .createASiteAd
     margin-top: 12px
 
