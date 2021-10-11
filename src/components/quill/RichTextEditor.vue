@@ -18,6 +18,12 @@
       <button class="ql-strike" />
       <button class="ql-underline" />
       <div class="spacer" />
+      <button
+        class="ql-list ql-list-ol"
+        value="ordered"
+        type="button"
+      />
+      <div class="spacer" />
       <button class="ql-wikilink" />
       <button class="ql-image" />
     </div>

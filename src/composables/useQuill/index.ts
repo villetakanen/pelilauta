@@ -25,7 +25,8 @@ export default function useQuill (container: Element): Quill {
       'italic',
       'wikilink',
       'header',
-      'image'
+      'image',
+      'list'
     ],
     options: {
       scrollingContainer: container

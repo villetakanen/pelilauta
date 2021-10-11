@@ -10,7 +10,14 @@
       class="bookLayout"
     >
       <Column class="double">
-        <section :innerHTML="page.htmlContent" />
+        <Button
+          v-if="showSiteMemberTools"
+          style="float: right"
+          @click="reroute()"
+        >
+          {{ $t('action.edit') }}
+        </Button>
+        <section :innerHTML="renderWikiLinks(site.id, page.htmlContent)" />
       </Column>
       <SideBar />
       <Column>
@@ -33,6 +40,8 @@ import Column from '@/components/layout/Column.vue'
 import SideBar from '@/components/site/SideBar.vue'
 import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
 import { useThreads } from '@/state/threads'
+import { renderWikiLinks } from '@/utils/contentFormat'
+import Button from '@/components/form/Button.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -41,7 +50,8 @@ export default defineComponent({
     SiteToolbar,
     Column,
     SideBar,
-    SiteThreadList
+    SiteThreadList,
+    Button
   },
   props: {
     siteid: {
@@ -50,7 +60,7 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { site } = useSite(props.siteid)
+    const { site, showSiteMemberTools } = useSite(props.siteid)
     const { page } = usePage(props.siteid, props.siteid)
     const { fetchSiteThreads } = useThreads()
 
@@ -62,7 +72,7 @@ export default defineComponent({
       }, { immediate: true })
     })
 
-    return { page, site }
+    return { page, site, renderWikiLinks, showSiteMemberTools }
   }
 })
 </script>

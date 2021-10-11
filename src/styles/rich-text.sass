@@ -53,6 +53,10 @@ $icon_size: 32px
         background-image: url('./assets/icons/rte/rte-underline.svg')
       &.ql-image
         background-image: url('./assets/icons/rte/rte-image.svg')
+      &.ql-list-ol
+        background-image: url('./assets/icons/rte/rte-ol.svg')
+      &.ql-list-ul
+        background-image: url('./assets/icons/rte/rte-ul.svg')
       &.ql-active
         background-color: var(--color-b-f)
         border-radius: 50%
@@ -69,7 +73,7 @@ $icon_size: 32px
 
 
 // Base styles, Mobile First. Overwritten with include-media where needed
-.richText, .richText .ql-editor
+.richText, .richText .ql-editor, .ql-editor
   h1
     @include TypeHeadline3()
     color: var(--chroma-secondary-e)
@@ -89,6 +93,10 @@ $icon_size: 32px
     margin-left: 32px
     margin-top: 12px
     margin-bottom: 12px
+  ol
+    li
+      list-style-type: decimal
+  ul
     li
       list-style-type: '– '
   h1+p, h2+p, h3+p, h4+p, p+p,
