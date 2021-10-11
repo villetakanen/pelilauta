@@ -116,17 +116,16 @@ main
   margin: 0
   padding: 0
   background-color: var(--chroma-clear)
-  min-height: calc(100vh - 270px)
+  min-height: 400px
   position: relative
 
 @include media('>=tablet')
   main
     width: calc(100vw - 310px)
     padding-left: 310px
-    min-height: calc(100vh - 198px)
+    min-height: 400px
   footer
     clear: both
     margin: 0
     padding: 0
-    padding-top: 16px
 </style>

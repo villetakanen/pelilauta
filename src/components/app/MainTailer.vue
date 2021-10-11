@@ -53,6 +53,6 @@ export default defineComponent({
 
 @include media('>=tablet')
   .footnote
-    padding-bottom: 16px
-    padding-top: 0
+    padding-bottom: 24px
+    padding-top: 24px
 </style>
