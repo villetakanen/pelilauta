@@ -2,20 +2,13 @@
   <Toolbar
     id="topicToolbar"
   >
-    <h3>
-      <Icon :name="icon" />{{ $t('topic.home.title') }}<span
-        v-if="channel"
-        class="hideOnMobile"
-      > / {{ channel }}</span>
-    </h3>
-    <div class="spacer" />
-    <Action
-      v-if="showMemberTools"
-      prepend="pelilauta"
-      to="/"
+    <ViewTitle
+      :icon="icon"
+      :parent=" $t('topic.home.title')"
     >
-      <span class="onlyForDesktop">{{ $t('tomythreads') }}</span>
-    </Action>
+      {{ channel }}
+    </ViewTitle>
+    <div class="spacer" />
     <Action
       v-for="ch in channels"
       :key="ch.slug"
@@ -34,9 +27,10 @@ import Action from '../material/Action.vue'
 import Icon from '../material/Icon.vue'
 import { useAuth } from '@/state/authz'
 import { useMeta } from '@/state/meta'
+import ViewTitle from '../layout/ViewTitle.vue'
 
 export default defineComponent({
-  components: { Toolbar, Action, Icon },
+  components: { Toolbar, Action, ViewTitle },
   props: {
     icon: {
       type: String,
