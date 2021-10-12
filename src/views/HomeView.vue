@@ -1,5 +1,10 @@
 <template>
   <div class="homeView">
+    <Header v-if="showExperimentalTools">
+      <ViewTitle icon="pelilauta">
+        {{ $t('app.title') }}
+      </ViewTitle>
+    </Header>
     <div class="bookLayout">
       <HomeStream />
       <Column class="double-cut">
@@ -32,6 +37,8 @@ import { getAnalytics, logEvent } from '@firebase/analytics'
 import CreateASiteAd from '@/components/home/cta/CreateASiteAd.vue'
 import WelcomeCard from '@/components/home/WelcomeCard.vue'
 import Column from '@/components/layout/Column.vue'
+import Header from '@/components/layout/Header.vue'
+import ViewTitle from '@/components/layout/ViewTitle.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -41,10 +48,12 @@ export default defineComponent({
     ToTopFab,
     CreateASiteAd,
     WelcomeCard,
-    Column
+    Column,
+    Header,
+    ViewTitle
   },
   setup () {
-    const { showMemberTools, anonymousSession } = useAuth()
+    const { showMemberTools, anonymousSession, showExperimentalTools } = useAuth()
     const editorDialog = ref(false)
     onMounted(() => {
       const a = getAnalytics()
@@ -52,7 +61,7 @@ export default defineComponent({
       document.title = 'Pelilauta'
     })
 
-    return { editorDialog, showMemberTools, anonymousSession }
+    return { editorDialog, showMemberTools, anonymousSession, showExperimentalTools }
   }
 })
 </script>

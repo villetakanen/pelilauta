@@ -220,4 +220,20 @@ export default defineComponent({
           width: 22px
           padding: 1px
 
+.viewTitle
+  .icon
+    height: 48px
+    width: 48px
+    margin: 0
+    padding: 2px
+    box-sizing: border-box
+    display: inline-block
+    vertical-align: baseline
+    img
+      height: 44px
+      width: 44px
+      margin: 0
+      padding: 0
+      vertical-align: center
+
 </style>

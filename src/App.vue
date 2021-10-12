@@ -5,11 +5,11 @@
   <FrozenBar v-if="frozen" />
 
   <SideNav v-model="navModel" />
-  <main>
+
+  <div id="appContentContainer">
     <router-view />
     <MainTailer />
-  </main>
-
+  </div>
   <!-- Fixed floating components -->
   <BottomFloatContainer>
     <template #left>
@@ -110,7 +110,7 @@ export default defineComponent({
 <style lang="sass">
 @import styles/base.sass
 
-main
+#appContentContainer
   margin: 0
   padding: 0
   background-color: var(--chroma-clear)
@@ -119,7 +119,7 @@ main
   padding-bottom: 160px
 
 @include media('>=tablet')
-  main
+  #appContentContainer
     width: calc(100vw - 310px)
     padding-left: 310px
     min-height: calc(100vh - 228px)
