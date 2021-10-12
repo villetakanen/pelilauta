@@ -24,7 +24,6 @@
 import { computed, defineComponent } from 'vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
-import Icon from '../material/Icon.vue'
 import { useAuth } from '@/state/authz'
 import { useMeta } from '@/state/meta'
 import ViewTitle from '../layout/ViewTitle.vue'
