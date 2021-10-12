@@ -39,6 +39,7 @@ header
   margin: 0
   padding: 0
   gap: 8px
+  flex-wrap: wrap
   &.sticky
     transition: all 0.3s
     position: sticky
