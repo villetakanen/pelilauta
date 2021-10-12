@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.20](https://github.com/villetakanen/pelilauta/compare/v10.8.19...v10.8.20) (2021-10-12)
+
+
+### Bug Fixes
+
+* asset list refactors - working but ugly ([41564f0](https://github.com/villetakanen/pelilauta/commit/41564f0c92df303b02b9433953087567c643c305))
+* experimental remove topics from sidebar ([dca931b](https://github.com/villetakanen/pelilauta/commit/dca931be3b56a1e842743bd8e87836e9691ad8ef))
+* experimental sidebar to an ad for forums ([dd493bb](https://github.com/villetakanen/pelilauta/commit/dd493bbdd30918efd0552a51ef889e1dead8623a))
+
 ### [10.8.19](https://github.com/villetakanen/pelilauta/compare/v10.8.18...v10.8.19) (2021-10-12)
 
 
