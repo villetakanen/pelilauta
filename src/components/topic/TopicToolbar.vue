@@ -1,5 +1,5 @@
 <template>
-  <Toolbar
+  <Header
     id="topicToolbar"
   >
     <ViewTitle
@@ -8,7 +8,7 @@
     >
       {{ channel }}
     </ViewTitle>
-    <div class="spacer" />
+    <Spacer />
     <Action
       v-for="ch in channels"
       :key="ch.slug"
@@ -17,19 +17,20 @@
     >
       <span class="onlyForDesktop">{{ ch.name }}</span>
     </Action>
-  </Toolbar>
+  </Header>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
 import { useAuth } from '@/state/authz'
 import { useMeta } from '@/state/meta'
 import ViewTitle from '../layout/ViewTitle.vue'
+import Header from '../layout/Header.vue'
+import Spacer from '../layout/Spacer.vue'
 
 export default defineComponent({
-  components: { Toolbar, Action, ViewTitle },
+  components: { Action, ViewTitle, Header, Spacer },
   props: {
     icon: {
       type: String,
