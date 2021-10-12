@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.19](https://github.com/villetakanen/pelilauta/compare/v10.8.18...v10.8.19) (2021-10-12)
+
+
+### Bug Fixes
+
+* app structure prepped for semantic header ([67771d2](https://github.com/villetakanen/pelilauta/commit/67771d2939d2a30260bfd9c17d17335740b20015))
+* channel index header fixed ([8ced1e1](https://github.com/villetakanen/pelilauta/commit/8ced1e1ed530360528f4b5b175e71569e4029080))
+* code-style bugs cleared ([5389e8e](https://github.com/villetakanen/pelilauta/commit/5389e8e44c32b9ae7d6167ab295e58baf4495a1d))
+* experimental header for thread-vew ([5747a82](https://github.com/villetakanen/pelilauta/commit/5747a82095bb0bfcc78785f258a4fdda8b67c25d))
+* experimental thread header is sticky ([246acf5](https://github.com/villetakanen/pelilauta/commit/246acf5e5c6b597973e3450f100b9d2e5bc4c865))
+* material-menu spacing fixed ([72e2104](https://github.com/villetakanen/pelilauta/commit/72e21048a4aae22ea32054fde26dda9c0d8ae255))
+* mobile wrapping of header ([be5cb43](https://github.com/villetakanen/pelilauta/commit/be5cb43632c8b7e43361c1f34a1937155d7241a4))
+* spacer named no code-style conformant tag ([bbcf338](https://github.com/villetakanen/pelilauta/commit/bbcf338eb3b782a734b8f64224718908634b1b11))
+* thread-loading issues ([3432d34](https://github.com/villetakanen/pelilauta/commit/3432d342b820db1df4064504262cf5a1a06229fe))
+* toolbar to header ([ea7abae](https://github.com/villetakanen/pelilauta/commit/ea7abae95b0c985b469ed1f0766fef602a5fc2eb))
+* view title split to a component ([d64a695](https://github.com/villetakanen/pelilauta/commit/d64a695a83494c238ee9a8d08878de33d85ae5a9))
+
 ### [10.8.18](https://github.com/villetakanen/pelilauta/compare/v10.8.17...v10.8.18) (2021-10-11)
 
 
