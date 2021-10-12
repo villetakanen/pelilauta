@@ -117,6 +117,8 @@ export default defineComponent({
     const { streams } = useMeta()
     const i18n = useI18n()
 
+    subscribeThread(props.threadid)
+
     onMounted(() => {
       watch(() => props.threadid, (threadid) => {
         subscribeThread(threadid)
