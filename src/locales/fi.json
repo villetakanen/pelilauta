@@ -43,6 +43,9 @@
     "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
   },
   "calltoaction": {
+    "forum": {
+      "title": "Keskustelut"
+    },
     "site": {
       "title": "Mekanismin Pelisivustot",
       "text": "Voit luoda pelillesi oman wikityylisen sivuston pelilaudalle. Sivustot toimivat melko lailla kuten mekanismi.sange.fi:ssä.",
