@@ -8,7 +8,10 @@
       class="titleIcon"
       :name="icon"
     />
-    <h2 v-if="parent">
+    <h2
+      v-if="parent"
+      :class="{ withTitleIcon: icon}"
+    >
       <router-link
         v-if="parentRoute"
         :to="parentRoute"
@@ -19,7 +22,10 @@
         {{ parent }}
       </template>
     </h2>
-    <h1 :class="{ withTitleIcon: icon }">
+    <h1
+      class="highEmphasis"
+      :class="{ withTitleIcon: icon, withParent: parent }"
+    >
       <slot />
     </h1>
   </div>
@@ -69,6 +75,16 @@ export default defineComponent({
     line-height: 48px
     margin: 0
     padding: 0
+    &.withTitleIcon
+      padding-left: 56px
+    &.withParent
+      line-height: 28px
+  h2
+    @include TypeCaption()
+    line-height: 20px
+    margin: 0
+    padding: 0
+    color: var(--chroma-secondary-d)
     &.withTitleIcon
       padding-left: 56px
 </style>
