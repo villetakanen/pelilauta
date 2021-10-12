@@ -10,6 +10,7 @@
           >
         </a>
       </div>
+
       <div class="name contentBox">
         <p>{{ asset.name }}</p>
       </div>
@@ -94,10 +95,21 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
+@import @/styles/box-shadow.sass
+
+.assetListItem
+  @include Rise1()
+  .assetData
+    .preview
+      img
+        max-width: 100%
+        max-height: 256px
+
+@include media('>=tablet')
+  .assetListItem
+    max-width: 310px
 
 .assetData
-  display: flex
-  flex-wrap: no-wrap
   .actions
     width: 144px
     flex-shrink: 0
@@ -105,14 +117,7 @@ export default defineComponent({
     flex-grow: 1
   &:hover
     background-color: var(--chroma-secondary-i)
-  .preview
-    flex-shrink: 0
-    width: 128px
-    margin-right: 8px
-    img
-      max-width: 128px
-      max-height: 64px
-      padding: 4px 0
+
 .filedata
   width: 100%
   margin-bottom: 16px

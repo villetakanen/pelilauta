@@ -11,22 +11,31 @@
       </SideNavMenuItem>
 
       <!-- Forum topics start here! *************************************** -->
-      <li class="subtitle">
-        {{ $t('sideNav.toForumLink') }}
-      </li>
+      <template v-if="!showExperimentalTools">
+        <li class="subtitle">
+          {{ $t('sideNav.toForumLink') }}
+        </li>
+        <SideNavMenuItem
+          v-for="stream in streamItems"
+          :key="stream.key"
+          :to="stream.to"
+          :icon="stream.icon"
+          @click="toggleNav"
+        >
+          <div class="streamLink">
+            {{ stream.content }}
+            <div class="count">
+              {{ stream.count }}
+            </div>
+          </div>
+        </SideNavMenuItem>
+      </template>
       <SideNavMenuItem
-        v-for="stream in streamItems"
-        :key="stream.key"
-        :to="stream.to"
-        :icon="stream.icon"
+        icon="discussion"
+        to="/"
         @click="toggleNav"
       >
-        <div class="streamLink">
-          {{ stream.content }}
-          <div class="count">
-            {{ stream.count }}
-          </div>
-        </div>
+        {{ $t('app.title') }}
       </SideNavMenuItem>
 
       <!-- Site listing starts here! ************************************** -->
@@ -83,6 +92,14 @@
         {{ $t('admin.title') }}
       </SideNavMenuItem>
       <SideNavMenuItem
+        v-if="showExperimentalTools"
+        icon="pelilauta"
+        to="/stylebook"
+        @click="toggleNav"
+      >
+        Stylebook
+      </SideNavMenuItem>
+      <SideNavMenuItem
         icon="about"
         to="/site/mekanismi/page/pelilauta-about"
         @click="toggleNav"
@@ -104,7 +121,7 @@ export default defineComponent({
   name: 'SideNavMenu',
   components: { SideNavMenuItem },
   setup () {
-    const { showMemberTools, showAdminTools, user } = useAuth()
+    const { showMemberTools, showAdminTools, user, showExperimentalTools } = useAuth()
     const { streams } = useMeta()
 
     const streamItems = computed(() => {
@@ -127,7 +144,7 @@ export default defineComponent({
       if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
-    return { routeTo, streamItems, showMemberTools, toggleNav, showAdminTools, user }
+    return { routeTo, streamItems, showMemberTools, toggleNav, showAdminTools, user, showExperimentalTools }
   }
 })
 </script>

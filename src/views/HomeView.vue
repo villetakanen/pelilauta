@@ -12,6 +12,7 @@
           <WelcomeCard v-if="anonymousSession" />
         </transition>
         <CreateASiteAd />
+        <ForumsAd v-if="showExperimentalTools" />
       </Column>
     </div>
     <teleport to="#ScreenBottomFabsContainer">
@@ -39,6 +40,7 @@ import WelcomeCard from '@/components/home/WelcomeCard.vue'
 import Column from '@/components/layout/Column.vue'
 import Header from '@/components/layout/Header.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
+import ForumsAd from '@/components/home/cta/ForumsAd.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -50,7 +52,8 @@ export default defineComponent({
     WelcomeCard,
     Column,
     Header,
-    ViewTitle
+    ViewTitle,
+    ForumsAd
   },
   setup () {
     const { showMemberTools, anonymousSession, showExperimentalTools } = useAuth()

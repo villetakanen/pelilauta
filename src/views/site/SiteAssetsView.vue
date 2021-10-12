@@ -1,35 +1,31 @@
 <template>
   <div class="siteAssetsView">
-    <div style="margin: 0 8px">
-      <SiteToolbar />
-    </div>
-    <div class="mekanismiGrid">
-      <div class="mainCard">
-        <div v-if="site && site.id">
-          <h3>{{ $t('mekanismi.attachments.title') }}</h3>
-          <div class="attachments">
-            <AttachmentRow
-              v-for="asset, key in assets"
-              :key="key"
-              :asset="asset[1]"
-            />
-          </div>
-        </div>
-        <Loader
-          v-else
-          poster
-        />
-      </div>
-      <Card
-        class="sideCard"
-        :rise="4"
+    <Header>
+      <ViewTitle
+        :parent="site.name"
+        :parent-route="`/site/${site.id}`"
+        :icon="site.systemBadge + '-logo'"
       >
-        <SideBar />
-      </Card>
-    </div>
-    <teleport to="#ScreenBottomFloatRight">
+        {{ $t('mekanismi.attachments.title') }}
+      </ViewTitle>
+      <SpacerDiv />
       <AddAssetFab v-if="crudActions" />
-    </teleport>
+    </Header>
+    <main
+      v-if="site"
+      class="flexLayout"
+      style="margin-top:12px"
+    >
+      <AttachmentRow
+        v-for="asset, key in assets"
+        :key="key"
+        :asset="asset[1]"
+      />
+    </main>
+    <Loader
+      v-else
+      poster
+    />
   </div>
 </template>
 
@@ -37,12 +33,12 @@
 import { computed, defineComponent } from 'vue'
 import { useSite, useAssets } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-import SideBar from '@/components/site/SideBar.vue'
 import AttachmentRow from '@/components/site/assets/AssetListItem.vue'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
-import Card from '@/components/layout/Card.vue'
 import { useAuth } from '@/state/authz'
 import AddAssetFab from '@/components/site/assets/AddAssetFab.vue'
+import ViewTitle from '@/components/layout/ViewTitle.vue'
+import Header from '@/components/layout/Header.vue'
+import SpacerDiv from '@/components/layout/SpacerDiv.vue'
 
 /**
  * A Router view for a asset management screen of a site
@@ -56,11 +52,11 @@ export default defineComponent({
   name: 'SiteAssetsView',
   components: {
     Loader,
-    SideBar,
     AttachmentRow,
-    SiteToolbar,
-    Card,
-    AddAssetFab
+    AddAssetFab,
+    ViewTitle,
+    Header,
+    SpacerDiv
   },
   props: {
     siteid: {
