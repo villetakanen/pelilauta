@@ -1,6 +1,6 @@
 <template>
   <div
-    class="addAssetFab fab"
+    class="addAssetFab"
   >
     <input
       id="addAssetInput"
@@ -11,9 +11,9 @@
     >
     <label for="addAssetInput">
       <Icon
-        class="fabIcon"
         name="addAnImage"
         dark
+        headline
       />
     </label>
   </div>
@@ -66,21 +66,18 @@ export default defineComponent({
   position: absolute !important
   white-space: nowrap
   width: 1px
-.fabIcon
-  height: 48px
-  width: 48px
 
-.fab
-  @include Rise2()
+.addAssetFab
   background-color: var(--chroma-secondary-d)
-  height: 56px
-  width: 56px
-  margin: 0
-  padding: 0
+  height: 44px
+  width: 44px
+  margin: 2px
+  padding: 0px
   border-radius: 28px
   border: none
   background-position: center
   transition: 0.3s
   line-height: 48px
+  position: relative
 
 </style>
