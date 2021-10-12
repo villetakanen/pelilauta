@@ -1,9 +1,13 @@
 <template>
   <div class="viewThread">
-    <Header v-if="showExperimentalTools">
+    <Header
+      v-if="showExperimentalTools"
+      sticky
+    >
       <ViewTitle
         :icon="channelInfo.icon"
         :parent="channelInfo.name"
+        :parent-route="`/stream/topic/${thread.data.topic}`"
       >
         {{ thread.data.title }}
       </ViewTitle>
