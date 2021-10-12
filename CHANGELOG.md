@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.8.21](https://github.com/villetakanen/pelilauta/compare/v10.8.20...v10.8.21) (2021-10-12)
+
+
+### Bug Fixes
+
+* profile media view header ([abd4642](https://github.com/villetakanen/pelilauta/commit/abd46425b37f65c061467dbce97bfede4a19e518))
+
 ### [10.8.20](https://github.com/villetakanen/pelilauta/compare/v10.8.19...v10.8.20) (2021-10-12)
 
 
