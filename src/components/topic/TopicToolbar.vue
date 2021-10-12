@@ -8,7 +8,7 @@
     >
       {{ channel }}
     </ViewTitle>
-    <Spacer />
+    <SpacerDiv />
     <Action
       v-for="ch in channels"
       :key="ch.slug"
@@ -27,10 +27,10 @@ import { useAuth } from '@/state/authz'
 import { useMeta } from '@/state/meta'
 import ViewTitle from '../layout/ViewTitle.vue'
 import Header from '../layout/Header.vue'
-import Spacer from '../layout/Spacer.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 export default defineComponent({
-  components: { Action, ViewTitle, Header, Spacer },
+  components: { Action, ViewTitle, Header, SpacerDiv },
   props: {
     icon: {
       type: String,

@@ -11,7 +11,7 @@
       >
         {{ thread.data.title }}
       </ViewTitle>
-      <Spacer />
+      <SpacerDiv />
       <Action prepend="share">
         {{ $t('action.share') }}
       </Action>
@@ -71,7 +71,7 @@ import { useAuth } from '@/state/authz'
 import Header from '@/components/layout/Header.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
 import Action from '@/components/material/Action.vue'
-import Spacer from '@/components/layout/Spacer.vue'
+import SpacerDiv from '@/components/layout/SpacerDiv.vue'
 import { useMeta } from '@/state/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { MenuItem } from '@/utils/uiInterfaces'
@@ -97,7 +97,7 @@ export default defineComponent({
     Header,
     ViewTitle,
     Action,
-    Spacer,
+    SpacerDiv,
     MaterialMenu
   },
   props: {
