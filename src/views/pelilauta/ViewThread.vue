@@ -1,34 +1,56 @@
 <template>
-  <div class="viewThread singleColumnLayout">
-    <ThreadBox>
-      <ThreadBoxHeader :thread="thread" />
-      <div
-        v-if="thread.data.youTubeSlug"
-        class="youtubePreviewFrame"
+  <div class="viewThread">
+    <Header
+      v-if="showExperimentalTools"
+      sticky
+    >
+      <ViewTitle
+        :icon="channelInfo.icon"
+        :parent="channelInfo.name"
+        :parent-route="`/stream/topic/${thread.data.topic}`"
       >
-        <iframe
-          title="Youtube Preview"
-          class="youtubePreview"
-          :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
-          frameborder="0"
+        {{ thread.data.title }}
+      </ViewTitle>
+      <SpacerDiv />
+      <Action prepend="share">
+        {{ $t('action.share') }}
+      </Action>
+      <MaterialMenu
+        v-if="showMenu"
+        v-model="menuItems"
+      />
+    </Header>
+    <div class="singleColumnLayout">
+      <ThreadBox>
+        <ThreadBoxHeader :thread="thread" />
+        <div
+          v-if="thread.data.youTubeSlug"
+          class="youtubePreviewFrame"
+        >
+          <iframe
+            title="Youtube Preview"
+            class="youtubePreview"
+            :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
+            frameborder="0"
+          />
+        </div>
+        <div
+          class="threadContent richText"
+          :innerHTML="thread.data.content"
         />
-      </div>
-      <div
-        class="threadContent richText"
-        :innerHTML="thread.data.content"
-      />
-      <PhotoBox :photos="thread.data.images || []" />
-      <ThreadBoxTailer
-        :thread="thread"
-      />
-      <h2 class="section">
-        {{ $t('threads.discussion') }}
-      </h2>
-      <Discussion
-        :thread="thread"
-        :focus-to="since"
-      />
-    </ThreadBox>
+        <PhotoBox :photos="thread.data.images || []" />
+        <ThreadBoxTailer
+          :thread="thread"
+        />
+        <h2 class="section">
+          {{ $t('threads.discussion') }}
+        </h2>
+        <Discussion
+          :thread="thread"
+          :focus-to="since"
+        />
+      </ThreadBox>
+    </div>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab />
     </teleport>
@@ -36,7 +58,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { computed, defineComponent, onMounted, watch } from 'vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
@@ -45,6 +67,15 @@ import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
 import { useThreads } from '@/state/threads/threads'
 import ThreadBoxTailer from '@/components/thread/ThreadBoxTailer.vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
+import { useAuth } from '@/state/authz'
+import Header from '@/components/layout/Header.vue'
+import ViewTitle from '@/components/layout/ViewTitle.vue'
+import Action from '@/components/material/Action.vue'
+import SpacerDiv from '@/components/layout/SpacerDiv.vue'
+import { useMeta } from '@/state/meta'
+import MaterialMenu from '@/components/material/MaterialMenu.vue'
+import { MenuItem } from '@/utils/uiInterfaces'
+import { useI18n } from 'vue-i18n'
 
 /**
  * A Router view for a Stream Thread.
@@ -62,7 +93,12 @@ export default defineComponent({
     ThreadBoxHeader,
     Discussion,
     ToTopFab,
-    ThreadBoxTailer
+    ThreadBoxTailer,
+    Header,
+    ViewTitle,
+    Action,
+    SpacerDiv,
+    MaterialMenu
   },
   props: {
     threadid: {
@@ -77,15 +113,40 @@ export default defineComponent({
   },
   setup (props) {
     const { thread, subscribeThread } = useThreads()
+    const { showExperimentalTools, showAdminTools, user } = useAuth()
+    const { streams } = useMeta()
+    const i18n = useI18n()
+
     subscribeThread(props.threadid)
+
     onMounted(() => {
-      const a = getAnalytics()
-      logEvent(a, 'PageView', {
-        name: 'ViewThread',
-        threadid: props.threadid
-      })
+      watch(() => props.threadid, (threadid) => {
+        subscribeThread(threadid)
+      }, { immediate: true })
+
+      logEvent(getAnalytics(),
+        'PageView', {
+          name: 'ViewThread',
+          threadid: props.threadid
+        })
     })
-    return { thread }
+
+    const channelInfo = computed(() => (streams.value.find((s) => (s.slug === thread.value.data.topic)) || { name: '', slug: '', icon: '' }))
+    const showMenu = computed(() => (showAdminTools.value || thread.value.author === user.value.uid))
+
+    const menuItems = computed(() => {
+      const items = new Array<MenuItem>()
+      if (thread.value.author === user.value.uid) {
+        items.push({ icon: 'edit', to: `/thread/${props.threadid}/edit`, text: i18n.t('action.edit') })
+        items.push({ icon: 'delete', to: `/thread/${props.threadid}/delete`, text: i18n.t('action.delete') })
+      } else if (showAdminTools.value) {
+        items.push({ icon: 'edit', to: `/thread/${props.threadid}/edit`, text: i18n.t('action.edit'), admin: true })
+        items.push({ icon: 'delete', to: `/thread/${props.threadid}/delete`, text: i18n.t('action.delete'), admin: true })
+      }
+      return items
+    })
+
+    return { thread, showExperimentalTools, channelInfo, showMenu, menuItems }
   }
 })
 </script>

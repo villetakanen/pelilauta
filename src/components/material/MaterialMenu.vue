@@ -102,7 +102,7 @@ export default defineComponent({
 .material-menu
   position: relative
   margin: 0
-  padding: 0
+  padding: 2px
   height: 44px
   .dropdown
     @include BoxShadow3()
