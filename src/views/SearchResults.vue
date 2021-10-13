@@ -1,6 +1,10 @@
 <template>
   <div class="searchResults">
-    <Toolbar><h3>{{ $t('search.results.title') }}</h3></Toolbar>
+    <Header>
+      <ViewTitle icon="search">
+        {{ $t('search.results.title') }}
+      </ViewTitle>
+    </Header>
     <div class="singleColumnLayout">
       <Card
         v-for="result in searchResults"
@@ -27,14 +31,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useSearch } from '@/composables/search'
-import Toolbar from '@/components/layout/Toolbar.vue'
 import Card from '@/components/layout/Card.vue'
+import Header from '@/components/layout/Header.vue'
+import ViewTitle from '@/components/layout/ViewTitle.vue'
 
 export default defineComponent({
   name: 'AppBar',
   components: {
-    Toolbar,
-    Card
+    Card,
+    Header,
+    ViewTitle
   },
   setup () {
     const { searchResults } = useSearch()

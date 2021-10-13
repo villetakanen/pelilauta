@@ -1,10 +1,13 @@
 <template>
   <div id="publicProfileView">
-    <Toolbar v-if="user.uid !== uid">
-      <h3 v-if="publicProfile">
+    <Header v-if="user.uid !== uid">
+      <ViewTitle
+        v-if="publicProfile"
+        icon="avatar"
+      >
         {{ publicProfile.nick }}
-      </h3>
-    </Toolbar>
+      </ViewTitle>
+    </Header>
     <ProfileToolbar v-else />
     <div class="singleColumnLayout">
       <div class="linkGrid">
@@ -45,7 +48,6 @@
 </template>
 
 <script lang="ts">
-import Toolbar from '@/components/layout/Toolbar.vue'
 import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 import { useAuthors } from '@/state/authors'
 import { toThread } from '@/state/threads'
@@ -54,9 +56,11 @@ import { computed, defineComponent, onMounted, ref } from 'vue'
 import { getFirestore, collection, query, where, getDocs } from '@firebase/firestore'
 import Icon from '@/components/material/Icon.vue'
 import { useAuth } from '@/state/authz'
+import Header from '@/components/layout/Header.vue'
+import ViewTitle from '@/components/layout/ViewTitle.vue'
 
 export default defineComponent({
-  components: { Toolbar, Icon, ProfileToolbar },
+  components: { Icon, ProfileToolbar, Header, ViewTitle },
   props: {
     uid: {
       type: String,
