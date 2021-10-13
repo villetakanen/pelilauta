@@ -61,6 +61,7 @@ export default defineComponent({
     const open = computed({
       get: () => props.modelValue,
       set: (value: boolean) => {
+        previewImageUrl.value = ''
         context.emit('update:modelValue', value)
       }
     })
