@@ -89,13 +89,22 @@ function subscribeToAssets () {
   )
 }
 
-async function uploadAsset (file:File): Promise<Asset> {
+async function uploadAsset (name: string, dataURL:string): Promise<Asset> {
   const a = new Asset()
-  a.name = file.name
+  a.name = name
   return a
+  /*
+    How to do it – https://firebase.google.com/docs/storage/web/upload-files
+    const storage = getStorage();
+    const storageRef = ref(storage, 'some-child')
+    const message4 = 'data:text/plain;base64,5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
+      uploadString(storageRef, message4, 'data_url').then((snapshot) => {
+      console.log('Uploaded a data_url string!');
+    });
+  */
 }
 
-export function useAssets (): { assets: ComputedRef, uploadAsset: (file:File) => Promise<Asset> } {
+export function useAssets (): { assets: ComputedRef, uploadAsset: (name: string, dataURL:string) => Promise<Asset> } {
   const { user } = useAuth()
   if (user.value.uid !== state.uid) {
     state.uid = user.value.uid
