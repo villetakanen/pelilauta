@@ -33,7 +33,7 @@ export default defineComponent({
   components: { ProfileAssetList, Header, ViewTitle, Button, UploadAssetDialog },
   setup () {
     const { profile } = useProfile()
-    const addMediaDialog = ref(false)
+    const addMediaDialog = ref(true)
     return { profile, addMediaDialog }
   }
 })
