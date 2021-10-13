@@ -1,7 +1,7 @@
 <template>
   <div>
     <AdminActions :title="$t('admin.action.topics')" />
-    <MaterialCard style="margin-left: 8px; margin-right: 8px">
+    <main class="emptyLayout">
       <table
         class="dataTable"
         aria-label="Stream metadata"
@@ -46,13 +46,12 @@
           Update
         </MaterialButton>
       </div>
-    </MaterialCard>
+    </main>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import { Stream } from '@/state/threads/threads'
 import TextField from '@/components/material/TextField.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
@@ -62,7 +61,6 @@ import { doc, getFirestore, onSnapshot, collection, getDocs, updateDoc } from '@
 export default defineComponent({
   name: 'About',
   components: {
-    MaterialCard,
     TextField,
     MaterialButton,
     AdminActions
