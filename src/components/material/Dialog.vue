@@ -23,6 +23,7 @@
         <div class="contentSlot">
           <slot />
         </div>
+        <slot name="footer" />
       </div>
     </div>
   </teleport>
@@ -107,6 +108,7 @@ div#dialog
       height: auto
       border-radius: 4px
       max-width: 720px
+      // padding: 0
     .dialogToolBar
       border-radius: 4px 4px 0 0
 </style>
