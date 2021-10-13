@@ -19,7 +19,11 @@
         v-model="assetName"
         :label="$t('asset.uploadDialog.filename')"
       />
-      <Toolbar>
+    </div>
+    <template
+      #footer
+    >
+      <Toolbar v-if="previewImageUrl">
         <SpacerDiv />
         <Button
           text
@@ -29,17 +33,18 @@
         </Button>
         <Button>{{ $t('asset.uploadDialog.uploadFile') }}</Button>
       </Toolbar>
-    </div>
-    <label
-      v-else
-      class="fileUploadButton"
-    >
-      <input
-        type="file"
-        @change="preProcessImage"
-      >
-      {{ $t('asset.uploadDialog.selectFile') }}
-    </label>
+      <Toolbar v-else>
+        <label
+          class="fileUploadButton"
+        >
+          <input
+            type="file"
+            @change="preProcessImage"
+          >
+          {{ $t('asset.uploadDialog.selectFile') }}
+        </label>
+      </Toolbar>
+    </template>
   </Dialog>
 </template>
 
