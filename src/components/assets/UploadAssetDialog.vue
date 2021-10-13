@@ -1,6 +1,7 @@
 <template>
   <Dialog
     v-model="open"
+    :label="$t('asset.uploadDialog.title')"
     class="uploadAssetDialog"
   >
     <div
@@ -8,11 +9,26 @@
       class="previewPane contentBox"
     />
     <div v-if="previewImageUrl">
+      <div
+        v-if="showResizeWarning"
+        class="warning"
+      >
+        {{ $t('asset.uploadDialog.resized') }}
+      </div>
       <Textfield
         v-model="assetName"
-        :label="$t('assets.file.name')"
+        :label="$t('asset.uploadDialog.filename')"
       />
-      <Button>-- Upload the File to Assets --</Button>
+      <Toolbar>
+        <SpacerDiv />
+        <Button
+          text
+          @click="open=false"
+        >
+          {{ $t('action.cancel') }}
+        </Button>
+        <Button>{{ $t('asset.uploadDialog.uploadFile') }}</Button>
+      </Toolbar>
     </div>
     <label
       v-else
@@ -22,7 +38,7 @@
         type="file"
         @change="preProcessImage"
       >
-      -- Select File --
+      {{ $t('asset.uploadDialog.selectFile') }}
     </label>
   </Dialog>
 </template>
@@ -32,6 +48,7 @@ import downscale from 'downscale'
 import { ComponentPublicInstance, computed, defineComponent, ref, Ref } from 'vue'
 import Button from '../form/Button.vue'
 import Textfield from '../form/Textfield.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 import Dialog from '../material/Dialog.vue'
 
 const DOWNSCLASED_MIMETYPES = [
@@ -40,7 +57,7 @@ const DOWNSCLASED_MIMETYPES = [
 ]
 
 export default defineComponent({
-  components: { Dialog, Textfield, Button },
+  components: { Dialog, Textfield, Button, SpacerDiv },
   props: {
     site: {
       type: String,
@@ -58,6 +75,7 @@ export default defineComponent({
     const previewImageUrl:Ref<string> = ref('')
     const assetName = ref('')
     const previewPane = ref<ComponentPublicInstance<HTMLInputElement>>()
+    const showResizeWarning = ref(false)
     const open = computed({
       get: () => props.modelValue,
       set: (value: boolean) => {
@@ -74,8 +92,9 @@ export default defineComponent({
         assetName.value = file.name
         console.debug('file type is:', file.type)
         if (DOWNSCLASED_MIMETYPES.includes(file.type)) {
-          const imageURI = await downscale(element.files[0], 512, 512)
+          const imageURI = await downscale(element.files[0], 720, 720)
           previewImageUrl.value = imageURI
+          showResizeWarning.value = true
           console.log('imageURI', imageURI)
         } else {
           const assetURI = URL.createObjectURL(element.files[0])
@@ -90,7 +109,7 @@ export default defineComponent({
       }
     }
 
-    return { open, previewImageUrl, preProcessImage, previewPane, assetName }
+    return { open, previewImageUrl, preProcessImage, previewPane, assetName, showResizeWarning }
   }
 })
 </script>
@@ -100,13 +119,18 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 @import @/styles/box-shadow.sass
 
+.warning
+  margin: 0
+  margin-bottom: 8px
+
 div.previewPane
   width: min(310px, calc(100vw - 64px))
   height: min(310px, calc(100vw - 64px))
   border: solid 1px var(--chroma-secondary-g)
-  margin-bottom: 24px
+  margin-bottom: 8px
   background-color: var(--chroma-secondary-i)
   position: relative
+  text-align: center
 
 input[type="file"]
   display: none

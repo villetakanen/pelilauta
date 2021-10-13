@@ -42,6 +42,15 @@
     },
     "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
   },
+  "asset": {
+    "uploadDialog": { 
+      "title": "Lataa tiedosto" ,
+      "selectFile": "Valitse tiedosto",
+      "filename": "Tiedoston nimi",
+      "uploadFile": "Lähetä",
+      "resized": "Suuret kuvat skaalataan maksimissaan 720px korkeiksi ja leveiksi."
+    }
+  },
   "calltoaction": {
     "forum": {
       "title": "Keskustelut"
