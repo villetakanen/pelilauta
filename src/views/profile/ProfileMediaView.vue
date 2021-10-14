@@ -9,12 +9,10 @@
         {{ $t('profile.media.title') }}
       </ViewTitle>
     </Header>
-    <div class="singleColumnLayout">
-      <Button @click="addMediaDialog = true">
-        -- add new media --
-      </Button>
-      <ProfileAssetList />
-    </div>
+    <Button @click="addMediaDialog = true">
+      -- add new media --
+    </Button>
+    <ProfileAssetList />
     <UploadAssetDialog v-model="addMediaDialog" />
   </div>
 </template>
@@ -33,7 +31,7 @@ export default defineComponent({
   components: { ProfileAssetList, Header, ViewTitle, Button, UploadAssetDialog },
   setup () {
     const { profile } = useProfile()
-    const addMediaDialog = ref(true)
+    const addMediaDialog = ref(false)
     return { profile, addMediaDialog }
   }
 })

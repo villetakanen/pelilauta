@@ -1,6 +1,6 @@
 import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where, addDoc, getDoc } from '@firebase/firestore'
 import { getStorage, ref as storageRef, uploadString, getDownloadURL } from '@firebase/storage'
-import { computed, ComputedRef } from 'vue-demi'
+import { computed, ComputedRef, reactive, ref } from 'vue'
 import { useAuth } from '../authz'
 
 export const LICENSE_NONE = 1
@@ -17,8 +17,10 @@ export class Asset {
   license: number
   site: string | undefined
   name: string
+  mimetype: string
 
   constructor (id?:string, data?:DocumentData) {
+    console.log(data)
     this.id = id || ''
     this.name = data?.name || ''
     this.created = data?.createdAt || null
@@ -28,6 +30,7 @@ export class Asset {
     this.owner = data?.owner || ''
     this.license = data?.license || LICENSE_NONE
     this.site = data?.site
+    this.mimetype = data?.type || 'application/octet-stream'
   }
 
   dry (): {
@@ -38,7 +41,8 @@ export class Asset {
     owner: string
     license: number
     site: string | undefined
-    name: string
+    name: string,
+    type: string
     } {
     return {
       createdAt: this.created || serverTimestamp(),
@@ -48,22 +52,23 @@ export class Asset {
       owner: this.owner,
       license: this.license,
       site: this.site,
-      name: this.name
+      name: this.name,
+      type: this.mimetype
     }
   }
 }
 
-const state = {
-  uid: '',
-  userAssets: new Map<string, Asset>()
-}
-
-const assets = computed(() => (Array.from(state.userAssets.values())))
+const state = reactive({
+  uid: ''
+})
+const userAssets = ref(new Map<string, Asset>())
+const assets = computed(() => (userAssets.value))
 
 let unsubscribe:CallableFunction|undefined
 
 function subscribeToAssets () {
   if (unsubscribe) unsubscribe()
+  console.log('subscribeToAssets()', '"' + state.uid)
   unsubscribe = onSnapshot(
     query(
       collection(
@@ -75,22 +80,24 @@ function subscribeToAssets () {
     (assetChanges) => {
       assetChanges.docChanges().forEach((assetChange) => {
         if (assetChange.type === 'removed') {
-          state.userAssets.delete(assetChange.doc.id)
+          userAssets.value.delete(assetChange.doc.id)
         } else {
-          state.userAssets.set(
+          console.debug('got asset', assetChange.doc.id)
+          userAssets.value.set(
             assetChange.doc.id,
             new Asset(
               assetChange.doc.id,
               assetChange.doc.data()
             )
           )
+          console.log(userAssets.value)
         }
       })
     }
   )
 }
 
-async function uploadAsset (name: string, dataURL:string): Promise<Asset> {
+async function uploadAsset (name: string, mimetype:string, dataURL:string): Promise<Asset> {
   const { user } = useAuth()
   const storage = getStorage()
 
@@ -114,7 +121,8 @@ async function uploadAsset (name: string, dataURL:string): Promise<Asset> {
       owner: user.value.uid,
       storagePath: storageSnapshot.metadata.fullPath,
       url: downloadUrl,
-      created: serverTimestamp()
+      created: serverTimestamp(),
+      type: mimetype
     }
   )
 
@@ -124,11 +132,19 @@ async function uploadAsset (name: string, dataURL:string): Promise<Asset> {
   return asset
 }
 
-export function useAssets (): { assets: ComputedRef, uploadAsset: (name: string, dataURL:string) => Promise<Asset> } {
+async function deleteAsset (id:string): Promise<void> {
+  console.error('implementation missing')
+}
+
+export function useAssets (): {
+    assets: ComputedRef<Map<string, Asset>>
+    uploadAsset: (name: string, mimetype: string, dataURL:string) => Promise<Asset>
+    deleteAsset: (id:string) => Promise<void>
+    } {
   const { user } = useAuth()
   if (user.value.uid !== state.uid) {
     state.uid = user.value.uid
     subscribeToAssets()
   }
-  return { assets, uploadAsset }
+  return { assets, uploadAsset, deleteAsset }
 }

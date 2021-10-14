@@ -54,12 +54,13 @@
 import { useSnack } from '@/composables/useSnack'
 import { useAssets } from '@/state/assets'
 import downscale from 'downscale'
-import { ComponentPublicInstance, computed, defineComponent, ref, Ref, triggerRef } from 'vue'
+import { ComponentPublicInstance, computed, defineComponent, ref, Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Button from '../form/Button.vue'
 import Textfield from '../form/Textfield.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import Dialog from '../material/Dialog.vue'
+import Toolbar from '@/components/layout/Toolbar.vue'
 
 const DOWNSCLASED_MIMETYPES = [
   'image/jpeg',
@@ -67,7 +68,7 @@ const DOWNSCLASED_MIMETYPES = [
 ]
 
 export default defineComponent({
-  components: { Dialog, Textfield, Button, SpacerDiv },
+  components: { Dialog, Textfield, Button, SpacerDiv, Toolbar },
   props: {
     site: {
       type: String,
@@ -87,6 +88,7 @@ export default defineComponent({
     const i18n = useI18n()
     const previewImageUrl:Ref<string> = ref('')
     const assetName = ref('')
+    const assetMimeType = ref('')
     const previewPane = ref<ComponentPublicInstance<HTMLInputElement>>()
     const showResizeWarning = ref(false)
     const working = ref(false)
@@ -105,6 +107,7 @@ export default defineComponent({
       if (element.files && element.files[0]) {
         const file = element.files[0]
         assetName.value = file.name
+        assetMimeType.value = file.type
         console.debug('file type is:', file.type)
         if (DOWNSCLASED_MIMETYPES.includes(file.type)) {
           const imageURI = await downscale(element.files[0], 720, 720)
@@ -126,10 +129,10 @@ export default defineComponent({
 
     async function upload () {
       working.value = true
-      await uploadAsset(assetName.value, previewImageUrl.value)
+      await uploadAsset(assetName.value, assetMimeType.value, previewImageUrl.value)
       working.value = false
       pushSnack(i18n.t('asset.uploadDialog.success'))
-      // open.value = false
+      open.value = false
     }
 
     return { open, previewImageUrl, preProcessImage, previewPane, assetName, showResizeWarning, upload }
