@@ -1,5 +1,5 @@
-import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where, addDoc, getDoc } from '@firebase/firestore'
-import { getStorage, ref as storageRef, uploadString, getDownloadURL } from '@firebase/storage'
+import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where, addDoc, getDoc, doc, deleteDoc } from '@firebase/firestore'
+import { getStorage, ref as storageRef, uploadString, getDownloadURL, deleteObject } from '@firebase/storage'
 import { computed, ComputedRef, reactive, ref } from 'vue'
 import { useAuth } from '../authz'
 
@@ -133,7 +133,22 @@ async function uploadAsset (name: string, mimetype:string, dataURL:string): Prom
 }
 
 async function deleteAsset (id:string): Promise<void> {
-  console.error('implementation missing')
+  const { user } = useAuth()
+  const assetDocRef = doc(getFirestore(), 'assets', id)
+  const assetDoc = await getDoc(assetDocRef)
+
+  if (assetDoc.data()?.owner !== user.value.uid) throw new Error('Delete would fail due to the firebase side security rules, aborting.')
+
+  const storage = getStorage()
+
+  const asseteRef = storageRef(
+    storage,
+    assetDoc.data()?.storagePath
+  )
+
+  await deleteObject(asseteRef)
+
+  return deleteDoc(assetDocRef)
 }
 
 export function useAssets (): {

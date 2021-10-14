@@ -6,8 +6,15 @@
       :alt="asset.name"
       :src="asset.url"
     >
-    {{ asset.mimetype }}
-    {{ asset.name }}
+    <p class="info clipWithEllipsis">
+      {{ asset.name }}
+    </p>
+    <Button
+      class="deletebutton"
+      @click="drop()"
+    >
+      {{ $t('action.delete') }}
+    </Button>
   </Card>
 </template>
 
@@ -18,6 +25,7 @@ import Card from '@/components/layout/Card.vue'
 import { Asset, useAssets } from '@/state/assets'
 import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
+import Button from '@/components/form/Button.vue'
 
 const IMAGE_MIMETYPES = [
   'image/jpeg',
@@ -28,7 +36,8 @@ const IMAGE_MIMETYPES = [
 export default defineComponent({
   name: 'AttachmentRow',
   components: {
-    Card
+    Card,
+    Button
   },
   props: {
     id: {
@@ -66,13 +75,29 @@ export default defineComponent({
 .assetListItem
   width: calc(100vw - 32px)
   overflow: hidden
+  position: relative
   .imagePreview
     pointer-events: none
     margin: -16px
     max-width: calc(100% + 32px)
+  .info
+    @include TypeBody2()
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 16px
+    background: linear-gradient(37deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.7) 100%)
+    width: calc(100% - 32px)
+    height: 24px
+    white-space: nowrap
+  .deletebutton
+    position: absolute
+    right: 16px
+    top: 16px
 
 @include media('>=tablet')
   .assetListItem
-    width: 280px
+    width: 256px
+    height: 256px
 
 </style>
