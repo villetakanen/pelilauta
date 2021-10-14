@@ -61,6 +61,7 @@ import Textfield from '../form/Textfield.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import Dialog from '../material/Dialog.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
+import { processAsset } from '@/composables/useAssetTools'
 
 const DOWNSCLASED_MIMETYPES = [
   'image/jpeg',
@@ -103,6 +104,9 @@ export default defineComponent({
 
     async function preProcessImage (e: Event) {
       console.log('preProcessImage', e)
+
+      const processed = processAsset(e)
+
       const element = (e.target as HTMLInputElement)
       if (element.files && element.files[0]) {
         const file = element.files[0]
