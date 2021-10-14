@@ -31,7 +31,9 @@
         >
           {{ $t('action.cancel') }}
         </Button>
-        <Button>{{ $t('asset.uploadDialog.uploadFile') }}</Button>
+        <Button @action="upload()">
+          {{ $t('asset.uploadDialog.uploadFile') }}
+        </Button>
       </Toolbar>
       <Toolbar v-else>
         <label
@@ -49,8 +51,11 @@
 </template>
 
 <script lang="ts">
+import { useSnack } from '@/composables/useSnack'
+import { useAssets } from '@/state/assets'
 import downscale from 'downscale'
-import { ComponentPublicInstance, computed, defineComponent, ref, Ref } from 'vue'
+import { ComponentPublicInstance, computed, defineComponent, ref, Ref, triggerRef } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Button from '../form/Button.vue'
 import Textfield from '../form/Textfield.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
@@ -77,14 +82,19 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, context) {
+    const { uploadAsset } = useAssets()
+    const { pushSnack } = useSnack()
+    const i18n = useI18n()
     const previewImageUrl:Ref<string> = ref('')
     const assetName = ref('')
     const previewPane = ref<ComponentPublicInstance<HTMLInputElement>>()
     const showResizeWarning = ref(false)
+    const working = ref(false)
     const open = computed({
       get: () => props.modelValue,
       set: (value: boolean) => {
         previewImageUrl.value = ''
+        assetName.value = ''
         context.emit('update:modelValue', value)
       }
     })
@@ -114,7 +124,15 @@ export default defineComponent({
       }
     }
 
-    return { open, previewImageUrl, preProcessImage, previewPane, assetName, showResizeWarning }
+    async function upload () {
+      working.value = true
+      await uploadAsset(assetName.value, previewImageUrl.value)
+      working.value = false
+      pushSnack(i18n.t('asset.uploadDialog.success'))
+      // open.value = false
+    }
+
+    return { open, previewImageUrl, preProcessImage, previewPane, assetName, showResizeWarning, upload }
   }
 })
 </script>
