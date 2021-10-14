@@ -1,4 +1,5 @@
-import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where } from '@firebase/firestore'
+import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where, addDoc, getDoc } from '@firebase/firestore'
+import { getStorage, ref as storageRef, uploadString, getDownloadURL } from '@firebase/storage'
 import { computed, ComputedRef } from 'vue-demi'
 import { useAuth } from '../authz'
 
@@ -90,18 +91,37 @@ function subscribeToAssets () {
 }
 
 async function uploadAsset (name: string, dataURL:string): Promise<Asset> {
-  const a = new Asset()
-  a.name = name
-  return a
-  /*
-    How to do it – https://firebase.google.com/docs/storage/web/upload-files
-    const storage = getStorage();
-    const storageRef = ref(storage, 'some-child')
-    const message4 = 'data:text/plain;base64,5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
-      uploadString(storageRef, message4, 'data_url').then((snapshot) => {
-      console.log('Uploaded a data_url string!');
-    });
-  */
+  const { user } = useAuth()
+  const storage = getStorage()
+
+  const asseteRef = storageRef(
+    storage,
+    '/assetuploads/' + user.value.uid + '/' + name
+  )
+
+  const storageSnapshot = await uploadString(
+    asseteRef,
+    dataURL,
+    'data_url'
+  )
+
+  const downloadUrl = await getDownloadURL(asseteRef)
+
+  const assetDocRef = await addDoc(
+    collection(getFirestore(), 'assets'),
+    {
+      name: name,
+      owner: user.value.uid,
+      storagePath: storageSnapshot.metadata.fullPath,
+      url: downloadUrl,
+      created: serverTimestamp()
+    }
+  )
+
+  const assetDoc = await getDoc(assetDocRef)
+  const asset = new Asset(assetDoc.id, assetDoc.data())
+
+  return asset
 }
 
 export function useAssets (): { assets: ComputedRef, uploadAsset: (name: string, dataURL:string) => Promise<Asset> } {
