@@ -13,51 +13,58 @@
   >
     {{ nick }}
   </td>
+  <td
+    style="padding: 0 8px"
+    :class="rowClasses"
+  >
+    {{ lastLogin }}
+  </td>
   <td :class="rowClasses">
-    <MaterialButton
-      v-if="!isMe && !isAdmin && !isFrozen"
-      text
-      :action="elevate"
+    <Button
+      v-if="!isAdmin"
+      :disabled="isFrozen || isMe"
+      @click="elevate()"
     >
       Make admin
-    </MaterialButton>
-    <MaterialButton
-      v-if="!isMe && isAdmin"
-      text
-      class="alert"
-      :action="revoke"
+    </Button>
+    <Button
+      v-if="isAdmin"
+      :disabled="isMe"
+      tertiary
+      @click="revoke()"
     >
       Revoke Admin
-    </MaterialButton>
-    <MaterialButton
-      v-if="!isMe && !isAdmin && !isFrozen"
-      text
-      :action="freeze"
+    </Button>
+    <Button
+      v-if="!isFrozen"
+      secondary
+      :disabled="isMe"
+      @click="freeze()"
     >
       Freeze
-    </MaterialButton>
-    <MaterialButton
-      v-if="!isMe && isFrozen"
-      text
-      :action="defrost"
-      class="warn"
+    </Button>
+    <Button
+      v-if="isFrozen"
+      tertiary
+      @click="defrost()"
     >
       Defrost
-    </MaterialButton>
+    </Button>
   </td>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import { defineComponent, computed, ref, onMounted } from 'vue'
 import { useMeta } from '@/state/meta'
-import { doc, getDoc, getFirestore, updateDoc } from '@firebase/firestore'
+import { doc, getDoc, getFirestore, updateDoc, query, getDocs, orderBy, collection, limit, where } from '@firebase/firestore'
 import { useAuth } from '@/state/authz'
+import { toDisplayString } from '@/utils/firebaseTools'
+import Button from './form/Button.vue'
 
 export default defineComponent({
   name: 'EditPost',
   components: {
-    MaterialButton
+    Button
   },
   props: {
     nick: {
@@ -133,12 +140,24 @@ export default defineComponent({
       })
     }
 
+    const lastLogin = ref('')
+
+    onMounted(() => {
+      getDocs(
+        query(collection(db, 'inbound'), orderBy('timestamp', 'desc'), limit(1), where('uid', '==', props.uid))
+      ).then((snapshot) => {
+        if (snapshot.size > 0) {
+          lastLogin.value = toDisplayString(snapshot.docs[0].data()?.timestamp)
+        }
+      })
+    })
+
     const rowClasses = computed(() => ({
       admin: isAdmin.value,
       frozen: isFrozen.value
     }))
 
-    return { isMe, isAdmin, revoke, elevate, freeze, defrost, isFrozen, rowClasses }
+    return { isMe, isAdmin, revoke, elevate, freeze, defrost, isFrozen, rowClasses, lastLogin }
   }
 })
 </script>

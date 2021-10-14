@@ -41,8 +41,6 @@
   font-weight: normal
   font-size: 17px
   line-height: 24px
-  margin: 0
-  padding: 0
   letter-spacing: 0.5px
 
 @mixin TypeBody2()
@@ -50,9 +48,10 @@
   font-weight: 400
   font-size: 15px
   line-height: 24px
-  margin: 0
-  padding: 0
   letter-spacing: 0.25px
+
+.TypeBody2
+  @include TypeBody2()
   
 @mixin TypeButton()
   font-family: 'Cabin', 'Roboto', sans-serif
@@ -72,6 +71,9 @@
   line-height: 16px
   margin: 0
   padding: 0
+
+.TypeCaption
+  @include TypeCaption()
 
 @mixin TypeDisplay1()
   font-family: 'Overpass', sans-serif

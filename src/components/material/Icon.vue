@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
+import iconslist from './iconslist.json'
 
 export default defineComponent({
   props: {
@@ -59,50 +60,7 @@ export default defineComponent({
   },
   setup (props) {
     const icons = ref(new Map<string, Array<string>>())
-    const slugs = [
-      'about',
-      'add',
-      'addAnImage',
-      'addDiscussion',
-      'admin',
-      'adventurer',
-      'attachments',
-      'avatar',
-      'books',
-      'close',
-      'd6',
-      'd12',
-      'd20',
-      'discussion',
-      'dd-logo',
-      'delete',
-      'edit',
-      'equalizer',
-      'eye',
-      'filter',
-      'forum',
-      'hidden',
-      'homebrew-logo',
-      'idea',
-      'images',
-      'keeper',
-      'lightbulb',
-      'mekanismi',
-      'monsters',
-      'pages',
-      'pathfinder-logo',
-      'players',
-      'remove',
-      'report',
-      'stats',
-      'search',
-      'send',
-      'settings',
-      'share',
-      'quick-logo',
-      'up',
-      'youtube'
-    ]
+    const slugs = iconslist.icons
 
     function addIcon (slug: string) {
       icons.value.set(slug, [
@@ -190,7 +148,7 @@ export default defineComponent({
     height: 20px
     width: 20px
 
-.inline.icon
+.inline.icon, h4 .icon
   display: inline-block
   height: 20px
   width: 20px
@@ -204,7 +162,7 @@ export default defineComponent({
 .inline.icon + .inline.icon
   margin-left: 0px
 
-.headline.icon
+.headline.icon, h3 .icon
   display: inline-block
   height: 44px
   width: 44px
@@ -261,5 +219,21 @@ export default defineComponent({
           height: 22px
           width: 22px
           padding: 1px
+
+.viewTitle
+  .icon
+    height: 48px
+    width: 48px
+    margin: 0
+    padding: 2px
+    box-sizing: border-box
+    display: inline-block
+    vertical-align: baseline
+    img
+      height: 44px
+      width: 44px
+      margin: 0
+      padding: 0
+      vertical-align: center
 
 </style>

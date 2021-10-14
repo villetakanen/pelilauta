@@ -1,18 +1,20 @@
 import { useProfile, PublicProfile, ProfileMeta } from './profile'
 // import { useAuthState } from './state'
 import { useAssets } from './assets'
-import { computed, ComputedRef, reactive } from 'vue'
+import { computed, ComputedRef, reactive, WritableComputedRef } from 'vue'
 import { useMeta } from '../meta'
 import { onAuthStateChanged, getAuth, User } from '@firebase/auth'
-import { doc, getFirestore, onSnapshot, deleteDoc } from '@firebase/firestore'
+import { doc, getFirestore, onSnapshot, deleteDoc, updateDoc } from '@firebase/firestore'
 
 /**
  * A reactive object, that holds all state internals for auth
  */
 const authState = reactive({
+  loginComplete: false,
   profileDeletionInProgress: false,
   missingProfileData: false,
   anonymous: false,
+  useExperimentalTools: false,
   displayName: '',
   user: {
     uid: ''
@@ -26,12 +28,29 @@ const frozen = computed(() => {
   const { frozen: frozenAuthors } = useMeta()
   return frozenAuthors.value.includes(authState.user.uid)
 })
+const loginComplete = computed(() => (authState.loginComplete))
 
 // Show member only tools of the App to the user
 const showMemberTools = computed(() => {
   if (showAdminTools.value) return true
   if (frozen.value) return false
   return !authState.anonymous
+})
+
+const showExperimentalTools = computed({
+  get: () => {
+    return authState.useExperimentalTools
+  },
+  set: (val:boolean) => {
+    updateDoc(
+      doc(
+        getFirestore(),
+        'profiles',
+        authState.user.uid
+      ),
+      { useExperimentalTools: val }
+    )
+  }
 })
 
 const showAdminTools = computed(() => {
@@ -55,6 +74,8 @@ function fetchProfile () {
         authState.missingProfileData = true
       } else {
         authState.missingProfileData = false
+        authState.useExperimentalTools = snap.data()?.useExperimentalTools || false
+        console.log('tools', authState.useExperimentalTools)
 
         // @TODO refactor profile fetching to this module
         useProfile(authState.user.uid)
@@ -67,6 +88,7 @@ function fetchProfile () {
 }
 
 function processAuthStateChanged (user: User|null) {
+  authState.loginComplete = false
   if (!user || user.isAnonymous) {
     console.debug('onAuthStateChanged', 'anonymous')
     authState.missingProfileData = false
@@ -74,6 +96,7 @@ function processAuthStateChanged (user: User|null) {
     authState.user = {
       uid: ''
     }
+    authState.loginComplete = true
   } else {
     console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
@@ -81,6 +104,8 @@ function processAuthStateChanged (user: User|null) {
     authState.user = {
       uid: user.uid
     }
+    authState.loginComplete = true
+    authState.useExperimentalTools = false
     fetchProfile()
   }
 }
@@ -123,10 +148,12 @@ function useAuth (): {
     frozen: ComputedRef<boolean>,
     anonymousSession: ComputedRef<boolean>,
     showMemberTools: ComputedRef<boolean>
-    showAdminTools: ComputedRef<boolean>
+    showAdminTools: ComputedRef<boolean>,
+    showExperimentalTools: WritableComputedRef<boolean>,
+    loginComplete: ComputedRef<boolean>
     eraseProfile: () => Promise<void>,
     createProfile: (nick: string) => Promise<void>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile }
+  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete, showExperimentalTools }
 }
 
 export {

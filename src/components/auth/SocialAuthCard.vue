@@ -1,47 +1,47 @@
 <template>
-  <Card>
+  <section class="socialAuthCard chroma-box-2">
     <h1 class="title">
       {{ $t('login.socialLoginTitle') }}
     </h1>
     <p>{{ $t('login.message') }}</p>
     <div class="loginButton">
-      <MaterialButton
-        :action="socialGoogleLogin"
+      <Button
+        tertiary
         class="googleLoginButton"
+        @click="socialGoogleLogin"
       >
         <img
           src="@/assets/google.svg"
           alt="G"
           class="icon"
         > {{ $t('login.withGoogleButton') }}
-      </MaterialButton>
+      </Button>
     </div>
     <div class="loginButton">
-      <MaterialButton
-        :action="socialFacebookLogin"
+      <Button
         class="facebookLoginButton"
+        @click="socialFacebookLogin"
       >
         <img
           src="@/assets/facebook.svg"
           alt="F"
           class="icon"
         > {{ $t('login.withFacebookButton') }}
-      </MaterialButton>
+      </Button>
     </div>
-  </Card>
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Card from '@/components/layout/Card.vue'
 import { useRouter } from 'vue-router'
-import MaterialButton from '../material/MaterialButton.vue'
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from '@firebase/auth'
 import { getAnalytics, logEvent } from '@firebase/analytics'
+import Button from '../form/Button.vue'
 
 export default defineComponent({
   name: 'SocialAuthCard',
-  components: { Card, MaterialButton },
+  components: { Button },
   setup () {
     const router = useRouter()
 
@@ -71,31 +71,45 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
 
+.socialAuthCard
+  box-sizing: border-box
+  padding: 16px
+
 .loginButton
   margin: 0 auto
   text-align: center
-.googleLoginButton
+  margin-bottom: 4px
+
+button.tertiary.googleLoginButton
   background-color: var(--chroma-clear)
   color: var(--chroma-secondary-a)
   width: 192px
-  padding-left: 36px
+  padding-left: 40px
   position: relative
   text-align: left
-.facebookLoginButton
+  img.icon
+    height: 24px
+    position: absolute
+    top: 8px
+    left: 8px
+
+button.facebookLoginButton
   background-color: #4267B2 // The FB blue
   color: var(--chroma-clear)
   width: 192px
-  padding-left: 36px
+  padding-left: 40px
   position: relative
   text-align: left
-.icon
-  position: absolute
-  top: 5px
-  left: 9px
+  img.icon
+    height: 20px
+    position: absolute
+    top: 9px
+    left: 10px
 
 @include media('<tablet')
-  .googleLoginButton, .facebookLoginButton
+  button.tertiary.googleLoginButton,
+  button.facebookLoginButton
     width: 100%
     text-align: center
-    margin-top: 16px
+    padding-left: 12px
 </style>

@@ -12,14 +12,17 @@
 $icon_size: 32px
 
 .rtEditor
+  @include Rise1()
   border-top-right-radius: 12px
   .ql-editor
     min-height: 240px
+    border-bottom: solid 1px var(--chroma-secondary-g)
     img
       max-width: 100%
   .ql-toolbar
-    // background-color: var(--color-b-j)
-    border-bottom: solid 1px var(--color-b-h)
+    border-top-right-radius: 12px
+    background-color: var(--chroma-secondary-i)
+    border-bottom: solid 1px var(--chroma-secondary-g)
     padding: 4px 
     // border-top: solid red 1px
     button
@@ -50,13 +53,27 @@ $icon_size: 32px
         background-image: url('./assets/icons/rte/rte-underline.svg')
       &.ql-image
         background-image: url('./assets/icons/rte/rte-image.svg')
+      &.ql-list-ol
+        background-image: url('./assets/icons/rte/rte-ol.svg')
+      &.ql-list-ul
+        background-image: url('./assets/icons/rte/rte-ul.svg')
       &.ql-active
         background-color: var(--color-b-f)
         border-radius: 50%
+  &:hover
+    .ql-toolbar
+      border-top-right-radius: 12px
+      background-color: var(--chroma-secondary-h)
         
+.rte-embedded-image
+  max-width: 100%
+  max-height: 50vh
+  display: block
+  margin: 8px auto
+
 
 // Base styles, Mobile First. Overwritten with include-media where needed
-.richText, .richText .ql-editor
+.richText, .richText .ql-editor, .ql-editor
   h1
     @include TypeHeadline3()
     color: var(--chroma-secondary-e)
@@ -76,6 +93,10 @@ $icon_size: 32px
     margin-left: 32px
     margin-top: 12px
     margin-bottom: 12px
+  ol
+    li
+      list-style-type: decimal
+  ul
     li
       list-style-type: '– '
   h1+p, h2+p, h3+p, h4+p, p+p,

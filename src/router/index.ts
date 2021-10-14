@@ -2,7 +2,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
-import { useSite, usePage } from '@/state/site'
 import { useAuth } from '@/state/authz'
 
 const routes: Array<RouteRecordRaw> = [
@@ -129,19 +128,25 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/mekanismi',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/WikiIndex.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/SiteIndex.vue'),
     name: 'mekanismi'
   },
   {
     path: '/wiki/changes',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/RecentChanges.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/RecentChanges.vue'),
     name: 'wiki.changes'
+  },
+  // *** Sites ********************************************************
+  {
+    path: '/create/site',
+    component: () => import(/* webpackChunkName: "sites" */ '../views/site/AddSiteView.vue'),
+    name: 'create.site'
   },
   {
     path: '/site/:siteid',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/ViewPage.vue'),
-    props: (route) => ({ siteid: route.params.siteid, pageid: route.params.siteid }),
-    name: 'mekanismi.site'
+    component: () => import(/* webpackChunkName: "sites" */ '../views/site/SiteHomeView.vue'),
+    props: true,
+    name: 'site.home'
   },
   {
     path: '/mekanismi/view/:siteid/:pageid',
@@ -169,7 +174,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/site/:siteid/page/edit/:pageid',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue'),
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/EditPageView.vue'),
     props: true,
     name: 'mekanismi.edit'
   },
@@ -204,12 +209,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.character.view'
   },
   {
-    path: '/mekanismi/create',
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/mekanismi/CreateSite.vue'),
-    props: true,
-    name: 'mekanismi.create.site'
-  },
-  {
     path: '/mekanismi/sites/profile',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/profile/SiteListingView.vue'),
     props: true,
@@ -236,14 +235,14 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.add.thread',
     path: '/site/:siteid/add/thread',
     props: true,
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/pelilauta/EditThreadView.vue')
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/EditSiteThreadView.vue')
   },
   // Site: Page (c)RUD routes
   {
     name: 'site.page.edit',
     path: '/site/:siteid/page/:pageid/edit',
     props: true,
-    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/wiki/EditPage.vue')
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/EditPageView.vue')
   },
   // Character related routes
   {
@@ -270,26 +269,11 @@ const router = createRouter({
 })
 
 const AUTH_ROUTES = ['Profile', 'mekanismi.profile.sites', 'threads.create']
-const ADMIN_ROUTES = [
-  'global.admin',
-  'global.admin.topics'
-]
 
 router.beforeEach((to, from, next) => {
-  if (to.name && to.name.toString().startsWith('mekanismi')) {
-    const id = Array.isArray(to.params.siteid) ? to.params.siteid[0] : to.params.siteid || ''
-    useSite(id)
-    // If we have a page id we need to pull from FB, we pull it to state here
-    const pageid = Array.isArray(to.params.pageid) ? to.params.pageid[0] : to.params.pageid || ''
-    usePage(pageid)
-  }
-
   // Logged in only routes!
-  const { showMemberTools, showAdminTools } = useAuth()
+  const { showMemberTools } = useAuth()
   if (AUTH_ROUTES.includes(to.name?.toString() || '') && !showMemberTools.value) {
-    next({ name: 'Login' })
-  }
-  if (ADMIN_ROUTES.includes(to.name?.toString() || '') && !showAdminTools.value) {
     next({ name: 'Login' })
   }
   // next!

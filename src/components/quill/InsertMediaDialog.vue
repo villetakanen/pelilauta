@@ -1,6 +1,6 @@
 <template>
   <Dialog v-model="showDialog">
-    <Card>
+    <div>
       <h1>INJECT IMAGE MVP</h1>
       <div class="selector">
         <div
@@ -20,20 +20,19 @@
       <MaterialButton @click="inject">
         {{ $t('action.add') }}
       </MaterialButton>
-    </Card>
+    </div>
   </Dialog>
 </template>
 <script lang="ts">
 import { IMAGE_TAG_INSERT_EVENT, IMAGE_UPLOAD_EVENT } from '@/composables/useQuill/imageModule'
 import { useAssets } from '@/state/authz'
 import { defineComponent, onMounted, ref } from 'vue'
-import Card from '../layout/Card.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 
 export default defineComponent({
   name: 'InserMediaDialog',
-  components: { Dialog, Card, MaterialButton },
+  components: { Dialog, MaterialButton },
   setup () {
     const showDialog = ref(false)
     const selected = ref('')

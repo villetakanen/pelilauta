@@ -54,17 +54,20 @@ export default defineComponent({
 
 .repliesCardToolbarLink
   @include TypeCaption()
-  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
+  background-color: var(--chroma-secondary-i)
   line-height: 24px
   height: 24px
   padding: 0 12px
   border-radius: 12px
   a
     text-decoration: none
+    color: var(--chroma-secondary-d)
 
 .withSite
   .repliesCardToolbarLink
-    background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
+    background-color: var(--chroma-secondary-h)
+  a
+    color: var(--chroma-secondary-d)
 
 .alert, .withSite .alert
   background: linear-gradient(140deg, var(--chroma-primary-i) 0%, var(--chroma-primary-h) 100%)

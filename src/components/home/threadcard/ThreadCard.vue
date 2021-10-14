@@ -115,7 +115,7 @@ div.threadCard
       color: var(--chroma-secondary-b)
   a
     text-decoration: none
-    color: var(--chroma-primary-c)
+    color: var(--chroma-secondary-d)
   h1
     @include TypeCardHeadline()
     // color: var(--chroma-secondary-e)

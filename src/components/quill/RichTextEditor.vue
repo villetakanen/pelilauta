@@ -18,6 +18,12 @@
       <button class="ql-strike" />
       <button class="ql-underline" />
       <div class="spacer" />
+      <button
+        class="ql-list ql-list-ol"
+        value="ordered"
+        type="button"
+      />
+      <div class="spacer" />
       <button class="ql-wikilink" />
       <button class="ql-image" />
     </div>
@@ -85,13 +91,18 @@ export default defineComponent({
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
-        context.emit('update:content', quill?.root.innerHTML || '')
+        if (props.content !== quill?.root.innerHTML) {
+          context.emit('update:content', quill?.root.innerHTML || '')
+        }
       })
 
       // Reset field, when model is reset. Do not inject other
       // changes to the editor, to avoid contentEditable issues.
       watch(() => props.content, (value) => {
-        if (!value) quill?.setText('')
+        if (!value) {
+          console.debug('Rich Text Editor content reset')
+          quill?.setText('')
+        }
       })
 
       // we need to handle disable prop with
@@ -105,8 +116,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-.rtEditor
-  background-color: var(--color-b-j)
-</style>

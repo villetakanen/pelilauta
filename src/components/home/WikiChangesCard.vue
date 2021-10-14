@@ -1,6 +1,6 @@
 <template>
   <Card
-    class="wikiChangesCard"
+    class="wikiChangesCard chroma-box-1"
     :rise="1"
   >
     <h1>{{ $t('home.changesCard.title') }}</h1>
@@ -15,16 +15,16 @@
     />
     <div
       class="toolbar"
-      style="margin-bottom: -8px; margin-top: -16px"
+      style="margin-bottom: -8px; margin-top: -8px; margin-right: -8px"
     >
       <div class="spacer" />
-      <Action
-        to="/wiki/changes"
+      <Button
         dark
-        mobile
+        text
+        @click="reroute('/mekanismi')"
       >
         {{ $t('home.changesCard.seeMore') }}
-      </Action>
+      </Button>
     </div>
   </Card>
 </template>
@@ -33,54 +33,41 @@
 import { usePagelog } from '@/state/pagelog'
 import { computed, defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
-import Action from '../material/Action.vue'
 import WikiChangesItem from './WikiChangesItem.vue'
 import Card from '../layout/Card.vue'
 import { useSites } from '@/state/sites'
+import Button from '../form/Button.vue'
+import { useUxActions } from '@/composables/useUxActions'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WikiChangesCard',
-  components: { Action, WikiChangesItem, Card },
+  components: { WikiChangesItem, Card, Button },
   setup () {
     const { recent } = usePagelog()
     const { allSites } = useSites()
+    const { reroute } = useUxActions()
     const pageLog = computed(() => (recent.value.map((r) => (
       {
         ...r,
         badge: allSites.value.find((s) => (s.id === r.siteid))?.systemBadge ?? 'mekanismi'
       }
     ))))
-    return { pageLog, toDisplayString }
+    return { pageLog, toDisplayString, reroute }
   }
 })
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
 .wikiChangesCard
   display: block
-  background: linear-gradient(-44deg, var(--color-a-a) 0%, var(--color-b-d) 100%)
   position: relative
   min-height: 72px
   h1
     @include TypeCardHeadline()
-    // margin-left:76px
-    color: var(--chroma-secondary-i)
-  ul
-    margin-left: 0
-    padding-left: 18px
-  p, li
-    @include TypeBody2()
-    // margin-left: 72px
-    color: $color-dark-font-medium
-    a
-      color: $color-dark-font-medium
-    .siteslug
-      color: $color-dark-font-disabled
-      padding-right: 8px
+    color: var(--chroma-secondary-h)
 
 </style>

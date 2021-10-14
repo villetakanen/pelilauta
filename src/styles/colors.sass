@@ -1,9 +1,24 @@
 :root
+  // Chromatic colors
+  --chroma-alert:#bb1187
+  --chroma-alert-field-tint: #f1cfe7
+
+  // Secondary scale
+  // https://gka.github.io/palettes/#/9|s|002337,05e7fb,e7fbfb|ffffe0,ff005e,006c09|1|1
+  --chroma-secondary-a:#002337
+  --overlay-secondary-a:rgba(0,35,55, 0.37)
+
+  // https://imgur.com/UuoVNSc
+  --color-ddb-red: #C73032
+  --color-ddb-sorcerer: #992e2e
+
   --color-a-a: #002337
   --color-a-b: #1a394b
   --color-a-c: #334f5f
   --color-a-d: #4d6573
-  //
+  --color-a-e: #667b87
+  --color-a-f: #80919b
+  --color-a-g: #99a7af
   --color-a-h: #b3bdc3
   --color-a-i: #ccd3d7
   --color-a-j: #e6e9eb
@@ -41,3 +56,18 @@
   --color-e-i: #e8f7e4
   --color-e-j: #f4fbf1
 
+.chroma-box-1
+  background-color: var(--chroma-secondary-d)
+  background: linear-gradient(-42deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-d) 100%)
+  color: var(--chroma-secondary-i)
+  h1, h2, h3, h4, em
+    color: var(--chroma-secondary-i)
+    a
+      color: var(--chroma-secondary-i)
+  a
+    color: var(--chroma-secondary-g)
+    text-decoration: none
+
+.chroma-box-2
+  background-color: var(--chroma-primary-f)
+  background: linear-gradient(-42deg, var(--chroma-secondary-g) 0%, var(--chroma-primary-i) 100%)

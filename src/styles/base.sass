@@ -9,6 +9,7 @@
 @import views.sass
 @import charactersheets.sass
 @import colors.sass
+@import formcontrols.sass
 
 h3
   @include TypeHeadline5()
@@ -50,12 +51,19 @@ select
 div.toolbar
   display: flex
   justify-content: space-between
+  align-items: center
+  column-gap: 4px
+  row-gap: 0
   div.spacer
     flex-grow: 1
   div.grow
     flex-grow: 1
     margin: 0px
     margin-right: 12px
+
+@include media('<tablet')
+  .toolbar
+    flex-wrap: wrap // HOTFIX 1.10.2021 for page widht breaking toolbars.
 
 .fade-enter-active, .fade-leave-active
   transition: opacity .5s ease
@@ -207,7 +215,6 @@ div.toolbar
   --chroma-secondary-h:#a2e4ec
   --chroma-secondary-i:#e7fbfb
   // Other Colors
-  --chroma-alert:#bb1187
   --chroma-alert-rgb:187, 17, 135
   --chroma-clear: #ffffff
 
@@ -218,7 +225,8 @@ body
   padding: 0
   min-width: 370px
   background: none
-  background-color: var(--color-b-j)
+footer
+  background-color: var(--chroma-secondary-a)
 
 h1
   @include TypeHeadline3()
@@ -228,7 +236,7 @@ h2
   color: var(--chroma-secondary-e)
 h3
   @include TypeHeadline5()
-  color: var(--chroma-secondary-a) !important
+  color: var(--chroma-secondary-a)
   a
     color: var(--chroma-secondary-a) 
 h4
@@ -246,13 +254,33 @@ p:first-child, ul:first-child, ol:first-child
 
 p, li
   @include TypeBody1()
-  color: var(--chroma-secondary-c)
+  @include mediumEmphasis()
 
 p+p
   margin-top: 16px
 
 ol
   list-style-type: disc
+
+table
+  clear: both
+  margin-top: 16px
+  margin-bottom: 16px
+  border-collapse: collapse
+  th
+    @include TypeBody1()
+    border-bottom: solid 1px var(--chroma-secondary-g)
+    padding: 4px
+  td
+    @include TypeBody2()
+    padding: 4px
+    vertical-align: top
+
+.dark
+  h1, h2, h3, h4
+    color: var(--chroma-secondary-g)
+  p, ul, li, td, th
+    color: var(--chroma-secondary-i)
 
 // Layout helpers
 .contentArea
@@ -322,6 +350,13 @@ table.quill-better-table
       color: var(--chroma-secondary-c)
 .ql-disabled
   opacity: 0.22
+
+span.code
+  font-family: 'Source Code Pro', monospace
+  color: black
+  background: rgba(231, 251, 251, 1)
+  padding: 0 4px
+
 
 // Vue transitions: move to transitions.sass or something like it
 .pop-enter-active, .pop-leave-active

@@ -6,7 +6,7 @@ import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, Timesta
 import { getAuth } from '@firebase/auth'
 
 export interface PublicProfile {
-  uid?: string
+  uid: string
   nick: string
   tagline?: string
   photoURL?: string
@@ -20,6 +20,7 @@ export interface ProfileMeta {
 }
 
 const profileRef:Ref<PublicProfile> = ref({
+  uid: '',
   nick: '',
   tagline: '',
   frozen: false
@@ -52,15 +53,16 @@ function parseSeen (seenArray:Array<seenThread>) {
 function fetchProfile (uid:string|null) {
   unsubscribe()
   if (!uid) {
-    profileRef.value = { nick: '', tagline: '' }
+    profileRef.value = { uid: '', nick: '', tagline: '' }
   } else {
     const fbProfileRef = doc(getFirestore(), 'profiles', uid)
     unsubscribe = onSnapshot(fbProfileRef, (snap) => {
       if (!snap.exists) {
-        profileRef.value = { nick: '', tagline: '' }
+        profileRef.value = { uid: '', nick: '', tagline: '' }
         return
       }
       profileRef.value = {
+        uid: uid,
         nick: snap.data()?.nick || '',
         tagline: snap.data()?.tagline || '',
         photoURL: snap.data()?.photoURL || ''

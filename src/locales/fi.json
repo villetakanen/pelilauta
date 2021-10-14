@@ -3,6 +3,7 @@
     "addAttachment": "Lisää tiedosto",
     "addThread": "Uusi ketju",
     "addPage": "Uusi sivu",
+    "addSite": "Luo uusi peli",
     "add": "Lisää",
     "admin": "Admin",
     "cancel": "Peruuta",
@@ -41,6 +42,25 @@
     },
     "accountFrozen": "Käyttäjätilisi on jäädytetty väliaikaisesti. Ota yhteyttä ylläpitoon jos koet että kyseessä on vahinko."
   },
+  "asset": {
+    "uploadDialog": { 
+      "title": "Lataa tiedosto" ,
+      "selectFile": "Valitse tiedosto",
+      "filename": "Tiedoston nimi",
+      "uploadFile": "Lähetä",
+      "resized": "Suuret kuvat skaalataan maksimissaan 720px korkeiksi ja leveiksi."
+    }
+  },
+  "calltoaction": {
+    "forum": {
+      "title": "Keskustelut"
+    },
+    "site": {
+      "title": "Mekanismin Pelisivustot",
+      "text": "Voit luoda pelillesi oman wikityylisen sivuston pelilaudalle. Sivustot toimivat melko lailla kuten mekanismi.sange.fi:ssä.",
+      "text2": "Sivuston voi halutessaan julkaista näkyväksi julkisissa listauksissa, tai piilottaa vain linkin tietävien saataville."
+    }
+  },
   "character": {
     "meta": {
       "title": "Yleistä"
@@ -57,6 +77,9 @@
   "errorPage":{
     "notFound": "Väärä osoite",
     "message": "Vaikuttaa siltä, että tätä reittiä pitkin ei pääse mihinkään. Palaa takaisin lähtöruutuun alta."
+  },
+  "experimental": {
+    "warningText": "Kokeelliset toiminnot käytössä. Voit kytkeä ne pois profiilisi asetuksista."
   },
   "home": {
     "changesCard": {
@@ -77,9 +100,10 @@
     "withGoogleButton": "Google",
     "withFacebookButton": "Facebook",
     "verifyEmailLoginMessage": "Vahvistathan tunnuksesi saamasi sähköpostiviestin avulla",
-    "emailLoginMessage": "Kirjaudu sähköpostilla",
+    "emailLoginTitle": "Kirjaudu sähköpostilla",
+    "emailLoginInfo": "Voit kirjautua pelkän sähköpostiosoitteen avulla. Syötä osoitteesi allaolevaan kenttään ja paina kirjaudu. Lähetämme sähköpostiisi maagisen linkin, jonka avulla voit kirjautua pelilaudalle.",
     "emailLoginDataInfoLink": "Lisätietoja kirjautumisesta ja henkilötiedojen käsittelystä sovelluksessa",
-    "withEmail": "Kirjaudu",
+    "withEmail": "Lähetä linkki",
     "emailLoginHelper": "Sähköpostiosoite",
     "socialLoginTitle": "Kirjaudu toisella palvelulla"
   },
@@ -98,6 +122,14 @@
       "helpertext": "merkitsee kirjoittajan, ja lähettää notifikaation"
     }
   },
+  "rte": {
+    "wikilink": {
+      "title": "Lisää linkki",
+      "inbound": "Linkitä sivu",
+      "urlfield": "Osoite",
+      "pagefield": "Sivun nimi"
+    }
+  },
   "search": {
     "results": {
       "title": "Haku"
@@ -109,6 +141,7 @@
     "keeper": {
       "title": "Keeper"
     },
+    "recentChanges": "Uusimmat päivitykset",
     "characters": {
       "title": "Hahmot",
       "template": "Valitse lomake",
@@ -120,6 +153,13 @@
         "name":"Nimi",
         "description":"Kuvaus"
       }
+    },
+    "page": {
+      "title": "Sivun nimi",
+      "edit": "Muokkaa sivua",
+      "updated": "Sivun sisältöä on päivitetty toisessa ikkunassa tai toisen käyttäjän toimesta. Tallentaminen yliajaa muualla tehdyt muutokset.",
+      "deleteWarning": "Sivun poistamista ei voi peruuttaa. Jos olet varma että haluat poistaa sivun, kirjoita DELETE allaolevaan laatikkoon",
+      "deleteConfirmLabel": "Vahvista poisto"
     },
     "players": {
       "title": "Pelaajat",
@@ -178,12 +218,22 @@
     "updateSuccess": "Päivitetty",
     "updateFailed": "Päivitys epäonnistui"
   },
+  "sort": {
+    "title": "Järjestä",
+    "byName": "↑ Nimi",
+    "byDate": "↑ Aika"
+  },
   "stream": {
     "title": "Pelilauta",
     "inStream": "Aiheessa",
     "thread": {
       "deleteWarning": "Ketjun poistamista ei voi peruuttaa. Kirjoita DELETE allaolevaan kenttään jos todella haluat poistaa ketjun vastauksineen.",
       "deleteSucces": "Ketju poistettu vastauksineen"
+    }
+  },
+  "topic": {
+    "home": {
+      "title": "Keskustelu"
     }
   },
   "postHeader": {
@@ -198,6 +248,7 @@
     "characterListing": {
       "title": "Hahmoni"
     },
+    "deleteWarning": "Profiilin poistamista ei voi peruuttaa. Jos haluat poistaa luomasi sisällön, tee se ennen profiilin poistoa. Profiilin poiston jälkeen on vaikeaa, jollei mahdotonta selvittää mitä sisältöä olet tehnyt. Jos olet täysin varma että haluat poistaa profiilisi, kirjoita FORGET ME allaolevaan kenttään.",
     "publicInfoTitle": "Julkinen profiilini",
     "publicInfoHelper": "Näkyy kaikille sovelluksen käyttäjille.",
     "ssoInfocardTitle": "Omat tietoni",
@@ -209,24 +260,21 @@
         "title": "Lisäämäni kuvat"
       }
     },
+    "media": {
+      "title": "Kuvani"
+    },
     "stats": "Ketjut",
     "actions": {
-      "title": "Asetukset ja toiminnot",
+      "title": "Asetukset",
       "helper": "Erilaisia nappuloita ja säätöjä",
-      "selectLang": "Sovelluksen kieli"
+      "selectLang": "Sovelluksen kieli",
+      "actions": "Toiminnot",
+      "useExperimental": "Käytä kokeellisia toimintoja"
     },
     "inbox": {
       "title": "Nostot"
     },
     "nick": "Nimimerkki"
-  },
-  "rte": {
-    "wikilink": {
-      "title": "Linkitä URL",
-      "inbound": "Linkitä sivu",
-      "urlfield": "Osoite",
-      "pageid": "Sivun nimi"
-    }
   },
   "threads": {
     "sinceInTopic": "aiheessa",

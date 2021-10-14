@@ -3,6 +3,14 @@
     <ProfileToolbar />
     <div class="singleColumnLayout">
       <div class="siteGrid">
+        <h4>Site</h4>
+        <Icon headline />
+        <div class="toolbar">
+          <div class="spacer" />
+          <Button @click="reroute('/create/site')">
+            {{ $t('action.addSite') }}
+          </Button>
+        </div>
         <template
           v-for="site in mySites"
           :key="site.id"
@@ -12,7 +20,7 @@
             class="siteCell siteTitle"
             :class="{hidden: site.hidden}"
           >
-            <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
+            <router-link :to="`/site/${site.id}`">
               {{ site.name }}
             </router-link>
           </div>
@@ -21,12 +29,12 @@
               v-if="site.hidden"
               name="hidden"
               style="opacity: 0.22"
-              x-small
+              headline
             />
             <Icon
               v-else
               :name="site.systemBadge + '-logo'"
-              x-small
+              headline
             />
           </div>
           <div
@@ -54,10 +62,13 @@ import { toDisplayString } from '@/utils/firebaseTools'
 import Icon from '@/components/material/Icon.vue'
 import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
+import Button from '@/components/form/Button.vue'
+import { useUxActions } from '@/composables/useUxActions'
 
 export default defineComponent({
-  components: { Icon, ProfileToolbar, ToTopFab },
+  components: { Icon, ProfileToolbar, ToTopFab, Button },
   setup () {
+    const { reroute } = useUxActions()
     const { user } = useAuth()
     const { profile } = useProfile()
     const { allSites } = useSites()
@@ -65,7 +76,7 @@ export default defineComponent({
       (Array.isArray(val.owners) && val.owners.includes(user.value.uid)) ||
       (Array.isArray(val.players) && val.players.includes(user.value.uid))
     ))))
-    return { profile, mySites, toDisplayString }
+    return { profile, mySites, toDisplayString, reroute }
   }
 })
 </script>
@@ -77,8 +88,8 @@ export default defineComponent({
 .siteGrid
   display: grid
   grid-template-columns: auto auto 1fr
-  grid-gap: 8px
   margin-bottom: 16px
+  gap: 16px 8px
   a
     text-decoration: none
   div.hidden

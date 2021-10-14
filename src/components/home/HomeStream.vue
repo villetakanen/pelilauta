@@ -1,28 +1,25 @@
 <template>
-  <div class="homeStream">
-    <transition name="fade">
-      <WelcomeCard v-if="anonymousSession" />
-    </transition>
-    <div
+  <Column class="homeStream double-cut">
+    <template
       v-for="(entry) in stream"
       :key="entry.key"
     >
       <transition name="fade">
-        <div v-if="entry.thread">
-          <!-- @todo add new thread card for front page -->
-          <ThreadCard :thread="entry.thread" />
-        </div>
-        <div v-else-if="entry.feedPost">
-          <!-- @todo add new thread card for front page -->
-          <WPCard :feed-post="entry.feedPost" />
-        </div>
-        <div v-else-if="entry.key === 'wikiChanges'">
-          <!-- @todo add new wikichanges card for front page -->
-          <WikiChangesCard />
-        </div>
+        <!-- @todo add new thread card for front page -->
+        <ThreadCard
+          v-if="entry.thread"
+          :thread="entry.thread"
+        />
+        <!-- @todo add new thread card for front page -->
+        <WPCard
+          v-else-if="entry.feedPost"
+          :feed-post="entry.feedPost"
+        />
+        <!-- @todo add new wikichanges card for front page -->
+        <WikiChangesCard v-else-if="entry.key === 'wikiChanges'" />
       </transition>
-    </div>
-  </div>
+    </template>
+  </Column>
 </template>
 
 <script lang="ts">
@@ -32,12 +29,12 @@ import { useThreads } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent } from 'vue'
 import ThreadCard from './threadcard/ThreadCard.vue'
-import WelcomeCard from './WelcomeCard.vue'
 import WikiChangesCard from './WikiChangesCard.vue'
 import { useLoki } from '@/state/feeds'
 import { FeedPost } from '@/state/feeds/loki'
 import { DateTime } from 'luxon'
-import WPCard from './WPCard.vue'
+import WPCard from './LokiCard.vue'
+import Column from '../layout/Column.vue'
 
 interface StreamEntry {
   key: string
@@ -60,7 +57,7 @@ function merge (first:Array<Thread|FeedPost>, second:Array<Thread|FeedPost>): Ar
  */
 export default defineComponent({
   name: 'HomeStream',
-  components: { WelcomeCard, ThreadCard, WikiChangesCard, WPCard },
+  components: { ThreadCard, WikiChangesCard, WPCard, Column },
   setup () {
     const { lastFlowtime } = usePagelog()
     const { anonymousSession } = useAuth()
@@ -96,9 +93,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="sass" scoped>
-div.homeStream
-  max-width: 580px
-  margin: 0 auto
-</style>

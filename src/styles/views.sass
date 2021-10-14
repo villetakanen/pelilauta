@@ -3,22 +3,98 @@
 //
 // Do not include in any components, as these are already imported by base.sass
 
-.singleColumnLayout
-  max-width: calc(30 * 24px + 16px)
-  padding: 0 8px
-  margin: 0 auto
+:root
+  --grid-gap: 24px
 
+@mixin LayoutBase()
+  display: flex
+  flex-direction: column
+  gap: var(--grid-gap)
+  margin: 0 auto
+  padding: 8px 8px
+  section
+    margin: 0
+
+// *** singleColumnLayout ************************************************
+.singleColumnLayout
+  @include LayoutBase()
+
+@include media('>=tablet')
+  .singleColumnLayout
+    width: 720px
+    margin: 0 auto
+
+// *** dashBoardLayout ************************************************
+.dashBoardLayout
+  @include LayoutBase()
+
+@include media('>=desktop')
+  .dashBoardLayout
+    flex-direction: row
+    flex-wrap: wrap
+  .dashBoardLayout > div.column
+    width: calc(100% / 2 - 60px)
+    flex-grow: 0
+    flex-shrink: 0
+
+@include media('>=1400px')
+  .dashBoardLayout > div.column
+    width: calc(100% / 3 - 16px)
+
+// *** emptyLayout ****************************************************
 .emptyLayout
+  @include LayoutBase()
+
+@include media('>=tablet')
+  .emptyLayout
+    display: flex
+    flex-wrap: wrap
+    box-sizing: border-box
+    div.column
+      width: 100%
+
+// *** bookLayout *****************************************************
+.bookLayout
+  @include LayoutBase()
+
+@include media('>=tablet')
+  .bookLayout
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: center
+    align-items: flex-start
+    .column
+      width: 360px
+      flex-shrink: 0
+      flex-grow: 0
+    .double
+      width: 720px
+      flex-shrink: 0
+    .double-cut
+      width: 445px
+      flex-shrink: 0
+    
+
+// *** withSideBarLayout **********************************************
+
+.withSideBarLayout
   padding: 0 8px
   margin: 8px auto
 
-.dashBoardLayout
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  align-items: flex-start
-  .dashboardCard
-    min-width: 30vw
+@include media('>=tablet')
+  .withSideBarLayout
+    padding-left: 310px
+
+// Cleaned
+
+
+// .dashBoardLayout
+//   display: flex
+//   flex-direction: row
+//   flex-wrap: wrap
+//   align-items: flex-start
+//   .dashboardCard
+//     min-width: 30vw
 
 .flexLayout
   display: flex
@@ -36,9 +112,9 @@
     flex-grow: 0
     flex-shrink: 0
 
-@include media('>tablet')
-  .dashBoardLayout
-    .dashboardCard
-      min-width: 520px
-      max-width: 520px
-      width:520px
+// @include media('>tablet')
+//   .dashBoardLayout
+//     .dashboardCard
+//       min-width: 520px
+//       max-width: 520px
+//       width:520px

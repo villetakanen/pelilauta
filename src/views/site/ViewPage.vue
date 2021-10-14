@@ -1,8 +1,8 @@
 <template>
   <div class="viewPage">
-    <SiteToolbar :page="page" />
-    <div class="mekanismiGrid">
-      <div class="mainCard">
+    <PageToolbar :title="page.name" />
+    <div class="bookLayout">
+      <Column class="double">
         <transition name="fade">
           <div v-if="site.name && page.name">
             <div
@@ -16,43 +16,23 @@
             style="margin-bottom: -80px"
           />
         </transition>
-      </div>
-      <Card
-        class="sideCard"
-        :rise="3"
-      >
-        <transition name="fade">
-          <SideBar v-if="site.name" />
-          <Loader
-            v-else
-            poster
-          />
-        </transition>
-        <SiteThreadList
-          v-if="site.name"
-          :siteid="site.id"
-        />
-      </Card>
-      <Icon
-        v-if="false"
-        name="adventurer"
-      />
+      </Column>
+      <SideBar v-if="site.name" />
+      <PageFabs />
     </div>
-    <PageFabs />
   </div>
 </template>
 
 <script lang="ts">
 import { ComputedRef, defineComponent, inject, onMounted, provide, watch } from 'vue'
-import SideBar from '@/components/wikipage/SideBar.vue'
+import SideBar from '@/components/site/SideBar.vue'
 import { fetchPage, usePages, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import PageFabs from '@/components/wikipage/PageFabs.vue'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
 import { renderWikiLinks } from '@/utils/contentFormat'
-import Card from '@/components/layout/Card.vue'
-import SiteThreadList from '@/components/site/threads/SiteThreadList.vue'
-import Icon from '@/components/material/Icon.vue'
+import PageToolbar from '@/components/page/PageToolbar.vue'
+import Column from '@/components/layout/Column.vue'
+import { usePage } from '@/state/pages/usePage'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -60,10 +40,8 @@ export default defineComponent({
     Loader,
     SideBar,
     PageFabs,
-    SiteToolbar,
-    Card,
-    SiteThreadList,
-    Icon
+    PageToolbar,
+    Column
   },
   props: {
     siteid: {
@@ -82,6 +60,7 @@ export default defineComponent({
     onMounted(() => {
       watch(() => props.pageid, (pageid) => {
         fetchPage(pageid)
+        usePage(props.siteid, props.pageid)
       }, { immediate: true })
     })
 

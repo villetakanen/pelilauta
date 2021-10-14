@@ -11,22 +11,31 @@
       </SideNavMenuItem>
 
       <!-- Forum topics start here! *************************************** -->
-      <li class="subtitle">
-        {{ $t('sideNav.toForumLink') }}
-      </li>
+      <template v-if="!showExperimentalTools">
+        <li class="subtitle">
+          {{ $t('sideNav.toForumLink') }}
+        </li>
+        <SideNavMenuItem
+          v-for="stream in streamItems"
+          :key="stream.key"
+          :to="stream.to"
+          :icon="stream.icon"
+          @click="toggleNav"
+        >
+          <div class="streamLink">
+            {{ stream.content }}
+            <div class="count">
+              {{ stream.count }}
+            </div>
+          </div>
+        </SideNavMenuItem>
+      </template>
       <SideNavMenuItem
-        v-for="stream in streamItems"
-        :key="stream.key"
-        :to="stream.to"
-        :icon="stream.icon"
+        icon="discussion"
+        to="/"
         @click="toggleNav"
       >
-        <div class="streamLink">
-          {{ stream.content }}
-          <div class="count">
-            {{ stream.count }}
-          </div>
-        </div>
+        {{ $t('app.title') }}
       </SideNavMenuItem>
 
       <!-- Site listing starts here! ************************************** -->
@@ -42,14 +51,14 @@
       </SideNavMenuItem>
       <SideNavMenuItem
         icon="d20"
-        to="/mekanismi/view/mekanismi/mekanismi"
+        to="/site/mekanismi"
         @click="toggleNav"
       >
         Wiki
       </SideNavMenuItem>
       <SideNavMenuItem
         icon="homebrew-logo"
-        to="/mekanismi/view/arkku/arkku"
+        to="/site/arkku"
         @click="toggleNav"
       >
         Arkku
@@ -83,8 +92,16 @@
         {{ $t('admin.title') }}
       </SideNavMenuItem>
       <SideNavMenuItem
+        v-if="showExperimentalTools"
+        icon="pelilauta"
+        to="/stylebook"
+        @click="toggleNav"
+      >
+        Stylebook
+      </SideNavMenuItem>
+      <SideNavMenuItem
         icon="about"
-        to="/mekanismi/view/mekanismi/pelilauta-about"
+        to="/site/mekanismi/page/pelilauta-about"
         @click="toggleNav"
       >
         {{ $t('sideNav.about') }}
@@ -104,7 +121,7 @@ export default defineComponent({
   name: 'SideNavMenu',
   components: { SideNavMenuItem },
   setup () {
-    const { showMemberTools, showAdminTools, user } = useAuth()
+    const { showMemberTools, showAdminTools, user, showExperimentalTools } = useAuth()
     const { streams } = useMeta()
 
     const streamItems = computed(() => {
@@ -127,7 +144,7 @@ export default defineComponent({
       if (window.innerWidth < 768) toggleNav()
       router.push(to)
     }
-    return { routeTo, streamItems, showMemberTools, toggleNav, showAdminTools, user }
+    return { routeTo, streamItems, showMemberTools, toggleNav, showAdminTools, user, showExperimentalTools }
   }
 })
 </script>
@@ -193,8 +210,8 @@ export default defineComponent({
         background-color: var(--chroma-primary-e)
         color: var(--chroma-clear)
     &.subtitle
-      color: var(--color-b-f)
-      border-bottom: solid 1px var(--color-b-h)
+      color: var(--chroma-secondary-d)
+      border-bottom: solid 1px var(--chroma-secondary-g)
       margin: 0 16px
       padding-left: 8px
       &:hover

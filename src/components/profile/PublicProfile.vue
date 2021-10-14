@@ -1,5 +1,5 @@
 <template>
-  <Card class="publicProfile">
+  <Column class="publicProfile">
     <h3>{{ $t('profile.publicInfoTitle') }}</h3>
     <p>{{ $t('profile.publicInfoHelper') }}</p>
     <div class="profileForm">
@@ -7,12 +7,12 @@
         <AvatarTool />
       </div>
       <div class="profileFields">
-        <TextField
+        <Textfield
           v-model="v.nickname.$model"
           :label="$t('profile.nick')"
           :error="v.nickname.$error"
         />
-        <TextField
+        <Textfield
           v-model="v.tagline.$model"
           :label="$t('profile.tagline')"
           :error="v.tagline.$error"
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-  </Card>
+  </Column>
 </template>
 
 <script lang="ts">
@@ -38,19 +38,19 @@ import { required } from '@vuelidate/validators'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useProfile } from '@/state/authz'
 import { useAuthors } from '@/state/authors'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
 import AvatarTool from './AvatarTool.vue'
-import Card from '../layout/Card.vue'
+import Column from '../layout/Column.vue'
 
 export default defineComponent({
   name: 'PublicProfileInfoCard',
   components: {
     MaterialButton,
-    TextField,
+    Textfield,
     AvatarTool,
-    Card
+    Column
   },
   setup () {
     const { profile, updateProfile } = useProfile()

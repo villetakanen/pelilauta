@@ -1,11 +1,11 @@
 <template>
-  <Toolbar>
-    <h3 class="clipWithEllipsis">
+  <Header>
+    <ViewTitle>
       <router-link :to="`/profile`">
         {{ profile.nick }}
       </router-link>
-    </h3>
-    <div class="spacer" />
+    </ViewTitle>
+    <SpacerDiv />
     <Action
       :to="'/u/' + user.uid"
       prepend="stats"
@@ -22,19 +22,21 @@
       to="mekanismi.profile.sites"
       prepend="books"
     >
-      <span class="hideOnMobile">{{ $t('wiki.mySites') }}</span>
+      <span class="hideOnMobile">{{ $t('sideNav.toMySitesLink') }}</span>
     </Action>
-  </Toolbar>
+  </Header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
 import { useAuth, useProfile } from '@/state/authz'
+import Header from '../layout/Header.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
+import ViewTitle from '../layout/ViewTitle.vue'
 
 export default defineComponent({
-  components: { Toolbar, Action },
+  components: { Action, Header, SpacerDiv, ViewTitle },
   setup () {
     const { user } = useAuth()
     const { profile, profileMeta } = useProfile()

@@ -72,12 +72,16 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/layout.sass
 
+.withSite
+  .loveAThreadAction
+    background-color: var(--chroma-secondary-h)
+
 .loveAThreadAction
   position: relative
   padding: 0 12px
   padding-right: 28px
   cursor: default
-  background-color: #{'rgba(var(--chroma-primary-c-rgba), 0.11)'}
+  background-color: var(--chroma-secondary-i)
   border-radius: 12px
   .baseImage
     opacity: 0.4

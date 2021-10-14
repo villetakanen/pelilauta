@@ -1,4 +1,5 @@
 @import include-media.scss
+@import material-typography.sass
   
 @mixin Spacing()
   margin: 0
@@ -45,4 +46,23 @@
   -moz-hyphens: auto
   -webkit-hyphens: auto
   hyphens: auto
-  
+
+section#mainHeader
+  margin: 0
+  padding: 0
+  h3
+    @include TypeHeadline5()
+    color: var(--chroma-secondary-d)
+    line-height: 48px
+    margin: 0
+    padding: 0
+
+.column
+  section+section
+    margin-top: 12px
+
+section.card
+  h1, h2
+    @include TypeHeadline5()
+    &:first-child
+      margin-top: 0

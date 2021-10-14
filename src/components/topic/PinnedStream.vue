@@ -1,21 +1,23 @@
 <template>
-  <div class="pinnedStream">
+  <Column class="pinnedStream">
     <PinnedThreadCard
       v-for="thread in pinnedThreads"
       :key="thread.id"
       :thread="thread"
     />
-  </div>
+  </Column>
 </template>
 
 <script lang="ts">
 import { useThreads } from '@/state/threads'
 import { defineComponent } from 'vue'
+import Column from '../layout/Column.vue'
 import PinnedThreadCard from './PinnedThreadCard.vue'
 
 export default defineComponent({
   components: {
-    PinnedThreadCard
+    PinnedThreadCard,
+    Column
   },
   setup () {
     const { pinnedThreads } = useThreads()
@@ -24,3 +26,11 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.pinnedStream
+  display: flex
+  flex-direction: column
+  gap: 8px
+  padding: 8px
+</style>

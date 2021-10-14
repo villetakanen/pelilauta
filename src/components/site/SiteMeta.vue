@@ -1,16 +1,20 @@
 <template>
-  <Card>
-    <h2>{{ $t('mekanismi.site.meta') }}</h2>
-    <div>
-      <TextField
+  <Column>
+    <h1 class="title">
+      {{ $t('mekanismi.site.meta') }}
+    </h1>
+    <p>
+      <Textfield
         v-model="siteName"
         :label="$t('mekanismi.site.name')"
       />
-      <TextField
+      <Textfield
         v-model="siteDescription"
         :label="$t('mekanismi.site.description')"
       />
-      <MaterialSelect
+    </p>
+    <div>
+      <Select
         v-model="badge"
         :opts="badges"
         name="systemBadge"
@@ -39,22 +43,30 @@
         {{ $t('action.save') }}
       </MaterialButton>
     </div>
-  </Card>
+  </Column>
 </template>
 
 <script lang="ts">
 import { useAuth } from '@/state/authz'
 import { Site, SiteData, updateSite } from '@/state/site'
 import { computed, ComputedRef, defineComponent, inject, Ref, ref } from 'vue'
-import Card from '../layout/Card.vue'
+import Select from '../form/Select.vue'
+import Column from '../layout/Column.vue'
 import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import MaterialSelect from '../material/MaterialSelect.vue'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton, MaterialSelect, Icon, Toggle, Card },
+  name: 'SiteMeta',
+  components: {
+    Textfield,
+    MaterialButton,
+    Icon,
+    Toggle,
+    Column,
+    Select
+  },
   setup () {
     const site = inject('site') as ComputedRef<Site>
     const localName = ref('')
@@ -89,15 +101,15 @@ export default defineComponent({
       data.usePlayers = siteFeatures.value.players
       updateSite(data)
     }
-    const badges = [
-      { key: 'dd', value: 'Dungeons and Dragons 5e' },
-      { key: 'quick', value: 'The Quick' },
-      { key: 'homebrew', value: 'Homebrew' },
-      { key: 'ptba', value: 'Powered by the Apocalypse' },
-      { key: 'pathfinder', value: 'Pathfinder' }
-    ]
+    const badges = new Map([
+      ['dd', 'Dungeons and Dragons 5e'],
+      ['quick', 'The Quick'],
+      ['homebrew', 'Homebrew'],
+      ['ptba', 'Powered by the Apocalypse'],
+      ['pathfinder', 'Pathfinder']
+    ])
     const { showAdminTools } = useAuth()
-    if (showAdminTools.value) badges.push({ key: 'mekanismi', value: 'Mekanismi' })
+    if (showAdminTools.value) badges.set('mekanismi', 'Mekanismi')
     return { site, siteName, siteDescription, update, badges, badge, siteVisible, siteFeatures }
   }
 })

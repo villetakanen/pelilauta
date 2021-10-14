@@ -1,19 +1,15 @@
 <template>
   <!-- The top navigation bar: contains search field, menu button, and search button. Maybe profile icon too. -->
   <AppBar />
-  <div id="AppBarSubmenu" />
   <!-- The side navigation drawer, with mobile and desktop modes distinctively -->
   <FrozenBar v-if="frozen" />
 
-  <!-- App Content wrapper -->
-  <div id="appContent">
-    <SideNav v-model="navModel" />
-    <main>
-      <router-view />
-    </main>
-  </div>
-  <MainTailer />
+  <SideNav v-model="navModel" />
 
+  <div id="appContentContainer">
+    <router-view />
+    <MainTailer />
+  </div>
   <!-- Fixed floating components -->
   <BottomFloatContainer>
     <template #left>
@@ -114,19 +110,18 @@ export default defineComponent({
 <style lang="sass">
 @import styles/base.sass
 
-#appContent
-  display: flex
-  background-color: white
-  padding-bottom: 24px
-  main
-    width: calc(100vw - 310px)
-    flex-shrink: 0
-    margin: 0
-    min-height: 800px
+#appContentContainer
+  margin: 0
+  padding: 0
+  background-color: var(--chroma-clear)
+  position: relative
+  min-height: calc(100vh - 228px)
+  padding-bottom: 160px
 
-@include media('<tablet')
-  #appContent
-    display: block
-    main
-      width: 100vw
+@include media('>=tablet')
+  #appContentContainer
+    width: calc(100vw - 310px)
+    padding-left: 310px
+    min-height: calc(100vh - 228px)
+
 </style>

@@ -70,7 +70,8 @@ export default defineComponent({
     const router = useRouter()
 
     const active = computed(() => {
-      return (props.to && route.name === router.resolve(props.to).name)
+      const resolvedRoute = router.resolve(props.to)
+      return (props.to && route.name === resolvedRoute.name && !resolvedRoute.params)
     })
 
     const clicked = () => {

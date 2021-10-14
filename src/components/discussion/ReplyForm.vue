@@ -6,6 +6,7 @@
       class="reply-form"
     >
       <AddImageReplyAction
+        v-if="!reply"
         class="addAnImage"
         @uploaded="addImageToEditor($event)"
       />
@@ -69,7 +70,6 @@ export default defineComponent({
     const { user, showMemberTools } = useAuth()
     const reply = ref('')
     const sending = ref(false)
-    const addImageDialog = ref(true)
     const mentions = ref(new Set<string>())
 
     const send = async () => {
@@ -86,6 +86,7 @@ export default defineComponent({
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const addImageToEditor = (a: any) => {
+      console.debug('addImageToEditor', a)
       imageToEditor.value = a
     }
 
@@ -100,7 +101,7 @@ export default defineComponent({
     const quotedContent = inject('quotedContent') as Ref<Quote>
     provide('quotedContent', quotedContent)
 
-    return { reply, send, showMemberTools, quotedContent, sending, addImageDialog, addImageToEditor, mentions, mention }
+    return { reply, send, showMemberTools, quotedContent, sending, addImageToEditor, mentions, mention }
   }
 })
 </script>

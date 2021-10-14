@@ -1,26 +1,45 @@
 <template>
-  <Card class="profileActions">
-    <h3>{{ $t('profile.actions.title') }}</h3>
+  <Column class="profileActions">
+    <h1 class="title">
+      {{ $t('profile.actions.title') }}
+    </h1>
     <p>{{ $t('profile.actions.helper') }}</p>
-    <div>
-      {{ $t('profile.actions.selectLang') }}
-      <MaterialSelect
+
+    <p>
+      <Select
         v-model="selectedLang"
+        name="selectLanguage"
+        :label="$t('profile.actions.selectLang')"
         :opts="langs"
       />
-    </div>
-    <MaterialButton
-      :action="stampAllSeen"
-    >
-      {{ $t('action.markAllRead') }}
-    </MaterialButton>
-    <div class="toolbar">
+    </p>
+
+    <p>
+      <Toggle
+        v-model="showExperimentalTools"
+        :label="$t('profile.actions.useExperimental')"
+      />
+    </p>
+
+    <div>
+      <h1 class="title">
+        {{ $t('profile.actions.actions') }}
+      </h1>
+      <MaterialButton
+        text
+        :action="stampAllSeen"
+      >
+        {{ $t('action.markAllRead') }}
+      </MaterialButton>
+      <br>
+
       <MaterialButton
         text
         @click="forgetMeDialog = true"
       >
         {{ $t('action.forgetMe') }}
       </MaterialButton>
+      <br>
 
       <div class="spacer" />
       <MaterialButton
@@ -31,7 +50,7 @@
       </MaterialButton>
     </div>
     <Dialog v-model="forgetMeDialog">
-      <Card>
+      <div>
         <h3>{{ $t('action.delete') }}</h3>
         <p>{{ $t('profile.deleteWarning') }}</p>
         <TextField
@@ -51,67 +70,64 @@
             {{ $t('action.cancel') }}
           </MaterialButton>
         </div>
-      </Card>
+      </div>
     </Dialog>
-  </Card>
+  </Column>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
 import { useAuth, useProfile } from '@/state/authz'
-import MaterialSelect from '../material/MaterialSelect.vue'
 import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
-import Card from '../layout/Card.vue'
+import Column from '../layout/Column.vue'
 import { getAuth } from '@firebase/auth'
 import Dialog from '../material/Dialog.vue'
 import TextField from '../material/TextField.vue'
-
+import Select from '../form/Select.vue'
+import Toggle from '../material/Toggle.vue'
 export default defineComponent({
   name: 'ProfileActions',
   components: {
     MaterialButton,
-    MaterialSelect,
-    Card,
+    Column,
     Dialog,
-    TextField
+    TextField,
+    Select,
+    Toggle
   },
   setup () {
     const i18n = useI18n()
     const router = useRouter()
-
     const logout = () => {
       getAuth().signOut().then(() => {
         router.push('/')
       })
     }
-
     function stampAllSeen () {
       const { markAllThreadsRead } = useProfile()
       markAllThreadsRead()
     }
-
-    const langs = [
-      { key: 'fi', value: i18n.t('language.fi') },
-      { key: 'en', value: i18n.t('language.en') }
-    ]
-
+    const langs = computed(() => {
+      const l = new Map<string, string>()
+      l.set('fi', i18n.t('language.fi'))
+      l.set('en', i18n.t('language.en'))
+      return l
+    })
     const { profileMeta, switchLang } = useProfile()
     const selectedLang = ref(profileMeta.value.pelilautaLang || 'fi')
     const { pushSnack } = useSnack()
-
     watch(selectedLang, (currentValue) => {
       switchLang(currentValue).then(() => {
         pushSnack(i18n.t('snacks.languageUpdate') + ' ' + i18n.t('language.' + currentValue))
       })
     })
-
+    const { showExperimentalTools } = useAuth()
     // Forget me functionality
     const forgetMeDialog = ref(false)
     const forgetMeConfirm = ref('')
-
     async function forgetMe () {
       forgetMeDialog.value = false
       forgetMeConfirm.value = ''
@@ -121,8 +137,7 @@ export default defineComponent({
       pushSnack(i18n.t('profile.deleteCompleteSnackMessage'))
       router.push('/')
     }
-
-    return { logout, stampAllSeen, langs, selectedLang, forgetMeDialog, forgetMeConfirm, forgetMe }
+    return { logout, stampAllSeen, langs, selectedLang, forgetMeDialog, forgetMeConfirm, forgetMe, showExperimentalTools }
   }
 })
 </script>

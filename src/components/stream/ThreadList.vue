@@ -1,10 +1,9 @@
 <template>
-  <div class="stream">
+  <Column class="streamTopic double">
     <ThreadCard
       v-for="thread in localThreads"
       :key="thread.id"
       :thread="thread"
-      small
     />
     <MaterialButton
       text
@@ -13,7 +12,7 @@
     >
       {{ $t('action.nextPage') }}
     </MaterialButton>
-  </div>
+  </Column>
 </template>
 
 <script lang="ts">
@@ -23,12 +22,14 @@ import { Thread } from '@/utils/firestoreInterfaces'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import ThreadCard from '@/components/home/threadcard/ThreadCard.vue'
 import { collection, getDocs, getFirestore, limit, orderBy, query, QueryDocumentSnapshot, startAfter, where } from '@firebase/firestore'
+import Column from '../layout/Column.vue'
 
 export default defineComponent({
   name: 'Threadlist',
   components: {
     MaterialButton,
-    ThreadCard
+    ThreadCard,
+    Column
   },
   props: {
     topic: {
@@ -87,4 +88,9 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+.streamTopic
+  display: flex
+  flex-direction: column
+  gap: 8px
+  padding: 8px
 </style>

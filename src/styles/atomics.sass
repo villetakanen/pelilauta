@@ -43,7 +43,43 @@
   hyphenate-limit-last: always
   hyphenate-limit-zone: 8%
 
-// *** Visual helpers *********************************************************
+// *** Color Atomics **************************************************
+@mixin highEmphasis()
+  color: var(--color-a-a) // #002237 in the default color scheme
+
+.highEmphasis 
+  @include highEmphasis()
+
+@mixin mediumEmphasis()
+  color: var(--color-a-c)
+
+.mediumEmphasis 
+  @include mediumEmphasis()
+
+@mixin lowEmphasis()
+  color: var(--color-a-f)
+
+.lowEmphasis 
+  @include lowEmphasis()
+
+
+// *** Grids **********************************************************
+
+.grid-of-two
+  display: flex
+  flex-wrap: wrap
+  gap: 16px
+
+@include media('>=tablet')
+  .grid-of-two
+    display: grid
+    grid-template-rows: auto auto
+
+// *** Visual helpers *************************************************
+
+.clipWithEllipsis
+  overflow: hidden
+  text-overflow: ellipsis
 
 // Actions and buttons that can be "active" and need hover on focus
 .chromaFocus
@@ -79,7 +115,33 @@ h1.title
   .hideOnMobile
     display: none !important
 
-@include media('>tablet')
+@include media('>=tablet')
   .onlyForMobile
     display: none !important
 
+// Image framing
+div.frame
+  background-color: var(--chroma-secondary-h)
+  text-align: center
+  &.right-of-text
+    width: 33%
+    float: right
+    margin-left: 8px
+    box-sizing: border-box
+    padding: 4px
+    img
+      width: 100%
+      margin: 0
+      padding: 0
+
+//boxes
+div.warning
+  background-color: var(--chroma-alert-field-tint)
+  color: var(--chroma-alert)
+  padding: 16px
+  border-radius: 12px 0 12px 0
+  margin: 16px
+  p.TypeBody2
+    color: var(--chroma-alert)
+    padding:0
+    margin: 0

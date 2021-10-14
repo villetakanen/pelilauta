@@ -1,0 +1,46 @@
+@mixin FormField()
+  background-color: var(--chroma-secondary-i)
+  border-bottom: solid 1px var(--chroma-secondary-f)
+  label
+    @include TypeCaption()
+    margin: 0
+    padding: 0
+    position: absolute
+    top: 4px
+    left: 8px
+    color: var(--chroma-secondary-e)
+    pointer-events: none
+  &:hover, &:focus
+    background-color: var(--chroma-secondary-h)
+    border-bottom: solid 1px var(--chroma-secondary-d)
+    label
+      color: var(--chroma-secondary-d)
+  &.error
+    border-bottom: solid 1px var(--chroma-alert)
+    background-color: var(--chroma-alert-field-tint)
+    label
+      color: var(--chroma-alert)
+
+@mixin FormFieldOnDark()
+  background: var(--chroma-secondary-a)
+  border-bottom: solid 1px var(--chroma-secondary-d)
+  input
+    color: var(--chroma-secondary-h)
+  label
+    @include TypeCaption()
+    margin: 0
+    padding: 0
+    position: absolute
+    top: 4px
+    left: 8px
+    color: var(--chroma-secondary-e)
+    pointer-events: none
+  &:hover, &:focus
+    border-bottom: solid 1px var(--chroma-secondary-g)
+    label
+      color: var(--chroma-secondary-d)
+  &.error
+    border-bottom: solid 1px var(--chroma-alert)
+    background-color: var(--chroma-alert-field-tint)
+    label
+      color: var(--chroma-alert)

@@ -1,18 +1,15 @@
 <template>
-  <div class="profileAssetList">
-    <h3>{{ $t('profile.asset.list.title') }}</h3>
-    <div class="assetList">
-      <ProfileAssetItem
-        v-for="asset, key in assets"
-        :key="key"
-        :asset="asset[1]"
-      />
-    </div>
-  </div>
+  <main class="profileAssetList flexLayout">
+    <ProfileAssetItem
+      v-for="asset in assets"
+      :id="asset[0]"
+      :key="asset[0]"
+    />
+  </main>
 </template>
 
 <script lang="ts">
-import { useAssets } from '@/state/authz'
+import { useAssets } from '@/state/assets'
 import { defineComponent } from 'vue'
 import ProfileAssetItem from './ProfileAssetItem.vue'
 
@@ -21,6 +18,7 @@ export default defineComponent({
   components: { ProfileAssetItem },
   setup () {
     const { assets } = useAssets()
+    console.log(assets.value)
     return { assets }
   }
 })

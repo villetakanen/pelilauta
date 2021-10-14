@@ -3,15 +3,15 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#004D62;}
+	.st0{fill:#002337;}
 	.st1{fill:url(#SVGID_1_);}
 </style>
 <g>
 	<polygon class="st0" points="14.4,177.2 42.8,226.4 156.4,29.6 99.6,29.6 	"/>
 	
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="227.961" y1="58.8585" x2="137.6157" y2="207.7731" gradientTransform="matrix(1 0 0 -1 0 258)">
-		<stop  offset="6.341360e-02" style="stop-color:#004D62"/>
-		<stop  offset="1" style="stop-color:#004D62;stop-opacity:0"/>
+		<stop  offset="6.341360e-02" style="stop-color:#002337"/>
+		<stop  offset="1" style="stop-color:#002337;stop-opacity:0"/>
 	</linearGradient>
 	<path class="st1" d="M213.2,226.4c1.8-3.1,28.4-49.2,28.4-49.2L156.4,29.6L128,78.8L213.2,226.4z"/>
 	<polygon class="st0" points="157.2,178.6 184.8,226.4 71.2,226.4 99.6,177.2 	"/>

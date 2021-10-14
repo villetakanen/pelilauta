@@ -8,7 +8,7 @@
       {{ $t('action.addAttachment') }}
     </MaterialButton>
     <Dialog v-model="attachDialog">
-      <MaterialCard class="dialogCard">
+      <div>
         <h1>Skeleton for file upload card</h1>
         <ImageUploader
           :target="`/${site.id}`"
@@ -19,7 +19,7 @@
           <MaterialButton>{{ $t('action.cancel') }}</MaterialButton>
           <MaterialButton>{{ $t('action.ok') }}</MaterialButton>
         </div>
-      </MaterialCard>
+      </div>
     </Dialog>
   </div>
 </template>
@@ -32,14 +32,12 @@ import { computed, ComputedRef, defineComponent, inject, ref } from 'vue'
 import ImageUploader from '../images/ImageUploader.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import MaterialCard from '../material/MaterialCard.vue'
 
 export default defineComponent({
   name: 'AttachFileButton',
   components: {
     MaterialButton,
     Dialog,
-    MaterialCard,
     ImageUploader
   },
   setup () {

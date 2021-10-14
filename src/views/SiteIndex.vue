@@ -1,8 +1,11 @@
 <template>
   <div class="wikiIndex">
     <SiteListToolbar v-model:filterTag="filter" />
-    <div class="emptyLayout">
+    <div class="bookLayout">
       <SiteList :filter="filter" />
+      <Column>
+        <CreateASiteAd />
+      </Column>
     </div>
   </div>
 </template>
@@ -11,19 +14,20 @@
 import { defineComponent, ref } from 'vue'
 import SiteList from '@/components/sites/SiteList.vue'
 import SiteListToolbar from '@/components/sites/SiteListToolbar.vue'
+import CreateASiteAd from '@/components/home/cta/CreateASiteAd.vue'
+import Column from '@/components/layout/Column.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
     SiteList,
-    SiteListToolbar
+    SiteListToolbar,
+    CreateASiteAd,
+    Column
   },
   setup () {
     const filter = ref('')
-    function setFilter (val:string) {
-      filter.value = val
-    }
-    return { filter, setFilter }
+    return { filter }
   }
 })
 </script>

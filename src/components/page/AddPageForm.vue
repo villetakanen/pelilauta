@@ -1,61 +1,71 @@
 <template>
   <div class="addPageForm">
-    <h3>{{ $t('site.actions.addPage') }}</h3>
-    <TextField
+    <Textfield
       id="addPageCardPageNameField"
       v-model="v.pageName.$model"
       :label="$t('site.page.title')"
       :error="v.pageName.$error"
     />
-    <p>{{ $t('site.page.adress') }}: <span class="mockURL">{{ address }}</span></p>
+    <RichTextEditor
+      v-model:content="pageContent"
+      style="margin-top: 8px"
+    />
     <div class="toolbar">
       <div class="spacer" />
-      <MaterialButton
+      <Button
         text
-        :action="cancel"
+        @click="cancel"
       >
         {{ $t('action.cancel') }}
-      </MaterialButton>
-      <MaterialButton
+      </Button>
+      <Button
         id="addPageCardCreateButton"
         :disabled="v.pageName.$error || !v.pageName.$dirty"
-        :async-action="add"
+        @click="add"
       >
         {{ $t('action.add') }}
-      </MaterialButton>
+      </Button>
+    </div>
+    <div
+      v-if="showAdminTools"
+      class="debug"
+    >
+      <p class="TypeCaption">
+        Site
+      </p>
+      {{ site }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { addPage, usePages, useSite } from '@/state/site'
-import { computed, defineComponent, ref } from 'vue'
+import { usePages, useSite } from '@/state/site'
+import { defineComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import MaterialButton from '../material/MaterialButton.vue'
-import TextField from '../material/TextField.vue'
+import Textfield from '@/components/form/Textfield.vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import { toMekanismiURI } from '@/utils/contentFormat'
-import { useSnack } from '@/composables/useSnack'
-import { useI18n } from 'vue-i18n'
 import { useAuth } from '@/state/authz'
+import Button from '@/components/form/Button.vue'
+import { Page, createPage } from '@/state/pages/usePage'
+import RichTextEditor from '@/components/quill/RichTextEditor.vue'
 
 export default defineComponent({
   name: 'AddPageForm',
   components: {
-    TextField,
-    MaterialButton
+    Textfield,
+    Button,
+    RichTextEditor
   },
   setup () {
+    const { showAdminTools } = useAuth()
     const { site } = useSite()
     const { pages } = usePages()
     const router = useRouter()
-    const pageName = ref('')
-    const i18n = useI18n()
 
-    const address = computed(() => {
-      return `${window.location.hostname}/mekanismi/view/${site.value.id}/`
-    })
+    const pageName = ref('')
+    const pageContent = ref('')
 
     function cancel () {
       router.back()
@@ -72,20 +82,18 @@ export default defineComponent({
       pageName: { required, notUsed }
     }
     const v = useVuelidate(rules, { pageName })
-    const { pushSnack } = useSnack()
 
-    // Save the page
-    const { user } = useAuth()
     async function add () {
-      if (v.value.$errors.length > 0) {
-        pushSnack(i18n.t('sites.pages.canNoAddError'))
-        return
-      }
-      await addPage(user.value.uid, site.value.id, pageName.value)
-      router.push(`/mekanismi/view/${site.value.id}/${toMekanismiURI(pageName.value)}`)
+      const page = new Page()
+
+      page.name = pageName.value
+      page.htmlContent = pageContent.value
+      const slug = await createPage(page)
+
+      router.push(`/mekanismi/view/${site.value.id}/${slug}`)
     }
 
-    return { address, cancel, v, add }
+    return { cancel, v, add, showAdminTools, site, pageContent }
   }
 })
 </script>

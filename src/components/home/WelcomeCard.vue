@@ -1,5 +1,5 @@
 <template>
-  <Card class="welcomeCard">
+  <section class="welcomeCard">
     <img
       class="logo"
       alt="Pelilauta"
@@ -20,46 +20,50 @@
       >
         {{ $t('action.login') }}
       </Action>
+      <div class="spacer" />
     </div>
-  </Card>
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Card from '../layout/Card.vue'
 import Action from '../material/Action.vue'
 /**
  * A simple welcome card for anonymous visitors
  */
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Action, Card }
+  components: { Action }
 })
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
+@import @/styles/include-media.scss
 
 .welcomeCard
-  display: block
-  // background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-b) 100%)
-  background: linear-gradient(-42deg, var(--chroma-primary-a) 0%, var(--chroma-primary-d) 100%)
+  background: linear-gradient(-42deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-d) 100%)
   position: relative
+  padding: 24px
+  margin: -8px
+  margin-bottom: -12px
   img.logo
     position: absolute
-    top: 16px
+    top: 64px
     left: 8px
     height: 72px
     width: 72px
   h1
     @include TypeCardHeadline()
     color: var(--chroma-clear)
-    margin-left: 72px
   p
     @include TypeBody2()
     margin-left: 72px
     color: var(--chroma-clear)
     opacity: 0.72
+
+@include media('>=tablet')
+  .welcomeCard
+    margin: 0
 
 </style>

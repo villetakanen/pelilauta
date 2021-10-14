@@ -1,5 +1,5 @@
 <template>
-  <Card class="emailLoginForm">
+  <section class="emailLoginForm dark">
     <div
       v-if="verify"
       class="verifyWarning"
@@ -7,39 +7,50 @@
       {{ $t('login.verifyEmailLoginMessage') }}
     </div>
     <div v-else>
-      <h1 class="title">
-        {{ $t('login.emailLoginMessage') }}
-      </h1>
+      <h3>
+        {{ $t('login.emailLoginTitle') }}
+      </h3>
+      <p>
+        {{ $t('login.emailLoginInfo') }}
+      </p>
     </div>
-    <div>
-      <TextField
+    <p>
+      <Textfield
         v-model="emailAdress"
         :disabled="sending"
         :label="$t('login.emailLoginHelper')"
+        dark
       />
-      <div class="toolbar">
-        <div class="spacer" />
-        <MaterialButton :async-action="sendLinkToEmail">
-          {{ $t('login.withEmail') }}
-        </MaterialButton>
-      </div>
+    </p>
+    <div class="toolbar">
+      <div class="spacer" />
+      <Button
+        dark
+        :disabled="!emailAdress"
+        @click="sendLinkToEmail"
+      >
+        {{ $t('login.withEmail') }}
+      </Button>
+      <div class="spacer" />
     </div>
-  </Card>
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import MaterialButton from '../material/MaterialButton.vue'
-import TextField from '../material/TextField.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
-import Card from '../layout/Card.vue'
 import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from '@firebase/auth'
+import Button from '../form/Button.vue'
+import Textfield from '../form/Textfield.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton, Card },
+  components: {
+    Button,
+    Textfield
+  },
   setup () {
     const emailAdress = ref('')
     const verify = isSignInWithEmailLink(getAuth(), window.location.href)
@@ -50,7 +61,7 @@ export default defineComponent({
 
     onMounted(() => {
       const { anonymousSession } = useAuth()
-      if (!anonymousSession.value) router.push('/profile')
+      if (!anonymousSession.value) router.push('/')
     })
 
     const singInWithEmail = () => {
@@ -107,3 +118,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.emailLoginForm
+  box-sizing: border-box
+  padding: 16px
+  background: linear-gradient(-42deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-d) 100%)
+</style>

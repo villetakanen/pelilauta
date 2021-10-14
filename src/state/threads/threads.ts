@@ -119,6 +119,7 @@ async function fetchTopic (topic: string) {
   }
 }
 
+let activeSiteID = ''
 const localSiteThreads = ref(new Array<Thread>())
 const siteThreads = computed(() => (localSiteThreads.value))
 
@@ -127,14 +128,15 @@ const siteThreads = computed(() => (localSiteThreads.value))
  *
  * @param siteid slug of a site
  */
-export async function fetchSite (siteid: string): Promise<void> {
-  // console.debug('fetchSite', siteid)
+async function fetchSiteThreads (siteid: string): Promise<void> {
+  if (siteid === activeSiteID) return
+  activeSiteID = siteid
+  localSiteThreads.value = new Array<Thread>()
   const db = getFirestore()
   const q = query(collection(db, 'stream'), where('site', '==', siteid), orderBy('flowTime', 'desc'))
   try {
     const siteDocs = await getDocs(q)
     // console.debug('fetchSite', siteDocs, siteid)
-    localSiteThreads.value = new Array<Thread>()
     siteDocs.forEach((siteDocs) => {
       localSiteThreads.value.push(toThread(siteDocs.id, siteDocs.data()))
     })
@@ -143,15 +145,20 @@ export async function fetchSite (siteid: string): Promise<void> {
   }
 }
 
-async function createThread (data:PostData): Promise<string> {
+export interface ThreadMeta {
+  site?: string
+}
+
+async function createThread (data:PostData, meta?:ThreadMeta): Promise<string> {
   const { user } = useAuth()
-  logEvent(getAnalytics(), 'createThread', { author: user.value.uid })
+  logEvent(getAnalytics(), 'createThread', { author: user.value.uid, ...data, ...meta })
   const db = getFirestore()
   return addDoc(collection(db, 'stream'), {
     author: user.value.uid,
     ...data,
     created: serverTimestamp(),
-    flowTime: serverTimestamp()
+    flowTime: serverTimestamp(),
+    ...meta
   }).then((d) => {
     return d.id
   })
@@ -243,10 +250,11 @@ export function useThreads (topic?:string): {
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread>
+    fetchSiteThreads: (id:string) => Promise<void>
     subscribeThread: (id?: string | undefined) => void
-    createThread: (data:PostData) => Promise<string>
+    createThread: (data:PostData, meta?:ThreadMeta) => Promise<string>
     updateThread: (threadid:string, data:PostData) => Promise<void>} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread }
+  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread, fetchSiteThreads }
 }

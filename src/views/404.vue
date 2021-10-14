@@ -1,8 +1,10 @@
 <template>
   <div class="errorView">
-    <Toolbar>
-      <h3>{{ $t('errorPage.notFound') }}</h3>
-    </Toolbar>
+    <Header>
+      <ViewTitle icon="lightbulb">
+        {{ $t('errorPage.notFound') }}
+      </ViewTitle>
+    </Header>
     <MaterialCard class="errorCard">
       <h1>:/</h1>
       <p>{{ $t('errorPage.message') }}</p>
@@ -21,7 +23,9 @@
 </template>
 
 <script lang="ts">
+import Header from '@/components/layout/Header.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
+import ViewTitle from '@/components/layout/ViewTitle.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
@@ -29,7 +33,7 @@ import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
   name: '404',
-  components: { Toolbar, MaterialCard, MaterialButton },
+  components: { Toolbar, MaterialCard, MaterialButton, Header, ViewTitle },
   setup () {
     const a = getAnalytics()
     onMounted(() => { logEvent(a, 'PageView', { name: '404' }) })

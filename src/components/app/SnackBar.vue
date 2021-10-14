@@ -12,15 +12,15 @@
           {{ message.message }}
           {{ message.code }}
 
-          <MaterialButton
+          <Button
             v-if="message.action"
             id="snackAction"
-            :action="snackAction"
             dark
             text
+            @click="snackAction"
           >
             {{ message.actionMessage || 'X' }}
-          </MaterialButton>
+          </Button>
         </p>
       </div>
     </transition>
@@ -31,11 +31,11 @@
 import { defineComponent, watch, ref, Ref } from 'vue'
 import { useSnack } from '@/composables/useSnack'
 import { SnackMessage } from '@/composables/useSnack/useSnack'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import Button from '../form/Button.vue'
 
 export default defineComponent({
   components: {
-    MaterialButton
+    Button
   },
   setup () {
     const { popSnack, snackMessages, snackStackLength } = useSnack()

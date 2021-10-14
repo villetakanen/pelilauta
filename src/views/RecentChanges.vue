@@ -1,9 +1,13 @@
 <template>
   <div class="recentChanges">
     <SiteListToolbar />
-    <div class="singleColumnLayout">
-      <RecentChangesCard />
-    </div>
+    <h1
+      class="title"
+      style="margin: 0 8px"
+    >
+      {{ $t('site.recentChanges') }}
+    </h1>
+    <RecentChangesList />
     <teleport to="#ScreenBottomFloatRight">
       <ToTopFab style="margin-right:8px" />
     </teleport>
@@ -13,13 +17,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import SiteListToolbar from '@/components/sites/SiteListToolbar.vue'
-import RecentChangesCard from '@/components/sites/RecentChangesCard.vue'
+import RecentChangesList from '@/components/sites/RecentChangesList.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 
 export default defineComponent({
   name: 'RecentChanges',
   components: {
-    RecentChangesCard,
+    RecentChangesList,
     SiteListToolbar,
     ToTopFab
   }
