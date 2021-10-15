@@ -17,7 +17,10 @@
       >
         {{ snippet }}
       </p>
-      <div v-if="thread.data.youTubeSlug">
+      <div
+        v-if="thread.data.youTubeSlug"
+        class="youtubeFrame chroma-box-1"
+      >
         <iframe
           title="Youtube Preview"
           class="youtubePreview"
@@ -153,8 +156,12 @@ div.threadCard
 .pinned
   background-color: var(--chroma-secondary-i)
 .youtubePreview
-  width: 548px
-  height: calc(548px / 16 * 9)
+  width: 412px
+  height: calc(412px / 16 * 9)
+  padding: 0
+.youtubeFrame
+  text-align: center
+  padding: 0
 
 @include media('>=tablet')
   div.threadCard.small
