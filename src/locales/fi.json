@@ -280,7 +280,15 @@
     "sinceInTopic": "aiheessa",
     "discussion": "Keskustelu",
     "title": "Otsikko",
-    "topic": "Aihe"
+    "topic": "Aihe",
+    "edit": {
+      "title": "Muokkaa viestiä",
+      "addVideoLink": "Lisää video",
+      "videolink": "YouTube -videon tunniste"
+    },
+    "add": {
+      "title": "Uusi viesti"
+    }
   },
   "thread": {
     "stickyToggle": "Kiinnitä"

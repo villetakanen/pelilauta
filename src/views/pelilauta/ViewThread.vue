@@ -125,8 +125,7 @@ export default defineComponent({
       }, { immediate: true })
 
       logEvent(getAnalytics(),
-        'PageView', {
-          name: 'ViewThread',
+        'ThreadView', {
           threadid: props.threadid
         })
     })
