@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.1.0](https://github.com/villetakanen/pelilauta/compare/v11.0.0...v11.1.0) (2021-10-15)
+
+
+### Features
+
+* video's can again be linked to a thread ([fd77fcd](https://github.com/villetakanen/pelilauta/commit/fd77fcda1bf72500096d375d3714de8f4f6e21c5))
+
+
+### Bug Fixes
+
+* experimental header for threadeditor ([fabd620](https://github.com/villetakanen/pelilauta/commit/fabd6206ed0bf753cbc460ed47826f9ef44bb370))
+* menu fixed for show video link panel emitting ([db52e5a](https://github.com/villetakanen/pelilauta/commit/db52e5ab9a243e84ab9bc36acf05f43479b4b986))
+* video previews ([2a5d545](https://github.com/villetakanen/pelilauta/commit/2a5d545eb4cae89fce4d7b4afadf35c23d5b6514))
+* videolinker emits and props done ([6834c19](https://github.com/villetakanen/pelilauta/commit/6834c1952546190b284abe806095ec7c4461ffb4))
+* videos can be uploaded ([032b047](https://github.com/villetakanen/pelilauta/commit/032b047bccc7c87689606ed4d2b8cbf20eb96b10))
+
 ## [11.0.0](https://github.com/villetakanen/pelilauta/compare/v10.8.21...v11.0.0) (2021-10-15)
 
 
