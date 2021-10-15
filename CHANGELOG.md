@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.0.0](https://github.com/villetakanen/pelilauta/compare/v10.8.21...v11.0.0) (2021-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release includes Assets as a new root level data
+type, akin to Site, User and Character
+
+### Features
+
+* assets as a primary data type ([b0946f9](https://github.com/villetakanen/pelilauta/commit/b0946f98e6b23458f2ea92f9c695c363c649c7b2))
+
+
+### Bug Fixes
+
+* admin tools to use header ([174d576](https://github.com/villetakanen/pelilauta/commit/174d57697d9cbbb069078a2c3a4df951f38a546e))
+* asset upload polish ([3d713ba](https://github.com/villetakanen/pelilauta/commit/3d713ba8821a3fe91ede53e83e50602e201fb3eb))
+* asset uploader visuals ([9b0c7ce](https://github.com/villetakanen/pelilauta/commit/9b0c7cecc48bfcf1cb17bcdb13116ec2c3753f88))
+* asset uploading implemented ([fbe7387](https://github.com/villetakanen/pelilauta/commit/fbe7387bbb973c583864021bfde79f291978fb24))
+* asset uploading implemented ([513b150](https://github.com/villetakanen/pelilauta/commit/513b1505632f3d407accd04b19ab5d65424e2ccc))
+* code style ([4a07ddb](https://github.com/villetakanen/pelilauta/commit/4a07ddb65921d285300c95a3bcc4783c5c40fbcc))
+* dialogs can have toolbars ([41f7688](https://github.com/villetakanen/pelilauta/commit/41f7688d8df4b7ca084c3899bb7e5fb16ff63615))
+* i18n for the uploader ([3a93582](https://github.com/villetakanen/pelilauta/commit/3a9358204b2f14a8d43c39dc03e08b96c311b2e3))
+* next steps documented ([9a47c31](https://github.com/villetakanen/pelilauta/commit/9a47c31b0dd3ad6109946b0dd18c579c921fd3df))
+* polish for asset saving ([2faff23](https://github.com/villetakanen/pelilauta/commit/2faff239eb0e8410ca5af86613d8da6710ce4df9))
+* preview file works ([0c6a4ff](https://github.com/villetakanen/pelilauta/commit/0c6a4ff1df0df469902a667a681f84f09505c818))
+* removed toolbar from the header toolbars ([e525bff](https://github.com/villetakanen/pelilauta/commit/e525bffca47ea4cf92bcbf06ec7b62f247d286b1))
+* replyform adds images to assets ([869fda6](https://github.com/villetakanen/pelilauta/commit/869fda6d2ade63708a19c1bf71ab5d61252ca1f8))
+* rich text editor works with new assets ([f6713be](https://github.com/villetakanen/pelilauta/commit/f6713be04e12048aa226136446f0d54bd13b9d81))
+
 ### [10.8.21](https://github.com/villetakanen/pelilauta/compare/v10.8.20...v10.8.21) (2021-10-12)
 
 
