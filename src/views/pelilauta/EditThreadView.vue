@@ -1,12 +1,12 @@
 <template>
   <div class="editThread">
-    <EditThreadHeader />
-    <main class="singleColumnLayout">
-      <ThreadEditor
-        :threadid="threadid"
-        :topic="topic"
-      />
-    </main>
+    <EditThreadHeader @addVideoLink="showVideoLinker=true" />
+    <ThreadEditor
+      class="singleColumnLayout"
+      :threadid="threadid"
+      :topic="topic"
+      :show-video-linker="showVideoLinker"
+    />
   </div>
 </template>
 
@@ -14,7 +14,7 @@
 import EditThreadHeader from '@/components/thread/editor/EditThreadHeader.vue'
 import ThreadEditor from '@/components/thread/ThreadEditor.vue'
 import { useThreads } from '@/state/threads'
-import { defineComponent, onMounted, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 
 /**
@@ -42,6 +42,7 @@ export default defineComponent({
     }
   },
   setup (props) {
+    const showVideoLinker = ref(false)
     if (props.threadid) {
       const { subscribeThread } = useThreads()
 
@@ -58,6 +59,7 @@ export default defineComponent({
           })
       })
     }
+    return { showVideoLinker }
   }
 })
 </script>

@@ -1,10 +1,13 @@
 <template>
-  <div class="threadEditor">
+  <main class="threadEditor">
     <Textfield
       v-model="v.threadTitle.$model"
       :label="$t('threads.title')"
       :error="v.threadTitle.$error"
     />
+    <div v-if="showVideoLinker">
+      AAA!
+    </div>
     <RichTextEditor
       v-model:content="v.threadContent.$model"
       class="contentEditor"
@@ -28,7 +31,7 @@
         {{ $t('action.send') }}
       </MaterialButton>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -65,6 +68,11 @@ export default defineComponent({
     topic: {
       type: String,
       required: true
+    },
+    showVideoLinker: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
