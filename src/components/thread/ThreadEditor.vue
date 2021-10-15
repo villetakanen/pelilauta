@@ -1,36 +1,40 @@
 <template>
   <main class="threadEditor">
-    <Textfield
-      v-model="v.threadTitle.$model"
-      :label="$t('threads.title')"
-      :error="v.threadTitle.$error"
-    />
-    <div v-if="showVideoLinker">
-      AAA!
-    </div>
-    <RichTextEditor
-      v-model:content="v.threadContent.$model"
-      class="contentEditor"
-      :error="v.threadContent.$error"
-    />
-    <div
-      class="toolbar editorActions"
-    >
-      <TopicSelector v-model="threadTopic" />
-      <div class="spacer" />
-      <MaterialButton
-        id="threadEditorCancelButton"
-        text
-        :to="threadid ? `/thread/${threadid}/view` : '/'"
+    <section>
+      <Textfield
+        v-model="v.threadTitle.$model"
+        :label="$t('threads.title')"
+        :error="v.threadTitle.$error"
+        class="titleField"
+      />
+      <MediaTool
+        v-if="showVideoLinker"
+        v-model="threadSlug"
+      />
+      <RichTextEditor
+        v-model:content="v.threadContent.$model"
+        class="contentEditor"
+        :error="v.threadContent.$error"
+      />
+      <div
+        class="toolbar editorActions"
       >
-        {{ $t('action.cancel') }}
-      </MaterialButton>
-      <MaterialButton
-        :async-action="save"
-      >
-        {{ $t('action.send') }}
-      </MaterialButton>
-    </div>
+        <TopicSelector v-model="threadTopic" />
+        <div class="spacer" />
+        <MaterialButton
+          id="threadEditorCancelButton"
+          text
+          :to="threadid ? `/thread/${threadid}/view` : '/'"
+        >
+          {{ $t('action.cancel') }}
+        </MaterialButton>
+        <MaterialButton
+          :async-action="save"
+        >
+          {{ $t('action.send') }}
+        </MaterialButton>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -47,6 +51,7 @@ import { useThreads } from '@/state/threads'
 import { useSite } from '@/state/site'
 import { PostData } from '@/utils/firestoreInterfaces'
 import { useRouter } from 'vue-router'
+import MediaTool from './MediaTool.vue'
 
 /**
  * An form for editing and creating threads
@@ -57,7 +62,8 @@ export default defineComponent({
     Textfield,
     RichTextEditor,
     MaterialButton,
-    TopicSelector
+    TopicSelector,
+    MediaTool
   },
   props: {
     threadid: {
@@ -119,6 +125,16 @@ export default defineComponent({
       }
     })
 
+    const dirtySlug = ref('')
+    const threadSlug = computed({
+      get: () => (dirtySlug.value || originalThread.value.data.youTubeSlug || ''),
+      set: (val: string) => {
+        if (val !== dirtySlug.value) {
+          dirtySlug.value = val
+        }
+      }
+    })
+
     const rules = {
       threadTitle: { required, maxLength },
       threadContent: { required }
@@ -132,6 +148,7 @@ export default defineComponent({
         topic: threadTopic.value,
         content: threadContent.value
       }
+      if (dirtySlug.value) data.youTubeSlug = dirtySlug.value
       if (createANewThread.value) {
         const id = await createThread(data)
         router.push(`/thread/${id}/view`)
@@ -144,6 +161,7 @@ export default defineComponent({
     return {
       createANewThread,
       threadTopic,
+      threadSlug,
       siteid,
       save,
       v
@@ -153,6 +171,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-.editorActions, .contentEditor
-  margin-top: 8px
+.titleField+.contentEditor
+  margin-top: 12px
 </style>
