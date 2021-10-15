@@ -1,7 +1,5 @@
 <template>
   <div class="mediaTool">
-    <h3>{{ $t('thread.editor.mediaTool.title') }}</h3>
-    <p>{{ $t('thread.editor.mediaTool.text') }}</p>
     <div v-if="slug">
       <iframe
         title="Youtube Preview"
@@ -10,7 +8,10 @@
       />
     </div>
     <Toolbar>
-      <Textfield v-model="slug" />
+      <Textfield
+        v-model="slug"
+        :label="$t('threads.edit.videolink')"
+      />
     </Toolbar>
   </div>
 </template>

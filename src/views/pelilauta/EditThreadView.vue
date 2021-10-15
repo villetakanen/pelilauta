@@ -1,6 +1,9 @@
 <template>
   <div class="editThread">
-    <EditThreadHeader @addVideoLink="showVideoLinker=true" />
+    <EditThreadHeader
+      :threadid="threadid"
+      @addVideoLink="showVideoLinker=true"
+    />
     <ThreadEditor
       class="singleColumnLayout"
       :threadid="threadid"
