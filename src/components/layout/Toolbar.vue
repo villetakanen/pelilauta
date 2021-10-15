@@ -1,6 +1,6 @@
 <template>
   <div
-    class="appToolbar toolbar"
+    class="toolbar"
     :class="{ 'theme--dark': dark }"
   >
     <slot />
@@ -25,7 +25,7 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 
-div.appToolbar
+div.toolbar
   padding: 0 8px
   display: flex
   margin-bottom: 8px
@@ -49,6 +49,11 @@ div.appToolbar
       color: var(--chroma-secondary-b)
 
 @include media('<tablet')
-  div.appToolbar
+  div.toolbar
     height: 48px
+
+#dialog
+  div.toolbar
+    margin: 0
+    padding: 0
 </style>

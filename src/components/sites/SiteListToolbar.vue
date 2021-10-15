@@ -1,8 +1,10 @@
 <template>
   <div class="siteListToolbar">
-    <Toolbar>
-      <h3>{{ $t('wiki.title') }}</h3>
-      <div class="spacer" />
+    <Header>
+      <ViewTitle icon="mekanismi">
+        {{ $t('wiki.title') }}
+      </ViewTitle>
+      <SpacerDiv />
       <Action
         v-if="showMemberTools"
         to="mekanismi.profile.sites"
@@ -23,7 +25,7 @@
       >
         <span class="hideOnMobile">{{ $t('site.filterSites') }}</span>
       </Action>
-    </Toolbar>
+    </Header>
     <Toolbar
       v-if="filterToggle"
       style="height: auto"
@@ -71,12 +73,15 @@
 <script lang="ts">
 import { useAuth } from '@/state/authz'
 import { ComputedRef, defineComponent, inject, ref } from 'vue'
+import Header from '../layout/Header.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
+import ViewTitle from '../layout/ViewTitle.vue'
 import Action from '../material/Action.vue'
 import Chip from '../material/Chip.vue'
 
 export default defineComponent({
-  components: { Action, Toolbar, Chip },
+  components: { Action, Toolbar, Chip, Header, ViewTitle, SpacerDiv },
   props: {
     filter: {
       type: String,

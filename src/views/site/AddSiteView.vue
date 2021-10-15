@@ -1,8 +1,10 @@
 <template>
   <div class="addPageView">
-    <Toolbar>
-      <h3>{{ $t('action.addSite') }}</h3>
-    </Toolbar>
+    <Header>
+      <ViewTitle icon="add">
+        {{ $t('action.addSite') }}
+      </ViewTitle>
+    </Header>
     <div class="singleColumnLayout">
       <AddSiteForm />
     </div>
@@ -12,11 +14,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import AddSiteForm from '@/components/site/AddSiteForm.vue'
+import Header from '@/components/layout/Header.vue'
+import ViewTitle from '@/components/layout/ViewTitle.vue'
 
 export default defineComponent({
   name: 'AddPageView',
   components: {
-    AddSiteForm
+    AddSiteForm,
+    Header,
+    ViewTitle
   }
 })
 </script>

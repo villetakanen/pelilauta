@@ -6,6 +6,7 @@
       class="reply-form"
     >
       <AddImageReplyAction
+        v-if="!reply"
         class="addAnImage"
         @uploaded="addImageToEditor($event)"
       />
@@ -85,6 +86,7 @@ export default defineComponent({
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const addImageToEditor = (a: any) => {
+      console.debug('addImageToEditor', a)
       imageToEditor.value = a
     }
 

@@ -1,79 +1,69 @@
 <template>
-  <div class="assetListItem">
-    <div class="assetData">
-      <!-- thumbnail preview of the asset -->
-      <div class="preview">
-        <a :href="asset.url">
-          <img
-            :src="asset.url"
-            alt="click to preview"
-          >
-        </a>
-      </div>
-      <div class="name contentBox">
-        <p>{{ asset.name }}</p>
-      </div>
-      <div class="actions">
-        <MaterialButton
-          icon
-          @click="toggleInfo = !toggleInfo"
-        >
-          <Icon name="about" />
-        </MaterialButton>
-        <MaterialButton
-          icon
-          @click="drop"
-        >
-          <Icon name="remove" />
-        </MaterialButton>
-      </div>
-    </div>
-    <div
-      v-if="toggleInfo"
-      class="filedata contentBox"
+  <Card class="assetListItem">
+    <img
+      v-if="imageAsset"
+      class="imagePreview"
+      :alt="asset.name"
+      :src="asset.url"
     >
-      <p>{{ toDisplayString(asset.lastUpdate) }}</p>
-      <p>{{ asset.url }}</p>
-    </div>
-  </div>
+    <p class="info clipWithEllipsis">
+      {{ asset.name }}
+    </p>
+    <Button
+      class="deletebutton"
+      @click="drop()"
+    >
+      {{ $t('action.delete') }}
+    </Button>
+  </Card>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
-import MaterialButton from '../../material/MaterialButton.vue'
-import Icon from '@/components/material/Icon.vue'
+import { computed, defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
+import Card from '@/components/layout/Card.vue'
+import { Asset, useAssets } from '@/state/assets'
+import { useI18n } from 'vue-i18n'
 import { useSnack } from '@/composables/useSnack'
-import { Asset } from '@/utils/firestoreInterfaces'
-import { deleteAsset } from '@/state/authz/assets'
+import Button from '@/components/form/Button.vue'
+
+const IMAGE_MIMETYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/svg'
+]
 
 export default defineComponent({
   name: 'AttachmentRow',
   components: {
-    MaterialButton,
-    Icon
+    Card,
+    Button
   },
   props: {
-    asset: {
-      type: Object as PropType<Asset>,
+    id: {
+      type: String,
       required: true
     }
   },
   setup (props) {
-    const toggleInfo = ref(false)
+    const i18n = useI18n()
     const { pushSnack } = useSnack()
+    const { assets, deleteAsset } = useAssets()
+    const asset = computed(() => (assets.value.get(props.id) || new Asset()))
+    const imageAsset = computed(() => (IMAGE_MIMETYPES.includes(asset.value.mimetype)))
 
     async function drop () {
       try {
-        await deleteAsset(props.asset.name)
-        pushSnack('asset deleted')
+        await deleteAsset(props.id)
+        pushSnack(i18n.t('asset.delete.success'))
       } catch (error) {
         console.error(error)
-        pushSnack('asset deletion failed')
+        pushSnack(i18n.t('asset.delete.failure'))
       }
+      console.log('not refactored yet!')
     }
 
-    return { toggleInfo, toDisplayString, drop }
+    return { toDisplayString, drop, asset, imageAsset }
   }
 })
 </script>
@@ -82,29 +72,32 @@ export default defineComponent({
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
 
-.assetData
-  display: flex
-  flex-wrap: no-wrap
-  .actions
-    width: 144px
-    flex-shrink: 0
-  .name
-    flex-grow: 1
-  &:hover
-    background-color: var(--chroma-secondary-i)
-  .preview
-    flex-shrink: 0
-    width: 128px
-    margin-right: 8px
-    img
-      max-width: 128px
-      max-height: 64px
-      padding: 4px 0
-.filedata
-  width: 100%
-  margin-bottom: 16px
-  p
-    @include TypeCaption()
-    line-height: 24px
+.assetListItem
+  width: calc(100vw - 32px)
+  overflow: hidden
+  position: relative
+  .imagePreview
+    pointer-events: none
+    margin: -16px
+    max-width: calc(100% + 32px)
+  .info
+    @include TypeBody2()
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 16px
+    background: linear-gradient(37deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.7) 100%)
+    width: calc(100% - 32px)
+    height: 24px
+    white-space: nowrap
+  .deletebutton
+    position: absolute
+    right: 16px
+    top: 16px
+
+@include media('>=tablet')
+  .assetListItem
+    width: 256px
+    height: 256px
 
 </style>

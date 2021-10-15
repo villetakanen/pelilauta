@@ -1,25 +1,15 @@
 <template>
-  <Toolbar
+  <Header
     id="pageToolbar"
   >
-    <div class="title">
-      <Icon
-        :name="site.systemBadge + '-logo'"
-        headline
-        class="badge"
-      />
-      <h3 class="siteTitle clipWithEllipsis">
-        <router-link
-          :to="`/site/${site.id}`"
-        >
-          {{ site.name }}
-        </router-link>
-      </h3>
-      <h3 class="pageTitle clipWithEllipsis">
-        {{ title }}
-      </h3>
-    </div>
-    <div class="spacer" />
+    <ViewTitle
+      :icon="site.systemBadge + '-logo'"
+      :parent="site.name"
+      :parent-route="`/site/${site.id}`"
+    >
+      {{ title }}
+    </ViewTitle>
+    <SpacerDiv />
     <Action
       prepend="share"
       @click="copyLink"
@@ -52,16 +42,14 @@
         </div>
       </div>
     </Dialog>
-  </Toolbar>
+  </Header>
 </template>
 
 <script lang="ts">
 import { useSite } from '@/state/site'
 import { computed, defineComponent, ref } from 'vue'
 import { useCopyLinkToClipboard } from '@/composables/useCopyURLToClipboard'
-import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
-import Icon from '../material/Icon.vue'
 import MaterialMenu from '../material/MaterialMenu.vue'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { useI18n } from 'vue-i18n'
@@ -70,9 +58,12 @@ import Textfield from '../form/Textfield.vue'
 import Button from '../form/Button.vue'
 import { usePage } from '@/state/pages/usePage'
 import { useUxActions } from '@/composables/useUxActions'
+import Header from '../layout/Header.vue'
+import ViewTitle from '../layout/ViewTitle.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 export default defineComponent({
-  components: { Toolbar, Action, Icon, MaterialMenu, Dialog, Textfield, Button },
+  components: { Action, MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv },
   props: {
     title: {
       type: String,

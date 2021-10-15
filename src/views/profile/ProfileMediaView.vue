@@ -9,25 +9,30 @@
         {{ $t('profile.media.title') }}
       </ViewTitle>
     </Header>
-    <div class="singleColumnLayout">
-      <ProfileAssetList />
-    </div>
+    <Button @click="addMediaDialog = true">
+      -- add new media --
+    </Button>
+    <ProfileAssetList />
+    <UploadAssetDialog v-model="addMediaDialog" />
   </div>
 </template>
 
 <script lang="ts">
+import UploadAssetDialog from '@/components/assets/UploadAssetDialog.vue'
+import Button from '@/components/form/Button.vue'
 import Header from '@/components/layout/Header.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
 import ProfileAssetList from '@/components/profile/assets/ProfileAssetList.vue'
 import { useProfile } from '@/state/authz'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'ProfileMediaView',
-  components: { ProfileAssetList, Header, ViewTitle },
+  components: { ProfileAssetList, Header, ViewTitle, Button, UploadAssetDialog },
   setup () {
     const { profile } = useProfile()
-    return { profile }
+    const addMediaDialog = ref(false)
+    return { profile, addMediaDialog }
   }
 })
 </script>

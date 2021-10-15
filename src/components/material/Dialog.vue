@@ -9,7 +9,7 @@
         v-if="modelValue"
         class="dialogCard"
       >
-        <div class="dialogToolBar onlyForMobile">
+        <div class="dialogToolBar">
           <Icon
             name="back"
             headline
@@ -23,6 +23,7 @@
         <div class="contentSlot">
           <slot />
         </div>
+        <slot name="footer" />
       </div>
     </div>
   </teleport>
@@ -73,7 +74,7 @@ div#dialog
   background-color: var(--overlay-secondary-a)
   .dialogToolBar
     display: flex
-    background-color: var(--chroma-secondary-a)
+    background-color: var(--chroma-secondary-d)
     padding: 4px
     border-radius: 12px 12px 0 0
     margin: -16px
@@ -107,4 +108,7 @@ div#dialog
       height: auto
       border-radius: 4px
       max-width: 720px
+      // padding: 0
+    .dialogToolBar
+      border-radius: 4px 4px 0 0
 </style>

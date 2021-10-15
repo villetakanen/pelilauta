@@ -1,45 +1,15 @@
 <template>
-  <Toolbar
+  <Header
     id="siteToolbar"
-    class="siteToolbar"
   >
-    <div class="pageIdentity clipWithEllipsis">
-      <router-link
-        :to="`/mekanismi/view/${site.id}/${site.id}`"
-      >
-        <Icon
-          :name="site.systemBadge + '-logo'"
-          headline
-          class="systemBadge"
-        />
-      </router-link>
-      <template v-if="page">
-        <p class="subject">
-          <router-link
-            :to="`/site/${site.id}`"
-          >
-            {{ site.name }}
-          </router-link>
-        </p>
-        <p class="pagetitle">
-          <router-link
-            :to="`/site/${site.id}/page/${page.id}`"
-          >
-            {{ page.name }}
-          </router-link>
-        </p>
-      </template>
-      <template v-else>
-        <h3 class="sitetitle">
-          <router-link
-            :to="`/site/${site.id}`"
-          >
-            {{ site.name }}
-          </router-link>
-        </h3>
-      </template>
-    </div>
-    <div class="spacer" />
+    <ViewTitle
+      :icon="site.systemBadge + '-logo'"
+    >
+      {{ site.name }}
+    </ViewTitle>
+
+    <SpacerDiv />
+
     <Action
       prepend="share"
       @click="copyLink"
@@ -81,22 +51,23 @@
     >
       <span class="onlyForDesktop">{{ $t('site.settings.title') }}</span>
     </Action>
-  </Toolbar>
+  </Header>
 </template>
 
 <script lang="ts">
 import { Page, useSite } from '@/state/site'
 import { computed, defineComponent, PropType } from 'vue'
 import { copyUrl } from '@/utils/window'
-import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
-import Icon from '../material/Icon.vue'
 import { useAuth } from '@/state/authz'
+import Header from '../layout/Header.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
+import ViewTitle from '../layout/ViewTitle.vue'
 
 export default defineComponent({
-  components: { Toolbar, Action, Icon },
+  components: { Action, Header, SpacerDiv, ViewTitle },
   props: {
     page: {
       type: Object as PropType<Page>,

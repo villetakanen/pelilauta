@@ -15,6 +15,7 @@
     "@vuelidate/validators": "^2.0.0-alpha.21",
     "algoliasearch": "^4.10.5",
     "axios": "^0.21.4",
+    "downscale": "^1.0.6",
     "firebase": "^9.0.2",
     "luxon": "^2.0.2",
     "quill": "^2.0.0-dev.4",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/downscale": "^1.0.1",
     "@types/luxon": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",

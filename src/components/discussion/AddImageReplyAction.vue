@@ -23,7 +23,8 @@ import { ComponentPublicInstance, defineComponent, ref } from 'vue'
 import Icon from '@/components/material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import { useSnack } from '@/composables/useSnack'
-import { useProfile } from '@/state/authz'
+import { useAssets } from '@/state/assets'
+import { processAsset } from '@/composables/useAssetTools'
 
 export default defineComponent({
   components: { Icon, MaterialButton },
@@ -32,15 +33,14 @@ export default defineComponent({
     const uploader = ref<ComponentPublicInstance<HTMLInputElement>>()
     const uploading = ref(false)
     const { pushSnack } = useSnack()
-    const { uploadAsset } = useProfile()
+    const { uploadAsset } = useAssets()
 
     async function addAsset (e: Event) {
-      const el = e.target as HTMLInputElement
-      if (!el || !el.files || !el.files[0]) return
       uploading.value = true
       try {
-        const url = await uploadAsset(el.files[0])
-        context.emit('uploaded', url)
+        const uploadData = await processAsset(e)
+        const asset = await uploadAsset(uploadData.name, uploadData.mimetype, uploadData.dataURL)
+        context.emit('uploaded', asset.url?.href)
         pushSnack('upload ok')
       } catch (error) {
         console.error(error)
