@@ -7,7 +7,7 @@
       {{ threadid ? $t('threads.edit.title') : $t('threads.add.title') }}
     </ViewTitle>
     <SpacerDiv />
-    <MaterialMenu />
+    <MaterialMenu v-model="menu" />
   </Header>
 </template>
 
@@ -17,8 +17,9 @@ import SpacerDiv from '@/components/layout/SpacerDiv.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuth } from '@/state/authz'
-import { defineComponent } from 'vue'
-import { useThreads } from '@/state/threads'
+import { computed, defineComponent } from 'vue'
+import { MenuItem } from '@/utils/uiInterfaces'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   components: { Header, ViewTitle, SpacerDiv, MaterialMenu },
@@ -29,10 +30,25 @@ export default defineComponent({
       default: ''
     }
   },
-  setup () {
+  emits: ['addVideoLink'],
+  setup (props, context) {
     const { showExperimentalTools } = useAuth()
-    const { thread } = useThreads()
-    return { showExperimentalTools, thread }
+    const i18n = useI18n()
+
+    const menu = computed(() => {
+      const arr = new Array<MenuItem>()
+      arr.push({
+        icon: 'youtube',
+        action: () => {
+          console.debug('emits: addVideoLink')
+          context.emit('addVideoLink')
+        },
+        text: i18n.t('threads.edit.addVideoLink')
+      })
+      return arr
+    })
+
+    return { showExperimentalTools, menu }
   }
 })
 </script>
