@@ -1,15 +1,21 @@
 <template>
-  <div class="editThread singleColumnLayout">
-    <ThreadEditor
-      :threadid="threadid"
-      :topic="topic"
-    />
+  <div class="editThread">
+    <EditThreadHeader />
+    <main class="singleColumnLayout">
+      <ThreadEditor
+        :threadid="threadid"
+        :topic="topic"
+      />
+    </main>
   </div>
 </template>
 
 <script lang="ts">
+import EditThreadHeader from '@/components/thread/editor/EditThreadHeader.vue'
 import ThreadEditor from '@/components/thread/ThreadEditor.vue'
-import { defineComponent } from 'vue'
+import { useThreads } from '@/state/threads'
+import { defineComponent, onMounted, watch } from 'vue'
+import { getAnalytics, logEvent } from '@firebase/analytics'
 
 /**
  * A Router view for editing or adding a new thread to stream(s)
@@ -20,7 +26,8 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'EditThread',
   components: {
-    ThreadEditor
+    ThreadEditor,
+    EditThreadHeader
   },
   props: {
     threadid: {
@@ -32,6 +39,24 @@ export default defineComponent({
       type: String,
       required: false,
       default: 'Yleinen'
+    }
+  },
+  setup (props) {
+    if (props.threadid) {
+      const { subscribeThread } = useThreads()
+
+      subscribeThread(props.threadid)
+
+      onMounted(() => {
+        watch(() => props.threadid, (threadid) => {
+          subscribeThread(threadid)
+        }, { immediate: true })
+
+        logEvent(getAnalytics(),
+          'EditThread', {
+            threadid: props.threadid
+          })
+      })
     }
   }
 })

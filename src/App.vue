@@ -122,6 +122,6 @@ export default defineComponent({
   #appContentContainer
     width: calc(100vw - 310px)
     padding-left: 310px
-    min-height: calc(100vh - 228px)
+    min-height: calc(100vh - 214px)
 
 </style>
