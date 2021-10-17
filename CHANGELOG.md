@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.1.1](https://github.com/villetakanen/pelilauta/compare/v11.1.0...v11.1.1) (2021-10-17)
+
+
+### Bug Fixes
+
+* video preview size on mobile ([b3a2302](https://github.com/villetakanen/pelilauta/commit/b3a23020788c7be85c68d19d8e49369263fa4f21))
+
 ## [11.1.0](https://github.com/villetakanen/pelilauta/compare/v11.0.0...v11.1.0) (2021-10-15)
 
 
