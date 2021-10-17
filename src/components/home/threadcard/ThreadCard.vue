@@ -101,7 +101,7 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
-div.threadCard
+section.threadCard
   color: var(--chroma-secondary-a)
   p.subtitle
     @include TypeBody2()
@@ -164,13 +164,13 @@ div.threadCard
   padding: 0
 
 @include media('>=tablet')
-  div.threadCard.small
+  section.threadCard.small
     .youtubePreview
       width: 464px
       height: calc(464px / 16 * 9)
 
 @include media('<tablet')
-  div.threadCard
+  section.threadCard
     .youtubePreview
       width: calc(100vw - 48px)
       height: calc((100vw - 48px) / 16 *9 )
