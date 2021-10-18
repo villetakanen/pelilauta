@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.1.3](https://github.com/villetakanen/pelilauta/compare/v11.1.2...v11.1.3) (2021-10-18)
+
+
+### Bug Fixes
+
+* more reply editor quill state fixes ([d51305b](https://github.com/villetakanen/pelilauta/commit/d51305b3d29c5b8023510b843295042edf1d1b90))
+
 ### [11.1.2](https://github.com/villetakanen/pelilauta/compare/v11.1.1...v11.1.2) (2021-10-18)
 
 
