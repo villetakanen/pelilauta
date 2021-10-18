@@ -12,7 +12,7 @@
           <WelcomeCard v-if="anonymousSession" />
         </transition>
         <CreateASiteAd />
-        <ForumsAd v-if="showExperimentalTools" />
+        <ForumsAd />
       </Column>
     </div>
     <teleport to="#ScreenBottomFabsContainer">
