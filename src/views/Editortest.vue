@@ -1,16 +1,9 @@
 <template>
   <AdminActions :title="$t('admin.action.editorTest')" />
+  <main class="bookLayout">
+    <ReplyEditorTester />
+  </main>
   <div class="contentGrid">
-    <h3>Discussion/comment/reply Quill</h3>
-    <ReplyEditor
-      v-model:content="replyContent"
-      style="border: solid 1px green; height: 96px;border-radius: 6px"
-    />
-    <p>The content is auto-processed to the field below</p>
-    <Reply
-      :reply="exampleReply"
-      threadid="none"
-    />
     <div class="test-container">
       <div class="test-box">
         <MaterialCard>
@@ -52,10 +45,9 @@ import MaterialCard from '@/components/material/MaterialCard.vue'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
-import ReplyEditor from '@/components/discussion/ReplyEditor.vue'
 import { Reply as ReplyInterface } from '@/utils/firestoreInterfaces'
-import Reply from '@/components/discussion/Reply.vue'
 import RichTextEditor from '@/components/quill/RichTextEditor.vue'
+import ReplyEditorTester from '@/components/discussion/ReplyEditorTester.vue'
 
 export default defineComponent({
   name: 'EditorTest',
@@ -63,9 +55,8 @@ export default defineComponent({
     MaterialCard,
     MaterialButton,
     AdminActions,
-    ReplyEditor,
-    Reply,
-    RichTextEditor
+    RichTextEditor,
+    ReplyEditorTester
   },
   setup () {
     const content = ref('')
