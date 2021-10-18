@@ -103,12 +103,11 @@ $icon_size: 32px
   p+h2, p+h3, p+h4
     margin-top: 24px
   blockquote
-    background-color: var(--chroma-secondary-c)
-    background: linear-gradient(-42deg, var(--chroma-secondary-f) 0%, var(--chroma-secondary-b) 100%)
-    color: var(--chroma-secondary-i)
+    @include highEmphasis()
+    background-color: var(--chroma-secondary-i)
     margin: 8px 0
-    padding: 16px
-    border-radius: 8px
+    padding: 12px
+    border-radius: 4px
   blockquote:first-child
     margin-top: 0
   a
