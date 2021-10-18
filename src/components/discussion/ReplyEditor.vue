@@ -65,7 +65,8 @@ export default defineComponent({
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
-        context.emit('update:content', quill?.root.innerHTML ?? '')
+        incomingContent.value = quill?.root.innerHTML ?? ''
+        context.emit('update:content', incomingContent.value)
       })
 
       hoistClipboardConfig(quill)
