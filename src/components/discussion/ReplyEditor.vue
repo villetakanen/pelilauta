@@ -8,21 +8,9 @@
 <script lang="ts">
 import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue'
 import Quill from 'quill'
-import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
 import { mentionsModule } from '@/utils/quill/mentionsModule'
-
-function hoistClipboardConfig (quill:Quill) {
-  quill.clipboard.addMatcher(Node.ELEMENT_NODE,
-    function (node, delta) {
-      return delta.compose(new Delta().retain(delta.length(),
-        {
-          color: false,
-          background: false
-        }))
-    }
-  )
-}
+import { hoistClipboardConfig } from '@/composables/useQuill'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
@@ -43,6 +31,8 @@ export default defineComponent({
     let quill:null|Quill = null
     const quotedContent = inject('quotedContent') as Ref<Quote>
     const imageToEditor = inject('imageToEditor') as Ref<string>
+
+    const incomingContent = ref('')
 
     const config = {
       formats: [
@@ -73,30 +63,25 @@ export default defineComponent({
       // Init the quill-editor to the editor field
       quill = new Quill(editor.value, config)
 
-      // If we have content at this point, inject it to editorfield
-      // this could be done with v-once also, but that wound move the
-      // init code to multiple places in the file: this way, it is all
-      // in one place, and easily readable as a block.
-      //
-      // Please note: we react to v-model:content changes from
-      // the parent a bit later
-      if (props.content) {
-        if (quill) quill.root.innerHTML = props.content
-      }
-
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
         context.emit('update:content', quill?.root.innerHTML ?? '')
       })
 
-      // *** TODO CLEAR DOWN FROM HERE ****************************************
-
       hoistClipboardConfig(quill)
+
       // Reset field, when model is reset. Do not inject other
       // changes to the editor, to avoid contentEditable issues.
       watch(() => props.content, (value) => {
-        if (!value) quill?.setText('')
-      })
+        // Nothing to do here!
+        if (!value) return
+        // We do not want to do anything if we already processed this content!
+        if (value.length === 0 || value === incomingContent.value) return
+        quill?.clipboard.dangerouslyPasteHTML(value)
+        incomingContent.value = value
+      }, { immediate: true })
+
+      // *** TODO CLEAR DOWN FROM HERE ****************************************
       // we need to handle disable prop with
       // quill.enable(boolean) instead of DOM attrs.
       watch(() => props.disabled, (value) => {

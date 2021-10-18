@@ -3,7 +3,7 @@ import Delta from 'quill-delta'
 import { ImageModule, IMAGE_UPLOAD_EVENT } from '@/composables/useQuill/imageModule'
 import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
 
-function hoistClipboardConfig (quill:Quill) {
+export function hoistClipboardConfig (quill:Quill) {
   // Remove all color styles from pasted content by force
   quill.clipboard.addMatcher(Node.ELEMENT_NODE,
     function (node, delta) {
