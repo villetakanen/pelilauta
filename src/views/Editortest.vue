@@ -2,61 +2,24 @@
   <AdminActions :title="$t('admin.action.editorTest')" />
   <main class="bookLayout">
     <ReplyEditorTester />
+    <RichTextEditorTester />
   </main>
-  <div class="contentGrid">
-    <div class="test-container">
-      <div class="test-box">
-        <MaterialCard>
-          <RichTextEditor
-            v-model="content"
-          />
-        </MaterialCard>
-        <MaterialButton :action="simulateSave">
-          Simulate Save
-        </MaterialButton>
-      </div>
-      <div class="test-box">
-        <h3>This is what the end result looks like</h3>
-        <MaterialCard class="rended-result">
-          <div
-            id="result"
-            :innerHTML="content"
-          />
-          <div class="carousel">
-            <img
-              v-for="url in images.split(';')"
-              :key="url"
-              :src="url"
-              alt=""
-            >
-          </div>
-        </MaterialCard>
-        <hr>
-        {{ content }}
-        <hr>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, ref } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
 import { Reply as ReplyInterface } from '@/utils/firestoreInterfaces'
-import RichTextEditor from '@/components/quill/RichTextEditor.vue'
 import ReplyEditorTester from '@/components/discussion/ReplyEditorTester.vue'
+import RichTextEditorTester from '@/components/quill/RichTextEditorTester.vue'
 
 export default defineComponent({
   name: 'EditorTest',
   components: {
-    MaterialCard,
-    MaterialButton,
     AdminActions,
-    RichTextEditor,
-    ReplyEditorTester
+    ReplyEditorTester,
+    RichTextEditorTester
   },
   setup () {
     const content = ref('')

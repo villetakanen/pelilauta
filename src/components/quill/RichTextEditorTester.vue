@@ -13,9 +13,9 @@
       style="margin-top:24px"
       class="TypeCaption"
     >
-      ReplyEditor.vue
+      RichTextEditor.vue
     </p>
-    <ReplyEditor
+    <RichTextEditor
       v-model:content="editorContents"
       :debug="debug"
       class="editorField"
@@ -48,11 +48,11 @@
 import { defineComponent, ref } from 'vue'
 import Button from '../form/Button.vue'
 import Toggle from '../material/Toggle.vue'
-import ReplyEditor from './ReplyEditor.vue'
+import RichTextEditor from './RichTextEditor.vue'
 
 export default defineComponent({
   name: 'ReplyEditorRester',
-  components: { Button, ReplyEditor, Toggle },
+  components: { Button, RichTextEditor, Toggle },
   setup () {
     const editorContents = ref('')
     const debug = ref(false)
@@ -62,23 +62,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-.editorField
-  position: relative
-  margin: 0px
-  margin-left: 12px
-  padding: 8px
-  border-radius: 6px
-  background-color: var(--chroma-secondary-i)
-  border: solid 1px var(--chroma-secondary-g)
-.editorField:after
-  content: ""
-  position: absolute
-  border-style: solid
-  border-color: transparent var(--chroma-secondary-g)
-  top: 6px // controls vertical position
-  left: -12px // value = - border-left-width - border-right-width */
-  border-width: 0px 12px 12px 0px
-  bottom: auto
 .editorContentsDemo
   margin-top: 12px
   border-top: dashed 2px var(--chroma-secondary-g)
