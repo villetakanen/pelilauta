@@ -1,7 +1,6 @@
 <template>
   <div class="viewThread">
     <Header
-      v-if="showExperimentalTools"
       sticky
     >
       <ViewTitle
@@ -20,36 +19,36 @@
         v-model="menuItems"
       />
     </Header>
-    <div class="singleColumnLayout">
-      <ThreadBox>
-        <ThreadBoxHeader :thread="thread" />
-        <div
-          v-if="thread.data.youTubeSlug"
-          class="youtubePreviewFrame"
-        >
-          <iframe
-            title="Youtube Preview"
-            class="youtubePreview"
-            :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
-            frameborder="0"
-          />
-        </div>
-        <div
-          class="threadContent richText"
-          :innerHTML="thread.data.content"
+    <div class="singleColumnLayout richText">
+      <h1 class="hideOnMobile">
+        {{ thread.data.title }}
+      </h1>
+      <div
+        v-if="thread.data.youTubeSlug"
+        class="youtubePreviewFrame"
+      >
+        <iframe
+          title="Youtube Preview"
+          class="youtubePreview"
+          :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
+          frameborder="0"
         />
-        <PhotoBox :photos="thread.data.images || []" />
-        <ThreadBoxTailer
-          :thread="thread"
-        />
-        <h2 class="section">
-          {{ $t('threads.discussion') }}
-        </h2>
-        <Discussion
-          :thread="thread"
-          :focus-to="since"
-        />
-      </ThreadBox>
+      </div>
+      <div
+        class="threadContent"
+        :innerHTML="thread.data.content"
+      />
+      <PhotoBox :photos="thread.data.images || []" />
+      <ThreadBoxTailer
+        :thread="thread"
+      />
+      <h2 class="section">
+        {{ $t('threads.discussion') }}
+      </h2>
+      <Discussion
+        :thread="thread"
+        :focus-to="since"
+      />
     </div>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab />
@@ -62,8 +61,6 @@ import { computed, defineComponent, onMounted, watch } from 'vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
-import ThreadBox from '@/components/thread/ThreadBox.vue'
-import ThreadBoxHeader from '@/components/thread/ThreadBoxHeader.vue'
 import { useThreads } from '@/state/threads/threads'
 import ThreadBoxTailer from '@/components/thread/ThreadBoxTailer.vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
@@ -88,9 +85,7 @@ import { useI18n } from 'vue-i18n'
 export default defineComponent({
   name: 'ViewThread',
   components: {
-    ThreadBox,
     PhotoBox,
-    ThreadBoxHeader,
     Discussion,
     ToTopFab,
     ThreadBoxTailer,
