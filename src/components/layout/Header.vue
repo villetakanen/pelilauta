@@ -46,6 +46,7 @@ header
     position: -webkit-sticky
     top: 0px
     background-color: var(--chroma-clear)
+    z-index: 10000
   &.stickyShadow
     @include Rise1()
     //border-bottom: solid 1px var(--chroma-secondary-g)
