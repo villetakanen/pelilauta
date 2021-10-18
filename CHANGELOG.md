@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.2.0](https://github.com/villetakanen/pelilauta/compare/v11.1.3...v11.2.0) (2021-10-18)
+
+
+### Features
+
+* forums ad added as a front page widget ([4c1afee](https://github.com/villetakanen/pelilauta/commit/4c1afee748fb53fc3202f07d85ce50c4e252c1a7))
+
+
+### Bug Fixes
+
+* editortest shows new editors ([36d8f5c](https://github.com/villetakanen/pelilauta/commit/36d8f5cae28eef81a5e073b8a7e4c512f0433c11))
+* replyeditor polish of model changes ([512baad](https://github.com/villetakanen/pelilauta/commit/512baadd0268df521b54fb00c076252e896f72c4))
+
 ### [11.1.3](https://github.com/villetakanen/pelilauta/compare/v11.1.2...v11.1.3) (2021-10-18)
 
 
