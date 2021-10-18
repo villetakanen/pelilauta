@@ -19,6 +19,7 @@ export default defineComponent({
   name: 'ReplyEditor',
   props: {
     content: { type: String, required: false, default: '' },
+    debug: { type: Boolean, required: false, default: false },
     disabled: { type: Boolean, required: false, default: false },
     waiting: { type: Boolean, required: false, default: false }
   },
@@ -32,7 +33,7 @@ export default defineComponent({
     const quotedContent = inject('quotedContent') as Ref<Quote>
     const imageToEditor = inject('imageToEditor') as Ref<string>
 
-    const incomingContent = ref('')
+    const modelContent = ref('')
 
     const config = {
       formats: [
@@ -63,26 +64,34 @@ export default defineComponent({
       // Init the quill-editor to the editor field
       quill = new Quill(editor.value, config)
 
-      // Start emitting changes as vue-model-changes
-      quill.on('text-change', () => {
-        incomingContent.value = quill?.root.innerHTML ?? ''
-        context.emit('update:content', incomingContent.value)
-      })
-
       hoistClipboardConfig(quill)
 
-      // Reset field, when model is reset. Do not inject other
-      // changes to the editor, to avoid contentEditable issues.
+      // Start emitting changes as vue-model-changes
+      quill.on('text-change', () => {
+        modelContent.value = quill?.root.innerHTML ?? ''
+        if (props.debug) console.debug('ReplyEditor Emits:', modelContent.value)
+        context.emit('update:content', modelContent.value)
+      })
+
+      // React to v-model changes
       watch(() => props.content, (value) => {
         // Nothing to do here!
-        if (!value) return
-        // We do not want to do anything if we already processed this content!
-        if (value.length === 0 || value === incomingContent.value) return
+        if (value === modelContent.value) return
+        if (value === '<p><br></p>' && modelContent.value.length === 0) return
+
+        // Debugs
+        if (props.debug) console.debug('ReplyEditor replaces contents with:', value)
+
+        // Reset editor, and push changes via clipboard-module
+        quill?.setText('')
         quill?.clipboard.dangerouslyPasteHTML(value)
-        incomingContent.value = value
-      }, { immediate: true })
+        modelContent.value = value
+      }, {
+        immediate: true
+      })
 
       // *** TODO CLEAR DOWN FROM HERE ****************************************
+
       // we need to handle disable prop with
       // quill.enable(boolean) instead of DOM attrs.
       watch(() => props.disabled, (value) => {

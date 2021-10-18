@@ -51,7 +51,8 @@ export default defineComponent({
   props: {
     content: { type: String, required: true },
     disabled: { type: Boolean, required: false, default: false },
-    waiting: { type: Boolean, required: false, default: false }
+    waiting: { type: Boolean, required: false, default: false },
+    debug: { type: Boolean, required: false, default: false }
   },
   emits: [
     'update:content',
@@ -59,6 +60,7 @@ export default defineComponent({
   ],
   setup (props, context) {
     const editor = ref<ComponentPublicInstance<HTMLInputElement>>()
+    const modelContent = ref('')
     let quill:null|Quill = null
 
     onMounted(() => {
@@ -91,18 +93,26 @@ export default defineComponent({
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
-        if (props.content !== quill?.root.innerHTML) {
-          context.emit('update:content', quill?.root.innerHTML || '')
-        }
+        modelContent.value = quill?.root.innerHTML ?? ''
+        if (props.debug) console.debug('ReplyEditor Emits:', modelContent.value)
+        context.emit('update:content', modelContent.value)
       })
 
-      // Reset field, when model is reset. Do not inject other
-      // changes to the editor, to avoid contentEditable issues.
+      // React to v-model changes
       watch(() => props.content, (value) => {
-        if (!value) {
-          console.debug('Rich Text Editor content reset')
-          quill?.setText('')
-        }
+        // Nothing to do here!
+        if (value === modelContent.value) return
+        if (value === '<p><br></p>' && modelContent.value.length === 0) return
+
+        // Debugs
+        if (props.debug) console.debug('ReplyEditor replaces contents with:', value)
+
+        // Reset editor, and push changes via clipboard-module
+        quill?.setText('')
+        quill?.clipboard.dangerouslyPasteHTML(value)
+        modelContent.value = value
+      }, {
+        immediate: true
       })
 
       // we need to handle disable prop with
