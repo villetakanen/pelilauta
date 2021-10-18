@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.2.1](https://github.com/villetakanen/pelilauta/compare/v11.2.0...v11.2.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* new thread header no longer experimental ([11bd21d](https://github.com/villetakanen/pelilauta/commit/11bd21d7bb4d9d70fcbb2302a99d4116dcc1d671))
+
 ## [11.2.0](https://github.com/villetakanen/pelilauta/compare/v11.1.3...v11.2.0) (2021-10-18)
 
 
