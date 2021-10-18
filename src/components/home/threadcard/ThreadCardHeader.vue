@@ -116,11 +116,11 @@ a, h1.title a
   margin-bottom: 8px
   border-radius: 12px 12px 0 0
   a
-    color: var(--chroma-primary-c)
+    color: var(--chroma-secondary-d)
   h1
     margin: 0
   h1.title a
-    color: var(--chroma-secondary-c)
+    color: var(--chroma-secondary-a)
 .ddColors
   background: linear-gradient(160deg, rgba(188,15,15,.10) 0%, rgba(188,15,15,.30) 92%)
   a
