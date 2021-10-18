@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.1.2](https://github.com/villetakanen/pelilauta/compare/v11.1.1...v11.1.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* blockquote is no longer flashy ([fff5e6d](https://github.com/villetakanen/pelilauta/commit/fff5e6d3411df0001c7bb23bd7fa15ca27864705))
+* init of comment clear of innerhtml+quill bug ([160aff7](https://github.com/villetakanen/pelilauta/commit/160aff7a9c295298a1fbd4a84dd7bf8a2783d683))
+* removed deprecated code ([dca3a4f](https://github.com/villetakanen/pelilauta/commit/dca3a4f28c421f7066210b6f035d25fb04ab91ea))
+* thread card header flex fixed on mobile ([a2cdca2](https://github.com/villetakanen/pelilauta/commit/a2cdca2d27721955d9d0d8bf8bb8e7362ebc0e97))
+* withsite header colors ([e3b018a](https://github.com/villetakanen/pelilauta/commit/e3b018a4e0d761aa06937b456f5befab43e49009))
+
 ### [11.1.1](https://github.com/villetakanen/pelilauta/compare/v11.1.0...v11.1.1) (2021-10-17)
 
 
