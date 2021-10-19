@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.2.3](https://github.com/villetakanen/pelilauta/compare/v11.2.2...v11.2.3) (2021-10-19)
+
+
+### Bug Fixes
+
+* aria bug for image ([3b5945d](https://github.com/villetakanen/pelilauta/commit/3b5945deca98fd0fa8167b62789996eb312d5022))
+* materialbutton deprecations committed ([3d7f7c8](https://github.com/villetakanen/pelilauta/commit/3d7f7c81058328351ca418a46d339183713ceaab))
+* more deprecations committed ([9b430b4](https://github.com/villetakanen/pelilauta/commit/9b430b43f9aecb7f09ccb92cc52dd472a140766a))
+* some polish for public site listing ([5312d1a](https://github.com/villetakanen/pelilauta/commit/5312d1a362edc6995364af766432ed0136ce9350))
+
 ### [11.2.2](https://github.com/villetakanen/pelilauta/compare/v11.2.0...v11.2.2) (2021-10-19)
 
 
