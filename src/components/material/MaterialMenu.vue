@@ -19,14 +19,18 @@
       <li
         v-for="item in menuItems"
         :key="item.text"
-        :class="{ adminAction: item.admin }"
+        :class="{ adminAction: item.admin, withIcon: item.admin || item.icon }"
         @click="item.action"
       >
         <Icon
           v-if="item.admin"
           name="admin"
           inline
-          class="before"
+        />
+        <Icon
+          v-if="item.icon && !item.admin"
+          :name="item.icon"
+          inline
         />
         {{ item.text }}
       </li>
@@ -153,9 +157,10 @@ export default defineComponent({
 
 .material-menu
   .dropdown
+    .withIcon
+      padding-left: 8px
     .adminAction
       background-color: var(--chroma-primary-i)
-      margin-left: -16px
       &:hover
         background-color: var(--chroma-primary-h)
 
