@@ -25,29 +25,29 @@
       <h1 class="title">
         {{ $t('profile.actions.actions') }}
       </h1>
-      <MaterialButton
+      <Button
         text
-        :action="stampAllSeen"
+        @click="stampAllSeen"
       >
         {{ $t('action.markAllRead') }}
-      </MaterialButton>
+      </Button>
       <br>
 
-      <MaterialButton
+      <Button
         text
         @click="forgetMeDialog = true"
       >
         {{ $t('action.forgetMe') }}
-      </MaterialButton>
+      </Button>
       <br>
 
       <div class="spacer" />
-      <MaterialButton
+      <Button
         text
-        :action="logout"
+        @click="logout"
       >
         {{ $t('action.logout') }}
-      </MaterialButton>
+      </Button>
     </div>
     <Dialog v-model="forgetMeDialog">
       <div>
@@ -59,16 +59,16 @@
         />
         <div class="toolbar">
           <div class="spacer" />
-          <MaterialButton
+          <Button
             id="pageEditorDeleteVerifyButton"
             :disabled="forgetMeConfirm !== 'FORGET ME'"
             @click="forgetMe"
           >
             {{ $t('action.delete') }}
-          </MaterialButton>
-          <MaterialButton @click="forgetMeDialog=false">
+          </Button>
+          <Button @click="forgetMeDialog=false">
             {{ $t('action.cancel') }}
-          </MaterialButton>
+          </Button>
         </div>
       </div>
     </Dialog>
@@ -77,7 +77,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import { useRouter } from 'vue-router'
 import { useAuth, useProfile } from '@/state/authz'
 import { useI18n } from 'vue-i18n'
@@ -88,15 +87,16 @@ import Dialog from '../material/Dialog.vue'
 import TextField from '../material/TextField.vue'
 import Select from '../form/Select.vue'
 import Toggle from '../material/Toggle.vue'
+import Button from '../form/Button.vue'
 export default defineComponent({
   name: 'ProfileActions',
   components: {
-    MaterialButton,
     Column,
     Dialog,
     TextField,
     Select,
-    Toggle
+    Toggle,
+    Button
   },
   setup () {
     const i18n = useI18n()
