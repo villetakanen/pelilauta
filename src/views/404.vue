@@ -10,12 +10,12 @@
       <p>{{ $t('errorPage.message') }}</p>
       <Toolbar>
         <div class="spacer" />
-        <MaterialButton
+        <Button
           text
-          to="/"
+          @click="reroute('/')"
         >
           {{ $t('siteInfo.title') }}
-        </MaterialButton>
+        </Button>
       </Toolbar>
     </MaterialCard>
     <div class="pageAttentionPic" />
@@ -23,20 +23,23 @@
 </template>
 
 <script lang="ts">
+import Button from '@/components/form/Button.vue'
 import Header from '@/components/layout/Header.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
+import { useUxActions } from '@/composables/useUxActions'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
   name: '404',
-  components: { Toolbar, MaterialCard, MaterialButton, Header, ViewTitle },
+  components: { Toolbar, MaterialCard, Header, ViewTitle, Button },
   setup () {
     const a = getAnalytics()
+    const { reroute } = useUxActions()
     onMounted(() => { logEvent(a, 'PageView', { name: '404' }) })
+    return { reroute }
   }
 })
 </script>
