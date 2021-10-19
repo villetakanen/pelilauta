@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.2.2](https://github.com/villetakanen/pelilauta/compare/v11.2.0...v11.2.2) (2021-10-19)
+
+
+### Bug Fixes
+
+* new thread header no longer experimental ([11bd21d](https://github.com/villetakanen/pelilauta/commit/11bd21d7bb4d9d70fcbb2302a99d4116dcc1d671))
+* removed deprecated button components ([6af344c](https://github.com/villetakanen/pelilauta/commit/6af344cefaa7acf38599672d0110b5d74097832e))
+
 ### [11.2.1](https://github.com/villetakanen/pelilauta/compare/v11.2.0...v11.2.1) (2021-10-18)
 
 
