@@ -9,12 +9,20 @@
     >
       Open a Dialog
     </Button>
+    <h2>Snackbar</h2>
     <Button
       :disabled="dialogVisible"
       @click="sendSnack()"
     >
       Push a message to snacks
     </Button>
+    <h2>Menu</h2>
+    <Toolbar>
+      <SpacerDiv />
+      <MaterialMenu v-model="menuItems" />
+    </Toolbar>
+
+    <h2>Toolbars</h2>
     <Dialog
       v-model="dialogVisible"
       label="Example Dialog"
@@ -33,23 +41,32 @@
 
 <script lang="ts">
 import { useSnack } from '@/composables/useSnack'
-import { defineComponent, ref } from 'vue'
+import { MenuItem } from '@/utils/uiInterfaces'
+import { computed, defineComponent, ref } from 'vue'
 import Button from '../form/Button.vue'
 import Column from '../layout/Column.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Dialog from '../material/Dialog.vue'
+import MaterialMenu from '../material/MaterialMenu.vue'
 
 export default defineComponent({
   name: 'InteractiveElements',
-  components: { Column, Button, Dialog, SpacerDiv, Toolbar },
+  components: { Column, Button, Dialog, SpacerDiv, Toolbar, MaterialMenu },
   setup () {
-    const dialogVisible = ref(true)
+    const dialogVisible = ref(false)
     function sendSnack () {
       const { pushSnack } = useSnack()
       pushSnack({ topic: 'Example snack message', message: 'at ' + new Date().toString(), action: () => { window.alert('hey!') }, actionMessage: 'alert?' })
     }
-    return { dialogVisible, sendSnack }
+    const menuItems = computed(() => {
+      const items = new Array<MenuItem>()
+      items.push({ text: 'A menuitem' })
+      items.push({ text: 'With an Icon', icon: 'pelilauta' })
+      items.push({ text: 'Admin item', admin: true })
+      return items
+    })
+    return { dialogVisible, sendSnack, menuItems }
   }
 })
 </script>

@@ -17,7 +17,10 @@
         >
           {{ $t('action.edit') }}
         </Button>
-        <section :innerHTML="renderWikiLinks(site.id, page.htmlContent)" />
+        <section
+          class="richText"
+          :innerHTML="renderWikiLinks(site.id, page.htmlContent)"
+        />
       </Column>
       <SideBar />
       <Column>
