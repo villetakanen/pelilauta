@@ -31,6 +31,7 @@
     >
       <img
         v-if="site.splashURL"
+        alt=""
         :src="site.splashURL"
         class="poster"
       >
