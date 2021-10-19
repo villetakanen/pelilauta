@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.2.4](https://github.com/villetakanen/pelilauta/compare/v11.2.3...v11.2.4) (2021-10-19)
+
+
+### Bug Fixes
+
+* menu now supports icons properly ([205849e](https://github.com/villetakanen/pelilauta/commit/205849e1a7dabf1e8fee2897809fe1f491903639))
+* site home uses rich text ([3126a53](https://github.com/villetakanen/pelilauta/commit/3126a53a99ffa459778dfd40add975f222f43025))
+
 ### [11.2.3](https://github.com/villetakanen/pelilauta/compare/v11.2.2...v11.2.3) (2021-10-19)
 
 
