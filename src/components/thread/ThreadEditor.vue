@@ -21,18 +21,18 @@
       >
         <TopicSelector v-model="threadTopic" />
         <div class="spacer" />
-        <MaterialButton
+        <Button
           id="threadEditorCancelButton"
           text
-          :to="threadid ? `/thread/${threadid}/view` : '/'"
+          @click="reroute(threadid ? `/thread/${threadid}/view` : '/')"
         >
           {{ $t('action.cancel') }}
-        </MaterialButton>
-        <MaterialButton
-          :async-action="save"
+        </Button>
+        <Button
+          @click="save()"
         >
           {{ $t('action.send') }}
-        </MaterialButton>
+        </Button>
       </div>
     </section>
   </main>
@@ -45,13 +45,14 @@ import { computed, defineComponent, onMounted, ref } from 'vue'
 import Textfield from '../form/Textfield.vue'
 import { maxLength } from '@/utils/contentFormat'
 import RichTextEditor from '../quill/RichTextEditor.vue'
-import MaterialButton from '../material/MaterialButton.vue'
 import TopicSelector from './TopicSelector.vue'
 import { useThreads } from '@/state/threads'
 import { useSite } from '@/state/site'
 import { PostData } from '@/utils/firestoreInterfaces'
 import { useRouter } from 'vue-router'
 import MediaTool from './MediaTool.vue'
+import { useUxActions } from '@/composables/useUxActions'
+import Button from '../form/Button.vue'
 
 /**
  * An form for editing and creating threads
@@ -61,9 +62,9 @@ export default defineComponent({
   components: {
     Textfield,
     RichTextEditor,
-    MaterialButton,
     TopicSelector,
-    MediaTool
+    MediaTool,
+    Button
   },
   props: {
     threadid: {
@@ -89,6 +90,8 @@ export default defineComponent({
     const createANewThread = computed(() => (!props.threadid))
     const originalThread = computed(() => (thread.value))
     const siteid = computed(() => (thread.value.site ?? ''))
+
+    const { reroute } = useUxActions()
 
     onMounted(() => {
       subscribeThread(props.threadid)
@@ -164,7 +167,8 @@ export default defineComponent({
       threadSlug,
       siteid,
       save,
-      v
+      v,
+      reroute
     }
   }
 })
