@@ -158,7 +158,8 @@ async function createThread (data:PostData, meta?:ThreadMeta): Promise<string> {
     ...data,
     created: serverTimestamp(),
     flowTime: serverTimestamp(),
-    ...meta
+    ...meta,
+    public: true // This is here for future use - as there might be a need for hidden threads, for a hidden site.
   }).then((d) => {
     return d.id
   })
@@ -245,16 +246,63 @@ async function dispatchThreadSeen (): Promise<void | DocumentReference<DocumentD
   }
 }
 
+/**
+ * A Class entity for a Firebase Thread.
+ *
+ * Uses of the Thread interface should be refactored to this class, and then this class renamed
+ * to "Thread"
+ */
+export class ThreadClass {
+  id: string
+  title: string
+
+  constructor (id: string, data?:DocumentData) {
+    this.id = id
+    this.title = data?.title || ''
+  }
+
+  dry (): {
+      title: string
+      } {
+    return {
+      title: this.title
+    }
+  }
+}
+
+async function fetchLikedThreads (count = 5): Promise<ThreadClass[]> {
+  const threadArray:ThreadClass[] = new Array<ThreadClass>()
+
+  const likedThreadDocs = await getDocs(
+    query(
+      collection(
+        getFirestore(),
+        'stream'
+      ),
+      where('public', '==', true),
+      orderBy('lovedCount', 'desc'),
+      limit(count)
+    )
+  )
+
+  likedThreadDocs.forEach((likedDoc) => {
+    threadArray.push(new ThreadClass(likedDoc.id, likedDoc.data()))
+  })
+
+  return threadArray
+}
+
 export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread>
+    fetchLikedThreads: (count?: number) => Promise<ThreadClass[]>
     fetchSiteThreads: (id:string) => Promise<void>
     subscribeThread: (id?: string | undefined) => void
     createThread: (data:PostData, meta?:ThreadMeta) => Promise<string>
     updateThread: (threadid:string, data:PostData) => Promise<void>} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread, fetchSiteThreads }
+  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread, fetchSiteThreads, fetchLikedThreads }
 }
