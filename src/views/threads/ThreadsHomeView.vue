@@ -6,15 +6,9 @@
       </ViewTitle>
     </Header>
     <main class="bookLayout">
-      <section class="double-cut">
-        -- 5 newest threads --
-      </section>
-      <section class="double-cut">
-        -- 5 most commented threads --
-      </section>
-      <section class="double-cut">
-        -- 5 most liked threads --
-      </section>
+      <LatestThreads class="double-cut" />
+      <CommentedThreads class="double-cut" />
+      <LikedThreads class="double-cut" />
     </main>
   </div>
 </template>
@@ -22,13 +16,19 @@
 <script lang="ts">
 import Header from '@/components/layout/Header.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
+import CommentedThreads from '@/components/threads/CommentedThreads.vue'
+import LatestThreads from '@/components/threads/LatestThreads.vue'
+import LikedThreads from '@/components/threads/LikedThreads.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ThreadsHomeView',
   components: {
     Header,
-    ViewTitle
+    ViewTitle,
+    LatestThreads,
+    CommentedThreads,
+    LikedThreads
   },
   setup () {
   }
