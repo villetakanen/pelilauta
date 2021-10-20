@@ -2,7 +2,7 @@
   <Column class="LatestThreads">
     <h2>{{ $t('threads.latest.title') }}</h2>
     <p
-      v-for="thread in latest"
+      v-for="thread in replied"
       :key="thread.id"
     >
       {{ thread.data.title }}
@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { useThreads } from '@/state/threads'
-import { Thread } from '@/utils/firestoreInterfaces'
-import { computed, defineComponent } from 'vue'
+import { ThreadClass } from '@/state/threads/threads'
+import { defineComponent, onMounted, ref } from 'vue'
 import Column from '../layout/Column.vue'
 
 export default defineComponent({
@@ -27,14 +27,16 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { stream } = useThreads()
-    const latest = computed(() => {
-      const a:Thread[] = [...stream.value]
-      if (a.length > props.count) a.length = props.count
-      console.debug(a.length)
-      return a
+    const { fetchThreadsWithMostReplies } = useThreads()
+    const replied = ref(new Array<ThreadClass>())
+
+    onMounted(() => {
+      fetchThreadsWithMostReplies(props.count).then((t) => {
+        replied.value = t
+      })
     })
-    return { latest }
+
+    return { replied }
   }
 })
 </script>

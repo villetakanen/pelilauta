@@ -7,7 +7,7 @@
     </Header>
     <main class="bookLayout">
       <LatestThreads class="double-cut" />
-      <CommentedThreads class="double-cut" />
+      <RepliedThreads class="double-cut" />
       <LikedThreads class="double-cut" />
     </main>
   </div>
@@ -16,7 +16,7 @@
 <script lang="ts">
 import Header from '@/components/layout/Header.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
-import CommentedThreads from '@/components/threads/CommentedThreads.vue'
+import RepliedThreads from '@/components/threads/RepliedThreads.vue'
 import LatestThreads from '@/components/threads/LatestThreads.vue'
 import LikedThreads from '@/components/threads/LikedThreads.vue'
 import { defineComponent } from 'vue'
@@ -27,7 +27,7 @@ export default defineComponent({
     Header,
     ViewTitle,
     LatestThreads,
-    CommentedThreads,
+    RepliedThreads,
     LikedThreads
   },
   setup () {
