@@ -1,23 +1,24 @@
 <template>
   <Column class="LatestThreads">
     <h2>{{ $t('threads.liked.title') }}</h2>
-    <p
+    <ThreadListItem
       v-for="thread in liked"
       :key="thread.id"
-    >
-      {{ thread.title }}
-    </p>
+      :title="thread.title"
+    />
   </Column>
 </template>
 
 <script lang="ts">
 import { useThreads } from '@/state/threads'
-import { defineComponent } from 'vue'
+import { ThreadClass } from '@/state/threads/threads'
+import { defineComponent, onMounted, ref } from 'vue'
 import Column from '../layout/Column.vue'
+import ThreadListItem from './ThreadListItem.vue'
 
 export default defineComponent({
   name: 'LikedThreads',
-  components: { Column },
+  components: { Column, ThreadListItem },
   props: {
     count: {
       type: Number,
@@ -27,7 +28,14 @@ export default defineComponent({
   },
   setup (props) {
     const { fetchLikedThreads } = useThreads()
-    const liked = fetchLikedThreads(props.count)
+    const liked = ref(new Array<ThreadClass>())
+
+    onMounted(() => {
+      fetchLikedThreads(props.count).then((t) => {
+        liked.value = t
+      })
+    })
+
     return { liked }
   }
 })

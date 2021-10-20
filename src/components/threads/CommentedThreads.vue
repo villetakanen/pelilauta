@@ -5,7 +5,7 @@
       v-for="thread in latest"
       :key="thread.id"
     >
-      {{ thread.commented.title }}
+      {{ thread.data.title }}
     </p>
   </Column>
 </template>

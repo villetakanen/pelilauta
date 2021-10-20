@@ -289,6 +289,8 @@ async function fetchLikedThreads (count = 5): Promise<ThreadClass[]> {
     threadArray.push(new ThreadClass(likedDoc.id, likedDoc.data()))
   })
 
+  console.debug('fetchLikedThreads returns', threadArray)
+
   return threadArray
 }
 
