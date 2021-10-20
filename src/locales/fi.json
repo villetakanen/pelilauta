@@ -288,6 +288,9 @@
     },
     "add": {
       "title": "Uusi viesti"
+    },
+    "home": {
+      "title": "Keskustelu"
     }
   },
   "thread": {
