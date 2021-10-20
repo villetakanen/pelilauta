@@ -255,17 +255,21 @@ async function dispatchThreadSeen (): Promise<void | DocumentReference<DocumentD
 export class ThreadClass {
   id: string
   title: string
+  topic: string
 
   constructor (id: string, data?:DocumentData) {
     this.id = id
     this.title = data?.title || ''
+    this.topic = data?.topic || '-'
   }
 
   dry (): {
       title: string
+      topic: string
       } {
     return {
-      title: this.title
+      title: this.title,
+      topic: this.topic
     }
   }
 }

@@ -5,6 +5,7 @@
       v-for="thread in liked"
       :key="thread.id"
       :title="thread.title"
+      :topic="thread.topic"
     />
   </Column>
 </template>
