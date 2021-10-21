@@ -1,12 +1,13 @@
 <template>
   <Column class="LatestThreads">
-    <h2>{{ $t('threads.latest.title') }}</h2>
-    <p
+    <h2>{{ $t('threads.replied.title') }}</h2>
+    <ThreadListItem
       v-for="thread in replied"
       :key="thread.id"
-    >
-      {{ thread.data.title }}
-    </p>
+      :title="thread.title"
+      :topic="thread.topic"
+      :threadid="thread.id"
+    />
   </Column>
 </template>
 
@@ -15,10 +16,11 @@ import { useThreads } from '@/state/threads'
 import { ThreadClass } from '@/state/threads/threads'
 import { defineComponent, onMounted, ref } from 'vue'
 import Column from '../layout/Column.vue'
+import ThreadListItem from './ThreadListItem.vue'
 
 export default defineComponent({
   name: 'TextStyles',
-  components: { Column },
+  components: { Column, ThreadListItem },
   props: {
     count: {
       type: Number,

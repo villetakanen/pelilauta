@@ -31,8 +31,9 @@
         </SideNavMenuItem>
       </template>
       <SideNavMenuItem
+        v-if="showExperimentalTools"
         icon="discussion"
-        to="/"
+        to="/threads"
         @click="toggleNav"
       >
         {{ $t('app.title') }}

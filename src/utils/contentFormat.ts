@@ -52,7 +52,7 @@ export function toMekanismiURI (s: string): string {
   while (r.includes('--')) {
     r = r.split('--').join('-')
   }
-  return r.toLowerCase()
+  return r // HOTFIX for firebase-id urls, was| r.toLowerCase()
 }
 
 /**
