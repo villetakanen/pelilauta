@@ -291,6 +291,15 @@
     },
     "home": {
       "title": "Keskustelu"
+    },
+    "latest": {
+      "title": "Viimeisimmät"
+    },
+    "replied": {
+      "title": "Aktiivisimmat"
+    },
+    "liked": {
+      "title": "Kiinnostavimmat"
     }
   },
   "thread": {
