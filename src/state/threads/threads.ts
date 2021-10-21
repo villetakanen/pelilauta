@@ -253,23 +253,35 @@ async function dispatchThreadSeen (): Promise<void | DocumentReference<DocumentD
  * to "Thread"
  */
 export class ThreadClass {
-  id: string
+  readonly id: string
+  readonly author: string|undefined
   title: string
   topic: string
+  replyCount: number
+  lovedCount: number
 
   constructor (id: string, data?:DocumentData) {
     this.id = id
     this.title = data?.title || ''
     this.topic = data?.topic || '-'
+    this.replyCount = data?.replyCount || 0
+    this.lovedCount = data?.lovedCount || 0
+    this.author = data?.author || undefined
   }
 
   dry (): {
       title: string
       topic: string
+      replyCount: number
+      lovedCount: number
+      author: string|undefined //
       } {
     return {
       title: this.title,
-      topic: this.topic
+      topic: this.topic,
+      replyCount: this.replyCount,
+      lovedCount: this.lovedCount,
+      author: this.author
     }
   }
 }

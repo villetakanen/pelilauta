@@ -4,9 +4,7 @@
     <ThreadListItem
       v-for="thread in replied"
       :key="thread.id"
-      :title="thread.title"
-      :topic="thread.topic"
-      :threadid="thread.id"
+      :thread="thread"
     />
   </Column>
 </template>
