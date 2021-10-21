@@ -1,10 +1,12 @@
 <template>
   <section class="ThreadListItem">
     <h3>
-      <Icon
-        headline
-        :name="streamTopic.icon"
-      />{{ title }}
+      <router-link :to="`/thread/${threadid}/view`">
+        <Icon
+          headline
+          :name="streamTopic.icon"
+        />{{ title }}
+      </router-link>
     </h3>
   </section>
 </template>
@@ -19,6 +21,10 @@ export default defineComponent({
   components: { Icon },
   props: {
     title: {
+      type: String,
+      required: true
+    },
+    threadid: {
       type: String,
       required: true
     },

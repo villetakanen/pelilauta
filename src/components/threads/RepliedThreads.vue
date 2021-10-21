@@ -6,6 +6,7 @@
       :key="thread.id"
       :title="thread.title"
       :topic="thread.topic"
+      :threadid="thread.id"
     />
   </Column>
 </template>
