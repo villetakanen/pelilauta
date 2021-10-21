@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.3.0](https://github.com/villetakanen/pelilauta/compare/v11.2.4...v11.3.0) (2021-10-21)
+
+
+### Features
+
+* added a new discussions home page ([65d74f2](https://github.com/villetakanen/pelilauta/commit/65d74f2c479bbd3700a5cb7b2a8a4619342f5078))
+
+
+### Bug Fixes
+
+* added components for the 3 queries ([2aee484](https://github.com/villetakanen/pelilauta/commit/2aee48454d38c6f33f6003de2a981727d022409f))
+* added components for the 3 queries ([05345d3](https://github.com/villetakanen/pelilauta/commit/05345d39a2e3f03805b62d2686737547acfe48b6))
+* author links to thread list items ([2429c93](https://github.com/villetakanen/pelilauta/commit/2429c93cd1abd1d33ab1040b5fc4a99d36e22c71))
+* experimental discussion front page released ([342f6f0](https://github.com/villetakanen/pelilauta/commit/342f6f0b13ad192e15ec62bd2ae94cfe53f79010))
+* fetch most liked threads ([69d50a9](https://github.com/villetakanen/pelilauta/commit/69d50a9643da7ade8dc3bc3dc093e1ea52149e2b))
+* hotfix for firebase auto-id page urls ([c0acca6](https://github.com/villetakanen/pelilauta/commit/c0acca6b5bd93a272b813a372a2bba43985fe553))
+* links work on discussion index ([f38143b](https://github.com/villetakanen/pelilauta/commit/f38143bb60c2b0e742e86f4ea4d7b440d5c584e6))
+* most replies fetch added ([1ca7112](https://github.com/villetakanen/pelilauta/commit/1ca7112c4463b2ec704885f1817cf37d2dc9560b))
+* new thread list item component ([defb114](https://github.com/villetakanen/pelilauta/commit/defb1140c75b97f8965ff53ba035847b1be6187f))
+
 ### [11.2.4](https://github.com/villetakanen/pelilauta/compare/v11.2.3...v11.2.4) (2021-10-19)
 
 
