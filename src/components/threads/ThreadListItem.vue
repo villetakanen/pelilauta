@@ -11,7 +11,7 @@
     <Toolbar>
       <div>{{ thread.replyCount }}</div>
       <div>{{ thread.lovedCount }}</div>
-
+      <SpacerDiv />
       <AuthorTag :uid="thread.author" />
     </Toolbar>
   </section>
@@ -22,12 +22,13 @@ import { useMeta } from '@/state/meta'
 import { ThreadClass } from '@/state/threads/threads'
 import { computed, defineComponent } from 'vue'
 import AuthorTag from '../author/AuthorTag.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'ThreadListItem',
-  components: { Icon, Toolbar, AuthorTag },
+  components: { Icon, Toolbar, AuthorTag, SpacerDiv },
   props: {
     thread: {
       type: ThreadClass,
