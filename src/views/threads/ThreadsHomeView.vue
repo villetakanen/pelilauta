@@ -1,5 +1,5 @@
 <template>
-  <div class="ThreadsHomeView">
+  <div class="threadsHomeView">
     <Header>
       <ViewTitle icon="discussion">
         {{ $t('threads.home.title') }}
