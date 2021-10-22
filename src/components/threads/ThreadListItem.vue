@@ -12,7 +12,7 @@
       <div>{{ thread.replyCount }}</div>
       <div>{{ thread.lovedCount }}</div>
       <div>
-        <AuthorLink :uid="thread.author" />
+        <AuthorTag :uid="thread.author" />
       </div>
     </Toolbar>
   </section>
@@ -22,13 +22,13 @@
 import { useMeta } from '@/state/meta'
 import { ThreadClass } from '@/state/threads/threads'
 import { computed, defineComponent } from 'vue'
-import AuthorLink from '../author/AuthorLink.vue'
+import AuthorTag from '../author/AuthorTag.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'ThreadListItem',
-  components: { Icon, Toolbar, AuthorLink },
+  components: { Icon, Toolbar, AuthorTag },
   props: {
     thread: {
       type: ThreadClass,

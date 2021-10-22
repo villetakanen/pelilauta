@@ -7,7 +7,7 @@
     <section>
       <h2>Author links</h2>
       <p><AuthorLink uid="4fN0HG08edQ1Bi3t3zHyXllCPnz2" /></p>
-      <p>[authortag]</p>
+      <p><AuthorTag uid="4fN0HG08edQ1Bi3t3zHyXllCPnz2" /></p>
     </section>
   </Column>
 </template>
@@ -15,11 +15,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import AuthorLink from '../author/AuthorLink.vue'
+import AuthorTag from '../author/AuthorTag.vue'
 import Column from '../layout/Column.vue'
 
 export default defineComponent({
   name: 'StatefulComponents',
-  components: { Column, AuthorLink },
+  components: { Column, AuthorLink, AuthorTag },
   setup () {
   }
 })
