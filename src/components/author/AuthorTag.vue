@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="AuthorTag">
     <suspense>
       <template #default>
         <ResolvedAuthorTag :uid="uid" />
@@ -8,7 +8,7 @@
         <div class="loader">
           <img
             alt="..."
-            src="@/assets/animations/puff.svg"
+            src="@/assets/animations/puff-dark.svg"
           >
         </div>
       </template>
@@ -37,6 +37,12 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
 
+.AuthorTag
+  display: inline-block
+  margin: 0
+  padding: 0
+  height: 24px
+
 .loader
   @include TypeBody2
   line-height: 20px
@@ -44,7 +50,7 @@ export default defineComponent({
   margin: 0px
   padding: 2px 10px
   border-radius: 12px
-  background-color: var(--chroma-secondary-g)
+  background-color: var(--chroma-secondary-i)
   color: var(--chroma-secondary-d)
   font-weight: bold
   display: inline-block

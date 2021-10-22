@@ -11,9 +11,8 @@
     <Toolbar>
       <div>{{ thread.replyCount }}</div>
       <div>{{ thread.lovedCount }}</div>
-      <div>
-        <AuthorTag :uid="thread.author" />
-      </div>
+
+      <AuthorTag :uid="thread.author" />
     </Toolbar>
   </section>
 </template>
