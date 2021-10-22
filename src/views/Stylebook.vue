@@ -11,29 +11,7 @@
     <Iconography />
     <FormControls />
     <InteractiveElemets />
-    <Card>
-      Rises
-      <div
-        class="colorbox rise1 light"
-      >
-        1
-      </div>
-      <div
-        class="colorbox rise2 light"
-      >
-        2
-      </div>
-      <div
-        class="colorbox rise3 light"
-      >
-        3
-      </div>
-      <div
-        class="colorbox rise4 light"
-      >
-        4
-      </div>
-    </Card>
+    <StatefullComponents />
     <Card>
       <h2>
         Actions
@@ -162,6 +140,7 @@ import Iconography from '@/components/stylebook/Iconography.vue'
 import ColorTheme from '@/components/stylebook/ColorTheme.vue'
 import InteractiveElemets from '@/components/stylebook/InteractiveElemets.vue'
 import ColumnsAndSections from '@/components/stylebook/ColumnsAndSections.vue'
+import StatefullComponents from '@/components/stylebook/StatefullComponents.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -180,7 +159,8 @@ export default defineComponent({
     Iconography,
     ColorTheme,
     InteractiveElemets,
-    ColumnsAndSections
+    ColumnsAndSections,
+    StatefullComponents
   },
   setup () {
     const layout = ref('dashBoardLayout')
