@@ -177,6 +177,17 @@
     "stickyToggle": "Sticky",
     "pushToStream": "Push to Stream"
   },
+  "threads": {
+    "sinceInTopic": "in",
+    "discussion": "Comments",
+    "updateSuccess": "Thread updated",
+    "updateFailed": "Thread update failed",
+    "title": "Thread title",
+    "topic": "Topic",
+    "home": {
+      "title": "Discussion"
+    }
+  },
   "wiki": {
     "title": "Mekanismi",
     "createSite": "Add new",
@@ -206,14 +217,6 @@
     "changesCard": {
       "title": "Mekanismi changes"
     }
-  },
-  "threads": {
-    "sinceInTopic": "in",
-    "discussion": "Comments",
-    "updateSuccess": "Thread updated",
-    "updateFailed": "Thread update failed",
-    "title": "Thread title",
-    "topic": "Topic"
   },
   "welcome": {
     "header": "Pelilauta",

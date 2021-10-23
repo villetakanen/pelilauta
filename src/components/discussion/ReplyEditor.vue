@@ -8,21 +8,9 @@
 <script lang="ts">
 import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue'
 import Quill from 'quill'
-import Delta from 'quill-delta'
 import { Quote } from '@/utils/contentFormat'
 import { mentionsModule } from '@/utils/quill/mentionsModule'
-
-function hoistClipboardConfig (quill:Quill) {
-  quill.clipboard.addMatcher(Node.ELEMENT_NODE,
-    function (node, delta) {
-      return delta.compose(new Delta().retain(delta.length(),
-        {
-          color: false,
-          background: false
-        }))
-    }
-  )
-}
+import { hoistClipboardConfig } from '@/composables/useQuill'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
@@ -31,6 +19,7 @@ export default defineComponent({
   name: 'ReplyEditor',
   props: {
     content: { type: String, required: false, default: '' },
+    debug: { type: Boolean, required: false, default: false },
     disabled: { type: Boolean, required: false, default: false },
     waiting: { type: Boolean, required: false, default: false }
   },
@@ -43,6 +32,8 @@ export default defineComponent({
     let quill:null|Quill = null
     const quotedContent = inject('quotedContent') as Ref<Quote>
     const imageToEditor = inject('imageToEditor') as Ref<string>
+
+    const modelContent = ref('')
 
     const config = {
       formats: [
@@ -73,30 +64,34 @@ export default defineComponent({
       // Init the quill-editor to the editor field
       quill = new Quill(editor.value, config)
 
-      // If we have content at this point, inject it to editorfield
-      // this could be done with v-once also, but that wound move the
-      // init code to multiple places in the file: this way, it is all
-      // in one place, and easily readable as a block.
-      //
-      // Please note: we react to v-model:content changes from
-      // the parent a bit later
-      if (props.content) {
-        if (quill) quill.root.innerHTML = props.content
-      }
+      hoistClipboardConfig(quill)
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
-        context.emit('update:content', quill?.root.innerHTML ?? '')
+        modelContent.value = quill?.root.innerHTML ?? ''
+        if (props.debug) console.debug('ReplyEditor Emits:', modelContent.value)
+        context.emit('update:content', modelContent.value)
+      })
+
+      // React to v-model changes
+      watch(() => props.content, (value) => {
+        // Nothing to do here!
+        if (value === modelContent.value) return
+        if (value === '<p><br></p>' && modelContent.value.length === 0) return
+
+        // Debugs
+        if (props.debug) console.debug('ReplyEditor replaces contents with:', value)
+
+        // Reset editor, and push changes via clipboard-module
+        quill?.setText('')
+        quill?.clipboard.dangerouslyPasteHTML(value)
+        modelContent.value = value
+      }, {
+        immediate: true
       })
 
       // *** TODO CLEAR DOWN FROM HERE ****************************************
 
-      hoistClipboardConfig(quill)
-      // Reset field, when model is reset. Do not inject other
-      // changes to the editor, to avoid contentEditable issues.
-      watch(() => props.content, (value) => {
-        if (!value) quill?.setText('')
-      })
       // we need to handle disable prop with
       // quill.enable(boolean) instead of DOM attrs.
       watch(() => props.disabled, (value) => {

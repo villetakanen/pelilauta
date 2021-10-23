@@ -1,55 +1,53 @@
 <template>
   <div class="mediaTool">
-    <h3>{{ $t('thread.editor.mediaTool.title') }}</h3>
-    <p>{{ $t('thread.editor.mediaTool.text') }}</p>
-    <div v-if="thread.data.youTubeSlug">
+    <div v-if="slug">
       <iframe
         title="Youtube Preview"
-        :src="`https://www.youtube.com/embed/${thread.data.youTubeSlug}?enablejsapi=1&origin=http://example.com`"
+        :src="`https://www.youtube.com/embed/${slug}?enablejsapi=1&origin=http://example.com`"
         frameborder="0"
       />
     </div>
-    <div class="toolbar">
-      <TextField v-model="slug" />
-      <MaterialButton :async-action="saveSlug">
-        {{ $t('action.save') }}
-      </MaterialButton>
-    </div>
+    <Toolbar>
+      <Textfield
+        v-model="slug"
+        :label="$t('threads.edit.videolink')"
+      />
+    </Toolbar>
   </div>
 </template>
 
 <script lang="ts">
-import { Thread } from '@/utils/firestoreInterfaces'
-import { defineComponent, PropType, ref } from 'vue'
-import MaterialButton from '../material/MaterialButton.vue'
-import TextField from '../material/TextField.vue'
-import { updateThread } from '@/state/threads/threads'
-import { useAuth } from '@/state/authz'
+import { computed, defineComponent, ref } from 'vue'
+import Toolbar from '../layout/Toolbar.vue'
+import Textfield from '../form/Textfield.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton },
+  components: { Toolbar, Textfield },
   props: {
-    thread: {
-      type: Object as PropType<Thread>,
+    modelValue: {
+      type: String,
       required: true
     }
   },
-  setup (props) {
-    const slug = ref(props.thread.data.youTubeSlug || '')
-    const { user } = useAuth()
-
-    async function saveSlug () {
-      const updatedThread:Thread = { ...props.thread }
-      updatedThread.data.youTubeSlug = slug.value || ''
-      updateThread(user.value.uid, updatedThread)
-    }
-    return { slug, saveSlug }
+  emits: ['update:modelValue'],
+  setup (props, context) {
+    const localValue = ref('')
+    const slug = computed({
+      get: () => (localValue.value || props.modelValue),
+      set: (value) => {
+        if (localValue.value !== value) {
+          localValue.value = value
+          context.emit('update:modelValue', value)
+        }
+      }
+    })
+    return { slug }
   }
 })
 </script>
 <style lang="sass" scoped>
 .mediaTool
-  background-color: rgba(var(--chroma-primary-c-rgba), 0.22)
+  background-color: var(--chroma-secondary-d)
   padding: 8px
   margin-bottom: 8px
 </style>

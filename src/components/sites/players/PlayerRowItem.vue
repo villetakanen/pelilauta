@@ -3,16 +3,16 @@
     {{ player.nick }}
   </router-link>
   <p>[ select a character ]</p>
-  <MaterialButton
+  <Button
     text
-    :async-action="dropPlayer"
+    @click="dropPlayer()"
   >
     {{ $t('site.players.dropThePlayer') }}
-  </MaterialButton>
+  </Button>
 </template>
 
 <script lang="ts">
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import Button from '@/components/form/Button.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useSite } from '@/state/site'
 import { Player } from '@/utils/uiInterfaces'
@@ -21,7 +21,7 @@ import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'PlayerRowItem',
-  components: { MaterialButton },
+  components: { Button },
   props: {
     player: {
       type: Object as PropType<Player>,

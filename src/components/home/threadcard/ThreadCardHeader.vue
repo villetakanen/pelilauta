@@ -2,7 +2,7 @@
   <div class="threadCardHeader">
     <div
       v-if="thread.site"
-      class="toolbar withSite"
+      class="headerFlex withSite"
       :class="{ ddColors: site && site.systemBadge === 'dd'}"
     >
       <div
@@ -102,6 +102,8 @@ h1.title
   flex-grow: 1
 a, h1.title a
   color: var(--chroma-secondary-b)
+.headerFlex
+  display: flex
 .withSite
   background-color: var(--chroma-secondary-i)
   margin-top: -16px
@@ -114,9 +116,11 @@ a, h1.title a
   margin-bottom: 8px
   border-radius: 12px 12px 0 0
   a
-    color: var(--chroma-primary-c)
+    color: var(--chroma-secondary-d)
+  h1
+    margin: 0
   h1.title a
-    color: var(--chroma-secondary-c)
+    color: var(--chroma-secondary-a)
 .ddColors
   background: linear-gradient(160deg, rgba(188,15,15,.10) 0%, rgba(188,15,15,.30) 92%)
   a

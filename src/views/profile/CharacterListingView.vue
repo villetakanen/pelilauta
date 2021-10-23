@@ -1,15 +1,15 @@
 <template>
   <div class="characterListingView">
     <ProfileToolbar />
-    <div class="singleColumnLayout">
+    <main class="singleColumnLayout">
       <div class="toolbar">
         <h1 class="title">
           {{ $t('profile.characterListing.title') }}
         </h1>
         <div class="spacer" />
-        <MaterialButton :async-action="addNewCharacter">
+        <Button @click="addNewCharacter()">
           {{ $t('action.create') }}
-        </MaterialButton>
+        </Button>
       </div>
       <div class="characterListing">
         <div
@@ -26,7 +26,7 @@
       <div class="debug">
         {{ playerCharacters }}
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -34,13 +34,13 @@
 import { defineComponent } from 'vue'
 import ProfileToolbar from '@/components/profile/ProfileToolbar.vue'
 import { useCharacters } from '@/state/characters'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import Button from '@/components/form/Button.vue'
 
 export default defineComponent({
   name: 'ProfileView',
   components: {
     ProfileToolbar,
-    MaterialButton
+    Button
   },
   setup () {
     const { playerCharacters, createNewPlayerCharacter } = useCharacters()

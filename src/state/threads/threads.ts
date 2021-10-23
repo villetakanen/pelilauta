@@ -158,7 +158,8 @@ async function createThread (data:PostData, meta?:ThreadMeta): Promise<string> {
     ...data,
     created: serverTimestamp(),
     flowTime: serverTimestamp(),
-    ...meta
+    ...meta,
+    public: true // This is here for future use - as there might be a need for hidden threads, for a hidden site.
   }).then((d) => {
     return d.id
   })
@@ -245,16 +246,106 @@ async function dispatchThreadSeen (): Promise<void | DocumentReference<DocumentD
   }
 }
 
+/**
+ * A Class entity for a Firebase Thread.
+ *
+ * Uses of the Thread interface should be refactored to this class, and then this class renamed
+ * to "Thread"
+ */
+export class ThreadClass {
+  readonly id: string
+  readonly author: string|undefined
+  title: string
+  topic: string
+  replyCount: number
+  lovedCount: number
+
+  constructor (id: string, data?:DocumentData) {
+    this.id = id
+    this.title = data?.title || ''
+    this.topic = data?.topic || '-'
+    this.replyCount = data?.replyCount || 0
+    this.lovedCount = data?.lovedCount || 0
+    this.author = data?.author || undefined
+  }
+
+  dry (): {
+      title: string
+      topic: string
+      replyCount: number
+      lovedCount: number
+      author: string|undefined //
+      } {
+    return {
+      title: this.title,
+      topic: this.topic,
+      replyCount: this.replyCount,
+      lovedCount: this.lovedCount,
+      author: this.author
+    }
+  }
+}
+
+async function fetchThreadsWithMostReplies (count = 5): Promise<ThreadClass[]> {
+  const threadArray:ThreadClass[] = new Array<ThreadClass>()
+
+  const likedThreadDocs = await getDocs(
+    query(
+      collection(
+        getFirestore(),
+        'stream'
+      ),
+      where('public', '==', true),
+      orderBy('replyCount', 'desc'),
+      limit(count)
+    )
+  )
+
+  likedThreadDocs.forEach((likedDoc) => {
+    threadArray.push(new ThreadClass(likedDoc.id, likedDoc.data()))
+  })
+
+  console.debug('fetchLikedThreads returns', threadArray)
+
+  return threadArray
+}
+
+async function fetchLikedThreads (count = 5): Promise<ThreadClass[]> {
+  const threadArray:ThreadClass[] = new Array<ThreadClass>()
+
+  const likedThreadDocs = await getDocs(
+    query(
+      collection(
+        getFirestore(),
+        'stream'
+      ),
+      where('public', '==', true),
+      orderBy('lovedCount', 'desc'),
+      limit(count)
+    )
+  )
+
+  likedThreadDocs.forEach((likedDoc) => {
+    threadArray.push(new ThreadClass(likedDoc.id, likedDoc.data()))
+  })
+
+  console.debug('fetchLikedThreads returns', threadArray)
+
+  return threadArray
+}
+
 export function useThreads (topic?:string): {
     stream: ComputedRef<Thread[]>
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread>
+    fetchLikedThreads: (count?: number) => Promise<ThreadClass[]>
+    fetchThreadsWithMostReplies: (count?: number) => Promise<ThreadClass[]>
     fetchSiteThreads: (id:string) => Promise<void>
     subscribeThread: (id?: string | undefined) => void
     createThread: (data:PostData, meta?:ThreadMeta) => Promise<string>
     updateThread: (threadid:string, data:PostData) => Promise<void>} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread, fetchSiteThreads }
+  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread, fetchSiteThreads, fetchLikedThreads, fetchThreadsWithMostReplies }
 }

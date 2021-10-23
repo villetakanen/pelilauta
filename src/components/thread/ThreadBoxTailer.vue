@@ -1,6 +1,10 @@
 <template>
   <div class="threadBoxTailer">
-    <div class="toolbar toright">
+    <Toolbar>
+      <p class="TypeCaption">
+        {{ toDisplayString(thread.created) }}
+      </p>
+      <SpacerDiv />
       <div class="seendemo">
         {{ thread.seenCount }}
         <Icon
@@ -16,7 +20,7 @@
         :count="thread.lovedCount"
         style="margin-right: 8px"
       />
-    </div>
+    </Toolbar>
     <AuthorInfo :authorid="thread.author" />
   </div>
 </template>
@@ -27,12 +31,15 @@ import { loveThread, unloveThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import AuthorInfo from '../author/AuthorInfo.vue'
+import Toolbar from '../layout/Toolbar.vue'
 import Icon from '../material/Icon.vue'
 import LoveAThreadAction from './LoveAThreadAction.vue'
+import { toDisplayString } from '@/utils/firebaseTools'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 export default defineComponent({
   name: 'ThreadBoxTailer',
-  components: { AuthorInfo, LoveAThreadAction, Icon },
+  components: { AuthorInfo, LoveAThreadAction, Icon, Toolbar, SpacerDiv },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -60,7 +67,7 @@ export default defineComponent({
       }
     }
 
-    return { loves, toggleLove }
+    return { loves, toggleLove, toDisplayString }
   }
 })
 </script>

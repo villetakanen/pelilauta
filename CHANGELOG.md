@@ -2,6 +2,183 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.3.0](https://github.com/villetakanen/pelilauta/compare/v11.2.4...v11.3.0) (2021-10-21)
+
+
+### Features
+
+* added a new discussions home page ([65d74f2](https://github.com/villetakanen/pelilauta/commit/65d74f2c479bbd3700a5cb7b2a8a4619342f5078))
+
+
+### Bug Fixes
+
+* added components for the 3 queries ([2aee484](https://github.com/villetakanen/pelilauta/commit/2aee48454d38c6f33f6003de2a981727d022409f))
+* added components for the 3 queries ([05345d3](https://github.com/villetakanen/pelilauta/commit/05345d39a2e3f03805b62d2686737547acfe48b6))
+* author links to thread list items ([2429c93](https://github.com/villetakanen/pelilauta/commit/2429c93cd1abd1d33ab1040b5fc4a99d36e22c71))
+* experimental discussion front page released ([342f6f0](https://github.com/villetakanen/pelilauta/commit/342f6f0b13ad192e15ec62bd2ae94cfe53f79010))
+* fetch most liked threads ([69d50a9](https://github.com/villetakanen/pelilauta/commit/69d50a9643da7ade8dc3bc3dc093e1ea52149e2b))
+* hotfix for firebase auto-id page urls ([c0acca6](https://github.com/villetakanen/pelilauta/commit/c0acca6b5bd93a272b813a372a2bba43985fe553))
+* links work on discussion index ([f38143b](https://github.com/villetakanen/pelilauta/commit/f38143bb60c2b0e742e86f4ea4d7b440d5c584e6))
+* most replies fetch added ([1ca7112](https://github.com/villetakanen/pelilauta/commit/1ca7112c4463b2ec704885f1817cf37d2dc9560b))
+* new thread list item component ([defb114](https://github.com/villetakanen/pelilauta/commit/defb1140c75b97f8965ff53ba035847b1be6187f))
+
+### [11.2.4](https://github.com/villetakanen/pelilauta/compare/v11.2.3...v11.2.4) (2021-10-19)
+
+
+### Bug Fixes
+
+* menu now supports icons properly ([205849e](https://github.com/villetakanen/pelilauta/commit/205849e1a7dabf1e8fee2897809fe1f491903639))
+* site home uses rich text ([3126a53](https://github.com/villetakanen/pelilauta/commit/3126a53a99ffa459778dfd40add975f222f43025))
+
+### [11.2.3](https://github.com/villetakanen/pelilauta/compare/v11.2.2...v11.2.3) (2021-10-19)
+
+
+### Bug Fixes
+
+* aria bug for image ([3b5945d](https://github.com/villetakanen/pelilauta/commit/3b5945deca98fd0fa8167b62789996eb312d5022))
+* materialbutton deprecations committed ([3d7f7c8](https://github.com/villetakanen/pelilauta/commit/3d7f7c81058328351ca418a46d339183713ceaab))
+* more deprecations committed ([9b430b4](https://github.com/villetakanen/pelilauta/commit/9b430b43f9aecb7f09ccb92cc52dd472a140766a))
+* some polish for public site listing ([5312d1a](https://github.com/villetakanen/pelilauta/commit/5312d1a362edc6995364af766432ed0136ce9350))
+
+### [11.2.2](https://github.com/villetakanen/pelilauta/compare/v11.2.0...v11.2.2) (2021-10-19)
+
+
+### Bug Fixes
+
+* new thread header no longer experimental ([11bd21d](https://github.com/villetakanen/pelilauta/commit/11bd21d7bb4d9d70fcbb2302a99d4116dcc1d671))
+* removed deprecated button components ([6af344c](https://github.com/villetakanen/pelilauta/commit/6af344cefaa7acf38599672d0110b5d74097832e))
+
+### [11.2.1](https://github.com/villetakanen/pelilauta/compare/v11.2.0...v11.2.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* new thread header no longer experimental ([11bd21d](https://github.com/villetakanen/pelilauta/commit/11bd21d7bb4d9d70fcbb2302a99d4116dcc1d671))
+
+## [11.2.0](https://github.com/villetakanen/pelilauta/compare/v11.1.3...v11.2.0) (2021-10-18)
+
+
+### Features
+
+* forums ad added as a front page widget ([4c1afee](https://github.com/villetakanen/pelilauta/commit/4c1afee748fb53fc3202f07d85ce50c4e252c1a7))
+
+
+### Bug Fixes
+
+* editortest shows new editors ([36d8f5c](https://github.com/villetakanen/pelilauta/commit/36d8f5cae28eef81a5e073b8a7e4c512f0433c11))
+* replyeditor polish of model changes ([512baad](https://github.com/villetakanen/pelilauta/commit/512baadd0268df521b54fb00c076252e896f72c4))
+
+### [11.1.3](https://github.com/villetakanen/pelilauta/compare/v11.1.2...v11.1.3) (2021-10-18)
+
+
+### Bug Fixes
+
+* more reply editor quill state fixes ([d51305b](https://github.com/villetakanen/pelilauta/commit/d51305b3d29c5b8023510b843295042edf1d1b90))
+
+### [11.1.2](https://github.com/villetakanen/pelilauta/compare/v11.1.1...v11.1.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* blockquote is no longer flashy ([fff5e6d](https://github.com/villetakanen/pelilauta/commit/fff5e6d3411df0001c7bb23bd7fa15ca27864705))
+* init of comment clear of innerhtml+quill bug ([160aff7](https://github.com/villetakanen/pelilauta/commit/160aff7a9c295298a1fbd4a84dd7bf8a2783d683))
+* removed deprecated code ([dca3a4f](https://github.com/villetakanen/pelilauta/commit/dca3a4f28c421f7066210b6f035d25fb04ab91ea))
+* thread card header flex fixed on mobile ([a2cdca2](https://github.com/villetakanen/pelilauta/commit/a2cdca2d27721955d9d0d8bf8bb8e7362ebc0e97))
+* withsite header colors ([e3b018a](https://github.com/villetakanen/pelilauta/commit/e3b018a4e0d761aa06937b456f5befab43e49009))
+
+### [11.1.1](https://github.com/villetakanen/pelilauta/compare/v11.1.0...v11.1.1) (2021-10-17)
+
+
+### Bug Fixes
+
+* video preview size on mobile ([b3a2302](https://github.com/villetakanen/pelilauta/commit/b3a23020788c7be85c68d19d8e49369263fa4f21))
+
+## [11.1.0](https://github.com/villetakanen/pelilauta/compare/v11.0.0...v11.1.0) (2021-10-15)
+
+
+### Features
+
+* video's can again be linked to a thread ([fd77fcd](https://github.com/villetakanen/pelilauta/commit/fd77fcda1bf72500096d375d3714de8f4f6e21c5))
+
+
+### Bug Fixes
+
+* experimental header for threadeditor ([fabd620](https://github.com/villetakanen/pelilauta/commit/fabd6206ed0bf753cbc460ed47826f9ef44bb370))
+* menu fixed for show video link panel emitting ([db52e5a](https://github.com/villetakanen/pelilauta/commit/db52e5ab9a243e84ab9bc36acf05f43479b4b986))
+* video previews ([2a5d545](https://github.com/villetakanen/pelilauta/commit/2a5d545eb4cae89fce4d7b4afadf35c23d5b6514))
+* videolinker emits and props done ([6834c19](https://github.com/villetakanen/pelilauta/commit/6834c1952546190b284abe806095ec7c4461ffb4))
+* videos can be uploaded ([032b047](https://github.com/villetakanen/pelilauta/commit/032b047bccc7c87689606ed4d2b8cbf20eb96b10))
+
+## [11.0.0](https://github.com/villetakanen/pelilauta/compare/v10.8.21...v11.0.0) (2021-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release includes Assets as a new root level data
+type, akin to Site, User and Character
+
+### Features
+
+* assets as a primary data type ([b0946f9](https://github.com/villetakanen/pelilauta/commit/b0946f98e6b23458f2ea92f9c695c363c649c7b2))
+
+
+### Bug Fixes
+
+* admin tools to use header ([174d576](https://github.com/villetakanen/pelilauta/commit/174d57697d9cbbb069078a2c3a4df951f38a546e))
+* asset upload polish ([3d713ba](https://github.com/villetakanen/pelilauta/commit/3d713ba8821a3fe91ede53e83e50602e201fb3eb))
+* asset uploader visuals ([9b0c7ce](https://github.com/villetakanen/pelilauta/commit/9b0c7cecc48bfcf1cb17bcdb13116ec2c3753f88))
+* asset uploading implemented ([fbe7387](https://github.com/villetakanen/pelilauta/commit/fbe7387bbb973c583864021bfde79f291978fb24))
+* asset uploading implemented ([513b150](https://github.com/villetakanen/pelilauta/commit/513b1505632f3d407accd04b19ab5d65424e2ccc))
+* code style ([4a07ddb](https://github.com/villetakanen/pelilauta/commit/4a07ddb65921d285300c95a3bcc4783c5c40fbcc))
+* dialogs can have toolbars ([41f7688](https://github.com/villetakanen/pelilauta/commit/41f7688d8df4b7ca084c3899bb7e5fb16ff63615))
+* i18n for the uploader ([3a93582](https://github.com/villetakanen/pelilauta/commit/3a9358204b2f14a8d43c39dc03e08b96c311b2e3))
+* next steps documented ([9a47c31](https://github.com/villetakanen/pelilauta/commit/9a47c31b0dd3ad6109946b0dd18c579c921fd3df))
+* polish for asset saving ([2faff23](https://github.com/villetakanen/pelilauta/commit/2faff239eb0e8410ca5af86613d8da6710ce4df9))
+* preview file works ([0c6a4ff](https://github.com/villetakanen/pelilauta/commit/0c6a4ff1df0df469902a667a681f84f09505c818))
+* removed toolbar from the header toolbars ([e525bff](https://github.com/villetakanen/pelilauta/commit/e525bffca47ea4cf92bcbf06ec7b62f247d286b1))
+* replyform adds images to assets ([869fda6](https://github.com/villetakanen/pelilauta/commit/869fda6d2ade63708a19c1bf71ab5d61252ca1f8))
+* rich text editor works with new assets ([f6713be](https://github.com/villetakanen/pelilauta/commit/f6713be04e12048aa226136446f0d54bd13b9d81))
+
+### [10.8.21](https://github.com/villetakanen/pelilauta/compare/v10.8.20...v10.8.21) (2021-10-12)
+
+
+### Bug Fixes
+
+* profile media view header ([abd4642](https://github.com/villetakanen/pelilauta/commit/abd46425b37f65c061467dbce97bfede4a19e518))
+
+### [10.8.20](https://github.com/villetakanen/pelilauta/compare/v10.8.19...v10.8.20) (2021-10-12)
+
+
+### Bug Fixes
+
+* asset list refactors - working but ugly ([41564f0](https://github.com/villetakanen/pelilauta/commit/41564f0c92df303b02b9433953087567c643c305))
+* experimental remove topics from sidebar ([dca931b](https://github.com/villetakanen/pelilauta/commit/dca931be3b56a1e842743bd8e87836e9691ad8ef))
+* experimental sidebar to an ad for forums ([dd493bb](https://github.com/villetakanen/pelilauta/commit/dd493bbdd30918efd0552a51ef889e1dead8623a))
+
+### [10.8.19](https://github.com/villetakanen/pelilauta/compare/v10.8.18...v10.8.19) (2021-10-12)
+
+
+### Bug Fixes
+
+* app structure prepped for semantic header ([67771d2](https://github.com/villetakanen/pelilauta/commit/67771d2939d2a30260bfd9c17d17335740b20015))
+* channel index header fixed ([8ced1e1](https://github.com/villetakanen/pelilauta/commit/8ced1e1ed530360528f4b5b175e71569e4029080))
+* code-style bugs cleared ([5389e8e](https://github.com/villetakanen/pelilauta/commit/5389e8e44c32b9ae7d6167ab295e58baf4495a1d))
+* experimental header for thread-vew ([5747a82](https://github.com/villetakanen/pelilauta/commit/5747a82095bb0bfcc78785f258a4fdda8b67c25d))
+* experimental thread header is sticky ([246acf5](https://github.com/villetakanen/pelilauta/commit/246acf5e5c6b597973e3450f100b9d2e5bc4c865))
+* material-menu spacing fixed ([72e2104](https://github.com/villetakanen/pelilauta/commit/72e21048a4aae22ea32054fde26dda9c0d8ae255))
+* mobile wrapping of header ([be5cb43](https://github.com/villetakanen/pelilauta/commit/be5cb43632c8b7e43361c1f34a1937155d7241a4))
+* spacer named no code-style conformant tag ([bbcf338](https://github.com/villetakanen/pelilauta/commit/bbcf338eb3b782a734b8f64224718908634b1b11))
+* thread-loading issues ([3432d34](https://github.com/villetakanen/pelilauta/commit/3432d342b820db1df4064504262cf5a1a06229fe))
+* toolbar to header ([ea7abae](https://github.com/villetakanen/pelilauta/commit/ea7abae95b0c985b469ed1f0766fef602a5fc2eb))
+* view title split to a component ([d64a695](https://github.com/villetakanen/pelilauta/commit/d64a695a83494c238ee9a8d08878de33d85ae5a9))
+
+### [10.8.18](https://github.com/villetakanen/pelilauta/compare/v10.8.17...v10.8.18) (2021-10-11)
+
+
+### Bug Fixes
+
+* edit button route on wiki front page ([aba222b](https://github.com/villetakanen/pelilauta/commit/aba222b281b6157a03fe5623baf3b03e0785ca56))
+
 ### [10.8.17](https://github.com/villetakanen/pelilauta/compare/v10.8.16...v10.8.17) (2021-10-11)
 
 

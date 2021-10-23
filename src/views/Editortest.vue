@@ -1,71 +1,25 @@
 <template>
   <AdminActions :title="$t('admin.action.editorTest')" />
-  <div class="contentGrid">
-    <h3>Discussion/comment/reply Quill</h3>
-    <ReplyEditor
-      v-model:content="replyContent"
-      style="border: solid 1px green; height: 96px;border-radius: 6px"
-    />
-    <p>The content is auto-processed to the field below</p>
-    <Reply
-      :reply="exampleReply"
-      threadid="none"
-    />
-    <div class="test-container">
-      <div class="test-box">
-        <MaterialCard>
-          <RichTextEditor
-            v-model="content"
-          />
-        </MaterialCard>
-        <MaterialButton :action="simulateSave">
-          Simulate Save
-        </MaterialButton>
-      </div>
-      <div class="test-box">
-        <h3>This is what the end result looks like</h3>
-        <MaterialCard class="rended-result">
-          <div
-            id="result"
-            :innerHTML="content"
-          />
-          <div class="carousel">
-            <img
-              v-for="url in images.split(';')"
-              :key="url"
-              :src="url"
-              alt=""
-            >
-          </div>
-        </MaterialCard>
-        <hr>
-        {{ content }}
-        <hr>
-      </div>
-    </div>
-  </div>
+  <main class="bookLayout">
+    <ReplyEditorTester />
+    <RichTextEditorTester />
+  </main>
 </template>
 
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, ref } from 'vue'
-import MaterialCard from '@/components/material/MaterialCard.vue'
 import { extractLinks, extractTags } from '@/utils/contentFormat'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
-import ReplyEditor from '@/components/discussion/ReplyEditor.vue'
 import { Reply as ReplyInterface } from '@/utils/firestoreInterfaces'
-import Reply from '@/components/discussion/Reply.vue'
-import RichTextEditor from '@/components/quill/RichTextEditor.vue'
+import ReplyEditorTester from '@/components/discussion/ReplyEditorTester.vue'
+import RichTextEditorTester from '@/components/quill/RichTextEditorTester.vue'
 
 export default defineComponent({
   name: 'EditorTest',
   components: {
-    MaterialCard,
-    MaterialButton,
     AdminActions,
-    ReplyEditor,
-    Reply,
-    RichTextEditor
+    ReplyEditorTester,
+    RichTextEditorTester
   },
   setup () {
     const content = ref('')

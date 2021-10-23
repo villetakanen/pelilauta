@@ -17,7 +17,10 @@
       >
         {{ snippet }}
       </p>
-      <div v-if="thread.data.youTubeSlug">
+      <div
+        v-if="thread.data.youTubeSlug"
+        class="youtubeFrame chroma-box-1"
+      >
         <iframe
           title="Youtube Preview"
           class="youtubePreview"
@@ -98,7 +101,7 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/include-media.scss
 @import @/styles/material-typography.sass
-div.threadCard
+section.threadCard
   color: var(--chroma-secondary-a)
   p.subtitle
     @include TypeBody2()
@@ -153,17 +156,21 @@ div.threadCard
 .pinned
   background-color: var(--chroma-secondary-i)
 .youtubePreview
-  width: 548px
-  height: calc(548px / 16 * 9)
+  width: 412px
+  height: calc(412px / 16 * 9)
+  padding: 0
+.youtubeFrame
+  text-align: center
+  padding: 0
 
 @include media('>=tablet')
-  div.threadCard.small
+  section.threadCard.small
     .youtubePreview
       width: 464px
       height: calc(464px / 16 * 9)
 
 @include media('<tablet')
-  div.threadCard
+  section.threadCard
     .youtubePreview
       width: calc(100vw - 48px)
       height: calc((100vw - 48px) / 16 *9 )

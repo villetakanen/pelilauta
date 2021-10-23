@@ -1,8 +1,11 @@
 <template>
   <Dialog v-model="showDialog">
     <div>
-      <h1>INJECT IMAGE MVP</h1>
-      <div class="selector">
+      <h1>{{ $t('action.add') }}</h1>
+      <div
+        class="selector"
+        style="min-width:310px"
+      >
         <div
           v-for="asset in assets"
           :key="asset[0]"
@@ -17,22 +20,29 @@
           >
         </div>
       </div>
-      <MaterialButton @click="inject">
-        {{ $t('action.add') }}
-      </MaterialButton>
     </div>
+    <template #footer>
+      <Toolbar>
+        <SpacerDiv />
+        <Button @click="inject">
+          {{ $t('action.add') }}
+        </Button>
+      </Toolbar>
+    </template>
   </Dialog>
 </template>
 <script lang="ts">
 import { IMAGE_TAG_INSERT_EVENT, IMAGE_UPLOAD_EVENT } from '@/composables/useQuill/imageModule'
-import { useAssets } from '@/state/authz'
+import { useAssets } from '@/state/assets'
 import { defineComponent, onMounted, ref } from 'vue'
+import Button from '../form/Button.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
+import Toolbar from '../layout/Toolbar.vue'
 import Dialog from '../material/Dialog.vue'
-import MaterialButton from '../material/MaterialButton.vue'
 
 export default defineComponent({
   name: 'InserMediaDialog',
-  components: { Dialog, MaterialButton },
+  components: { Dialog, Toolbar, Button, SpacerDiv },
   setup () {
     const showDialog = ref(false)
     const selected = ref('')

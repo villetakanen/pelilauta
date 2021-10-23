@@ -5,13 +5,13 @@
       :key="thread.id"
       :thread="thread"
     />
-    <MaterialButton
+    <Button
       text
       :disabled="atEnd"
-      :action="nextPage"
+      @click="nextPage()"
     >
       {{ $t('action.nextPage') }}
-    </MaterialButton>
+    </Button>
   </Column>
 </template>
 
@@ -19,17 +19,17 @@
 import { defineComponent, onMounted, ref, watch } from 'vue'
 import { toThread } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import ThreadCard from '@/components/home/threadcard/ThreadCard.vue'
 import { collection, getDocs, getFirestore, limit, orderBy, query, QueryDocumentSnapshot, startAfter, where } from '@firebase/firestore'
 import Column from '../layout/Column.vue'
+import Button from '../form/Button.vue'
 
 export default defineComponent({
   name: 'Threadlist',
   components: {
-    MaterialButton,
     ThreadCard,
-    Column
+    Column,
+    Button
   },
   props: {
     topic: {

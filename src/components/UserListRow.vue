@@ -11,7 +11,7 @@
     style="padding: 0 8px"
     :class="rowClasses"
   >
-    {{ nick }}
+    <AuthorLink :uid="uid" />
   </td>
   <td
     style="padding: 0 8px"
@@ -60,11 +60,13 @@ import { doc, getDoc, getFirestore, updateDoc, query, getDocs, orderBy, collecti
 import { useAuth } from '@/state/authz'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Button from './form/Button.vue'
+import AuthorLink from './author/AuthorLink.vue'
 
 export default defineComponent({
   name: 'EditPost',
   components: {
-    Button
+    Button,
+    AuthorLink
   },
   props: {
     nick: {

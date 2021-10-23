@@ -1,34 +1,41 @@
 <template>
-  <div class="threadEditor">
-    <Textfield
-      v-model="v.threadTitle.$model"
-      :label="$t('threads.title')"
-      :error="v.threadTitle.$error"
-    />
-    <RichTextEditor
-      v-model:content="v.threadContent.$model"
-      class="contentEditor"
-      :error="v.threadContent.$error"
-    />
-    <div
-      class="toolbar editorActions"
-    >
-      <TopicSelector v-model="threadTopic" />
-      <div class="spacer" />
-      <MaterialButton
-        id="threadEditorCancelButton"
-        text
-        :to="threadid ? `/thread/${threadid}/view` : '/'"
+  <main class="threadEditor">
+    <section>
+      <Textfield
+        v-model="v.threadTitle.$model"
+        :label="$t('threads.title')"
+        :error="v.threadTitle.$error"
+        class="titleField"
+      />
+      <MediaTool
+        v-if="showVideoLinker"
+        v-model="threadSlug"
+      />
+      <RichTextEditor
+        v-model:content="v.threadContent.$model"
+        class="contentEditor"
+        :error="v.threadContent.$error"
+      />
+      <div
+        class="toolbar editorActions"
       >
-        {{ $t('action.cancel') }}
-      </MaterialButton>
-      <MaterialButton
-        :async-action="save"
-      >
-        {{ $t('action.send') }}
-      </MaterialButton>
-    </div>
-  </div>
+        <TopicSelector v-model="threadTopic" />
+        <div class="spacer" />
+        <Button
+          id="threadEditorCancelButton"
+          text
+          @click="reroute(threadid ? `/thread/${threadid}/view` : '/')"
+        >
+          {{ $t('action.cancel') }}
+        </Button>
+        <Button
+          @click="save()"
+        >
+          {{ $t('action.send') }}
+        </Button>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script lang="ts">
@@ -38,12 +45,14 @@ import { computed, defineComponent, onMounted, ref } from 'vue'
 import Textfield from '../form/Textfield.vue'
 import { maxLength } from '@/utils/contentFormat'
 import RichTextEditor from '../quill/RichTextEditor.vue'
-import MaterialButton from '../material/MaterialButton.vue'
 import TopicSelector from './TopicSelector.vue'
 import { useThreads } from '@/state/threads'
 import { useSite } from '@/state/site'
 import { PostData } from '@/utils/firestoreInterfaces'
 import { useRouter } from 'vue-router'
+import MediaTool from './MediaTool.vue'
+import { useUxActions } from '@/composables/useUxActions'
+import Button from '../form/Button.vue'
 
 /**
  * An form for editing and creating threads
@@ -53,8 +62,9 @@ export default defineComponent({
   components: {
     Textfield,
     RichTextEditor,
-    MaterialButton,
-    TopicSelector
+    TopicSelector,
+    MediaTool,
+    Button
   },
   props: {
     threadid: {
@@ -65,6 +75,11 @@ export default defineComponent({
     topic: {
       type: String,
       required: true
+    },
+    showVideoLinker: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   setup (props) {
@@ -75,6 +90,8 @@ export default defineComponent({
     const createANewThread = computed(() => (!props.threadid))
     const originalThread = computed(() => (thread.value))
     const siteid = computed(() => (thread.value.site ?? ''))
+
+    const { reroute } = useUxActions()
 
     onMounted(() => {
       subscribeThread(props.threadid)
@@ -111,6 +128,16 @@ export default defineComponent({
       }
     })
 
+    const dirtySlug = ref('')
+    const threadSlug = computed({
+      get: () => (dirtySlug.value || originalThread.value.data.youTubeSlug || ''),
+      set: (val: string) => {
+        if (val !== dirtySlug.value) {
+          dirtySlug.value = val
+        }
+      }
+    })
+
     const rules = {
       threadTitle: { required, maxLength },
       threadContent: { required }
@@ -124,6 +151,7 @@ export default defineComponent({
         topic: threadTopic.value,
         content: threadContent.value
       }
+      if (dirtySlug.value) data.youTubeSlug = dirtySlug.value
       if (createANewThread.value) {
         const id = await createThread(data)
         router.push(`/thread/${id}/view`)
@@ -136,15 +164,17 @@ export default defineComponent({
     return {
       createANewThread,
       threadTopic,
+      threadSlug,
       siteid,
       save,
-      v
+      v,
+      reroute
     }
   }
 })
 </script>
 
 <style lang="sass" scoped>
-.editorActions, .contentEditor
-  margin-top: 8px
+.titleField+.contentEditor
+  margin-top: 12px
 </style>

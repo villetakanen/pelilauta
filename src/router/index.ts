@@ -77,6 +77,11 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
+    path: '/threads',
+    name: 'threads.home',
+    component: () => import(/* webpackChunkName: "global" */ '../views/threads/ThreadsHomeView.vue')
+  },
+  {
     path: '/thread/:threadid/view',
     component: () => import(/* webpackChunkName: "threads" */ '../views/pelilauta/ViewThread.vue'),
     props: true,

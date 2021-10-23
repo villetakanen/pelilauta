@@ -27,41 +27,35 @@
       :key="site.id"
       :rise="2"
       class="siteCard"
+      :class="{ withPoster: site.splashURL }"
     >
-      <div style="z-index: 11; position: relative">
-        <div
-          v-if="site.splashURL"
-          :style="`background-image: url(${site.splashURL})`"
-          class="poster"
-        />
-        <div
-          v-if="site.splashURL"
-          class="posterFade"
-        />
-        <h1>
-          <router-link :to="`/mekanismi/view/${site.id}/${site.id}`">
-            {{ site.name }}
-          </router-link>
-        </h1>
-        <p class="description">
-          {{ site.description }}
-        </p>
-      </div>
-
-      <div
-        class="toolbar"
-        style="clear:both"
+      <img
+        v-if="site.splashURL"
+        alt=""
+        :src="site.splashURL"
+        class="poster"
       >
+      <h1>
+        <router-link :to="`/site/${site.id}`">
+          {{ site.name }}
+        </router-link>
+      </h1>
+
+      <p class="description">
+        {{ site.description }}
+      </p>
+
+      <Toolbar class="cardBottom">
         <Icon
           v-if="site.systemBadge"
           :name="site.systemBadge + '-logo'"
           class="systemBadge"
         />
-        <div class="spacer" />
+        <SpacerDiv />
         <div class="caption">
           {{ toDisplayString(site.lastUpdate || null) }}
         </div>
-      </div>
+      </Toolbar>
     </Card>
   </Column>
 </template>
@@ -76,6 +70,7 @@ import { Site } from '@/state/site'
 import Column from '../layout/Column.vue'
 import { useAuth } from '@/state/authz'
 import Button from '../form/Button.vue'
+import Toolbar from '../layout/Toolbar.vue'
 
 export default defineComponent({
   name: 'SiteList',
@@ -83,7 +78,8 @@ export default defineComponent({
     Card,
     Icon,
     Column,
-    Button
+    Button,
+    Toolbar
   },
   props: {
     filter: {
@@ -130,6 +126,36 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
+section.siteCard
+  position: relative
+  h1
+    @include TypeHeadline5()
+    line-height: 36px
+    padding: 0
+    margin: 0
+    margin-bottom: 12px
+    a
+      color: var(--chroma-secondary-d)
+  p
+    @include TypeBody2()
+    margin: 0
+    padding: 0
+    margin-bottom: 12px
+    font-style: italic
+  img.poster
+    max-height: 72px
+    max-width: 144px
+    border-radius: 6px
+    position: absolute
+    top: 16px
+    right: 16px
+  &.withPoster
+    h1, p
+      padding-right: calc(144px + 16px)
+  .cardBottom
+    margin: 0
+    @include TypeCaption()
+
 .systemBadge
   height: 24px
   width: 24px
@@ -166,20 +192,7 @@ div.siteCard
     margin-top: 0
     a
       color: var(--chroma-secondary-a)
-  .poster
-    //height: 128px
-    // width: calc(100% + 32px)
-    // margin: -16px
-    // margin-bottom: -28px
-    // background-size: cover
-    background-position: center
-    height: 72px
-    width: 72px
-    float: right
-    border-radius: 36px
-    background-size: cover
-    box-shadow: 0px 0px 14px 0px rgba(0, 121, 107, 0.7)
-    margin: 0
+
   .splash
     height: 320px
     width: 480px
