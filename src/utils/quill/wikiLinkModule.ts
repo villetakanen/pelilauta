@@ -1,4 +1,4 @@
-import Quill, { RangeStatic } from 'quill'
+import Quill from 'quill'
 
 const InlineBlot = Quill.import('blots/inline')
 
