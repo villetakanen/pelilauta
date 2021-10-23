@@ -1,10 +1,10 @@
 import { useProfile, PublicProfile, ProfileMeta } from './profile'
 // import { useAuthState } from './state'
 import { useAssets } from './assets'
-import { computed, ComputedRef, reactive, WritableComputedRef } from 'vue'
+import { computed, ComputedRef, reactive, WritableComputedRef, ref } from 'vue'
 import { useMeta } from '../meta'
 import { onAuthStateChanged, getAuth, User } from '@firebase/auth'
-import { doc, getFirestore, onSnapshot, deleteDoc, updateDoc } from '@firebase/firestore'
+import { doc, getFirestore, onSnapshot, deleteDoc, updateDoc, DocumentData } from '@firebase/firestore'
 
 /**
  * A reactive object, that holds all state internals for auth
@@ -20,6 +20,17 @@ const authState = reactive({
     uid: ''
   }
 })
+
+class ProfileData {
+  readonly lovedThreads: undefined|Array<string>
+
+  constructor (data?:DocumentData) {
+    console.log('profile data set to', data)
+    this.lovedThreads = Array.isArray(data?.lovedThreads) ? data?.lovedThreads : undefined
+  }
+}
+const localProfileData = ref(new ProfileData())
+const profileData = computed(() => (localProfileData.value))
 
 const user = computed(() => (authState.user))
 const registrationIncomplete = computed(() => (!authState.profileDeletionInProgress && authState.missingProfileData))
@@ -77,7 +88,8 @@ function fetchProfile () {
         authState.useExperimentalTools = snap.data()?.useExperimentalTools || false
         console.log('tools', authState.useExperimentalTools)
 
-        // @TODO refactor profile fetching to this module
+        localProfileData.value = new ProfileData(snap.data())
+        // @TODO refactor rest of profile fetching to this module
         useProfile(authState.user.uid)
       }
     } else {
@@ -96,6 +108,7 @@ function processAuthStateChanged (user: User|null) {
     authState.user = {
       uid: ''
     }
+    localProfileData.value = new ProfileData()
     authState.loginComplete = true
   } else {
     console.debug('onAuthStateChanged', user.displayName, user.uid)
@@ -142,18 +155,19 @@ async function eraseProfile (): Promise<void> {
 }
 
 function useAuth (): {
-    user: ComputedRef<{ uid: string }>,
-    registrationIncomplete: ComputedRef<boolean>,
-    displayName: ComputedRef<string>,
-    frozen: ComputedRef<boolean>,
-    anonymousSession: ComputedRef<boolean>,
+    user: ComputedRef<{ uid: string }>
+    registrationIncomplete: ComputedRef<boolean>
+    displayName: ComputedRef<string>
+    frozen: ComputedRef<boolean>
+    anonymousSession: ComputedRef<boolean>
     showMemberTools: ComputedRef<boolean>
-    showAdminTools: ComputedRef<boolean>,
-    showExperimentalTools: WritableComputedRef<boolean>,
+    showAdminTools: ComputedRef<boolean>
+    showExperimentalTools: WritableComputedRef<boolean>
     loginComplete: ComputedRef<boolean>
-    eraseProfile: () => Promise<void>,
+    profileData: ComputedRef<ProfileData>
+    eraseProfile: () => Promise<void>
     createProfile: (nick: string) => Promise<void>} {
-  return { user, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete, showExperimentalTools }
+  return { user, profileData, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete, showExperimentalTools }
 }
 
 export {
