@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.3.7](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.6...v11.3.7) (2021-10-23)
+
+
+### Bug Fixes
+
+* iconography ([b5047b4](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/b5047b4ce6cd8cd444bcc170292fa79f947dbae9))
+* lints ([879e0ac](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/879e0ac964e35b334c6af7c3042a2fd678661aad))
+
 ### [11.3.6](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.5...v11.3.6) (2021-10-23)
 
 ### [11.3.5](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.4...v11.3.5) (2021-10-23)
