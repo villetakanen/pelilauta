@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.3.6](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.5...v11.3.6) (2021-10-23)
+
+### [11.3.5](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.4...v11.3.5) (2021-10-23)
+
 ### [11.3.4](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.0...v11.3.4) (2021-10-23)
 
 
