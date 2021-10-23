@@ -1,7 +1,7 @@
 <template>
   <div class="threadsHomeView">
     <Header>
-      <ViewTitle icon="discussion">
+      <ViewTitle icon="pelilauta">
         {{ $t('threads.home.title') }}
       </ViewTitle>
     </Header>
