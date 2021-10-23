@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.3.4](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.0...v11.3.4) (2021-10-23)
+
+
+### Bug Fixes
+
+* authortag polish ([4bc9b1b](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4bc9b1b2e3006a3e472342470ba600b37e3c7da3))
+* loader for the authortags ([4be1e92](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4be1e92ffbfe0e446b6eb3be1bfe61e974c659e1))
+* stylebook page for author stuff ([eb12a3f](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/eb12a3f6a444545f97b7ab5ecc73ac28ca10a709))
+* thread list item toolbat spacing ([0390bf6](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/0390bf6b55807658fbc25e79cca30d66a519b1a3))
+* threads home view routing issues cleared ([57262ed](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/57262eda15dde75b47474f0d013f3268134cd3e3))
+
+### [11.3.3](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.0...v11.3.3) (2021-10-23)
+
+
+### Bug Fixes
+
+* authortag polish ([4bc9b1b](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4bc9b1b2e3006a3e472342470ba600b37e3c7da3))
+* loader for the authortags ([4be1e92](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4be1e92ffbfe0e446b6eb3be1bfe61e974c659e1))
+* stylebook page for author stuff ([eb12a3f](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/eb12a3f6a444545f97b7ab5ecc73ac28ca10a709))
+* thread list item toolbat spacing ([0390bf6](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/0390bf6b55807658fbc25e79cca30d66a519b1a3))
+* threads home view routing issues cleared ([57262ed](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/57262eda15dde75b47474f0d013f3268134cd3e3))
+
+### [11.3.2](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.0...v11.3.2) (2021-10-23)
+
+
+### Bug Fixes
+
+* authortag polish ([4bc9b1b](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4bc9b1b2e3006a3e472342470ba600b37e3c7da3))
+* loader for the authortags ([4be1e92](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4be1e92ffbfe0e446b6eb3be1bfe61e974c659e1))
+* stylebook page for author stuff ([eb12a3f](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/eb12a3f6a444545f97b7ab5ecc73ac28ca10a709))
+* thread list item toolbat spacing ([0390bf6](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/0390bf6b55807658fbc25e79cca30d66a519b1a3))
+* threads home view routing issues cleared ([57262ed](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/57262eda15dde75b47474f0d013f3268134cd3e3))
+
+### [11.3.1](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.0...v11.3.1) (2021-10-23)
+
+
+### Bug Fixes
+
+* authortag polish ([4bc9b1b](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4bc9b1b2e3006a3e472342470ba600b37e3c7da3))
+* loader for the authortags ([4be1e92](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/4be1e92ffbfe0e446b6eb3be1bfe61e974c659e1))
+* stylebook page for author stuff ([eb12a3f](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/eb12a3f6a444545f97b7ab5ecc73ac28ca10a709))
+* thread list item toolbat spacing ([0390bf6](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/0390bf6b55807658fbc25e79cca30d66a519b1a3))
+* threads home view routing issues cleared ([57262ed](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/57262eda15dde75b47474f0d013f3268134cd3e3))
+
 ## [11.3.0](https://github.com/villetakanen/pelilauta/compare/v11.2.4...v11.3.0) (2021-10-21)
 
 
