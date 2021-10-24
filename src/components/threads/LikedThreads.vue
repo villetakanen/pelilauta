@@ -5,6 +5,7 @@
       v-for="thread in liked"
       :key="thread.id"
       :thread="thread"
+      @refresh="fetch()"
     />
   </Column>
 </template>
@@ -31,12 +32,16 @@ export default defineComponent({
     const liked = ref(new Array<ThreadClass>())
 
     onMounted(() => {
+      fetch()
+    })
+
+    function fetch () {
       fetchLikedThreads(props.count).then((t) => {
         liked.value = t
       })
-    })
+    }
 
-    return { liked }
+    return { liked, fetch }
   }
 })
 </script>

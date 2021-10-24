@@ -9,8 +9,11 @@
       </router-link>
     </h3>
     <Toolbar>
+      <ThreadLoves
+        :thread="thread"
+        @refresh="$emit('refresh')"
+      />
       <div>{{ thread.replyCount }}</div>
-      <div>{{ thread.lovedCount }}</div>
       <SpacerDiv />
       <AuthorTag :uid="thread.author" />
     </Toolbar>
@@ -25,16 +28,18 @@ import AuthorTag from '../author/AuthorTag.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Icon from '../material/Icon.vue'
+import ThreadLoves from '../thread/ThreadLoves.vue'
 
 export default defineComponent({
   name: 'ThreadListItem',
-  components: { Icon, Toolbar, AuthorTag, SpacerDiv },
+  components: { Icon, Toolbar, AuthorTag, SpacerDiv, ThreadLoves },
   props: {
     thread: {
       type: ThreadClass,
       required: true
     }
   },
+  emits: ['refresh'],
   setup (props) {
     const { streams } = useMeta()
     const streamTopic = computed(() => (
