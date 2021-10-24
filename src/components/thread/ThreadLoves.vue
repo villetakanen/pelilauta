@@ -1,9 +1,17 @@
 <template>
-  <div class="ThreadLoves">
+  <div
+    class="ThreadLoves"
+    :class="{ active: userLovesTheThread }"
+    @click="toggleLove()"
+  >
     <img
-      v-if="userLovesTheThread"
       src="@/assets/icons/love/loveIconBase.svg"
       class="loveIcon"
+      alt=""
+    >
+    <img
+      src="@/assets/icons/love/loveIcon.svg"
+      class="loveIconActive"
       alt="love"
     >
     {{ thread.lovedCount }}
@@ -12,6 +20,7 @@
 
 <script lang="ts">
 import { useAuth } from '@/state/authz'
+import { loveThread, unloveThread } from '@/state/threads'
 import { ThreadClass } from '@/state/threads/threads'
 import { computed, defineComponent } from 'vue'
 
@@ -24,10 +33,25 @@ export default defineComponent({
       required: true
     }
   },
-  setup (props) {
-    const { profileData } = useAuth()
+  emits: ['refresh'],
+  setup (props, context) {
+    const { profileData, user } = useAuth()
+
     const userLovesTheThread = computed(() => profileData.value.lovedThreads?.includes(props.thread.id))
-    return { userLovesTheThread }
+
+    async function toggleLove () {
+      // no-op if the author is trying to love their own posts
+      if (props.thread.author === user.value.uid) return
+      // love/unlove
+      if (userLovesTheThread.value) {
+        await unloveThread(user.value.uid, props.thread.id)
+      } else {
+        await loveThread(user.value.uid, props.thread.id)
+      }
+      context.emit('refresh')
+    }
+
+    return { userLovesTheThread, toggleLove }
   }
 })
 </script>
@@ -47,10 +71,19 @@ div.ThreadLoves
   border-radius: 12px
   margin: 0
   position: relative
-  .loveIcon
+  transition: all 0.3s
+  .loveIcon, .loveIconActive
     position: absolute
     top: 2px
     left: 8px
     height: 18px
+    transition: all 0.3s
+    opacity: 0.22
+  .loveIconActive
+    opacity: 0
+  &.active
+    background-color: var( --chroma-alert-field-tint)
+    .loveIconActive
+      opacity: 1
 
 </style>

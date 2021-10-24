@@ -9,7 +9,10 @@
       </router-link>
     </h3>
     <Toolbar>
-      <ThreadLoves :thread="thread" />
+      <ThreadLoves
+        :thread="thread"
+        @refresh="$emit('refresh')"
+      />
       <div>{{ thread.replyCount }}</div>
       <SpacerDiv />
       <AuthorTag :uid="thread.author" />
@@ -36,6 +39,7 @@ export default defineComponent({
       required: true
     }
   },
+  emits: ['refresh'],
   setup (props) {
     const { streams } = useMeta()
     const streamTopic = computed(() => (

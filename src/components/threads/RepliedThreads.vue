@@ -5,6 +5,7 @@
       v-for="thread in replied"
       :key="thread.id"
       :thread="thread"
+      @refresh="fetch()"
     />
   </Column>
 </template>
@@ -31,12 +32,16 @@ export default defineComponent({
     const replied = ref(new Array<ThreadClass>())
 
     onMounted(() => {
+      fetch()
+    })
+
+    function fetch () {
       fetchThreadsWithMostReplies(props.count).then((t) => {
         replied.value = t
       })
-    })
+    }
 
-    return { replied }
+    return { replied, fetch }
   }
 })
 </script>
