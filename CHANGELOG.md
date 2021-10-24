@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.3.8](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.7...v11.3.8) (2021-10-24)
+
+
+### Bug Fixes
+
+* final touches on new love tag ([ab4dc2d](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/ab4dc2d8957bacb6a90f6804303b7cace19137a2))
+* new love action ([eb3503c](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///commit/eb3503c8a44484e5cdc5d8aae8aeea5f78001191))
+
 ### [11.3.7](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.6...v11.3.7) (2021-10-23)
 
 
