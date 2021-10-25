@@ -24,7 +24,6 @@ export default defineComponent({
     const { fetchAuthor } = useAuthors()
     const { reroute } = useUxActions()
     const author = ref(await fetchAuthor(props.uid))
-    console.log(author)
     return { author, reroute }
   }
 })

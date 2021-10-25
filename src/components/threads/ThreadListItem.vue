@@ -13,7 +13,7 @@
         :thread="thread"
         @refresh="$emit('refresh')"
       />
-      <div>{{ thread.replyCount }}</div>
+      <ThreadReplies :thread="thread" />
       <SpacerDiv />
       <AuthorTag :uid="thread.author" />
     </Toolbar>
@@ -29,10 +29,11 @@ import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Icon from '../material/Icon.vue'
 import ThreadLoves from '../thread/ThreadLoves.vue'
+import ThreadReplies from '../thread/ThreadReplies.vue'
 
 export default defineComponent({
   name: 'ThreadListItem',
-  components: { Icon, Toolbar, AuthorTag, SpacerDiv, ThreadLoves },
+  components: { Icon, Toolbar, AuthorTag, SpacerDiv, ThreadLoves, ThreadReplies },
   props: {
     thread: {
       type: ThreadClass,
