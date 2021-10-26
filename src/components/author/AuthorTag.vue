@@ -38,6 +38,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .AuthorTag
+  cursor: pointer
   display: inline-block
   margin: 0
   padding: 0
