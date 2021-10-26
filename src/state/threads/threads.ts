@@ -2,7 +2,7 @@ import { computed, ComputedRef, ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
 import { useAuth, useProfile } from '../authz'
 import { Thread, PostData } from '@/utils/firestoreInterfaces'
-import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, FirestoreError, getDocs, getDocsFromServer, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, where } from '@firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, FirestoreError, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, where, Timestamp } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 
 export interface Stream {
@@ -259,6 +259,7 @@ export class ThreadClass {
   topic: string
   replyCount: number
   lovedCount: number
+  readonly flowTime: Timestamp|null
 
   constructor (id: string, data?:DocumentData) {
     this.id = id
@@ -267,6 +268,7 @@ export class ThreadClass {
     this.replyCount = data?.replyCount || 0
     this.lovedCount = data?.lovedCount || 0
     this.author = data?.author || undefined
+    this.flowTime = data?.flowTime || null
   }
 
   dry (): {
@@ -274,14 +276,12 @@ export class ThreadClass {
       topic: string
       replyCount: number
       lovedCount: number
-      author: string|undefined //
       } {
     return {
       title: this.title,
       topic: this.topic,
       replyCount: this.replyCount,
-      lovedCount: this.lovedCount,
-      author: this.author
+      lovedCount: this.lovedCount
     }
   }
 }

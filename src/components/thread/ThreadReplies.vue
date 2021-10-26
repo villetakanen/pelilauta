@@ -1,8 +1,8 @@
 <template>
   <div
     class="ThreadReplies"
-    :class="{ active: newActivityInThread }"
-    @click="reroute('/thread/'+thread.id+'/view')"
+    :class="{ active: newRepliesInThread }"
+    @click="reroute(`/thread/${thread.id}/view/from/${showRepliesAfter}`)"
   >
     <!--Icon inline name="discussion" /-->
     {{ thread.replyCount }}
@@ -12,8 +12,9 @@
 
 <script lang="ts">
 import { useUxActions } from '@/composables/useUxActions'
+import { useAuth, useProfile } from '@/state/authz'
 import { ThreadClass } from '@/state/threads/threads'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 // import Icon from '../material/Icon.vue'
 
 export default defineComponent({
@@ -25,10 +26,30 @@ export default defineComponent({
       required: true
     }
   },
-  setup () {
+  setup (props) {
     const { reroute } = useUxActions()
+    const { anonymousSession } = useAuth()
+    const { seenFrom, profileMeta } = useProfile()
 
-    return { reroute }
+    const showRepliesAfter = computed(() => {
+      if (anonymousSession.value) return 0
+      return seenFrom(props.thread.id)
+    })
+    const newRepliesInThread = computed(() => {
+      if (anonymousSession.value) return false
+      if (props.thread.flowTime) {
+        if (
+          profileMeta.value.allThreadsSeenSince &&
+          props.thread.flowTime.seconds > profileMeta.value.allThreadsSeenSince.seconds &&
+          showRepliesAfter.value > 1 && props.thread.flowTime.seconds < showRepliesAfter.value
+        ) {
+          return true
+        }
+        return showRepliesAfter.value > 1 && props.thread.flowTime.seconds > showRepliesAfter.value
+      }
+      return false
+    })
+    return { newRepliesInThread, showRepliesAfter, reroute }
   }
 })
 </script>
@@ -39,7 +60,7 @@ export default defineComponent({
 div.ThreadReplies
   @include TypeBody2()
   color: var(--chroma-primary-d)
-  background-color: var(--chroma-primary-d-field-tint)
+  background-color: var(--chroma-secondary-h)
   line-height: 20px
   height: 20px
   padding: 2px 12px
@@ -47,7 +68,9 @@ div.ThreadReplies
   margin: 0
   position: relative
   transition: all 0.3s
+  &:hover
+    background-color: var(--chroma-primary-d-field-tint)
   &.active
-    background-color: var(--chroma-primary-i)
+    background: linear-gradient(140deg, var(--chroma-primary-i) 0%, var(--chroma-primary-h) 100%)
 
 </style>
