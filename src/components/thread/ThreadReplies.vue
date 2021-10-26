@@ -58,9 +58,10 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 div.ThreadReplies
+  cursor: pointer
   @include TypeBody2()
-  color: var(--chroma-primary-d)
-  background-color: var(--chroma-secondary-h)
+  color: var(--chroma-secondary-d)
+  background-color: var(--chroma-secondary-i)
   line-height: 20px
   height: 20px
   padding: 2px 12px
@@ -69,6 +70,7 @@ div.ThreadReplies
   position: relative
   transition: all 0.3s
   &:hover
+    color: var(--chroma-primary-d)
     background-color: var(--chroma-primary-d-field-tint)
   &.active
     background: linear-gradient(140deg, var(--chroma-primary-i) 0%, var(--chroma-primary-h) 100%)

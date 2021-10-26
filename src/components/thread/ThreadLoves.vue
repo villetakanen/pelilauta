@@ -60,6 +60,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 div.ThreadLoves
+  cursor: pointer
   @include TypeBody2()
   font-weight: bold
   color: var(--chroma-secondary-d)
