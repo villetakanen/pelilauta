@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.3.11](https://github.com/villetakanen/pelilauta/compare/v11.3.10...v11.3.11) (2021-10-26)
+
+
+### Bug Fixes
+
+* small polish for forum title page ([dbcf23e](https://github.com/villetakanen/pelilauta/commit/dbcf23e85bac41cf7dd97438a779b2356ad44cec))
+* threads home ux polish ([e5daeae](https://github.com/villetakanen/pelilauta/commit/e5daeae4e959885fee6ba224267715df8f2014e6))
+* workaround for vue computed issues ([65c9463](https://github.com/villetakanen/pelilauta/commit/65c9463695e5fbaed77bf750b010b4303fdd6617))
+
 ### [11.3.10](https://github.com/villetakanen/pelilauta/compare/v11.3.9...v11.3.10) (2021-10-26)
 
 
