@@ -1,4 +1,4 @@
-import { computed, ComputedRef, ref } from 'vue'
+import { computed, ComputedRef, ref, Ref } from 'vue'
 import { getSeconds } from '@/utils/firebaseTools'
 import { useAuth, useProfile } from '../authz'
 import { Thread, PostData } from '@/utils/firestoreInterfaces'
@@ -58,6 +58,46 @@ export function toThread (id: string, data?:DocumentData): Thread {
   return post
 }
 
+/**
+ * A Class entity for a Firebase Thread.
+ *
+ * Uses of the Thread interface should be refactored to this class, and then this class renamed
+ * to "Thread"
+ */
+export class ThreadClass {
+  readonly id: string
+  readonly author: string|undefined
+  title: string
+  topic: string
+  replyCount: number
+  lovedCount: number
+  readonly flowTime: Timestamp|null
+
+  constructor (id: string, data?:DocumentData) {
+    this.id = id
+    this.title = data?.title || ''
+    this.topic = data?.topic || '-'
+    this.replyCount = data?.replyCount || 0
+    this.lovedCount = data?.lovedCount || 0
+    this.author = data?.author || undefined
+    this.flowTime = data?.flowTime || null
+  }
+
+  dry (): {
+      title: string
+      topic: string
+      replyCount: number
+      lovedCount: number
+      } {
+    return {
+      title: this.title,
+      topic: this.topic,
+      replyCount: this.replyCount,
+      lovedCount: this.lovedCount
+    }
+  }
+}
+
 const subscribedThreads = ref(new Array<Thread>())
 const stream = computed(() => {
   return subscribedThreads.value
@@ -77,6 +117,23 @@ function patchToSubscribed (thread: Thread|undefined) {
   }
 }
 
+const threadCache = ref(new Array<ThreadClass>())
+const latestThreads = computed(() => (threadCache.value))
+
+function patchToLatest (id: string, data:DocumentData) {
+  popFromLatest(id)
+  const thread = new ThreadClass(id, data)
+  threadCache.value.push(thread)
+  threadCache.value = threadCache.value.sort((a, b) => {
+    if (a.flowTime && b.flowTime) return a.flowTime < b.flowTime ? 1 : -1
+    return 0
+  })
+}
+
+function popFromLatest (id:string) {
+  threadCache.value = threadCache.value.filter((t) => (t.id !== id))
+}
+
 let _init = false
 async function init () {
   if (_init) return
@@ -89,9 +146,15 @@ async function init () {
   onSnapshot(q, (snapshot) => {
     console.debug('got strean of', snapshot.size)
     snapshot.docChanges().forEach((change) => {
-      if (change.type !== 'removed') patchToSubscribed(toThread(change.doc.id, change.doc.data()))
-      else subscribedThreads.value = subscribedThreads.value.filter((thread) => (thread.id !== change.doc.id))
+      if (change.type !== 'removed') {
+        patchToSubscribed(toThread(change.doc.id, change.doc.data()))
+        if (change.doc.exists()) patchToLatest(change.doc.id, change.doc.data())
+      } else {
+        subscribedThreads.value = subscribedThreads.value.filter((thread) => (thread.id !== change.doc.id))
+        popFromLatest(change.doc.id)
+      }
     })
+    console.debug('cached is', latestThreads.value.length)
   },
   (error: FirestoreError) => {
     console.error(error)
@@ -246,46 +309,6 @@ async function dispatchThreadSeen (): Promise<void | DocumentReference<DocumentD
   }
 }
 
-/**
- * A Class entity for a Firebase Thread.
- *
- * Uses of the Thread interface should be refactored to this class, and then this class renamed
- * to "Thread"
- */
-export class ThreadClass {
-  readonly id: string
-  readonly author: string|undefined
-  title: string
-  topic: string
-  replyCount: number
-  lovedCount: number
-  readonly flowTime: Timestamp|null
-
-  constructor (id: string, data?:DocumentData) {
-    this.id = id
-    this.title = data?.title || ''
-    this.topic = data?.topic || '-'
-    this.replyCount = data?.replyCount || 0
-    this.lovedCount = data?.lovedCount || 0
-    this.author = data?.author || undefined
-    this.flowTime = data?.flowTime || null
-  }
-
-  dry (): {
-      title: string
-      topic: string
-      replyCount: number
-      lovedCount: number
-      } {
-    return {
-      title: this.title,
-      topic: this.topic,
-      replyCount: this.replyCount,
-      lovedCount: this.lovedCount
-    }
-  }
-}
-
 async function fetchThreadsWithMostReplies (count = 5): Promise<ThreadClass[]> {
   const threadArray:ThreadClass[] = new Array<ThreadClass>()
 
@@ -339,6 +362,7 @@ export function useThreads (topic?:string): {
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread>
+    latestThreads: Ref<ThreadClass[]>
     fetchLikedThreads: (count?: number) => Promise<ThreadClass[]>
     fetchThreadsWithMostReplies: (count?: number) => Promise<ThreadClass[]>
     fetchSiteThreads: (id:string) => Promise<void>
@@ -347,5 +371,5 @@ export function useThreads (topic?:string): {
     updateThread: (threadid:string, data:PostData) => Promise<void>} {
   init()
   if (topic) fetchTopic(topic)
-  return { stream, thread, pinnedThreads, siteThreads, subscribeThread, createThread, updateThread, fetchSiteThreads, fetchLikedThreads, fetchThreadsWithMostReplies }
+  return { stream, thread, pinnedThreads, siteThreads, latestThreads, subscribeThread, createThread, updateThread, fetchSiteThreads, fetchLikedThreads, fetchThreadsWithMostReplies }
 }

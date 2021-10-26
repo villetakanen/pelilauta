@@ -44,7 +44,7 @@ export default defineComponent({
   setup (props) {
     const { streams } = useMeta()
     const streamTopic = computed(() => (
-      streams.value.find((s) => (s.slug === props.thread.topic)) || { icon: 'pelilauta' }
+      streams.value.find((s) => (s.slug === props.thread?.topic)) || { icon: 'pelilauta' }
     ))
     return { streamTopic }
   }
