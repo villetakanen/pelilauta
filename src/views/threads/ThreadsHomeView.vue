@@ -5,8 +5,8 @@
         {{ $t('threads.home.title') }}
       </ViewTitle>
     </Header>
-    <nav>
-      <div class="buttons double">
+    <nav style="text-align:center;margin-top:24px">
+      <div class="buttons double chroma-box-2">
         <Action
           v-for="channel in streams"
           :key="channel.slug"
@@ -17,10 +17,13 @@
         </Action>
       </div>
     </nav>
-    <main class="bookLayout">
-      <LatestThreads class="double-cut" />
-      <RepliedThreads class="double-cut" />
-      <LikedThreads class="double-cut" />
+    <main
+      class="bookLayout"
+      style="margin-top:24px"
+    >
+      <LatestThreads />
+      <RepliedThreads />
+      <LikedThreads />
     </main>
   </div>
 </template>
@@ -59,4 +62,8 @@ export default defineComponent({
 .buttons
   align-content: center
   text-align: center
+  display: inline-block
+  margin: 0 auto
+  border-radius: 12px
+  padding: 4px 12px
 </style>

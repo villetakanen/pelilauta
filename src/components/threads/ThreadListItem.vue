@@ -13,13 +13,13 @@
       </p>
     </router-link>
     <Toolbar>
+      <AuthorTag :uid="thread.author" />
+      <SpacerDiv />
       <ThreadLoves
         :thread="thread"
         @refresh="$emit('refresh')"
       />
       <ThreadReplies :thread="thread" />
-      <SpacerDiv />
-      <AuthorTag :uid="thread.author" />
     </Toolbar>
   </section>
 </template>
