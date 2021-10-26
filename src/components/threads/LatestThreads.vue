@@ -38,3 +38,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+@import @/styles/material-typography.sass
+
+h2
+  @include TypeHeadline5()
+</style>

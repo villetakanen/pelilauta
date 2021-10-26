@@ -69,6 +69,7 @@ export class ThreadClass {
   readonly author: string|undefined
   title: string
   topic: string
+  content: string
   replyCount: number
   lovedCount: number
   readonly flowTime: Timestamp|null
@@ -79,6 +80,7 @@ export class ThreadClass {
     this.topic = data?.topic || '-'
     this.replyCount = data?.replyCount || 0
     this.lovedCount = data?.lovedCount || 0
+    this.content = data?.content || '<p><br/><p>'
     this.author = data?.author || undefined
     this.flowTime = data?.flowTime || null
   }
