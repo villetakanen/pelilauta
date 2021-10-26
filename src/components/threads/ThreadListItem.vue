@@ -1,13 +1,17 @@
 <template>
   <section class="ThreadListItem">
-    <h3>
-      <router-link :to="`/thread/${thread.id}/view`">
-        <Icon
-          inline
-          :name="streamTopic.icon"
-        />{{ thread.title }}
-      </router-link>
-    </h3>
+    <router-link :to="`/thread/${thread.id}/view`">
+      <Icon
+        headline
+        class="topic"
+        :name="streamTopic.icon"
+      /><h3 class="clipWithEllipsis">
+        {{ thread.title }}
+      </h3>
+      <p class="lowEmphasis">
+        {{ snippet }}
+      </p>
+    </router-link>
     <Toolbar>
       <ThreadLoves
         :thread="thread"
@@ -46,7 +50,17 @@ export default defineComponent({
     const streamTopic = computed(() => (
       streams.value.find((s) => (s.slug === props.thread?.topic)) || { icon: 'pelilauta' }
     ))
-    return { streamTopic }
+    const snippet = computed(() => {
+      const div = document.createElement('div')
+      div.innerHTML = props.thread.content
+      let snip = ''
+      if (div.firstChild) {
+        snip = div.firstChild.textContent || ''
+        if (snip.length > 53) snip = snip.substring(0, 52) + '...'
+      }
+      return snip
+    })
+    return { streamTopic, snippet }
   }
 })
 </script>
@@ -55,9 +69,25 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 section.ThreadListItem
-  h3
-    @include TypeBody1()
-
+  position: relative
+  .topic
+    position: absolute
+  a
+    text-decoration: none
+    h3
+      @include TypeHeadline6()
+      margin-bottom: 0
+      white-space: nowrap
+    p
+      @include TypeBody2()
+      font-style: italic
+      margin-top: 0
+      margin-bottom: 12px
+    h3, p
+      text-decoration: none
+      padding-left: 64px
 section.ThreadListItem + section.ThreadListItem
-  border-top: solid var(--chroma-secondary-g) 1px
+  border-top: solid var(--chroma-secondary-h) 1px
+  margin-top: 16px
+  padding-top: 8px
 </style>
