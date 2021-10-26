@@ -1,24 +1,24 @@
 <template>
   <Column class="LatestThreads">
     <h2>{{ $t('threads.latest.title') }}</h2>
-    <p
+
+    <ThreadListItem
       v-for="thread in latest"
       :key="thread.id"
-    >
-      {{ thread.data.title }}
-    </p>
+      :thread="thread"
+    />
   </Column>
 </template>
 
 <script lang="ts">
 import { useThreads } from '@/state/threads'
-import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent } from 'vue'
 import Column from '../layout/Column.vue'
+import ThreadListItem from './ThreadListItem.vue'
 
 export default defineComponent({
   name: 'TextStyles',
-  components: { Column },
+  components: { Column, ThreadListItem },
   props: {
     count: {
       type: Number,
@@ -27,13 +27,13 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { stream } = useThreads()
+    const { latestThreads } = useThreads()
     const latest = computed(() => {
-      const a:Thread[] = [...stream.value]
+      const a = [...latestThreads.value]
       if (a.length > props.count) a.length = props.count
-      console.debug(a.length)
       return a
     })
+
     return { latest }
   }
 })
