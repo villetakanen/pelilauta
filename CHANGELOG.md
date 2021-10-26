@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.3.10](https://github.com/villetakanen/pelilauta/compare/v11.3.9...v11.3.10) (2021-10-26)
+
+
+### Bug Fixes
+
+* initial buttons for the thread list item ([7278c61](https://github.com/villetakanen/pelilauta/commit/7278c61bd997e06b1569869bc8d3b5561b597c90))
+* pointers fixed for love etc ([4644d9a](https://github.com/villetakanen/pelilauta/commit/4644d9acb0f5e8aee93727ce14d8707e615af2f2))
+* styling to match ([0aa2872](https://github.com/villetakanen/pelilauta/commit/0aa2872d1c1ba194219af595c585386aaae5110d))
+
 ### [11.3.9](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.8...v11.3.9) (2021-10-24)
 
 ### [11.3.8](http://ec2-18-218-192-178.us-east-2.compute.amazonaws.com:9292///compare/v11.3.7...v11.3.8) (2021-10-24)
