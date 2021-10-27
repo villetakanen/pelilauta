@@ -7,7 +7,7 @@
     <Icon
       v-if="prepend"
       :name="prepend"
-      :color="dark ? 'dark' : ''"
+      :dark="dark"
       class="prepend"
       :class="{ large: mobile }"
     />
