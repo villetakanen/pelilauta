@@ -1,7 +1,6 @@
 <template>
   <Card
-    class="wikiChangesCard chroma-box-1"
-    :rise="1"
+    class="wikiChangesCard chroma-box-1 rise-1"
   >
     <h1>{{ $t('home.changesCard.title') }}</h1>
     <WikiChangesItem

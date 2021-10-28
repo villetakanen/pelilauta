@@ -1,5 +1,6 @@
 <template>
   <Column class="homeStream double-cut">
+    <MekanismiCard />
     <template
       v-for="(entry) in stream"
       :key="entry.key"
@@ -35,6 +36,7 @@ import { FeedPost } from '@/state/feeds/loki'
 import { DateTime } from 'luxon'
 import WPCard from './LokiCard.vue'
 import Column from '../layout/Column.vue'
+import MekanismiCard from './mekanismi/MekanismiCard.vue'
 
 interface StreamEntry {
   key: string
@@ -57,7 +59,7 @@ function merge (first:Array<Thread|FeedPost>, second:Array<Thread|FeedPost>): Ar
  */
 export default defineComponent({
   name: 'HomeStream',
-  components: { ThreadCard, WikiChangesCard, WPCard, Column },
+  components: { ThreadCard, WikiChangesCard, WPCard, Column, MekanismiCard },
   setup () {
     const { lastFlowtime } = usePagelog()
     const { anonymousSession } = useAuth()
