@@ -197,6 +197,11 @@
       }
     }
   },
+  "sites": {
+    "home": {
+      "title": "Pelit ja sivustot"
+    }
+  },
   "sideNav": {
     "toForumLink": "Keskustelu",
     "toSitesLink": "Hakemisto",

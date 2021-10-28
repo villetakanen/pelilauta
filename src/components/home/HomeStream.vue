@@ -16,7 +16,7 @@
           :feed-post="entry.feedPost"
         />
         <!-- @todo add new wikichanges card for front page -->
-        <WikiChangesCard v-else-if="entry.key === 'wikiChanges'" />
+        <MekanismiCard v-else-if="entry.key === 'wikiChanges'" />
       </transition>
     </template>
   </Column>
@@ -29,12 +29,12 @@ import { useThreads } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent } from 'vue'
 import ThreadCard from './threadcard/ThreadCard.vue'
-import WikiChangesCard from './WikiChangesCard.vue'
 import { useLoki } from '@/state/feeds'
 import { FeedPost } from '@/state/feeds/loki'
 import { DateTime } from 'luxon'
 import WPCard from './LokiCard.vue'
 import Column from '../layout/Column.vue'
+import MekanismiCard from './mekanismi/MekanismiCard.vue'
 
 interface StreamEntry {
   key: string
@@ -57,7 +57,7 @@ function merge (first:Array<Thread|FeedPost>, second:Array<Thread|FeedPost>): Ar
  */
 export default defineComponent({
   name: 'HomeStream',
-  components: { ThreadCard, WikiChangesCard, WPCard, Column },
+  components: { ThreadCard, WPCard, Column, MekanismiCard },
   setup () {
     const { lastFlowtime } = usePagelog()
     const { anonymousSession } = useAuth()

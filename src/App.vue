@@ -1,10 +1,14 @@
 <template>
   <!-- The top navigation bar: contains search field, menu button, and search button. Maybe profile icon too. -->
-  <AppBar />
+  <AppBar v-if="!showExperimentalTools" />
   <!-- The side navigation drawer, with mobile and desktop modes distinctively -->
   <FrozenBar v-if="frozen" />
 
-  <SideNav v-model="navModel" />
+  <SideNav
+    v-if="!showExperimentalTools"
+    v-model="navModel"
+  />
+  <DesktopSidenav />
 
   <div id="appContentContainer">
     <router-view />
@@ -38,6 +42,7 @@ import { useAuth, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
 import CompleteRegistrationDialog from './components/auth/CompleteRegistrationDialog.vue'
 import FrozenBar from '@/components/app/FrozenBar.vue'
+import DesktopSidenav from './components/sidenav/DesktopSidenav.vue'
 
 export default defineComponent({
   components: {
@@ -47,10 +52,11 @@ export default defineComponent({
     SnackBar,
     BottomFloatContainer,
     CompleteRegistrationDialog,
-    FrozenBar
+    FrozenBar,
+    DesktopSidenav
   },
   setup () {
-    const { frozen } = useAuth()
+    const { frozen, showExperimentalTools } = useAuth()
     const { profileMeta } = useProfile()
     const i18n = useI18n()
     const route = useRoute()
@@ -102,7 +108,7 @@ export default defineComponent({
     }
     // *** Workbox/Service worker setup ends ********************************
 
-    return { ...useI18n(), route, navModel, mekanismi, profileMeta, frozen }
+    return { ...useI18n(), route, navModel, mekanismi, profileMeta, frozen, showExperimentalTools }
   }
 })
 </script>

@@ -56,12 +56,27 @@ export async function createPage (newPage:Page): Promise<string> {
   return createdDoc.id
 }
 
+export interface PageLogEntry {
+  id: string,
+  name: string,
+  author: string
+}
+
 export async function savePage (updatedPage:Page): Promise<void> {
   const { site } = useSite()
+  const { user } = useAuth()
 
   updatedPage.lastUpdate = serverTimestamp()
 
   console.debug('site', site.value, 'page', updatedPage)
+
+  const latestPages = site.value.latestPages || new Array<PageLogEntry>()
+  if (latestPages.length > 2) latestPages.length = 2
+  latestPages.push({
+    id: updatedPage.id,
+    name: updatedPage.name,
+    author: user.value.uid
+  })
 
   await updateDoc(
     doc(
@@ -81,7 +96,7 @@ export async function savePage (updatedPage:Page): Promise<void> {
       getFirestore(),
       'sites',
       site.value.id),
-    { lastUpdate: serverTimestamp() }
+    { lastUpdate: serverTimestamp(), latestPages: latestPages }
   )
 }
 

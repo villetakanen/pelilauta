@@ -32,6 +32,15 @@ const userSites = computed(() => {
   return filteredSites
 })
 
+const visibleSites = computed(() => {
+  const { user } = useAuth()
+  return allSites.value.filter((val) => (
+    !val.hidden ||
+    (Array.isArray(val.owners) && val.owners.includes(user.value.uid)) ||
+    (Array.isArray(val.players) && val.players.includes(user.value.uid))
+  ))
+})
+
 let _init = false
 let unsubscribe = () => {}
 
@@ -46,14 +55,22 @@ async function subscribeToSites () {
   })
 }
 
+export function sortByLastUpdate (a:Site, b:Site): number {
+  if (a.lastUpdate && b.lastUpdate) {
+    return a.lastUpdate.seconds < b.lastUpdate.seconds ? 1 : -1
+  }
+  return 0
+}
+
 export function useSites (): {
     publicSites: ComputedRef<Array<Site>>,
     allSites: ComputedRef<Array<Site>>,
     userSites: ComputedRef<Array<Site>>,
+    visibleSites: ComputedRef<Array<Site>>,
     } {
   if (!_init) {
     subscribeToSites()
     _init = true
   }
-  return { publicSites, allSites, userSites }
+  return { publicSites, allSites, userSites, visibleSites }
 }
