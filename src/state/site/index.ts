@@ -8,6 +8,7 @@ import { PageCategory, defaultCategories, unmarshallCategories, marshallCategori
 import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateDoc, addDoc, collection } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { subscribeCharacters, useSiteCharacters } from './characters'
+import { PageLogEntry } from '../pages/usePage'
 
 export const siteTypes = new Map([
   ['dd', 'Dungeons and Dragons 5e'],
@@ -31,6 +32,7 @@ export interface Site {
   usePlayers: boolean
   categories: PageCategory[],
   hasCategories?: boolean
+  latestPages?: PageLogEntry[]
 }
 export interface SiteData {
   id?: string,
@@ -70,7 +72,8 @@ export function toSite (id?: string, data?:DocumentData): Site {
       systemBadge: data?.systemBadge || '',
       usePlayers: data?.usePlayers || false,
       categories: data?.categories ? marshallCategories(data?.categories) : defaultCategories(),
-      hasCategories: Array.isArray(data?.categories)
+      hasCategories: Array.isArray(data?.categories),
+      latestPages: data?.latestPages || undefined
     }
   }
   return {
