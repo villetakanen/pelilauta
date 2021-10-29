@@ -71,15 +71,15 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/stream/topic/:topic',
-    name: 'StreamTopic',
-    component: StreamTopic,
-    props: true
-  },
-  {
     path: '/threads',
     name: 'threads.home',
     component: () => import(/* webpackChunkName: "global" */ '../views/threads/ThreadsHomeView.vue')
+  },
+  {
+    path: '/threads/:topic',
+    name: 'threads.topic',
+    props: true,
+    component: () => import(/* webpackChunkName: "global" */ '../views/threads/TheadsInTopicView.vue')
   },
   {
     path: '/thread/:threadid/view',
