@@ -19,6 +19,17 @@
         <MekanismiCard v-else-if="entry.key === 'wikiChanges'" />
       </transition>
     </template>
+    <hr>
+    <Toolbar>
+      <SpacerDiv />
+      <Action
+        prepend="discussion"
+        to="/threads"
+      >
+        {{ $t('home.morePostsInTheForums') }}
+      </Action>
+      <SpacerDiv />
+    </Toolbar>
   </Column>
 </template>
 
@@ -35,6 +46,9 @@ import { DateTime } from 'luxon'
 import WPCard from './LokiCard.vue'
 import Column from '../layout/Column.vue'
 import MekanismiCard from './mekanismi/MekanismiCard.vue'
+import Toolbar from '../layout/Toolbar.vue'
+import Action from '../material/Action.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 interface StreamEntry {
   key: string
@@ -57,7 +71,7 @@ function merge (first:Array<Thread|FeedPost>, second:Array<Thread|FeedPost>): Ar
  */
 export default defineComponent({
   name: 'HomeStream',
-  components: { ThreadCard, WPCard, Column, MekanismiCard },
+  components: { ThreadCard, WPCard, Column, MekanismiCard, Toolbar, Action, SpacerDiv },
   setup () {
     const { lastFlowtime } = usePagelog()
     const { anonymousSession } = useAuth()
@@ -73,7 +87,7 @@ export default defineComponent({
       const { stream: streamThreads } = useThreads()
       const { feedPosts } = useLoki()
       const clipped = Array.from(feedPosts.value.values())
-      if (clipped.length > 5) clipped.length = 5
+      if (clipped.length > 3) clipped.length = 3
       const streamItems = merge(clipped, Array.from(streamThreads.value))
       streamItems.forEach((t) => {
         // inject latest wikichanges to relevant position
