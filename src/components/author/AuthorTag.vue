@@ -45,7 +45,7 @@ export default defineComponent({
   height: 24px
 
 .loader
-  @include TypeBody2
+  @include TypeCaption
   line-height: 20px
   height: 20px
   margin: 0px
@@ -53,7 +53,6 @@ export default defineComponent({
   border-radius: 12px
   background-color: var(--chroma-secondary-i)
   color: var(--chroma-secondary-d)
-  font-weight: bold
   display: inline-block
   overflow: hidden
 </style>
