@@ -27,7 +27,7 @@ export default defineComponent({
     }
   },
   emits: ['update:modelValue'],
-  setup (props, context) {
+  setup (props) {
     const { allSites } = useSites()
     const siteName = computed(() => allSites.value.find((s) => (s.id === props.modelValue))?.name ?? '')
     const siteBadge = computed(() => allSites.value.find((s) => (s.id === props.modelValue))?.systemBadge + '-logo' ?? '')

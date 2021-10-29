@@ -105,25 +105,12 @@ export default defineComponent({
     async function preProcessImage (e: Event) {
       console.log('preProcessImage', e)
 
-      const processed = processAsset(e)
+      const processed = await processAsset(e)
 
-      const element = (e.target as HTMLInputElement)
-      if (element.files && element.files[0]) {
-        const file = element.files[0]
-        assetName.value = file.name
-        assetMimeType.value = file.type
-        console.debug('file type is:', file.type)
-        if (DOWNSCLASED_MIMETYPES.includes(file.type)) {
-          const imageURI = await downscale(element.files[0], 720, 720)
-          previewImageUrl.value = imageURI
-          showResizeWarning.value = true
-          console.log('imageURI', imageURI)
-        } else {
-          const assetURI = URL.createObjectURL(element.files[0])
-          previewImageUrl.value = assetURI
-          console.log('imageURI', assetURI)
-        }
-      }
+      previewImageUrl.value = processed.dataURL
+      assetName.value = processed.name
+      assetMimeType.value = processed.mimetype
+
       if (previewPane.value) {
         const img = document.createElement('img')
         img.src = previewImageUrl.value
