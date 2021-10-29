@@ -5,7 +5,6 @@ let init = false
 
 export function createFirebase (): void {
   if (init) return
-  console.debug('createFirebase starts')
   init = true
   const app = initializeApp({
     apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -32,6 +31,4 @@ export function createFirebase (): void {
   } catch (error:unknown) {
     console.warn(error)
   }
-
-  console.debug('createFirebase complete')
 }

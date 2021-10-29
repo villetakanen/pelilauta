@@ -4,6 +4,7 @@ import { setSeen, useInbox } from '@/state/inbox'
 import { useAuth } from '.'
 import { doc, getDoc, getFirestore, onSnapshot, serverTimestamp, setDoc, Timestamp, updateDoc } from '@firebase/firestore'
 import { getAuth } from '@firebase/auth'
+import { logEvent } from '@/utils/eventLogger'
 
 export interface PublicProfile {
   uid: string
@@ -51,6 +52,7 @@ function parseSeen (seenArray:Array<seenThread>) {
 }
 
 function fetchProfile (uid:string|null) {
+  logEvent('deprecated fetchProfile subscription')
   unsubscribe()
   if (!uid) {
     profileRef.value = { uid: '', nick: '', tagline: '' }
