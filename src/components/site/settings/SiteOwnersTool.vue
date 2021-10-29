@@ -45,7 +45,8 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { nonFrozenAuthors } = useAuthors()
+    const { nonFrozenAuthors, subscribeToAuthors } = useAuthors()
+    subscribeToAuthors()
     const { addOwner } = useSite()
     const added = ref('')
     const availableAuthors = computed(() => (nonFrozenAuthors.value.map((a) => ({

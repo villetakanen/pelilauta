@@ -143,7 +143,7 @@ async function init () {
 
   const db = getFirestore()
   const streamRef = collection(db, 'stream')
-  const q = query(streamRef, orderBy('flowTime', 'desc'), limit(30))
+  const q = query(streamRef, orderBy('flowTime', 'desc'), limit(11))
 
   onSnapshot(q, (snapshot) => {
     console.debug('got strean of', snapshot.size)
