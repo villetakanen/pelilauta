@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.4.0](https://github.com/villetakanen/pelilauta/compare/v11.3.12...v11.4.0) (2021-10-29)
+
+
+### Features
+
+* new ui poc for experimental features ([bfb2937](https://github.com/villetakanen/pelilauta/commit/bfb293784a27a3457f3fe1366dbad891ca6b1dfa))
+
+
+### Bug Fixes
+
+* refactored mekanismi-card for top 3 sites ([053787f](https://github.com/villetakanen/pelilauta/commit/053787fe783ac44a98854fb725a8439f2141b91c))
+* uploading asset images works again ([e1b44e5](https://github.com/villetakanen/pelilauta/commit/e1b44e5ede4979b3caf5fa6ebb53947e642243a1))
+* wiki changes card refactored ([5b04c2f](https://github.com/villetakanen/pelilauta/commit/5b04c2feda2323c6b149e0db9509a04b17618e55))
+
 ### [11.3.12](http://172.31.24.31:9292///compare/v11.3.10...v11.3.12) (2021-10-26)
 
 
