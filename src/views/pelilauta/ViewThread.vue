@@ -50,6 +50,27 @@
         :focus-to="since"
       />
     </div>
+    <Dialog v-model="toggleDelete">
+      <h3>{{ $t('action.delete') }}</h3>
+      <p>{{ $t('stream.thread.deleteWarning') }}</p>
+      <Textfield
+        id="threadBoxHeaderDeleteVerifyField"
+        v-model="deleteConfirm"
+      />
+      <div class="toolbar">
+        <div class="spacer" />
+        <Button
+          id="threadBoxHeaderDeleteVerifyButton"
+          :disabled="deleteConfirm !== 'DELETE'"
+          @click="deleteThreadFromFirestore"
+        >
+          {{ $t('action.delete') }}
+        </Button>
+        <Button @click="cancelDelete">
+          {{ $t('action.cancel') }}
+        </Button>
+      </div>
+    </Dialog>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab />
     </teleport>
@@ -57,11 +78,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, watch } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
 import Discussion from '@/components/discussion/Discussion.vue'
 import PhotoBox from '@/components/stream/PhotoBox.vue'
-import { useThreads } from '@/state/threads/threads'
+import { deleteThread, useThreads } from '@/state/threads/threads'
 import ThreadBoxTailer from '@/components/thread/ThreadBoxTailer.vue'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { useAuth } from '@/state/authz'
@@ -73,6 +94,11 @@ import { useMeta } from '@/state/meta'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { useI18n } from 'vue-i18n'
+import { useSnack } from '@/composables/useSnack'
+import { useUxActions } from '@/composables/useUxActions'
+import Dialog from '@/components/material/Dialog.vue'
+import Textfield from '@/components/form/Textfield.vue'
+import Button from '@/components/form/Button.vue'
 
 /**
  * A Router view for a Stream Thread.
@@ -93,7 +119,10 @@ export default defineComponent({
     ViewTitle,
     Action,
     SpacerDiv,
-    MaterialMenu
+    MaterialMenu,
+    Dialog,
+    Textfield,
+    Button
   },
   props: {
     threadid: {
@@ -111,6 +140,8 @@ export default defineComponent({
     const { showExperimentalTools, showAdminTools, user } = useAuth()
     const { streams } = useMeta()
     const i18n = useI18n()
+    const { pushSnack } = useSnack()
+    const { reroute } = useUxActions()
 
     subscribeThread(props.threadid)
 
@@ -132,15 +163,36 @@ export default defineComponent({
       const items = new Array<MenuItem>()
       if (thread.value.author === user.value.uid) {
         items.push({ icon: 'edit', to: `/thread/${props.threadid}/edit`, text: i18n.t('action.edit') })
-        items.push({ icon: 'delete', to: `/thread/${props.threadid}/delete`, text: i18n.t('action.delete') })
+        items.push({ icon: 'delete', action: drop, text: i18n.t('action.delete') })
       } else if (showAdminTools.value) {
         items.push({ icon: 'edit', to: `/thread/${props.threadid}/edit`, text: i18n.t('action.edit'), admin: true })
-        items.push({ icon: 'delete', to: `/thread/${props.threadid}/delete`, text: i18n.t('action.delete'), admin: true })
+        items.push({ icon: 'delete', action: drop, text: i18n.t('action.delete'), admin: true })
       }
       return items
     })
 
-    return { thread, showExperimentalTools, channelInfo, showMenu, menuItems }
+    // Deleting a thead.
+    // Note: as thread deletion deletes discussion too, we want to verify the deletion.
+    const toggleDelete = ref(false)
+    const deleteConfirm = ref('')
+    const drop = () => {
+      toggleDelete.value = true
+    }
+    const cancelDelete = () => {
+      toggleDelete.value = false
+    }
+    const deleteThreadFromFirestore = async () => {
+      if (deleteConfirm.value !== 'DELETE') return
+      try {
+        await deleteThread(user.value.uid, props.threadid)
+        pushSnack(i18n.t('stream.thread.deleteSucces'))
+        reroute('/')
+      } catch (error) {
+        pushSnack(i18n.t('stream.thread.deleteFail'))
+      }
+    }
+
+    return { thread, showExperimentalTools, channelInfo, showMenu, menuItems, toggleDelete, drop, cancelDelete, deleteThreadFromFirestore, deleteConfirm }
   }
 })
 </script>
