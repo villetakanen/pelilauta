@@ -143,10 +143,9 @@ async function init () {
 
   const db = getFirestore()
   const streamRef = collection(db, 'stream')
-  const q = query(streamRef, orderBy('flowTime', 'desc'), limit(30))
+  const q = query(streamRef, orderBy('flowTime', 'desc'), limit(11))
 
   onSnapshot(q, (snapshot) => {
-    console.debug('got strean of', snapshot.size)
     snapshot.docChanges().forEach((change) => {
       if (change.type !== 'removed') {
         patchToSubscribed(toThread(change.doc.id, change.doc.data()))
@@ -156,7 +155,6 @@ async function init () {
         popFromLatest(change.doc.id)
       }
     })
-    console.debug('cached is', latestThreads.value.length)
   },
   (error: FirestoreError) => {
     console.error(error)

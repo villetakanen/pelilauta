@@ -5,7 +5,7 @@
     </router-link>
     <p class="threadInfo">
       {{ toDisplayString(thread.flowTime) }} – {{ author }}
-      <span v-if="topic">– <router-link :to="`/stream/topic/${topic.slug}`">{{ topic.name }}</router-link></span>
+      <span v-if="topic">– <router-link :to="`/threads/${topic.slug}`">{{ topic.name }}</router-link></span>
     </p>
   </li>
 </template>

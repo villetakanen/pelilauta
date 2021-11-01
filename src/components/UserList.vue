@@ -23,9 +23,7 @@
         :key="user.uid"
       >
         <UserListRow
-          :nick="user.nick"
-          :uid="user.uid"
-          :photo="user.photoURL"
+          :user="user"
         />
       </tr>
     </table>
@@ -45,7 +43,9 @@ export default defineComponent({
     Column
   },
   setup () {
-    const { authors } = useAuthors()
+    const { authors, subscribeToAuthors } = useAuthors()
+    // At this point, we need the full user list
+    subscribeToAuthors()
     return { authors }
   }
 })

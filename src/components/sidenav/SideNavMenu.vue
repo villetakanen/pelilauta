@@ -131,7 +131,7 @@ export default defineComponent({
         return {
           key: stream.slug,
           content: stream.name,
-          to: '/stream/topic/' + stream.slug,
+          to: '/threads/' + stream.slug,
           count: stream.count.toString(),
           icon: stream.icon
         }

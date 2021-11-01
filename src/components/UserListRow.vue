@@ -1,8 +1,8 @@
 <template>
   <td :class="rowClasses">
     <img
-      v-if="photo"
-      :src="photo"
+      v-if="user.photoURL"
+      :src="user.photoURL"
       class="avatar"
       alt="Author's Avatar image"
     >
@@ -11,7 +11,7 @@
     style="padding: 0 8px"
     :class="rowClasses"
   >
-    <AuthorLink :uid="uid" />
+    <AuthorTag :uid="user.uid" />
   </td>
   <td
     style="padding: 0 8px"
@@ -60,35 +60,27 @@ import { doc, getDoc, getFirestore, updateDoc, query, getDocs, orderBy, collecti
 import { useAuth } from '@/state/authz'
 import { toDisplayString } from '@/utils/firebaseTools'
 import Button from './form/Button.vue'
-import AuthorLink from './author/AuthorLink.vue'
+import AuthorTag from './author/AuthorTag.vue'
+import { AuthorClass } from '@/state/authors'
 
 export default defineComponent({
   name: 'EditPost',
   components: {
     Button,
-    AuthorLink
+    AuthorTag
   },
   props: {
-    nick: {
-      type: String,
+    user: {
+      type: AuthorClass,
       required: true
-    },
-    uid: {
-      type: String,
-      required: true
-    },
-    photo: {
-      type: String,
-      required: false,
-      default: ''
     }
   },
   setup (props) {
     const { frozen, admins } = useMeta()
     const { user } = useAuth()
-    const isMe = computed(() => (props.uid === user.value.uid))
-    const isFrozen = computed(() => (frozen.value.includes(props.uid)))
-    const isAdmin = computed(() => (admins.value.includes(props.uid)))
+    const isMe = computed(() => (props.user.uid === user.value.uid))
+    const isFrozen = computed(() => (frozen.value.includes(props.user.uid)))
+    const isAdmin = computed(() => (admins.value.includes(props.user.uid)))
 
     const db = getFirestore()
     const metaRef = doc(db, 'meta', 'pelilauta')
@@ -98,7 +90,7 @@ export default defineComponent({
         if (meta.exists()) {
           let admins: string[] = meta.data()?.admins
           if (admins) {
-            admins = admins.filter((admin) => (admin !== props.uid))
+            admins = admins.filter((admin) => (admin !== props.user.uid))
           }
           if (admins.length > 0) updateDoc(metaRef, { admins: admins })
         }
@@ -109,7 +101,7 @@ export default defineComponent({
         if (meta.exists()) {
           const admins: string[] = meta.data()?.admins
           if (admins) {
-            admins.push(props.uid)
+            admins.push(props.user.uid)
           }
           if (admins.length > 0) updateDoc(metaRef, { admins: admins })
         }
@@ -121,7 +113,7 @@ export default defineComponent({
         if (meta.exists()) {
           let frozen: string[] = meta.data()?.frozen
           if (frozen) {
-            frozen = frozen.filter((f) => (f !== props.uid))
+            frozen = frozen.filter((f) => (f !== props.user.uid))
           }
           updateDoc(metaRef, { frozen: frozen })
         }
@@ -135,7 +127,7 @@ export default defineComponent({
           let frozen: string[] = meta.data()?.frozen
           if (!frozen) frozen = new Array<string>()
           if (frozen) {
-            frozen.push(props.uid)
+            frozen.push(props.user.uid)
           }
           updateDoc(metaRef, { frozen: frozen })
         }
@@ -146,7 +138,7 @@ export default defineComponent({
 
     onMounted(() => {
       getDocs(
-        query(collection(db, 'inbound'), orderBy('timestamp', 'desc'), limit(1), where('uid', '==', props.uid))
+        query(collection(db, 'inbound'), orderBy('timestamp', 'desc'), limit(1), where('uid', '==', props.user.uid))
       ).then((snapshot) => {
         if (snapshot.size > 0) {
           lastLogin.value = toDisplayString(snapshot.docs[0].data()?.timestamp)

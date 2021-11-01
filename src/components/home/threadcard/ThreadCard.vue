@@ -29,16 +29,7 @@
         />
       </div>
       <p class="meta">
-        <transition name="fade">
-          <span
-            v-if="author"
-          >
-            <router-link :to="{ name: 'profile.public', params: { uid: thread.author }}">
-              {{ author.nick }}
-            </router-link>
-          </span>
-        </transition>
-        {{ toDisplayString(thread.created) }}
+        <AuthorTag :uid="thread.author" /> {{ toDisplayString(thread.created) }}
       </p>
     </div>
     <ThreadCardTailer2 :thread="thread" />
@@ -46,7 +37,6 @@
 </template>
 
 <script lang="ts">
-import { useAuthors } from '@/state/authors'
 import { useMeta } from '@/state/meta'
 import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
@@ -54,10 +44,11 @@ import { toDisplayString } from '@/utils/firebaseTools'
 import Card from '../../layout/Card.vue'
 import ThreadCardHeader from './ThreadCardHeader.vue'
 import ThreadCardTailer2 from './ThreadCardTailer2.vue'
+import AuthorTag from '@/components/author/AuthorTag.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
-  components: { Card, ThreadCardHeader, ThreadCardTailer2 },
+  components: { Card, ThreadCardHeader, ThreadCardTailer2, AuthorTag },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -89,11 +80,7 @@ export default defineComponent({
     const topicName = computed(() => {
       return streams.value.find((val) => (val.slug === props.thread.data.topic))?.name
     })
-    const { authors } = useAuthors()
-    const author = computed(() => (authors.value.find((val) => (val.uid === props.thread.author))))
-    const authoruid = computed(() => (author.value?.uid || ''))
-
-    return { snippet, topicName, author, toDisplayString, authoruid }
+    return { snippet, topicName, toDisplayString }
   }
 })
 </script>

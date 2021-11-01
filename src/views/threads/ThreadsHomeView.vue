@@ -11,7 +11,7 @@
           v-for="channel in streams"
           :key="channel.slug"
           :prepend="channel.icon"
-          @click="reroute('/stream/topic/'+channel.slug)"
+          @click="reroute('/threads/'+channel.slug)"
         >
           {{ channel.name }} <span class="count">{{ channel.count }}</span>
         </Action>

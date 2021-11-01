@@ -5,6 +5,7 @@ import { computed, ComputedRef, reactive, WritableComputedRef, ref } from 'vue'
 import { useMeta } from '../meta'
 import { onAuthStateChanged, getAuth, User } from '@firebase/auth'
 import { doc, getFirestore, onSnapshot, deleteDoc, updateDoc, DocumentData } from '@firebase/firestore'
+import { logEvent } from '@/utils/eventLogger'
 
 /**
  * A reactive object, that holds all state internals for auth
@@ -74,7 +75,6 @@ const anonymousSession = computed(() => (authState.anonymous))
 let unsubscribeProfile:CallableFunction|undefined
 
 function fetchProfile () {
-  console.debug('fetchProfile from firestore')
   if (unsubscribeProfile) unsubscribeProfile()
 
   const profileRef = doc(getFirestore(), 'profiles', authState.user.uid)
@@ -102,7 +102,6 @@ function fetchProfile () {
 function processAuthStateChanged (user: User|null) {
   authState.loginComplete = false
   if (!user || user.isAnonymous) {
-    console.debug('onAuthStateChanged', 'anonymous')
     authState.missingProfileData = false
     authState.anonymous = true
     authState.user = {
@@ -110,8 +109,8 @@ function processAuthStateChanged (user: User|null) {
     }
     localProfileData.value = new ProfileData()
     authState.loginComplete = true
+    logEvent('anonymous login complete')
   } else {
-    console.debug('onAuthStateChanged', user.displayName, user.uid)
     authState.anonymous = false
     authState.displayName = user.displayName ?? 'anonymous'
     authState.user = {
@@ -120,6 +119,7 @@ function processAuthStateChanged (user: User|null) {
     authState.loginComplete = true
     authState.useExperimentalTools = false
     fetchProfile()
+    logEvent('login', { displayName: user.displayName })
   }
 }
 
