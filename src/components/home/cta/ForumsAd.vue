@@ -3,7 +3,7 @@
     <div class="splashHeader">
       <img src="https://firebasestorage.googleapis.com/v0/b/skaldbase.appspot.com/o/mekanismi%2FSMzqHwOd.jpeg?alt=media&token=42a12429-f5c0-47b5-bad1-0031d0b4aecc">
       <h1>
-        <router-link to="/stream/topic/Yleinen">
+        <router-link to="/threads/Yleinen">
           {{ $t('calltoaction.forum.title') }}
         </router-link>
       </h1>
@@ -14,7 +14,7 @@
         :key="channel.slug"
         text
         dark
-        @click="reroute('/stream/topic/'+channel.slug)"
+        @click="reroute('/threads/'+channel.slug)"
       >
         {{ channel.name }} <span class="count">{{ channel.count }}</span>
       </Button>

@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="topicLink spacer">
-      {{ $t('stream.inStream') }} <router-link :to="`/stream/topic/${thread.data.topic}`">
+      {{ $t('stream.inStream') }} <router-link :to="`/threads/${thread.data.topic}`">
         {{ topicName }}
       </router-link>
     </div>

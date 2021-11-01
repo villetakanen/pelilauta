@@ -13,7 +13,7 @@
       v-for="ch in channels"
       :key="ch.slug"
       :prepend="ch.icon"
-      :to="'/stream/topic/'+ch.slug"
+      :to="'/threads/'+ch.slug"
     >
       <span class="onlyForDesktop">{{ ch.name }}</span>
     </Action>

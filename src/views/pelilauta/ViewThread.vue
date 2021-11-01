@@ -6,7 +6,7 @@
       <ViewTitle
         :icon="channelInfo.icon"
         :parent="channelInfo.name"
-        :parent-route="`/stream/topic/${thread.data.topic}`"
+        :parent-route="`/threads/${thread.data.topic}`"
       >
         {{ thread.data.title }}
       </ViewTitle>

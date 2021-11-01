@@ -9,7 +9,7 @@
       <p class="caption">
         <span v-if="since">{{ since }}</span>
         {{ $t('postHeader.postedInStream') }}
-        <span v-if="topicName"><a :href="`/stream/topic/${thread.data.topic}`">{{ topicName }}</a></span>
+        <span v-if="topicName"><a :href="`/threads/${thread.data.topic}`">{{ topicName }}</a></span>
       </p>
     </div>
     <div class="spacer" />
