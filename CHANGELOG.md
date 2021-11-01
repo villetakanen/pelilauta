@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.4.1](https://github.com/villetakanen/pelilauta/compare/v11.4.0...v11.4.1) (2021-11-01)
+
+
+### Bug Fixes
+
+* less chatty debugs ([ab12eef](https://github.com/villetakanen/pelilauta/commit/ab12eefc4e46ae6ae9fea1ead783c1444bed7c65))
+* lints and event logger fixes ([564d10e](https://github.com/villetakanen/pelilauta/commit/564d10e041bf9eaafbdd3a0ed9472109666a0b10))
+* read more button for the front page stream ([ffcd19d](https://github.com/villetakanen/pelilauta/commit/ffcd19d2133755b90e90df6071b7ac81ab05cef9))
+* reduced some subs sizes ([c2d67c1](https://github.com/villetakanen/pelilauta/commit/c2d67c1ce8c52eed899989f1946d70f7a8f46ea9))
+* removed useAuthors from the front page ([2ad449c](https://github.com/villetakanen/pelilauta/commit/2ad449c876335d1d788ba6b01f470a568fee7d8d))
+* router updates for threads ([45973a0](https://github.com/villetakanen/pelilauta/commit/45973a07ed60dce2ae6dae152dea80aa9ca387e0))
+* topic routing ([b980d11](https://github.com/villetakanen/pelilauta/commit/b980d11d3ac275ffb3fb31fd90bfd0bcab3f86ae))
+* userlist subscribes for users ([e349f21](https://github.com/villetakanen/pelilauta/commit/e349f21097ff9edf1110f8d32107d9fa4bd56e67))
+
 ## [11.4.0](https://github.com/villetakanen/pelilauta/compare/v11.3.12...v11.4.0) (2021-10-29)
 
 
