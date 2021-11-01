@@ -29,16 +29,19 @@ import Toolbar from '@/components/layout/Toolbar.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
 import MaterialCard from '@/components/material/MaterialCard.vue'
 import { useUxActions } from '@/composables/useUxActions'
-import { getAnalytics, logEvent } from '@firebase/analytics'
+import { logEvent } from '@/utils/eventLogger'
 import { defineComponent, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: '404',
   components: { Toolbar, MaterialCard, Header, ViewTitle, Button },
   setup () {
-    const a = getAnalytics()
     const { reroute } = useUxActions()
-    onMounted(() => { logEvent(a, 'PageView', { name: '404' }) })
+    const route = useRoute()
+    onMounted(() => {
+      logEvent('404', { path: route.fullPath, route: route.name })
+    })
     return { reroute }
   }
 })

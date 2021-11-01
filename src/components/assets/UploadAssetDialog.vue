@@ -53,7 +53,6 @@
 <script lang="ts">
 import { useSnack } from '@/composables/useSnack'
 import { useAssets } from '@/state/assets'
-import downscale from 'downscale'
 import { ComponentPublicInstance, computed, defineComponent, ref, Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Button from '../form/Button.vue'
@@ -62,11 +61,6 @@ import SpacerDiv from '../layout/SpacerDiv.vue'
 import Dialog from '../material/Dialog.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import { processAsset } from '@/composables/useAssetTools'
-
-const DOWNSCLASED_MIMETYPES = [
-  'image/jpeg',
-  'image/png'
-]
 
 export default defineComponent({
   components: { Dialog, Textfield, Button, SpacerDiv, Toolbar },

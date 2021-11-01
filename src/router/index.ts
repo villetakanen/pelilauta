@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import StreamTopic from '@/views/StreamTopic.vue'
 import Stylebook from '@/views/Stylebook.vue'
 import { useAuth } from '@/state/authz'
 
