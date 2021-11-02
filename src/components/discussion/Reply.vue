@@ -98,9 +98,12 @@ export default defineComponent({
   setup (props, context) {
     const replyRef = ref<ComponentPublicInstance<HTMLInputElement>>()
     const { user, showAdminTools, showMemberTools } = useAuth()
-    const { authors } = useAuthors()
+    const { fetchAuthor } = useAuthors()
 
-    const nick = computed(() => (authors.value.find((a) => (a.uid === props.reply.author))?.nick))
+    const nick = ref('')
+    onMounted(async () => {
+      nick.value = (await fetchAuthor(props.reply.author)).nick
+    })
 
     subscribeToReplies(props.threadid)
     const editReply = ref(false)
@@ -137,7 +140,7 @@ export default defineComponent({
       el.innerHTML = props.reply.content
       context.emit('quote', {
         content: el.textContent,
-        author: authors.value.find((a) => (a.uid === props.reply.author))?.nick
+        author: nick.value
       })
     }
 

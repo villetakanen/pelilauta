@@ -8,9 +8,12 @@
     v-if="!showExperimentalTools"
     v-model="navModel"
   />
-  <DesktopSidenav />
+  <NavigationRail v-if="showExperimentalTools" />
 
-  <div id="appContentContainer">
+  <div
+    id="appContentContainer"
+    :class="{ withRail: showExperimentalTools }"
+  >
     <router-view />
     <MainTailer />
   </div>
@@ -42,7 +45,7 @@ import { useAuth, useProfile } from './state/authz'
 import { Workbox } from 'workbox-window'
 import CompleteRegistrationDialog from './components/auth/CompleteRegistrationDialog.vue'
 import FrozenBar from '@/components/app/FrozenBar.vue'
-import DesktopSidenav from './components/sidenav/DesktopSidenav.vue'
+import NavigationRail from './components/navigationrail/NavigationRail.vue'
 
 export default defineComponent({
   components: {
@@ -53,7 +56,7 @@ export default defineComponent({
     BottomFloatContainer,
     CompleteRegistrationDialog,
     FrozenBar,
-    DesktopSidenav
+    NavigationRail
   },
   setup () {
     const { frozen, showExperimentalTools } = useAuth()
@@ -129,5 +132,8 @@ export default defineComponent({
     width: calc(100vw - 310px)
     padding-left: 310px
     min-height: calc(100vh - 214px)
+    &.withRail
+      width: calc(100vw - 92px)
+      padding-left: 92px
 
 </style>
