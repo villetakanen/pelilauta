@@ -1,11 +1,10 @@
 <template>
   <div
     id="AppBar"
-    class="toolbar"
   >
     <SideNavAction class="onlyForMobile" />
     <AppAction />
-    <div class="spacer" />
+    <SpacerDiv />
     <AppBarSearch v-if="showMemberTools" />
     <InboxAction />
     <AppBarAction
@@ -26,6 +25,7 @@ import AppAction from './AppAction.vue'
 import AppBarAction from './AppBarAction.vue'
 import AppBarSearch from './AppBarSearch.vue'
 import InboxAction from '../inbox/InboxAction.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 export default defineComponent({
   name: 'AppBar',
@@ -34,7 +34,8 @@ export default defineComponent({
     AppAction,
     AppBarAction,
     AppBarSearch,
-    InboxAction
+    InboxAction,
+    SpacerDiv
   },
   setup () {
     const { anonymousSession, showMemberTools } = useAuth()

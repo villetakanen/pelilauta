@@ -1,6 +1,6 @@
 <template>
   <div
-    class="threadCardTailer toolbar"
+    class="threadCardTailer"
     :class="{
       withSite: thread.site,
       ddColors: site && site.systemBadge === 'dd'
@@ -16,7 +16,7 @@
         />
       </div>
     </div>
-    <div class="topicLink spacer">
+    <div class="topicLink">
       {{ $t('stream.inStream') }} <router-link :to="`/threads/${thread.data.topic}`">
         {{ topicName }}
       </router-link>
@@ -77,12 +77,14 @@ export default defineComponent({
 .topicLink
   @include TypeCaption()
   margin: 0px 8px
+  flex-grow: 1
   a
     color: var(--chroma-secondary-d)
     text-decoration: none
 .threadCardTailer
   padding-top: 8px
   margin-top: 8px
+  display: flex
 
 .withSite
   background-color: var(--chroma-secondary-i)
@@ -94,6 +96,5 @@ export default defineComponent({
   margin-right: -16px
   padding-right: 16px
   border-radius: 0 0 12px 12px
-.ddColors
-  // background: linear-gradient(160deg, rgba(188,15,15,.20) 0%, rgba(188,15,15,.40) 92%)
+
 </style>
