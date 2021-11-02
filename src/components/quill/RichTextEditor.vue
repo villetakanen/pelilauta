@@ -12,18 +12,18 @@
         class="ql-header ql-h-2"
         value="2"
       />
-      <div class="spacer" />
+      <SpacerDiv />
       <button class="ql-bold" />
       <button class="ql-italic" />
-      <button class="ql-strike" />
-      <button class="ql-underline" />
-      <div class="spacer" />
+      <button class="ql-strike hideOnMobile" />
+      <button class="ql-underline hideOnMobile" />
+      <SpacerDiv />
       <button
-        class="ql-list ql-list-ol"
+        class="ql-list ql-list-ol hideOnMobile"
         value="ordered"
         type="button"
       />
-      <div class="spacer" />
+      <SpacerDiv />
       <button class="ql-wikilink" />
       <button class="ql-image" />
     </div>
@@ -41,13 +41,14 @@ import Quill from 'quill'
 import useQuill from '@/composables/useQuill'
 import WikiLinkDialog from './WikiLinkDialog.vue'
 import InsertMediaDialog from './InsertMediaDialog.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
  */
 export default defineComponent({
   name: 'ReplyEditor',
-  components: { WikiLinkDialog, InsertMediaDialog },
+  components: { WikiLinkDialog, InsertMediaDialog, SpacerDiv },
   props: {
     content: { type: String, required: true },
     disabled: { type: Boolean, required: false, default: false },
@@ -126,3 +127,8 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.toolbar
+  display: flex
+</style>
