@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.5.0](https://github.com/villetakanen/pelilauta/compare/v11.4.4...v11.5.0) (2021-11-02)
+
+
+### Features
+
+* navigation rail added ([285573a](https://github.com/villetakanen/pelilauta/commit/285573a37aa1fc5fbf6fef9ca924ae41b14734ce))
+
+
+### Bug Fixes
+
+* appbarsearch for experimental nav ([d33000f](https://github.com/villetakanen/pelilauta/commit/d33000f3bbacd1355e1fc502002718ef2645da19))
+* rte works without global toolbar css ([71b3448](https://github.com/villetakanen/pelilauta/commit/71b344850b81740a396a3a4ee43577781f80fcf9))
+
 ### [11.4.4](https://github.com/villetakanen/pelilauta/compare/v11.4.3...v11.4.4) (2021-11-02)
 
 
