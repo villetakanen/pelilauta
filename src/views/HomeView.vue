@@ -1,11 +1,13 @@
 <template>
   <div class="homeView">
     <Header v-if="showExperimentalTools">
-      <ViewTitle icon="pelilauta">
+      <ViewTitle>
         {{ $t('app.title') }}
       </ViewTitle>
+      <SpacerDiv />
+      <AppBarSearch />
     </Header>
-    <div class="bookLayout">
+    <main class="bookLayout">
       <HomeStream />
       <Column class="double-cut">
         <transition name="fade">
@@ -14,7 +16,7 @@
         <CreateASiteAd />
         <ForumsAd />
       </Column>
-    </div>
+    </main>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
       <Fab
@@ -41,6 +43,8 @@ import Column from '@/components/layout/Column.vue'
 import Header from '@/components/layout/Header.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
 import ForumsAd from '@/components/home/cta/ForumsAd.vue'
+import AppBarSearch from '@/components/app/AppBarSearch.vue'
+import SpacerDiv from '@/components/layout/SpacerDiv.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -53,7 +57,9 @@ export default defineComponent({
     Column,
     Header,
     ViewTitle,
-    ForumsAd
+    ForumsAd,
+    AppBarSearch,
+    SpacerDiv
   },
   setup () {
     const { showMemberTools, anonymousSession, showExperimentalTools } = useAuth()

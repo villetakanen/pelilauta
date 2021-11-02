@@ -71,6 +71,7 @@ export default defineComponent({
 
 .appBarSearch
   position: relative
+  z-index: 10000
   .inputContainer
     background-color: var(--chroma-secondary-d)
     height: 40px
@@ -86,7 +87,10 @@ export default defineComponent({
       padding: 0 12px
       margin: 4px
       width: 200px
-      color: var(--chroma-primary-d)
+      color: var(--chroma-secondary-d)
+    input::placeholder
+      color: var(--chroma-secondary-d)
+      font-style: italic
     .searchIcon
       position: absolute
       right: 2px
@@ -97,4 +101,11 @@ export default defineComponent({
       position: absolute
       top: 44px
       left: -200px
+      z-index: 10000
+
+@include media('>tablet')
+  .appBarSearch
+    .inputContainer
+      .searchField
+        width: 480px
 </style>
