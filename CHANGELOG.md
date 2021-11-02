@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.4.4](https://github.com/villetakanen/pelilauta/compare/v11.4.3...v11.4.4) (2021-11-02)
+
+
+### Bug Fixes
+
+* baseline css fixed ([1c92e3d](https://github.com/villetakanen/pelilauta/commit/1c92e3d256e958d72d821000009af2062f632d53))
+* cleaned up the views.sass ([46a91d2](https://github.com/villetakanen/pelilauta/commit/46a91d2aee75c903ffd9ffa25450efa5704eef08))
+* removed toolbar css from front page ([c2346e4](https://github.com/villetakanen/pelilauta/commit/c2346e4b7df8d17352997b48327d9ac908984646))
+* small stylebook fixes ([b679db4](https://github.com/villetakanen/pelilauta/commit/b679db4766ca165c5c662cd49248e0e757a1916a))
+
 ### [11.4.3](https://github.com/villetakanen/pelilauta/compare/v11.4.2...v11.4.3) (2021-11-02)
 
 
