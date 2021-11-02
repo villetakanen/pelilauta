@@ -157,7 +157,7 @@ export default defineComponent({
     function alert () {
       window.alert('An annoying test functionality')
     }
-    const working = ref(true)
+    const working = ref(false)
     return { selectKey, selectOps, error, textFieldValue, alert, working }
   }
 })

@@ -1,6 +1,6 @@
 <template>
   <AdminActions title="Stylebook" />
-  <div
+  <main
     id="Stylebook"
     :class="layout"
   >
@@ -12,127 +12,13 @@
     <FormControls />
     <InteractiveElemets />
     <StatefullComponents />
-    <Card>
-      <h2>
-        Actions
-      </h2>
-      <Action
-        to="stylebook"
-        prepend="d6"
-      >
-        And some text
-      </Action>
-      <Action to="stylebook">
-        The second
-      </Action>
-      <Action
-        append="avatar"
-        to="stylebook"
-      >
-        And Third
-      </Action>
-      <Action
-        prepend="dd-logo"
-        to="stylebook"
-      />
-      <h2>Fabs</h2>
-      <div style="display: flex; flex-wrap: wrap; flex-direction: row-reverse">
-        <Fab
-          text="Fab"
-          icon="forum"
-        />
-        <Fab
-          text="Secondary"
-          secondary
-          icon="send"
-        />
-        <Fab
-          text="Tertiary"
-          tertiary
-          icon="up"
-        />
-      </div>
-      <div style="display: flex; flex-wrap: wrap; flex-direction: row-reverse; padding-top:8px">
-        <Fab
-          text="Dark"
-          dark
-          icon="avatar"
-        />
-      </div>
-    </Card>
-
-    <teleport to="#BottomFabsContainer">
-      <Fab
-        text="Pelilauta"
-        dark
-        icon="pelilauta"
-      />
-      <Fab
-        secondary
-        icon="d6"
-      />
-      <Fab
-        icon="edit"
-      />
-    </teleport>
-
-    <!-- inputs -->
-    <div class="section">
-      <h1>Inputs</h1>
-      <p>These inputs override default browser ones, with material style theming</p>
-      <TextField
-        label="<TextField error>"
-        error
-      />
-      <div class="toolbar">
-        <p>And they work in a toolbar</p>
-        <TextField label="TextField inside a toolbar" />
-      </div>
-      <Card>
-        <p>And are expected to behave well within a Card</p>
-        <TextField label="TextField inside a Card" />
-      </Card>
-      <h2>Toggle buttons</h2>
-      <Toggle v-model="toggle" /> <span color="red">{{ toggle }}</span>
-      <Toggle label="aaa" />
-      <h2>Select</h2>
-      <MaterialSelect
-        label="example label"
-        :opts="[{ key: 'a', value: 'b'}]"
-      />
-      <MaterialSelect
-        v-model="selected"
-        label="error example"
-        error
-        :opts="[{ key: 'a', value: 'this value is erroneous'}]"
-      />
-
-      <h2>Chips</h2>
-      <Chip label="A Chip!" />
-      <Chip
-        icon="dd-logo"
-        label="With an icon!"
-      />
-      <Chip
-        icon="quick-logo"
-        label="Secondary colors"
-        secondary
-      />
-    </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import TextField from '@/components/material/TextField.vue'
 import { useSnack } from '@/composables/useSnack'
-import Fab from '@/components/material/Fab.vue'
-import Toggle from '@/components/material/Toggle.vue'
-import Action from '@/components/material/Action.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
-import Card from '@/components/layout/Card.vue'
-import MaterialSelect from '@/components/material/MaterialSelect.vue'
-import Chip from '@/components/material/Chip.vue'
 import TextStyles from '@/components/stylebook/TextStyles.vue'
 import StylebookIntro from '@/components/stylebook/StylebookIntro.vue'
 import FormControls from '@/components/stylebook/FormControls.vue'
@@ -145,14 +31,7 @@ import StatefullComponents from '@/components/stylebook/StatefullComponents.vue'
 export default defineComponent({
   name: 'WelcomeCard',
   components: {
-    TextField,
-    Fab,
-    Toggle,
-    Action,
     AdminActions,
-    Card,
-    MaterialSelect,
-    Chip,
     TextStyles,
     StylebookIntro,
     FormControls,
