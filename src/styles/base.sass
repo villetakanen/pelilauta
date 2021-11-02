@@ -11,174 +11,12 @@
 @import colors.sass
 @import formcontrols.sass
 
-h3
-  @include TypeHeadline5()
-textarea
-  @include TypeBody2()
-a
-  text-decoration: underline
-  color: $color-fill-primary-dark
-  h1, h2, h3, h4
-    text-decoration-line: none
-    text-decoration-color: white
-h1, h2, h3, h4
-  a
-    text-decoration: none
+// *** Spacing ********************************************************
+:root
+  --baseline-height: 24px
+  --baseline-height-half: 12px 
 
-select
-  @include TypeBody2()
-  margin: 4px 0
-  border: none
-  height: 30px 
-
-  background-color: $color-base-dark
-  border-bottom: solid 1px $color-fill-primary-dark
-  &:hover
-    background-color: $color-base-darker
-  &:focus
-    background-color: $color-base-darker
-
-.viewHeader
-  @include TypeHeadline3()
-  color: $color-fill-primary-dark
-  margin-left: 16px
-
-@include media('<tablet')
-  .viewHeader
-    @include TypeHeadline5()
-    margin-left: 16px
-
-div.toolbar
-  display: flex
-  justify-content: space-between
-  align-items: center
-  column-gap: 4px
-  row-gap: 0
-  div.spacer
-    flex-grow: 1
-  div.grow
-    flex-grow: 1
-    margin: 0px
-    margin-right: 12px
-
-@include media('<tablet')
-  .toolbar
-    flex-wrap: wrap // HOTFIX 1.10.2021 for page widht breaking toolbars.
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity .5s ease
-
-
-.fade-enter-from, .fade-leave-to
-  opacity: 0
-
-.material-textfield
-  width: 100%
-  border: 0
-  height: 28px
-  margin-top: 2px
-  background-color: $color-base-dark
-  border-bottom: solid 1px $color-fill-primary-dark
-  &:hover
-    background-color: $color-base-darker
-  &:focus
-    background-color: $color-base-darker
-  &.error
-    border-bottom: solid 1px #F50057
-    background-color: #F5005737
-.cardToolbar
-  margin-top: 16px
-
-.materialRippleEffect
-  width: 2px
-  height: 2px
-  position: absolute
-  border-radius: 50%
-  background-color: #fce8b1
-  animation: rippleEffect 0.8s ease-in-out
-
-@keyframes rippleEffect 
-  0% 
-    transform: scale(1)
-    opacity: 0.5
-  100%
-    opacity: 0
-    transform: scale(var(--scale))
-
-.bounce-enter-active 
-  animation: bounce-in 0.8s
-  transform-origin: top left
-
-.bounce-leave-active 
-  animation: bounce-in 0.8s reverse
-  transform-origin: top left
-
-@keyframes bounce-in
-  0% 
-    transform: scale(0) translate(-50%, -50%)
-  100%
-    transform: scale(1) translate(-50%, -50%)
-
-.quoteReply
-  margin: 8px
-  padding: 8px
-  background-color: rgba($color-fill-primary-dark, 0.33)
-  border-radius: 8px
-  .replyAuthor
-    @include TypeCaption()
-    text-align: right
-
-.dont-break-out
-  /* These are technically the same, but use both */
-  overflow-wrap: break-word
-  word-wrap: break-word
-
-  -ms-word-break: break-all
-  /* This is the dangerous one in WebKit, as it breaks things wherever */
-  word-break: break-all
-  /* Instead use this non-standard one: */
-  word-break: break-word
-
-  /* Adds a hyphen where the word breaks, if supported (No Blink) */
-  -ms-hyphens: auto
-  -moz-hyphens: auto
-  -webkit-hyphens: auto
-  hyphens: auto
-
-// Mekanismi display grid, used in multiple views
-.mekanismiGrid
-    position: relative
-
-@include media('>=desktop')
-  .mekanismiGrid
-    justify-content: center
-    display: flex
-    align-items: flex-start
-    margin-top: 0px
-    .mainCard
-      width: 720px
-      margin: 0
-      margin-right: 16px
-    .sideCard
-      width: 360px
-      top: 0px
-      right: 0
-
-@include media('<desktop')
-  .mekanismiGrid
-    display: block
-    position: relative
-    div.mainCard.material-card,
-    div.sideCard.material-card
-      border-radius: 0
-    div.mainCard.material-card
-      margin-top: -8px
-
-// Cleared from here on ******************************
-//
-// The base grid height is     8px
-// Single line is              24px
-
+// *** CSS Cleanup, reset, and base styles ****************************
 
 // Remove browser default behaviour, where not needed
 *:focus
@@ -188,49 +26,20 @@ div.toolbar
 ::-webkit-scrollbar-track
   -webkit-box-shadow: none
 
-// Chromatic color scales
-:root
-  // https://gka.github.io/palettes/#/9|s|002337,05e7fb,e7fbfb|ffffe0,ff005e,006c09|1|1
-  --chroma-secondary-a:#002337
-  --chroma-secondary-b:#043c50
-  --chroma-secondary-c:#10566b
-  --chroma-secondary-c-rgb: 16, 86, 107
-  --chroma-secondary-d:#227286
-  --chroma-secondary-e:#388ea1
-  --chroma-secondary-f:#53abbb
-  --chroma-secondary-g:#76c8d5
-  --chroma-secondary-g-rgb:118, 200, 213
-  --chroma-secondary-h:#a2e4ec
-  --chroma-secondary-i:#e7fbfb
-  // Other Colors
-  --chroma-alert-rgb:187, 17, 135
-  --chroma-clear: #ffffff
-
-// Base styles for the site
+// Base styles
 body
-  @include TypeBody1() // Default body font
+  @include TypeBody1() // Default font
   margin: 0
   padding: 0
-  min-width: 370px
-  background: none
-footer
-  background-color: var(--chroma-secondary-a)
 
-h1
-  @include TypeHeadline3()
-  color: var(--chroma-secondary-e)
-h2
-  @include TypeHeadline4()
-  color: var(--chroma-secondary-e)
-h3
-  @include TypeHeadline5()
-  color: var(--chroma-secondary-a)
+h1,h2,h3,h4
   a
-    color: var(--chroma-secondary-a) 
-h4
-  @include TypeHeadline6()
-  color: var(--chroma-secondary-a)
+    text-decoration: none
+    color: var(--chroma-secondary-d)
 
+p, li
+  @include TypeBody1()
+  @include mediumEmphasis()
 
 p:last-child, ul:last-child, ol:last-child
   margin-bottom: 0
@@ -240,20 +49,16 @@ p:first-child, ul:first-child, ol:first-child
   margin-top: 0
   padding-top: 0
 
-p, li
-  @include TypeBody1()
-  @include mediumEmphasis()
-
 p+p
-  margin-top: 16px
+  margin-top: var(--baseline-height-half)
 
 ol
   list-style-type: disc
 
 table
   clear: both
-  margin-top: 16px
-  margin-bottom: 16px
+  margin-top: var(--baseline-height-half)
+  margin-bottom: var(--baseline-height-half)
   border-collapse: collapse
   th
     @include TypeBody1()
@@ -264,112 +69,3 @@ table
     padding: 4px
     vertical-align: top
 
-.dark
-  h1, h2, h3, h4
-    color: var(--chroma-secondary-g)
-  p, ul, li, td, th
-    color: var(--chroma-secondary-i)
-
-// Layout helpers
-.contentArea
-  overflow: hidden
-  word-break: break-all
-  img
-    max-width: 100%
-
-.comment
-  p
-    @include TypeBody2()
-    color: var(--chroma-secondary-a)
-
-
-// Stylebook/Material Design specs
-.materialFormField
-  display: inline-block
-  align-items: baseline
-  box-sizing: border-box
-  margin: 0
-  //margin-bottom: 8px
-  padding-top: 8px
-  padding-left: 8px
-  padding-right: 8px
-  padding-bottom: 0px
-  border-bottom: solid 1px $color-fill-primary-dark
-  background-color: rgba($color-fill-primary-dark, 0.11)
-  &:hover
-    background-color: rgba($color-fill-primary-dark, 0.22)
-  &:focus
-    background-color: rgba($color-fill-primary-dark, 0.22)
-
-// Page grid layout tweak classes
-// Content Grid, usable on views
-div.contentGrid
-  padding: 0 8px
-
-@include media('>tablet')
-  div.contentGrid
-    max-width: 878px
-    margin: 0 auto
-    padding: 0
-
-.viewFull
-  padding: 8px
-
-// QuillJS overrides
-table.quill-better-table
-  width: 100% !important
-  table-layout: auto !important
-  col
-    width: auto !important
-  td
-    width: auto !important
-
-.qlbt-col-tool
-  display: none
-
-// Move later to comments.sass or something like it
-.comment, .ql-editor
-  blockquote
-    background-color: rgba(#002337, 0.11) // #{'rgba(var(--chroma-primary-c-rgba), 0.22)'}
-    margin: 0
-    padding: 8px
-    border-radius: 6px
-    strong
-      color: var(--chroma-secondary-c)
-.ql-disabled
-  opacity: 0.22
-
-span.code
-  font-family: 'Source Code Pro', monospace
-  color: black
-  background: rgba(231, 251, 251, 1)
-  padding: 0 4px
-
-
-// Vue transitions: move to transitions.sass or something like it
-.pop-enter-active, .pop-leave-active
-  transform: scale(1)
-
-.pop-enter-from, .pop-leave-to
-  transform: scale(0)
-
-.author-link, .author-mention
-  background-color: var(--chroma-primary-i)
-  text-decoration: none
-  color: var(--chroma-primary-c)
-  padding: 2px 8px
-  height: 20px
-  border-radius: 12px
-  
-.author-link
-  background-color: var(--chroma-primary-h)
-  font-weight: bold
-
-div.debug
-  font-size: 10px
-  font-family: monospace
-  line-height: 12px
-  color: green
-  border: solid 1px green
-  padding:8px
-  margin:8px

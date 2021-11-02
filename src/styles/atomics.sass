@@ -1,64 +1,18 @@
 @import material-typography.sass
 @import box-shadow.sass
+@import atomic-mixins.sass
 /**
  * This file contains atomic css helper classes and mixins used to buid the atomics.
  * 
  * Do not include this in SFC style blocks, any atomics are already available from base.css
  */
 
-// See: https://css-tricks.com/almanac/properties/w/word-break/
-@mixin dontBreakOut()
-  /* These are technically the same, but use both */
-  overflow-wrap: break-word
-  word-wrap: break-word
-
-  -ms-word-break: break-all
-  /* This is the dangerous one in WebKit, as it breaks things wherever */
-  word-break: break-all
-  /* Instead use this non-standard one: */
-  word-break: break-word
-
-  // https://medium.com/clear-left-thinking/all-you-need-to-know-about-hyphenation-in-css-2baee2d89179
-  -webkit-hyphens: auto
-  -webkit-hyphenate-limit-before: 3
-  -webkit-hyphenate-limit-after: 3
-  -webkit-hyphenate-limit-chars: 6 3 3
-  -webkit-hyphenate-limit-lines: 2
-  -webkit-hyphenate-limit-last: always
-  -webkit-hyphenate-limit-zone: 8%
-  
-  -moz-hyphens: auto
-  -moz-hyphenate-limit-chars: 6 3 3
-  -moz-hyphenate-limit-lines: 2
-  -moz-hyphenate-limit-last: always
-  -moz-hyphenate-limit-zone: 8%
-  -ms-hyphens: auto
-  -ms-hyphenate-limit-chars: 6 3 3
-  -ms-hyphenate-limit-lines: 2
-  -ms-hyphenate-limit-last: always
-  -ms-hyphenate-limit-zone: 8%
-  
-  hyphens: auto
-  hyphenate-limit-chars: 6 3 3
-  hyphenate-limit-lines: 2
-  hyphenate-limit-last: always
-  hyphenate-limit-zone: 8%
-
 // *** Color Atomics **************************************************
-@mixin highEmphasis()
-  color: var(--color-a-a) // #002237 in the default color scheme
-
 .highEmphasis 
   @include highEmphasis()
 
-@mixin mediumEmphasis()
-  color: var(--color-a-c)
-
 .mediumEmphasis 
   @include mediumEmphasis()
-
-@mixin lowEmphasis()
-  color: var(--color-a-f)
 
 .lowEmphasis 
   @include lowEmphasis()
@@ -149,3 +103,13 @@ div.warning
     color: var(--chroma-alert)
     padding:0
     margin: 0
+
+// Debug
+div.debug
+  font-size: 10px
+  font-family: monospace
+  line-height: 12px
+  color: green
+  border: solid 1px green
+  padding:8px
+  margin:8px

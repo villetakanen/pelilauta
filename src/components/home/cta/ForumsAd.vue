@@ -50,7 +50,7 @@ export default defineComponent({
 <style lang="sass" scoped>
 @import @/styles/material-typography.sass
 @import @/styles/include-media.scss
-@import @/styles/atomics.sass
+@import @/styles/atomic-mixins.sass
 
 .forumsAd
   .splashHeader
