@@ -1,4 +1,7 @@
 {
+  "about": {
+    "title": "Tietoja"
+  },
   "action": {
     "addAttachment": "Lisää tiedosto",
     "addThread": "Uusi ketju",
@@ -69,6 +72,12 @@
       "name": "Nimi",
       "game": "Peli"
     }
+  },
+  "characters": {
+    "title": "Hahmot"
+  },
+  "discuss": {
+    "title": "Keskustelu"
   },
   "editorDialog": {
     "title": "Viesti",
@@ -199,8 +208,14 @@
     }
   },
   "sites": {
+    "index": {
+      "title": "Pelit ja sivustot"
+    },
     "home": {
       "title": "Pelit ja sivustot"
+    },
+    "mainwiki": {
+      "title": "Mekanismi"
     }
   },
   "sideNav": {
@@ -237,6 +252,9 @@
       "deleteSucces": "Ketju poistettu vastauksineen"
     }
   },
+  "stylebook": {
+    "title": "Stylebook"
+  },
   "topic": {
     "home": {
       "title": "Keskustelu"
@@ -251,6 +269,7 @@
     "more": "Lue lisää"
   },
   "profile": {
+    "title": "Minä",
     "characterListing": {
       "title": "Hahmoni"
     },
