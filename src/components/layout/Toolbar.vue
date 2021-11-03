@@ -29,6 +29,7 @@ div.toolbar
   padding: 0 8px
   display: flex
   margin-bottom: 8px
+  align-items: flex-start
   div:last-child
     margin-right: 0
   h3:first-child

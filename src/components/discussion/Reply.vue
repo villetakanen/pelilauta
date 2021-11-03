@@ -9,14 +9,14 @@
       class="scrollAnchor"
     />
     <!-- Top toolbar for the reply-card -->
-    <div class="toolbar">
+    <div class="flex-single-row">
       <div class="author">
         <router-link :to="{ name: 'profile.public', params: { uid: reply.author }}">
           {{ nick }}
         </router-link>
       </div>
 
-      <div class="spacer" />
+      <SpacerDiv />
 
       <LoveAReplyAction
         :count="reply.lovesCount"
@@ -72,13 +72,15 @@ import { useAuthors } from '@/state/authors'
 import { useAuth } from '@/state/authz'
 import ReplyEditor from './ReplyEditor.vue'
 import Fab from '../material/Fab.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 export default defineComponent({
   components: {
     MaterialMenu,
     LoveAReplyAction,
     ReplyEditor,
-    Fab
+    Fab,
+    SpacerDiv
   },
   props: {
     reply: {
