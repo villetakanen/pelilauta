@@ -11,7 +11,10 @@
         {{ thread.data.title }}
       </ViewTitle>
       <SpacerDiv />
-      <Action prepend="share">
+      <Action
+        prepend="share"
+        @click="copyLinkToClipboard"
+      >
         {{ $t('action.share') }}
       </Action>
       <MaterialMenu
@@ -141,7 +144,7 @@ export default defineComponent({
     const { streams } = useMeta()
     const i18n = useI18n()
     const { pushSnack } = useSnack()
-    const { reroute } = useUxActions()
+    const { reroute, copyLinkToClipboard } = useUxActions()
 
     subscribeThread(props.threadid)
 
@@ -192,7 +195,7 @@ export default defineComponent({
       }
     }
 
-    return { thread, showExperimentalTools, channelInfo, showMenu, menuItems, toggleDelete, drop, cancelDelete, deleteThreadFromFirestore, deleteConfirm }
+    return { thread, showExperimentalTools, channelInfo, showMenu, menuItems, toggleDelete, drop, cancelDelete, deleteThreadFromFirestore, deleteConfirm, copyLinkToClipboard }
   }
 })
 </script>
