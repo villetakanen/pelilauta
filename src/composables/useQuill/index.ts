@@ -2,6 +2,7 @@ import Quill from 'quill'
 import Delta from 'quill-delta'
 import { ImageModule, IMAGE_UPLOAD_EVENT } from '@/composables/useQuill/imageModule'
 import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
+import { initPelilautaParchment } from './pelilautaParchment'
 
 export function hoistClipboardConfig (quill:Quill): void {
   // Remove all color styles from pasted content by force
@@ -17,6 +18,9 @@ export function hoistClipboardConfig (quill:Quill): void {
 }
 
 export default function useQuill (container: Element): Quill {
+  // Replace Quill elements with custom parchment
+  initPelilautaParchment()
+
   const config = {
     formats: [
       'bold',
@@ -50,9 +54,6 @@ export default function useQuill (container: Element): Quill {
       }
     }
   }
-
-  Quill.register('modules/image', ImageModule)
-  Quill.register('modules/wikilinks', wikiLinkModule)
 
   const q = new Quill(container, config)
   hoistClipboardConfig(q)
