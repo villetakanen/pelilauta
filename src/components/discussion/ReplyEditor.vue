@@ -11,6 +11,7 @@ import Quill from 'quill'
 import { Quote } from '@/utils/contentFormat'
 import { mentionsModule } from '@/utils/quill/mentionsModule'
 import { hoistClipboardConfig } from '@/composables/useQuill'
+import { logDebug } from '@/utils/eventLogger'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
@@ -40,7 +41,9 @@ export default defineComponent({
         'bold',
         'strike',
         'underline',
-        'italic'
+        'italic',
+        'image',
+        'blockquote'
       ],
       modules: {
         mention: true
@@ -114,9 +117,11 @@ export default defineComponent({
       // at the initial load, so we do not use { immediate: true } on
       // the watch code
       watch(imageToEditor, (url) => {
-        if (quill !== null && url) {
+        if (quill && url) {
+          const selection = quill.getSelection()
+          logDebug('imageToEditor', url, selection)
           // https://quilljs.com/docs/api/#content
-          quill.insertEmbed(0, 'image', url)
+          quill.insertEmbed(selection?.index || 0, 'image', url, Quill.sources.USER)
         }
       })
 

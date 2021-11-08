@@ -6,7 +6,6 @@
       class="reply-form"
     >
       <AddImageReplyAction
-        v-if="!reply"
         class="addAnImage"
         @uploaded="addImageToEditor($event)"
       />
@@ -111,17 +110,17 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 @import @/styles/box-shadow.sass
 
-.addAnImage
-  position: absolute
-  z-index: +100
-  right: 80px
-
 .reply-form
   background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.4)'}
   margin: 8px
   padding: 8px
-  border-radius: 8px
+  border-radius: 12px
   position: relative
+  .addAnImage
+    position: absolute
+    z-index: +100
+    right: 82px
+    bottom: -24px
   .box
     flex-grow: 1
     flex-shrink: 0
