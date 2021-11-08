@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.3](https://github.com/villetakanen/pelilauta/compare/v11.5.2...v11.5.3) (2021-11-08)
+
+
+### Bug Fixes
+
+* hotfix for site changes cache ([326be65](https://github.com/villetakanen/pelilauta/commit/326be65abe3881792f7b6e76f372300cf3fe7e19))
+
 ### [11.5.2](https://github.com/villetakanen/pelilauta/compare/v11.5.1...v11.5.2) (2021-11-07)
 
 
