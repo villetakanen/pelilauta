@@ -1,3 +1,4 @@
+import { logEvent } from '@/utils/eventLogger'
 import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where, addDoc, getDoc, doc, deleteDoc } from '@firebase/firestore'
 import { getStorage, ref as storageRef, uploadString, getDownloadURL, deleteObject } from '@firebase/storage'
 import { computed, ComputedRef, reactive, ref } from 'vue'
@@ -20,7 +21,6 @@ export class Asset {
   mimetype: string
 
   constructor (id?:string, data?:DocumentData) {
-    console.log(data)
     this.id = id || ''
     this.name = data?.name || ''
     this.created = data?.createdAt || null
@@ -68,7 +68,7 @@ let unsubscribe:CallableFunction|undefined
 
 function subscribeToAssets () {
   if (unsubscribe) unsubscribe()
-  console.log('subscribeToAssets()', '"' + state.uid)
+  logEvent('Firestore subs', { collecton: 'Assets' })
   unsubscribe = onSnapshot(
     query(
       collection(
@@ -82,7 +82,6 @@ function subscribeToAssets () {
         if (assetChange.type === 'removed') {
           userAssets.value.delete(assetChange.doc.id)
         } else {
-          console.debug('got asset', assetChange.doc.id)
           userAssets.value.set(
             assetChange.doc.id,
             new Asset(
@@ -90,7 +89,6 @@ function subscribeToAssets () {
               assetChange.doc.data()
             )
           )
-          console.log(userAssets.value)
         }
       })
     }
