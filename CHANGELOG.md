@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.7](https://github.com/villetakanen/pelilauta/compare/v11.5.6...v11.5.7) (2021-11-08)
+
+
+### Bug Fixes
+
+* deprecations and comment image uploader fix ([a9acbf8](https://github.com/villetakanen/pelilauta/commit/a9acbf8b301b3565ebf45c834ba40d9972fa5bce))
+
 ### [11.5.6](https://github.com/villetakanen/pelilauta/compare/v11.5.5...v11.5.6) (2021-11-08)
 
 
