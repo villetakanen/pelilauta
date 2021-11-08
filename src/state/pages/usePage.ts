@@ -70,13 +70,17 @@ export async function savePage (updatedPage:Page): Promise<void> {
 
   console.debug('site', site.value, 'page', updatedPage)
 
-  const latestPages = site.value.latestPages || new Array<PageLogEntry>()
+  // Adds an entry to site latest pages. This code might belong to cloud functions
+  let latestPages = site.value.latestPages || new Array<PageLogEntry>()
+  latestPages = latestPages.filter((page) => (page.id !== updatedPage.id))
   if (latestPages.length > 2) latestPages.length = 2
   latestPages.push({
     id: updatedPage.id,
     name: updatedPage.name,
     author: user.value.uid
   })
+  latestPages.reverse()
+  // End latest pages entry code, it's updated to site data below
 
   await updateDoc(
     doc(
