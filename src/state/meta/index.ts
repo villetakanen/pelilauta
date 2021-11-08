@@ -1,6 +1,6 @@
 import { doc, getFirestore, onSnapshot } from '@firebase/firestore'
 import { computed, ComputedRef, ref } from 'vue'
-import { Stream } from '../threads/threads'
+import { Stream, ThreadClass } from '../threads/threads'
 
 const localStreams = ref(new Array<Stream>())
 const streams = computed(() => (localStreams.value))
@@ -37,11 +37,25 @@ function init () {
   })
 }
 
+const DEFAULT_STREAM:Stream = {
+  slug: '-',
+  name: '',
+  icon: '',
+  description: '',
+  count: 0,
+  order: -1
+}
+
+function getTopic (thread: ThreadClass): Stream {
+  return streams.value.find((topic) => (topic.slug === thread.topic)) || DEFAULT_STREAM
+}
+
 export function useMeta (): {
     admins: ComputedRef<Array<string>>
     frozen: ComputedRef<Array<string>>
     streams: ComputedRef<Array<Stream>>
+    getTopic: (thread: ThreadClass) => Stream
     } {
   init()
-  return { admins, frozen, streams }
+  return { admins, frozen, streams, getTopic }
 }
