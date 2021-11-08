@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.4](https://github.com/villetakanen/pelilauta/compare/v11.5.3...v11.5.4) (2021-11-08)
+
+
+### Bug Fixes
+
+* refactored header for threads ([26d9578](https://github.com/villetakanen/pelilauta/commit/26d9578e7fb326600663b2fa67def22ee1092e56))
+* viewheader multiline clamped ([d627f11](https://github.com/villetakanen/pelilauta/commit/d627f11ecaf7882e4d8fd437b12f1055011ead69))
+
 ### [11.5.3](https://github.com/villetakanen/pelilauta/compare/v11.5.2...v11.5.3) (2021-11-08)
 
 
