@@ -23,6 +23,11 @@
         value="ordered"
         type="button"
       />
+      <button
+        class="ql-list ql-list-ul hideOnMobile"
+        value="bullets"
+        type="button"
+      />
       <SpacerDiv />
       <button class="ql-wikilink" />
       <button class="ql-image" />
