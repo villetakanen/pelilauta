@@ -47,6 +47,7 @@ import useQuill from '@/composables/useQuill'
 import WikiLinkDialog from './WikiLinkDialog.vue'
 import InsertMediaDialog from './InsertMediaDialog.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import { logDebug } from '@/utils/eventLogger'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
@@ -86,21 +87,11 @@ export default defineComponent({
       // Init the quill-editor to the editor field
       quill = useQuill(editor.value)
 
-      // If we have content at this point, inject it to editorfield
-      // this could be done with v-once also, but that wound move the
-      // init code to multiple places in the file: this way, it is all
-      // in one place, and easily readable as a block.
-      //
-      // Please note: we react to v-model:content changes from
-      // the parent a bit later
-      // if (props.content) {
-      if (quill) quill.root.innerHTML = props.content
-      // }
-
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
+        if (modelContent.value === quill?.root.innerHTML) return
         modelContent.value = quill?.root.innerHTML ?? ''
-        if (props.debug) console.debug('ReplyEditor Emits:', modelContent.value)
+        logDebug('RichTextEditor', 'update:content:', modelContent.value)
         context.emit('update:content', modelContent.value)
       })
 
@@ -109,14 +100,13 @@ export default defineComponent({
         // Nothing to do here!
         if (value === modelContent.value) return
         if (value === '<p><br></p>' && modelContent.value.length === 0) return
+        modelContent.value = value
 
-        // Debugs
-        if (props.debug) console.debug('ReplyEditor replaces contents with:', value)
+        logDebug('RichTextEditor', 'watch –> updates quill value', value)
 
         // Reset editor, and push changes via clipboard-module
         quill?.setText('')
         quill?.clipboard.dangerouslyPasteHTML(value)
-        modelContent.value = value
       }, {
         immediate: true
       })
