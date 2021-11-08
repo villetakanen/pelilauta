@@ -38,8 +38,7 @@ header
   display: flex
   margin: 0
   padding: 0
-  gap: 8px
-  flex-wrap: wrap
+  gap: 0
   &.sticky
     transition: all 0.3s
     position: sticky

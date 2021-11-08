@@ -23,7 +23,7 @@
       </template>
     </h2>
     <h1
-      class="highEmphasis"
+      class="highEmphasis truncTwoLines"
       :class="{ withTitleIcon: icon, withParent: parent }"
     >
       <slot />
@@ -62,7 +62,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .viewTitle
-  margin: 0
+  margin: 0 8px
   padding: 0
   position: relative
   .titleIcon
