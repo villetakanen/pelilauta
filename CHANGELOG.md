@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.5](https://github.com/villetakanen/pelilauta/compare/v11.5.4...v11.5.5) (2021-11-08)
+
+
+### Bug Fixes
+
+* downgraded quill ([b4322f1](https://github.com/villetakanen/pelilauta/commit/b4322f1de9e984a3a2f498f00b850e2495fa52ec))
+* less chatty logging on assets ([e3e2bb4](https://github.com/villetakanen/pelilauta/commit/e3e2bb40310705d65afb1baa34697dc7c149807b))
+* moved custon parchment to customs ([ef1dfe9](https://github.com/villetakanen/pelilauta/commit/ef1dfe9cee65f7b7174e0309379f810421af786d))
+
 ### [11.5.4](https://github.com/villetakanen/pelilauta/compare/v11.5.3...v11.5.4) (2021-11-08)
 
 
