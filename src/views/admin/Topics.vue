@@ -31,20 +31,20 @@
           :key="key"
         >
           <td style="width: 3em">
-            <TextField v-model="topic.order" />
+            <Textfield v-model="topic.order" />
           </td>
-          <td><TextField v-model="topic.slug" /></td>
-          <td><TextField v-model="topic.name" /></td>
-          <td><TextField v-model="topic.description" /></td>
+          <td><Textfield v-model="topic.slug" /></td>
+          <td><Textfield v-model="topic.name" /></td>
+          <td><Textfield v-model="topic.description" /></td>
           <td>{{ topic.icon }}</td>
           <td>{{ topic.count }}</td>
         </tr>
       </table>
       <div class="toolbar">
         <div class="spacer" />
-        <MaterialButton :action="updateTopics">
+        <Button @click="updateTopics">
           Update
-        </MaterialButton>
+        </Button>
       </div>
     </main>
   </div>
@@ -53,16 +53,16 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { Stream } from '@/state/threads/threads'
-import TextField from '@/components/material/TextField.vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
+import Textfield from '@/components/form/Textfield.vue'
+import Button from '@/components/form/Button.vue'
 import AdminActions from '@/components/admin/AdminActions.vue'
 import { doc, getFirestore, onSnapshot, collection, getDocs, updateDoc } from '@firebase/firestore'
 
 export default defineComponent({
   name: 'About',
   components: {
-    TextField,
-    MaterialButton,
+    Textfield,
+    Button,
     AdminActions
   },
   setup () {
