@@ -7,6 +7,7 @@ export const IMAGE_TAG_INSERT_EVENT = 'pelilauta-insert-image-tag-to-delta'
 const Module = Quill.import('core/module')
 
 export class ImageModule extends Module {
+  static _init = false
   constructor (quill:Quill) {
     super(quill)
     console.log('Registering imageModule')
@@ -23,7 +24,10 @@ export class ImageModule extends Module {
         }, selection?.index
       )
     })
-    Quill.register(ImageBlot)
+    if (!this._init) {
+      this._init = true
+      Quill.register(ImageBlot)
+    }
   }
 }
 

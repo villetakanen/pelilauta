@@ -2,7 +2,7 @@ import Quill from 'quill'
 import Delta from 'quill-delta'
 import { ImageModule, IMAGE_UPLOAD_EVENT } from '@/composables/useQuill/imageModule'
 import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
-import { initPelilautaParchment } from './pelilautaParchment'
+import { logEvent } from '@/utils/eventLogger'
 
 export function hoistClipboardConfig (quill:Quill): void {
   // Remove all color styles from pasted content by force
@@ -17,45 +17,60 @@ export function hoistClipboardConfig (quill:Quill): void {
   )
 }
 
-export default function useQuill (container: Element): Quill {
-  // Replace Quill elements with custom parchment
-  initPelilautaParchment()
+export class QuillFactory {
+  private static instance: QuillFactory
+  private static formats = [
+    'bold',
+    'strike',
+    'underline',
+    'italic',
+    'wikilink',
+    'header',
+    'image',
+    'list'
+  ]
 
-  const config = {
-    formats: [
-      'bold',
-      'strike',
-      'underline',
-      'italic',
-      'wikilink',
-      'header',
-      'image',
-      'list'
-    ],
-    options: {
-      scrollingContainer: container
-    },
-    modules: {
-      wikilinks: true,
-      image: true,
-      toolbar: {
-        container: '#rte-toolbar',
-        handlers: {
-          wikilink: () => {
-            document.dispatchEvent(new CustomEvent('rte-wikilink-tool', {
-              detail: q.getSelection()?.index
-            }))
-          },
-          image: () => {
-            console.debug('dispatching pelilauta-show-insert-media-dialog')
-            document.dispatchEvent(new Event(IMAGE_UPLOAD_EVENT))
+  private constructor () {
+    Quill.register('modules/image', ImageModule)
+    Quill.register('modules/wikilinks', wikiLinkModule)
+
+    logEvent('QuillFactory init complete')
+  }
+
+  public static createQuill (container: HTMLElement): Quill {
+    if (!QuillFactory.instance) {
+      QuillFactory.instance = new QuillFactory()
+    }
+    const config = {
+      formats: this.formats,
+      options: {
+        scrollingContainer: container
+      },
+      modules: {
+        wikilinks: true,
+        image: true,
+        toolbar: {
+          container: '#rte-toolbar',
+          handlers: {
+            wikilink: () => {
+              document.dispatchEvent(new CustomEvent('rte-wikilink-tool', {
+                detail: q.getSelection()?.index
+              }))
+            },
+            image: () => {
+              console.debug('dispatching pelilauta-show-insert-media-dialog')
+              document.dispatchEvent(new Event(IMAGE_UPLOAD_EVENT))
+            }
           }
         }
       }
     }
+    const q = new Quill(container, config)
+    hoistClipboardConfig(q)
+    return q
   }
+}
 
-  const q = new Quill(container, config)
-  hoistClipboardConfig(q)
-  return q
+export default function useQuill (container: HTMLElement): Quill {
+  return QuillFactory.createQuill(container)
 }

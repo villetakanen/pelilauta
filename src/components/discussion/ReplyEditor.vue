@@ -9,7 +9,7 @@
 import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue'
 import Quill from 'quill'
 import { Quote } from '@/utils/contentFormat'
-import { mentionsModule } from '@/utils/quill/mentionsModule'
+import { QuillBuilder } from '@/utils/quill/quillBuilder'
 import { hoistClipboardConfig } from '@/composables/useQuill'
 import { logDebug } from '@/utils/eventLogger'
 
@@ -36,23 +36,6 @@ export default defineComponent({
 
     const modelContent = ref('')
 
-    const config = {
-      formats: [
-        'bold',
-        'strike',
-        'underline',
-        'italic',
-        'image',
-        'blockquote'
-      ],
-      modules: {
-        mention: true
-      }
-    }
-
-    // Implement and register module
-    Quill.register('modules/mention', mentionsModule)
-
     onMounted(() => {
       // We want to inject the Quill Editor only after this element has been
       // mounted, to have all the DOM we use from Quill, available
@@ -65,7 +48,7 @@ export default defineComponent({
       if (!editor.value) return
 
       // Init the quill-editor to the editor field
-      quill = new Quill(editor.value, config)
+      quill = QuillBuilder.create(editor.value)
 
       hoistClipboardConfig(quill)
 

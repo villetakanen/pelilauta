@@ -8,9 +8,6 @@ const _TRIGGER_KEY = '@'
 const _END_KEYS = [' ', 'Spacebar']
 
 export function mentionsModule (quill:Quill): void {
-  Quill.register('formats/mention', MentionBlot)
-  Quill.register('formats/authorlink', AuthorLinkBlot)
-
   let startIndex = 0
   let linking = false
   const { nonFrozenAuthors } = useAuthors()
