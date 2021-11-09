@@ -4,14 +4,20 @@
     id="Stylebook"
     :class="layout"
   >
-    <StylebookIntro v-model="layout" />
-    <ColumnsAndSections />
-    <ColorTheme />
-    <TextStyles />
-    <Iconography />
-    <FormControls />
-    <InteractiveElemets />
-    <StatefullComponents />
+    <StylebookIntro
+      v-if="!focus"
+      v-model="layout"
+    />
+    <ColumnsAndSections v-if="!focus" />
+    <ColorTheme v-if="!focus" />
+    <TextStyles v-if="!focus" />
+    <Iconography v-if="!focus" />
+    <FormControls v-if="!focus" />
+    <InteractiveElemets
+      v-if="!focus || focus === 'InteractiveElemets'"
+      v-model="focus"
+    />
+    <StatefullComponents v-if="!focus" />
   </main>
 </template>
 
@@ -42,6 +48,7 @@ export default defineComponent({
     StatefullComponents
   },
   setup () {
+    const focus = ref('')
     const layout = ref('dashBoardLayout')
 
     function sendSnack () {
@@ -59,7 +66,7 @@ export default defineComponent({
     }
     const toggle = ref(true)
     const selected = ref('a')
-    return { sendSnack, asyncWaitDemo, toggle, sendSnacks, selected, layout }
+    return { sendSnack, asyncWaitDemo, toggle, sendSnacks, selected, layout, focus }
   }
 })
 </script>

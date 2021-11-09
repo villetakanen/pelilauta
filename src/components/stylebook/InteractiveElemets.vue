@@ -1,6 +1,14 @@
 <template>
   <Column class="interactiveElements">
     <h1>Interactive Elements</h1>
+    <p>
+      <Toggle
+        v-model="toggleVisibility"
+        label="Toggle Focus"
+      />
+    </p>
+    <h2>File uploads</h2>
+    <p>Small Fab: <AddImageReplyAction style="display: inline-block" /></p>
     <h2>Dialog</h2>
     <p>We overuse dialog a bit, as it provides a convinient way to provide responsive wizard and selection tools</p>
     <Button
@@ -43,17 +51,26 @@
 import { useSnack } from '@/composables/useSnack'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { computed, defineComponent, ref } from 'vue'
+import AddImageReplyAction from '../discussion/AddImageReplyAction.vue'
 import Button from '../form/Button.vue'
 import Column from '../layout/Column.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialMenu from '../material/MaterialMenu.vue'
+import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
   name: 'InteractiveElements',
-  components: { Column, Button, Dialog, SpacerDiv, Toolbar, MaterialMenu },
-  setup () {
+  components: { Column, Button, Dialog, SpacerDiv, Toolbar, MaterialMenu, Toggle, AddImageReplyAction },
+  props: {
+    modelValue: {
+      type: String,
+      required: true
+    }
+  },
+  emits: ['update:modelValue'],
+  setup (props, context) {
     const dialogVisible = ref(false)
     function sendSnack () {
       const { pushSnack } = useSnack()
@@ -66,7 +83,16 @@ export default defineComponent({
       items.push({ text: 'Admin item', admin: true })
       return items
     })
-    return { dialogVisible, sendSnack, menuItems }
+
+    const toggleVisibility = computed({
+      get: () => props.modelValue === 'InteractiveElemets',
+      set: (v:boolean) => {
+        if (v) context.emit('update:modelValue', 'InteractiveElemets')
+        else context.emit('update:modelValue', '')
+      }
+    })
+
+    return { dialogVisible, sendSnack, menuItems, toggleVisibility }
   }
 })
 </script>
