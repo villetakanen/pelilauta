@@ -1,3 +1,5 @@
+import { logDebug } from './eventLogger'
+
 export function copyUrl (slug?: string):void {
   const dummy = document.createElement('input')
   document.body.appendChild(dummy)
@@ -13,7 +15,7 @@ export function getNavigatorLocale (): string {
     navigator.languages !== undefined
       ? navigator.languages[0]
       : navigator.language
-  console.debug('Navigator locale is', navigatorLocale?.trim().split(/-|_/)[0] || 'forced to fi')
+  logDebug('Navigator locale is', navigatorLocale?.trim().split(/-|_/)[0] || 'forced to fi')
   if (!navigatorLocale) return 'fi'
   return navigatorLocale.trim().split(/-|_/)[0]
 }
