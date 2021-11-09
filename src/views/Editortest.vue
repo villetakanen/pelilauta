@@ -13,6 +13,7 @@ import AdminActions from '@/components/admin/AdminActions.vue'
 import { Reply as ReplyInterface } from '@/utils/firestoreInterfaces'
 import ReplyEditorTester from '@/components/discussion/ReplyEditorTester.vue'
 import RichTextEditorTester from '@/components/quill/RichTextEditorTester.vue'
+import { useAuthors } from '@/state/authors'
 
 export default defineComponent({
   name: 'EditorTest',
@@ -29,6 +30,9 @@ export default defineComponent({
       replyid: 'demo',
       author: 'YN8dQz3H8OMsb0L4jImAlROPQpo1'
     }))
+
+    const { subscribeToAuthors } = useAuthors()
+    subscribeToAuthors()
 
     const images = ref('')
 

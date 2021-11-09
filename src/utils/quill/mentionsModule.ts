@@ -1,14 +1,52 @@
 
 import { useAuthors } from '@/state/authors'
 import Quill from 'quill'
-// import Delta from 'quill-delta'
-import { AuthorLinkBlot, MentionBlot } from './mentionBlot'
+import { logDebug } from '../eventLogger'
+
+const Module = Quill.import('core/module')
 
 const _TRIGGER_KEY = '@'
 const _END_KEYS = [' ', 'Spacebar']
 
-export function mentionsModule (quill:Quill): void {
-  let startIndex = 0
+export class MentionsModule extends Module {
+  private quill:Quill
+  private linking = false
+
+  constructor (quill:Quill) {
+    super(quill)
+    logDebug('MentionsModule constructor called')
+    this.quill = quill
+
+    quill.on('text-change', (delta) => {
+      if (delta?.ops?.length > 1) {
+        if (delta.ops[1].delete) this.stopLinking()
+        if (delta.ops[1].insert === _TRIGGER_KEY) this.startLinking()
+      } else {
+        if (delta.ops[0].delete) this.stopLinking()
+        if (delta.ops[0].insert === _TRIGGER_KEY) this.startLinking()
+      }
+    })
+  }
+
+  private startLinking () {
+    logDebug('MentionsModule startLinking')
+    const selection = this.quill.getSelection()
+    logDebug(selection?.index)
+    this.quill.formatText(
+      (selection?.index || 1) - 1,
+      1,
+      { mention: true },
+      Quill.sources.API
+    )
+    this.linking = true
+  }
+
+  private stopLinking () {
+    logDebug('MentionsModule stopLinking')
+    this.linking = false
+  }
+}
+/* et startIndex = 0
   let linking = false
   const { nonFrozenAuthors } = useAuthors()
 
@@ -50,4 +88,4 @@ export function mentionsModule (quill:Quill): void {
   }
 
   console.debug('Quill Mentions module registered')
-}
+} */

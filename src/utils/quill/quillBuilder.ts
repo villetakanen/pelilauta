@@ -1,7 +1,7 @@
 import Quill from 'quill'
 import { logDebug } from '../eventLogger'
 import { AuthorLinkBlot, MentionBlot } from './mentionBlot'
-import { mentionsModule } from './mentionsModule'
+import { MentionsModule } from './mentionsModule'
 
 export class QuillBuilder {
   private static instance: QuillBuilder
@@ -11,7 +11,9 @@ export class QuillBuilder {
     'underline',
     'italic',
     'image',
-    'blockquote'
+    'blockquote',
+    'authorlink',
+    'mention'
   ]
 
   private static _init = false
@@ -23,7 +25,7 @@ export class QuillBuilder {
     Quill.register('formats/mention', MentionBlot)
     Quill.register('formats/authorlink', AuthorLinkBlot)
 
-    Quill.register('modules/mention', mentionsModule)
+    Quill.register('modules/mention', MentionsModule)
     logDebug('QuillBuilder init')
   }
 
