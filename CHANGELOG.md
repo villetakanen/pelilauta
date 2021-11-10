@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.8](https://github.com/villetakanen/pelilauta/compare/v11.5.7...v11.5.8) (2021-11-10)
+
+
+### Bug Fixes
+
+* adding images to comments works again ([4fe0a34](https://github.com/villetakanen/pelilauta/commit/4fe0a3448ba812b2c756f51a82288c0163ef2b77))
+* image module fixed ([9023112](https://github.com/villetakanen/pelilauta/commit/902311290287da32b37c8ec422656e2513accef7))
+* less chatty logs ([6ed3f40](https://github.com/villetakanen/pelilauta/commit/6ed3f40646bedf842ebb23b2c40ea38abcea335c))
+* mentions module refactoring done ([12ab8ef](https://github.com/villetakanen/pelilauta/commit/12ab8ef50ae5cfa746db5f0a6129b1870a3dc58a))
+* mentions module rewrite part 1 ([08edbbb](https://github.com/villetakanen/pelilauta/commit/08edbbbedfb28ae7017babeef15921d30d55428a))
+* moved reply quill editor build to a builder ([7c40084](https://github.com/villetakanen/pelilauta/commit/7c400842c2d2b1d7639523051a5b68993209134d))
+* removed dead code ([93477bd](https://github.com/villetakanen/pelilauta/commit/93477bda04bc0a6a51221222f805837fa0e77ffe))
+* removed extra formats from comments ([d84d4bd](https://github.com/villetakanen/pelilauta/commit/d84d4bd2d47dcd18d9463160e5a720373cd897df))
+* small file fab to stylebook ([1e0d9f6](https://github.com/villetakanen/pelilauta/commit/1e0d9f614b5154cb5518361e55804011443fe1a7))
+* wikilink tool fixed to work without usequill ([c3a58ca](https://github.com/villetakanen/pelilauta/commit/c3a58ca23295a4c65f1a2d1e8cc1c43bb9c3fd3b))
+
 ### [11.5.7](https://github.com/villetakanen/pelilauta/compare/v11.5.6...v11.5.7) (2021-11-08)
 
 
