@@ -1,8 +1,10 @@
-import { ImageBlot } from '@/composables/useQuill/imageBlot'
+import { ImageBlot } from '@/utils/quill/imageBlot'
 import Quill from 'quill'
 import { logDebug } from '../eventLogger'
+import { ImageModule } from './imageModule'
 import { AuthorLinkBlot, MentionBlot } from './mentionBlot'
 import { MentionsModule } from './mentionsModule'
+import { WikiLinkBlot } from './wikiLinkModule'
 
 export class QuillBuilder {
   private static instance: QuillBuilder
@@ -15,6 +17,16 @@ export class QuillBuilder {
     'mention'
   ]
 
+  private static extendedFormats = [
+    ...QuillBuilder.defaultFormats,
+    'header',
+    'strike',
+    'underline',
+    'intend',
+    'wikilink',
+    'list'
+  ]
+
   private static _init = false
 
   private static initialize () {
@@ -24,19 +36,28 @@ export class QuillBuilder {
     Quill.register('formats/mention', MentionBlot)
     Quill.register('formats/authorlink', AuthorLinkBlot)
     Quill.register('formats/image', ImageBlot)
+    Quill.register('formats/wikilink', WikiLinkBlot)
 
     Quill.register('modules/mention', MentionsModule)
+    Quill.register('modules/image', ImageModule)
     logDebug('QuillBuilder init')
   }
 
-  public static create (container: HTMLElement, formats?: string[]): Quill {
+  public static create (container: HTMLElement, extendedFormats = false): Quill {
     QuillBuilder.initialize()
     const configuration = {
-      formats: formats || QuillBuilder.defaultFormats,
+      formats: extendedFormats ? QuillBuilder.extendedFormats : QuillBuilder.defaultFormats,
+      options: {
+        scrollingContainer: container
+      },
       modules: {
-        mention: true
+        mention: true,
+        image: true,
+        toolbar: extendedFormats ? { container: '#rte-toolbar' } : undefined
       }
     }
-    return new Quill(container, configuration)
+    const q = new Quill(container, configuration)
+    if (extendedFormats) q.getModule('image').postInstall()
+    return q
   }
 }

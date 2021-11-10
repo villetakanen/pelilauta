@@ -1,6 +1,6 @@
 import Quill from 'quill'
 import Delta from 'quill-delta'
-import { ImageModule, IMAGE_UPLOAD_EVENT } from '@/composables/useQuill/imageModule'
+import { ImageModule, IMAGE_UPLOAD_EVENT } from '@/utils/quill/imageModule'
 import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
 import { logEvent } from '@/utils/eventLogger'
 
@@ -27,7 +27,8 @@ export class QuillFactory {
     'wikilink',
     'header',
     'image',
-    'list'
+    'list',
+    'indent'
   ]
 
   private constructor () {
@@ -56,10 +57,6 @@ export class QuillFactory {
               document.dispatchEvent(new CustomEvent('rte-wikilink-tool', {
                 detail: q.getSelection()?.index
               }))
-            },
-            image: () => {
-              console.debug('dispatching pelilauta-show-insert-media-dialog')
-              document.dispatchEvent(new Event(IMAGE_UPLOAD_EVENT))
             }
           }
         }

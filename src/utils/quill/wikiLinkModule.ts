@@ -2,7 +2,7 @@ import Quill from 'quill'
 
 const InlineBlot = Quill.import('blots/inline')
 
-class WikiLinkBlot extends InlineBlot {
+export class WikiLinkBlot extends InlineBlot {
   static blotName = 'wikilink'
   static className = 'rt-wikilink'
   static tagName = 'a'
@@ -49,6 +49,5 @@ export function wikiLinkModule (quill:Quill): void {
     quill.formatText(selection.index, (detail?.text.length) ?? 1, { wikilink: detail?.url ?? '' }, Quill.sources.API)
   })
 
-  Quill.register(WikiLinkBlot)
   quill.keyboard.addBinding({ key: 'k', shortKey: true }, addWikiLink)
 }
