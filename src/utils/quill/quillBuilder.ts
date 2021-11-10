@@ -4,7 +4,7 @@ import { logDebug } from '../eventLogger'
 import { ImageModule } from './imageModule'
 import { AuthorLinkBlot, MentionBlot } from './mentionBlot'
 import { MentionsModule } from './mentionsModule'
-import { WikiLinkBlot } from './wikiLinkModule'
+import { WikiLinkBlot, WikiLinkModule } from './wikiLinkModule'
 
 export class QuillBuilder {
   private static instance: QuillBuilder
@@ -40,6 +40,7 @@ export class QuillBuilder {
 
     Quill.register('modules/mention', MentionsModule)
     Quill.register('modules/image', ImageModule)
+    Quill.register('modules/wikilink', WikiLinkModule)
     logDebug('QuillBuilder init')
   }
 
@@ -53,11 +54,15 @@ export class QuillBuilder {
       modules: {
         mention: true,
         image: true,
-        toolbar: extendedFormats ? { container: '#rte-toolbar' } : undefined
+        toolbar: extendedFormats ? { container: '#rte-toolbar' } : undefined,
+        wikilink: extendedFormats ? true : undefined
       }
     }
     const q = new Quill(container, configuration)
-    if (extendedFormats) q.getModule('image').postInstall()
+    if (extendedFormats) {
+      q.getModule('image').postInstall()
+      q.getModule('wikilink').addHandlers()
+    }
     return q
   }
 }

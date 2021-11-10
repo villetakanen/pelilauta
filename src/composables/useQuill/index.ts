@@ -1,7 +1,7 @@
 import Quill from 'quill'
 import Delta from 'quill-delta'
-import { ImageModule, IMAGE_UPLOAD_EVENT } from '@/utils/quill/imageModule'
-import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
+import { ImageModule } from '@/utils/quill/imageModule'
+// import { wikiLinkModule } from '@/utils/quill/wikiLinkModule'
 import { logEvent } from '@/utils/eventLogger'
 
 export function hoistClipboardConfig (quill:Quill): void {
@@ -30,13 +30,6 @@ export class QuillFactory {
     'list',
     'indent'
   ]
-
-  private constructor () {
-    Quill.register('modules/image', ImageModule)
-    Quill.register('modules/wikilinks', wikiLinkModule)
-
-    logEvent('QuillFactory init complete')
-  }
 
   public static createQuill (container: HTMLElement): Quill {
     if (!QuillFactory.instance) {

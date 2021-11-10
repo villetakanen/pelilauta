@@ -1,4 +1,5 @@
 import Quill from 'quill'
+import { logDebug } from '../eventLogger'
 
 const InlineBlot = Quill.import('blots/inline')
 
@@ -27,27 +28,39 @@ export class WikiLinkBlot extends InlineBlot {
   }
 }
 
-export function wikiLinkModule (quill:Quill): void {
-  console.log('Registering WikilinkModule')
+export const _RTE_WIKILINK_TOOL_EVENT = 'rte-wikilink-tool'
 
-  function addWikiLink (range: unknown) {
-    console.warn('addWikiLink', range)
+const Module = Quill.import('core/module')
 
-    const format = quill.getFormat(quill.getSelection() || undefined) as Record<string, unknown>
-    if (format.wikilink) return
+export class WikiLinkModule extends Module {
+  private quill:Quill
+  private index = 0
+  constructor (quill:Quill) {
+    super(quill)
+    this.quill = quill
+    logDebug('WikiLinkModule loaded')
+  }
 
-    document.dispatchEvent(new Event('rte-wikilink-tool'))
-
+  openWikilinkTool (): boolean {
+    if (this.quill.getFormat().wikilink) return false
+    this.index = this.quill.getSelection()?.index || 0
+    logDebug('openWikilinkTool', this.index)
+    document.dispatchEvent(new Event(_RTE_WIKILINK_TOOL_EVENT))
     return true
   }
 
-  document.addEventListener('rte-post-link', (value) => {
-    const selection = quill.getSelection() || { index: 0, length: 0 }
-    console.log('rte-post-link', value)
-    const detail = (value as CustomEvent).detail
-    quill.insertText(selection.index, detail?.text)
-    quill.formatText(selection.index, (detail?.text.length) ?? 1, { wikilink: detail?.url ?? '' }, Quill.sources.API)
-  })
+  addWikilink (link: { url: string, text: string}): void {
+    logDebug('addWikilink', this.index)
+    this.quill.setSelection(this.index, 0, Quill.sources.SILENT)
+    this.quill.insertText(this.index, link.text, Quill.sources.USER)
+    this.quill.formatText(this.index, (link.text.length) ?? 1, { wikilink: link.url }, Quill.sources.API)
+    this.quill.setSelection(this.index + link.text.length, 0, Quill.sources.SILENT)
+  }
 
-  quill.keyboard.addBinding({ key: 'k', shortKey: true }, addWikiLink)
+  addHandlers (): void {
+    this.quill.keyboard.addBinding({ key: 'k', shortKey: true }, () => this.openWikilinkTool())
+
+    const toolbar = this.quill.getModule('toolbar')
+    toolbar.addHandler('wikilink', () => this.openWikilinkTool())
+  }
 }

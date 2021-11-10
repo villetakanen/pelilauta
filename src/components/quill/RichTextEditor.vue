@@ -35,7 +35,7 @@
     <div
       ref="editor"
     />
-    <WikiLinkDialog />
+    <WikiLinkDialog @addLink="injectLink" />
     <InsertMediaDialog @addImage="injectImage" />
   </div>
 </template>
@@ -91,7 +91,7 @@ export default defineComponent({
       quill.on('text-change', () => {
         if (modelContent.value === quill?.root.innerHTML) return
         modelContent.value = quill?.root.innerHTML ?? ''
-        logDebug('RichTextEditor', 'update:content:', modelContent.value)
+        if (props.debug) logDebug('RichTextEditor', 'update:content:', modelContent.value)
         context.emit('update:content', modelContent.value)
       })
 
@@ -123,7 +123,13 @@ export default defineComponent({
       quill.getModule('image').addImageTag(img)
     }
 
-    return { editor, injectImage }
+    function injectLink (link: { url: string, text: string}) {
+      if (!quill) return
+      logDebug('injectLink', link)
+      quill.getModule('wikilink').addWikilink(link)
+    }
+
+    return { editor, injectImage, injectLink }
   }
 })
 </script>
