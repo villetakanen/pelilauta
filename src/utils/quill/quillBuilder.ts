@@ -1,3 +1,4 @@
+import { ImageBlot } from '@/composables/useQuill/imageBlot'
 import Quill from 'quill'
 import { logDebug } from '../eventLogger'
 import { AuthorLinkBlot, MentionBlot } from './mentionBlot'
@@ -24,6 +25,7 @@ export class QuillBuilder {
 
     Quill.register('formats/mention', MentionBlot)
     Quill.register('formats/authorlink', AuthorLinkBlot)
+    Quill.register('formats/image', ImageBlot)
 
     Quill.register('modules/mention', MentionsModule)
     logDebug('QuillBuilder init')

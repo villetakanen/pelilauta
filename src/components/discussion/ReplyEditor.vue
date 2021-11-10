@@ -104,7 +104,7 @@ export default defineComponent({
           const selection = quill.getSelection()
           logDebug('imageToEditor', url, selection)
           // https://quilljs.com/docs/api/#content
-          quill.insertEmbed(selection?.index || 0, 'image', url, Quill.sources.USER)
+          quill.insertEmbed(selection?.index || 0, 'image', { url: url, alt: '' }, Quill.sources.USER)
         }
       })
 
