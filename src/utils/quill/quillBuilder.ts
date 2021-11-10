@@ -8,8 +8,6 @@ export class QuillBuilder {
   private static instance: QuillBuilder
   private static defaultFormats = [
     'bold',
-    'strike',
-    'underline',
     'italic',
     'image',
     'blockquote',
