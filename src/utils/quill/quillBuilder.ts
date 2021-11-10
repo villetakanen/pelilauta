@@ -1,10 +1,11 @@
-import { ImageBlot } from '@/utils/quill/imageBlot'
 import Quill from 'quill'
+import Delta from 'quill-delta'
 import { logDebug } from '../eventLogger'
 import { ImageModule } from './imageModule'
 import { AuthorLinkBlot, MentionBlot } from './mentionBlot'
 import { MentionsModule } from './mentionsModule'
 import { WikiLinkBlot, WikiLinkModule } from './wikiLinkModule'
+import { ImageBlot } from '@/utils/quill/imageBlot'
 
 export class QuillBuilder {
   private static instance: QuillBuilder
@@ -63,6 +64,15 @@ export class QuillBuilder {
       q.getModule('image').postInstall()
       q.getModule('wikilink').addHandlers()
     }
+    q.clipboard.addMatcher(Node.ELEMENT_NODE,
+      function (node, delta) {
+        return delta.compose(new Delta().retain(delta.length(),
+          {
+            color: false,
+            background: false
+          }))
+      }
+    )
     return q
   }
 }
