@@ -32,7 +32,7 @@
   </Dialog>
 </template>
 <script lang="ts">
-import { IMAGE_TAG_INSERT_EVENT, IMAGE_UPLOAD_EVENT } from '@/composables/useQuill/imageModule'
+import { IMAGE_UPLOAD_EVENT } from '@/utils/quill/imageModule'
 import { useAssets } from '@/state/assets'
 import { defineComponent, onMounted, ref } from 'vue'
 import Button from '../form/Button.vue'
@@ -43,7 +43,8 @@ import Dialog from '../material/Dialog.vue'
 export default defineComponent({
   name: 'InserMediaDialog',
   components: { Dialog, Toolbar, Button, SpacerDiv },
-  setup () {
+  emits: ['addImage'],
+  setup (props, context) {
     const showDialog = ref(false)
     const selected = ref('')
 
@@ -57,13 +58,11 @@ export default defineComponent({
     })
 
     function inject () {
-      console.debug('inject()')
-      document.dispatchEvent(new CustomEvent(IMAGE_TAG_INSERT_EVENT, {
-        detail: {
-          url: assets.value.get(selected.value)?.url || '-',
-          alt: assets.value.get(selected.value)?.name || '-'
-        }
-      }))
+      context.emit('addImage', {
+        url: assets.value.get(selected.value)?.url || '-',
+        alt: assets.value.get(selected.value)?.name || '-'
+      })
+      showDialog.value = false
     }
 
     return { showDialog, inject, assets, selected }

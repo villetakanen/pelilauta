@@ -10,3 +10,8 @@ export function logDebug (...args: unknown[]):void {
   // eslint-disable-next-line
   if (process.env.VUE_APP_DEBUG_LOGS) console.debug('🪲', ...args)
 }
+
+export function logError (...args: unknown[]):void {
+  // eslint-disable-next-line
+  console.error('🐙', ...args)
+}

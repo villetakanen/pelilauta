@@ -45,7 +45,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { Quote } from '@/utils/contentFormat'
+import { defineComponent, provide, Ref, ref } from 'vue'
 import Button from '../form/Button.vue'
 import Toggle from '../material/Toggle.vue'
 import ReplyEditor from './ReplyEditor.vue'
@@ -56,6 +57,13 @@ export default defineComponent({
   setup () {
     const editorContents = ref('')
     const debug = ref(false)
+
+    const quote:Ref<Quote> = ref({ content: '', author: '' })
+    provide('quotedContent', quote)
+
+    const imageToEditor = ref('')
+    provide('imageToEditor', imageToEditor)
+
     return { editorContents, debug }
   }
 })

@@ -35,19 +35,19 @@
     <div
       ref="editor"
     />
-    <WikiLinkDialog />
-    <InsertMediaDialog />
+    <WikiLinkDialog @addLink="injectLink" />
+    <InsertMediaDialog @addImage="injectImage" />
   </div>
 </template>
 
 <script lang="ts">
 import { ComponentPublicInstance, defineComponent, onMounted, ref, watch } from 'vue'
 import Quill from 'quill'
-import useQuill from '@/composables/useQuill'
 import WikiLinkDialog from './WikiLinkDialog.vue'
 import InsertMediaDialog from './InsertMediaDialog.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import { logDebug } from '@/utils/eventLogger'
+import { QuillBuilder } from '@/utils/quill/quillBuilder'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
@@ -85,13 +85,13 @@ export default defineComponent({
       }
 
       // Init the quill-editor to the editor field
-      quill = useQuill(editor.value)
+      quill = QuillBuilder.create(editor.value, true)
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
         if (modelContent.value === quill?.root.innerHTML) return
         modelContent.value = quill?.root.innerHTML ?? ''
-        logDebug('RichTextEditor', 'update:content:', modelContent.value)
+        if (props.debug) logDebug('RichTextEditor', 'update:content:', modelContent.value)
         context.emit('update:content', modelContent.value)
       })
 
@@ -118,7 +118,18 @@ export default defineComponent({
       })
     }
 
-    return { editor }
+    function injectImage (img: { url: string, alt: string}) {
+      if (!quill) return
+      quill.getModule('image').addImageTag(img)
+    }
+
+    function injectLink (link: { url: string, text: string}) {
+      if (!quill) return
+      logDebug('injectLink', link)
+      quill.getModule('wikilink').addWikilink(link)
+    }
+
+    return { editor, injectImage, injectLink }
   }
 })
 </script>

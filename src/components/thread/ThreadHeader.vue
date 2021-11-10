@@ -52,7 +52,7 @@ import { useAuth } from '@/state/authz'
 import { useMeta } from '@/state/meta'
 import { deleteThread, ThreadClass } from '@/state/threads/threads'
 import { MenuItem } from '@/utils/uiInterfaces'
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Button from '../form/Button.vue'
 import Textfield from '../form/Textfield.vue'
@@ -67,7 +67,7 @@ export default defineComponent({
   components: { Header, ViewTitle, Action, MaterialMenu, SpacerDiv, Dialog, Textfield, Button },
   props: {
     thread: {
-      type: ThreadClass,
+      type: Object as PropType <ThreadClass>,
       required: true
     }
   },

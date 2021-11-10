@@ -47,15 +47,20 @@ import TextField from '../material/TextField.vue'
 
 export default defineComponent({
   components: { Dialog, MaterialSelect, MaterialButton, TextField },
-  setup () {
+  emits: ['addLink'],
+  setup (props, context) {
     const showDialog = ref(false)
     const linkValue = ref('')
     const customUrl = ref('')
     const customUrlText = ref('')
     const urlValid = computed(() => {
       if (!(customUrl.value.startsWith('https://') || customUrl.value.startsWith('http://'))) return false
-      const c = new URL(customUrl.value)
-      return (c.host.length > 1)
+      try {
+        const c = new URL(customUrl.value)
+        return (c.host.length > 1)
+      } catch {
+        return false
+      }
     })
     const { site } = useSite()
     const { pages } = usePages()
@@ -71,25 +76,20 @@ export default defineComponent({
     })
 
     function sendValue () {
-      document.dispatchEvent(new CustomEvent('rte-post-link', {
-        detail: {
-          url: '/site/' + site.value.id + '/page/' + linkValue.value,
-          text: pages.value.find((p) => (p.id === linkValue.value))?.name ?? 'xxx'
-        }
-      }
-      ))
+      context.emit('addLink', {
+        url: '/site/' + site.value.id + '/page/' + linkValue.value,
+        text: pages.value.find((p) => (p.id === linkValue.value))?.name || linkValue.value
+      })
       showDialog.value = false
     }
 
     function sendUrl () {
       if (!urlValid.value) return
-      document.dispatchEvent(new CustomEvent('rte-post-link', {
-        detail: {
-          url: customUrl.value,
-          text: customUrlText.value ?? customUrl.value
-        }
+      context.emit('addLink', {
+        url: customUrl.value,
+        text: customUrlText.value || customUrl.value
       }
-      ))
+      )
       showDialog.value = false
     }
 

@@ -5,7 +5,7 @@ import { computed, ComputedRef, reactive, WritableComputedRef, ref } from 'vue'
 import { useMeta } from '../meta'
 import { onAuthStateChanged, getAuth, User } from '@firebase/auth'
 import { doc, getFirestore, onSnapshot, deleteDoc, updateDoc, DocumentData } from '@firebase/firestore'
-import { logEvent } from '@/utils/eventLogger'
+import { logDebug, logEvent } from '@/utils/eventLogger'
 
 /**
  * A reactive object, that holds all state internals for auth
@@ -26,8 +26,8 @@ class ProfileData {
   readonly lovedThreads: undefined|Array<string>
 
   constructor (data?:DocumentData) {
-    console.log('profile data set to', data)
     this.lovedThreads = Array.isArray(data?.lovedThreads) ? data?.lovedThreads : undefined
+    logDebug('ProfileData created as', this)
   }
 }
 const localProfileData = ref(new ProfileData())
@@ -86,7 +86,6 @@ function fetchProfile () {
       } else {
         authState.missingProfileData = false
         authState.useExperimentalTools = snap.data()?.useExperimentalTools || false
-        console.log('tools', authState.useExperimentalTools)
 
         localProfileData.value = new ProfileData(snap.data())
         // @TODO refactor rest of profile fetching to this module
