@@ -1,11 +1,18 @@
 <template>
   <div class="homeView">
     <Header v-if="showExperimentalTools">
+      <SideNavAction class="onlyForMobile" />
       <ViewTitle>
         {{ $t('app.title') }}
       </ViewTitle>
       <SpacerDiv />
       <AppBarSearch />
+      <AppBarAction
+        v-if="!anonymousSession"
+        icon="avatar"
+        to="/profile"
+        :label="$t('sideNav.profile') "
+      />
     </Header>
     <main class="bookLayout">
       <HomeStream />
@@ -45,6 +52,8 @@ import ViewTitle from '@/components/layout/ViewTitle.vue'
 import ForumsAd from '@/components/home/cta/ForumsAd.vue'
 import AppBarSearch from '@/components/app/AppBarSearch.vue'
 import SpacerDiv from '@/components/layout/SpacerDiv.vue'
+import SideNavAction from '@/components/sidenav/SideNavAction.vue'
+import AppBarAction from '@/components/app/AppBarAction.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -59,7 +68,9 @@ export default defineComponent({
     ViewTitle,
     ForumsAd,
     AppBarSearch,
-    SpacerDiv
+    SpacerDiv,
+    SideNavAction,
+    AppBarAction
   },
   setup () {
     const { showMemberTools, anonymousSession, showExperimentalTools } = useAuth()
