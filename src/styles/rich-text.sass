@@ -57,6 +57,10 @@ $icon_size: 32px
         background-image: url('./assets/icons/rte/rte-ol.svg')
       &.ql-list-ul
         background-image: url('./assets/icons/rte/rte-ul.svg')
+      &.ql-less-intend
+        background-image: url('./assets/icons/rte/rte-less-intend.svg')
+      &.ql-more-intend
+        background-image: url('./assets/icons/rte/rte-more-intend.svg')
       &.ql-active
         background-color: var(--color-b-f)
         border-radius: 50%
@@ -112,7 +116,32 @@ $icon_size: 32px
     margin-top: 0
   a
     word-break: break-word
-
+  ul
+    --indent: 36px
+    li.ql-indent-1
+      margin-left: var(--indent)
+      padding-left: 0
+    li.ql-indent-2
+      margin-left: calc(var(--indent) * 2)
+      padding-left: 0
+    li.ql-indent-3
+      margin-left: calc(var(--indent) * 3)
+      padding-left: 0
+    li.ql-indent-4
+      margin-left: calc(var(--indent) * 4)
+      padding-left: 0
+    li.ql-indent-5
+      margin-left: calc(var(--indent) * 5)
+      padding-left: 0
+    li.ql-indent-6
+      margin-left: calc(var(--indent) * 6)
+      padding-left: 0
+    li.ql-indent-7
+      margin-left: calc(var(--indent) * 7)
+      padding-left: 0
+    li.ql-indent-8
+      margin-left: calc(var(--indent) * 8)
+      padding-left: 0
   
 span.author-mention
   background-color: var(--chroma-secondary-h)

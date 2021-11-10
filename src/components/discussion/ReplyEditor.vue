@@ -9,8 +9,7 @@
 import { ComponentPublicInstance, defineComponent, inject, onMounted, Ref, ref, watch } from 'vue'
 import Quill from 'quill'
 import { Quote } from '@/utils/contentFormat'
-import { QuillBuilder } from '@/utils/quill/quillBuilder'
-import { hoistClipboardConfig } from '@/composables/useQuill'
+import { QuillBuilder } from '@/utils/quill'
 import { logDebug } from '@/utils/eventLogger'
 
 /**
@@ -49,8 +48,6 @@ export default defineComponent({
 
       // Init the quill-editor to the editor field
       quill = QuillBuilder.create(editor.value)
-
-      hoistClipboardConfig(quill)
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {

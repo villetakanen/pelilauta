@@ -23,7 +23,7 @@ export class QuillBuilder {
     'header',
     'strike',
     'underline',
-    'intend',
+    'indent',
     'wikilink',
     'list'
   ]

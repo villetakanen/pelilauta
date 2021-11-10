@@ -28,6 +28,16 @@
         value="bullets"
         type="button"
       />
+      <button
+        type="button"
+        class="ql-indent ql-more-intend hideOnMobile"
+        value="-1"
+      />
+      <button
+        type="button"
+        class="ql-indent ql-less-intend hideOnMobile"
+        value="+1"
+      />
       <SpacerDiv />
       <button class="ql-wikilink" />
       <button class="ql-image" />
@@ -47,7 +57,7 @@ import WikiLinkDialog from './WikiLinkDialog.vue'
 import InsertMediaDialog from './InsertMediaDialog.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import { logDebug } from '@/utils/eventLogger'
-import { QuillBuilder } from '@/utils/quill/quillBuilder'
+import { QuillBuilder } from '@/utils/quill'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
