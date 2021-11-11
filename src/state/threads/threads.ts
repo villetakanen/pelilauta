@@ -254,9 +254,13 @@ function subscribeThread (id?: string): void {
   unsubscribePage = onSnapshot(threadRef, (doc) => {
     if (doc.exists()) {
       subscribedPage.value = toThread(id, doc.data())
-      const { stampSeen } = useProfile()
-      stampSeen(id, doc.data()?.flowTime)
-      dispatchThreadSeen()
+
+      const { anonymousSession } = useAuth()
+      if (!anonymousSession.value) {
+        const { stampSeen } = useProfile()
+        stampSeen(id, doc.data()?.flowTime)
+        dispatchThreadSeen()
+      }
     }
   })
 }

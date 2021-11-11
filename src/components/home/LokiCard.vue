@@ -38,8 +38,8 @@
 </template>
 
 <script lang="ts">
-import { FeedPost } from '@/state/feeds/loki'
 import { toDisplayString } from '@/utils/firebaseTools'
+import { WordpressArticle } from '@/utils/wordpress'
 import { computed, defineComponent, PropType } from 'vue'
 
 /**
@@ -49,7 +49,7 @@ export default defineComponent({
   name: 'LokiCard',
   props: {
     feedPost: {
-      type: Object as PropType<FeedPost>,
+      type: Object as PropType<WordpressArticle>,
       required: true
     }
   },

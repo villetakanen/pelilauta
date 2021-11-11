@@ -38,10 +38,8 @@ import { useAuth } from '@/state/authz'
 import { usePagelog } from '@/state/pagelog'
 import { useThreads } from '@/state/threads'
 import { Thread } from '@/utils/firestoreInterfaces'
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, ref, Ref } from 'vue'
 import ThreadCard from './threadcard/ThreadCard.vue'
-import { useLoki } from '@/state/feeds'
-import { FeedPost } from '@/state/feeds/loki'
 import { DateTime } from 'luxon'
 import WPCard from './LokiCard.vue'
 import Column from '../layout/Column.vue'
@@ -49,14 +47,15 @@ import MekanismiCard from './mekanismi/MekanismiCard.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Action from '../material/Action.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import { WordpressArticle, WordPressSubscription } from '@/utils/wordpress'
 
 interface StreamEntry {
   key: string
   thread?: Thread,
-  feedPost?: FeedPost
+  feedPost?: WordpressArticle
 }
 
-function merge (first:Array<Thread|FeedPost>, second:Array<Thread|FeedPost>): Array<Thread|FeedPost> {
+function merge (first:Array<Thread|WordpressArticle>, second:Array<Thread|WordpressArticle>): Array<Thread|WordpressArticle> {
   const merged = [...first, ...second].sort((a, b) => {
     const as = 'date' in a ? DateTime.fromISO(a.date).toMillis() / 1000 : a.flowTime?.seconds
     const bs = 'date' in b ? DateTime.fromISO(b.date).toMillis() / 1000 : b.flowTime?.seconds
@@ -75,6 +74,15 @@ export default defineComponent({
   setup () {
     const { lastFlowtime } = usePagelog()
     const { anonymousSession } = useAuth()
+    const lokiArticles:Ref<WordpressArticle[]> = ref([])
+    // const tiedotusArticles:Ref<WordpressArticle[]> = ref([])
+
+    onMounted(async () => {
+      const lokiSubscription = new WordPressSubscription('https://public-api.wordpress.com/rest/v1.1/sites/roolipeliloki.wordpress.com/posts')
+      lokiArticles.value = await lokiSubscription.subscribe()
+      /* const tiedotusSubscription = new WordPressSubscription('https://roolipelitiedotus.fi/wp-json/wp/v2/posts')
+      tiedotusArticles.value = await tiedotusSubscription.subscribe() */
+    })
 
     const stream = computed(() => {
       const entries = new Array<StreamEntry>()
@@ -85,8 +93,7 @@ export default defineComponent({
       // wich ever is greater)
       let wikiChangesInStream: boolean
       const { stream: streamThreads } = useThreads()
-      const { feedPosts } = useLoki()
-      const clipped = Array.from(feedPosts.value.values())
+      const clipped = Array.from(lokiArticles.value.values())
       if (clipped.length > 3) clipped.length = 3
       const streamItems = merge(clipped, Array.from(streamThreads.value))
       streamItems.forEach((t) => {
