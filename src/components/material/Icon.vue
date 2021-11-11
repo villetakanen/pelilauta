@@ -252,4 +252,16 @@ export default defineComponent({
       padding: 0
       vertical-align: center
 
+button.Fab
+  div.icon
+    margin: 0
+    padding: 0
+    height: 24px
+    width: 24px
+    img
+      margin: 0
+      padding: 0
+      height: 24px
+      width: 24px
+
 </style>

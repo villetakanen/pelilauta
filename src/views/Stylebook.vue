@@ -8,6 +8,10 @@
       v-if="!focus"
       v-model="layout"
     />
+    <Components
+      v-if="!focus || focus === 'Components'"
+      v-model="focus"
+    />
     <ColumnsAndSections v-if="!focus" />
     <ColorTheme v-if="!focus" />
     <TextStyles v-if="!focus" />
@@ -33,6 +37,7 @@ import ColorTheme from '@/components/stylebook/ColorTheme.vue'
 import InteractiveElemets from '@/components/stylebook/InteractiveElemets.vue'
 import ColumnsAndSections from '@/components/stylebook/ColumnsAndSections.vue'
 import StatefullComponents from '@/components/stylebook/StatefullComponents.vue'
+import Components from '@/components/stylebook/Components.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -45,7 +50,8 @@ export default defineComponent({
     ColorTheme,
     InteractiveElemets,
     ColumnsAndSections,
-    StatefullComponents
+    StatefullComponents,
+    Components
   },
   setup () {
     const focus = ref('')
