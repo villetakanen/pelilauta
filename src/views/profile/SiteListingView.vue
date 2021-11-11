@@ -4,7 +4,7 @@
     <div class="singleColumnLayout">
       <div class="siteGrid">
         <h4>Site</h4>
-        <Icon headline />
+        <Icon medium />
         <div class="toolbar">
           <div class="spacer" />
           <Button @click="reroute('/create/site')">
@@ -29,12 +29,12 @@
               v-if="site.hidden"
               name="hidden"
               style="opacity: 0.22"
-              headline
+              medium
             />
             <Icon
               v-else
               :name="site.systemBadge + '-logo'"
-              headline
+              medium
             />
           </div>
           <div

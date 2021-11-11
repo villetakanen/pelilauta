@@ -19,7 +19,7 @@
     <Icon
       v-if="notification.meta.new"
       name="lightbulb"
-      headline
+      medium
     />
   </div>
 </template>

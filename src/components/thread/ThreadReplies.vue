@@ -4,7 +4,6 @@
     :class="{ active: newRepliesInThread }"
     @click="reroute(`/thread/${thread.id}/view/from/${showRepliesAfter}`)"
   >
-    <!--Icon inline name="discussion" /-->
     {{ thread.replyCount }}
     {{ $t('post.nOfReplies') }}
   </div>

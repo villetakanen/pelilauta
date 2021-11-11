@@ -23,7 +23,7 @@
       <Icon
         name="pelilauta"
         dark
-        headline
+        medium
       />
     </div>
   </section>

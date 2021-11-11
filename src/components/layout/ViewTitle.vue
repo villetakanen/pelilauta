@@ -7,6 +7,7 @@
       v-if="icon"
       class="titleIcon"
       :name="icon"
+      medium
     />
     <h2
       v-if="parent"
@@ -67,8 +68,8 @@ export default defineComponent({
   position: relative
   .titleIcon
     position: absolute
-    top: 2px
-    left: 2px
+    top: 4px
+    left: 4px
   h1
     @include TypeHeadline5()
     color: var(--chroma-secondary-a)

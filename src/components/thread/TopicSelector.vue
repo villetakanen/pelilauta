@@ -4,7 +4,7 @@
       <span class="label">{{ $t('stream.inStream') }}:</span> {{ topicName }}
       <Icon
         name="edit"
-        inline
+        small
         class="onwhite"
       />
     </div>
@@ -21,7 +21,7 @@
           @click="select(stream.slug)"
         >
           <Icon
-            headline
+            medium
             :name="stream.icon"
           />&nbsp;{{ stream.name }}
         </h4>

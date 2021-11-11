@@ -12,28 +12,45 @@
     </section>
     <section>
       <h2>Floating Action Buttons (FAB's)</h2>
-      <Fab3
-        icon="add"
-        label="Add new post"
+      <Toggle
+        v-model="vertical"
+        label="Vertical on desktop"
       />
-      <Fab3
-        icon="delete"
-        label="delete"
-        small
-      />
+      <FabTray :vertical="vertical">
+        <Fab3
+          icon="plus"
+          label="Add new post"
+        />
+        <Fab3
+          icon="plus"
+          label="Discuss"
+          small
+        />
+        <Fab3
+          icon="plus"
+          secondary
+          small
+        />
+        <Fab3
+          icon="plus"
+          tertiary
+          small
+        />
+      </FabTray>
     </section>
   </Column>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import Column from '../layout/Column.vue'
 import Toggle from '../material/Toggle.vue'
 import Fab3 from '../material3/Fab3.vue'
+import FabTray from '../material3/FabTray.vue'
 
 export default defineComponent({
   name: 'StatefulComponents',
-  components: { Column, Fab3, Toggle },
+  components: { Column, Fab3, Toggle, FabTray },
   props: {
     modelValue: {
       type: String,
@@ -42,6 +59,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, context) {
+    const vertical = ref(false)
     const toggleVisibility = computed({
       get: () => props.modelValue === 'InteractiveElemets',
       set: (v:boolean) => {
@@ -49,7 +67,7 @@ export default defineComponent({
         else context.emit('update:modelValue', '')
       }
     })
-    return { toggleVisibility }
+    return { toggleVisibility, vertical }
   }
 })
 </script>

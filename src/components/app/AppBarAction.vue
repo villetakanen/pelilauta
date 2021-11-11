@@ -12,7 +12,7 @@
     <Icon
       class="hideOnMobile desktopIcon"
       :name="icon"
-      x-small
+      small
     />
     <span
       v-if="label"
@@ -94,6 +94,5 @@ export default defineComponent({
     padding-right: 10px
     margin: 4px
     .desktopIcon
-      margin: 10px
-      margin-right: 0
+      margin: 8px
 </style>

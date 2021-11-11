@@ -13,7 +13,7 @@
       <Icon
         name="addAnImage"
         dark
-        headline
+        medium
       />
     </label>
   </div>

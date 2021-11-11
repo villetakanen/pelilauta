@@ -25,12 +25,12 @@
         <Icon
           v-if="item.admin"
           name="admin"
-          inline
+          small
         />
         <Icon
           v-if="item.icon && !item.admin"
           :name="item.icon"
-          inline
+          small
         />
         {{ item.text }}
       </li>

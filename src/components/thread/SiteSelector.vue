@@ -4,7 +4,7 @@
       {{ siteName }}
       <Icon
         :name="siteBadge"
-        inline
+        small
         class="onwhite"
       />
     </div>
