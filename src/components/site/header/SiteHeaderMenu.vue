@@ -6,13 +6,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { SiteClass, useSite } from '@/state/site'
 import MaterialMenu from '@/components/material/MaterialMenu.vue'
 import { useAuth } from '@/state/authz'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { useI18n } from 'vue-i18n'
-import { logDebug } from '@/utils/eventLogger'
 
 export default defineComponent({
   components: { MaterialMenu },
