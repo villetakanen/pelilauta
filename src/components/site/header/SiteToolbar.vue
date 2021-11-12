@@ -5,7 +5,9 @@
     <ViewTitle
       :icon="site.systemBadge + '-logo'"
     >
-      {{ site.name }}
+      <router-link :to="`/site/${site.id}`">
+        {{ site.name }}
+      </router-link>
     </ViewTitle>
 
     <SpacerDiv />

@@ -97,6 +97,7 @@ button.Fab
     background-color: var(--chroma-primary-i)
     @include Rise1()
   &.secondary
+    color: var(--chroma-secondary-h)
     background-color: var(--chroma-secondary-d)
     &:hover
       background-color: var(--chroma-secondary-c)

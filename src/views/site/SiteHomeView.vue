@@ -30,12 +30,34 @@
         />
       </Column>
     </div>
+    <teleport to="#ScreenBottomFabsContainer">
+      <FabTray v-if="showTools">
+        <Fab3
+          :icon="'addDiscussion'"
+          :label="$t('action.addThread')"
+          @click="reroute('/site/' + site.id + '/add/thread')"
+        />
+        <Fab3
+          :icon="'add'"
+          small
+          :label="$t('action.addPage')"
+          @click="reroute('/site/' + site.id + '/add/page')"
+        />
+        <Fab3
+          :icon="'edit'"
+          secondary
+          small
+          :label="$t('action.edit')"
+          @click="reroute('/site/' + site.id + '/page/' +page.id + '/edit')"
+        />
+      </FabTray>
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, watch } from 'vue'
-import { useSite } from '@/state/site'
+import { computed, defineComponent, onMounted, watch } from 'vue'
+import { SiteClass, useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { usePage } from '@/state/pages/usePage'
@@ -46,6 +68,9 @@ import { useThreads } from '@/state/threads'
 import { renderWikiLinks } from '@/utils/contentFormat'
 import Button from '@/components/form/Button.vue'
 import { useUxActions } from '@/composables/useUxActions'
+import FabTray from '@/components/material3/FabTray.vue'
+import Fab3 from '@/components/material3/Fab3.vue'
+import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -55,7 +80,9 @@ export default defineComponent({
     Column,
     SideBar,
     SiteThreadList,
-    Button
+    Button,
+    FabTray,
+    Fab3
   },
   props: {
     siteid: {
@@ -66,6 +93,7 @@ export default defineComponent({
   setup (props) {
     const { site, showSiteMemberTools } = useSite(props.siteid)
     const { page } = usePage(props.siteid, props.siteid)
+    const { user } = useAuth()
     const { fetchSiteThreads } = useThreads()
     const { reroute } = useUxActions()
 
@@ -77,7 +105,11 @@ export default defineComponent({
       }, { immediate: true })
     })
 
-    return { page, site, renderWikiLinks, showSiteMemberTools, reroute }
+    const showTools = computed(() => {
+      return new SiteClass(site.value).isOwner(user.value.uid)
+    })
+
+    return { page, site, renderWikiLinks, showSiteMemberTools, reroute, showTools }
   }
 })
 </script>
