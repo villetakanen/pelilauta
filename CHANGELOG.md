@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.11](https://github.com/villetakanen/pelilauta/compare/v11.5.10...v11.5.11) (2021-11-12)
+
+
+### Bug Fixes
+
+* admin tabs fixed ([71f31a7](https://github.com/villetakanen/pelilauta/commit/71f31a723e020a94a47d6b86716740268fb92d5b))
+* fab coloring updated ([97a98b9](https://github.com/villetakanen/pelilauta/commit/97a98b922c537afd1e03d32d001269265eae000f))
+* material typography 3 ([11db8a3](https://github.com/villetakanen/pelilauta/commit/11db8a337e268c9eedc44ae723b12fb0d399266f))
+* removed extra logging ([26ced55](https://github.com/villetakanen/pelilauta/commit/26ced557bf1fc177d83d47bc8755ac8f2d062531))
+
 ### [11.5.10](https://github.com/villetakanen/pelilauta/compare/v11.5.9...v11.5.10) (2021-11-12)
 
 
