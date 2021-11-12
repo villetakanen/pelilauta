@@ -8,15 +8,15 @@
       v-if="!focus"
       v-model="layout"
     />
+    <ColorTheme v-if="!focus" />
+    <TextStyles v-if="!focus" />
+    <Iconography v-if="!focus" />
+    <ColumnsAndSections v-if="!focus" />
+    <FormControls v-if="!focus" />
     <Components
       v-if="!focus || focus === 'Components'"
       v-model="focus"
     />
-    <ColumnsAndSections v-if="!focus" />
-    <ColorTheme v-if="!focus" />
-    <TextStyles v-if="!focus" />
-    <Iconography v-if="!focus" />
-    <FormControls v-if="!focus" />
     <InteractiveElemets
       v-if="!focus || focus === 'InteractiveElemets'"
       v-model="focus"

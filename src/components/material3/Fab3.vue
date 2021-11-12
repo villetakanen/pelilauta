@@ -4,14 +4,15 @@
     :class="{
       small: small,
       secondary: secondary,
-      tertiary: tertiary
+      tertiary: tertiary,
+      withLabel: label && label.length > 0
     }"
   >
     <Icon
-      :class="{ medium: !small}"
+      class="fabIcon"
       :name="icon"
-      :medium="!small"
-      :small="small"
+      small
+      :dark="secondary || tertiary"
     />
     <span
       v-if="label"
@@ -61,25 +62,35 @@ export default defineComponent({
 @import @/styles/include-media.scss
 
 button.Fab
-  flex-grow: 0
-  display: block
   @include TypeButton()
   @include Rise2()
+  position: relative
+  display: block
+  flex-grow: 0
+  flex-shrink: 0
   border: 0
   height: 56px
-  background-color: var(--chroma-primary-h)
+  width: 56px
   box-sizing: border-box
-  padding: 16px
+  margin: 0
+  padding: 12px
   border-radius: 16px
+  background-color: var(--chroma-primary-h)
   transition: all 0.3s
-  .label
-    padding: 0 6px
-  .icon.medium
-    margin: -6px !important
+  .fabIcon
+    position: absolute
+    top: 16px
+    left: 16px
   &.small
     height: 40px
-    padding: 8px
+    width: 40px
     border-radius: 12px
+    padding: 8px 12px
+    .fabIcon
+      position: absolute
+      top: 0
+      left: 8px
+      top: 8px
   &:hover
     background-color: var(--chroma-primary-g)
   &:active
@@ -102,6 +113,15 @@ button.Fab
   .Fab:not(.small)
     margin-top: 8px
 @include media('>desktop')
+  button.Fab.withLabel
+    width: auto
+    .label
+      padding-left: 40px
+      white-space: nowrap
+      overflow: hidden
+    &.small
+      .label
+        padding-left: 24px
   div.FabTray.vertical
     .Fab:not(.small)
       margin-top: 0

@@ -1,14 +1,11 @@
 <template>
-  <div
+  <img
+    ref="icon"
+    :src="sourcePath"
+    :alt="name"
     class="icon"
     :class="{ medium: medium, large: large, small: small }"
   >
-    <img
-      ref="icon"
-      :src="sourcePath"
-      :alt="name"
-    >
-  </div>
 </template>
 
 <script lang="ts">
@@ -89,14 +86,13 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-div.icon
+img.icon
   display: inline-block
   margin: 0
   padding: 0
   vertical-align: middle
-  img
-    height: 100%
-    width: 100%
+  height: 48px
+  width: 48px
   &.small
     height: 24px
     width: 24px

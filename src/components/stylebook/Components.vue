@@ -22,19 +22,23 @@
           label="Add new post"
         />
         <Fab3
-          icon="plus"
+          icon="addDiscussion"
           label="Discuss"
           small
         />
         <Fab3
-          icon="plus"
+          icon="books"
           secondary
           small
         />
         <Fab3
-          icon="plus"
+          icon="keeper"
           tertiary
           small
+        />
+        <Fab3
+          icon="about"
+          secondary
         />
       </FabTray>
     </section>
