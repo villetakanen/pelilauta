@@ -26,12 +26,12 @@
     </main>
     <teleport to="#ScreenBottomFabsContainer">
       <ToTopFab style="margin-right:8px" />
-      <Fab
+      <Fab3
         v-if="showMemberTools"
         id="addThreadFab"
-        to="/stream/add/thread"
-        :text="$t('action.addThread')"
+        :label="$t('action.addThread')"
         icon="addDiscussion"
+        @click="$router.push('/stream/add/thread')"
       />
     </teleport>
   </div>
@@ -39,7 +39,6 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import Fab from '@/components/material/Fab.vue'
 import { useAuth } from '@/state/authz'
 import HomeStream from '@/components/home/HomeStream.vue'
 import ToTopFab from '@/components/app/ToTopFab.vue'
@@ -54,11 +53,11 @@ import AppBarSearch from '@/components/app/AppBarSearch.vue'
 import SpacerDiv from '@/components/layout/SpacerDiv.vue'
 import SideNavAction from '@/components/sidenav/SideNavAction.vue'
 import AppBarAction from '@/components/app/AppBarAction.vue'
+import Fab3 from '@/components/material3/Fab3.vue'
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    Fab,
     HomeStream,
     ToTopFab,
     CreateASiteAd,
@@ -70,7 +69,8 @@ export default defineComponent({
     AppBarSearch,
     SpacerDiv,
     SideNavAction,
-    AppBarAction
+    AppBarAction,
+    Fab3
   },
   setup () {
     const { showMemberTools, anonymousSession, showExperimentalTools } = useAuth()

@@ -13,6 +13,16 @@
       to="/profile"
       :label="$t('sideNav.profile') "
     />
+    <Button
+      v-else
+    >
+      <Icon
+        name="avatar"
+        small
+        dark
+      />
+      {{ $t('action.login') }}
+    </Button>
   </div>
 </template>
 
@@ -26,6 +36,8 @@ import AppBarAction from './AppBarAction.vue'
 import AppBarSearch from './AppBarSearch.vue'
 import InboxAction from '../inbox/InboxAction.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import Button from '../form/Button.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'AppBar',
@@ -35,7 +47,9 @@ export default defineComponent({
     AppBarAction,
     AppBarSearch,
     InboxAction,
-    SpacerDiv
+    SpacerDiv,
+    Button,
+    Icon
   },
   setup () {
     const { anonymousSession, showMemberTools } = useAuth()

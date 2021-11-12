@@ -100,11 +100,11 @@ img.icon
     height: 36px
     height: 36px
 
-button .icon
+button:not(.Fab) .icon
   display: inline-block
   margin: 0
   margin-left: -8px
-  margin-right: 4px
+  margin-right: 8px
   padding: 0
   vertical-align: middle
 

@@ -1,7 +1,7 @@
 <template>
   <div class="toTopFab">
     <transition name="pop">
-      <Fab
+      <Fab3
         v-if="toTopVisibleToggle"
         tertiary
         icon="up"
@@ -13,11 +13,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Fab from '../material/Fab.vue'
+import Fab3 from '../material3/Fab3.vue'
 
 export default defineComponent({
   name: 'ToTopFab',
-  components: { Fab },
+  components: { Fab3 },
   setup () {
     // *** On Scroll, show to top FAB ***************************************
 
