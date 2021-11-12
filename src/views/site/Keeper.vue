@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useSite, useSiteCharacters } from '@/state/site'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/SiteToolbar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',

@@ -22,7 +22,7 @@ import Loader from '@/components/app/Loader.vue'
 import { useAuthors } from '@/state/authors'
 import SiteMeta from '@/components/site/SiteMeta.vue'
 import SiteIdentity from '@/components/site/SiteIdentity.vue'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/SiteToolbar.vue'
 import SiteCategoriesCard from '@/components/site/SiteCategoriesCard.vue'
 import { useAuth } from '@/state/authz'
 

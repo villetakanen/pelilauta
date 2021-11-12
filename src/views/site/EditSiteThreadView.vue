@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import SiteThreadEditor from '@/components/site/threads/SiteThreadEditor.vue'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/SiteToolbar.vue'
 import { defineComponent } from 'vue'
 
 /**

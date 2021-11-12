@@ -10,64 +10,22 @@
 
     <SpacerDiv />
 
-    <Action
-      prepend="share"
-      @click="copyLink"
-    >
-      <span class="onlyForDesktop">{{ $t('action.share') }}</span>
-    </Action>
-    <Action
-      v-if="memberOf"
-      prepend="attachments"
-      :to="`/site/attachments/${site.id}/`"
-    >
-      <span class="onlyForDesktop">{{ $t('mekanismi.attachments.title') }}</span>
-    </Action>
-    <Action
-      v-if="site.usePlayers && memberOf"
-      prepend="players"
-      :to="`/site/players/${site.id}/`"
-    >
-      <span class="onlyForDesktop">{{ $t('site.players.title') }}</span>
-    </Action>
-    <Action
-      v-if="site.usePlayers && memberOf"
-      prepend="keeper"
-      :to="`/site/${site.id}/keeper`"
-    >
-      <span class="onlyForDesktop">{{ $t('site.keeper.title') }}</span>
-    </Action>
-    <Action
-      v-if="owns"
-      prepend="equalizer"
-      :to="`/site/meta/${site.id}`"
-    >
-      <span class="onlyForDesktop">{{ $t('mekanismi.siteinfo') }}</span>
-    </Action>
-    <Action
-      v-if="owns"
-      prepend="settings"
-      :to="`/site/settings/${site.id}`"
-    >
-      <span class="onlyForDesktop">{{ $t('site.settings.title') }}</span>
-    </Action>
+    <ShareButton />
   </Header>
 </template>
 
 <script lang="ts">
 import { Page, useSite } from '@/state/site'
 import { computed, defineComponent, PropType } from 'vue'
-import { copyUrl } from '@/utils/window'
-import Action from '../material/Action.vue'
-import { useSnack } from '@/composables/useSnack'
-import { useI18n } from 'vue-i18n'
 import { useAuth } from '@/state/authz'
 import Header from '../layout/Header.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import ViewTitle from '../layout/ViewTitle.vue'
+import { useUxActions } from '@/composables/useUxActions'
+import ShareButton from '../actions/ShareButton.vue'
 
 export default defineComponent({
-  components: { Action, Header, SpacerDiv, ViewTitle },
+  components: { Header, SpacerDiv, ViewTitle, ShareButton },
   props: {
     page: {
       type: Object as PropType<Page>,
@@ -78,16 +36,11 @@ export default defineComponent({
   setup () {
     const { site, members } = useSite()
     const { user } = useAuth()
+    const { copyLinkToClipboard, reroute } = useUxActions()
 
-    const i18n = useI18n()
-    const { pushSnack } = useSnack()
-    const copyLink = () => {
-      copyUrl()
-      pushSnack({ topic: i18n.t('global.messages.linkShared') })
-    }
     const owns = computed(() => (site.value.owners && site.value.owners.includes(user.value.uid)))
     const memberOf = computed(() => (members.value.findIndex((a) => (a.uid === user.value.uid)) > -1))
-    return { site, copyLink, owns, memberOf }
+    return { site, owns, memberOf, copyLinkToClipboard, reroute }
   }
 })
 </script>
