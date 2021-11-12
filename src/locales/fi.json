@@ -132,6 +132,9 @@
       "helpertext": "merkitsee kirjoittajan, ja lähettää notifikaation"
     }
   },
+  "rtesandbox": {
+    "title": "RTE Sandbox"
+  },
   "rte": {
     "wikilink": {
       "title": "Lisää linkki",

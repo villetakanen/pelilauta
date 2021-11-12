@@ -93,7 +93,7 @@
         {{ $t('admin.title') }}
       </SideNavMenuItem>
       <SideNavMenuItem
-        v-if="showExperimentalTools"
+        v-if="showAdminTools || showExperimentalTools"
         icon="pelilauta"
         to="/stylebook"
         @click="toggleNav"

@@ -1,5 +1,5 @@
 <template>
-  <AdminActions :title="$t('admin.action.editorTest')" />
+  <AdminActions :title="$t('rtesandbox.title')" />
   <main class="bookLayout">
     <ReplyEditorTester />
     <RichTextEditorTester />

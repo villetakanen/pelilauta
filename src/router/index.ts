@@ -108,8 +108,8 @@ const routes: Array<RouteRecordRaw> = [
     props: (route) => ({ threadid: '', mode: 'new', topic: route.params.topic })
   },
   {
-    path: '/editortest',
-    name: 'global.admin.editorTest',
+    path: '/rtesandbox',
+    name: 'global.admin.rtesandbox',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editortest.vue')
   },
   {

@@ -4,51 +4,67 @@
       {{ title }}
     </ViewTitle>
     <SpacerDiv />
-    <Action
-      v-if="showAdminTools"
-      to="global.admin"
-      prepend="admin"
-    >
-      {{ $t('action.admin') }}
-    </Action>
-    <Action
-      v-if="showAdminTools"
-      to="stylebook"
-      prepend="d20"
-    >
-      {{ $t('admin.action.stylebook') }}
-    </Action>
-    <Action
-      v-if="showAdminTools"
-      to="global.admin.editorTest"
-      prepend="edit"
-    >
-      {{ $t('admin.action.editorTest') }}
-    </Action>
-    <Action
-      v-if="showAdminTools"
-      to="global.admin.topics"
-      prepend="books"
-    >
-      {{ $t('admin.action.topics') }}
-    </Action>
+    <template v-if="showAdminTools">
+      <Button
+        text
+        @click="$router.push('/admin')"
+      >
+        <Icon
+          name="admin"
+          small
+        />
+        {{ $t('action.admin') }}
+      </Button>
+      <Button
+        text
+        @click="$router.push('/stylebook')"
+      >
+        <Icon
+          name="d20"
+          small
+        />
+        {{ $t('stylebook.title') }}
+      </Button>
+      <Button
+        text
+        @click="$router.push('/rtesandbox')"
+      >
+        <Icon
+          name="edit"
+          small
+        />
+        {{ $t('rtesandbox.title') }}
+      </Button>
+      <Button
+        text
+        @click="$router.push('/admin/topics')"
+      >
+        <Icon
+          name="books"
+          small
+        />
+        {{ $t('admin.action.topics') }}
+      </Button>
+    </template>
   </Header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Action from '../material/Action.vue'
 import { useAuth } from '@/state/authz'
 import Header from '../layout/Header.vue'
 import ViewTitle from '../layout/ViewTitle.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import Button from '../form/Button.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   components: {
-    Action,
     Header,
     ViewTitle,
-    SpacerDiv
+    SpacerDiv,
+    Button,
+    Icon
   },
   props: {
     title: {
