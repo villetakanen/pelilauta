@@ -7,7 +7,7 @@
       >
         <router-link :to="r.route">
           <Icon
-            inline
+            small
             :name="r.icon"
           /> {{ r.title }}
         </router-link>

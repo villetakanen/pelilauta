@@ -4,8 +4,8 @@
   },
   "action": {
     "addAttachment": "Lisää tiedosto",
-    "addThread": "Uusi ketju",
-    "addPage": "Uusi sivu",
+    "addThread": "Uusi keskustelu",
+    "addPage": "Luo sivu",
     "addSite": "Luo uusi peli",
     "add": "Lisää",
     "admin": "Admin",
@@ -182,6 +182,7 @@
       "actions": "Toiminnot"
     },
     "meta": {
+      "title": "Valinnat",
       "usePlayers": "Käytä pelaajat -toimintoa",
       "splashImage": "Sivuston tunnuskuva",
       "categories": {

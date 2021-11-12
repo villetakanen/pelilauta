@@ -3,7 +3,7 @@
     <router-link :to="`/site/${siteid}/page/${pageid}`">
       <Icon
         class="badge"
-        headline
+        medium
         dark
         :name="badge + '-logo'"
       />

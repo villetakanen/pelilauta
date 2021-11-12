@@ -181,13 +181,13 @@ const routes: Array<RouteRecordRaw> = [
     name: 'site.page'
   },
   {
-    path: '/site/meta/:siteid',
+    path: '/site/:siteid/meta',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/SiteMetaView.vue'),
     props: true,
     name: 'mekanismi.siteinfo'
   },
   {
-    path: '/site/settings/:siteid',
+    path: '/site/:siteid/settings',
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/site/SiteSettingsView.vue'),
     props: true,
     name: 'mekanismi.sitesettings'

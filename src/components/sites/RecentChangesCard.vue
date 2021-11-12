@@ -29,7 +29,7 @@
       <Icon
         :name="site.systemBadge + '-logo'"
         dark
-        headline
+        medium
         class="badge"
       />
     </div>

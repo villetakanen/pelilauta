@@ -22,7 +22,7 @@
       >
         <Icon
           :name="icon"
-          headline
+          medium
           :dark="darkIcons"
         />
         <p class="TypeBody2">

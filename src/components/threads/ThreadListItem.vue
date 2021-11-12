@@ -2,7 +2,7 @@
   <section class="ThreadListItem">
     <router-link :to="`/thread/${thread.id}/view`">
       <Icon
-        headline
+        medium
         class="topic"
         :name="streamTopic.icon"
       /><h3 class="clipWithEllipsis">

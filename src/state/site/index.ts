@@ -9,6 +9,7 @@ import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateD
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { subscribeCharacters, useSiteCharacters } from './characters'
 import { PageLogEntry } from '../pages/usePage'
+import { logDebug } from '@/utils/eventLogger'
 
 export const siteTypes = new Map([
   ['dd', 'Dungeons and Dragons 5e'],
@@ -50,6 +51,40 @@ export interface SiteData {
 
 const stateSite:Ref<Site> = ref(toSite())
 const site = computed(() => (stateSite.value))
+
+export class SiteClass {
+  id: string
+  description: string
+  owners: string[]|null
+  players: string[]|null
+  usePlayers: boolean
+
+  constructor (site: Site) {
+    logDebug('SiteSlass', site)
+    this.id = site.id
+    this.description = site.description
+    this.owners = site.owners
+    this.players = site.players
+    this.usePlayers = site.usePlayers
+  }
+
+  isOwner (uid:string): boolean {
+    if (this.owners && this.owners.includes(uid)) {
+      return true
+    }
+    return false
+  }
+
+  canEdit (uid:string): boolean {
+    if (this.owners && this.owners.includes(uid)) {
+      return true
+    }
+    if (this.players && this.players.includes(uid)) {
+      return true
+    }
+    return false
+  }
+}
 
 /**
  * Creates a new site struct. The struct is empty if no values are given.

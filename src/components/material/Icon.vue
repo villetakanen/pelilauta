@@ -1,14 +1,11 @@
 <template>
-  <div
+  <img
+    ref="icon"
+    :src="sourcePath"
+    :alt="name"
     class="icon"
-    :class="{ xSmall: xSmall, inline: inline, medium: medium, headline: headline, large: large, small: small }"
+    :class="{ medium: medium, large: large, small: small }"
   >
-    <img
-      ref="icon"
-      :src="sourcePath"
-      :alt="name"
-    >
-  </div>
 </template>
 
 <script lang="ts">
@@ -27,11 +24,6 @@ export default defineComponent({
       required: false,
       default: ''
     },
-    xSmall: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     small: {
       type: Boolean,
       required: false,
@@ -42,17 +34,7 @@ export default defineComponent({
       required: false,
       default: false
     },
-    inline: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     medium: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    headline: {
       type: Boolean,
       required: false,
       default: false
@@ -104,152 +86,18 @@ export default defineComponent({
 @import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 
-.icon
+img.icon
   display: inline-block
-  vertical-align: middle
-  height: 96px
-  width: 96px
-  img
-    height: 96px
-    width: 96px
-
-.small
-  padding: 0
   margin: 0
-  height: var(--baseline-height)
-  width: var(--baseline-height)
-  img
-    padding: 0
-    margin: 0
-    height: 100%
-    width: 100%
-
-.material-action
-  height: 32px
-  width: 32px
-  img
-    height: 32px
-    width: 32px
-
-.material-button-icon
-  .icon
-    height: 32px
-    width: 32px
-    img
-      height: 32px
-      width: 32px
-
-.fab
-  .icon
-    img
-      height: 100%
-      width: 100%
-
-.large
-  display: inline-block
+  padding: 0
+  vertical-align: middle
   height: 48px
   width: 48px
-  padding: 0px
-  margin: 4px
-  vertical-align: middle
-  img
-    height: 48px
-    width: 48px
-    vertical-align: top
-
-.xSmall
-  height: 24px
-  width: 24px
-  img
-    height: 20px
-    width: 20px
-
-.inline.icon, h4 .icon
-  display: inline-block
-  height: 20px
-  width: 20px
-  padding: 2px
-  margin: 0 4px
-  vertical-align: middle
-  img
-    height: 20px
-    width: 20px
-    vertical-align: top
-.inline.icon + .inline.icon
-  margin-left: 0px
-
-.headline.icon, h3 .icon
-  display: inline-block
-  height: 44px
-  width: 44px
-  padding: 2px
-  margin: 0 4px
-  vertical-align: middle
-  img
-    height: 44px
-    width: 44px
-    vertical-align: top
-.headline.icon + .headline.icon
-  margin-left: 0px
-
-.medium
-  display: inline-block
-  height: 36px
-  width: 36px
-  padding: 2px
-  margin: 4px
-  vertical-align: middle
-  img
-    height: 36px
-    width: 36px
-    vertical-align: top
-
-.chipIcon
-  height: 28px
-  width: 28px
-  margin: 2px
-  img
-    height: 28px
-    width: 28px
-    margin: 0px
-
-.systemBadge
-  height: 24px
-  width: 24px
-  img
+  &.small
     height: 24px
     width: 24px
-
-.material-pill
-  .icon-container
-    .icon
-      img
-        height: 28px
-        width: 28px
-        padding: 2px
-        vertical-align: middle
-  &.small
-    .icon-container
-      .icon
-        img
-          height: 22px
-          width: 22px
-          padding: 1px
-
-.viewTitle
-  .icon
-    height: 48px
-    width: 48px
-    margin: 0
-    padding: 2px
-    box-sizing: border-box
-    display: inline-block
-    vertical-align: baseline
-    img
-      height: 44px
-      width: 44px
-      margin: 0
-      padding: 0
-      vertical-align: center
+  &.medium
+    height: 36px
+    height: 36px
 
 </style>

@@ -13,7 +13,7 @@
             v-if="site"
             class="badge"
             :name="site.systemBadge+'-logo'"
-            headline
+            medium
           />
         </transition>
         <transition name="fade">
@@ -21,7 +21,7 @@
             v-if="!site"
             class="badge"
             name="pelilauta"
-            headline
+            medium
           />
         </transition>
       </div>

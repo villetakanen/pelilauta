@@ -4,7 +4,7 @@
       <p v-if="site">
         <Icon
           :name="site.systemBadge+'-logo'"
-          inline
+          small
         />
         {{ site.name }}
       </p>
@@ -15,7 +15,7 @@
     <template #editor>
       <Icon
         :name="site.systemBadge+'-logo'"
-        headline
+        medium
       />
       <MaterialSelect
         v-model="siteid"

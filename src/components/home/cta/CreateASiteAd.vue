@@ -46,7 +46,7 @@
       <Icon
         name="mekanismi"
         dark
-        headline
+        medium
       />
     </div>
   </section>

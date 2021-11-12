@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import SiteAccessDashCard from '@/components/site/settings/SiteAccessDashCard.vue'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
 

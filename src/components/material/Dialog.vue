@@ -12,7 +12,7 @@
         <div class="dialogToolBar">
           <Icon
             name="back"
-            headline
+            medium
             dark
             @click="close"
           />

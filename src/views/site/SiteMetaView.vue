@@ -2,27 +2,27 @@
   <div class="siteMetaView">
     <SiteToolbar />
     <transition name="fade">
-      <div
+      <main
         v-if="site && site.name"
         class="dashBoardLayout"
       >
         <SiteMeta class="inDashboardBox" />
         <SiteIdentity class="inDashboardBox" />
         <SiteCategoriesCard class="inDashboardBox" />
-      </div>
+      </main>
       <Loader v-else />
     </transition>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide } from 'vue'
+import { computed, defineComponent, onMounted, provide, watch } from 'vue'
 import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useAuthors } from '@/state/authors'
 import SiteMeta from '@/components/site/SiteMeta.vue'
 import SiteIdentity from '@/components/site/SiteIdentity.vue'
-import SiteToolbar from '@/components/sites/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import SiteCategoriesCard from '@/components/site/SiteCategoriesCard.vue'
 import { useAuth } from '@/state/authz'
 
@@ -35,7 +35,18 @@ export default defineComponent({
     SiteToolbar,
     SiteCategoriesCard
   },
-  setup () {
+  props: {
+    siteid: {
+      type: String,
+      required: true
+    }
+  },
+  setup (props) {
+    onMounted(() => {
+      watch(() => props.siteid, (siteid) => {
+        useSite(siteid)
+      }, { immediate: true })
+    })
     const { user } = useAuth()
     const { site, hasAdmin } = useSite()
     const { authors } = useAuthors()

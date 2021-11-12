@@ -14,13 +14,13 @@
         <div>
           <Icon
             name="discussion"
-            headline
+            medium
           />
         </div>
         <div>
           <Icon
             name="lightbulb"
-            headline
+            medium
           />
         </div>
         <div>
