@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, watch } from 'vue'
 import { useSite, useSiteCharacters } from '@/state/site'
-import SiteToolbar from '@/components/site/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -35,7 +35,12 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { site } = useSite(props.siteid)
+    onMounted(() => {
+      watch(() => props.siteid, (siteid) => {
+        useSite(siteid)
+      }, { immediate: true })
+    })
+    const { site } = useSite()
     const { siteCharacters } = useSiteCharacters()
     return { site, siteCharacters }
   }

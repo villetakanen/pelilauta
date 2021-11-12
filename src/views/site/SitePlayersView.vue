@@ -11,7 +11,7 @@
 <script lang="ts">
 import SiteCharactersCard from '@/components/site/characters/SiteCharactersCard.vue'
 import SitePlayersList from '@/components/sites/SitePlayersList.vue'
-import SiteToolbar from '@/components/site/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
 

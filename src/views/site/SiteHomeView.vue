@@ -37,7 +37,7 @@
 import { defineComponent, onMounted, watch } from 'vue'
 import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-import SiteToolbar from '@/components/site/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { usePage } from '@/state/pages/usePage'
 import Column from '@/components/layout/Column.vue'
 import SideBar from '@/components/site/SideBar.vue'

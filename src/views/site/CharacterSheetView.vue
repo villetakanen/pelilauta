@@ -12,7 +12,7 @@
 import { defineComponent, onMounted, ref, watch } from 'vue'
 import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-import SiteToolbar from '@/components/site/SiteToolbar.vue'
+import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { useCharacters, toPlayerCharacter } from '@/state/characters'
 import CharacterSheet from '@/components/site/characters/CharacterSheet.vue'
 
