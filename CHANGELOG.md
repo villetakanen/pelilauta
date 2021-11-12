@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.10](https://github.com/villetakanen/pelilauta/compare/v11.5.9...v11.5.10) (2021-11-12)
+
+
+### Bug Fixes
+
+* added fab from material 3 ([5885053](https://github.com/villetakanen/pelilauta/commit/58850534148f3d2f4105efec586a7aa9a1ebf798))
+* icon sizes are now uniform ([5336185](https://github.com/villetakanen/pelilauta/commit/5336185fdff4e69745abe1cef4655efbe5d8d155))
+* more site menu fixes ([25b7df4](https://github.com/villetakanen/pelilauta/commit/25b7df46398f5ad2dbaf2e91084c65b96d726df0))
+* new fabs done ([0d3dd30](https://github.com/villetakanen/pelilauta/commit/0d3dd3005ded50563a974438de29edf2ab5333f8))
+* refactors and anonymous mode ux ([cd97b51](https://github.com/villetakanen/pelilauta/commit/cd97b51b8f4398d27467ea1cefc08bede84090fd))
+* site fabs added ([644270d](https://github.com/villetakanen/pelilauta/commit/644270db1e392aff01f7397e090f511decf24d90))
+* site tabs removed ([2ac3135](https://github.com/villetakanen/pelilauta/commit/2ac31352638508d3a185521ddee7fcb160d1b6fe))
+* some small experiments for experimentalUI ([a74abec](https://github.com/villetakanen/pelilauta/commit/a74abec3d08adc77b1f23bde733d1063ea133a56))
+
 ### [11.5.9](https://github.com/villetakanen/pelilauta/compare/v11.5.8...v11.5.9) (2021-11-10)
 
 
