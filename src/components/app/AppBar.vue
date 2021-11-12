@@ -15,13 +15,14 @@
     />
     <Button
       v-else
+      @click="$router.push('/login')"
     >
       <Icon
         name="avatar"
         small
         dark
       />
-      {{ $t('action.login') }}
+      {{ $t('action.login') }} <span class="hideOnMobile">/ {{ $t('action.signup') }}</span>
     </Button>
   </div>
 </template>

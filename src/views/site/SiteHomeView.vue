@@ -38,7 +38,7 @@
           @click="reroute('/site/' + site.id + '/add/thread')"
         />
         <Fab3
-          :icon="'add'"
+          :icon="'addPage'"
           small
           :label="$t('action.addPage')"
           @click="reroute('/site/' + site.id + '/add/page')"

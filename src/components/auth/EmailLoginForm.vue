@@ -1,5 +1,5 @@
 <template>
-  <section class="emailLoginForm dark">
+  <section class="emailLoginForm">
     <div
       v-if="verify"
       class="verifyWarning"
@@ -124,4 +124,8 @@ export default defineComponent({
   box-sizing: border-box
   padding: 16px
   background: linear-gradient(-42deg, var(--chroma-secondary-a) 0%, var(--chroma-secondary-d) 100%)
+  h3
+    color: var(--chroma-secondary-i)
+  p
+    color: var(--chroma-secondary-h)
 </style>

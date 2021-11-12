@@ -22,12 +22,16 @@
     <hr>
     <Toolbar>
       <SpacerDiv />
-      <Action
-        prepend="discussion"
-        to="/threads"
+      <Button
+        text
+        @click="$router.push('/threads')"
       >
+        <Icon
+          small
+          name="discussion"
+        />
         {{ $t('home.morePostsInTheForums') }}
-      </Action>
+      </Button>
       <SpacerDiv />
     </Toolbar>
   </Column>
@@ -45,9 +49,10 @@ import WPCard from './LokiCard.vue'
 import Column from '../layout/Column.vue'
 import MekanismiCard from './mekanismi/MekanismiCard.vue'
 import Toolbar from '../layout/Toolbar.vue'
-import Action from '../material/Action.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import { WordpressArticle, WordPressSubscription } from '@/utils/wordpress'
+import Icon from '../material/Icon.vue'
+import Button from '../form/Button.vue'
 
 interface StreamEntry {
   key: string
@@ -70,7 +75,7 @@ function merge (first:Array<Thread|WordpressArticle>, second:Array<Thread|Wordpr
  */
 export default defineComponent({
   name: 'HomeStream',
-  components: { ThreadCard, WPCard, Column, MekanismiCard, Toolbar, Action, SpacerDiv },
+  components: { ThreadCard, WPCard, Column, MekanismiCard, Toolbar, SpacerDiv, Icon, Button },
   setup () {
     const { lastFlowtime } = usePagelog()
     const { anonymousSession } = useAuth()

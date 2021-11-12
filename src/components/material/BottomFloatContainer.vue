@@ -6,41 +6,9 @@
     <div id="ScreenBottomFloatRight">
       <div id="ScreenBottomFabsContainer" />
       <slot name="right" />
-      <transition name="fade">
-        <Fab
-          v-if="loginVisible"
-          to="/login"
-          :text="$t('action.login')"
-          dark
-          icon="avatar"
-        />
-      </transition>
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
-import Fab from '@/components/material/Fab.vue'
-import { useAuth } from '@/state/authz'
-import { useRoute } from 'vue-router'
-
-export default defineComponent({
-  name: 'BottomFloatContainer',
-  components: {
-    Fab
-  },
-  setup () {
-    const { anonymousSession } = useAuth()
-    const route = useRoute()
-    const loginVisible = computed(() => {
-      if (route.name === 'login') return false
-      return anonymousSession.value
-    })
-    return { loginVisible }
-  }
-})
-</script>
 
 <style lang="sass" scoped>
 @import @/styles/include-media.scss

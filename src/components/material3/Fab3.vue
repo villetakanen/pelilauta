@@ -92,23 +92,23 @@ button.Fab
       left: 8px
       top: 8px
   &:hover
-    background-color: var(--chroma-primary-g)
+    background: var(--chroma-primary-h) radial-gradient(circle, transparent 0%, var(--chroma-secondary-i) 300%)
   &:active
-    background-color: var(--chroma-primary-i)
+    background: var(--chroma-primary-h) radial-gradient(circle, transparent 0%, var(--chroma-secondary-f) 300%)
     @include Rise1()
   &.secondary
     color: var(--chroma-secondary-h)
     background-color: var(--chroma-secondary-d)
     &:hover
-      background-color: var(--chroma-secondary-c)
+      background: var(--chroma-secondary-d) radial-gradient(circle, transparent 0%, var(--chroma-secondary-i) 200%)
     &:active
-      background-color: var(--chroma-secondary-e)
+      background: var(--chroma-secondary-d) radial-gradient(circle, transparent 0%, var(--chroma-secondary-a) 200%)
   &.tertiary
     background-color: var(--chroma-alert)
     &:hover
-      background: linear-gradient(-42deg, var(--chroma-alert) 0%, var(--chroma-primary-i) 100%)
+      background: var(--chroma-alert) radial-gradient(circle, transparent 0%, var(--chroma-secondary-g) 200%)
     &:active
-      background: linear-gradient(-42deg, var(--chroma-alert) 0%, var(--chroma-secondary-i) 100%)
+      background: var(--chroma-alert) radial-gradient(circle, transparent 0%, var(--chroma-secondary-i) 200%)
 
 .FabTray
   .Fab:not(.small)

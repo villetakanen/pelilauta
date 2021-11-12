@@ -24,7 +24,8 @@
     "nextPage": "Lataa lisää",
     "quote": "Lainaa",
     "send": "Lähetä",
-    "update": "Päivitä"
+    "update": "Päivitä", 
+    "signup": "Rekisteröidy"
   },
   "admin": {
     "title": "Admin",
