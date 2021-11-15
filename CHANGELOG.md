@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.12](https://github.com/villetakanen/pelilauta/compare/v11.5.11...v11.5.12) (2021-11-15)
+
+
+### Bug Fixes
+
+* hotfix for quill clipboard ([5a02dd7](https://github.com/villetakanen/pelilauta/commit/5a02dd74e3f18ad3a7cd6d45545deb5f0a7fb75f))
+
 ### [11.5.11](https://github.com/villetakanen/pelilauta/compare/v11.5.10...v11.5.11) (2021-11-12)
 
 
