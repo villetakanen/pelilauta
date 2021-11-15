@@ -11,12 +11,7 @@
       {{ thread.data.title }}
     </ViewTitle>
     <SpacerDiv />
-    <Action
-      prepend="share"
-      @click="copyLinkToClipboard"
-    >
-      {{ $t('action.share') }}
-    </Action>
+    <ShareButton />
     <MaterialMenu
       v-if="showMenu"
       v-model="menuItems"
@@ -54,17 +49,17 @@ import { deleteThread, ThreadClass } from '@/state/threads/threads'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { computed, defineComponent, PropType, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import ShareButton from '../actions/ShareButton.vue'
 import Button from '../form/Button.vue'
 import Textfield from '../form/Textfield.vue'
 import Header from '../layout/Header.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import ViewTitle from '../layout/ViewTitle.vue'
-import Action from '../material/Action.vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialMenu from '../material/MaterialMenu.vue'
 
 export default defineComponent({
-  components: { Header, ViewTitle, Action, MaterialMenu, SpacerDiv, Dialog, Textfield, Button },
+  components: { Header, ViewTitle, MaterialMenu, SpacerDiv, Dialog, Textfield, Button, ShareButton },
   props: {
     thread: {
       type: Object as PropType <ThreadClass>,
