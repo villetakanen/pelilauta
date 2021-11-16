@@ -1,18 +1,11 @@
 <template>
   <div class="threadBoxTailer">
-    <Toolbar>
+    <Toolbar style="gap: 8px">
       <p class="TypeCaption">
         {{ toDisplayString(thread.created) }}
       </p>
       <SpacerDiv />
-      <div class="seendemo">
-        {{ thread.seenCount }}
-        <Icon
-          name="eye"
-          x-small
-          class="seendemoicon"
-        />
-      </div>
+      <ImpressionsTag :entity="tc" />
       <LoveAThreadAction
         :authorid="thread.author"
         :loves="loves"
@@ -32,14 +25,15 @@ import { Thread } from '@/utils/firestoreInterfaces'
 import { computed, defineComponent, PropType } from 'vue'
 import AuthorInfo from '../author/AuthorInfo.vue'
 import Toolbar from '../layout/Toolbar.vue'
-import Icon from '../material/Icon.vue'
 import LoveAThreadAction from './LoveAThreadAction.vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import ImpressionsTag from '../app/ImpressionsTag.vue'
+import { ThreadClass } from '@/state/threads/threads'
 
 export default defineComponent({
   name: 'ThreadBoxTailer',
-  components: { AuthorInfo, LoveAThreadAction, Icon, Toolbar, SpacerDiv },
+  components: { AuthorInfo, LoveAThreadAction, Toolbar, SpacerDiv, ImpressionsTag },
   props: {
     thread: {
       type: Object as PropType<Thread>,
@@ -67,7 +61,13 @@ export default defineComponent({
       }
     }
 
-    return { loves, toggleLove, toDisplayString }
+    const tc = computed(() => {
+      const t = new ThreadClass(props.thread.id)
+      t.seenCount = props.thread.seenCount
+      return t
+    })
+
+    return { loves, toggleLove, toDisplayString, tc }
   }
 })
 </script>

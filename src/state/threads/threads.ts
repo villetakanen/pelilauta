@@ -72,6 +72,7 @@ export class ThreadClass {
   content: string
   replyCount: number
   lovedCount: number
+  seenCount: number
   readonly flowTime: Timestamp|null
 
   constructor (id: string, data?:DocumentData) {
@@ -83,6 +84,7 @@ export class ThreadClass {
     this.content = data?.content || '<p><br/><p>'
     this.author = data?.author || undefined
     this.flowTime = data?.flowTime || null
+    this.seenCount = data?.seenCount || 0
   }
 
   dry (): {
@@ -90,12 +92,14 @@ export class ThreadClass {
       topic: string
       replyCount: number
       lovedCount: number
+      seenCount: number
       } {
     return {
       title: this.title,
       topic: this.topic,
       replyCount: this.replyCount,
-      lovedCount: this.lovedCount
+      lovedCount: this.lovedCount,
+      seenCount: this.seenCount
     }
   }
 }
