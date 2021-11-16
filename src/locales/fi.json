@@ -101,6 +101,9 @@
     },
     "morePostsInTheForums": "Lue lisää"
   },
+  "impressions": {
+    "seenBy": "Seuraa"
+  },
   "language": {
     "fi": "Suomi",
     "en": "Englanti"
