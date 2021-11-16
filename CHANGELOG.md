@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.14](https://github.com/villetakanen/pelilauta/compare/v11.5.13...v11.5.14) (2021-11-16)
+
+
+### Bug Fixes
+
+* moved seencount to impressions tag ([17fb0f2](https://github.com/villetakanen/pelilauta/commit/17fb0f228d43bb473c8a5caa5a1b9392c1791c0f))
+
 ### [11.5.13](https://github.com/villetakanen/pelilauta/compare/v11.5.12...v11.5.13) (2021-11-15)
 
 
