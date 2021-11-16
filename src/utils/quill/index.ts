@@ -45,13 +45,12 @@ export class QuillBuilder {
     logDebug('QuillBuilder init')
   }
 
-  public static create (container: HTMLElement, extendedFormats = false): Quill {
+  public static create (container: HTMLElement, extendedFormats = false, placeholder?: string): Quill {
     QuillBuilder.initialize()
     const configuration = {
       formats: extendedFormats ? QuillBuilder.extendedFormats : QuillBuilder.defaultFormats,
-      options: {
-        scrollingContainer: container
-      },
+      scrollingContainer: container,
+      placeholder: placeholder || '',
       modules: {
         mention: true,
         image: true,
