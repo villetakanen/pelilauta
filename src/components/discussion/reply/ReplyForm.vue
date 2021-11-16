@@ -1,63 +1,57 @@
 <template>
-  <div class="replyForm">
-    <!-- Show the form only for non-frozen logged in users -->
+  <div
+    v-if="showMemberTools"
+    class="ReplyForm"
+  >
     <div
-      v-if="showMemberTools"
-      class="reply-form"
+      class="TypeCaption"
+      style="margin-bottom: 4px"
     >
-      <AddImageReplyAction
-        class="addAnImage"
-        @uploaded="addImageToEditor($event)"
-      />
-
+      {{ $t('discuss.reply.title') }}
+    </div>
+    <div style="display: flex; gap: 8px; margin-bottom: 12px">
       <ReplyEditor
         v-model:content="reply"
-        class="box contentBox"
+        class="commentField richText"
         :disabled="sending"
         @mention="mention($event)"
       />
-      <Fab
-        class="button"
-        :async-action="send"
+      <transition name="appear">
+        <AddImageReplyAction
+          class="AddImageFab"
+          @uploaded="addImageToEditor($event)"
+        />
+      </transition>
+      <Fab3
         icon="send"
-        dark
+        secondary
+        small
+        :label="$t('action.send')"
+        :disabled="sending"
+        @click="send"
       />
-    </div>
-    <div
-      v-if="!showMemberTools"
-      style="text-align: center;padding: 16px"
-    >
-      {{ $t('global.messages.pleaseLogin') }}
-      <MaterialButton
-        to="/login"
-        text
-      >
-        {{ $t('action.login') }}
-      </MaterialButton>
     </div>
     <EditorHelp />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, inject, Ref, provide } from 'vue'
-import MaterialButton from '@/components/material/MaterialButton.vue'
-import ReplyEditor from './ReplyEditor.vue'
+import { defineComponent, ref, inject, Ref, provide, computed } from 'vue'
+import ReplyEditor from '../ReplyEditor.vue'
 import { addReply } from '@/state/discussion'
 import { useAuth } from '@/state/authz'
 import { extractLinks, Quote } from '@/utils/contentFormat'
-import Fab from '../material/Fab.vue'
-import AddImageReplyAction from './AddImageReplyAction.vue'
-import EditorHelp from './EditorHelp.vue'
+import AddImageReplyAction from '../AddImageReplyAction.vue'
+import EditorHelp from '../EditorHelp.vue'
+import Fab3 from '@/components/material3/Fab3.vue'
 
 export default defineComponent({
   name: 'ReplyForm',
   components: {
-    MaterialButton,
     ReplyEditor,
-    Fab,
     AddImageReplyAction,
-    EditorHelp
+    EditorHelp,
+    Fab3
   },
   props: {
     threadid: {
@@ -106,43 +100,16 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
-@import @/styles/material-colors.sass
 @import @/styles/material-typography.sass
 @import @/styles/box-shadow.sass
 
-.reply-form
-  background-color: #{'rgba(var(--chroma-secondary-c-rgb), 0.4)'}
-  margin: 8px
-  padding: 8px
-  border-radius: 12px
-  position: relative
-  .addAnImage
-    position: absolute
-    z-index: +100
-    right: 82px
-    bottom: -24px
-  .box
+div.ReplyForm
+  .commentField
+    background-color: var(--chroma-secondary-i)
+    padding: 6px 16px
+    border: solid 1px var(--chroma-secondary-h)
+    border-radius: 18px
     flex-grow: 1
-    flex-shrink: 0
-    margin-right: 8px
-    border-radius: 4px
-    background-color: rgba(white, 0.5)
-    border: none
-    padding: 0px
-    min-height: 60px
-    max-height: 220px
-    line-height: 20px
-    margin-right: 70px
-    overflow: auto
-  .button
-    @include BoxShadow8()
-    position: absolute
-    right: 15px
-    bottom: 15px
-
-p.cap.caption
-  margin-top: 4px
-  margin-left: 8px
-  padding-left: 8px
+    transition: all 0.5s
 
 </style>

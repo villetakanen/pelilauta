@@ -11,6 +11,7 @@ import Quill from 'quill'
 import { Quote } from '@/utils/contentFormat'
 import { QuillBuilder } from '@/utils/quill'
 import { logDebug } from '@/utils/eventLogger'
+import { useI18n } from 'vue-i18n'
 
 /**
  * A Vue 3 Wrapper for Quill Rich Text editor for thread replies.
@@ -32,6 +33,7 @@ export default defineComponent({
     let quill:null|Quill = null
     const quotedContent = inject('quotedContent') as Ref<Quote>
     const imageToEditor = inject('imageToEditor') as Ref<string>
+    const i18n = useI18n()
 
     const modelContent = ref('')
 
@@ -47,7 +49,7 @@ export default defineComponent({
       if (!editor.value) return
 
       // Init the quill-editor to the editor field
-      quill = QuillBuilder.create(editor.value)
+      quill = QuillBuilder.create(editor.value, false, i18n.t('reply.placeholder'))
 
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {

@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent, ref, PropType, Ref, provide } from 'vue'
 import { subscribeToReplies, useReplies } from '@/state/discussion'
-import ReplyForm from './ReplyForm.vue'
+import ReplyForm from './reply/ReplyForm.vue'
 import Reply from './Reply.vue'
 import { Quote } from '@/utils/contentFormat'
 import { Thread, Reply as ReplyType } from '@/utils/firestoreInterfaces'

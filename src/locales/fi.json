@@ -78,7 +78,10 @@
     "title": "Hahmot"
   },
   "discuss": {
-    "title": "Keskustelu"
+    "title": "Keskustelu",
+    "reply": {
+      "title": "Vastaa"
+    }
   },
   "editorDialog": {
     "title": "Viesti",
