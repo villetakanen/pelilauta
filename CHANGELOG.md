@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.15](https://github.com/villetakanen/pelilauta/compare/v11.5.14...v11.5.15) (2021-11-16)
+
+
+### Bug Fixes
+
+* reply field ux modernized ([921b504](https://github.com/villetakanen/pelilauta/commit/921b50480ef9a881f3e5823ce2953a894509d449))
+
 ### [11.5.14](https://github.com/villetakanen/pelilauta/compare/v11.5.13...v11.5.14) (2021-11-16)
 
 
