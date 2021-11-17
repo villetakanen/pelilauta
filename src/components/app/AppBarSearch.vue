@@ -93,7 +93,7 @@ export default defineComponent({
       font-style: italic
     .searchIcon
       position: absolute
-      right: 2px
+      right: -4px
       top: 2px
       padding: 0
       margin: 0
