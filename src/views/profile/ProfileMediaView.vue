@@ -8,19 +8,17 @@
       >
         {{ $t('profile.media.title') }}
       </ViewTitle>
+      <SpacerDiv />
+      <UploadAssetButton />
     </Header>
-    <Button @click="addMediaDialog = true">
-      -- add new media --
-    </Button>
     <ProfileAssetList />
-    <UploadAssetDialog v-model="addMediaDialog" />
   </div>
 </template>
 
 <script lang="ts">
-import UploadAssetDialog from '@/components/assets/UploadAssetDialog.vue'
-import Button from '@/components/form/Button.vue'
+import UploadAssetButton from '@/components/assets/UploadAssetButton.vue'
 import Header from '@/components/layout/Header.vue'
+import SpacerDiv from '@/components/layout/SpacerDiv.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
 import ProfileAssetList from '@/components/profile/assets/ProfileAssetList.vue'
 import { useProfile } from '@/state/authz'
@@ -28,7 +26,7 @@ import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'ProfileMediaView',
-  components: { ProfileAssetList, Header, ViewTitle, Button, UploadAssetDialog },
+  components: { ProfileAssetList, Header, ViewTitle, UploadAssetButton, SpacerDiv },
   setup () {
     const { profile } = useProfile()
     const addMediaDialog = ref(false)

@@ -1,4 +1,5 @@
-import { logEvent } from '@/utils/eventLogger'
+import { logDebug, logError, logEvent } from '@/utils/eventLogger'
+import { FirebaseError } from '@firebase/app'
 import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where, addDoc, getDoc, doc, deleteDoc } from '@firebase/firestore'
 import { getStorage, ref as storageRef, uploadString, getDownloadURL, deleteObject } from '@firebase/storage'
 import { computed, ComputedRef, reactive, ref } from 'vue'
@@ -138,13 +139,16 @@ async function deleteAsset (id:string): Promise<void> {
   if (assetDoc.data()?.owner !== user.value.uid) throw new Error('Delete would fail due to the firebase side security rules, aborting.')
 
   const storage = getStorage()
-
-  const asseteRef = storageRef(
-    storage,
-    assetDoc.data()?.storagePath
-  )
-
-  await deleteObject(asseteRef)
+  try {
+    const asseteRef = storageRef(
+      storage,
+      assetDoc.data()?.storagePath
+    )
+    await deleteObject(asseteRef)
+  } catch (err) {
+    if ((err as FirebaseError).code !== 'storage/object-not-found') throw err
+    logError('Asset does not exist, deleting the Firestore record')
+  }
 
   return deleteDoc(assetDocRef)
 }

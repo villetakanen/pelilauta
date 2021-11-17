@@ -1,7 +1,11 @@
 <template>
   <Dialog v-model="showDialog">
     <div>
-      <h1>{{ $t('action.add') }}</h1>
+      <Toolbar>
+        <h3>{{ $t('action.add') }}</h3>
+        <SpacerDiv />
+        <UploadAssetButton />
+      </Toolbar>
       <div
         class="selector"
         style="min-width:310px"
@@ -39,10 +43,11 @@ import Button from '../form/Button.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import Dialog from '../material/Dialog.vue'
+import UploadAssetButton from '../assets/UploadAssetButton.vue'
 
 export default defineComponent({
   name: 'InserMediaDialog',
-  components: { Dialog, Toolbar, Button, SpacerDiv },
+  components: { Dialog, Toolbar, Button, SpacerDiv, UploadAssetButton },
   emits: ['addImage'],
   setup (props, context) {
     const showDialog = ref(false)
