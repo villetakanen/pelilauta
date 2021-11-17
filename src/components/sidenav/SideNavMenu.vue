@@ -4,39 +4,23 @@
       <SideNavMenuItem
         icon="pelilauta"
         to="/"
-        mobile-only
-        @click="toggleNav"
-      >
-        Pelilauta
-      </SideNavMenuItem>
-
-      <!-- Forum topics start here! *************************************** -->
-      <template v-if="!showExperimentalTools">
-        <li class="subtitle">
-          {{ $t('sideNav.toForumLink') }}
-        </li>
-        <SideNavMenuItem
-          v-for="stream in streamItems"
-          :key="stream.key"
-          :to="stream.to"
-          :icon="stream.icon"
-          @click="toggleNav"
-        >
-          <div class="streamLink">
-            {{ stream.content }}
-            <div class="count">
-              {{ stream.count }}
-            </div>
-          </div>
-        </SideNavMenuItem>
-      </template>
-      <SideNavMenuItem
-        v-if="showExperimentalTools"
-        icon="discussion"
-        to="/threads"
         @click="toggleNav"
       >
         {{ $t('app.title') }}
+      </SideNavMenuItem>
+      <SideNavMenuItem
+        icon="addDiscussion"
+        to="/threads"
+        @click="toggleNav"
+      >
+        {{ $t('threads.home.title') }}
+      </SideNavMenuItem>
+      <SideNavMenuItem
+        icon="mekanismi"
+        to="/mekanismi"
+        @click="toggleNav"
+      >
+        {{ $t('sites.home.title') }}
       </SideNavMenuItem>
 
       <!-- Site listing starts here! ************************************** -->
