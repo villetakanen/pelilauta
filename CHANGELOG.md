@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.17](https://github.com/villetakanen/pelilauta/compare/v11.5.16...v11.5.17) (2021-11-17)
+
+
+### Bug Fixes
+
+* deprecated action from threads home ([884a065](https://github.com/villetakanen/pelilauta/commit/884a0651b7e1ec5c0bf9d17b490b02a74579bfd0))
+* deprecated old components ([7549c16](https://github.com/villetakanen/pelilauta/commit/7549c16bb082ec9d813374b4451dd3229a73904a))
+* deprecated old material textfield ([864e99f](https://github.com/villetakanen/pelilauta/commit/864e99fdb2097fd72380b9e8ea836d38052459b2))
+* search icon placing ([99d3657](https://github.com/villetakanen/pelilauta/commit/99d36578bdefe48ac78666496b6882c88638756e))
+* simplified sidenav ([20252ef](https://github.com/villetakanen/pelilauta/commit/20252ef9735637b17a09a98f0be6a2e11ad070b6))
+
 ### [11.5.16](https://github.com/villetakanen/pelilauta/compare/v11.5.15...v11.5.16) (2021-11-17)
 
 
