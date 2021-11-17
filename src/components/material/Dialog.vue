@@ -104,11 +104,9 @@ div#dialog
       top: 50%
       left: 50%
       transform: translate(-50%, -50%)
-      width: auto
       height: auto
       border-radius: 4px
-      max-width: 720px
-      // padding: 0
+      width: 720px
     .dialogToolBar
       border-radius: 4px 4px 0 0
 </style>

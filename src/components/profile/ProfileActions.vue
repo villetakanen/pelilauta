@@ -53,7 +53,7 @@
       <div>
         <h3>{{ $t('action.delete') }}</h3>
         <p>{{ $t('profile.deleteWarning') }}</p>
-        <TextField
+        <Textfield
           id="pageEditorDeleteVerifyField"
           v-model="forgetMeConfirm"
         />
@@ -84,19 +84,19 @@ import { useSnack } from '@/composables/useSnack'
 import Column from '../layout/Column.vue'
 import { getAuth } from '@firebase/auth'
 import Dialog from '../material/Dialog.vue'
-import TextField from '../material/TextField.vue'
 import Select from '../form/Select.vue'
 import Toggle from '../material/Toggle.vue'
 import Button from '../form/Button.vue'
+import Textfield from '../form/Textfield.vue'
 export default defineComponent({
   name: 'ProfileActions',
   components: {
     Column,
     Dialog,
-    TextField,
     Select,
     Toggle,
-    Button
+    Button,
+    Textfield
   },
   setup () {
     const i18n = useI18n()

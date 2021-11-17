@@ -1,14 +1,15 @@
 <template>
   <Dialog
     v-model="showDialog"
+    class="WikiLinkDialog"
     :label="$t('rte.wikilink.title') "
   >
     <div>
       <h1 class="hideOnMobile">
         {{ $t('rte.wikilink.title') }}
       </h1>
-      <TextField v-model="customUrl" />
-      <TextField
+      <Textfield v-model="customUrl" />
+      <Textfield
         v-model="customUrlText"
         :label="customUrl"
       />
@@ -43,10 +44,10 @@ import { computed, defineComponent, onMounted, ref } from 'vue'
 import Dialog from '../material/Dialog.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 
 export default defineComponent({
-  components: { Dialog, MaterialSelect, MaterialButton, TextField },
+  components: { Dialog, MaterialSelect, MaterialButton, Textfield },
   emits: ['addLink'],
   setup (props, context) {
     const showDialog = ref(false)

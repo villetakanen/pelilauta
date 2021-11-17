@@ -22,7 +22,7 @@
         :opts="siteOpts"
         :label="$t('character.stats.game')"
       />
-      <TextField
+      <Textfield
         v-model="charname"
         :label="$t('character.stats.name')"
         blur
@@ -36,14 +36,14 @@ import { computed, defineComponent } from 'vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import { useSites } from '@/state/sites'
 import { useCharacters } from '@/state/characters'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 import { useSite } from '@/state/site'
 import Icon from '../material/Icon.vue'
 import EditableColumn from '../layout/EditableColumn.vue'
 
 export default defineComponent({
   name: 'CharacterMetaForm',
-  components: { MaterialSelect, TextField, Icon, EditableColumn },
+  components: { MaterialSelect, Textfield, Icon, EditableColumn },
   setup () {
     const { characterid, character, updatePlayerCharacterFields } = useCharacters()
     const { userSites } = useSites()

@@ -16,7 +16,7 @@
     </div>
     <div class="toolbar">
       <div style="flex-grow:1">
-        <TextField
+        <Textfield
           v-model="newCatName"
           :label="$t('site.meta.categories.newCategoryField')"
         />
@@ -40,10 +40,10 @@ import { computed, defineComponent, ref } from 'vue'
 import Card from '../layout/Card.vue'
 import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
-import TextField from '../material/TextField.vue'
+import Textfield from '../form/Textfield.vue'
 
 export default defineComponent({
-  components: { Card, TextField, MaterialButton, Icon },
+  components: { Card, Textfield, MaterialButton, Icon },
   setup () {
     const newCatName = ref('')
     const newCatSlug = computed(() => (toMekanismiURI(newCatName.value)))

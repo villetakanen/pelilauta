@@ -5,7 +5,7 @@
     </h1>
     <div class="blockRow">
       <h2>{{ $t('site.characters.fields.name') }}</h2>
-      <TextField v-model="name" />
+      <Textfield v-model="name" />
       <h2>{{ $t('site.characters.fields.description') }}</h2>
       <textarea
         v-model="description"
@@ -49,14 +49,14 @@
 
 <script lang="ts">
 import MaterialButton from '@/components/material/MaterialButton.vue'
-import TextField from '@/components/material/TextField.vue'
+import Textfield from '@/components/form/Textfield.vue'
 import { useCharacters } from '@/state/characters'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref, watch } from 'vue'
 import LLPrimaryStatField from './LLPrimaryStatField.vue'
 
 export default defineComponent({
-  components: { TextField, MaterialButton, LLPrimaryStatField },
+  components: { Textfield, MaterialButton, LLPrimaryStatField },
   props: {
     character: {
       type: Object as PropType<PlayerCharacter>,
