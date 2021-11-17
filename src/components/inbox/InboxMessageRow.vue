@@ -13,7 +13,7 @@
         v-if="notification.source.type === 'thread.reply' || notification.source.type === 'thread.reply.mention'"
         class="caption"
       >
-        <AuthorLink :uid="notification.meta.author || ''" /> {{ $t(notification.source.message || '...') }}
+        <AuthorTag :uid="notification.meta.author || ''" /> {{ $t(notification.source.message || '...') }}
       </div>
     </div>
     <Icon
@@ -28,11 +28,11 @@
 import { useInbox } from '@/state/inbox'
 import { NotificationMessage } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType } from 'vue'
-import AuthorLink from '../author/AuthorLink.vue'
+import AuthorTag from '../author/AuthorTag.vue'
 import Icon from '../material/Icon.vue'
 
 export default defineComponent({
-  components: { AuthorLink, Icon },
+  components: { Icon, AuthorTag },
   props: {
     notification: {
       type: Object as PropType<NotificationMessage>,

@@ -21,7 +21,7 @@ import { defineComponent } from 'vue'
 import ResolvedAuthorTag from './ResolvedAuthorTag.vue'
 
 export default defineComponent({
-  name: 'AuthorLink',
+  name: 'AuthorTag',
   components: { ResolvedAuthorTag },
   props: {
     uid: {
