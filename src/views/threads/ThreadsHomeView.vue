@@ -6,15 +6,20 @@
       </ViewTitle>
     </Header>
     <nav style="text-align:center;margin-top:24px">
-      <div class="buttons double chroma-box-2">
-        <Action
+      <div class="buttons double chroma-box-1">
+        <Button
           v-for="channel in streams"
           :key="channel.slug"
-          :prepend="channel.icon"
+          text
+          dark
           @click="reroute('/threads/'+channel.slug)"
         >
-          {{ channel.name }} <span class="count">{{ channel.count }}</span>
-        </Action>
+          <Icon
+            dark
+            :name="channel.icon"
+            medium
+          /> {{ channel.name }} <span class="count">{{ channel.count }}</span>
+        </Button>
       </div>
     </nav>
     <main
@@ -37,7 +42,8 @@ import LikedThreads from '@/components/threads/LikedThreads.vue'
 import { computed, defineComponent } from 'vue'
 import { useMeta } from '@/state/meta'
 import { useUxActions } from '@/composables/useUxActions'
-import Action from '@/components/material/Action.vue'
+import Icon from '@/components/material/Icon.vue'
+import Button from '@/components/form/Button.vue'
 
 export default defineComponent({
   name: 'ThreadsHomeView',
@@ -47,7 +53,8 @@ export default defineComponent({
     LatestThreads,
     RepliedThreads,
     LikedThreads,
-    Action
+    Icon,
+    Button
   },
   setup () {
     const { streams: streamsRaw } = useMeta()
