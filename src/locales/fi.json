@@ -1,6 +1,6 @@
 {
   "about": {
-    "title": "Tietoja"
+    "title": "Tietoja sovelluksesta"
   },
   "action": {
     "addAttachment": "Lisää tiedosto",
@@ -25,7 +25,8 @@
     "quote": "Lainaa",
     "send": "Lähetä",
     "update": "Päivitä", 
-    "signup": "Rekisteröidy"
+    "signup": "Rekisteröidy",
+    "profile": "Profiilini"
   },
   "admin": {
     "title": "Admin",
@@ -229,20 +230,8 @@
       "title": "Mekanismi"
     }
   },
-  "sideNav": {
-    "toForumLink": "Keskustelu",
-    "toSitesLink": "Hakemisto",
-    "toMySitesLink": "Omat pelini",
-    "toMyCharactersLink": "Omat hahmoni",
-    "home": "Pelilauta",
-    "admin": "Admin",
-    "sections": "Aiheet",
-    "meta": "Meta",
-    "about": "Tietoja Pelilaudasta",
-    "profile": "Oma profiilini",
-    "stylebook": "Stylebook",
-    "mekanismi": "Mekanismi",
-    "editorTest": "Editor testing"
+  "sidenav": {
+    "vault": "Kirjasto"
   },
   "snacks": {
     "invalidEmail": "Sähköpostiosoitteessa oli jotain vikaa, yritä uuudestaan?",
@@ -345,6 +334,15 @@
     "header": "Pelilauta",
     "paragraph": "Kirjaudu sovellukseen osallistuaksesi keskusteluun."
   },
+  "vault": {
+    "title": "Kirjasto",
+    "media": {
+      "title": "Kuvat ja tiedostot"
+    },
+    "characters": {
+      "title": "Hahmot"
+    }
+  }, 
   "mekanismi": {
     "index": "Sivustot",
     "title": "Mekanismi",
