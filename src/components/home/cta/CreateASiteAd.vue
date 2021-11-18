@@ -30,7 +30,7 @@
         dark
         @click="reroute('/mekanismi/sites/profile')"
       >
-        {{ $t('sideNav.toMySitesLink') }}
+        {{ $t('sites.home.title') }}
       </Button>
       <Button
         tertiary

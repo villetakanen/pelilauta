@@ -5,7 +5,7 @@
         {{ $t('threads.home.title') }}
       </ViewTitle>
     </Header>
-    <nav style="text-align:center;margin-top:24px">
+    <nav style="text-align:center;margin: 12px; margin-top:24px">
       <div class="buttons double chroma-box-1">
         <Button
           v-for="channel in streams"
