@@ -1,13 +1,14 @@
 <template>
   <Column class="siteList double">
     <section>
-      <div class="toolbar">
-        <h4 style="margin:0; padding-left: 12px">
+      <Toolbar>
+        <h4>
           <Icon
+            small
             name="filter"
           /><span class="hideOnMobile">{{ $t('sort.title') }}</span>
         </h4>
-        <div class="spacer" />
+        <SpacerDiv />
         <Button
           text
           @click="sort='date'"
@@ -20,7 +21,7 @@
         >
           {{ $t('sort.byName') }}
         </Button>
-      </div>
+      </Toolbar>
     </section>
     <Card
       v-for="site in publicSites"
@@ -48,6 +49,7 @@
       <Toolbar class="cardBottom">
         <Icon
           v-if="site.systemBadge"
+          xs
           :name="site.systemBadge + '-logo'"
           class="systemBadge"
         />
@@ -71,6 +73,7 @@ import Column from '../layout/Column.vue'
 import { useAuth } from '@/state/authz'
 import Button from '../form/Button.vue'
 import Toolbar from '../layout/Toolbar.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 export default defineComponent({
   name: 'SiteList',
@@ -79,7 +82,8 @@ export default defineComponent({
     Icon,
     Column,
     Button,
-    Toolbar
+    Toolbar,
+    SpacerDiv
   },
   props: {
     filter: {

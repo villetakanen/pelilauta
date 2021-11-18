@@ -5,26 +5,16 @@
         {{ $t('wiki.title') }}
       </ViewTitle>
       <SpacerDiv />
-      <Action
-        v-if="showMemberTools"
-        to="mekanismi.profile.sites"
-        prepend="books"
-      >
-        <span v-if="!mobile">{{ $t('wiki.mySites') }}</span>
-      </Action>
-      <Action
-        v-if="showMemberTools"
-        to="create.site"
-        prepend="add"
-      >
-        <span v-if="!mobile">{{ $t('wiki.createSite') }}</span>
-      </Action>
-      <Action
-        prepend="filter"
+      <Button
+        text
         @click="filterToggle = !filterToggle"
       >
+        <Icon
+          small
+          name="filter"
+        />
         <span class="hideOnMobile">{{ $t('site.filterSites') }}</span>
-      </Action>
+      </Button>
     </Header>
     <Toolbar
       v-if="filterToggle"
@@ -73,15 +63,16 @@
 <script lang="ts">
 import { useAuth } from '@/state/authz'
 import { ComputedRef, defineComponent, inject, ref } from 'vue'
+import Button from '../form/Button.vue'
 import Header from '../layout/Header.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import ViewTitle from '../layout/ViewTitle.vue'
-import Action from '../material/Action.vue'
 import Chip from '../material/Chip.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
-  components: { Action, Toolbar, Chip, Header, ViewTitle, SpacerDiv },
+  components: { Toolbar, Chip, Header, ViewTitle, SpacerDiv, Button, Icon },
   props: {
     filter: {
       type: String,
