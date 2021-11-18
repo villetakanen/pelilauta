@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.19](https://github.com/villetakanen/pelilauta/compare/v11.5.18...v11.5.19) (2021-11-18)
+
+
+### Bug Fixes
+
+* sidenav cleanup complete ([efb75b3](https://github.com/villetakanen/pelilauta/commit/efb75b39f7b14d6bcf81828f3f63e1a1743db90d))
+
 ### [11.5.18](https://github.com/villetakanen/pelilauta/compare/v11.5.17...v11.5.18) (2021-11-18)
 
 
