@@ -10,12 +10,7 @@
       {{ title }}
     </ViewTitle>
     <SpacerDiv />
-    <Action
-      prepend="share"
-      @click="copyLink"
-    >
-      <span class="onlyForDesktop">{{ $t('action.share') }}</span>
-    </Action>
+    <ShareButton />
     <MaterialMenu v-model="menu" />
     <Dialog v-model="toggleDelete">
       <div>
@@ -49,7 +44,6 @@
 import { useSite } from '@/state/site'
 import { computed, defineComponent, ref } from 'vue'
 import { useCopyLinkToClipboard } from '@/composables/useCopyURLToClipboard'
-import Action from '../material/Action.vue'
 import MaterialMenu from '../material/MaterialMenu.vue'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { useI18n } from 'vue-i18n'
@@ -61,9 +55,10 @@ import { useUxActions } from '@/composables/useUxActions'
 import Header from '../layout/Header.vue'
 import ViewTitle from '../layout/ViewTitle.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import ShareButton from '../actions/ShareButton.vue'
 
 export default defineComponent({
-  components: { Action, MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv },
+  components: { MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv, ShareButton },
   props: {
     title: {
       type: String,

@@ -1,52 +1,47 @@
 <template>
   <teleport to="#ScreenBottomFabsContainer">
-    <div class="pageFabs">
-      <Fab
-        v-if="showSiteMemberTools"
-        id="pageFabsCreateThread"
-        secondary
-        :to="`/site/${page.siteid}/add/thread`"
-        :text="$t('action.addThread')"
-        icon="addDiscussion"
+    <FabTray
+      v-if="showTools"
+      class="PageFabs"
+    >
+      <Fab3
+        :icon="'edit'"
+        :label="$t('action.edit')"
+        @click="reroute('/site/' + site.id + '/page/' +page.id + '/edit')"
       />
-      <Fab
-        v-if="showSiteMemberTools"
-        id="wikipageCreatePageFab"
-        secondary
-        :to="`/site/${page.siteid}/add/page`"
-        :text="$t('action.addPage')"
-        icon="add"
-      />
-      <Fab
-        v-if="showSiteMemberTools"
-        id="wikipageEditPageFab"
-        :text="$t('action.edit')"
-        :to="`/site/${page.siteid}/page/${page.id}/edit`"
-        icon="edit"
-      />
-    </div>
+    </FabTray>
   </teleport>
 </template>
 
 <script lang="ts">
-import { Page, useSite } from '@/state/site'
-import { ComputedRef, defineComponent, inject, ref } from 'vue'
-import Fab from '../material/Fab.vue'
+import { useUxActions } from '@/composables/useUxActions'
+import { useAuth } from '@/state/authz'
+import { usePage } from '@/state/pages/usePage'
+import { SiteClass, useSite } from '@/state/site'
+import { computed, defineComponent } from 'vue'
+import Fab3 from '../material3/Fab3.vue'
+import FabTray from '../material3/FabTray.vue'
 
 export default defineComponent({
   name: 'PageFabs',
   components: {
-    Fab
+    Fab3,
+    FabTray
   },
   setup () {
-    const page = inject('page') as ComputedRef<Page>
-    const { showSiteMemberTools } = useSite()
-    const dialog = ref(false)
-    function addPageDialog () {
-      dialog.value = true
+    const { site } = useSite()
+    const { page } = usePage()
+    const { user } = useAuth()
+    const { reroute } = useUxActions()
+    const showTools = computed(() => {
+      return new SiteClass(site.value).isOwner(user.value.uid)
+    })
+    return {
+      showTools,
+      reroute,
+      site,
+      page
     }
-
-    return { page, dialog, addPageDialog, showSiteMemberTools }
   }
 })
 </script>
