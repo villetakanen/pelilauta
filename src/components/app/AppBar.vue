@@ -11,7 +11,7 @@
       v-if="!anonymousSession"
       icon="avatar"
       to="/profile"
-      :label="$t('sideNav.profile') "
+      :label="$t('action.profile') "
     />
     <Button
       v-else

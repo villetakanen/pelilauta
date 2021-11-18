@@ -23,17 +23,29 @@
         {{ $t('sites.home.title') }}
       </SideNavMenuItem>
 
-      <!-- Site listing starts here! ************************************** -->
+      <template v-if="showMemberTools">
+        <li class="subtitle">
+          {{ $t('sidenav.vault') }}
+        </li>
+        <SideNavMenuItem
+          icon="attachments"
+          to="/profile/media"
+          @click="toggleNav"
+        >
+          {{ $t('vault.media.title') }}
+        </SideNavMenuItem>
+        <SideNavMenuItem
+          icon="adventurer"
+          :to="`/u/${user.uid}/characters`"
+          @click="toggleNav"
+        >
+          {{ $t('vault.characters.title') }}
+        </SideNavMenuItem>
+      </template>
+
       <li class="subtitle">
-        Mekanismi
+        Meta
       </li>
-      <SideNavMenuItem
-        icon="mekanismi"
-        to="/mekanismi"
-        @click="toggleNav"
-      >
-        {{ $t('sideNav.toSitesLink') }}
-      </SideNavMenuItem>
       <SideNavMenuItem
         icon="d20"
         to="/site/mekanismi"
@@ -48,49 +60,34 @@
       >
         Arkku
       </SideNavMenuItem>
-      <SideNavMenuItem
-        v-if="showMemberTools"
-        icon="books"
-        to="/mekanismi/sites/profile"
-        @click="toggleNav"
-      >
-        {{ $t('sideNav.toMySitesLink') }}
-      </SideNavMenuItem>
-      <SideNavMenuItem
-        v-if="showAdminTools"
-        icon="players"
-        :to="`/u/${user.uid}/characters`"
-        @click="toggleNav"
-      >
-        {{ $t('sideNav.toMyCharactersLink') }}
-      </SideNavMenuItem>
 
-      <li class="subtitle">
-        Meta
-      </li>
-      <SideNavMenuItem
-        v-if="showAdminTools"
-        icon="admin"
-        to="/admin"
-        @click="toggleNav"
-      >
-        {{ $t('admin.title') }}
-      </SideNavMenuItem>
-      <SideNavMenuItem
-        v-if="showAdminTools || showExperimentalTools"
-        icon="pelilauta"
-        to="/stylebook"
-        @click="toggleNav"
-      >
-        Stylebook
-      </SideNavMenuItem>
       <SideNavMenuItem
         icon="about"
         to="/site/mekanismi/page/pelilauta-about"
         @click="toggleNav"
       >
-        {{ $t('sideNav.about') }}
+        {{ $t('about.title') }}
       </SideNavMenuItem>
+
+      <template v-if="showAdminTools">
+        <li class="subtitle">
+          Admin
+        </li>
+        <SideNavMenuItem
+          icon="admin"
+          to="/admin"
+          @click="toggleNav"
+        >
+          {{ $t('admin.title') }}
+        </SideNavMenuItem>
+        <SideNavMenuItem
+          icon="pelilauta"
+          to="/stylebook"
+          @click="toggleNav"
+        >
+          Stylebook
+        </SideNavMenuItem>
+      </template>
     </ul>
   </div>
 </template>
