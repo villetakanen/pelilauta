@@ -24,9 +24,11 @@ const authState = reactive({
 
 class ProfileData {
   readonly lovedThreads: undefined|Array<string>
+  languageCode: string
 
   constructor (data?:DocumentData) {
     this.lovedThreads = Array.isArray(data?.lovedThreads) ? data?.lovedThreads : undefined
+    this.languageCode = data?.languageCode || 'fi'
     logDebug('ProfileData created as', this)
   }
 }

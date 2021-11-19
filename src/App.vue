@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, ref } from 'vue'
+import { computed, defineComponent, provide, ref, watch } from 'vue'
 import SideNav from '@/components/sidenav/SideNav.vue'
 import AppBar from '@/components/app/AppBar.vue'
 import MainTailer from '@/components/app/MainTailer.vue'
@@ -41,11 +41,12 @@ import { useRoute } from 'vue-router'
 import { useSnack } from '@/composables/useSnack'
 import SnackBar from './components/app/SnackBar.vue'
 import BottomFloatContainer from './components/material/BottomFloatContainer.vue'
-import { useAuth, useProfile } from './state/authz'
+import { useAuth } from './state/authz'
 import { Workbox } from 'workbox-window'
 import CompleteRegistrationDialog from './components/auth/CompleteRegistrationDialog.vue'
 import FrozenBar from '@/components/app/FrozenBar.vue'
 import NavigationRail from './components/navigationrail/NavigationRail.vue'
+import { logDebug } from './utils/eventLogger'
 
 export default defineComponent({
   components: {
@@ -60,9 +61,15 @@ export default defineComponent({
   },
   setup () {
     const { frozen, showExperimentalTools } = useAuth()
-    const { profileMeta } = useProfile()
+    const { profileData } = useAuth()
     const i18n = useI18n()
     const route = useRoute()
+
+    watch(profileData, (value) => {
+      if (!value.languageCode) return
+      logDebug('Language from profile is', value.languageCode)
+      i18n.locale.value = value.languageCode
+    }, { immediate: true })
 
     const { pushSnack } = useSnack()
     provide('pushSnack', pushSnack)
@@ -111,7 +118,7 @@ export default defineComponent({
     }
     // *** Workbox/Service worker setup ends ********************************
 
-    return { ...useI18n(), route, navModel, mekanismi, profileMeta, frozen, showExperimentalTools }
+    return { ...useI18n(), route, navModel, mekanismi, frozen, showExperimentalTools }
   }
 })
 </script>

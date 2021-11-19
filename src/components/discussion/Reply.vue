@@ -38,7 +38,7 @@
     >
       <div
         class="comment contentBox"
-        :innerHTML="reply.content"
+        :innerHTML="extractLinks(reply.content).formattedContent"
       />
     </div>
     <div
@@ -73,6 +73,7 @@ import { useAuth } from '@/state/authz'
 import ReplyEditor from './ReplyEditor.vue'
 import Fab from '../material/Fab.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import { extractLinks } from '@/utils/contentFormat'
 
 export default defineComponent({
   components: {
@@ -169,7 +170,7 @@ export default defineComponent({
       if (props.focus) replyRef.value?.scrollIntoView(true)
     })
 
-    return { menu, replyClasses, loves, toggleLove, editReply, replyContent, updateReply, nick, replyRef }
+    return { menu, replyClasses, loves, toggleLove, editReply, replyContent, updateReply, nick, replyRef, extractLinks }
   }
 })
 </script>
