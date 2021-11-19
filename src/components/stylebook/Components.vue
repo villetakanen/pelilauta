@@ -11,6 +11,23 @@
       <p>Material Design 3 inspired components</p>
     </section>
     <section>
+      <h2>Filter Chips</h2>
+      <p>
+        <FilterChip
+          v-model="active"
+          label="Filter Chip"
+        />
+        <FilterChip
+          v-model="active_two"
+          label="And a second Filter Chip!"
+        />
+        <FilterChip
+          v-model="active_third"
+          label="Third"
+        />
+      </p>
+    </section>
+    <section>
       <h2>Floating Action Buttons (FAB's)</h2>
       <Toggle
         v-model="vertical"
@@ -51,10 +68,11 @@ import Column from '../layout/Column.vue'
 import Toggle from '../material/Toggle.vue'
 import Fab3 from '../material3/Fab3.vue'
 import FabTray from '../material3/FabTray.vue'
+import FilterChip from '../material3/FilterChip.vue'
 
 export default defineComponent({
   name: 'StatefulComponents',
-  components: { Column, Fab3, Toggle, FabTray },
+  components: { Column, Fab3, Toggle, FabTray, FilterChip },
   props: {
     modelValue: {
       type: String,
