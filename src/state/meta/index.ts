@@ -1,5 +1,5 @@
 import { doc, getFirestore, onSnapshot } from '@firebase/firestore'
-import { computed, ComputedRef, ref } from 'vue'
+import { computed, ComputedRef, reactive, ref } from 'vue'
 import { Stream, ThreadClass } from '../threads/threads'
 
 const localStreams = ref(new Array<Stream>())
@@ -8,6 +8,19 @@ const frozenState = ref(new Array<string>())
 const frozen = computed(() => (frozenState.value))
 const adminsState = ref(new Array<string>())
 const admins = computed(() => (adminsState.value))
+
+export interface SiteTheme {
+  name: string
+  icon: string
+  id: string
+}
+
+const appMeta = reactive({
+  siteThemes: new Array<SiteTheme[]>()
+
+})
+
+const siteThemes = computed(() => appMeta.siteThemes)
 
 let _init = false
 function init () {
@@ -34,6 +47,7 @@ function init () {
     })
     frozenState.value = metaDoc.data()?.frozen || []
     adminsState.value = metaDoc.data()?.admins || []
+    appMeta.siteThemes = metaDoc.data()?.siteThemes || []
   })
 }
 
@@ -54,8 +68,9 @@ export function useMeta (): {
     admins: ComputedRef<Array<string>>
     frozen: ComputedRef<Array<string>>
     streams: ComputedRef<Array<Stream>>
+    siteThemes: ComputedRef<Array<SiteTheme[]>>
     getTopic: (thread: ThreadClass) => Stream
     } {
   init()
-  return { admins, frozen, streams, getTopic }
+  return { admins, frozen, streams, getTopic, siteThemes }
 }

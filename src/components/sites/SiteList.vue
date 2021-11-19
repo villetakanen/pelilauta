@@ -1,5 +1,9 @@
 <template>
   <Column class="siteList double">
+    <SiteFilterPane
+      v-model="filter"
+    />
+    filter: {{ filter }}
     <section>
       <Toolbar>
         <h4>
@@ -74,6 +78,7 @@ import { useAuth } from '@/state/authz'
 import Button from '../form/Button.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import SiteFilterPane from './SiteFilterPane.vue'
 
 export default defineComponent({
   name: 'SiteList',
@@ -83,19 +88,14 @@ export default defineComponent({
     Column,
     Button,
     Toolbar,
-    SpacerDiv
+    SpacerDiv,
+    SiteFilterPane
   },
-  props: {
-    filter: {
-      type: String,
-      required: false,
-      default: ''
-    }
-  },
-  setup (props) {
+  setup () {
     const { allSites } = useSites()
     const { user } = useAuth()
     const sort = ref('date')
+    const filter = ref(new Array<string>())
 
     const mySites = computed(() => (
       allSites.value.filter((val) => (
@@ -114,13 +114,13 @@ export default defineComponent({
     ))
 
     const publicSites:ComputedRef<Array<Site>> = computed(() => {
-      if (props.filter) {
-        return mySites.value.filter((site) => (site.systemBadge === props.filter)) || new Array<Site>()
+      if (filter.value.length > 0) {
+        return mySites.value.filter(site => filter.value.includes(site.systemBadge))
       }
       return mySites.value
     })
 
-    return { publicSites, fireStoreURL, toDisplayString, sort }
+    return { publicSites, fireStoreURL, toDisplayString, sort, filter }
   }
 })
 </script>
