@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.5.24](https://github.com/villetakanen/pelilauta/compare/v11.5.23...v11.5.24) (2021-11-19)
+
+
+### Bug Fixes
+
+* added a hover chip ([2786255](https://github.com/villetakanen/pelilauta/commit/27862555aaaf7a82b8aaf69e87833259015bafe5))
+* material 3 style select icon for filterchip ([7d0e99d](https://github.com/villetakanen/pelilauta/commit/7d0e99df8c4ff3f4292956c1f83680caefe859a6))
+* site filtering tabs cleared ([adefd96](https://github.com/villetakanen/pelilauta/commit/adefd9698b3ec92aadb2ad3fc122f7c4f99431c6))
+
 ### [11.5.23](https://github.com/villetakanen/pelilauta/compare/v11.5.22...v11.5.23) (2021-11-19)
 
 
