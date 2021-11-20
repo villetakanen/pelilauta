@@ -63,7 +63,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .viewTitle
-  margin: 0 8px
+  margin: 0
   padding: 0
   position: relative
   .titleIcon

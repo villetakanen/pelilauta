@@ -3,6 +3,7 @@
     <Icon
       small
       name="filter"
+      style="margin-right: 12px;"
     />
     <!-- FilterChip :label="$t('action.filter.mySites')" @click="onClick('action.filter.mySites')" />
     <FilterChip :label="$t('action.filter.gamesIPlayIn')" @click="onClick('action.filter.gamesIPlayIn')" / -->

@@ -2,15 +2,12 @@
   <Column class="siteList double">
     <SiteFilterPane
       v-model="filter"
+      style="border-bottom: solid 1px var(--chroma-secondary-g)"
     />
-    filter: {{ filter }}
     <section>
       <Toolbar>
         <h4>
-          <Icon
-            small
-            name="filter"
-          /><span class="hideOnMobile">{{ $t('sort.title') }}</span>
+          {{ $t('sort.title') }}
         </h4>
         <SpacerDiv />
         <Button
