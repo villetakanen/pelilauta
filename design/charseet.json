@@ -1,0 +1,24 @@
+{
+    "layout": [ 
+        {"attributes": [
+           [ "str", "strbonus" ]
+        ]}
+    ],
+    "stats": {
+        "str": {
+            "type": "number",
+            "labels": {
+                "en": "Strength"
+            },
+            "min": 0,
+            "max": 18
+        },
+        "strbonus": {
+            "type": "derived",
+            "labels": {
+                "en": ""
+            },
+            "formula": "str % 3 - 3"
+        }
+    }
+}
