@@ -73,7 +73,7 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 
 .assetListItem
-  width: calc(100vw - 32px)
+  width: calc(100vw - 48px)
   overflow: hidden
   position: relative
   .imagePreview
@@ -100,4 +100,6 @@ export default defineComponent({
     width: 256px
     height: 256px
 
+.assetListItem + .assetListItem
+  margin-top: 0
 </style>
