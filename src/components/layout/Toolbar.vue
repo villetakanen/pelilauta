@@ -48,6 +48,9 @@ div.toolbar
     a
       height: 48px
       color: var(--chroma-secondary-b)
+  &.centered
+    justify-content: center
+    align-items: center
 
 @include media('<tablet')
   div.toolbar

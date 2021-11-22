@@ -22,6 +22,10 @@
       v-model="focus"
     />
     <StatefullComponents v-if="!focus" />
+    <ListComponents
+      v-if="!focus || focus === 'ListComponents'"
+      v-model="focus"
+    />
   </main>
 </template>
 
@@ -38,6 +42,7 @@ import InteractiveElemets from '@/components/stylebook/InteractiveElemets.vue'
 import ColumnsAndSections from '@/components/stylebook/ColumnsAndSections.vue'
 import StatefullComponents from '@/components/stylebook/StatefullComponents.vue'
 import Components from '@/components/stylebook/Components.vue'
+import ListComponents from '@/components/stylebook/ListComponents.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -51,7 +56,8 @@ export default defineComponent({
     InteractiveElemets,
     ColumnsAndSections,
     StatefullComponents,
-    Components
+    Components,
+    ListComponents
   },
   setup () {
     const focus = ref('')

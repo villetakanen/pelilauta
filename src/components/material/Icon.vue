@@ -4,7 +4,7 @@
     :src="sourcePath"
     :alt="name"
     class="icon"
-    :class="{ medium: medium, large: large, small: small, xs: xs }"
+    :class="{ medium: medium, large: large, small: small, xs: xs, xlarge: xlarge }"
   >
 </template>
 
@@ -45,6 +45,11 @@ export default defineComponent({
       default: false
     },
     large: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    xlarge: {
       type: Boolean,
       required: false,
       default: false
@@ -107,6 +112,9 @@ img.icon
   &.xs
     height: 16px
     width: 16px
+  &.xlarge
+    height: 128px
+    width: 128px
 
 button:not(.Fab) .icon
   display: inline-block
