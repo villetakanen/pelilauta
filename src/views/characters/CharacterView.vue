@@ -25,12 +25,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, watch } from 'vue'
+import { computed, defineComponent, onMounted, watch } from 'vue'
 import { useCharacters } from '@/state/characters'
 import { useSite } from '@/state/site'
-import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import CharacterMetaForm from '@/components/character/CharacterMetaForm.vue'
 import CharacterDescriptionCol from '@/components/character/CharacterDescriptionCol.vue'
+import { Character } from '@/state/characters/Character'
 
 export default defineComponent({
   name: 'CharacterView',
@@ -43,18 +43,15 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const { fetchPlayerCharacter, character } = useCharacters()
+    const { characters } = useCharacters()
+    const character = computed(() => {
+      return characters.value.get(props.id) || new Character('...')
+    })
 
     onMounted(() => {
-      watch(() => props.id, (id) => {
-        fetchPlayerCharacter(id)
-      }, { immediate: true })
-      watch(character, (c) => {
-        console.log('c', c)
-        if (!c) return
-        const char = c as PlayerCharacter
-        if (char.siteid) {
-          useSite(char.siteid)
+      watch(character, (char) => {
+        if (char.site) {
+          useSite(char.site)
         }
       },
       { immediate: true })

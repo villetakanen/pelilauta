@@ -2,12 +2,7 @@
   <div
     class="characterSheet"
   >
-    <LLCharacterSheet
-      v-if="character.type === 'll'"
-      :character="character"
-    />
     <DefaultCharacterSheet
-      v-else
       :character="character"
     />
   </div>
@@ -17,10 +12,9 @@
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType } from 'vue'
 import DefaultCharacterSheet from './sheets/DefaultCharacterSheet.vue'
-import LLCharacterSheet from './sheets/LLCharacterSheet.vue'
 
 export default defineComponent({
-  components: { DefaultCharacterSheet, LLCharacterSheet },
+  components: { DefaultCharacterSheet },
   props: {
     character: {
       type: Object as PropType<PlayerCharacter>,

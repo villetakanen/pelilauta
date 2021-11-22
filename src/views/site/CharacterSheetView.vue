@@ -15,6 +15,7 @@ import Loader from '@/components/app/Loader.vue'
 import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { useCharacters, toPlayerCharacter } from '@/state/characters'
 import CharacterSheet from '@/components/site/characters/CharacterSheet.vue'
+import { Character } from '@/state/characters/Character'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -36,11 +37,11 @@ export default defineComponent({
   setup (props) {
     const { site } = useSite(props.siteid)
     const { characters } = useCharacters()
-    const character = ref(toPlayerCharacter())
+    const character = ref(new Character('-'))
 
     onMounted(() => {
       watch(() => props.characterid, (characterid) => {
-        character.value = characters.value.get(characterid) ?? toPlayerCharacter()
+        character.value = characters.value.get(characterid) || new Character('-')
       }, { immediate: true })
     })
 

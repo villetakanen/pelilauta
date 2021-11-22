@@ -26,6 +26,7 @@ import Textfield from '@/components/form/Textfield.vue'
 import { useCharacters } from '@/state/characters'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref, watch } from 'vue'
+import { logError } from '@/utils/eventLogger'
 
 export default defineComponent({
   components: { Textfield, MaterialButton },
@@ -44,12 +45,11 @@ export default defineComponent({
     }, {
       immediate: true
     })
-    const { updatePlayerCharacter } = useCharacters()
     async function pushChanges () {
       const char = { ...props.character }
       char.name = name.value
       // char.description = description.value
-      return updatePlayerCharacter(char)
+      return logError('not implemented') // updatePlayerCharacter(char)
     }
     return { description, pushChanges, name }
   }

@@ -30,6 +30,7 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import { useCharacters } from '@/state/characters'
 import { useSite } from '@/state/site'
+import { logDebug, logError } from '@/utils/eventLogger'
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -42,11 +43,11 @@ export default defineComponent({
       { key: 'default', value: i18n.t('site.characters.templates.default') },
       { key: 'll', value: i18n.t('site.characters.templates.ll') }
     ]
-    const { characters: pcs, addPlayerCharacter } = useCharacters()
+    const { characters: pcs } = useCharacters()
     async function addCharacter () {
       try {
-        const newCharID = await addPlayerCharacter(newCharType.value)
-        console.debug('added player character', newCharID)
+        // const newCharID = await addPlayerCharacter(newCharType.value)
+        logError('missing functionality')
       } catch (e) {
         console.error(e)
       }

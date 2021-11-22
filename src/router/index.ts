@@ -55,12 +55,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "profile" */ '../views/profile/PublicProfileView.vue')
   },
   {
-    path: '/u/:uid/characters',
-    name: 'profile.characters.old',
-    props: true,
-    component: () => import(/* webpackChunkName: "profile" */ '../views/profile/CharacterListingView.vue')
-  },
-  {
     path: '/stylebook',
     name: 'stylebook',
     component: Stylebook,

@@ -40,34 +40,33 @@ import Textfield from '../form/Textfield.vue'
 import { useSite } from '@/state/site'
 import Icon from '../material/Icon.vue'
 import EditableColumn from '../layout/EditableColumn.vue'
+import { logDebug } from '@/utils/eventLogger'
 
 export default defineComponent({
   name: 'CharacterMetaForm',
   components: { MaterialSelect, Textfield, Icon, EditableColumn },
-  setup () {
-    const { characterid, character, updatePlayerCharacterFields } = useCharacters()
+  props: {
+    characterid: {
+      type: String,
+      required: true
+    }
+  },
+  setup (props) {
+    const { characters } = useCharacters()
+    const character = computed(() => characters.value.get(props.characterid))
     const { userSites } = useSites()
     const { site } = useSite()
     const siteOpts = computed(() => {
       return userSites.value.filter((s) => (s.usePlayers)).map((s) => ({ key: s.id, value: s.name }))
     })
-    const siteid = computed({
-      get: () => (character?.value?.siteid ?? ''),
-      set: (s: string) => {
-        updatePlayerCharacterFields(characterid.value, { siteid: s })
-        useSite(s)
-      }
-    })
+
     const charname = computed({
       get: () => (character?.value?.name ?? ''),
       set: (n: string) => {
-        console.debug('name', n)
-        if (n !== character?.value?.name) {
-          updatePlayerCharacterFields(characterid.value, { name: n })
-        }
+        logDebug('CharacterMetaForm.charname.set', n)
       }
     })
-    return { siteOpts, siteid, site, charname, character }
+    return { siteOpts, site, charname, character }
   }
 })
 </script>
