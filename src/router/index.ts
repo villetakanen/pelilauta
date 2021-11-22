@@ -33,7 +33,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/profile/media',
     name: 'profile.media',
-    component: () => import(/* webpackChunkName: "global" */ '../views/profile/ProfileMediaView.vue')
+    component: () => import(/* webpackChunkName: "profile" */ '../views/profile/ProfileMediaView.vue')
+  },
+  {
+    path: '/profile/characters',
+    name: 'profile.characters',
+    component: () => import(/* webpackChunkName: "profile" */ '../views/profile/UserCharactersView.vue')
   },
   {
     path: '/profile/inbox',
@@ -51,7 +56,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/u/:uid/characters',
-    name: 'profile.characters',
+    name: 'profile.characters.old',
     props: true,
     component: () => import(/* webpackChunkName: "profile" */ '../views/profile/CharacterListingView.vue')
   },

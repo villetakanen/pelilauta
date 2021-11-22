@@ -1,8 +1,14 @@
-import { ComputedRef, ref, Ref, computed, watch } from 'vue'
+import { ComputedRef, ref, Ref, computed, watch, reactive } from 'vue'
 import { PlayerCharacter, PartialPlayerCharacter } from '@/utils/firestoreInterfaces'
 import { useSite } from '../site'
 import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, getDoc } from '@firebase/firestore'
 import { useAuth } from '../authz'
+import { logDebug, logEvent } from '@/utils/eventLogger'
+
+const state = reactive({
+  uid: '',
+  loading: false
+})
 
 const localPlayerCharacters = ref(new Map<string, PlayerCharacter>())
 const playerCharacters = computed(() => localPlayerCharacters.value)
@@ -65,7 +71,7 @@ export function toPlayerCharacter (data?:DocumentData):PlayerCharacter {
 }
 
 function subscribeCharacters () {
-  console.debug('Subscribing the users character database')
+  state.loading = true
   const { user } = useAuth()
   characters.value = new Map<string, PlayerCharacter>()
 
@@ -78,7 +84,6 @@ function subscribeCharacters () {
 
   unsubscribe = onSnapshot(characterCollectionQuery, (snapshot) => {
     snapshot.docChanges().forEach((docChange) => {
-      console.debug('got', docChange.doc.data())
       if (docChange.type === 'removed') {
         playerCharacters.value.delete(docChange.doc.id)
         if (localCharacterId.value === docChange.doc.id) localCharacter.value = undefined
@@ -88,10 +93,12 @@ function subscribeCharacters () {
         if (localCharacterId.value === docChange.doc.id) localCharacter.value = pc
       }
     })
+    state.loading = false
+    logEvent('FirestoreSubscription', { type: 'characters', count: playerCharacters.value.size })
   })
 }
 
-let playerid = ''
+const playerid = ''
 const localCharacterId = ref('')
 const localCharacter = ref<PlayerCharacter|undefined|null>(undefined)
 const character = computed(() => localCharacter.value)
@@ -115,7 +122,12 @@ async function fetchPlayerCharacter (id: string): Promise<void> {
   }
 }
 
+const loading = computed(() => state.loading)
+
+let _init = false
+
 export function useCharacters (): {
+    loading: ComputedRef<boolean>
     addPlayerCharacter: (type: string) => Promise<string>
     characters: Ref<Map<string, PlayerCharacter>>,
     playerCharacters: ComputedRef<Map<string, PlayerCharacter>>,
@@ -126,12 +138,16 @@ export function useCharacters (): {
     characterid: ComputedRef<string>,
     createNewPlayerCharacter: (fields: PartialPlayerCharacter) => Promise<DocumentData>
     } {
-  const { user } = useAuth()
-  watch(() => user, (u) => {
-    if (u.value.uid && u.value.uid !== playerid) {
-      subscribeCharacters()
-      playerid = u.value.uid
-    }
-  }, { immediate: true })
-  return { addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character, updatePlayerCharacterFields, characterid, createNewPlayerCharacter }
+  if (!_init) {
+    _init = true
+    const { user } = useAuth()
+    watch(user, (user) => {
+      if (user.uid !== state.uid) {
+        logDebug('useCharacters effect', user)
+        state.uid = user.uid
+        subscribeCharacters()
+      }
+    }, { immediate: true })
+  }
+  return { loading, addPlayerCharacter, characters, updatePlayerCharacter, playerCharacters, fetchPlayerCharacter, character, updatePlayerCharacterFields, characterid, createNewPlayerCharacter }
 }

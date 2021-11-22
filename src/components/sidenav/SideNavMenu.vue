@@ -36,7 +36,7 @@
         </SideNavMenuItem>
         <SideNavMenuItem
           icon="adventurer"
-          :to="`/u/${user.uid}/characters`"
+          :to="`/profile/characters`"
           @click="toggleNav"
         >
           {{ $t('vault.characters.title') }}

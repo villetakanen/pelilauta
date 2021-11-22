@@ -271,6 +271,11 @@
   },
   "profile": {
     "title": "Minä",
+    "characters": {
+      "title": "Hahmot",
+      "emptyTitle": "Ei vielä yhtään hahmoa",
+      "emptyMessage": "Tämän listan kautta voit lisätä hahmoja sovellukseen, ja linkittää ne peleihin joissa pelaat."
+    },
     "characterListing": {
       "title": "Hahmoni"
     },
