@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.6.0](https://github.com/villetakanen/pelilauta/compare/v11.5.25...v11.6.0) (2021-11-22)
+
+
+### Features
+
+* empty collection pane added ([be31c12](https://github.com/villetakanen/pelilauta/commit/be31c12fb36b1a247ee01912f584fdda0a066dda))
+
+
+### Bug Fixes
+
+* upload assets works as expected ([cad0195](https://github.com/villetakanen/pelilauta/commit/cad0195935394574f53b43cde9295d71e9b61437))
+
 ### [11.5.25](https://github.com/villetakanen/pelilauta/compare/v11.5.24...v11.5.25) (2021-11-20)
 
 
