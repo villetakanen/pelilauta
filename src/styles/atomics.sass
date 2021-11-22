@@ -48,6 +48,16 @@
     display: grid
     grid-template-rows: auto auto
 
+.flexList
+  display: flex
+  gap: 12px
+  flex-direction: column
+
+@include media('>=tablet')
+  .flexList
+    flex-direction: row
+    flex-wrap: wrap
+
 // *** Visual helpers *************************************************
 
 .clipWithEllipsis
