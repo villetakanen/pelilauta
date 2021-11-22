@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [11.7.0](https://github.com/villetakanen/pelilauta/compare/v11.6.1...v11.7.0) (2021-11-22)
+
+
+### Features
+
+* user characters view ([b1a3431](https://github.com/villetakanen/pelilauta/commit/b1a34318f8247a9bb102144317af7fcb68a038a6))
+
 ### [11.6.1](https://github.com/villetakanen/pelilauta/compare/v11.6.0...v11.6.1) (2021-11-22)
 
 
