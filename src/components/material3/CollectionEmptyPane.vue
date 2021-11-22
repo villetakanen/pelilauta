@@ -50,9 +50,8 @@ export default defineComponent({
 
 section.CollectionEmptyPane
   text-align: center
-  width: 100%
-  margin: 0 auto
   padding: 12px
+  margin: 0 auto
   h1
     @include TypeHeadline5()
     color: var(--chroma-primary-d)

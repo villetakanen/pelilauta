@@ -56,6 +56,7 @@
       "resized": "Suuret kuvat skaalataan maksimissaan 720px korkeiksi ja leveiksi."
     }
   },
+  "assets": {"collection":{"empty":{"title":"Ei tiedostoja","message":"Täältä löytyvät sovellukseen lisäämäsi kuvat ja tiedostot."}}},
   "calltoaction": {
     "forum": {
       "title": "Keskustelut"

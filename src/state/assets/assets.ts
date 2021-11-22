@@ -2,7 +2,7 @@ import { logDebug, logError, logEvent } from '@/utils/eventLogger'
 import { FirebaseError } from '@firebase/app'
 import { Timestamp, DocumentData, serverTimestamp, FieldValue, onSnapshot, query, collection, getFirestore, where, addDoc, getDoc, doc, deleteDoc } from '@firebase/firestore'
 import { getStorage, ref as storageRef, uploadString, getDownloadURL, deleteObject } from '@firebase/storage'
-import { computed, ComputedRef, reactive, ref } from 'vue'
+import { computed, ComputedRef, reactive, ref, watch } from 'vue'
 import { useAuth } from '../authz'
 
 export const LICENSE_NONE = 1
@@ -60,16 +60,18 @@ export class Asset {
 }
 
 const state = reactive({
-  uid: ''
+  uid: '',
+  loading: true
 })
 const userAssets = ref(new Map<string, Asset>())
-const assets = computed(() => (userAssets.value))
+const assets = computed(() => userAssets.value)
+const loading = computed(() => state.loading)
 
 let unsubscribe:CallableFunction|undefined
 
 function subscribeToAssets () {
   if (unsubscribe) unsubscribe()
-  logEvent('Firestore subs', { collecton: 'Assets' })
+  state.loading = true
   unsubscribe = onSnapshot(
     query(
       collection(
@@ -80,6 +82,7 @@ function subscribeToAssets () {
     ),
     (assetChanges) => {
       assetChanges.docChanges().forEach((assetChange) => {
+        logDebug('Asset change', assetChange.type, assetChange.doc.id)
         if (assetChange.type === 'removed') {
           userAssets.value.delete(assetChange.doc.id)
         } else {
@@ -92,6 +95,8 @@ function subscribeToAssets () {
           )
         }
       })
+      state.loading = false
+      logEvent('Firestore subs', { collecton: 'Assets', size: userAssets.value.size })
     }
   )
 }
@@ -153,15 +158,25 @@ async function deleteAsset (id:string): Promise<void> {
   return deleteDoc(assetDocRef)
 }
 
+let _init = false
+
 export function useAssets (): {
     assets: ComputedRef<Map<string, Asset>>
+    loading: ComputedRef<boolean>
     uploadAsset: (name: string, mimetype: string, dataURL:string) => Promise<Asset>
     deleteAsset: (id:string) => Promise<void>
     } {
-  const { user } = useAuth()
-  if (user.value.uid !== state.uid) {
-    state.uid = user.value.uid
-    subscribeToAssets()
+  if (!_init) {
+    _init = true
+    const { user } = useAuth()
+    watch(user, (user) => {
+      if (user.uid !== state.uid) {
+        logDebug('useAssets, effect', user)
+        state.uid = user.uid
+        subscribeToAssets()
+      }
+    }, { immediate: true })
   }
-  return { assets, uploadAsset, deleteAsset }
+
+  return { assets, uploadAsset, deleteAsset, loading }
 }

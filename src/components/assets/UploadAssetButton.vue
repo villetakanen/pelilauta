@@ -1,24 +1,27 @@
 <template>
-  <label class="UploadAssetButton">
+  <label
+    class="UploadAssetButton"
+    :class="{ uploading: uploading, active: active }"
+  >
     <input
       type="file"
       @click="onFileClick"
       @change="onFileChange"
     >
-    <template v-if="!active">
-      <Icon
-        name="addAnImage"
-        small
-        dark
-      />
-      <span class="hideOnMobile label">{{ $t('action.addAttachment') }}</span>
-    </template>
-    <img
-      v-else
-      alt="uploading"
-      class="uploading-image"
-      src="@/assets/animations/puff.svg"
-    >
+    <Icon
+      name="addAnImage"
+      class="buttonIcon"
+      small
+      dark
+    />
+    <span class="label">{{ $t('action.addAttachment') }}</span>
+    <div class="worker">
+      <img
+        alt="uploading"
+        class="uploadingInteraction"
+        src="@/assets/animations/puff.svg"
+      >
+    </div>
   </label>
 </template>
 
@@ -43,7 +46,7 @@ export default defineComponent({
 
     function onFileClick () {
       active.value = true
-      setTimeout(() => { active.value = false }, 300)
+      setTimeout(() => { active.value = false }, 1000)
     }
 
     async function onFileChange (e: Event) {
@@ -71,6 +74,7 @@ export default defineComponent({
 @import @/styles/box-shadow.sass
 
 .UploadAssetButton
+  position: relative
   background: none
   background-color: var(--chroma-secondary-d)
   border: none
@@ -82,11 +86,12 @@ export default defineComponent({
   border-radius: 20px
   @include Rise2()
   transition: 0.3s
+  overflow: hidden
   .label
     padding: 0 8px
     color: var(--chroma-secondary-i)
   &:hover
-    background-color: var(--chroma-primary-a)
+    background-color: var(--chroma-secondary-e)
     @include Rise1()
   &.disabled
     background-color: var(--chroma-secondary-a)
@@ -97,16 +102,23 @@ export default defineComponent({
     left: -2px
     top: -2px
     pointer-events: none
-  &.uploading
-    [type="file"], label
-      opacity: 0
-    .uploading-image
-      opacity: 1
   &.active, &.uploading
-    background-color: var(--chroma-secondary-d)
+    background-color: var(--chroma-secondary-c)
     @include Rise0()
+    .buttonIcon, .label
+      opacity: 0.7
+    .worker
+      opacity: 1
 
 input[type="file"]
   display: none
+
+div.worker
+  position: absolute
+  left: calc(50% - 24px)
+  top: -4px
+  opacity: 0
+  transition-property: opacity
+  transition-duration: 0.3s
 
 </style>
