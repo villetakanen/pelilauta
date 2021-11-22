@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [11.6.1](https://github.com/villetakanen/pelilauta/compare/v11.6.0...v11.6.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* assets mobile viewport ([8c27145](https://github.com/villetakanen/pelilauta/commit/8c2714577030f5471ec3bbcf9440f31b770e5067))
+
 ## [11.6.0](https://github.com/villetakanen/pelilauta/compare/v11.5.25...v11.6.0) (2021-11-22)
 
 
