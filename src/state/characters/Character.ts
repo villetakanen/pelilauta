@@ -34,7 +34,6 @@ export class Character {
     this.htmlDescription = data?.htmlDescription || ''
     this.site = data?.site || undefined
     this.stats = Character.parseStats(data?.stats || {})
-    logDebug('Character', this.id, this.name, this.stats)
   }
 
   private static parseStats (stats:{ [key: string]: number }): Map<string, number> {

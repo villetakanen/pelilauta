@@ -5,7 +5,8 @@ const sheetModel1:CharacterSheetModel = {
   stats: {
     'strength': {
       label: {
-        en: 'Strength'
+        en: 'Strength',
+        fi: 'Voimakkuus'
       },
       type: 'number'
     },
@@ -50,5 +51,13 @@ describe('Character derived stats', () => {
     character.sheet = sheetModel1
     character.stats = stats1
     expect(character.deriveStat('strength bonus')).toBe(1)
+  })
+
+  it('Returns the labels for a stat', () => {
+    const character = new Character('')
+    character.sheet = sheetModel1
+    character.stats = stats1
+    expect(character.getStatLabel('strength', 'en')).toBe('Strength')
+    expect(character.getStatLabel('strength', 'fi')).toBe('Voimakkuus')
   })
 })

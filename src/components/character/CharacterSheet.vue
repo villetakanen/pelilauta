@@ -8,9 +8,15 @@
         v-for="item, lineindex in block"
         :key="lineindex"
       >
-        <template v-if="character.stats.has(item)">
-          {{ character.getStatLabel(item, profileData.languageCode) }} {{ character.getStat(item) }}
-        </template>
+        <div
+          v-if="character.stats.has(item)"
+          class="stat"
+        >
+          <span class="statLabel">
+            {{ character.getStatLabel(item, profileData.languageCode) }}
+          </span>
+          <span class="statValue">{{ character.getStat(item) }}</span>
+        </div>
         <template v-else>
           [ {{ character.deriveStat(item) }} ]
         </template>
@@ -48,3 +54,13 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass" scoped>
+.statLabel
+  font-weight: bold
+.statValue
+  display: inline-block
+  padding: 4px
+  border-radius: 4px
+  border: solid 1px var(--chroma-secondary-g)
+</style>
