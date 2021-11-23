@@ -1,5 +1,6 @@
 import { logDebug } from '@/utils/eventLogger'
 import { DocumentData } from '@firebase/firestore'
+import { create, all } from 'mathjs'
 
 export interface CharacterStatModel {
   label?: {
@@ -26,6 +27,7 @@ export class Character {
   public site: string|undefined
   public sheet: CharacterSheetModel|undefined
   public stats: Map<string, number>
+  private math = create(all)
 
   constructor (id: string, data?:DocumentData) {
     this.id = id
@@ -49,14 +51,15 @@ export class Character {
   }
 
   public getStat (stat: string): number {
-    logDebug('getStat', stat, this.stats.get(stat), this.stats, this.id, this.name)
     if (!this.stats.has(stat)) {
+      logDebug('Trying to get a stat that´s not defined', stat)
       return 0
     }
     return this.stats.get(stat) || 0
   }
 
   public getStatLabel (stat: string, code: string): string {
+    // logDebug('getStatLabel', stat, code, this.sheet?.stats[stat])
     if (!this.sheet) {
       return stat
     }
@@ -65,8 +68,7 @@ export class Character {
       return stat
     }
     if (!statModel.label) return stat
-    if (!(statModel.label[code] as unknown)) return stat
-    return statModel.label[code]
+    return statModel.label[code] || statModel.label.en || stat
   }
 
   public setStat (stat: string, value: number): void {
@@ -94,13 +96,18 @@ export class Character {
       return 0
     }
 
-    const resolvedFormula = statModel.formula.split(' ').map(token => {
-      if (this.stats.has(token)) return this.stats.get(token) || 0
-      return token
-    }).join(' ')
+    const parser = this.math.parser()
+    // We have a formula, let's try to evaluate it
+    statModel.formula.split(' ').forEach(v => {
+      // logDebug('Parsing', v, this?.sheet?.stats[v]?.type)
+      if (this?.sheet?.stats[v]?.type === 'number') parser.set(v, this.getStat(v) || 0)
+    })
+    // logDebug('Composite stats', parser.getAll(), statModel.formula)
+    const result = parser.evaluate(statModel.formula) || 0
 
-    // eslint-disable-next-line no-new-func
-    return Math.floor(new Function('"use strict";return(' + resolvedFormula + ')')() || 0)
+    // logDebug('deriveStat', result, statModel.formula)
+
+    return Math.floor(result)
   }
 
   public dryCopy (): {

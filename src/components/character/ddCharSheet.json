@@ -1,26 +1,37 @@
 {
   "layout": [
           ["strength", "strength bonus"],
-          ["dexterity", "dexterity bonus"] 
+          ["dexterity", "dexterity bonus"],
+          ["constitution", "constitution bonus"],
+          ["intelligence", "intelligence bonus"],
+          ["wisdom", "wisdom bonus"],
+          ["charisma", "charisma bonus"] 
         ],
   "stats": {
-    "strenght": {
+    "strength": {
       "type": "number",
-      "labels": {
+      "label": {
         "en": "Strenght",
         "fi": "Voimakkuus"
       }
     },
     "dexterity": {
       "type": "number",
-      "labels": {
+      "label": {
         "en": "Dexterity",
         "fi": "Ketteryys"
       }
     },
-    "strenght bonus": {
+    "constitution": {
+      "type": "number",
+      "label": {
+        "en": "Constitution",
+        "fi": "Vahvuus"
+      }
+    },
+    "strength bonus": {
       "type": "derived",
-      "labels": {
+      "label": {
         "en": "Strenght bonus",
         "fi": "Voimakkuus -bonus"
       },
@@ -28,11 +39,19 @@
     },
     "dexterity bonus": {
       "type": "derived",
-      "labels": {
+      "label": {
         "en": "Dexterity bonus",
         "fi": "Ketteryys -bonus"
       },
       "formula": "( dexterity - 10 ) / 2"
+    },
+    "constitution bonus": {
+      "type": "derived",
+      "label": {
+        "en": "Constitution bonus",
+        "fi": "Vahvuus -bonus"
+      },
+      "formula": "( constitution - 10 ) / 2"
     }
   }
 }
