@@ -4,17 +4,23 @@
       v-for="block, index in character.sheet.layout"
       :key="index"
     >
-      <div
+      <span
         v-for="item, lineindex in block"
         :key="lineindex"
       >
-        {{ character.getStat(item) }}
-      </div>
+        <template v-if="character.stats.has(item)">
+          {{ character.getStatLabel(item, profileData.languageCode) }} {{ character.getStat(item) }}
+        </template>
+        <template v-else>
+          [ {{ character.deriveStat(item) }} ]
+        </template>
+      </span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { useAuth } from '@/state/authz'
 import { useCharacters } from '@/state/characters'
 import { Character } from '@/state/characters/Character'
 import { logDebug } from '@/utils/eventLogger'
@@ -31,13 +37,14 @@ export default defineComponent({
   },
   setup (props) {
     const { characters } = useCharacters()
+    const { profileData } = useAuth()
     const character = computed(() => {
       logDebug('getting', props.id)
       const c = characters.value.get(props.id) || new Character('-')
       c.applyCharacterSheet(ddCharacterSheet)
       return c
     })
-    return { character }
+    return { character, profileData }
   }
 })
 </script>

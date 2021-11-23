@@ -3,8 +3,7 @@ import { DocumentData } from '@firebase/firestore'
 
 export interface CharacterStatModel {
   label?: {
-    en?: string
-    fi?: string
+    [key: string]: string
   },
   type: string,
   min?: number,
@@ -56,6 +55,19 @@ export class Character {
       return 0
     }
     return this.stats.get(stat) || 0
+  }
+
+  public getStatLabel (stat: string, code: string): string {
+    if (!this.sheet) {
+      return stat
+    }
+    const statModel = this.sheet.stats[stat]
+    if (!statModel) {
+      return stat
+    }
+    if (!statModel.label) return stat
+    if (!(statModel.label[code] as unknown)) return stat
+    return statModel.label[code]
   }
 
   public setStat (stat: string, value: number): void {
