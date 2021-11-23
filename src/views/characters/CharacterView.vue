@@ -1,26 +1,6 @@
 <template>
   <div class="characterListingView">
-    <div v-if="character">
-      <h1
-        class="title"
-        style="padding: 0 8px"
-      >
-        {{ character.name }}
-      </h1>
-      <div class="flexLayout">
-        <CharacterMetaForm
-          class="flex-span-1"
-          style="border-bottom: solid 1px var(--color-b-h)"
-        />
-        <CharacterDescriptionCol
-          class="flex-span-2"
-          style="border-bottom: solid 1px var(--color-b-h)"
-        />
-        <div class="debug flex-span-2">
-          {{ character }}
-        </div>
-      </div>
-    </div>
+    <CharacterSheet :id="id" />
   </div>
 </template>
 
@@ -28,13 +8,12 @@
 import { computed, defineComponent, onMounted, watch } from 'vue'
 import { useCharacters } from '@/state/characters'
 import { useSite } from '@/state/site'
-import CharacterMetaForm from '@/components/character/CharacterMetaForm.vue'
-import CharacterDescriptionCol from '@/components/character/CharacterDescriptionCol.vue'
 import { Character } from '@/state/characters/Character'
+import CharacterSheet from '@/components/character/CharacterSheet.vue'
 
 export default defineComponent({
   name: 'CharacterView',
-  components: { CharacterMetaForm, CharacterDescriptionCol },
+  components: { CharacterSheet },
   props: {
     id: {
       type: String,
@@ -44,6 +23,7 @@ export default defineComponent({
   },
   setup (props) {
     const { characters } = useCharacters()
+
     const character = computed(() => {
       return characters.value.get(props.id) || new Character('...')
     })

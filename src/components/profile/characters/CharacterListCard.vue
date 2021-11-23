@@ -1,6 +1,10 @@
 <template>
   <Card class="CharacterListCard">
-    <h3>{{ character.name }}</h3>
+    <h3>
+      <router-link :to="`/character/${character.id}`">
+        {{ character.name }}
+      </router-link>
+    </h3>
     <Toolbar>
       <Button text>
         {{ $t('character.title') }}

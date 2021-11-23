@@ -1,0 +1,38 @@
+{
+  "layout": [
+          ["strength", "strength bonus"],
+          ["dexterity", "dexterity bonus"] 
+        ],
+  "stats": {
+    "strenght": {
+      "type": "number",
+      "labels": {
+        "en": "Strenght",
+        "fi": "Voimakkuus"
+      }
+    },
+    "dexterity": {
+      "type": "number",
+      "labels": {
+        "en": "Dexterity",
+        "fi": "Ketteryys"
+      }
+    },
+    "strenght bonus": {
+      "type": "derived",
+      "labels": {
+        "en": "Strenght bonus",
+        "fi": "Voimakkuus -bonus"
+      },
+      "formula": "( strength - 10 ) / 2"
+    },
+    "dexterity bonus": {
+      "type": "derived",
+      "labels": {
+        "en": "Dexterity bonus",
+        "fi": "Ketteryys -bonus"
+      },
+      "formula": "( dexterity - 10 ) / 2"
+    }
+  }
+}
