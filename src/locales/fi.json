@@ -13,6 +13,7 @@
     "create": "Uusi",
     "deferUpdate": "Muistuta myöhemmin",
     "delete": "Poista",
+    "deleteConfirm": "Ymmärrän ettei poistoa voi peruuttaa.",
     "edit": "Muokkaa",
     "forgetMe": "Poista profiilini",
     "login": "Kirjaudu",
@@ -74,7 +75,11 @@
     "stats": {
       "name": "Nimi",
       "game": "Peli"
-    }
+    },
+    "delete": {
+      "title": "Poista hahmo",
+      "warning": "Haluatko varmasti poistaa hahmon?"
+      }
   },
   "characters": {
     "title": "Hahmot"

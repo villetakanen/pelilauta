@@ -13,11 +13,32 @@
         class="double"
       />
     </main>
-    <Dialog v-model="showDeleteDialog">
-      <Toggle v-model="deleteConfirm" />
-      <Button :disabled="!deleteConfirm">
-        {{ $t('action.delete') }}
-      </Button>
+    <Dialog
+      v-model="showDeleteDialog"
+      :label="$t('character.delete.title')"
+    >
+      <p>{{ $t('character.delete.warning') }}</p>
+      <Toggle
+        v-model="deleteConfirm"
+        :label="$t('action.deleteConfirm')"
+      />
+      <template #footer>
+        <Toolbar>
+          <SpacerDiv />
+          <Button
+            text
+            @click="showDeleteDialog = false"
+          >
+            {{ $t('action.cancel') }}
+          </Button>
+          <Button
+            :disabled="!deleteConfirm"
+            @click="drop"
+          >
+            {{ $t('action.delete') }}
+          </Button>
+        </Toolbar>
+      </template>
     </Dialog>
   </div>
 </template>
@@ -37,10 +58,12 @@ import { useI18n } from 'vue-i18n'
 import Dialog from '@/components/material/Dialog.vue'
 import Toggle from '@/components/material/Toggle.vue'
 import Button from '@/components/form/Button.vue'
+import Toolbar from '@/components/layout/Toolbar.vue'
+import { useUxActions } from '@/composables/useUxActions'
 
 export default defineComponent({
   name: 'CharacterView',
-  components: { CharacterSheet, ViewTitle, Header, SpacerDiv, MaterialMenu, Dialog, Toggle, Button },
+  components: { CharacterSheet, ViewTitle, Header, SpacerDiv, MaterialMenu, Dialog, Toggle, Button, Toolbar },
   props: {
     id: {
       type: String,
@@ -50,9 +73,10 @@ export default defineComponent({
   },
   setup (props) {
     const i18n = useI18n()
-    const { characters } = useCharacters()
+    const { characters, deleteCharacter } = useCharacters()
     const deleteConfirm = ref(false)
-    const showDeleteDialog = ref(false)
+    const showDeleteDialog = ref(true)
+    const { reroute } = useUxActions()
 
     const character = computed(() => {
       return characters.value.get(props.id) || new Character('...')
@@ -79,7 +103,15 @@ export default defineComponent({
       return items
     })
 
-    return { character, menu, deleteConfirm, showDeleteDialog }
+    async function drop () {
+      if (!deleteConfirm.value) {
+        return
+      }
+      await deleteCharacter(props.id)
+      reroute('/profile/characters')
+    }
+
+    return { character, menu, deleteConfirm, showDeleteDialog, drop }
   }
 })
 </script>
