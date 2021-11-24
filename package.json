@@ -8,7 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "deploy": "npm run build && npm run release && git push --follow-tags origin main && npm run build && firebase deploy",
+    "deploy": "npm run test:unit && npm run build && npm run release && git push --follow-tags origin main && npm run build && firebase deploy",
     "release": "standard-version"
   },
   "dependencies": {

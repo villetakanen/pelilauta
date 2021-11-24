@@ -1,6 +1,8 @@
 import { logDebug } from '@/utils/eventLogger'
 import { DocumentData } from '@firebase/firestore'
 import { create, all } from 'mathjs'
+import ddCharSheet from './ddCharSheet.json'
+import basicCharacterSheet from './basicCharacterSheet.json'
 
 export interface CharacterStatModel {
   label?: {
@@ -13,10 +15,15 @@ export interface CharacterStatModel {
 }
 
 export interface CharacterSheetModel {
-  layout: Array<string|Array<string>>
+  layout: Array<Array<Array<string>>>
   stats: {
     [key: string]: CharacterStatModel
   }
+}
+
+export const CHARACTER_SHEET_TYPES:{ [key: string]: CharacterSheetModel } = {
+  default: basicCharacterSheet,
+  dd: ddCharSheet
 }
 
 export class Character {
@@ -25,7 +32,7 @@ export class Character {
   public name: string
   public htmlDescription: string
   public site: string|undefined
-  public sheet: CharacterSheetModel|undefined
+  public sheet: CharacterSheetModel = CHARACTER_SHEET_TYPES.default
   public stats: Map<string, number>
   private math = create(all)
 
@@ -36,6 +43,9 @@ export class Character {
     this.htmlDescription = data?.htmlDescription || ''
     this.site = data?.site || undefined
     this.stats = Character.parseStats(data?.stats || {})
+    if (data?.characterSheetType) {
+      this.applyCharacterSheet(data?.characterSheetType as string)
+    }
   }
 
   private static parseStats (stats:{ [key: string]: number }): Map<string, number> {
@@ -46,8 +56,13 @@ export class Character {
     return result
   }
 
-  public applyCharacterSheet (characterSheet: CharacterSheetModel): void {
-    this.sheet = characterSheet
+  public applyCharacterSheet (characterSheet: string): void {
+    if (!Object.keys(CHARACTER_SHEET_TYPES).includes(characterSheet)) {
+      logDebug('Unknown character sheet type', characterSheet)
+      this.sheet = CHARACTER_SHEET_TYPES.default
+      return
+    }
+    this.sheet = CHARACTER_SHEET_TYPES[characterSheet]
   }
 
   public getStat (stat: string): number {
@@ -69,6 +84,13 @@ export class Character {
     }
     if (!statModel.label) return stat
     return statModel.label[code] || statModel.label.en || stat
+  }
+
+  public getStatType (stat: string): string {
+    if (!this.sheet) {
+      return 'string'
+    }
+    return this.sheet.stats[stat]?.type || 'string'
   }
 
   public setStat (stat: string, value: number): void {

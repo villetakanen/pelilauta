@@ -100,7 +100,7 @@ export default defineComponent({
       // Start emitting changes as vue-model-changes
       quill.on('text-change', () => {
         if (modelContent.value === quill?.root.innerHTML) return
-        modelContent.value = quill?.root.innerHTML ?? ''
+        modelContent.value = quill?.root.innerHTML || ''
         if (props.debug) logDebug('RichTextEditor', 'update:content:', modelContent.value)
         context.emit('update:content', modelContent.value)
       })

@@ -1,6 +1,9 @@
 <template>
-  <div class="characterListingView">
-    <CharacterSheet :id="id" />
+  <div class="characterListingView bookLayout">
+    <CharacterSheet
+      :id="id"
+      class="double"
+    />
   </div>
 </template>
 

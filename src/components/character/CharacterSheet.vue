@@ -1,26 +1,23 @@
 <template>
-  <div>
+  <div class="CharacterSheet flexList">
     <div
-      v-for="block, index in character.sheet.layout"
-      :key="index"
+      v-for="(block, blockIndex) in character.sheet.layout"
+      :key="blockIndex"
     >
-      <span
-        v-for="item, lineindex in block"
-        :key="lineindex"
+      <div
+        v-for="(row, rowIndex) in block"
+        :key="rowIndex"
       >
-        <div
-          v-if="character.stats.has(item)"
-          class="stat"
+        <template
+          v-for="stat in row"
+          :key="stat"
         >
-          <span class="statLabel">
-            {{ character.getStatLabel(item, profileData.languageCode) }}
-          </span>
-          <span class="statValue">{{ character.getStat(item) }}</span>
-        </div>
-        <template v-else>
-          [ {{ character.deriveStat(item) }} ]
+          <CharacterStat
+            :character="character"
+            :stat="stat"
+          />
         </template>
-      </span>
+      </div>
     </div>
   </div>
 </template>
@@ -31,10 +28,11 @@ import { useCharacters } from '@/state/characters'
 import { Character } from '@/state/characters/Character'
 import { logDebug } from '@/utils/eventLogger'
 import { computed, defineComponent } from 'vue'
-import ddCharacterSheet from './ddCharSheet.json'
+import CharacterStat from './CharacterStat.vue'
 
 export default defineComponent({
   name: 'CharacterSheet',
+  components: { CharacterStat },
   props: {
     id: {
       type: String,
@@ -47,7 +45,6 @@ export default defineComponent({
     const character = computed(() => {
       logDebug('getting', props.id)
       const c = characters.value.get(props.id) || new Character('-')
-      c.applyCharacterSheet(ddCharacterSheet)
       return c
     })
     return { character, profileData }

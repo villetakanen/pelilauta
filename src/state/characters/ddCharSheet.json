@@ -1,12 +1,12 @@
 {
-  "layout": [
+  "layout": [[
           ["strength", "strength bonus"],
           ["dexterity", "dexterity bonus"],
           ["constitution", "constitution bonus"],
           ["intelligence", "intelligence bonus"],
           ["wisdom", "wisdom bonus"],
           ["charisma", "charisma bonus"] 
-        ],
+        ]],
   "stats": {
     "strength": {
       "type": "number",
