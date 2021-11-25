@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.0.1](https://github.com/villetakanen/pelilauta/compare/v12.0.0...v12.0.1) (2021-11-25)
+
+
+### Bug Fixes
+
+* added list components stylebook header ([cd5ab5a](https://github.com/villetakanen/pelilauta/commit/cd5ab5a054dc91767af5f04cd74888d9a89fbc33))
+* language switcher works again ([2a9c077](https://github.com/villetakanen/pelilauta/commit/2a9c07768aea159461c5b86d2159d11649568bbf))
+* locale changing is operational again ([e714bf6](https://github.com/villetakanen/pelilauta/commit/e714bf681cb656b570c7a809657839e25f2ecf7f))
+* stylebook toggle override removed ([87f914e](https://github.com/villetakanen/pelilauta/commit/87f914e4bec4c16f53befdf96f11f8eae6a0b6e6))
+
 ## [12.0.0](https://github.com/villetakanen/pelilauta/compare/v11.7.0...v12.0.0) (2021-11-25)
 
 
