@@ -113,5 +113,11 @@ npm run test:e2e
 
 ## License etc
 
-MIT 2.0 -> See LICENSE file
+Code MIT 2.0 -> See LICENSE file
+
+Assets/Images: licenced separately
+
+### We use
+
+Flag icons from https://github.com/HatScripts/circle-flags
 

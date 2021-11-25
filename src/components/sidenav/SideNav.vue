@@ -13,6 +13,7 @@
     >
       <div class="menuContainer">
         <SideNavMenu />
+        <LocaleSwitcher style="position: absolute; bottom: 0px; left: 12px" />
         <transition name="fade">
           <div
             v-if="showExperimentalTools"
@@ -32,11 +33,13 @@
 import { ComputedRef, defineComponent, inject } from 'vue'
 import SideNavMenu from '@/components/sidenav/SideNavMenu.vue'
 import { useAuth } from '@/state/authz'
+import LocaleSwitcher from '../app/LocaleSwitcher.vue'
 
 export default defineComponent({
   name: 'SideNav',
   components: {
-    SideNavMenu
+    SideNavMenu,
+    LocaleSwitcher
   },
   props: {
     modelValue: {
@@ -90,6 +93,9 @@ export default defineComponent({
     background-color: var(--color-b-c)
     opacity: 0.37
     z-index: 999
+
+.menuContainer
+  padding-bottom: 48px
 
 @include media('>=tablet')
   #sideNav

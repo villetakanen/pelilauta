@@ -5,15 +5,21 @@
   >
     <div
       class="en"
-      :class="{ selected: locale === 'en' }"
+      :class="{ nonselected: locale !== 'en' }"
     >
-      en
+      <img
+        src="@/assets/flags/gb.svg"
+        alt="en"
+      >
     </div>
     <div
       class="fi"
-      :class="{ selected: locale === 'fi' }"
+      :class="{ nonselected: locale !== 'fi' }"
     >
-      fi
+      <img
+        src="@/assets/flags/fi.svg"
+        alt="fi"
+      >
     </div>
   </div>
 </template>
@@ -55,20 +61,24 @@ export default defineComponent({
 @import @/styles/material-typography.sass
 div.LocaleSwitcher
   display: inline-block
-  border: solid 1px var(--chroma-secondary-g)
-  border-radius: 18px
-  height: 36px
-  padding: 0
   box-sizing: border-box
+  padding: 0
+  height: 36px
   div.en, div.fi
-    height: 32px
+    height: 36px
     display: inline-block
     text-transform: uppercase
-    line-height: 36px
-    padding: 0 8px
-    margin: 1px
     transition: all 0.3s ease-in-out
-  div.selected
-    background-color: var(--chroma-secondary-h)
     border-radius: 18px
+    img
+      height: 36px
+      width: 36px
+  div.en
+    margin-right: 4px
+  div.nonselected
+    img
+      -webkit-filter: grayscale(100%)
+      filter: grayscale(100%)
+      opacity: 0.55
+    background-color: var(--chroma-secondary-f)
 </style>

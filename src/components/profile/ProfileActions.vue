@@ -3,17 +3,6 @@
     <h1 class="title">
       {{ $t('profile.actions.title') }}
     </h1>
-    <p>{{ $t('profile.actions.helper') }}</p>
-
-    <p>
-      <Select
-        v-model="selectedLang"
-        name="selectLanguage"
-        :label="$t('profile.actions.selectLang')"
-        :opts="langs"
-      />
-    </p>
-
     <p>
       <Toggle
         v-model="showExperimentalTools"
@@ -84,7 +73,6 @@ import { useSnack } from '@/composables/useSnack'
 import Column from '../layout/Column.vue'
 import { getAuth } from '@firebase/auth'
 import Dialog from '../material/Dialog.vue'
-import Select from '../form/Select.vue'
 import Toggle from '../material/Toggle.vue'
 import Button from '../form/Button.vue'
 import Textfield from '../form/Textfield.vue'
@@ -93,7 +81,6 @@ export default defineComponent({
   components: {
     Column,
     Dialog,
-    Select,
     Toggle,
     Button,
     Textfield
