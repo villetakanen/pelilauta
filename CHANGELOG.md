@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.0.0](https://github.com/villetakanen/pelilauta/compare/v11.7.0...v12.0.0) (2021-11-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* all characters prior to this release, are broken.
+
+### Features
+
+* character creation ([f8fcf3a](https://github.com/villetakanen/pelilauta/commit/f8fcf3af826a7385d6d6ba421130bb0e2d574741))
+
+
+### Bug Fixes
+
+* character deletion operational ([4741de0](https://github.com/villetakanen/pelilauta/commit/4741de0b17d8195e16b93ba0a9bb5772fdb0cff3))
+* character have stats and json for sheet ([f422fa6](https://github.com/villetakanen/pelilauta/commit/f422fa616d1401ec08e33fedb20c996c509aea28))
+* character stats and derived stats logic done ([ca0f8b9](https://github.com/villetakanen/pelilauta/commit/ca0f8b9b22b8cfbca9d29528a0ead21c1f4d57c7))
+* charsheet stats added ([666d612](https://github.com/villetakanen/pelilauta/commit/666d61215fbf1cdedc5e6c9688caf772c714e35c))
+* delete menu item added to character view ([efed8b6](https://github.com/villetakanen/pelilauta/commit/efed8b610e1a34799581a2a24de3ed6d93850566))
+* deprecated old character methods ([5fb828d](https://github.com/villetakanen/pelilauta/commit/5fb828db8289f912b760093968c3d4d569708a4d))
+* description as a character stat ([c96460d](https://github.com/villetakanen/pelilauta/commit/c96460da5df2f3109e494caab3a6f3ca4318ae98))
+* some rendering updates for charsheet ([80ceab3](https://github.com/villetakanen/pelilauta/commit/80ceab30a2fe36a1081277da86219676a47742bf))
+* statlabels for character stats with i18n ([3b06b8f](https://github.com/villetakanen/pelilauta/commit/3b06b8ff991e5476266597d8814f090786c6237d))
+* updating a character works ([f72810f](https://github.com/villetakanen/pelilauta/commit/f72810f75da9431748649b26ae661142f0a0594c))
+
 ## [11.7.0](https://github.com/villetakanen/pelilauta/compare/v11.6.1...v11.7.0) (2021-11-22)
 
 
