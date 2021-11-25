@@ -5,6 +5,7 @@ import { useAuth } from '../authz'
 import { logDebug, logEvent } from '@/utils/eventLogger'
 import { Character } from './Character'
 import { useSnack } from '@/composables/useSnack'
+import { useI18n } from 'vue-i18n'
 
 const state = reactive({
   uid: '',
@@ -122,11 +123,22 @@ async function createCharacter (character: Character): Promise<string> {
   return doc.id
 }
 
+async function updateCharacter (character: Character): Promise<void> {
+  logDebug('updateCharacter', character.id)
+  const { pushSnack } = useSnack()
+  await updateDoc(
+    doc(getFirestore(), 'characters', character.id),
+    character.dryCopy()
+  )
+  pushSnack('Character updated')
+}
+
 export function useCharacters (): {
     characters: ComputedRef<Map<string, Character>>,
     loading: ComputedRef<boolean>
     createCharacter: (character: Character) => Promise<string>,
     deleteCharacter: (id: string) => Promise<void>
+    updateCharacter: (character: Character) => Promise<void>
     } {
   if (!_init) {
     _init = true
@@ -139,7 +151,7 @@ export function useCharacters (): {
       }
     }, { immediate: true })
   }
-  return { loading, characters, createCharacter, deleteCharacter }
+  return { loading, characters, createCharacter, deleteCharacter, updateCharacter }
 }
 
 export {

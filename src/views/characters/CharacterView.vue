@@ -5,6 +5,17 @@
         {{ character.name }}
       </ViewTitle>
       <SpacerDiv />
+      <Button
+        :working="working"
+        @click="save"
+      >
+        <Icon
+          name="save"
+          small
+          dark
+        />
+        {{ $t('action.save') }}
+      </Button>
       <MaterialMenu v-model="menu" />
     </Header>
     <main class="bookLayout">
@@ -60,10 +71,11 @@ import Toggle from '@/components/material/Toggle.vue'
 import Button from '@/components/form/Button.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import { useUxActions } from '@/composables/useUxActions'
+import Icon from '@/components/material/Icon.vue'
 
 export default defineComponent({
   name: 'CharacterView',
-  components: { CharacterSheet, ViewTitle, Header, SpacerDiv, MaterialMenu, Dialog, Toggle, Button, Toolbar },
+  components: { CharacterSheet, ViewTitle, Header, SpacerDiv, MaterialMenu, Dialog, Toggle, Button, Toolbar, Icon },
   props: {
     id: {
       type: String,
@@ -73,10 +85,11 @@ export default defineComponent({
   },
   setup (props) {
     const i18n = useI18n()
-    const { characters, deleteCharacter } = useCharacters()
+    const { characters, deleteCharacter, updateCharacter } = useCharacters()
     const deleteConfirm = ref(false)
     const showDeleteDialog = ref(false)
     const { reroute } = useUxActions()
+    const working = ref(false)
 
     const character = computed(() => {
       return characters.value.get(props.id) || new Character('...')
@@ -111,7 +124,13 @@ export default defineComponent({
       reroute('/profile/characters')
     }
 
-    return { character, menu, deleteConfirm, showDeleteDialog, drop }
+    async function save () {
+      working.value = true
+      await updateCharacter(character.value)
+      working.value = false
+    }
+
+    return { character, menu, deleteConfirm, showDeleteDialog, drop, save, working }
   }
 })
 </script>

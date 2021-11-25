@@ -69,8 +69,15 @@
     }
   },
   "character": {
+    "add": {
+      "title": "Luo hahmo"
+    },
     "meta": {
-      "title": "Yleistä"
+      "title": "Yleistä",
+      "name": "Nimi",
+      "system": "Valise lomake",
+      "site": "Valitse peli",
+      "noSite": "–"
     },
     "stats": {
       "name": "Nimi",
@@ -79,7 +86,12 @@
     "delete": {
       "title": "Poista hahmo",
       "warning": "Haluatko varmasti poistaa hahmon?"
-      }
+    },
+    "sheet": {
+      "plain": "Peruslomake",
+      "dnd": "Dungeons and Dragons 5e",
+      "quick": "The Quick"
+    }
   },
   "characters": {
     "title": "Hahmot"
