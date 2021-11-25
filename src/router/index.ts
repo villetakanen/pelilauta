@@ -247,6 +247,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "mekanismi" */ '../views/characters/CharacterView.vue')
   },
   {
+    name: 'character.add',
+    path: '/character/add',
+    props: false,
+    component: () => import(/* webpackChunkName: "mekanismi" */ '../views/characters/AddCharacterView.vue')
+  },
+  {
     name: 'site.keeper.view',
     path: '/site/:siteid/keeper',
     props: true,

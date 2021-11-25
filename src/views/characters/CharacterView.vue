@@ -75,7 +75,7 @@ export default defineComponent({
     const i18n = useI18n()
     const { characters, deleteCharacter } = useCharacters()
     const deleteConfirm = ref(false)
-    const showDeleteDialog = ref(true)
+    const showDeleteDialog = ref(false)
     const { reroute } = useUxActions()
 
     const character = computed(() => {

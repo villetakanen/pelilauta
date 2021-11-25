@@ -109,17 +109,24 @@ async function deleteCharacter (id: string): Promise<void> {
   pushSnack('Character deleted')
 }
 
+async function createCharacter (character: Character): Promise<string> {
+  logDebug('createCharacter', character.id)
+  const { user } = useAuth()
+  const { pushSnack } = useSnack()
+  character.player = user.value.uid
+  const doc = await addDoc(
+    collection(getFirestore(), 'characters'),
+    character.dryCopy()
+  )
+  pushSnack('Character created')
+  return doc.id
+}
+
 export function useCharacters (): {
-    // addPlayerCharacter: (type: string) => Promise<string>
     characters: ComputedRef<Map<string, Character>>,
     loading: ComputedRef<boolean>
+    createCharacter: (character: Character) => Promise<string>,
     deleteCharacter: (id: string) => Promise<void>
-    /* updatePlayerCharacter: (char:PlayerCharacter) => Promise<void>,
-    fetchPlayerCharacter: (id: string) => Promise<void>,
-    character: ComputedRef<PlayerCharacter|undefined|null>,
-    updatePlayerCharacterFields: (id: string, fields: PartialPlayerCharacter) => Promise<void>,
-    characterid: ComputedRef<string>,
-    createNewPlayerCharacter: (fields: PartialPlayerCharacter) => Promise<DocumentData> */
     } {
   if (!_init) {
     _init = true
@@ -132,5 +139,9 @@ export function useCharacters (): {
       }
     }, { immediate: true })
   }
-  return { loading, characters, deleteCharacter }
+  return { loading, characters, createCharacter, deleteCharacter }
+}
+
+export {
+  Character
 }

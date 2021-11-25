@@ -13,6 +13,9 @@ export interface CharacterStatModel {
   max?: number,
   formula?: string
 }
+export interface CharacterStat {
+  [key: string]: number|string|boolean
+}
 
 export interface CharacterSheetModel {
   layout: Array<Array<Array<string>>>
@@ -35,14 +38,16 @@ export class Character {
   public sheet: CharacterSheetModel = CHARACTER_SHEET_TYPES.default
   public stats: Map<string, number>
   private math = create(all)
+  public characterSheetType: string
 
-  constructor (id: string, data?:DocumentData) {
-    this.id = id
+  constructor (id?: string, data?:DocumentData) {
+    this.id = id || ''
     this.player = data?.player || undefined
     this.name = data?.name || 'N.N.'
     this.htmlDescription = data?.htmlDescription || ''
     this.site = data?.site || undefined
     this.stats = Character.parseStats(data?.stats || {})
+    this.characterSheetType = data?.characterSheetType || 'default'
     if (data?.characterSheetType) {
       this.applyCharacterSheet(data?.characterSheetType as string)
     }
@@ -132,19 +137,17 @@ export class Character {
     return Math.floor(result)
   }
 
-  public dryCopy (): {
-      id: string,
-      name: string,
-      htmlDescription: string
-      site: string|undefined
-        player: string|undefined
-        } {
-    return {
+  public dryCopy (): { [x: string]: string|CharacterStat } {
+    const dry: { [x: string]: undefined|string|CharacterStat } = {
       id: this.id,
       name: this.name,
       htmlDescription: this.htmlDescription,
       site: this.site,
-      player: this.player
+      characterSheetType: this.characterSheetType,
+      player: this.player,
+      stats: Object.fromEntries(this.stats.entries()) as { [key: string]: number|string|boolean }
     }
+    Object.keys(dry).forEach(k => dry[k] === undefined ? delete dry[k] : null)
+    return dry as { [x: string]: string|CharacterStat }
   }
 }
