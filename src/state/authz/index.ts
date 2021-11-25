@@ -155,6 +155,17 @@ async function eraseProfile (): Promise<void> {
   authState.profileDeletionInProgress = false
 }
 
+async function setLocale (locale:string): Promise<void> {
+  return updateDoc(
+    doc(
+      getFirestore(),
+      'profiles',
+      user.value.uid
+    ),
+    { languageCode: locale }
+  )
+}
+
 function useAuth (): {
     user: ComputedRef<{ uid: string }>
     registrationIncomplete: ComputedRef<boolean>
@@ -166,9 +177,10 @@ function useAuth (): {
     showExperimentalTools: WritableComputedRef<boolean>
     loginComplete: ComputedRef<boolean>
     profileData: ComputedRef<ProfileData>
+    setLocale: (locale:string) => Promise<void>
     eraseProfile: () => Promise<void>
     createProfile: (nick: string) => Promise<void>} {
-  return { user, profileData, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete, showExperimentalTools }
+  return { setLocale, user, profileData, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete, showExperimentalTools }
 }
 
 export {

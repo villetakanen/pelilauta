@@ -21,7 +21,10 @@
       v-if="!focus || focus === 'InteractiveElemets'"
       v-model="focus"
     />
-    <StatefullComponents v-if="!focus" />
+    <StatefullComponents
+      v-if="!focus || focus === 'StatefulComponents'"
+      v-model="focus"
+    />
     <ListComponents
       v-if="!focus || focus === 'ListComponents'"
       v-model="focus"
@@ -60,7 +63,7 @@ export default defineComponent({
     ListComponents
   },
   setup () {
-    const focus = ref('')
+    const focus = ref('StatefulComponents')
     const layout = ref('dashBoardLayout')
 
     function sendSnack () {
