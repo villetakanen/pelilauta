@@ -1,5 +1,6 @@
 <template>
   <Column class="ListComponents">
+    <h1>List Components</h1>
     <Toggle
       v-model="toggleVisibility"
       label="Toggle Focus"
