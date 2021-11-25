@@ -8,12 +8,12 @@
       </ViewTitle>
       <SpacerDiv />
       <Button
-        disabled
+        @click="reroute('/character/add')"
       >
         <Icon
-          style="opacity: 0.22"
           name="add"
           small
+          dark
         />
         {{ $t('action.add') }}
       </Button>
@@ -32,12 +32,14 @@ import Icon from '@/components/material/Icon.vue'
 import Button from '@/components/form/Button.vue'
 import { defineComponent } from 'vue'
 import CharacterListColumn from '@/components/profile/characters/CharacterListColumn.vue'
+import { useUxActions } from '@/composables/useUxActions'
 
 export default defineComponent({
   name: 'UserCharactersView',
   components: { Header, ViewTitle, SpacerDiv, Icon, Button, CharacterListColumn },
   setup () {
-
+    const { reroute } = useUxActions()
+    return { reroute }
   }
 })
 </script>

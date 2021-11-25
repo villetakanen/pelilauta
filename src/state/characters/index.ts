@@ -1,9 +1,11 @@
 import { ComputedRef, ref, computed, watch, reactive } from 'vue'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
-import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, getDoc } from '@firebase/firestore'
+import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, getDoc, deleteDoc } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { logDebug, logEvent } from '@/utils/eventLogger'
 import { Character } from './Character'
+import { useSnack } from '@/composables/useSnack'
+import { useI18n } from 'vue-i18n'
 
 const state = reactive({
   uid: '',
@@ -97,16 +99,46 @@ function subscribeCharacters () {
   })
 }
 
+async function deleteCharacter (id: string): Promise<void> {
+  logDebug('deleteCharacter', id)
+  const { user } = useAuth()
+  const { pushSnack } = useSnack()
+  if (user.value.uid !== characters.value.get(id)?.player) {
+    pushSnack('You can only delete your own characters')
+  }
+  await deleteDoc(doc(getFirestore(), 'characters', id))
+  pushSnack('Character deleted')
+}
+
+async function createCharacter (character: Character): Promise<string> {
+  logDebug('createCharacter', character.id)
+  const { user } = useAuth()
+  const { pushSnack } = useSnack()
+  character.player = user.value.uid
+  const doc = await addDoc(
+    collection(getFirestore(), 'characters'),
+    character.dryCopy()
+  )
+  pushSnack('Character created')
+  return doc.id
+}
+
+async function updateCharacter (character: Character): Promise<void> {
+  logDebug('updateCharacter', character.id)
+  const { pushSnack } = useSnack()
+  await updateDoc(
+    doc(getFirestore(), 'characters', character.id),
+    character.dryCopy()
+  )
+  pushSnack('Character updated')
+}
+
 export function useCharacters (): {
-    // addPlayerCharacter: (type: string) => Promise<string>
     characters: ComputedRef<Map<string, Character>>,
     loading: ComputedRef<boolean>
-    /* updatePlayerCharacter: (char:PlayerCharacter) => Promise<void>,
-    fetchPlayerCharacter: (id: string) => Promise<void>,
-    character: ComputedRef<PlayerCharacter|undefined|null>,
-    updatePlayerCharacterFields: (id: string, fields: PartialPlayerCharacter) => Promise<void>,
-    characterid: ComputedRef<string>,
-    createNewPlayerCharacter: (fields: PartialPlayerCharacter) => Promise<DocumentData> */
+    createCharacter: (character: Character) => Promise<string>,
+    deleteCharacter: (id: string) => Promise<void>
+    updateCharacter: (character: Character) => Promise<void>
     } {
   if (!_init) {
     _init = true
@@ -119,5 +151,9 @@ export function useCharacters (): {
       }
     }, { immediate: true })
   }
-  return { loading, characters }
+  return { loading, characters, createCharacter, deleteCharacter, updateCharacter }
+}
+
+export {
+  Character
 }
