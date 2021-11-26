@@ -25,7 +25,7 @@
 
       <template v-if="showMemberTools">
         <li class="subtitle">
-          {{ $t('sidenav.vault') }}
+          {{ $t('vault.title') }}
         </li>
         <SideNavMenuItem
           icon="attachments"
