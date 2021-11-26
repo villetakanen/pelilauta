@@ -1,265 +1,78 @@
 {
+  "about":{
+    "title": "About the App"
+  },
   "action": {
-    "addAttachment": "Add a file",
-    "addThread": "New Thread",
-    "addSite": "Create a Game",
-    "add": "Add",
-    "admin": "Admin",
-    "cancel": "Cancel",
-    "create": "Create",
-    "deferUpdate": "Remind me later",
+    "addSite": "Create new",
+    "addThread": "New Discussion",
     "delete": "Delete",
     "edit": "Edit",
-    "forgetMe": "Erase my profile",
-    "login": "Login",
-    "logout": "Logout",
-    "markAllRead": "Mark all threads read",
-    "save": "Save",
-    "share": "Share",
-    "toTopicList": "Topics",
-    "nextPage": "Load more threads",
+    "profile": "My Profile",
     "quote": "Quote",
-    "send": "Send",
-    "update": "Update"
+    "send": "Send"
   },
   "admin": {
-    "title": "Admin",
-    "action": {
-      "editorTest": "RTE Sandbox",
-      "topics": "Topics",
-      "stylebook": "Stylebook"
-    }
+    "title": "Admin"
   },
   "app": {
-    "lang": "EN",
     "title": "Pelilauta",
-    "footnote": "A Community SPA. All text content (c) by the author(s).",
-    "updatesAvailable": "A new version is available, please refresh",
-    "welcome": {
-      "title": "Welcome to Pelilauta",
-      "message": "Please login with Facebook, Google or email to access the full functionality of the App."
+    "footnote": "A Community SPA. All text content (c) by the author(s)."
+  },
+  "calltoaction":{
+    "forum": {
+      "title": "Discussions"
+    },
+    "site": {
+      "title": "Role Playing Games",
+      "text": "Create a new site for your game or campaign using our wiki-style game creation toolset",
+      "text2": "You can hide your game from public listings and hide it behind a magic link."
     }
-  },
-  "calltoaction": {
-    "site":{
-      "title": "Campaigns and Sites",
-      "text": "Create a site for you campaign or role playing game content using our wiki-like site creator.",
-      "text2": "Sites can be published to the community, or kept to the people who have the magic link."
-    }
-  },
-  "editorDialog": {
-    "title": "Post",
-    "titleFieldPlaceholder": "Thread title"
-  },
-  "errorPage":{
-    "notFound": "Broken route",
-    "message": "It seems that the route you used to reach this site is broken. You might find what you were looking for with search, or from the front page?"
-  },
-  "login": {
-    "title": "Login or Register",
-    "withEmail": "Send me the link",
-    "emailLoginMessage": "You can register, and login by using a link sent to you with email. Please note we use Google Firebase Authentication, and do store your account details in Google Public Cloud (EU sites, where possible)",
-    "emailLoginDataInfoLink": "More info at the Wiki",
-    "emailLoginHelper": "Your email adress",
-    "message": "Alternatively, you can use single sign on with the services below",
-    "withGoogleButton": "Google",
-    "withFacebookButton": "Facebook"
   },
   "home": {
     "changesCard": {
-      "title": "Mekanismi",
-      "seeMore": "... See more"
+      "title": "Sites and Games",
+      "seeMore": "... Show all"
     },
-    "wpcard": {
-      "openLink": "Open in"
-    }
-  },
-  "notification": {
-    "newThreadReply": "replied in a Thread."
-  },
-  "postHeader": {
-    "postedInStream": "in"
+    "wpcard":{
+      "openLink": "to"
+    },
+    "morePostsInTheForums": "More discussions in the forums"
   },
   "post": {
-    "nOfReplies": "replies",
-    "newRepliesNote": "new",
-    "more": "Read more"
-  },
-  "profile": {
-    "publicInfoTitle": "Profile",
-    "publicInfoHelper": "Your public profile data, visible to anyone browsing the site.",
-    "ssoInfocardTitle": "Personal information",
-    "ssoInfocardHelper": "Your personal profile data, visible to you and administration of the site.",
-    "tagline": "Tagline",
-    "title": "Profile",
-    "assets": "Media",
-    "asset": {
-      "list": {
-        "title": "My uploads"
-      }
-    },
-    "nick": "Nickname"
+    "nOfReplies": "comments"
   },
   "registration": {
-    "title": "Registration",
-    "info": "Please choose a public nickame – and we'll create a profile for you. Some parts of the profile data is available to all logged in users. ",
-    "createProfile": "Create my profile"
+    "title": "Register"
   },
-  "rte": {
-    "wikilink": {
-      "title": "Link",
-      "inbound": "Link a page",
-      "urlfield": "Address",
-      "pagefield": "Page title"
+  "reply": {
+    "editor": {
+      "helpertext": "Tags an author and sends a notification"
     }
   },
   "search": {
+    "title": "Search",
     "placeholderText": "Search..."
   },
+  "sites": {
+    "home":{
+      "title": "Games and Sites"
+    }
+  },
   "stream": {
-    "title": "Pelilauta",
-    "inStream": "In",
-    "thread": {
-      "deleteSuccess": "Thread erased permanently",
-      "deleteFail": "Uh, oh. It seems we are not able to delete the thread right now.",
-      "deleteWarning": "Deleting a thread will erase the discussion and any data related to the thread permanently. Please type DELETE to the field below to verfy you really want to do this."
-    }
+    "inStream": "in"
   },
-  "snacks": {
-    "invalidEmail": "Error handling email, please try again.",
-    "emailSent": "Login link sent succesfully.",
-    "updateSuccess": "Updated",
-    "updateFailed": "Update failed"
-  },
-  "sideNav": {
-      "toForumLink": "Discussions",
-      "toSitesLink": "Mekanismi",
-      "home": "Pelilauta",
-      "admin": "Admin",
-      "sections": "Sections",
-      "meta": "Meta",
-      "about": "About",
-      "profile": "My Profile",
-      "stylebook": "Stylebook",
-      "mekanismi": "Mekanismi",
-      "editorTest": "Editor testing",
-      "toMySitesLink": "My games"
-    },
-  "since": {
-    "lessThanHalfh": "Less than 30 min ago",
-    "lessThanTwoHours": "Less than 2h ago",
-    "lessThan24h": "Less than 24h ago"
-  },
-  "site": {
-    "title": "Pelilauta",
-    "players": {
-      "title": "Players",
-      "editingRightsWarning": "Please note: all players have full editing access to the site pages.",
-      "addAsNew": "Add to the game",
-      "dropThePlayer": "Remove",
-      "removed": "Player succesfully removed from the game.",
-      "actions": {
-        "addPage": "Uusi sivu"
-      }
-    },
-    "meta": {
-      "usePlayers": "Use Players -feature"
-    },
-    "threads":{
+  "threads":{
+    "home":{
       "title": "Discussions"
-    },
-    "filterSites": "Filter",
-    "settings": {
-      "title": "Asetukset"
     }
   },
-  "thread": {
-    "stickyToggle": "Sticky",
-    "pushToStream": "Push to Stream"
-  },
-  "threads": {
-    "sinceInTopic": "in",
-    "discussion": "Comments",
-    "updateSuccess": "Thread updated",
-    "updateFailed": "Thread update failed",
-    "title": "Thread title",
-    "topic": "Topic",
-    "home": {
-      "title": "Discussion"
-    }
-  },
-  "wiki": {
-    "title": "Mekanismi",
-    "createSite": "Add new",
-    "createSiteTitle": "Create a new Game or Site",
-    "newSiteFieldLabel": "Name the site", 
-    "errorSiteSlug": "The URL slug is taken already!",
-    "mySites": "My Games",
-    "site": {
-      "badge": "Game badge",
-      "visibleToggle": "Show in public lists"
+  "vault":{
+    "title": "Vault",
+    "characters": {
+      "title": "Characters"
     },
-    "page": {
-      "category": "Category",
-      "name": "Title",
-      "updateSuccesfull": "Page updated",
-      "updateFailed": "Failed to update the page.",
-      "deleteSuccess": "Page deleted",
-      "deleteFail": "Page delete failed",
-      "deleteWarning": "Deleting a page will erase the page and any data related to the page permanently. Please type DELETE to the field below to verfy you want to do this."
-    },
-    "category": {
-      "characters": "Characters",
-      "logs": "Logs",
-      "rules": "Rules",
-      "setting": "Setting"
-    },
-    "changesCard": {
-      "title": "Mekanismi changes"
-    }
-  },
-  "welcome": {
-    "header": "Pelilauta",
-    "paragraph": "The Elven Wizard casts a level 20 resurrection. Please login to continue."
-  },
-  "mekanismi": {
-    "title": "Mekanismi",
-    "index": "Site Index",
-    "siteinfo": "Site info",
-    "attachments": {
-      "title": "Attachments"
-    },
-    "sidebar": {
-      "pagelist": "Index"
-    },
-    "addPageCard": {
-      "title": "Add a new page",
-      "newPageTitle": "Name of the new page"
-    },
-    "site": {
-      "meta": "Site info",
-      "identity": "Identity",
-      "name": "Site Name",
-      "owners": "Site Owners (full control of the site)",
-      "addOwner": "Add an owner?",
-      "description": "Site Description"
-    },
-    "page": {
-      "name": "Page title",
-      "category": "Page category",
-      "meta": {
-        "title": "Page metadata"
-      } 
-    }
-  },
-  "siteInfo": {
-    "title": "Pelilauta 2"
-  },
-  "LovedThreads":{"title": "<3 Stream threads"},
-  "global": {
-    "messages": {
-      "pleaseLogin": "Please login to comment",
-      "linkShared": "Page link copied to clipboard"
+    "media": {
+      "title": "Media and files"
     }
   }
 }
