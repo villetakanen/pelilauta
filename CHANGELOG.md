@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.0.2](https://github.com/villetakanen/pelilauta/compare/v12.0.1...v12.0.2) (2021-11-26)
+
+
+### Bug Fixes
+
+* character name can be changed ([ba557a7](https://github.com/villetakanen/pelilauta/commit/ba557a701104e4777cc4175158b1ccdd3654f1df))
+* i18n polish ([183cd26](https://github.com/villetakanen/pelilauta/commit/183cd26f8eaf418e539e9b610b6448b3b0872575))
+* i18n polish for en language ([78eb539](https://github.com/villetakanen/pelilauta/commit/78eb5394ae8f830582a0b9cfd88e90ef291d9667))
+
 ### [12.0.1](https://github.com/villetakanen/pelilauta/compare/v12.0.0...v12.0.1) (2021-11-25)
 
 
