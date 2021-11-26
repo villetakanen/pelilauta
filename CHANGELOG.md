@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.1.3](https://github.com/villetakanen/pelilauta/compare/v12.1.2...v12.1.3) (2021-11-26)
+
+
+### Bug Fixes
+
+* avatar changing for profile is operational ([b71312c](https://github.com/villetakanen/pelilauta/commit/b71312c4e5895abf98fe66f993efa441b38751df))
+
 ### [12.1.2](https://github.com/villetakanen/pelilauta/compare/v12.1.1...v12.1.2) (2021-11-26)
 
 
