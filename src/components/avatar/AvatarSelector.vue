@@ -23,10 +23,10 @@
         <img
           v-for="asset in assets"
           :key="asset[0]"
-          :src="asset[1].url"
+          :src="asset[1].url.href"
           :alt="asset[1].name"
           class="selectableImage"
-          @click="setAvatar(asset[1].url)"
+          @click="setAvatar(asset[1].url.href)"
         >
       </div>
     </Dialog>
@@ -55,7 +55,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup (props, context) {
-    const selectDialog = ref(true)
+    const selectDialog = ref(false)
     const { user } = useAuth()
     const { assets } = useAssets()
     const selectedUrl = ref(props.modelValue)

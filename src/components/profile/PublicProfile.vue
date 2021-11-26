@@ -4,7 +4,7 @@
     <p>{{ $t('profile.publicInfoHelper') }}</p>
     <div class="profileForm">
       <div class="avatarTool">
-        <AvatarTool />
+        <AvatarSelector v-model="photoURL" />
       </div>
       <div class="profileFields">
         <Textfield
@@ -18,13 +18,12 @@
           :error="v.tagline.$error"
         />
         <div style="text-align: right">
-          <MaterialButton
-            :async-action="save"
-            text
-            :disabled="v.$errors.length > 0 || (!v.tagline.$dirty && !v.nickname.$dirty)"
+          <Button
+            :disabled="(v.$errors.length > 0 || (!v.tagline.$dirty && !v.nickname.$dirty)) && profileData.photoURL === photoURL"
+            @click="save"
           >
             {{ $t('action.save') }}
-          </MaterialButton>
+          </Button>
         </div>
       </div>
     </div>
@@ -35,39 +34,40 @@
 import { defineComponent, computed, ref, Ref } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import MaterialButton from '@/components/material/MaterialButton.vue'
-import { useProfile } from '@/state/authz'
+import { useAuth } from '@/state/authz'
 import { useAuthors } from '@/state/authors'
 import Textfield from '../form/Textfield.vue'
 import { useSnack } from '@/composables/useSnack'
 import { useI18n } from 'vue-i18n'
-import AvatarTool from './AvatarTool.vue'
 import Column from '../layout/Column.vue'
+import AvatarSelector from '../avatar/AvatarSelector.vue'
+import Button from '../form/Button.vue'
+import { logError } from '@/utils/eventLogger'
 
 export default defineComponent({
   name: 'PublicProfileInfoCard',
   components: {
-    MaterialButton,
     Textfield,
-    AvatarTool,
-    Column
+    Column,
+    AvatarSelector,
+    Button
   },
   setup () {
-    const { profile, updateProfile } = useProfile()
+    const { profileData, updateProfileData } = useAuth()
 
     // Nick field and persistency
-    const localNick:Ref<string|null> = ref(null)
+    const localNick = ref('')
     const nickname = computed({
-      get: () => (localNick.value === null ? profile.value.nick : localNick.value),
+      get: () => (!localNick.value ? profileData.value.nick : localNick.value),
       set: (val:string) => {
         localNick.value = val
       }
     })
 
     // Tagline field and persistency
-    const localTagline:Ref<string|null> = ref(null)
+    const localTagline:Ref<string> = ref('')
     const tagline = computed({
-      get: () => (localTagline.value === null ? profile.value.tagline : localTagline.value),
+      get: () => (!localTagline.value ? profileData.value.tagline : localTagline.value),
       set: (val:string|undefined) => {
         localTagline.value = val || ''
       }
@@ -75,7 +75,7 @@ export default defineComponent({
 
     const { authors } = useAuthors()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const uniqueNick = (value:any) => (value.toLowerCase() === profile.value.nick?.toLowerCase() || !authors.value.find((target) => (target.nick?.toLowerCase() === value.toLowerCase())))
+    const uniqueNick = (value:any) => (value.toLowerCase() === profileData.value.nick?.toLowerCase() || !authors.value.find((target) => (target.nick?.toLowerCase() === value.toLowerCase())))
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const minLength = (value:any) => (value.length > 3)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -88,17 +88,28 @@ export default defineComponent({
     const v = useVuelidate(rules, { nickname, tagline })
     const { pushSnack } = useSnack()
     const i18n = useI18n()
+
     const save = async () => {
       if (v.value.nickname.$error || v.value.tagline.$error) return
       try {
-        await updateProfile({ nick: '' + nickname.value, tagline: '' + tagline.value })
+        await updateProfileData({ nick: nickname.value, tagline: tagline.value, photoURL: photoURL.value })
         pushSnack(i18n.t('snacks.updateSuccess'))
-      } catch {
+      } catch (e) {
+        logError(e)
         pushSnack(i18n.t('snacks.updateFailed'))
       }
     }
 
-    return { profile, nickname, tagline, v, save }
+    // Tagline field and persistency
+    const localPhotoURL:Ref<string> = ref('')
+    const photoURL = computed({
+      get: () => (!localPhotoURL.value ? profileData.value.photoURL : localPhotoURL.value),
+      set: (val:string|undefined) => {
+        localPhotoURL.value = val || ''
+      }
+    })
+
+    return { nickname, tagline, v, save, photoURL, profileData }
   }
 })
 </script>

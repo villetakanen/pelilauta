@@ -26,10 +26,16 @@ const authState = reactive({
 class ProfileData {
   readonly lovedThreads: undefined|Array<string>
   languageCode: string
+  photoURL: string
+  nick: string
+  tagline: string
 
   constructor (data?:DocumentData) {
     this.lovedThreads = Array.isArray(data?.lovedThreads) ? data?.lovedThreads : undefined
     this.languageCode = data?.languageCode || 'fi'
+    this.photoURL = data?.photoURL || ''
+    this.nick = data?.nick || ''
+    this.tagline = data?.tagline || ''
     logDebug('ProfileData created as', this)
   }
 }
@@ -169,6 +175,28 @@ async function setLocale (locale:string): Promise<void> {
   )
 }
 
+export interface ProfileDataUpdate {
+  nick?: string
+  photoURL?: string
+  tagline?: string
+}
+
+async function updateProfileData (profile: ProfileDataUpdate): Promise<void> {
+  if (Object.keys(profile).length === 0) {
+    logDebug('no profile data to update')
+    return
+  }
+  logDebug('updating profile data', profile)
+  return updateDoc(
+    doc(
+      getFirestore(),
+      'profiles',
+      user.value.uid
+    ),
+    { ...profile }
+  )
+}
+
 function useAuth (): {
     user: ComputedRef<{ uid: string }>
     registrationIncomplete: ComputedRef<boolean>
@@ -180,10 +208,11 @@ function useAuth (): {
     showExperimentalTools: WritableComputedRef<boolean>
     loginComplete: ComputedRef<boolean>
     profileData: ComputedRef<ProfileData>
+    updateProfileData: (profile: ProfileDataUpdate) => Promise<void>
     setLocale: (locale:string) => Promise<void>
     eraseProfile: () => Promise<void>
     createProfile: (nick: string) => Promise<void>} {
-  return { setLocale, user, profileData, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete, showExperimentalTools }
+  return { updateProfileData, setLocale, user, profileData, registrationIncomplete, displayName, frozen, showMemberTools, anonymousSession, showAdminTools, eraseProfile, createProfile, loginComplete, showExperimentalTools }
 }
 
 export {
