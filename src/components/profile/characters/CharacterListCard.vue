@@ -5,24 +5,17 @@
         {{ character.name }}
       </router-link>
     </h3>
-    <Toolbar>
-      <Button text>
-        {{ $t('character.title') }}
-      </Button>
-    </Toolbar>
   </Card>
 </template>
 
 <script lang="ts">
-import Button from '@/components/form/Button.vue'
 import Card from '@/components/layout/Card.vue'
-import Toolbar from '@/components/layout/Toolbar.vue'
 import { useCharacters } from '@/state/characters'
 import { Character } from '@/state/characters/Character'
 import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
-  components: { Card, Toolbar, Button },
+  components: { Card },
   props: {
     id: {
       type: String,

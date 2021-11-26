@@ -1,5 +1,5 @@
 <template>
-  <div class="CharacterSheet flexList">
+  <div class="CharacterSheet">
     <div
       v-for="(block, blockIndex) in character.sheet.layout"
       :key="blockIndex"

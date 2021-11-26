@@ -55,5 +55,5 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .CharacterStat
-  display: inline-block
+  display: block
 </style>

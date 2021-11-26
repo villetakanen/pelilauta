@@ -23,6 +23,10 @@
         :id="id"
         class="double"
       />
+      <CharacterMetaForm
+        :character-id="id"
+        class="single"
+      />
     </main>
     <Dialog
       v-model="showDeleteDialog"
@@ -72,10 +76,11 @@ import Button from '@/components/form/Button.vue'
 import Toolbar from '@/components/layout/Toolbar.vue'
 import { useUxActions } from '@/composables/useUxActions'
 import Icon from '@/components/material/Icon.vue'
+import CharacterMetaForm from '@/components/character/CharacterMetaForm.vue'
 
 export default defineComponent({
   name: 'CharacterView',
-  components: { CharacterSheet, ViewTitle, Header, SpacerDiv, MaterialMenu, Dialog, Toggle, Button, Toolbar, Icon },
+  components: { CharacterSheet, ViewTitle, Header, SpacerDiv, MaterialMenu, Dialog, Toggle, Button, Toolbar, Icon, CharacterMetaForm },
   props: {
     id: {
       type: String,

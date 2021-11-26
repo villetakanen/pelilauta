@@ -3,6 +3,7 @@
     "title": "About the App"
   },
   "action": {
+    "add": "Add New",
     "addSite": "Create new",
     "addThread": "New Discussion",
     "delete": "Delete",
@@ -28,6 +29,9 @@
       "text2": "You can hide your game from public listings and hide it behind a magic link."
     }
   },
+  "character":{
+    "title": "Character"
+  },
   "home": {
     "changesCard": {
       "title": "Sites and Games",
@@ -40,6 +44,11 @@
   },
   "post": {
     "nOfReplies": "comments"
+  },
+  "profile":{
+    "characters": {
+      "title": "Characters"
+    }
   },
   "registration": {
     "title": "Register"
