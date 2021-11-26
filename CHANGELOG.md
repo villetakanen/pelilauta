@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.1.0](https://github.com/villetakanen/pelilauta/compare/v12.0.2...v12.1.0) (2021-11-26)
+
+
+### Features
+
+* avatar selecton component added ([52af94a](https://github.com/villetakanen/pelilauta/commit/52af94af70dc337d818b6e4d76fba55be8a0df62))
+
 ### [12.0.2](https://github.com/villetakanen/pelilauta/compare/v12.0.1...v12.0.2) (2021-11-26)
 
 
