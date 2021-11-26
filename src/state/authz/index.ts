@@ -18,7 +18,8 @@ const authState = reactive({
   useExperimentalTools: false,
   displayName: '',
   user: {
-    uid: ''
+    uid: '',
+    defaultAvatarURL: ''
   }
 })
 
@@ -106,7 +107,8 @@ function processAuthStateChanged (user: User|null) {
     authState.missingProfileData = false
     authState.anonymous = true
     authState.user = {
-      uid: ''
+      uid: '',
+      defaultAvatarURL: ''
     }
     localProfileData.value = new ProfileData()
     authState.loginComplete = true
@@ -115,7 +117,8 @@ function processAuthStateChanged (user: User|null) {
     authState.anonymous = false
     authState.displayName = user.displayName ?? 'anonymous'
     authState.user = {
-      uid: user.uid
+      uid: user.uid,
+      defaultAvatarURL: user.photoURL ?? ''
     }
     authState.loginComplete = true
     authState.useExperimentalTools = false

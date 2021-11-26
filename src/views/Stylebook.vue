@@ -63,7 +63,7 @@ export default defineComponent({
     ListComponents
   },
   setup () {
-    const focus = ref('')
+    const focus = ref('InteractiveElemets')
     const layout = ref('dashBoardLayout')
 
     function sendSnack () {

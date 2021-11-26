@@ -7,6 +7,12 @@
         label="Toggle Focus"
       />
     </p>
+    <section>
+      <h2>Avatar images</h2>
+      <div>
+        <AvatarSelector for-user />
+      </div>
+    </section>
     <h2>File uploads</h2>
     <p>Small Fab: <AddImageReplyAction style="display: inline-block" /></p>
     <h2>Dialog</h2>
@@ -51,6 +57,7 @@
 import { useSnack } from '@/composables/useSnack'
 import { MenuItem } from '@/utils/uiInterfaces'
 import { computed, defineComponent, ref } from 'vue'
+import AvatarSelector from '../avatar/AvatarSelector.vue'
 import AddImageReplyAction from '../discussion/AddImageReplyAction.vue'
 import Button from '../form/Button.vue'
 import Column from '../layout/Column.vue'
@@ -62,7 +69,7 @@ import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
   name: 'InteractiveElements',
-  components: { Column, Button, Dialog, SpacerDiv, Toolbar, MaterialMenu, Toggle, AddImageReplyAction },
+  components: { Column, Button, Dialog, SpacerDiv, Toolbar, MaterialMenu, Toggle, AddImageReplyAction, AvatarSelector },
   props: {
     modelValue: {
       type: String,
