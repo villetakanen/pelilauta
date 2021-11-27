@@ -5,6 +5,11 @@
         {{ character.name }}
       </router-link>
     </h3>
+    <div
+      v-if="character.avatarURL"
+      class="characterAvatar rise-1"
+      :style="`background-image: url(${character.avatarURL})`"
+    />
   </Card>
 </template>
 
@@ -33,4 +38,10 @@ export default defineComponent({
 <style lang="sass" scoped>
 .CharacterListCard.card+.CharacterListCard.card
   margin-top: 0
+.characterAvatar
+  height: 72px
+  width: 72px
+  border-radius: 50%
+  background-size: cover
+
 </style>

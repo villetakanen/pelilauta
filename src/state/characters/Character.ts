@@ -39,6 +39,7 @@ export class Character {
   public stats: Map<string, number>
   private math = create(all)
   public characterSheetType: string
+  public avatarURL: string|undefined
 
   constructor (id?: string, data?:DocumentData) {
     this.id = id || ''
@@ -51,6 +52,7 @@ export class Character {
     if (data?.characterSheetType) {
       this.applyCharacterSheet(data?.characterSheetType as string)
     }
+    this.avatarURL = data?.avatarURL || undefined
   }
 
   private static parseStats (stats:{ [key: string]: number }): Map<string, number> {
@@ -145,7 +147,8 @@ export class Character {
       site: this.site,
       characterSheetType: this.characterSheetType,
       player: this.player,
-      stats: Object.fromEntries(this.stats.entries()) as { [key: string]: number|string|boolean }
+      stats: Object.fromEntries(this.stats.entries()) as { [key: string]: number|string|boolean },
+      avatarURL: this.avatarURL
     }
     Object.keys(dry).forEach(k => dry[k] === undefined ? delete dry[k] : null)
     return dry as { [x: string]: string|CharacterStat }
