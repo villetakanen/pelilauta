@@ -1,28 +1,23 @@
 <template>
   <div class="keeper">
     <SiteToolbar />
-    <div class="flexLayout">
-      <div
-        v-for="c in siteCharacters"
-        :key="c[0]"
-        class="flex-span-1"
-      >
-        <h4>{{ c[1].name }}</h4>
-        <div :innerHTML="c[1].htmlContent" />
-      </div>
-    </div>
+    <main class="bookLayout">
+      <CharacterList />
+    </main>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, watch } from 'vue'
-import { useSite, useSiteCharacters } from '@/state/site'
+import { useSite } from '@/state/site'
 import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
+import CharacterList from '@/components/keeper/CharacterList.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
   components: {
-    SiteToolbar
+    SiteToolbar,
+    CharacterList
   },
   props: {
     siteid: {
@@ -40,9 +35,6 @@ export default defineComponent({
         useSite(siteid)
       }, { immediate: true })
     })
-    const { site } = useSite()
-    const { siteCharacters } = useSiteCharacters()
-    return { site, siteCharacters }
   }
 })
 </script>

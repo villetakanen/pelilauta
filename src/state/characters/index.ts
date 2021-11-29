@@ -5,7 +5,6 @@ import { useAuth } from '../authz'
 import { logDebug, logEvent } from '@/utils/eventLogger'
 import { Character } from './Character'
 import { useSnack } from '@/composables/useSnack'
-import { useI18n } from 'vue-i18n'
 
 const state = reactive({
   uid: '',

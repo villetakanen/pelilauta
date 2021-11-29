@@ -10,7 +10,8 @@
     "edit": "Edit",
     "profile": "My Profile",
     "quote": "Quote",
-    "send": "Send"
+    "send": "Send",
+    "share": "Share"
   },
   "admin": {
     "title": "Admin"
@@ -61,6 +62,17 @@
   "search": {
     "title": "Search",
     "placeholderText": "Search..."
+  },
+  "site":{
+    "keeper": {
+      "title": "Character Keeper"
+    },
+    "meta": {
+      "title": "Features"
+    },
+    "settings":{
+      "title":"Site Settings"
+    }
   },
   "sites": {
     "home":{

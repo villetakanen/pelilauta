@@ -7,7 +7,7 @@ import { PublicProfile, useAuth } from '../authz'
 import { PageCategory, defaultCategories, unmarshallCategories, marshallCategories } from './pagecategory'
 import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateDoc, addDoc, collection } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
-import { subscribeCharacters, useSiteCharacters } from './characters'
+import { useSiteCharacters } from './useSiteCharacters'
 import { PageLogEntry } from '../pages/usePage'
 import { logDebug } from '@/utils/eventLogger'
 
@@ -141,7 +141,6 @@ function subscribeTo (id: string): void {
   refreshStorage(id)
   subscribeToPages(id)
   subscribeToAssets(id)
-  subscribeCharacters(id)
 
   logEvent(getAnalytics(), 'Subscribing Site', { id: id })
 
