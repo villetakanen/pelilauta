@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.2.1](https://github.com/villetakanen/pelilauta/compare/v12.2.0...v12.2.1) (2021-11-29)
+
+
+### Bug Fixes
+
+* game can be added to a character ([d64e460](https://github.com/villetakanen/pelilauta/commit/d64e4606a793fca380dac397f36ecab377e5470d))
+
 ## [12.2.0](https://github.com/villetakanen/pelilauta/compare/v12.1.3...v12.2.0) (2021-11-27)
 
 
