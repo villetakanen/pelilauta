@@ -10,6 +10,14 @@
       class="characterAvatar rise-1"
       :style="`background-image: url(${character.avatarURL})`"
     />
+    <p v-if="character.site">
+      <router-link :to="`/site/${site.id}`">
+        {{ site.name }}
+      </router-link>
+    </p>
+    <p v-else>
+      <i>{{ $t('character.meta.noSite') }}</i>
+    </p>
   </Card>
 </template>
 
@@ -17,6 +25,8 @@
 import Card from '@/components/layout/Card.vue'
 import { useCharacters } from '@/state/characters'
 import { Character } from '@/state/characters/Character'
+import { toSite } from '@/state/site'
+import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
@@ -29,8 +39,10 @@ export default defineComponent({
   },
   setup (props) {
     const { characters } = useCharacters()
+    const { userSites } = useSites()
     const character = computed(() => characters.value.get(props.id) || new Character('...'))
-    return { character }
+    const site = computed(() => userSites.value.find((site) => site.id === character.value.site) || toSite())
+    return { character, site }
   }
 })
 </script>
