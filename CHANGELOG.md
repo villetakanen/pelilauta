@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.3.0](https://github.com/villetakanen/pelilauta/compare/v12.2.1...v12.3.0) (2021-11-30)
+
+
+### Features
+
+* uses charna for sheets ([0462745](https://github.com/villetakanen/pelilauta/commit/0462745eddb5cc609bb8b88111623e883e2e5281))
+
+
+### Bug Fixes
+
+* keeper works with toggle-for-stats ([6d56bc2](https://github.com/villetakanen/pelilauta/commit/6d56bc276e73fa00dc1c1f8f0cbbbbb09cd303e9))
+* numerical stats are shown in some form ([ebc6770](https://github.com/villetakanen/pelilauta/commit/ebc6770696e03bb1b1f5e6505bc2cc19b7b9a9c8))
+
 ### [12.2.1](https://github.com/villetakanen/pelilauta/compare/v12.2.0...v12.2.1) (2021-11-29)
 
 
