@@ -1,17 +1,21 @@
 <template>
-  <div vlass="CharacterStat">
+  <div class="CharacterStat">
     <template v-if="type === 'string'">
       <RichTextEditor v-model:content="editableStat" />
     </template>
-    <template v-else>
-      {{ stat }}: {{ character.getStat(stat) }} | {{ type }}
+    <template v-if="type === 'number'">
+      <div class="rating">
+        <div class="TypeCaption label">
+          {{ stat }}
+        </div>
+        <div class="value">
+          {{ editableStat }}
+        </div>
+      </div>
     </template>
-    <div
-      v-if="showAdminTools"
-      class="debug"
-    >
-      {{ character.getStat(stat) }}
-    </div>
+    <template v-else>
+      {{ stat }}: {{ editableStat }} | {{ type }}
+    </template>
   </div>
 </template>
 
@@ -55,5 +59,21 @@ export default defineComponent({
 
 <style lang="sass" scoped>
 .CharacterStat
-  display: block
+  margin-bottom: 12px
+  .rating
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 4px
+  .label
+    font-weight: bold
+  .value
+    height: 48px
+    width: 48px
+    background-color: var(--chroma-secondary-d)
+    text-align: center
+    line-height: 48px
+    color: var(--chroma-secondary-i)
+    font-size: 24px
+    border-radius: 50%
 </style>
