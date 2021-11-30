@@ -53,7 +53,7 @@ export default defineComponent({
       if (characters.value.size > 0) {
         const [first] = characters.value.values()
         logDebug('CharacterList.vue', 'setup', 'first', first)
-        return Array.from(first.stats.keys())
+        return first.statKeys()
       }
       return []
     })

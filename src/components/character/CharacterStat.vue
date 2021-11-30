@@ -1,6 +1,6 @@
 <template>
   <div vlass="CharacterStat">
-    <template v-if="type === 'rich-text'">
+    <template v-if="type === 'string'">
       <RichTextEditor v-model:content="editableStat" />
     </template>
     <template v-else>
@@ -35,12 +35,12 @@ export default defineComponent({
   },
   setup (props) {
     const { showAdminTools } = useAuth()
-    const type = computed(() => props.character.getStatType(props.stat))
+    const type = computed(() => props.character.getStat(props.stat)?.type || 'number')
 
     const editableStat = computed({
-      get: () => props.character.getStat(props.stat),
+      get: () => props.character.getStat(props.stat)?.value,
       set: (value) => {
-        props.character.setStat(props.stat, value)
+        props.character.setStat(props.stat, value || 0)
       }
     })
 

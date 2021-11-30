@@ -1,16 +1,9 @@
 {
-  "layout": [ 
-    [
-      ["description"]
-    ]
- ],
+  "id": "Basic Charactersheet",
   "stats": {
     "description": {
-      "type": "rich-text",
-      "label": {
-        "en": "Description",
-        "fi": "Kuvaus"
-      }
+      "type": "string",
+      "initialValue": "..."
     }
   }
 }

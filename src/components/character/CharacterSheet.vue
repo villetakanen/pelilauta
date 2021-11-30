@@ -1,23 +1,13 @@
 <template>
   <div class="CharacterSheet">
     <div
-      v-for="(block, blockIndex) in character.sheet.layout"
-      :key="blockIndex"
+      v-for="key in character.statKeys()"
+      :key="key"
     >
-      <div
-        v-for="(row, rowIndex) in block"
-        :key="rowIndex"
-      >
-        <template
-          v-for="stat in row"
-          :key="stat"
-        >
-          <CharacterStat
-            :character="character"
-            :stat="stat"
-          />
-        </template>
-      </div>
+      <CharacterStat
+        :character="character"
+        :stat="key"
+      />
     </div>
   </div>
 </template>
