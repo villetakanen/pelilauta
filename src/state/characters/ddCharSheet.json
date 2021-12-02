@@ -1,6 +1,10 @@
 {
-  "id": "D&D 5th edition sheet redacted variant",
+  "name": "D&D 5th edition sheet redacted variant",
   "stats": {
+    "description": {
+      "type": "string",
+      "initialValue": "..."
+    },
     "strength": {
       "type": "number",
       "initialValue": 10

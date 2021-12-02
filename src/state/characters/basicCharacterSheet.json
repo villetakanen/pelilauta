@@ -1,5 +1,5 @@
 {
-  "id": "Basic Charactersheet",
+  "name": "Basic Charactersheet",
   "stats": {
     "description": {
       "type": "string",

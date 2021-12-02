@@ -1,14 +1,16 @@
 <template>
   <div class="CharacterSheet">
-    <div
-      v-for="key in character.statKeys()"
-      :key="key"
+    <template
+      v-for="k in Object.keys(layout)"
+      :key="k"
     >
-      <CharacterStat
-        :character="character"
-        :stat="key"
-      />
-    </div>
+      <template v-if="typeof layout[k] === 'string'">
+        <CharacterStat
+          :character="character"
+          :stat="k"
+        />
+      </template>
+    </template>
   </div>
 </template>
 
@@ -17,8 +19,22 @@ import { useAuth } from '@/state/authz'
 import { useCharacters } from '@/state/characters'
 import { Character } from '@/state/characters/Character'
 import { logDebug } from '@/utils/eventLogger'
-import { computed, defineComponent } from 'vue'
+import { computed, ComputedRef, defineComponent } from 'vue'
 import CharacterStat from './CharacterStat.vue'
+import defautsheet from '@/layouts/default.layout.json'
+import ddsheet from '@/layouts/dd5.layout.json'
+
+interface ThirdLevelNode {
+  [key: string]: string | Array<string>
+}
+
+interface SecondLevelNode {
+  [key: string]: string | Array<string> | ThirdLevelNode
+}
+
+interface LayoutNode {
+  [key: string]: string | SecondLevelNode | Array<string | SecondLevelNode>
+}
 
 export default defineComponent({
   name: 'CharacterSheet',
@@ -37,7 +53,13 @@ export default defineComponent({
       const c = characters.value.get(props.id) || new Character('-')
       return c
     })
-    return { character, profileData }
+    const layout:ComputedRef<LayoutNode> = computed(() => {
+      if (character.value.characterSheetType === 'dd') {
+        return ddsheet
+      }
+      return defautsheet
+    })
+    return { character, profileData, layout }
   }
 })
 </script>
