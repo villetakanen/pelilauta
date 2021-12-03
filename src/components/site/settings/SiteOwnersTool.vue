@@ -1,5 +1,5 @@
 <template>
-  <div class="siteOwnersTool">
+  <Column class="siteOwnersTool">
     <h1 class="title">
       {{ $t('site.settings.access.ownersToolTitle') }}
     </h1>
@@ -25,10 +25,11 @@
         {{ $t('action.add') }}
       </MaterialButton>
     </div>
-  </div>
+  </Column>
 </template>
 
 <script lang="ts">
+import Column from '@/components/layout/Column.vue'
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import { useAuthors } from '@/state/authors'
@@ -37,7 +38,7 @@ import { computed, defineComponent, PropType, ref } from 'vue'
 import OwnerChip from './OwnerChip.vue'
 
 export default defineComponent({
-  components: { OwnerChip, MaterialSelect, MaterialButton },
+  components: { OwnerChip, MaterialSelect, MaterialButton, Column },
   props: {
     site: {
       type: Object as PropType<Site>,

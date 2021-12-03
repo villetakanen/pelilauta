@@ -1,5 +1,5 @@
 <template>
-  <div class="CharacterList">
+  <Column class="CharacterList">
     <section class="listOfCharacters">
       <template
         v-for="character in characters"
@@ -33,7 +33,7 @@
         />
       </template>
     </section>
-  </div>
+  </Column>
 </template>
 
 <script lang="ts">
@@ -41,10 +41,11 @@ import { useSiteCharacters } from '@/state/site'
 import { logDebug } from '@/utils/eventLogger'
 import { computed, defineComponent, ref } from 'vue'
 import AuthorTag from '../author/AuthorTag.vue'
+import Column from '../layout/Column.vue'
 import Toggle from '../material/Toggle.vue'
 
 export default defineComponent({
-  components: { AuthorTag, Toggle },
+  components: { AuthorTag, Toggle, Column },
   setup () {
     const { characters } = useSiteCharacters()
     logDebug('CharacterList.vue', 'setup', 'siteCharacters', characters)

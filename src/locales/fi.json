@@ -126,6 +126,14 @@
   "impressions": {
     "seenBy": "Seuraa"
   },
+  "keeper": {
+    "title": "Keeper",
+    "sitePlayersTool": {
+      "title": "Pelaajat",
+      "description": "Huom: pelaajilla on täydet muokkausoikeudet sivuihin.",
+      "addPlayer": "Lisää pelaaja"
+    }
+  },
   "language": {
     "fi": "Suomi",
     "en": "Englanti"

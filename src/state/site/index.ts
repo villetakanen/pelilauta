@@ -161,6 +161,7 @@ function hasAdmin (uid?: string): boolean {
 }
 
 async function addPlayer (uid:string) {
+  console.log('Adding player', uid)
   const playersArray = Array.isArray(stateSite.value.players) ? stateSite.value.players : new Array<string>()
   if (!playersArray.includes(uid)) playersArray.push(uid)
   return updateSite({ id: stateSite.value.id, players: playersArray })
@@ -247,11 +248,18 @@ const showSiteMemberTools = computed(() => {
   return false
 })
 
+const showSiteAdminTools = computed(() => {
+  const { user } = useAuth()
+  if (site.value.owners?.includes(user.value.uid)) return true
+  return false
+})
+
 function useSite (id?: string):
   {
     site: ComputedRef<Site>,
     members: ComputedRef<Array<PublicProfile>>,
     showSiteMemberTools: ComputedRef<boolean>,
+    showSiteAdminTools: ComputedRef<boolean>,
     hasAdmin: (uid?: string) => boolean,
     revokeOwner: (uid: string) => Promise<void>
     addOwner: (uid: string) => Promise<void>,
@@ -259,7 +267,7 @@ function useSite (id?: string):
     removePlayer: (uid: string) => Promise<void>,
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members, showSiteMemberTools }
+  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members, showSiteMemberTools, showSiteAdminTools }
 }
 
 export {

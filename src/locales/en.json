@@ -43,6 +43,14 @@
     },
     "morePostsInTheForums": "More discussions in the forums"
   },
+  "keeper": {
+    "title": "Keeper",
+    "sitePlayersTool": {
+      "title": "Players",
+      "description": "Please note: all players have full site editor access",
+      "addPlayer": "Add a player"
+    }
+  },
   "post": {
     "nOfReplies": "comments"
   },

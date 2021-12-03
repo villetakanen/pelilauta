@@ -2,16 +2,18 @@
   <div class="siteSettings">
     <SiteToolbar />
     <div class="dashBoardLayout">
-      <SiteAccessDashCard :site="site" />
+      <SiteOwnersTool :site="site" />
+      <SitePlayesTool />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import SiteAccessDashCard from '@/components/site/settings/SiteAccessDashCard.vue'
 import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
+import SiteOwnersTool from '@/components/site/settings/SiteOwnersTool.vue'
+import SitePlayesTool from '@/components/keeper/SitePlayesTool.vue'
 
 /**
  * A Router view for a player management screen of a site
@@ -23,7 +25,7 @@ import { defineComponent } from 'vue'
  */
 export default defineComponent({
   name: 'SiteSettingsView',
-  components: { SiteToolbar, SiteAccessDashCard },
+  components: { SiteToolbar, SiteOwnersTool, SitePlayesTool },
   props: {
     siteid: {
       type: String,
