@@ -1,7 +1,7 @@
 <template>
   <teleport to="#ScreenBottomFabsContainer">
     <FabTray
-      v-if="showTools"
+      v-if="showSiteMemberTools"
       class="PageFabs"
     >
       <Fab3
@@ -15,10 +15,9 @@
 
 <script lang="ts">
 import { useUxActions } from '@/composables/useUxActions'
-import { useAuth } from '@/state/authz'
 import { usePage } from '@/state/pages/usePage'
-import { SiteClass, useSite } from '@/state/site'
-import { computed, defineComponent } from 'vue'
+import { useSite } from '@/state/site'
+import { defineComponent } from 'vue'
 import Fab3 from '../material3/Fab3.vue'
 import FabTray from '../material3/FabTray.vue'
 
@@ -29,15 +28,11 @@ export default defineComponent({
     FabTray
   },
   setup () {
-    const { site } = useSite()
+    const { site, showSiteMemberTools } = useSite()
     const { page } = usePage()
-    const { user } = useAuth()
     const { reroute } = useUxActions()
-    const showTools = computed(() => {
-      return new SiteClass(site.value).isOwner(user.value.uid)
-    })
     return {
-      showTools,
+      showSiteMemberTools,
       reroute,
       site,
       page

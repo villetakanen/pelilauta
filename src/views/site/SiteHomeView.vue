@@ -31,7 +31,7 @@
       </Column>
     </div>
     <teleport to="#ScreenBottomFabsContainer">
-      <FabTray v-if="showTools">
+      <FabTray v-if="showSiteMemberTools">
         <Fab3
           :icon="'addDiscussion'"
           :label="$t('action.addThread')"
@@ -56,8 +56,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, watch } from 'vue'
-import { SiteClass, useSite } from '@/state/site'
+import { defineComponent, onMounted, watch } from 'vue'
+import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import { usePage } from '@/state/pages/usePage'
@@ -70,7 +70,6 @@ import Button from '@/components/form/Button.vue'
 import { useUxActions } from '@/composables/useUxActions'
 import FabTray from '@/components/material3/FabTray.vue'
 import Fab3 from '@/components/material3/Fab3.vue'
-import { useAuth } from '@/state/authz'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -93,7 +92,6 @@ export default defineComponent({
   setup (props) {
     const { site, showSiteMemberTools } = useSite(props.siteid)
     const { page } = usePage(props.siteid, props.siteid)
-    const { user } = useAuth()
     const { fetchSiteThreads } = useThreads()
     const { reroute } = useUxActions()
 
@@ -105,11 +103,7 @@ export default defineComponent({
       }, { immediate: true })
     })
 
-    const showTools = computed(() => {
-      return new SiteClass(site.value).isOwner(user.value.uid)
-    })
-
-    return { page, site, renderWikiLinks, showSiteMemberTools, reroute, showTools }
+    return { page, site, renderWikiLinks, showSiteMemberTools, reroute }
   }
 })
 </script>
