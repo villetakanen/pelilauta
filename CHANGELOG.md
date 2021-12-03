@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.2](https://github.com/villetakanen/pelilauta/compare/v12.3.1...v12.3.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* charna updates merged ([af8ae8f](https://github.com/villetakanen/pelilauta/commit/af8ae8f903a5ec72878aa9ceb9b65a49d840788b))
+* show member tools for players too ([838eb7e](https://github.com/villetakanen/pelilauta/commit/838eb7ee7e01543d916d07a9a365291c21fac0b9))
+
 ### [12.3.1](https://github.com/villetakanen/pelilauta/compare/v12.3.0...v12.3.1) (2021-11-30)
 
 ## [12.3.0](https://github.com/villetakanen/pelilauta/compare/v12.2.1...v12.3.0) (2021-11-30)
