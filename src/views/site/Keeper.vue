@@ -2,7 +2,8 @@
   <div class="keeper">
     <SiteToolbar />
     <main class="bookLayout">
-      <CharacterList />
+      <CharacterList class="double" />
+      <div>Playertool</div>
     </main>
   </div>
 </template>

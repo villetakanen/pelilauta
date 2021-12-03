@@ -14,7 +14,7 @@
           >
             <div>
               <span>{{ stat }}</span>&nbsp;
-              <span>{{ character[1].getStat(stat) }}</span>
+              <span>{{ character[1].getStat(stat) ? character[1].getStat(stat).value : '' }}</span>
             </div>
           </template>
         </div>
