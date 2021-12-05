@@ -5,7 +5,7 @@ import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
 import { PublicProfile, useAuth } from '../authz'
 import { PageCategory, defaultCategories, unmarshallCategories, marshallCategories } from './pagecategory'
-import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateDoc, addDoc, collection } from '@firebase/firestore'
+import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateDoc } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { useSiteCharacters } from './useSiteCharacters'
 import { PageLogEntry } from '../pages/usePage'
@@ -173,22 +173,6 @@ async function removePlayer (uid:string) {
   return updateSite({ id: stateSite.value.id, players: playersArray })
 }
 
-export async function createSite (data: SiteData): Promise<string> {
-  const { user } = useAuth()
-
-  data.owners = [user.value.uid]
-
-  const sitedoc = await addDoc(
-    collection(
-      getFirestore(),
-      'sites'
-    ),
-    data
-  )
-
-  return sitedoc.id
-}
-
 async function updateSite (data: SiteData): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
 
@@ -271,7 +255,6 @@ function useSite (id?: string):
 }
 
 export {
-  // createSite,
   addPage,
   deletePage,
   fetchPage,
