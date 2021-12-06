@@ -1,6 +1,10 @@
+import { logDebug, logError } from '@/utils/eventLogger'
 import { DocumentData } from '@firebase/firestore'
 import { Storable, StorableDoc } from '../Storable'
 
+/**
+ * Site specific extra fields we want to store in Firestore, with types.
+ */
 export interface SiteDoc extends StorableDoc {
   name?: string
   description?: string
@@ -13,21 +17,25 @@ export interface SiteDoc extends StorableDoc {
   theme?: string
 }
 
+/**
+ * A Mekanismi Site object, as a Firestore document.
+ *
+ * Helper methods are provided for reactive attributes and for converting to/from Firestore DocumentData.
+ */
 export class Site extends Storable {
     name = ''
     description = ''
     owners: string[] = []
     players: string[] = []
-    usePlayers = false
-    hidden = true
+    usePlayers = false // By default, the Keeper functionality is hidden
+    hidden = true // By default, this site is not visible in public listings and search
     system = ''
-    systemBadge = ''
+    private _systemBadge = '' // Deprecated, use system, and theme instead
     theme = ''
 
     constructor (site: string|SiteDoc = '', data?: SiteDoc) {
       super(site as StorableDoc, data)
       const d:SiteDoc = typeof site !== 'string' ? site : data ? { ...data } : { id: site }
-
       this.docData = d
     }
 
@@ -51,13 +59,25 @@ export class Site extends Storable {
       this.owners = doc.owners || []
       this.players = doc.players || []
       this.usePlayers = doc.usePlayers || false
-      this.hidden = doc.hidden || false
+      this.hidden = doc.hidden || true
 
       // Backwards compatibility, remove in future when all sites have the system field set
       const s = doc?.system || doc?.systemBadge || ''
       this.system = s
-      this.systemBadge = s
+      this._systemBadge = s
       this.theme = s
+    }
+
+    get systemBadge (): string {
+      logDebug('Site.systemBadge is deprecated, use Site.system and Site.theme instead')
+      return this._systemBadge
+    }
+
+    set systemBadge (s:string) {
+      logDebug('Site.systemBadge is deprecated, use Site.system and Site.theme instead')
+      this._systemBadge = s
+      this.theme = s
+      this.system = s
     }
 
     hasOwner (uid:string): boolean {

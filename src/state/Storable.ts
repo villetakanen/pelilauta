@@ -1,13 +1,16 @@
 import { DocumentData, Timestamp, serverTimestamp } from '@firebase/firestore'
 
+/**
+ * A class that can be stored in Firestore. We expect each document to have a createdAt and updatedAt field.
+ */
 export interface StorableDoc {
   id: string
-  created?: Timestamp
-  updated?: Timestamp
+  createdAt?: Timestamp
+  updatedAt?: Timestamp
 }
 
 /**
- * A helper superclass for entities storable to Firestone
+ * A helper superclass for business entities storable to Firestore as docs.
  */
 export class Storable implements StorableDoc {
   private _id: string
@@ -28,11 +31,11 @@ export class Storable implements StorableDoc {
     return this._id
   }
 
-  get created (): Timestamp|undefined {
+  get createdAt (): Timestamp|undefined {
     return this._created
   }
 
-  get updated (): Timestamp|undefined {
+  get updatedAt (): Timestamp|undefined {
     return this._updated
   }
 
@@ -51,9 +54,9 @@ export class Storable implements StorableDoc {
   }
 
   compareChangeTime (other:Storable): number {
-    if (!other.updated) return 1 // other site has no lastUpdate, this is more recent
-    if (!this.updated) return -1 // this site has no lastUpdate, other is more recent
-    if (other.updated.toMillis() > this.updated.toMillis()) {
+    if (!other.updatedAt) return 1 // other site has no lastUpdate, this is more recent
+    if (!this.updatedAt) return -1 // this site has no lastUpdate, other is more recent
+    if (other.updatedAt.toMillis() > this.updatedAt.toMillis()) {
       return -1
     }
     return 1
