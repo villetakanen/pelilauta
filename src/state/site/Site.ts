@@ -1,4 +1,4 @@
-import { logDebug, logError } from '@/utils/eventLogger'
+import { logDebug } from '@/utils/eventLogger'
 import { DocumentData } from '@firebase/firestore'
 import { Storable, StorableDoc } from '../Storable'
 
