@@ -69,7 +69,7 @@ import Card from '@/components/layout/Card.vue'
 import { fireStoreURL, toDisplayString } from '@/utils/firebaseTools'
 import Icon from '../material/Icon.vue'
 import { useSites } from '@/state/sites'
-import { Site } from '@/state/site'
+import { Site } from '@/state/site/Site'
 import Column from '../layout/Column.vue'
 import { useAuth } from '@/state/authz'
 import Button from '../form/Button.vue'
@@ -104,7 +104,7 @@ export default defineComponent({
           return a.name > b.name ? 1 : -1
         }
         if (sort.value === 'date') {
-          return (a.lastUpdate?.seconds || 0) < (b.lastUpdate?.seconds || 0) ? 1 : -1
+          return a.compareChangeTime(b)
         }
         return -1
       })
