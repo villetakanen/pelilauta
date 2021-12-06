@@ -1,3 +1,6 @@
+/**
+ * A helper superclass for entities storable to Firestone
+ */
 export class Storable {
   private _id: string
   
