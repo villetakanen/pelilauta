@@ -12,7 +12,12 @@ export class Storable {
     return this._id
   }
 
-  get data (): {} {
+  get docData(): {} {
+    console.error('docData getter must be overridden')
     return {}
+  }
+
+  set docData (doc: DocumentData) {
+    console.error('docData setter must be overridden')
   }
 }
