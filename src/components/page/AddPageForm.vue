@@ -48,8 +48,9 @@ import { required } from '@vuelidate/validators'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { useAuth } from '@/state/authz'
 import Button from '@/components/form/Button.vue'
-import { Page, createPage } from '@/state/pages/usePage'
+import { createPage } from '@/state/pages/usePage'
 import RichTextEditor from '@/components/quill/RichTextEditor.vue'
+import { PageDoc } from '@/state/pages/Page'
 
 export default defineComponent({
   name: 'AddPageForm',
@@ -84,10 +85,11 @@ export default defineComponent({
     const v = useVuelidate(rules, { pageName })
 
     async function add () {
-      const page = new Page()
-
-      page.name = pageName.value
-      page.htmlContent = pageContent.value
+      const page:PageDoc = {
+        id: '',
+        name: pageName.value,
+        htmlContent: pageContent.value
+      }
       const slug = await createPage(page)
 
       router.push(`/mekanismi/view/${site.value.id}/${slug}`)

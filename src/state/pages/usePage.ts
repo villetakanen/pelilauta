@@ -1,47 +1,22 @@
-import { ref, computed, ComputedRef } from 'vue'
-import { Timestamp, DocumentData, serverTimestamp, addDoc, onSnapshot, doc, collection, getFirestore, updateDoc, FieldValue, deleteDoc } from '@firebase/firestore'
+import { ref, computed, ComputedRef, Ref } from 'vue'
+import { serverTimestamp, addDoc, onSnapshot, doc, collection, getFirestore, updateDoc, deleteDoc, DocumentData } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { useSite } from '../site'
+import { Page, PageDoc, PageModel } from './Page'
 
-export class Page {
-  id:string // Firebase object id for the entity. Empty string on a new Page
-  name:string // Mandatory field from UX perspective
-  htmlContent:string // Contents of the page, in HTML format
-  author:string // a firebase owner for the new page
-  lastUpdate: Timestamp|FieldValue //
-  category:string
-
-  constructor (id?:string, data?:DocumentData) {
-    this.id = id || ''
-    this.name = data?.name || ''
-    this.htmlContent = data?.htmlContent || ''
-    this.author = data?.author || ''
-    this.lastUpdate = data?.lastUpdate || null
-    this.category = data?.category || ''
-  }
-
-  dry ():DocumentData {
-    return {
-      name: this.name,
-      htmlContent: this.htmlContent,
-      author: this.author,
-      category: this.category,
-      lastUpdate: this.lastUpdate || serverTimestamp()
-    }
-  }
-}
-
-const activePage = ref(new Page())
+const activePage:Ref<PageModel> = ref(new Page())
 const page = computed(() => (activePage.value))
 
-export async function createPage (newPage:Page): Promise<string> {
-  console.debug('createPage', Page)
+export async function createPage (data:PageDoc): Promise<string> {
+  console.debug('createPage', data)
+
+  const page = new Page('', data)
 
   // As we are creating a new page, force the creator to be the
   // current user!
-  if (newPage.author) console.warn('Trying to create a page with pre-set author -> page author set to current user')
+  if (page.author) console.warn('Trying to create a page with pre-set author -> page author set to current user')
   const { user } = useAuth()
-  newPage.author = user.value.uid
+  page.author = user.value.uid
 
   const { site } = useSite()
   const createdDoc = await addDoc(
@@ -51,7 +26,7 @@ export async function createPage (newPage:Page): Promise<string> {
       site.value.id,
       'pages'
     ),
-    newPage.dry()
+    page.docData
   )
   return createdDoc.id
 }
@@ -62,11 +37,9 @@ export interface PageLogEntry {
   author: string
 }
 
-export async function savePage (updatedPage:Page): Promise<void> {
+export async function savePage (updatedPage:PageModel): Promise<void> {
   const { site } = useSite()
   const { user } = useAuth()
-
-  updatedPage.lastUpdate = serverTimestamp()
 
   console.debug('site', site.value, 'page', updatedPage)
 
@@ -82,6 +55,9 @@ export async function savePage (updatedPage:Page): Promise<void> {
   latestPages.reverse()
   // End latest pages entry code, it's updated to site data below
 
+  const data = updatedPage.docData as DocumentData
+  data.updatedAt = serverTimestamp()
+
   await updateDoc(
     doc(
       getFirestore(),
@@ -90,16 +66,17 @@ export async function savePage (updatedPage:Page): Promise<void> {
       'pages',
       updatedPage.id
     ),
-    {
-      ...updatedPage.dry(),
-      hidden: site.value.hidden || false
-    })
+    data
+  )
   return updateDoc(
     doc(
       getFirestore(),
       'sites',
       site.value.id),
-    { lastUpdate: serverTimestamp(), latestPages: latestPages }
+    {
+      updatedAt: serverTimestamp(),
+      latestPages: latestPages
+    }
   )
 }
 
@@ -139,7 +116,7 @@ async function subscribeToPage (siteid:string, pageid:string) {
       pageid
     ), (pageDoc) => {
       if (pageDoc.exists()) {
-        activePage.value = new Page(pageDoc.id, pageDoc.data())
+        activePage.value = new Page(pageDoc.id, pageDoc.data() as PageDoc)
       } else {
         activePage.value = new Page()
       }
@@ -147,7 +124,7 @@ async function subscribeToPage (siteid:string, pageid:string) {
 }
 
 export function usePage (siteid?:string, pageid?:string): {
-  page: ComputedRef<Page>
+  page: ComputedRef<PageModel>
   deletePage: () => Promise<void>
   } {
   if (siteid && pageid) {
