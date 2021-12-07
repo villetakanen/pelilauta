@@ -1,5 +1,5 @@
 import { computed, ComputedRef, ref } from 'vue'
-import { collection, getFirestore, onSnapshot, orderBy, query, addDoc } from '@firebase/firestore'
+import { collection, getFirestore, onSnapshot, orderBy, query, addDoc, serverTimestamp, setDoc, doc } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { SiteDoc, Site } from '@/state/site/Site'
 import { logDebug } from '@/utils/eventLogger'
@@ -54,13 +54,36 @@ export async function createSite (data: SiteDoc): Promise<string> {
   data.owners = [user.value.uid]
 
   const site = new Site(data)
+  const sitedata = site.docData
+  sitedata.createdAt = serverTimestamp()
+  sitedata.updatedAt = serverTimestamp()
 
   const sitedoc = await addDoc(
     collection(
       getFirestore(),
       'sites'
     ),
-    site.docData
+    sitedata
+  )
+
+  const homePage = {
+    name: 'Home',
+    htmlContent: '<h1>Welcome to your new site!</h1>',
+    authors: [user.value.uid],
+    author: user.value.uid,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  }
+
+  await setDoc(
+    doc(
+      getFirestore(),
+      'sites',
+      sitedoc.id,
+      'pages',
+      sitedoc.id
+    ),
+    homePage
   )
 
   return sitedoc.id

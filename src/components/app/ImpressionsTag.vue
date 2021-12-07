@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { ThreadClass } from '@/state/threads/threads'
-import { PageClass } from '@/state/page'
+import { Page } from '@/state/pages/Page'
 import { computed, defineComponent, PropType } from 'vue'
 import Icon from '../material/Icon.vue'
 
@@ -21,7 +21,7 @@ export default defineComponent({
   components: { Icon },
   props: {
     entity: {
-      type: Object as PropType<ThreadClass|PageClass>,
+      type: Object as PropType<ThreadClass|Page>,
       required: true
     }
   },
