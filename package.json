@@ -1,6 +1,6 @@
 {
   "name": "pelilauta",
-  "version": "12.3.4",
+  "version": "12.3.5",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

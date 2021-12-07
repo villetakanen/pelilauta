@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.5](https://github.com/villetakanen/pelilauta/compare/v12.3.4...v12.3.5) (2021-12-07)
+
+
+### Bug Fixes
+
+* hidden as boolean ([cfce5f5](https://github.com/villetakanen/pelilauta/commit/cfce5f55b24f1de6791f9355d7fcc1fc2ba48af8))
+* linter fixes ([8f95021](https://github.com/villetakanen/pelilauta/commit/8f950211493520f5929986542e2ba25c5bc9764d))
+* moved site creation to sites module ([0e64ca5](https://github.com/villetakanen/pelilauta/commit/0e64ca5ac13f387a748814d1acb086f426c31c2c))
+* storable class, and site class cleared ([8fb7322](https://github.com/villetakanen/pelilauta/commit/8fb7322fbcf3d6ebe1a20d6b4bf2e1fae3f48d42))
+* system badge deprecation warning added ([548fc23](https://github.com/villetakanen/pelilauta/commit/548fc23b1140f1cbbdf57f615b6633b9f16eeee1))
+* works for logged in users ([f5467ee](https://github.com/villetakanen/pelilauta/commit/f5467eeda6dea0b32c92685badd10161f90cef61))
+
 ### [12.3.4](https://github.com/villetakanen/pelilauta/compare/v12.3.3...v12.3.4) (2021-12-03)
 
 
