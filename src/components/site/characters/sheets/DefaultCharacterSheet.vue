@@ -23,7 +23,6 @@
 <script lang="ts">
 import MaterialButton from '@/components/material/MaterialButton.vue'
 import Textfield from '@/components/form/Textfield.vue'
-import { useCharacters } from '@/state/characters'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref, watch } from 'vue'
 import { logError } from '@/utils/eventLogger'

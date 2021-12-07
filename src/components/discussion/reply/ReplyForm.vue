@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, inject, Ref, provide, computed } from 'vue'
+import { defineComponent, ref, inject, Ref, provide } from 'vue'
 import ReplyEditor from '../ReplyEditor.vue'
 import { addReply } from '@/state/discussion'
 import { useAuth } from '@/state/authz'

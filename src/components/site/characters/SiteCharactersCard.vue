@@ -30,7 +30,7 @@ import MaterialButton from '@/components/material/MaterialButton.vue'
 import MaterialSelect from '@/components/material/MaterialSelect.vue'
 import { useCharacters } from '@/state/characters'
 import { useSite } from '@/state/site'
-import { logDebug, logError } from '@/utils/eventLogger'
+import { logError } from '@/utils/eventLogger'
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 

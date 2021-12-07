@@ -48,8 +48,8 @@
 
 <script lang="ts">
 import { useAuth } from '@/state/authz'
-import { Site, SiteDoc } from '@/state/site/Site'
-import { computed, ComputedRef, defineComponent, inject, Ref, ref } from 'vue'
+import { SiteDoc } from '@/state/site/Site'
+import { computed, defineComponent, Ref, ref } from 'vue'
 import Select from '../form/Select.vue'
 import Column from '../layout/Column.vue'
 import Icon from '../material/Icon.vue'

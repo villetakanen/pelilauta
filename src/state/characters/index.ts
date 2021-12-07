@@ -1,6 +1,6 @@
 import { ComputedRef, ref, computed, watch, reactive } from 'vue'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
-import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, getDoc, deleteDoc } from '@firebase/firestore'
+import { addDoc, collection, doc, DocumentData, getFirestore, onSnapshot, updateDoc, query, where, deleteDoc } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { logDebug, logEvent } from '@/utils/eventLogger'
 import { Character } from './Character'
