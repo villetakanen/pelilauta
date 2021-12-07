@@ -56,7 +56,7 @@
         />
         <SpacerDiv />
         <div class="caption">
-          {{ toDisplayString(site.lastUpdate || null) }}
+          {{ toDisplayString(site.updatedAt) }}
         </div>
       </Toolbar>
     </Card>
@@ -104,7 +104,7 @@ export default defineComponent({
           return a.name > b.name ? 1 : -1
         }
         if (sort.value === 'date') {
-          return a.compareChangeTime(b)
+          return b.compareChangeTime(a)
         }
         return -1
       })
