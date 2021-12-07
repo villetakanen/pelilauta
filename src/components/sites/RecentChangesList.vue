@@ -5,8 +5,7 @@
       :key="site.id"
     >
       <RecentChangesCard
-        :site="site"
-        :pagelog="changes"
+        :siteid="site.id"
       />
     </div>
   </div>
@@ -32,7 +31,7 @@ export default defineComponent({
     const sitelist = computed(() => {
       const sites = [...publicSites.value, ...userSites.value]
       return sites.sort((a, b) => {
-        b.compareChangeTime(a)
+        a.compareChangeTime(b)
         return 0
       })
     })

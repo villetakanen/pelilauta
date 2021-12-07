@@ -81,7 +81,7 @@ export default defineComponent({
     const content = ref('')
     const working = ref(false)
 
-    const opts = computed(() => (new Map(site.value.categories.map((c) => ([c.slug, c.name])))))
+    const opts = computed(() => (new Map(site.value.pageCategories.map((c) => ([c.slug, c.name])))))
     const category = ref('')
 
     const rules = computed(() => ({

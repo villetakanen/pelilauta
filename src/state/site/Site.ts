@@ -26,12 +26,31 @@ export interface SiteDoc extends StorableDoc {
   pageCategories?: PageCategory[]
 }
 
+export interface SiteModel extends SiteDoc {
+  name: string
+  description: string
+  owners: string[]
+  players: string[]
+  usePlayers: boolean
+  hidden: boolean
+  system: string
+  systemBadge: string
+  theme: string
+  latestPages: PageLogEntry[]
+  pageCategories: PageCategory[]
+  readonly updatedAt: Timestamp | undefined
+  hasOwner: (uid: string) => boolean
+  hasPlayer: (uid: string) => boolean
+  hasEditor: (uid: string) => boolean
+  hasCategories: () => boolean
+}
+
 /**
  * A Mekanismi Site object, as a Firestore document.
  *
  * Helper methods are provided for reactive attributes and for converting to/from Firestore DocumentData.
  */
-export class Site extends Storable {
+export class Site extends Storable implements SiteModel {
     name = ''
     description = ''
     owners: string[] = []
@@ -122,5 +141,9 @@ export class Site extends Storable {
 
     hasEditor (uid:string): boolean {
       return this.hasOwner(uid) || this.hasPlayer(uid)
+    }
+
+    hasCategories (): boolean {
+      return Array.isArray(this.pageCategories) && this.pageCategories.length > 0
     }
 }

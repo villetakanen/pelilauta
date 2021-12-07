@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import { useAuth } from '@/state/authz'
-import { Site, SiteData, updateSite } from '@/state/site'
+import { Site, SiteDoc } from '@/state/site/Site'
 import { computed, ComputedRef, defineComponent, inject, Ref, ref } from 'vue'
 import Select from '../form/Select.vue'
 import Column from '../layout/Column.vue'
@@ -56,6 +56,7 @@ import Icon from '../material/Icon.vue'
 import MaterialButton from '../material/MaterialButton.vue'
 import Textfield from '../form/Textfield.vue'
 import Toggle from '../material/Toggle.vue'
+import { useSite } from '@/state/site'
 
 export default defineComponent({
   name: 'SiteMeta',
@@ -68,7 +69,8 @@ export default defineComponent({
     Select
   },
   setup () {
-    const site = inject('site') as ComputedRef<Site>
+    const { site, updateSite } = useSite()
+
     const localName = ref('')
     const localBadge = ref('')
     const badge = computed({
@@ -93,7 +95,7 @@ export default defineComponent({
     })
     const siteFeatures = ref({ players: site.value.usePlayers })
     async function update () {
-      const data: SiteData = { id: site.value.id }
+      const data: SiteDoc = { id: site.value.id }
       if (localName.value) data.name = localName.value
       if (localBadge.value) data.systemBadge = localBadge.value
       if (localDescription.value) data.description = localDescription.value

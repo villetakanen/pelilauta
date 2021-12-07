@@ -1,4 +1,4 @@
-import { DocumentData, Timestamp, serverTimestamp, FieldValue } from '@firebase/firestore'
+import { DocumentData, Timestamp, serverTimestamp } from '@firebase/firestore'
 
 /**
  * A class that can be stored in Firestore. We expect each document to have a createdAt and updatedAt field.
@@ -6,7 +6,7 @@ import { DocumentData, Timestamp, serverTimestamp, FieldValue } from '@firebase/
 export interface StorableDoc {
   id: string
   createdAt?: Timestamp
-  updatedAt?: Timestamp|FieldValue
+  updatedAt?: Timestamp
 }
 
 /**

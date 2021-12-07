@@ -42,7 +42,7 @@
           </li>
         </ul>
         <div
-          v-for="cat in site.categories"
+          v-for="cat in site.pageCategories"
           :key="cat.slug"
           class="category"
         >
@@ -85,7 +85,7 @@ export default defineComponent({
       return pages.value.filter((a) => (a.category === topic.slug))
     }
 
-    const noCategory = computed(() => (pages.value.filter((a) => (!site.value.categories.find((c) => (c.slug === a.category))))))
+    const noCategory = computed(() => (pages.value.filter((a) => (!site.value.pageCategories.find((c) => (c.slug === a.category))))))
 
     return { site, pages, inTopic, noCategory }
   }

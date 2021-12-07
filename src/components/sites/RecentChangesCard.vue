@@ -37,12 +37,13 @@
 </template>
 
 <script lang="ts">
-import { PageLogEntry } from '@/state/pagelog'
-import { Site } from '@/state/site'
-import { computed, defineComponent, PropType } from 'vue'
+import { usePagelog } from '@/state/pagelog'
+import { Site } from '@/state/site/Site'
+import { computed, defineComponent } from 'vue'
 import Card from '../layout/Card.vue'
 import Icon from '../material/Icon.vue'
 import { toDisplayString } from '@/utils/firebaseTools'
+import { useSites } from '@/state/sites'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -51,22 +52,25 @@ export default defineComponent({
     Icon
   },
   props: {
-    site: {
-      type: Object as PropType<Site>,
-      required: true
-    },
-    pagelog: {
-      type: Array as PropType<Array<PageLogEntry>>,
+    siteid: {
+      type: String,
       required: true
     }
   },
   setup (props) {
+    const { publicSites, userSites } = useSites()
+    const { recent } = usePagelog()
+
+    const site = computed(() => {
+      return [...publicSites.value, ...userSites.value].find(s => s.id === props.siteid) || new Site()
+    })
+
     const changes = computed(() => {
-      const arr = props.pagelog.filter((v) => (v.siteid === props.site.id))
+      const arr = recent.value.filter((v) => (v.siteid === props.siteid))
       if (arr.length > 3) arr.length = 3
       return arr
     })
-    return { changes, toDisplayString }
+    return { changes, toDisplayString, site }
   }
 })
 </script>

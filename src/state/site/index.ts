@@ -4,10 +4,10 @@ import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
 import { PublicProfile, useAuth } from '../authz'
-import { doc, getDoc, getFirestore, onSnapshot, updateDoc, serverTimestamp } from '@firebase/firestore'
+import { doc, getDoc, getFirestore, onSnapshot, updateDoc, serverTimestamp, DocumentData } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { useSiteCharacters } from './useSiteCharacters'
-import { Site, SiteDoc } from './Site'
+import { Site, SiteDoc, SiteModel } from './Site'
 
 export const siteTypes = new Map([
   ['dd', 'Dungeons and Dragons 5e'],
@@ -17,7 +17,7 @@ export const siteTypes = new Map([
   ['pathfinder', 'Pathfinder']
 ])
 
-const stateSite: Ref<Site> = ref(new Site())
+const stateSite: Ref<SiteModel> = ref(new Site())
 const site = computed(() => (stateSite.value))
 
 let unsubscribe = () => {}
@@ -70,8 +70,8 @@ async function removePlayer (uid:string) {
 async function updateSite (data: SiteDoc): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
 
-  const update = { ...data }
-  data.updatedAt = serverTimestamp()
+  const update = { ...data } as DocumentData
+  update.updatedAt = serverTimestamp()
 
   return updateDoc(
     doc(getFirestore(), 'sites', stateSite.value.id),
@@ -143,7 +143,7 @@ const showSiteAdminTools = computed(() => {
 
 function useSite (id?: string):
   {
-    site: ComputedRef<Site>,
+    site: ComputedRef<SiteModel>,
     members: ComputedRef<Array<PublicProfile>>,
     showSiteMemberTools: ComputedRef<boolean>,
     showSiteAdminTools: ComputedRef<boolean>,
@@ -152,9 +152,10 @@ function useSite (id?: string):
     addOwner: (uid: string) => Promise<void>,
     addPlayer: (uid: string) => Promise<void>,
     removePlayer: (uid: string) => Promise<void>,
+    updateSite: (data: SiteDoc) => Promise<void>
   } {
   if (id) subscribeTo(id)
-  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members, showSiteMemberTools, showSiteAdminTools }
+  return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members, showSiteMemberTools, showSiteAdminTools, updateSite }
 }
 
 export {

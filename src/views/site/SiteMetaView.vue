@@ -7,7 +7,6 @@
         class="dashBoardLayout"
       >
         <SiteMeta class="inDashboardBox" />
-        <SiteIdentity class="inDashboardBox" />
         <SiteCategoriesCard class="inDashboardBox" />
       </main>
       <Loader v-else />
@@ -21,7 +20,6 @@ import { useSite } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
 import { useAuthors } from '@/state/authors'
 import SiteMeta from '@/components/site/SiteMeta.vue'
-import SiteIdentity from '@/components/site/SiteIdentity.vue'
 import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import SiteCategoriesCard from '@/components/site/SiteCategoriesCard.vue'
 import { useAuth } from '@/state/authz'
@@ -31,7 +29,6 @@ export default defineComponent({
   components: {
     Loader,
     SiteMeta,
-    SiteIdentity,
     SiteToolbar,
     SiteCategoriesCard
   },

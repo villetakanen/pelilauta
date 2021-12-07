@@ -29,9 +29,9 @@
 
 <script lang="ts">
 import { useAuthors } from '@/state/authors'
-import { Site, useSite } from '@/state/site'
+import { useSite } from '@/state/site'
 import { Player } from '@/utils/uiInterfaces'
-import { computed, ComputedRef, defineComponent, PropType, ref } from 'vue'
+import { computed, ComputedRef, defineComponent, ref } from 'vue'
 import Card from '../../layout/Card.vue'
 import MaterialButton from '../../material/MaterialButton.vue'
 import MaterialSelect from '../../material/MaterialSelect.vue'
@@ -40,17 +40,12 @@ import PlayerRowItem from './PlayerRowItem.vue'
 export default defineComponent({
   name: 'SitePlayersList',
   components: { Card, MaterialSelect, MaterialButton, PlayerRowItem },
-  props: {
-    site: {
-      type: Object as PropType<Site>,
-      required: true
-    }
-  },
-  setup (props) {
+  setup () {
     const { authors } = useAuthors()
     const { addPlayer } = useSite()
+    const { site } = useSite()
     const playerList:ComputedRef<Array<Player>> = computed(() => (
-      props.site.players?.map((uid) => (
+      site.value.players?.map((uid) => (
         {
           uid: uid,
           nick: authors.value.find((a) => (a.uid === uid))?.nick || 'anonymous'

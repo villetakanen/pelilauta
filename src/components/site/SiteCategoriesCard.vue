@@ -4,7 +4,7 @@
       {{ $t('site.meta.categories.title') }}
     </h1>
     <div
-      v-for="cat in site.categories"
+      v-for="cat in site.pageCategories"
       :key="cat.slug"
     >
       {{ cat.name }} <MaterialButton
@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { useSite, updateSite } from '@/state/site'
+import { useSite, updateSite, Page } from '@/state/site'
 import { PageCategory } from '@/state/site/PageCategory'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { computed, defineComponent, ref } from 'vue'
@@ -52,14 +52,17 @@ export default defineComponent({
     const dropCategory = async (slug: string) => {
       updateSite({
         id: site.value.id,
-        categories: site.value.categories.filter((c) => (c.slug !== slug))
+        pageCategories: site.value.pageCategories.filter((c) => (c.slug !== slug))
       })
     }
 
     const addCategory = async () => {
       updateSite({
         id: site.value.id,
-        categories: [...site.value.categories, new PageCategory(newCatName.value)]
+        pageCategories: [
+          ...site.value.pageCategories,
+          new PageCategory(newCatName.value)
+        ]
       })
     }
 

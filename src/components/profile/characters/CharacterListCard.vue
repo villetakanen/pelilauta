@@ -25,7 +25,7 @@
 import Card from '@/components/layout/Card.vue'
 import { useCharacters } from '@/state/characters'
 import { Character } from '@/state/characters/Character'
-import { toSite } from '@/state/site'
+import { Site } from '@/state/site/Site'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 
@@ -41,7 +41,7 @@ export default defineComponent({
     const { characters } = useCharacters()
     const { userSites } = useSites()
     const character = computed(() => characters.value.get(props.id) || new Character('...'))
-    const site = computed(() => userSites.value.find((site) => site.id === character.value.site) || toSite())
+    const site = computed(() => userSites.value.find((site) => site.id === character.value.site) || new Site())
     return { character, site }
   }
 })
