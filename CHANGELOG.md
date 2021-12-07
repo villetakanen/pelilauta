@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.6](https://github.com/villetakanen/pelilauta/compare/v12.3.5...v12.3.6) (2021-12-07)
+
+
+### Bug Fixes
+
+* categories restored after refactors ([f3bba08](https://github.com/villetakanen/pelilauta/commit/f3bba08f0b5474c8959d520284ec28214d738258))
+* heavy site state refactoring ([3926225](https://github.com/villetakanen/pelilauta/commit/39262255abb498ffb788e90ebb4adbb38691cf31))
+* linter fixes ([75f39a5](https://github.com/villetakanen/pelilauta/commit/75f39a58997aa796020c9ac861aa64128766affa))
+* site state cleared from refactors ([d6e61e2](https://github.com/villetakanen/pelilauta/commit/d6e61e235702f1638813e063e54f1a3dde2cc316))
+
 ### [12.3.5](https://github.com/villetakanen/pelilauta/compare/v12.3.4...v12.3.5) (2021-12-07)
 
 
