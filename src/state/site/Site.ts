@@ -80,7 +80,8 @@ export class Site extends Storable implements SiteModel {
       data.hidden = this.hidden
       data.system = this.system
       data.systemBadge = this.systemBadge
-      data.pageCategories = this.pageCategories
+      data.pageCategories = this.pageCategories.map(c => ({ name: c.name, slug: c.slug }))
+      logDebug('Site.docData', data.pageCategories)
       return data
     }
 
