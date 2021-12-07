@@ -2,6 +2,7 @@ import { computed, ComputedRef, ref } from 'vue'
 import { collection, getFirestore, onSnapshot, orderBy, query, addDoc } from '@firebase/firestore'
 import { useAuth } from '../authz'
 import { SiteDoc, Site } from '@/state/site/Site'
+import { logDebug } from '@/utils/eventLogger'
 
 const fullSiteList = ref(new Map<string, Site>())
 
@@ -11,8 +12,9 @@ const allSites = computed(() => {
 })
 
 const publicSites = computed(() => {
-  const sites = Array.from(fullSiteList.value.values()).filter((a) => (!a.hidden))
+  const sites = [...allSites.value].filter(site => site.hidden === false)
   sites.sort((a, b) => (a.compareChangeTime(b)))
+  logDebug(fullSiteList.value, sites)
   return sites
 })
 

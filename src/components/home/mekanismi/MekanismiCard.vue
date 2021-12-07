@@ -9,7 +9,6 @@
       :key="site.id"
       :siteid="site.id"
     />
-    {{ topThreeSites }}
     <Toolbar style="margin-bottom: -8px; margin-top: -8px; margin-right: -8px">
       <SpacerDiv />
       <Button

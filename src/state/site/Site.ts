@@ -68,7 +68,7 @@ export class Site extends Storable {
       this.owners = doc.owners || []
       this.players = doc.players || []
       this.usePlayers = doc.usePlayers || false
-      this.hidden = doc.hidden || true
+      this.hidden = doc.hidden as boolean
 
       if (Array.isArray(doc.latestPages)) this._latestPages = doc.latestPages
       if (doc.lastUpdate) this._lastUpdate = doc.lastUpdate
