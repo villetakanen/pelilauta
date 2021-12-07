@@ -25,4 +25,10 @@ div.ListItem
   box-sizing: border-box
   padding: 12px 16px
   line-height: 24px
+  .ListItem-content
+    line-height: 24px
+    padding-top: 12px
+div.ListItem+div.ListItem
+  padding-top: 11px
+  border-top: 1px solid var(--chroma-secondary-h)
 </style>

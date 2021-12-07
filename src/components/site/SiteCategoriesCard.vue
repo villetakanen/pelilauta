@@ -4,22 +4,27 @@
       <h1 class="title">
         {{ $t('site.meta.categories.title') }}
       </h1>
-      <div
-        v-for="cat in site.pageCategories"
-        :key="cat.slug"
-      >
-        {{ cat.name }}
-        <Button
-          text
-          @click.prevent="dropCategory(cat.slug)"
+
+      <List>
+        <ListItem
+          v-for="category in site.pageCategories"
+          :key="category.slug"
         >
-          <Icon
-            xs
-            name="delete"
-          />
-          {{ $t('action.delete') }}
-        </Button>
-      </div>
+          {{ category.name }}
+          <template #action>
+            <Button
+              text
+              @click.prevent="dropCategory(category.slug)"
+            >
+              <Icon
+                xs
+                name="delete"
+              />
+              {{ $t('action.delete') }}
+            </Button>
+          </template>
+        </ListItem>
+      </List>
       <hr>
       <div class="flexList">
         <div style="flex-grow:1">
@@ -27,7 +32,6 @@
             v-model="newCatName"
             :label="$t('site.meta.categories.newCategoryField')"
           />
-          <span class="caption">{{ newCatSlug }}</span>
         </div>
         <Button
           text
@@ -52,9 +56,11 @@ import Icon from '../material/Icon.vue'
 import Textfield from '../form/Textfield.vue'
 import Column from '../layout/Column.vue'
 import Button from '../form/Button.vue'
+import List from '../material3/List.vue'
+import ListItem from '../material3/ListItem.vue'
 
 export default defineComponent({
-  components: { Card, Textfield, Icon, Column, Button },
+  components: { Card, Textfield, Icon, Column, Button, List, ListItem },
   setup () {
     const newCatName = ref('')
     const newCatSlug = computed(() => (toMekanismiURI(newCatName.value)))
