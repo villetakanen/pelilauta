@@ -1,6 +1,7 @@
 import { logDebug } from '@/utils/eventLogger'
 import { DocumentData, Timestamp } from '@firebase/firestore'
 import { Storable, StorableDoc } from '../Storable'
+import { PageCategory } from './PageCategory'
 
 interface PageLogEntry {
   name: string
@@ -22,6 +23,7 @@ export interface SiteDoc extends StorableDoc {
   systemBadge?: string
   theme?: string
   latestPages?: PageLogEntry[]
+  pageCategories?: PageCategory[]
 }
 
 /**
@@ -41,6 +43,7 @@ export class Site extends Storable {
     theme = ''
     private _latestPages:PageLogEntry[] = []
     private _lastUpdate: Timestamp | undefined
+    pageCategories: PageCategory[] = []
 
     constructor (site: string|SiteDoc = '', data?: SiteDoc) {
       super(site as StorableDoc, data)
@@ -58,6 +61,7 @@ export class Site extends Storable {
       data.hidden = this.hidden
       data.system = this.system
       data.systemBadge = this.systemBadge
+      data.pageCategories = this.pageCategories
       return data
     }
 
@@ -71,6 +75,7 @@ export class Site extends Storable {
       this.hidden = doc.hidden as boolean
 
       if (Array.isArray(doc.latestPages)) this._latestPages = doc.latestPages
+      if (Array.isArray(doc.pageCategories)) this.pageCategories = doc.pageCategories
       if (doc.lastUpdate) this._lastUpdate = doc.lastUpdate
 
       // Backwards compatibility, remove in future when all sites have the system field set
@@ -85,9 +90,14 @@ export class Site extends Storable {
     }
 
     get updatedAt (): Timestamp | undefined {
+      logDebug('updatedAt', this._lastUpdate, super.updatedAt)
       const d = super.updatedAt
       if (typeof d === 'undefined') return this._lastUpdate
       return d
+    }
+
+    get createdAt (): Timestamp | undefined {
+      return super.createdAt
     }
 
     get systemBadge (): string {

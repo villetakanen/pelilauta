@@ -92,8 +92,7 @@ export async function savePage (updatedPage:Page): Promise<void> {
     ),
     {
       ...updatedPage.dry(),
-      hidden: site.value.hidden || false,
-      silent: site.value.silent || false
+      hidden: site.value.hidden || false
     })
   return updateDoc(
     doc(

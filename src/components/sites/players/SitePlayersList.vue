@@ -32,10 +32,10 @@ import { useAuthors } from '@/state/authors'
 import { Site, useSite } from '@/state/site'
 import { Player } from '@/utils/uiInterfaces'
 import { computed, ComputedRef, defineComponent, PropType, ref } from 'vue'
-import Card from '../layout/Card.vue'
-import MaterialButton from '../material/MaterialButton.vue'
-import MaterialSelect from '../material/MaterialSelect.vue'
-import PlayerRowItem from './players/PlayerRowItem.vue'
+import Card from '../../layout/Card.vue'
+import MaterialButton from '../../material/MaterialButton.vue'
+import MaterialSelect from '../../material/MaterialSelect.vue'
+import PlayerRowItem from './PlayerRowItem.vue'
 
 export default defineComponent({
   name: 'SitePlayersList',

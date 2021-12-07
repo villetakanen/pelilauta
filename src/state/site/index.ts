@@ -4,12 +4,10 @@ import { refreshStorage, useFiles } from './attachments'
 import { useAssets, subscribeTo as subscribeToAssets } from './assets'
 import { useAuthors } from '../authors'
 import { PublicProfile, useAuth } from '../authz'
-import { PageCategory, defaultCategories, unmarshallCategories, marshallCategories } from './pagecategory'
-import { doc, DocumentData, getDoc, getFirestore, onSnapshot, Timestamp, updateDoc } from '@firebase/firestore'
+import { doc, getDoc, getFirestore, onSnapshot, updateDoc, serverTimestamp } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { useSiteCharacters } from './useSiteCharacters'
-import { PageLogEntry } from '../pages/usePage'
-import { logDebug } from '@/utils/eventLogger'
+import { Site, SiteDoc } from './Site'
 
 export const siteTypes = new Map([
   ['dd', 'Dungeons and Dragons 5e'],
@@ -19,112 +17,8 @@ export const siteTypes = new Map([
   ['pathfinder', 'Pathfinder']
 ])
 
-export interface Site {
-  id: string,
-  description: string,
-  hidden: boolean,
-  silent: boolean,
-  lastUpdate?: Timestamp,
-  name: string
-  owners: string[]|null
-  players: string[]|null
-  splashURL: string
-  systemBadge: string
-  usePlayers: boolean
-  categories: PageCategory[],
-  hasCategories?: boolean
-  latestPages?: PageLogEntry[]
-}
-export interface SiteData {
-  id?: string,
-  name?: string,
-  description?: string,
-  splashURL?: string,
-  systemBadge?: string,
-  owners?: string[],
-  lastUpdate?: Timestamp,
-  hidden?: boolean,
-  usePlayers?: boolean
-  players?: string[],
-  categories?: PageCategory[]
-}
-
-const stateSite:Ref<Site> = ref(toSite())
+const stateSite: Ref<Site> = ref(new Site())
 const site = computed(() => (stateSite.value))
-
-export class SiteClass {
-  id: string
-  description: string
-  owners: string[]|null
-  players: string[]|null
-  usePlayers: boolean
-
-  constructor (site: Site) {
-    logDebug('SiteSlass', site)
-    this.id = site.id
-    this.description = site.description
-    this.owners = site.owners
-    this.players = site.players
-    this.usePlayers = site.usePlayers
-  }
-
-  isOwner (uid:string): boolean {
-    if (this.owners && this.owners.includes(uid)) {
-      return true
-    }
-    return false
-  }
-
-  canEdit (uid:string): boolean {
-    if (this.owners && this.owners.includes(uid)) {
-      return true
-    }
-    if (this.players && this.players.includes(uid)) {
-      return true
-    }
-    return false
-  }
-}
-
-/**
- * Creates a new site struct. The struct is empty if no values are given.
- *
- * @param id siteDoc.id from firestore
- * @param data siteDoc.data() from firestore
- */
-export function toSite (id?: string, data?:DocumentData): Site {
-  if (id) {
-    return {
-      id: id,
-      description: data?.description || '',
-      hidden: data?.hidden || false,
-      silent: data?.silent,
-      lastUpdate: data?.lastUpdate || null,
-      name: data?.name || id,
-      players: data?.players || null,
-      owners: data?.owners || null,
-      splashURL: data?.splashURL || '',
-      systemBadge: data?.systemBadge || '',
-      usePlayers: data?.usePlayers || false,
-      categories: data?.categories ? marshallCategories(data?.categories) : defaultCategories(),
-      hasCategories: Array.isArray(data?.categories),
-      latestPages: data?.latestPages || undefined
-    }
-  }
-  return {
-    id: '',
-    description: '',
-    hidden: false,
-    silent: false,
-    name: '',
-    players: null,
-    owners: null,
-    splashURL: '',
-    systemBadge: '',
-    usePlayers: true,
-    categories: defaultCategories()
-  }
-}
 
 let unsubscribe = () => {}
 
@@ -134,7 +28,7 @@ function subscribeTo (id: string): void {
   }
 
   if (!id) {
-    stateSite.value = toSite()
+    stateSite.value = new Site()
     unsubscribe()
     return
   }
@@ -148,7 +42,7 @@ function subscribeTo (id: string): void {
   const siteRef = doc(db, 'sites', id)
   unsubscribe = onSnapshot(siteRef, (snap) => {
     if (snap.exists()) {
-      stateSite.value = toSite(id, snap.data())
+      stateSite.value = new Site(id, snap.data() as SiteDoc)
     }
   })
 }
@@ -173,11 +67,11 @@ async function removePlayer (uid:string) {
   return updateSite({ id: stateSite.value.id, players: playersArray })
 }
 
-async function updateSite (data: SiteData): Promise<void> {
+async function updateSite (data: SiteDoc): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
 
   const update = { ...data }
-  if (data.categories) update.categories = unmarshallCategories(data.categories)
+  data.updatedAt = serverTimestamp()
 
   return updateDoc(
     doc(getFirestore(), 'sites', stateSite.value.id),
@@ -193,7 +87,10 @@ async function revokeOwner (uid: string) {
     let owners = doc.data()?.owners
     if (!Array.isArray(owners)) throw new Error('Trying to remove an owner, from pre 6.0 site data')
     owners = owners.filter((owner) => (owner !== uid))
-    return updateDoc(siteRef, { owners: owners })
+    return updateDoc(siteRef, {
+      owners: owners,
+      updatedAt: serverTimestamp()
+    })
   })
 }
 
@@ -206,7 +103,13 @@ async function addOwner (uid: string) {
     if (!Array.isArray(owners)) throw new Error('Trying to remove an owner, from pre 6.0 site data')
     owners = owners.filter((owner) => (owner !== uid))
     owners.push(uid)
-    return updateDoc(siteRef, { owners: owners })
+    return updateDoc(
+      siteRef,
+      {
+        owners: owners,
+        updatedAt: serverTimestamp()
+      }
+    )
   })
 }
 

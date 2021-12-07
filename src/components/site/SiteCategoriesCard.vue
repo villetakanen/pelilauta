@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { useSite, updateSite } from '@/state/site'
-import { PageCategory } from '@/state/site/pagecategory'
+import { PageCategory } from '@/state/site/PageCategory'
 import { toMekanismiURI } from '@/utils/contentFormat'
 import { computed, defineComponent, ref } from 'vue'
 import Card from '../layout/Card.vue'

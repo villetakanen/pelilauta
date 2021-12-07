@@ -123,12 +123,11 @@ export async function updatePage (page: PageFragment): Promise<void> {
   return updateDoc(pageRef, {
     ...page,
     hidden: site.value.hidden || false,
-    silent: site.value.silent || false,
-    lastUpdate: serverTimestamp()
+    updatedAt: serverTimestamp()
   }).then(() => {
     return updateDoc(
       doc(db, 'sites', page.siteid),
-      { lastUpdate: serverTimestamp() }
+      { updatedAt: serverTimestamp() }
     )
   })
 }

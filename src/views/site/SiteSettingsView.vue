@@ -2,6 +2,7 @@
   <div class="siteSettings">
     <SiteToolbar />
     <div class="dashBoardLayout">
+      <SiteMetaData />
       <SiteOwnersTool :site="site" />
       <SitePlayesTool />
     </div>
@@ -14,6 +15,7 @@ import { useSite } from '@/state/site'
 import { defineComponent } from 'vue'
 import SiteOwnersTool from '@/components/site/settings/SiteOwnersTool.vue'
 import SitePlayesTool from '@/components/keeper/SitePlayesTool.vue'
+import SiteMetaData from '@/components/site/settings/SiteMetaData.vue'
 
 /**
  * A Router view for a player management screen of a site
@@ -25,7 +27,7 @@ import SitePlayesTool from '@/components/keeper/SitePlayesTool.vue'
  */
 export default defineComponent({
   name: 'SiteSettingsView',
-  components: { SiteToolbar, SiteOwnersTool, SitePlayesTool },
+  components: { SiteToolbar, SiteOwnersTool, SitePlayesTool, SiteMetaData },
   props: {
     siteid: {
       type: String,
