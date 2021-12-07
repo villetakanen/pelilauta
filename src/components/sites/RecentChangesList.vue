@@ -30,11 +30,11 @@ export default defineComponent({
     })
 
     const sitelist = computed(() => {
-      const sites = new Map(publicSites.value.map((s) => ([s.id, s])))
-      userSites.value.forEach((s) => {
-        if (!sites.has(s.id)) sites.set(s.id, s)
+      const sites = [...publicSites.value, ...userSites.value]
+      return sites.sort((a, b) => {
+        b.compareChangeTime(a)
+        return 0
       })
-      return Array.from(sites.values()).sort((a, b) => ((b.lastUpdate?.seconds || 0) - (a.lastUpdate?.seconds || 0)))
     })
 
     return { sitelist, changes }

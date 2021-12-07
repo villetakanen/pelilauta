@@ -53,7 +53,7 @@ import Textfield from '../form/Textfield.vue'
 import Column from '../layout/Column.vue'
 import Toggle from '../material/Toggle.vue'
 import { siteTypes } from '@/state/site'
-import { SiteData } from '@/state/site/Site'
+import { SiteDoc } from '@/state/site/Site'
 import { createSite } from '@/state/sites'
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
@@ -89,7 +89,8 @@ export default defineComponent({
       working.value = true
       if (v.value.name.$error) return
 
-      const siteData:SiteData = {
+      const siteData:SiteDoc = {
+        id: '',
         name: name.value,
         description: description.value,
         hidden: !visible.value,

@@ -1,29 +1,31 @@
 <template>
   <div class="wikiChangesItem">
-    <router-link :to="`/site/${siteid}/page/${pageid}`">
+    <router-link :to="`/site/${siteid}/page/${page.id}`">
       <Icon
         class="badge"
         medium
         dark
-        :name="badge + '-logo'"
+        :name="site.system + '-logo'"
       />
       <div class="site">
         <div class="time">
-          {{ change }}
+          {{ toDisplayString(site.updatedAt) }}
         </div>
-        {{ siteName }}
+        {{ site.name }}
       </div>
       <div class="page">
-        {{ name }}
+        {{ page.name || site.name }}
       </div>
     </router-link>
   </div>
 </template>
 
 <script lang="ts">
+import { Site } from '@/state/site/Site'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 import Icon from '../material/Icon.vue'
+import { toDisplayString } from '@/utils/firebaseTools'
 /**
  * A simple welcome card for anonymous visitors
  */
@@ -31,32 +33,16 @@ export default defineComponent({
   name: 'WikiChangesItem',
   components: { Icon },
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-    pageid: {
-      type: String,
-      required: true
-    },
     siteid: {
       type: String,
       required: true
-    },
-    change: {
-      type: String,
-      required: true
-    },
-    badge: {
-      type: String,
-      required: false,
-      default: 'mekanismi'
     }
   },
   setup (props) {
-    const { publicSites } = useSites()
-    const siteName = computed(() => (publicSites.value.find((a) => (a.id === props.siteid))?.name || props.siteid))
-    return { siteName }
+    const { visibleSites } = useSites()
+    const site = computed(() => (visibleSites.value.find((a) => (a.id === props.siteid))) || new Site())
+    const page = computed(() => site.value.latestPages[0] || { id: props.siteid, name: '', author: '' })
+    return { site, page, toDisplayString }
   }
 })
 </script>

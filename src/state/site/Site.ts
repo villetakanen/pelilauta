@@ -1,6 +1,12 @@
 import { logDebug } from '@/utils/eventLogger'
-import { DocumentData } from '@firebase/firestore'
+import { DocumentData, Timestamp } from '@firebase/firestore'
 import { Storable, StorableDoc } from '../Storable'
+
+interface PageLogEntry {
+  name: string
+  id: string
+  author: string
+}
 
 /**
  * Site specific extra fields we want to store in Firestore, with types.
@@ -15,6 +21,7 @@ export interface SiteDoc extends StorableDoc {
   system?: string
   systemBadge?: string
   theme?: string
+  latestPages?: PageLogEntry[]
 }
 
 /**
@@ -32,6 +39,8 @@ export class Site extends Storable {
     system = ''
     private _systemBadge = '' // Deprecated, use system, and theme instead
     theme = ''
+    private _latestPages:PageLogEntry[] = []
+    private _lastUpdate: Timestamp | undefined
 
     constructor (site: string|SiteDoc = '', data?: SiteDoc) {
       super(site as StorableDoc, data)
@@ -61,11 +70,24 @@ export class Site extends Storable {
       this.usePlayers = doc.usePlayers || false
       this.hidden = doc.hidden || true
 
+      if (Array.isArray(doc.latestPages)) this._latestPages = doc.latestPages
+      if (doc.lastUpdate) this._lastUpdate = doc.lastUpdate
+
       // Backwards compatibility, remove in future when all sites have the system field set
       const s = doc?.system || doc?.systemBadge || ''
       this.system = s
       this._systemBadge = s
       this.theme = s
+    }
+
+    get latestPages (): PageLogEntry[] {
+      return this._latestPages
+    }
+
+    get updatedAt (): Timestamp | undefined {
+      const d = super.updatedAt
+      if (typeof d === 'undefined') return this._lastUpdate
+      return d
     }
 
     get systemBadge (): string {
@@ -81,7 +103,7 @@ export class Site extends Storable {
     }
 
     hasOwner (uid:string): boolean {
-      return this.owners && this.owners.includes(uid)
+      return Array.isArray(this.owners) && this.owners.includes(uid)
     }
 
     hasPlayer (uid:string): boolean {
