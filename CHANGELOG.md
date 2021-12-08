@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.7](https://github.com/villetakanen/pelilauta/compare/v12.3.6...v12.3.7) (2021-12-08)
+
+
+### Bug Fixes
+
+* added material list styling comps ([3d7016e](https://github.com/villetakanen/pelilauta/commit/3d7016e43ae9a1c5fd4cb1daac49621cc03ba8ea))
+* impressions should work again with pageclass ([68f0bbc](https://github.com/villetakanen/pelilauta/commit/68f0bbc483c8a74f3df507e473e4c4cc6362da90))
+* page classes refactored to storable ([31909ab](https://github.com/villetakanen/pelilauta/commit/31909ab4ea2066bff9b80889ee67270716b8bd83))
+* sitelist ordering corrected ([49ebdda](https://github.com/villetakanen/pelilauta/commit/49ebddafcb87543193443dc657a1be07663027b8))
+* small updates to topics selector ([4ad9d1e](https://github.com/villetakanen/pelilauta/commit/4ad9d1e64f00ebf0c55dea885dbc7dc65a63cde3))
+* topics list is sortable ([eeae50b](https://github.com/villetakanen/pelilauta/commit/eeae50b6f22cc1583b20761f07ec027535bbbac0))
+
 ### [12.3.6](https://github.com/villetakanen/pelilauta/compare/v12.3.5...v12.3.6) (2021-12-07)
 
 
