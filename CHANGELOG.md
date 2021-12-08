@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.8](https://github.com/villetakanen/pelilauta/compare/v12.3.7...v12.3.8) (2021-12-08)
+
+
+### Bug Fixes
+
+* deprecated button removal ([401b87f](https://github.com/villetakanen/pelilauta/commit/401b87f58791c9b04a0e49441ae4fd173f6b3cfd))
+
 ### [12.3.7](https://github.com/villetakanen/pelilauta/compare/v12.3.6...v12.3.7) (2021-12-08)
 
 
