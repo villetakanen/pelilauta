@@ -3,7 +3,7 @@
     <div
       v-if="thread.site"
       class="headerFlex withSite"
-      :class="{ ddColors: site && site.systemBadge === 'dd'}"
+      :class="{ ddColors: site && site.system === 'dd'}"
     >
       <div
         class="systenBadgeFrame"
@@ -12,7 +12,7 @@
           <Icon
             v-if="site"
             class="badge"
-            :name="site.systemBadge+'-logo'"
+            :name="site.system+'-logo'"
             medium
           />
         </transition>

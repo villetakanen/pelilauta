@@ -18,7 +18,7 @@
         <TopicSelector v-model="threadTopic" />
         <Chip
           :label="site.name"
-          :icon="site.systemBadge + '-logo'"
+          :icon="site.system + '-logo'"
         />
         <Button
           :working="working"

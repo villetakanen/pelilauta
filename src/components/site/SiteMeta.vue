@@ -78,7 +78,7 @@ export default defineComponent({
     const localName = ref('')
     const localBadge = ref('')
     const badge = computed({
-      get: () => (localBadge.value || site.value.systemBadge),
+      get: () => (localBadge.value || site.value.system),
       set: (val) => {
         localBadge.value = val
       }

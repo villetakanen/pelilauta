@@ -4,7 +4,7 @@
       <ViewTitle
         :parent="site.name"
         :parent-route="`/site/${site.id}`"
-        :icon="site.systemBadge + '-logo'"
+        :icon="site.system + '-logo'"
       >
         {{ $t('mekanismi.attachments.title') }}
       </ViewTitle>

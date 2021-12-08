@@ -3,7 +3,7 @@
     class="threadCardTailer"
     :class="{
       withSite: thread.site,
-      ddColors: site && site.systemBadge === 'dd'
+      ddColors: site && site.system === 'dd'
     }"
   >
     <div style="min-width: 64px; display: block">

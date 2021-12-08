@@ -3,7 +3,7 @@
     id="siteToolbar"
   >
     <ViewTitle
-      :icon="site.systemBadge + '-logo'"
+      :icon="site.system + '-logo'"
     >
       <router-link :to="`/site/${site.id}`">
         {{ site.name }}

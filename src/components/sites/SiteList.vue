@@ -49,9 +49,9 @@
 
       <Toolbar class="cardBottom">
         <Icon
-          v-if="site.systemBadge"
+          v-if="site.system"
           xs
-          :name="site.systemBadge + '-logo'"
+          :name="site.system + '-logo'"
           class="systemBadge"
         />
         <SpacerDiv />

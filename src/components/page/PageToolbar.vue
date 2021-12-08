@@ -3,7 +3,7 @@
     id="pageToolbar"
   >
     <ViewTitle
-      :icon="site.systemBadge + '-logo'"
+      :icon="site.system + '-logo'"
       :parent="site.name"
       :parent-route="`/site/${site.id}`"
     >

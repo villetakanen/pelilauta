@@ -2,8 +2,8 @@
   <Card
     v-if="changes && changes.length > 0"
     :class="{
-      dd: site.systemBadge === 'dd',
-      quick: site.systemBadge === 'quick'
+      dd: site.system === 'dd',
+      quick: site.system === 'quick'
     }"
   >
     <h1 class="title">
@@ -27,7 +27,7 @@
     </div>
     <div class="badge">
       <Icon
-        :name="site.systemBadge + '-logo'"
+        :name="site.system + '-logo'"
         dark
         medium
         class="badge"

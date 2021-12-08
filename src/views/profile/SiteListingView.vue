@@ -33,7 +33,7 @@
             />
             <Icon
               v-else
-              :name="site.systemBadge + '-logo'"
+              :name="site.system + '-logo'"
               medium
             />
           </div>

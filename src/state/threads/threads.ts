@@ -176,7 +176,6 @@ async function fetchTopic (topic: string) {
   const q = query(collection(db, 'stream'), where('topic', '==', topic), where('sticky', '==', true), orderBy('flowTime', 'desc'))
   try {
     const stickyDocs = await getDocs(q)
-    console.debug('stickyDocs', stickyDocs, topic)
     localPinnedThreads.value = new Array<Thread>()
     stickyDocs.forEach((stickyThread) => {
       localPinnedThreads.value.push(toThread(stickyThread.id, stickyThread.data()))

@@ -110,7 +110,6 @@ export class Site extends Storable implements SiteModel {
     }
 
     get updatedAt (): Timestamp | undefined {
-      logDebug('updatedAt', this._lastUpdate, super.updatedAt)
       const d = super.updatedAt
       if (typeof d === 'undefined') return this._lastUpdate
       return d
@@ -126,7 +125,6 @@ export class Site extends Storable implements SiteModel {
     }
 
     set systemBadge (s:string) {
-      logDebug('Site.systemBadge is deprecated, use Site.system and Site.theme instead')
       this._systemBadge = s
       this.theme = s
       this.system = s

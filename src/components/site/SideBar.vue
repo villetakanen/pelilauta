@@ -60,7 +60,7 @@
         </div>
       </template>
       <Icon
-        :name="site.systemBadge + '-logo'"
+        :name="site.system + '-logo'"
         dark
         style="margin: 16px auto 0px auto; display: block;"
       />
