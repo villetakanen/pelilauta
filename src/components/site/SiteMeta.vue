@@ -37,12 +37,12 @@
         />
       </div>
     </div>
-    <div class="toolbar">
-      <div class="spacer" />
-      <MaterialButton :async-action="update">
+    <Toolbar>
+      <SpacerDiv />
+      <Button @click.prevent="update">
         {{ $t('action.save') }}
-      </MaterialButton>
-    </div>
+      </Button>
+    </Toolbar>
   </Column>
 </template>
 
@@ -53,20 +53,24 @@ import { computed, defineComponent, Ref, ref } from 'vue'
 import Select from '../form/Select.vue'
 import Column from '../layout/Column.vue'
 import Icon from '../material/Icon.vue'
-import MaterialButton from '../material/MaterialButton.vue'
 import Textfield from '../form/Textfield.vue'
 import Toggle from '../material/Toggle.vue'
 import { useSite } from '@/state/site'
+import Button from '../form/Button.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
+import Toolbar from '../layout/Toolbar.vue'
 
 export default defineComponent({
   name: 'SiteMeta',
   components: {
     Textfield,
-    MaterialButton,
     Icon,
     Toggle,
     Column,
-    Select
+    Select,
+    Button,
+    SpacerDiv,
+    Toolbar
   },
   setup () {
     const { site, updateSite } = useSite()
