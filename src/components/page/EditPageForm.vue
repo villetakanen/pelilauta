@@ -18,7 +18,7 @@
         v-model:content="v.content.$model"
         style="margin-top: 8px"
       />
-      <div class="toolbar">
+      <Toolbar>
         <Select
           v-model="v.category.$model"
           name="CategorySelect"
@@ -26,7 +26,7 @@
           :label="$t('wiki.page.category')"
           class="pageCategory"
         />
-        <div class="spacer" />
+        <SpacerDiv />
         <Button
           text
           @click="back"
@@ -41,7 +41,7 @@
         >
           {{ $t('action.save') }}
         </Button>
-      </div>
+      </Toolbar>
       <div class="debug">
         {{ page }}
       </div>
@@ -67,10 +67,12 @@ import Textfield from '../form/Textfield.vue'
 import Column from '../layout/Column.vue'
 import RichTextEditor from '../quill/RichTextEditor.vue'
 import { useUxActions } from '@/composables/useUxActions'
+import Toolbar from '../layout/Toolbar.vue'
+import SpacerDiv from '../layout/SpacerDiv.vue'
 
 export default defineComponent({
   name: 'TextStyles',
-  components: { Column, Loader, Textfield, RichTextEditor, Button, Select },
+  components: { Column, Loader, Textfield, RichTextEditor, Button, Select, Toolbar, SpacerDiv },
   setup () {
     const { site } = useSite()
     const { page } = usePage()
