@@ -7,11 +7,17 @@
 
       <List>
         <ListItem
-          v-for="category in site.pageCategories"
+          v-for="(category, index) in site.pageCategories"
           :key="category.slug"
         >
           {{ category.name }}
           <template #action>
+            <Icon
+              v-if="index > 0"
+              small
+              name="move-up"
+              @click="moveUp(index)"
+            />
             <Button
               text
               @click.prevent="dropCategory(category.slug)"
@@ -20,7 +26,6 @@
                 xs
                 name="delete"
               />
-              {{ $t('action.delete') }}
             </Button>
           </template>
         </ListItem>
@@ -83,7 +88,18 @@ export default defineComponent({
       })
     }
 
-    return { addCategory, site, newCatName, newCatSlug, dropCategory }
+    const moveUp = (index: number) => {
+      const newCategories = [...site.value.pageCategories]
+      const tmp = newCategories[index]
+      newCategories[index] = newCategories[index - 1]
+      newCategories[index - 1] = tmp
+      updateSite({
+        id: site.value.id,
+        pageCategories: newCategories
+      })
+    }
+
+    return { addCategory, site, newCatName, newCatSlug, dropCategory, moveUp }
   }
 })
 </script>
