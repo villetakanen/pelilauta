@@ -1,16 +1,16 @@
 <template>
   <Column>
     <h1 class="title">
-      {{ $t('mekanismi.site.meta') }}
+      {{ $t('site.meta.title') }}
     </h1>
     <p>
       <Textfield
         v-model="siteName"
-        :label="$t('mekanismi.site.name')"
+        :label="$t('site.fields.name')"
       />
       <Textfield
         v-model="siteDescription"
-        :label="$t('mekanismi.site.description')"
+        :label="$t('site.fields.description')"
       />
     </p>
     <div>

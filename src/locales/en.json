@@ -73,6 +73,10 @@
     "placeholderText": "Search..."
   },
   "site":{
+    "fields": {
+      "name": "Name",
+      "description": "Description"
+    },
     "keeper": {
       "title": "Character Keeper"
     },

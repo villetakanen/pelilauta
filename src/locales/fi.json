@@ -188,7 +188,6 @@
     "keeper": {
       "title": "Keeper"
     },
-    "recentChanges": "Uusimmat päivitykset",
     "characters": {
       "title": "Hahmot",
       "template": "Valitse lomake",
@@ -200,6 +199,10 @@
         "name":"Nimi",
         "description":"Kuvaus"
       }
+    },
+    "fields": {
+      "name": "Nimi",
+      "description": "Kuvaus"
     },
     "page": {
       "title": "Sivun nimi",
@@ -218,6 +221,7 @@
       "character": "Hahmo",
       "actions": "Toiminnot"
     },
+    "recentChanges": "Uusimmat päivitykset",
     "sidebar":{
       "index": {"title": "Sivut"}
     },
