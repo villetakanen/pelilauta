@@ -10,6 +10,18 @@
       {{ title }}
     </ViewTitle>
     <SpacerDiv />
+    <Button
+      v-if="site.usePlayers"
+      class="hideOnMobile"
+      text
+      @click="reroute('/site/' + site.id + '/keeper')"
+    >
+      <Icon
+        name="keeper"
+        small
+      />
+      <span class="onlyForDesktop">{{ $t('keeper.title') }}</span>
+    </Button>
     <ShareButton />
     <MaterialMenu v-model="menu" />
     <Dialog v-model="toggleDelete">
@@ -57,10 +69,10 @@ import ViewTitle from '../layout/ViewTitle.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import ShareButton from '../actions/ShareButton.vue'
 import { useAuth } from '@/state/authz'
-import { useMeta } from '@/state/meta'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
-  components: { MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv, ShareButton },
+  components: { MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv, ShareButton, Icon },
   props: {
     title: {
       type: String,
@@ -74,7 +86,6 @@ export default defineComponent({
     const i18n = useI18n()
     const { reroute } = useUxActions()
     const { user } = useAuth()
-    const { admins } = useMeta()
 
     const toggleDelete = ref(false)
     const deleteConfirm = ref('')
@@ -124,7 +135,7 @@ export default defineComponent({
       return menuItems
     })
 
-    return { site, copyLink, menu, toggleDelete, deleteConfirm, deletePageFromFirestore }
+    return { site, copyLink, menu, toggleDelete, deleteConfirm, deletePageFromFirestore, reroute }
   }
 })
 </script>
