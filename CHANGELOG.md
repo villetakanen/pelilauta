@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.9](https://github.com/villetakanen/pelilauta/compare/v12.3.8...v12.3.9) (2021-12-08)
+
+
+### Bug Fixes
+
+* page editor toolbar fixed ([e818f13](https://github.com/villetakanen/pelilauta/commit/e818f1348fa5d2021b9b208a6112d2a7ff44edeb))
+* removed some siteBadge reads ([57e8ff6](https://github.com/villetakanen/pelilauta/commit/57e8ff617f531026610d55389d06a38f1d825b0e))
+* small updates for keeper and menu on site ([2949686](https://github.com/villetakanen/pelilauta/commit/2949686e2e6a1a4a02dc96b5c1f71e5538f0ff94))
+* some locale updates ([1599659](https://github.com/villetakanen/pelilauta/commit/1599659c481760c9a390aaa3dbae0a2da8351e67))
+* some menu madness ([fc10832](https://github.com/villetakanen/pelilauta/commit/fc10832fa24bb25f0cb3f05ae9ba018d02e50021))
+* updates for locales ([6553a9a](https://github.com/villetakanen/pelilauta/commit/6553a9a3ca235b2efd014e2fd2514300c9257304))
+
 ### [12.3.8](https://github.com/villetakanen/pelilauta/compare/v12.3.7...v12.3.8) (2021-12-08)
 
 
