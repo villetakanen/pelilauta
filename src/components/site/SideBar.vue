@@ -16,8 +16,8 @@
         :src="site.splashURL"
         style="margin-top: 8px"
       >
-      <template v-if="!site.hasCategories">
-        <h3>{{ $t('mekanismi.sidebar.pagelist') }}</h3>
+      <template v-if="!site.hasCategories()">
+        <h3>{{ $t('site.sidebar.index.title') }}</h3>
         <ul class="index">
           <li
             v-for="page in pages"
@@ -29,8 +29,8 @@
           </li>
         </ul>
       </template>
-      <template v-if="site.hasCategories">
-        <h4>{{ $t('mekanismi.sidebar.pagelist') }}</h4>
+      <template v-if="site.hasCategories()">
+        <h4>{{ $t('site.sidebar.index.title') }}</h4>
         <ul class="index">
           <li
             v-for="page in noCategory"

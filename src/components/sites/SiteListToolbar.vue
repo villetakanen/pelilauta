@@ -2,7 +2,7 @@
   <div class="siteListToolbar">
     <Header>
       <ViewTitle icon="mekanismi">
-        {{ $t('wiki.title') }}
+        {{ $t('sites.title') }}
       </ViewTitle>
     </Header>
   </div>

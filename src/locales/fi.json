@@ -218,6 +218,9 @@
       "character": "Hahmo",
       "actions": "Toiminnot"
     },
+    "sidebar":{
+      "index": {"title": "Sivut"}
+    },
     "meta": {
       "title": "Valinnat",
       "usePlayers": "Käytä pelaajat -toimintoa",
@@ -246,6 +249,7 @@
     }
   },
   "sites": {
+    "title": "Mekanismi",
     "index": {
       "title": "Pelit ja sivustot"
     },

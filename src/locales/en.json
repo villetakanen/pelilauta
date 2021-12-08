@@ -5,6 +5,7 @@
   "action": {
     "add": "Add New",
     "addSite": "Create new",
+    "addPage": "Add a Page",
     "addThread": "New Discussion",
     "delete": "Delete",
     "edit": "Edit",
@@ -80,12 +81,24 @@
     },
     "settings":{
       "title":"Site Settings"
+    },
+    "sidebar":{
+      "index": {"title": "Index"}
+    },
+    "threads": {
+      "title": "Discussions"
     }
   },
   "sites": {
+    "title": "Mekanismi",
     "home":{
       "title": "Games and Sites"
     }
+  },
+  "sort": {
+    "title": "Sort by",
+    "byDate": "Date",
+    "byName": "Title"
   },
   "stream": {
     "inStream": "in"
