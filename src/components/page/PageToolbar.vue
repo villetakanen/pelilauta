@@ -56,6 +56,8 @@ import Header from '../layout/Header.vue'
 import ViewTitle from '../layout/ViewTitle.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import ShareButton from '../actions/ShareButton.vue'
+import { useAuth } from '@/state/authz'
+import { useMeta } from '@/state/meta'
 
 export default defineComponent({
   components: { MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv, ShareButton },
@@ -66,11 +68,13 @@ export default defineComponent({
     }
   },
   setup () {
-    const { site, hasAdmin } = useSite()
+    const { site } = useSite()
     const { deletePage } = usePage()
     const copyLink = useCopyLinkToClipboard()
     const i18n = useI18n()
     const { reroute } = useUxActions()
+    const { user } = useAuth()
+    const { admins } = useMeta()
 
     const toggleDelete = ref(false)
     const deleteConfirm = ref('')
@@ -88,11 +92,33 @@ export default defineComponent({
 
     const menu = computed(() => {
       const menuItems = new Array<MenuItem>()
-      if (hasAdmin()) {
+      if (site.value.hasEditor(user.value.uid)) {
         menuItems.push({
           text: i18n.t('action.delete'),
           icon: 'delete',
           action: openDeleteDialog
+        })
+      }
+      menuItems.push({
+        text: '---'
+      })
+      if (site.value.usePlayers) {
+        menuItems.push({
+          text: i18n.t('site.keeper.title'),
+          icon: 'keeper',
+          to: '/site/' + site.value.id + '/keeper'
+        })
+      }
+      if (site.value.hasOwner(user.value.uid)) {
+        menuItems.push({
+          text: i18n.t('site.meta.title'),
+          icon: 'equalizer',
+          to: '/site/' + site.value.id + '/meta'
+        })
+        menuItems.push({
+          text: i18n.t('site.settings.title'),
+          icon: 'settings',
+          to: '/site/' + site.value.id + '/settings'
         })
       }
       return menuItems
