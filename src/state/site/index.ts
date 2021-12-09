@@ -67,10 +67,10 @@ async function removePlayer (uid:string) {
   return updateSite({ id: stateSite.value.id, players: playersArray })
 }
 
-async function updateSite (data: SiteDoc): Promise<void> {
+async function updateSite (data: DocumentData): Promise<void> {
   console.debug('updateSite', stateSite.value.id, data)
 
-  const update = { ...data } as DocumentData
+  const update = { ...data }
   update.updatedAt = serverTimestamp()
 
   return updateDoc(
@@ -152,7 +152,7 @@ function useSite (id?: string):
     addOwner: (uid: string) => Promise<void>,
     addPlayer: (uid: string) => Promise<void>,
     removePlayer: (uid: string) => Promise<void>,
-    updateSite: (data: SiteDoc) => Promise<void>
+    updateSite: (data: DocumentData) => Promise<void>
   } {
   if (id) subscribeTo(id)
   return { hasAdmin, site, revokeOwner, addOwner, addPlayer, removePlayer, members, showSiteMemberTools, showSiteAdminTools, updateSite }

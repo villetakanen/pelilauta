@@ -143,6 +143,8 @@ export class Site extends Storable implements SiteModel {
       if (doc.splashURL) {
         this._theme.splashImageURL = doc.splashURL
       }
+      this._theme.backgroundImageURL = doc.backgroundImageURL || ''
+      this._theme.avatarImageURL = doc.avatarImageURL || ''
     }
 
     get latestPages (): PageLogEntry[] {
