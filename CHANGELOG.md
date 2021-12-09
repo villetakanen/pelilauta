@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.11](https://github.com/villetakanen/pelilauta/compare/v12.3.10...v12.3.11) (2021-12-09)
+
+
+### Bug Fixes
+
+* avatarurl can be set for a site ([5bfbad0](https://github.com/villetakanen/pelilauta/commit/5bfbad0ae710d2f298e82094aa9dadc439df787f))
+* site avatar selector restored ([b580dcc](https://github.com/villetakanen/pelilauta/commit/b580dcc3e603dbf3dde88e49d0327708c9dbf8ab))
+
 ### [12.3.10](https://github.com/villetakanen/pelilauta/compare/v12.3.9...v12.3.10) (2021-12-09)
 
 
