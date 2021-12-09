@@ -1,6 +1,12 @@
 <template>
   <div class="AvatarSelector">
+    <Icon
+      v-if="avatarUrl === '/icons/fox-icon-96.png' && defaultAvatar"
+      :name="defaultAvatar"
+      @click="selectDialog = true"
+    />
     <img
+      v-if="!defaultAvatar || avatarUrl !== '/icons/fox-icon-96.png'"
       :src="avatarUrl"
       alt="Avatar"
       class="preview"
@@ -13,6 +19,11 @@
     >
     <Dialog v-model="selectDialog">
       <div class="flexList">
+        <Icon
+          v-if="defaultAvatar"
+          :name="defaultAvatar"
+          @click="setAvatar('')"
+        />
         <img
           v-if="forUser"
           class="selectableImage"
@@ -39,16 +50,21 @@ import { useAssets } from '@/state/assets'
 import { logDebug } from '@/utils/eventLogger'
 import { computed, defineComponent, ref } from 'vue'
 import Dialog from '../material/Dialog.vue'
+import Icon from '../material/Icon.vue'
 
 export default defineComponent({
   name: 'AvatarSelector',
-  components: { Dialog },
+  components: { Dialog, Icon },
   props: {
     forUser: {
       type: Boolean,
       default: false
     },
     modelValue: {
+      type: String,
+      default: ''
+    },
+    defaultAvatar: {
       type: String,
       default: ''
     }

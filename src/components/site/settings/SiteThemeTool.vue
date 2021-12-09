@@ -5,7 +5,7 @@
     </h1>
     <AvatarSelector
       v-model="avatar"
-      :default="site.system + '-logo'"
+      :default-avatar="site.system + '-logo'"
     />
     <div
       v-if="showAdminTools"
