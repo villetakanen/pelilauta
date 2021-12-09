@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.10](https://github.com/villetakanen/pelilauta/compare/v12.3.9...v12.3.10) (2021-12-09)
+
+
+### Bug Fixes
+
+* added site theme tool ([4257fc3](https://github.com/villetakanen/pelilauta/commit/4257fc3ffe9a668378d384a0383b4b73033bdf49))
+* i18n of site settings ([7c287e5](https://github.com/villetakanen/pelilauta/commit/7c287e563588176b6556a6a25a704368b7f25f1e))
+* site theme tool comp restored ([e3671bf](https://github.com/villetakanen/pelilauta/commit/e3671bf78f67dabf2a1bfc6a015d4854932c3889))
+
 ### [12.3.9](https://github.com/villetakanen/pelilauta/compare/v12.3.8...v12.3.9) (2021-12-08)
 
 
