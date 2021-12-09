@@ -1,6 +1,8 @@
 <template>
   <Column class="SiteThemeTool">
-    <h1>{{ $t('site.themetool.title') }}</h1>
+    <h1 class="title">
+      {{ $t('site.themetool.title') }}
+    </h1>
   </Column>
 </template>
 

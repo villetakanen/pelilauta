@@ -7,6 +7,7 @@
         class="dashBoardLayout"
       >
         <SiteMeta class="inDashboardBox" />
+        <SiteThemeTool />
         <SiteCategoriesCard class="inDashboardBox" />
       </main>
       <Loader v-else />
@@ -23,6 +24,7 @@ import SiteMeta from '@/components/site/SiteMeta.vue'
 import SiteToolbar from '@/components/site/header/SiteToolbar.vue'
 import SiteCategoriesCard from '@/components/site/SiteCategoriesCard.vue'
 import { useAuth } from '@/state/authz'
+import SiteThemeTool from '@/components/site/settings/SiteThemeTool.vue'
 
 export default defineComponent({
   name: 'WikiIndex',
@@ -30,7 +32,8 @@ export default defineComponent({
     Loader,
     SiteMeta,
     SiteToolbar,
-    SiteCategoriesCard
+    SiteCategoriesCard,
+    SiteThemeTool
   },
   props: {
     siteid: {
