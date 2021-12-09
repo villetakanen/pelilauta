@@ -228,11 +228,15 @@
     "meta": {
       "title": "Valinnat",
       "usePlayers": "Käytä pelaajat -toimintoa",
+      "publicSite": "Näytä julkisissa listoissa",
       "splashImage": "Sivuston tunnuskuva",
       "categories": {
         "title": "Aiheet",
         "newCategoryField": "Lisää aihe"
       }
+    },
+    "themetool": {
+      "title": "Ulkoasu"
     },
     "threads":{
       "title": "Keskustelu"

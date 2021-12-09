@@ -11,6 +11,7 @@
     "edit": "Edit",
     "profile": "My Profile",
     "quote": "Quote",
+    "save": "Save",
     "send": "Send",
     "share": "Share"
   },
@@ -81,13 +82,22 @@
       "title": "Character Keeper"
     },
     "meta": {
-      "title": "Features"
+      "title": "Features",
+      "publicSite": "Show this site in public listings",
+      "usePlayers": "Use players and characters keeper",
+      "categories": {
+        "title": "Topics",
+        "newCategoryField": "New topic name"
+      }
     },
     "settings":{
       "title":"Site Settings"
     },
     "sidebar":{
       "index": {"title": "Index"}
+    },
+    "themetool": {
+      "title": "Theme"
     },
     "threads": {
       "title": "Discussions"

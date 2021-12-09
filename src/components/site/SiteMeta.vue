@@ -27,7 +27,7 @@
       <div style="line-height: 48px">
         <Toggle
           v-model="siteVisible"
-          :label="$t('wiki.site.visibleToggle')"
+          :label="$t('site.meta.publicSite')"
         />
       </div>
       <div style="line-height: 48px">

@@ -1,5 +1,5 @@
 import { logDebug } from '@/utils/eventLogger'
-import { DocumentData, Timestamp } from '@firebase/firestore'
+import { DocumentData, Timestamp, FieldValue } from '@firebase/firestore'
 import { Storable, StorableDoc } from '../Storable'
 import { PageCategory } from './PageCategory'
 
@@ -7,6 +7,38 @@ interface PageLogEntry {
   name: string
   id: string
   author: string
+}
+
+export interface SiteThemeModel {
+  name: string
+  splashImageURL: string
+  backgroundImageURL: string
+  avatarImageURL: string
+}
+
+export class SiteTheme implements SiteThemeModel {
+  static readonly DEFAULT = 'default'
+  static readonly DD = 'dd'
+  static readonly quick = 'quick'
+  name = SiteTheme.DEFAULT
+  splashImageURL = ''
+  backgroundImageURL = ''
+  avatarImageURL = ''
+
+  toFieldValues (): { [key: string]: string } {
+    const result: { [key: string]: string } = {}
+    result.name = this.name
+    if (this.splashImageURL) {
+      result.splashImageURL = this.splashImageURL
+    }
+    if (this.backgroundImageURL) {
+      result.backgroundImageURL = this.backgroundImageURL
+    }
+    if (this.avatarImageURL) {
+      result.avatarImageURL = this.avatarImageURL
+    }
+    return result
+  }
 }
 
 /**
@@ -21,7 +53,7 @@ export interface SiteDoc extends StorableDoc {
   hidden?: boolean
   system?: string
   systemBadge?: string
-  theme?: string
+  theme?: SiteThemeModel
   latestPages?: PageLogEntry[]
   pageCategories?: PageCategory[]
 }
@@ -35,7 +67,7 @@ export interface SiteModel extends SiteDoc {
   hidden: boolean
   system: string
   systemBadge: string
-  theme: string
+  theme: SiteThemeModel
   latestPages: PageLogEntry[]
   pageCategories: PageCategory[]
   readonly updatedAt: Timestamp | undefined
@@ -59,7 +91,7 @@ export class Site extends Storable implements SiteModel {
     hidden = true // By default, this site is not visible in public listings and search
     system = ''
     private _systemBadge = '' // Deprecated, use system, and theme instead
-    theme = ''
+    _theme = new SiteTheme()
     private _latestPages:PageLogEntry[] = []
     private _lastUpdate: Timestamp | undefined
     pageCategories: PageCategory[] = []
@@ -68,6 +100,10 @@ export class Site extends Storable implements SiteModel {
       super(site as StorableDoc, data)
       const d:SiteDoc = typeof site !== 'string' ? site : data ? { ...data } : { id: site }
       this.docData = d
+    }
+
+    get theme (): SiteThemeModel {
+      return this._theme
     }
 
     get docData (): DocumentData {
@@ -102,7 +138,11 @@ export class Site extends Storable implements SiteModel {
       const s = doc?.system || doc?.systemBadge || ''
       this.system = s
       this._systemBadge = s
-      this.theme = s
+      this._theme = new SiteTheme()
+      this._theme.name = s
+      if (doc.splashURL) {
+        this._theme.splashImageURL = doc.splashURL
+      }
     }
 
     get latestPages (): PageLogEntry[] {
@@ -126,7 +166,7 @@ export class Site extends Storable implements SiteModel {
 
     set systemBadge (s:string) {
       this._systemBadge = s
-      this.theme = s
+      this._theme.name = s
       this.system = s
     }
 
