@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.12](https://github.com/villetakanen/pelilauta/compare/v12.3.11...v12.3.12) (2021-12-10)
+
+
+### Bug Fixes
+
+* restored site avatar images to the SiteList ([0e14f64](https://github.com/villetakanen/pelilauta/commit/0e14f645515e771797376007825d72e0999ecb85))
+
 ### [12.3.11](https://github.com/villetakanen/pelilauta/compare/v12.3.10...v12.3.11) (2021-12-09)
 
 
