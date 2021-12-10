@@ -10,25 +10,18 @@
         class="characterSheetField descriptionField"
       />
     </div>
-    <div class="toolbar">
-      <div class="spacer" />
-      <MaterialButton :async-action="pushChanges">
-        {{ $t('action.save') }}
-      </MaterialButton>
-    </div>
     {{ character }}
   </div>
 </template>
 
 <script lang="ts">
-import MaterialButton from '@/components/material/MaterialButton.vue'
 import Textfield from '@/components/form/Textfield.vue'
 import { PlayerCharacter } from '@/utils/firestoreInterfaces'
 import { defineComponent, PropType, ref, watch } from 'vue'
 import { logError } from '@/utils/eventLogger'
 
 export default defineComponent({
-  components: { Textfield, MaterialButton },
+  components: { Textfield },
   props: {
     character: {
       type: Object as PropType<PlayerCharacter>,
