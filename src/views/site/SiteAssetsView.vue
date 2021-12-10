@@ -16,11 +16,7 @@
       class="flexLayout"
       style="margin-top:12px"
     >
-      <AttachmentRow
-        v-for="asset, key in assets"
-        :key="key"
-        :asset="asset[1]"
-      />
+      ...
     </main>
     <Loader
       v-else
@@ -33,7 +29,6 @@
 import { computed, defineComponent } from 'vue'
 import { useSite, useAssets } from '@/state/site'
 import Loader from '@/components/app/Loader.vue'
-import AttachmentRow from '@/components/site/assets/AssetListItem.vue'
 import { useAuth } from '@/state/authz'
 import AddAssetFab from '@/components/site/assets/AddAssetFab.vue'
 import ViewTitle from '@/components/layout/ViewTitle.vue'
@@ -52,7 +47,6 @@ export default defineComponent({
   name: 'SiteAssetsView',
   components: {
     Loader,
-    AttachmentRow,
     AddAssetFab,
     ViewTitle,
     Header,
