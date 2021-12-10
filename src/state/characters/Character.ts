@@ -45,7 +45,8 @@ export class Character extends CharacterSheet {
   ingestStats (stats: { [key: string]: number|string }): void {
     Object.keys(stats).forEach(k => {
       logDebug('Character.ingestStats', k, stats[k])
-      this.setStat(k, stats[k])
+      // if there is a forumula, the stat is composite and can not be set directly
+      if (!super.model.stats[k].formula) this.setStat(k, stats[k])
     })
   }
 
