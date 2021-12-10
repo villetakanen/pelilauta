@@ -24,50 +24,20 @@
         </Button>
       </Toolbar>
     </section>
-    <Card
-      v-for="site in publicSites"
-      :key="site.id"
-      :rise="2"
-      class="siteCard"
-      :class="{ withPoster: site.splashURL }"
-    >
-      <img
-        v-if="site.splashURL"
-        alt=""
-        :src="site.splashURL"
-        class="poster"
-      >
-      <h1>
-        <router-link :to="`/site/${site.id}`">
-          {{ site.name }}
-        </router-link>
-      </h1>
-
-      <p class="description">
-        {{ site.description }}
-      </p>
-
-      <Toolbar class="cardBottom">
-        <Icon
-          v-if="site.system"
-          xs
-          :name="site.system + '-logo'"
-          class="systemBadge"
-        />
-        <SpacerDiv />
-        <div class="caption">
-          {{ toDisplayString(site.updatedAt) }}
-        </div>
-      </Toolbar>
-    </Card>
+    <section class="flexList">
+      <SiteCard
+        v-for="site in sites"
+        :key="site.id"
+        style="margin-top:0"
+        :siteid="site.id"
+      />
+    </section>
   </Column>
 </template>
 
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, ref } from 'vue'
-import Card from '@/components/layout/Card.vue'
 import { fireStoreURL, toDisplayString } from '@/utils/firebaseTools'
-import Icon from '../material/Icon.vue'
 import { useSites } from '@/state/sites'
 import { Site } from '@/state/site/Site'
 import Column from '../layout/Column.vue'
@@ -76,17 +46,19 @@ import Button from '../form/Button.vue'
 import Toolbar from '../layout/Toolbar.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
 import SiteFilterPane from './SiteFilterPane.vue'
+import SiteCard from './sitecard/SiteCard.vue'
 
 export default defineComponent({
   name: 'SiteList',
   components: {
-    Card,
-    Icon,
+    // Card,
+    // Icon,
     Column,
     Button,
     Toolbar,
     SpacerDiv,
-    SiteFilterPane
+    SiteFilterPane,
+    SiteCard
   },
   setup () {
     const { allSites } = useSites()
@@ -110,14 +82,14 @@ export default defineComponent({
       })
     ))
 
-    const publicSites:ComputedRef<Array<Site>> = computed(() => {
+    const sites:ComputedRef<Array<Site>> = computed(() => {
       if (filter.value.length > 0) {
         return mySites.value.filter(site => filter.value.includes(site.systemBadge))
       }
       return mySites.value
     })
 
-    return { publicSites, fireStoreURL, toDisplayString, sort, filter }
+    return { sites, fireStoreURL, toDisplayString, sort, filter }
   }
 })
 </script>
@@ -161,14 +133,8 @@ section.siteCard
   height: 24px
   width: 24px
 
-div.cardGrid
-  display: flex
-  flex-wrap: wrap
-  grid-gap: 8px
-  justify-content: center
+div.flexList
   align-items: flex-start
-  div.siteCard
-    margin: 0
 
 @include media('<tablet')
   div.siteCard
@@ -211,5 +177,7 @@ div.siteCard
     top: -16px
     right: -16px
     background: linear-gradient(101deg, rgba($color-fill-light,1) 8%, rgba($color-fill-primary-light, 0.2) 44%, rgba($color-fill-primary, 0.2) 64%, rgba($color-fill-primary-dark, 0.1) 100%)
+
+@include media('>=tablet')
 
 </style>
