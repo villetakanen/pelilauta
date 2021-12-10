@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.13](https://github.com/villetakanen/pelilauta/compare/v12.3.12...v12.3.13) (2021-12-10)
+
+
+### Bug Fixes
+
+* restored a bug due to character serialization ([00e6b6a](https://github.com/villetakanen/pelilauta/commit/00e6b6a3bf014161d5fc4ff6b6cdac6cf9206d96))
+
 ### [12.3.12](https://github.com/villetakanen/pelilauta/compare/v12.3.11...v12.3.12) (2021-12-10)
 
 
