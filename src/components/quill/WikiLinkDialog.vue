@@ -13,13 +13,13 @@
         v-model="customUrlText"
         :label="customUrl"
       />
-      <MaterialButton
-        :action="sendUrl"
+      <Button
         :disabled="!urlValid"
         :label="$t('rte.wikilink.urlfield')"
+        @click.prevent="sendUrl"
       >
         {{ $t('action.add') }}
-      </MaterialButton>
+      </Button>
       <div v-if="site.name && site.name.length > 0">
         <hr>
         <h1 class="title">
@@ -30,9 +30,9 @@
           :opts="pageOpts"
           :label="$t('rte.wikilink.pagefield')"
         />
-        <MaterialButton :action="sendValue">
+        <Button :action="sendValue">
           {{ $t('action.add') }}
-        </MaterialButton>
+        </Button>
       </div>
     </div>
   </Dialog>
@@ -42,12 +42,12 @@
 import { usePages, useSite } from '@/state/site'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import Dialog from '../material/Dialog.vue'
-import MaterialButton from '../material/MaterialButton.vue'
 import MaterialSelect from '../material/MaterialSelect.vue'
 import Textfield from '../form/Textfield.vue'
+import Button from '../form/Button.vue'
 
 export default defineComponent({
-  components: { Dialog, MaterialSelect, MaterialButton, Textfield },
+  components: { Dialog, MaterialSelect, Textfield, Button },
   emits: ['addLink'],
   setup (props, context) {
     const showDialog = ref(false)
