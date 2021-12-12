@@ -40,7 +40,7 @@ let unsubscribe = () => {}
 async function subscribeToSites () {
   unsubscribe()
   const db = getFirestore()
-  const q = query(collection(db, 'sites'), orderBy('lastUpdate', 'desc'))
+  const q = query(collection(db, 'sites'))
   unsubscribe = onSnapshot(q, (snap) => {
     snap.docChanges().forEach((change) => {
       fullSiteList.value.set(change.doc.id, new Site(change.doc.id, change.doc.data() as SiteDoc))

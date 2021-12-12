@@ -30,7 +30,7 @@ import Toolbar from '@/components/layout/Toolbar.vue'
 import { useUxActions } from '@/composables/useUxActions'
 import { useSites } from '@/state/sites'
 import { defineComponent, computed } from 'vue'
-import WikiChangesItem from '../WikiChangesItem.vue'
+import WikiChangesItem from './SiteChangeItem.vue'
 
 /**
  * A Mekanismi / Sites chanfes card
@@ -39,11 +39,11 @@ export default defineComponent({
   name: 'MekanismiCard',
   components: { Card, WikiChangesItem, Toolbar, SpacerDiv, Button },
   setup () {
-    const { publicSites, userSites } = useSites()
+    const { visibleSites } = useSites()
     const { reroute } = useUxActions()
 
     const topThreeSites = computed(() => {
-      const allSites = [...publicSites.value, ...userSites.value].sort(
+      const allSites = [...visibleSites.value].sort(
         (a, b) => b.compareChangeTime(a)
       )
       return allSites.slice(0, 3)

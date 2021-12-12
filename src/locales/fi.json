@@ -151,6 +151,9 @@
     "emailLoginHelper": "Sähköpostiosoite",
     "socialLoginTitle": "Kirjaudu toisella palvelulla"
   },
+  "meta": {
+    "updatedAt": "Päivitetty"
+  },
   "notification": {
     "newThreadReply": "vastasi ketjuun.",
     "mentionInThread": "mainitsi sinut ketjussa"

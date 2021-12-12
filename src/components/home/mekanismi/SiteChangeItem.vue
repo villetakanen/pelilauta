@@ -24,7 +24,7 @@
 import { Site } from '@/state/site/Site'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
-import Icon from '../material/Icon.vue'
+import Icon from '../../material/Icon.vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 /**
  * A simple welcome card for anonymous visitors

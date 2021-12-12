@@ -53,6 +53,9 @@
       "addPlayer": "Add a player"
     }
   },
+  "meta": {
+    "updatedAt": "Updated"
+  },
   "post": {
     "nOfReplies": "comments"
   },
