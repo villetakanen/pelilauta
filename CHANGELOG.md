@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.16](https://github.com/villetakanen/pelilauta/compare/v12.3.15...v12.3.16) (2021-12-12)
+
+
+### Bug Fixes
+
+* some card styling ([db06af7](https://github.com/villetakanen/pelilauta/commit/db06af7314aacb28de409bede7c3e1482e2178d2))
+
 ### [12.3.15](https://github.com/villetakanen/pelilauta/compare/v12.3.14...v12.3.15) (2021-12-12)
 
 ### [12.3.14](https://github.com/villetakanen/pelilauta/compare/v12.3.13...v12.3.14) (2021-12-12)
