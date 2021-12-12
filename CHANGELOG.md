@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.3.14](https://github.com/villetakanen/pelilauta/compare/v12.3.13...v12.3.14) (2021-12-12)
+
+
+### Bug Fixes
+
+* site state fixes around the app ([35269d5](https://github.com/villetakanen/pelilauta/commit/35269d5c3b967bad0d2c432b39696163337dce18))
+
 ### [12.3.13](https://github.com/villetakanen/pelilauta/compare/v12.3.12...v12.3.13) (2021-12-10)
 
 
