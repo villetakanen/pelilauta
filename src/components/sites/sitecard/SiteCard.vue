@@ -1,5 +1,12 @@
 <template>
-  <Card class="SiteCard">
+  <Card
+    class="SiteCard"
+    :class="{
+      themeDD: site.theme.name === 'dd',
+      themeQuick: site.theme.name === 'quick',
+      themeHomebrew: site.theme.name === 'homebrew'
+    }"
+  >
     <div
       v-if="site.theme.avatarImageURL"
       class="avatar"
@@ -28,9 +35,18 @@
     <p style="clear:both">
       {{ site.description }}
     </p>
-    <p class="TypeCaption">
-      {{ $t('meta.updatedAt') }} {{ toDisplayString(site.updatedAt) }}
-    </p>
+    <template #bottom>
+      <Icon
+        v-if="site.hidden"
+        style="opacity:0.44"
+        small
+        name="hidden"
+      />
+      <SpacerDiv />
+      <p class="TypeCaption">
+        <i>{{ $t('meta.updatedAt') }} {{ toDisplayString(site.updatedAt) }}</i>
+      </p>
+    </template>
   </Card>
 </template>
 
@@ -42,8 +58,10 @@ import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'
 
+import SpacerDiv from '@/components/layout/SpacerDiv.vue'
+
 export default defineComponent({
-  components: { Card, Icon },
+  components: { Card, Icon, SpacerDiv },
   props: {
     siteid: {
       type: String,
