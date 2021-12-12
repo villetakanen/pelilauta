@@ -49,6 +49,7 @@
         </div>
       </div>
     </Dialog>
+    <MovePageDialog v-model="movePageDialog" />
   </Header>
 </template>
 
@@ -70,9 +71,10 @@ import SpacerDiv from '../layout/SpacerDiv.vue'
 import ShareButton from '../actions/ShareButton.vue'
 import { useAuth } from '@/state/authz'
 import Icon from '../material/Icon.vue'
+import MovePageDialog from './MovePageDialog.vue'
 
 export default defineComponent({
-  components: { MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv, ShareButton, Icon },
+  components: { MaterialMenu, Dialog, Textfield, Button, Header, ViewTitle, SpacerDiv, ShareButton, Icon, MovePageDialog },
   props: {
     title: {
       type: String,
@@ -90,6 +92,8 @@ export default defineComponent({
     const toggleDelete = ref(false)
     const deleteConfirm = ref('')
 
+    const movePageDialog = ref(false)
+
     function openDeleteDialog () {
       toggleDelete.value = true
     }
@@ -104,6 +108,13 @@ export default defineComponent({
     const menu = computed(() => {
       const menuItems = new Array<MenuItem>()
       if (site.value.hasEditor(user.value.uid)) {
+        menuItems.push({
+          text: i18n.t('action.move'),
+          icon: 'move',
+          action: () => {
+            movePageDialog.value = true
+          }
+        })
         menuItems.push({
           text: i18n.t('action.delete'),
           icon: 'delete',
@@ -135,7 +146,7 @@ export default defineComponent({
       return menuItems
     })
 
-    return { site, copyLink, menu, toggleDelete, deleteConfirm, deletePageFromFirestore, reroute }
+    return { site, copyLink, menu, toggleDelete, deleteConfirm, deletePageFromFirestore, reroute, movePageDialog }
   }
 })
 </script>
