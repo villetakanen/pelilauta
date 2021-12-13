@@ -1,6 +1,6 @@
 <template>
   <Card
-    class="SiteCard"
+    class="SiteCard themeable"
     :class="{
       themeDD: site.theme.name === 'dd',
       themeQuick: site.theme.name === 'quick',
