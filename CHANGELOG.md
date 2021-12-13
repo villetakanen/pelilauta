@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [12.4.0](https://github.com/villetakanen/pelilauta/compare/v12.3.16...v12.4.0) (2021-12-13)
+
+
+### Features
+
+* move pages ux added ([f0ca230](https://github.com/villetakanen/pelilauta/commit/f0ca2303e31dd661165da8c9a1c46d1cc12947f4))
+
+
+### Bug Fixes
+
+* pages can be moved,reloads still bug ([9491c9b](https://github.com/villetakanen/pelilauta/commit/9491c9bc6ba6608d249bc4dbddb44e83a3a616ea))
+
 ### [12.3.16](https://github.com/villetakanen/pelilauta/compare/v12.3.15...v12.3.16) (2021-12-12)
 
 
