@@ -2,7 +2,12 @@
   <div class="viewPage">
     <PageToolbar :title="page.name" />
     <div class="bookLayout">
-      <Column class="double">
+      <Column
+        class="double themeable"
+        :class="{
+          themeDD: site.theme.name === 'dd',
+        }"
+      >
         <transition name="fade">
           <div v-if="site.name && page.name">
             <div

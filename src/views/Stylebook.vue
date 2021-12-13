@@ -29,6 +29,10 @@
       v-if="!focus || focus === 'ListComponents'"
       v-model="focus"
     />
+    <Theming
+      v-if="!focus || focus === 'ListComponents'"
+      v-model="focus"
+    />
   </main>
 </template>
 
@@ -46,6 +50,7 @@ import ColumnsAndSections from '@/components/stylebook/ColumnsAndSections.vue'
 import StatefullComponents from '@/components/stylebook/StatefullComponents.vue'
 import Components from '@/components/stylebook/Components.vue'
 import ListComponents from '@/components/stylebook/ListComponents.vue'
+import Theming from '@/components/stylebook/Theming.vue'
 
 export default defineComponent({
   name: 'WelcomeCard',
@@ -60,7 +65,8 @@ export default defineComponent({
     ColumnsAndSections,
     StatefullComponents,
     Components,
-    ListComponents
+    ListComponents,
+    Theming
   },
   setup () {
     const focus = ref('')
