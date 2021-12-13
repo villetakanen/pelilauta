@@ -8,7 +8,7 @@
       />
       <SpacerDiv />
       <Button
-        @click="movePage"
+        @click="onClick"
       >
         {{ $t('action.move') }}
       </Button>
@@ -17,9 +17,11 @@
 </template>
 
 <script lang="ts">
+import { useUxActions } from '@/composables/useUxActions'
+import { usePage } from '@/state/pages/usePage'
 import { useSite } from '@/state/site'
 import { useSites } from '@/state/sites'
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import Button from '../form/Button.vue'
 import Select from '../form/Select.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
@@ -38,6 +40,8 @@ export default defineComponent({
   setup (props, context) {
     const { site } = useSite()
     const { userSites } = useSites()
+    const { page, movePage } = usePage()
+    const { reroute } = useUxActions()
 
     const selected = ref(site.value.id)
 
@@ -50,12 +54,19 @@ export default defineComponent({
 
     const opts = computed(() => userSites.value.map(site => ([site.id, site.name])))
 
-    function movePage () {
+    const pageid = ref('')
+    onMounted(() => {
+      pageid.value = page.value.id
+    })
+
+    async function onClick () {
+      await movePage(selected.value)
       visible.value = false
+      reroute('/site/' + selected.value + '/page/' + pageid.value)
     }
 
     return {
-      movePage,
+      onClick,
       visible,
       opts,
       selected
