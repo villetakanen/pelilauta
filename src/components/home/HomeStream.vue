@@ -53,6 +53,7 @@ import SpacerDiv from '../layout/SpacerDiv.vue'
 import { WordpressArticle, WordPressSubscription } from '@/utils/wordpress'
 import Icon from '../material/Icon.vue'
 import Button from '../form/Button.vue'
+import { useSites } from '@/state/sites'
 
 interface StreamEntry {
   key: string
@@ -77,7 +78,8 @@ export default defineComponent({
   name: 'HomeStream',
   components: { ThreadCard, WPCard, Column, MekanismiCard, Toolbar, SpacerDiv, Icon, Button },
   setup () {
-    const { lastFlowtime } = usePagelog()
+    const { visibleSites } = useSites()
+    const lastFlowtime = computed(() => [...visibleSites.value].sort((a, b) => b.compareChangeTime(a))[0].updatedAt?.seconds || 0)
     const { anonymousSession } = useAuth()
     const lokiArticles:Ref<WordpressArticle[]> = ref([])
     // const tiedotusArticles:Ref<WordpressArticle[]> = ref([])
