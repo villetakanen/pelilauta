@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.4.1](https://github.com/villetakanen/pelilauta/compare/v12.4.0...v12.4.1) (2021-12-13)
+
+
+### Bug Fixes
+
+* theming support alpha ([57e7e48](https://github.com/villetakanen/pelilauta/commit/57e7e48d0a68fc492ec6bef53af6dac7c8956c8e))
+
 ## [12.4.0](https://github.com/villetakanen/pelilauta/compare/v12.3.16...v12.4.0) (2021-12-13)
 
 
