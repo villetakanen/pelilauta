@@ -94,7 +94,7 @@ export class Storable implements StorableModel {
   }
 
   compareFlowTime (other:StorableModel): number {
-    if (other.id !== this.id) return 0 // They are the same entity, return 0
+    if (other.id === this.id) return 0 // They are the same entity, return 0
     if (other.flowTime > this.flowTime) {
       return -1
     }
