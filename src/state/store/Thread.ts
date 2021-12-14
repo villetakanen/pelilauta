@@ -1,15 +1,5 @@
 import { DocumentData } from '@firebase/firestore'
-import { Storable, StorableDoc, StorableModel } from './Storable'
-
-export interface ThreadDoc extends StorableDoc{
-  name?: string
-  author?: string
-  replyCount?: number
-  lovedCount?: number
-  seenCount?: number
-  hidden?: boolean
-  content?: string
-}
+import { Storable, StorableModel } from './Storable'
 
 export interface ThreadModel extends StorableModel{
   name: string
@@ -19,6 +9,7 @@ export interface ThreadModel extends StorableModel{
   seenCount: number
   hidden: boolean
   content: string
+  site?: string
 }
 
 export class Thread extends Storable implements StorableModel {
@@ -29,7 +20,9 @@ export class Thread extends Storable implements StorableModel {
   seenCount = 0
   hidden = true
   content = '<p><br/><p>'
-  constructor (thread: ThreadDoc|string, doc?: ThreadDoc) {
+  site:string|undefined // the id of a game or site linked to this thread
+
+  constructor (thread: DocumentData|string, doc?: DocumentData) {
     super(thread, doc)
     const t = typeof thread === 'string' ? doc || { id: thread } : thread
     this.docData = t
@@ -50,5 +43,6 @@ export class Thread extends Storable implements StorableModel {
     this.seenCount = doc.seenCount || 0
     this.hidden = !!doc.hidden
     this.content = doc.content || '<p><br/><p>'
+    this.site = doc.site || undefined
   }
 }

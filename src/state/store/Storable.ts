@@ -1,3 +1,4 @@
+import { logDebug } from '@/utils/eventLogger'
 import { DocumentData, Timestamp, serverTimestamp } from '@firebase/firestore'
 
 /**
@@ -51,10 +52,10 @@ export class Storable implements StorableModel {
    * @returns {number} The time of the last change to this entity, or any related entity in milliseconds since the epoch.
    */
   get flowTime (): number {
-    if (this._flowTime) return this._flowTime.toMillis()
-    if (this._updated) return this._updated.toMillis()
-    if (this._created) return this._created.toMillis()
-    return 0
+    if (this._flowTime && this._flowTime !== null) return Math.floor(this._flowTime.toMillis())
+    if (this._updated) return Math.floor(this._updated.toMillis())
+    if (this._created) return Math.floor(this._created.toMillis())
+    return 0 // No flowTime or flowtime===null, no updatedAt, no createdAt, so return 0
   }
 
   get createdAt (): Timestamp|undefined {
@@ -79,8 +80,8 @@ export class Storable implements StorableModel {
    */
   get docData (): DocumentData {
     const data: DocumentData = {}
-    data.created = this._created || serverTimestamp()
-    data.updated = serverTimestamp()
+    data.createdAt = this._created || serverTimestamp()
+    data.updatedAt = serverTimestamp()
 
     // We will not inject the flowTime to entities that do not use flowtime.
     if (this._flowTime) data.flowTime = this._flowTime
@@ -88,17 +89,14 @@ export class Storable implements StorableModel {
   }
 
   set docData (doc: DocumentData) {
-    if (doc.created) this._created = doc.created
-    if (doc.updated) this._updated = doc.updated
-    if (doc.flowTime) this._flowTime = (doc.flowTime as Timestamp)
+    if (doc.createdAt) this._created = doc.createdAt as Timestamp
+    if (doc.updatedAt) this._updated = doc.updatedAt as Timestamp
+    if (doc.flowTime) this._flowTime = doc.flowTime as Timestamp
   }
 
   compareFlowTime (other:StorableModel): number {
     if (other.id === this.id) return 0 // They are the same entity, return 0
-    if (other.flowTime > this.flowTime) {
-      return -1
-    }
-    return 1
+    return this.flowTime > other.flowTime ? -1 : 1
   }
 
   compareChangeTime (other:StorableModel): number {

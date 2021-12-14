@@ -4,14 +4,15 @@ import { Timestamp, DocumentData } from '@firebase/firestore'
 const example:DocumentData = {
   id: 'example',
   author: 'exampleAutor',
-  created: new Timestamp(0, 0),
-  updated: new Timestamp(1, 1),
+  createdAt: new Timestamp(0, 0),
+  updatedAt: new Timestamp(1, 1),
   flowTime: new Timestamp(2, 2),
   replyCount: 2,
   lovedCount: 3,
   seenCount: 4,
   hidden: false,
   content: '<h1>exampleContent</h1>',
+  site: 'exampleSite',
 }
 describe('Thread', () => {
   it('should be a valid Thread', () => {
@@ -26,5 +27,6 @@ describe('Thread', () => {
     expect(thread.seenCount).toBe(4)
     expect(thread.hidden).toBe(false)
     expect(thread.content).toBe('<h1>exampleContent</h1>')
+    expect(thread.site).toBe('exampleSite')
   })
 })
