@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.4.5](https://github.com/villetakanen/pelilauta/compare/v12.4.4...v12.4.5) (2021-12-14)
+
+
+### Bug Fixes
+
+* added basic testing for storables ([48a8214](https://github.com/villetakanen/pelilauta/commit/48a8214dcbb4585dbc07f5a194c91884ee94ae16))
+* refactored state class structure ([7aba71f](https://github.com/villetakanen/pelilauta/commit/7aba71fb786f2048bc53ee5ed7f3ffc7409d8da4))
+* refactored thread class to a separate file ([9ec133f](https://github.com/villetakanen/pelilauta/commit/9ec133f22760eaedf228c59b20bc0d881679fbf6))
+* site model overrides ([a58c7d8](https://github.com/villetakanen/pelilauta/commit/a58c7d82523c4dff578d6d9867da8a657c810dd0))
+* updatedAt works as expected ([1e1c079](https://github.com/villetakanen/pelilauta/commit/1e1c079ff3100473532c16668df6e3e999732cb7))
+
 ### [12.4.4](https://github.com/villetakanen/pelilauta/compare/v12.4.3...v12.4.4) (2021-12-14)
 
 
