@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.4.4](https://github.com/villetakanen/pelilauta/compare/v12.4.3...v12.4.4) (2021-12-14)
+
+
+### Bug Fixes
+
+* thread as storable ([d468da3](https://github.com/villetakanen/pelilauta/commit/d468da330dc7f53d4c8c284181b0ff4dd1e4fccd))
+
 ### [12.4.3](https://github.com/villetakanen/pelilauta/compare/v12.4.2...v12.4.3) (2021-12-13)
 
 
