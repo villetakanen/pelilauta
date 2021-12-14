@@ -1,6 +1,6 @@
 import { logDebug } from '@/utils/eventLogger'
 import { DocumentData, Timestamp, FieldValue } from '@firebase/firestore'
-import { Storable, StorableDoc } from '../store/Storable'
+import { Storable, StorableDoc, StorableModel } from '../store/Storable'
 import { PageCategory } from './PageCategory'
 
 interface PageLogEntry {
@@ -58,7 +58,7 @@ export interface SiteDoc extends StorableDoc {
   pageCategories?: PageCategory[]
 }
 
-export interface SiteModel extends SiteDoc {
+export interface SiteModel extends StorableModel {
   name: string
   description: string
   owners: string[]
