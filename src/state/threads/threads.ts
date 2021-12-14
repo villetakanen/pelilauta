@@ -4,7 +4,7 @@ import { useAuth, useProfile } from '../authz'
 import { Thread, PostData } from '@/utils/firestoreInterfaces'
 import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, FirestoreError, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, where, Timestamp } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
-import { Storable, StorableDoc } from '../Storable'
+import { Storable, StorableDoc } from '../store/Storable'
 
 export interface Stream {
   slug: string

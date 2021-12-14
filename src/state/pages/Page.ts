@@ -1,5 +1,5 @@
 import { DocumentData, Timestamp } from '@firebase/firestore'
-import { Storable, StorableDoc } from '../Storable'
+import { Storable, StorableDoc } from '../store/Storable'
 
 interface PageDoc extends StorableDoc {
   name?: string
