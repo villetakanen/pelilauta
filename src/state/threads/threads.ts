@@ -4,6 +4,7 @@ import { useAuth, useProfile } from '../authz'
 import { Thread, PostData } from '@/utils/firestoreInterfaces'
 import { addDoc, collection, deleteDoc, doc, DocumentData, DocumentReference, FirestoreError, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc, where, Timestamp } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
+import { Storable, StorableDoc } from '../Storable'
 
 export interface Stream {
   slug: string
@@ -58,14 +59,22 @@ export function toThread (id: string, data?:DocumentData): Thread {
   return post
 }
 
+export interface ThreadModel extends StorableDoc {
+  title: string
+  content: string
+  topic: string
+  replyCount: number
+  lovedCount: number
+  seenCount: number
+}
+
 /**
  * A Class entity for a Firebase Thread.
  *
  * Uses of the Thread interface should be refactored to this class, and then this class renamed
  * to "Thread"
  */
-export class ThreadClass {
-  readonly id: string
+export class ThreadClass extends Storable implements ThreadModel {
   readonly author: string|undefined
   title: string
   topic: string
@@ -73,17 +82,15 @@ export class ThreadClass {
   replyCount: number
   lovedCount: number
   seenCount: number
-  readonly flowTime: Timestamp|null
 
   constructor (id: string, data?:DocumentData) {
-    this.id = id
+    super(id, data)
     this.title = data?.title || ''
     this.topic = data?.topic || '-'
     this.replyCount = data?.replyCount || 0
     this.lovedCount = data?.lovedCount || 0
     this.content = data?.content || '<p><br/><p>'
     this.author = data?.author || undefined
-    this.flowTime = data?.flowTime || null
     this.seenCount = data?.seenCount || 0
   }
 
@@ -365,7 +372,7 @@ export function useThreads (topic?:string): {
     pinnedThreads: ComputedRef<Thread[]>
     siteThreads: ComputedRef<Thread[]>
     thread: ComputedRef<Thread>
-    latestThreads: Ref<ThreadClass[]>
+    latestThreads: Ref<ThreadModel[]>
     fetchLikedThreads: (count?: number) => Promise<ThreadClass[]>
     fetchThreadsWithMostReplies: (count?: number) => Promise<ThreadClass[]>
     fetchSiteThreads: (id:string) => Promise<void>

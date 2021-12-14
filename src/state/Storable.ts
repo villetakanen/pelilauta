@@ -7,6 +7,7 @@ export interface StorableDoc {
   id: string
   createdAt?: Timestamp
   updatedAt?: Timestamp
+  flowTime?: number
 }
 
 /**
@@ -16,6 +17,7 @@ export class Storable implements StorableDoc {
   private _id: string
   private _created: Timestamp|undefined
   private _updated: Timestamp|undefined
+  private _flowTime: Timestamp|undefined
 
   constructor (storable: string|StorableDoc, doc?: DocumentData) {
     if (typeof storable === 'string') {
@@ -29,6 +31,18 @@ export class Storable implements StorableDoc {
 
   get id (): string {
     return this._id
+  }
+
+  /**
+   * The time of the last change to this entity, or any related entity within the Update Stream Graph context.
+   *
+   * @returns {number} The time of the last change to this entity, or any related entity in milliseconds since the epoch.
+   */
+  get flowTime (): number {
+    if (this._flowTime) return this._flowTime.toMillis()
+    if (this._updated) return this._updated.toMillis()
+    if (this._created) return this._created.toMillis()
+    return 0
   }
 
   get createdAt (): Timestamp|undefined {
@@ -50,7 +64,17 @@ export class Storable implements StorableDoc {
   }
 
   set docData (doc: DocumentData) {
+    if (doc.created) this._created = doc.created
     if (doc.updated) this._updated = doc.updated
+    if (doc.flowTime) this._flowTime = (doc.flowTime as Timestamp)
+  }
+
+  compareFlowTime (other:Storable): number {
+    if (other.id !== this.id) return 0 // They are the same entity, return 0
+    if (other.flowTime > this.flowTime) {
+      return -1
+    }
+    return 1
   }
 
   compareChangeTime (other:Storable): number {

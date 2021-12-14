@@ -39,12 +39,12 @@ export default defineComponent({
       if (props.thread.flowTime) {
         if (
           profileMeta.value.allThreadsSeenSince &&
-          props.thread.flowTime.seconds > profileMeta.value.allThreadsSeenSince.seconds &&
-          showRepliesAfter.value > 1 && props.thread.flowTime.seconds < showRepliesAfter.value
+          props.thread.flowTime > profileMeta.value.allThreadsSeenSince.seconds &&
+          showRepliesAfter.value > 1 && props.thread.flowTime < showRepliesAfter.value
         ) {
           return true
         }
-        return showRepliesAfter.value > 1 && props.thread.flowTime.seconds > showRepliesAfter.value
+        return showRepliesAfter.value > 1 && props.thread.flowTime > showRepliesAfter.value
       }
       return false
     })
