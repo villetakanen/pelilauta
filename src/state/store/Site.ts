@@ -1,7 +1,7 @@
 import { logDebug } from '@/utils/eventLogger'
-import { DocumentData, Timestamp, FieldValue } from '@firebase/firestore'
-import { Storable, StorableDoc, StorableModel } from '../store/Storable'
-import { PageCategory } from './PageCategory'
+import { DocumentData, Timestamp } from '@firebase/firestore'
+import { Storable, StorableDoc, StorableModel } from './Storable'
+import { PageCategory } from '../site/PageCategory'
 
 interface PageLogEntry {
   name: string

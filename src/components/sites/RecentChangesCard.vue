@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { usePagelog } from '@/state/pagelog'
-import { Site } from '@/state/site/Site'
+import { Site } from '@/state/store/Site'
 import { computed, defineComponent } from 'vue'
 import Card from '../layout/Card.vue'
 import Icon from '../material/Icon.vue'

@@ -25,7 +25,7 @@
 import Card from '@/components/layout/Card.vue'
 import { useCharacters } from '@/state/characters'
 import { Character } from '@/state/characters/Character'
-import { Site } from '@/state/site/Site'
+import { Site } from '@/state/store/Site'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 

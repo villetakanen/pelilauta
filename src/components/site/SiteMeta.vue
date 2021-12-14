@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import { useAuth } from '@/state/authz'
-import { SiteDoc } from '@/state/site/Site'
+import { SiteDoc } from '@/state/store/Site'
 import { computed, defineComponent, Ref, ref } from 'vue'
 import Select from '../form/Select.vue'
 import Column from '../layout/Column.vue'

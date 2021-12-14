@@ -1,4 +1,3 @@
-import { logDebug } from '@/utils/eventLogger'
 import { DocumentData, Timestamp, serverTimestamp } from '@firebase/firestore'
 
 /**

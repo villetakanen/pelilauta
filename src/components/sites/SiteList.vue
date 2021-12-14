@@ -39,7 +39,7 @@
 import { computed, ComputedRef, defineComponent, ref } from 'vue'
 import { fireStoreURL, toDisplayString } from '@/utils/firebaseTools'
 import { useSites } from '@/state/sites'
-import { Site } from '@/state/site/Site'
+import { Site } from '@/state/store/Site'
 import Column from '../layout/Column.vue'
 import { useAuth } from '@/state/authz'
 import Button from '../form/Button.vue'

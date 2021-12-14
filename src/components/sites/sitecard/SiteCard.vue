@@ -53,7 +53,7 @@
 <script lang="ts">
 import Card from '@/components/layout/Card.vue'
 import Icon from '@/components/material/Icon.vue'
-import { Site } from '@/state/site/Site'
+import { Site } from '@/state/store/Site'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 import { toDisplayString } from '@/utils/firebaseTools'

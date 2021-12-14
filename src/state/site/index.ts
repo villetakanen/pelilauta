@@ -7,7 +7,7 @@ import { PublicProfile, useAuth } from '../authz'
 import { doc, getDoc, getFirestore, onSnapshot, updateDoc, serverTimestamp, DocumentData } from '@firebase/firestore'
 import { getAnalytics, logEvent } from '@firebase/analytics'
 import { useSiteCharacters } from './useSiteCharacters'
-import { Site, SiteDoc, SiteModel } from './Site'
+import { Site, SiteDoc, SiteModel } from '../store/Site'
 
 export const siteTypes = new Map([
   ['dd', 'Dungeons and Dragons 5e'],

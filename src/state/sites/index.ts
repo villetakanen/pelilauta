@@ -1,7 +1,7 @@
 import { computed, ComputedRef, ref } from 'vue'
 import { collection, getFirestore, onSnapshot, orderBy, query, addDoc, serverTimestamp, setDoc, doc } from '@firebase/firestore'
 import { useAuth } from '../authz'
-import { SiteDoc, Site } from '@/state/site/Site'
+import { SiteDoc, Site } from '@/state/store/Site'
 import { logDebug } from '@/utils/eventLogger'
 
 const fullSiteList = ref(new Map<string, Site>())

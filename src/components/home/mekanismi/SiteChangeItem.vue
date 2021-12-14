@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { Site } from '@/state/site/Site'
+import { Site } from '@/state/store/Site'
 import { useSites } from '@/state/sites'
 import { computed, defineComponent } from 'vue'
 import Icon from '../../material/Icon.vue'
