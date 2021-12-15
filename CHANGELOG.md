@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.4.7](https://github.com/villetakanen/pelilauta/compare/v12.4.6...v12.4.7) (2021-12-15)
+
+
+### Bug Fixes
+
+* some locales added ([5429bd2](https://github.com/villetakanen/pelilauta/commit/5429bd2aa38a9c10ab275ae7ee594aee26269b83))
+* thequick theme ([b6f35c8](https://github.com/villetakanen/pelilauta/commit/b6f35c83e2c40aef2d65d267de216543c1955502))
+
 ### [12.4.6](https://github.com/villetakanen/pelilauta/compare/v12.4.5...v12.4.6) (2021-12-15)
 
 
