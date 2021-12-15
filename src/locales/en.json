@@ -123,6 +123,15 @@
   "threads":{
     "home":{
       "title": "Discussions"
+    },
+    "latest": {
+      "title": "Latest Discussions"
+    },
+    "replied": {
+      "title": "Most replies"
+    },
+    "liked": {
+      "title": "Most likes"
     }
   },
   "vault":{
