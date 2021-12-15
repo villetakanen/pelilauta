@@ -9,28 +9,34 @@
       {{ channel }}
     </ViewTitle>
     <SpacerDiv />
-    <Action
+    <Button
       v-for="ch in channels"
       :key="ch.slug"
-      :prepend="ch.icon"
-      :to="'/threads/'+ch.slug"
+      text
+      @click.prevent="reroute('/threads/'+ch.slug)"
     >
+      <Icon
+        :name="ch.icon"
+        small
+      />
       <span class="onlyForDesktop">{{ ch.name }}</span>
-    </Action>
+    </Button>
   </Header>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import Action from '../material/Action.vue'
 import { useAuth } from '@/state/authz'
 import { useMeta } from '@/state/meta'
 import ViewTitle from '../layout/ViewTitle.vue'
 import Header from '../layout/Header.vue'
 import SpacerDiv from '../layout/SpacerDiv.vue'
+import Button from '../form/Button.vue'
+import Icon from '../material/Icon.vue'
+import { useUxActions } from '@/composables/useUxActions'
 
 export default defineComponent({
-  components: { Action, ViewTitle, Header, SpacerDiv },
+  components: { ViewTitle, Header, SpacerDiv, Button, Icon },
   props: {
     icon: {
       type: String,
@@ -45,8 +51,8 @@ export default defineComponent({
     const { showMemberTools } = useAuth()
     const { streams } = useMeta()
     const channels = computed(() => (streams.value.filter((s) => (s.slug !== '-'))))
-
-    return { showMemberTools, channels }
+    const { reroute } = useUxActions()
+    return { showMemberTools, channels, reroute }
   }
 })
 </script>
