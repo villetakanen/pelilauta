@@ -6,6 +6,7 @@
         class="double themeable"
         :class="{
           themeDD: site.theme.name === 'dd',
+          themeQuick: site.theme.name === 'quick',
         }"
       >
         <transition name="fade">
