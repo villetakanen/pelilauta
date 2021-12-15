@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.4.6](https://github.com/villetakanen/pelilauta/compare/v12.4.5...v12.4.6) (2021-12-15)
+
+
+### Bug Fixes
+
+* removed some uses of deprecated action comp ([c76edc3](https://github.com/villetakanen/pelilauta/commit/c76edc372c00eb72d74fe2dc8f43bb29218a2b20))
+
 ### [12.4.5](https://github.com/villetakanen/pelilauta/compare/v12.4.4...v12.4.5) (2021-12-14)
 
 
