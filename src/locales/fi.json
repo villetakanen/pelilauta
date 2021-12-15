@@ -19,6 +19,7 @@
     "login": "Kirjaudu",
     "logout": "Kirjaudu ulos",
     "markAllRead": "Merkitse kaikki aiheet luetuiksi",
+    "move": "Siirrä",
     "save": "Tallenna",
     "share": "Jaa",
     "toTopicList": "Aiheet",
@@ -165,6 +166,7 @@
     "createProfile": "Luo profiili"
   },
   "reply": {
+    "placeholder": "Kirjoita vastauksesi tähän",
     "editor": {
       "helpertext": "merkitsee kirjoittajan, ja lähettää notifikaation"
     }
@@ -256,6 +258,16 @@
         "noPlayers": "Ei pelaajia",
         "ownersToolTitle": "Omistajat",
         "ownersTooltip": "Täysi hallintaoikeus koko sivustolle"
+      },
+      "ownerstool": {
+        "title": "Omistajat",
+        "description": "Omistajat voivat muokata sivustoa ja lisätä pelaajia.",
+        "addNew": "Lisää uusi omistaja"
+      },
+      "metaData": {
+        "title": "Tietoja",
+        "createdAt": "Luotu",
+        "updatedAt": "Päivitetty"
       }
     }
   },

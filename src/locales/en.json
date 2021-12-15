@@ -9,6 +9,7 @@
     "addThread": "New Discussion",
     "delete": "Delete",
     "edit": "Edit",
+    "move": "Move",
     "profile": "My Profile",
     "quote": "Quote",
     "save": "Save",
@@ -35,6 +36,11 @@
   "character":{
     "title": "Character"
   },
+  "discuss":{
+    "reply": {
+      "title": "Reply"
+    }
+  },
   "home": {
     "changesCard": {
       "title": "Sites and Games",
@@ -44,6 +50,9 @@
       "openLink": "to"
     },
     "morePostsInTheForums": "More discussions in the forums"
+  },
+  "impressions":{
+    "seenBy": "Followers"
   },
   "keeper": {
     "title": "Keeper",
@@ -94,7 +103,17 @@
       }
     },
     "settings":{
-      "title":"Site Settings"
+      "title":"Site Settings",
+      "ownerstool": {
+        "title": "Owners",
+        "description": "Owners have full site admin access",
+        "addNew": "New Owner"
+      },
+      "metaData": {
+        "title": "Info",
+        "createdAt": "Created",
+        "updatedAt": "Updated"
+      }
     },
     "sidebar":{
       "index": {"title": "Index"}
@@ -132,7 +151,8 @@
     },
     "liked": {
       "title": "Most likes"
-    }
+    },
+    "discussion": "Discussion"
   },
   "vault":{
     "title": "Vault",
