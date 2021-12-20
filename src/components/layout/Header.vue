@@ -37,7 +37,7 @@ export default defineComponent({
 header
   display: flex
   margin: 0
-  padding: 0
+  padding: 0 8px
   gap: 0
   &.sticky
     transition: all 0.3s

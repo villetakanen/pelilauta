@@ -6,7 +6,6 @@
     <Icon
       name="share"
       small
-      style="padding-right: 8px; margin-left:-4px"
     />
     <span class="onlyForDesktop">{{ $t('action.share') }}</span>
   </Button>

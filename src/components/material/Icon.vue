@@ -124,4 +124,8 @@ button:not(.Fab) .icon
   padding: 0
   vertical-align: middle
 
+@include media('<tablet')
+  button:not(.Fab) .icon
+    margin: 0
+
 </style>
