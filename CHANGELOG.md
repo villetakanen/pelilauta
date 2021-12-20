@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [12.4.9](https://github.com/villetakanen/pelilauta/compare/v12.4.8...v12.4.9) (2021-12-20)
+
+
+### Bug Fixes
+
+* share button for mobile and thread header ([f6199fc](https://github.com/villetakanen/pelilauta/commit/f6199fcf2e9cc6331eb5ebc3c9ec90a810c18b2f))
+
 ### [12.4.8](https://github.com/villetakanen/pelilauta/compare/v12.4.7...v12.4.8) (2021-12-15)
 
 
